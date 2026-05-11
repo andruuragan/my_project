@@ -62,7 +62,7 @@
 
     <div class="description-content">
 
-        @if($catalog->description)
+        @if(optional($catalog->description))
 
             @php $id = $catalog->id; @endphp
 
@@ -131,7 +131,7 @@
     <div class="d-flex align-items-center gap-2 mt-3">
 
         <a href="{{ route('shop.index') }}"
-           class="btn btn-outline-secondary btn-icon btn-sm">
+           class="btn btn-outline-secondary btn-sm shadow-sm">
 
             <i class="bi bi-arrow-left"></i>
 

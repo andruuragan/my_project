@@ -43,6 +43,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const basePrice = Number(priceEl.dataset.price || 0);
 
+        const totalBlock = totalEl.closest('.total-price');
+
         function updateTotal() {
             let qty = parseInt(qtyInput.value);
             if (!qty || qty < 1) qty = 1;
@@ -51,6 +53,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
             const total = basePrice * qty;
             totalEl.textContent = new Intl.NumberFormat('uk-UA').format(total);
+            totalBlock.classList.toggle('show', qty > 1);
+
+            // 🔥 Показ / приховування суми
+            if (qty > 1) {
+                totalBlock.style.display = 'block';
+            } else {
+                totalBlock.style.display = 'none';
+            }
         }
 
         plusBtn.addEventListener('click', () => {
@@ -68,6 +78,5 @@ document.addEventListener('DOMContentLoaded', function () {
 
         updateTotal();
     });
-
 });
 

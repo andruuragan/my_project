@@ -29,10 +29,7 @@
             margin: 0;
         }
 
-        .navbar {
-            padding-top: 10px;
-            padding-bottom: 10px;
-        }
+
 
         .logo {
             height: 100px;
@@ -42,8 +39,7 @@
 
 <body>
 
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-
+<nav class="navbar navbar-expand-lg custom-navbar">
     <div class="container" style="max-width: 1600px;">
 
         <!-- LOGO -->
@@ -52,112 +48,67 @@
                 <img src="{{ asset('images/logo.png') }}" class="logo" alt="Logo">
             </a>
 
-            <div style="
-    display: inline-block;
-    padding: 6px 14px;
-    margin-left: 0px;
-
-    background:
-        linear-gradient(
-            180deg,
-            #5b616b 0%,
-            #3b4149 45%,
-            #242a31 100%
-        );
-
-    border: 1px solid #7a8088;
-    border-radius: 9px;
-
-    box-shadow:
-        inset 0 1px 2px rgba(255,255,255,0.18),
-        inset 0 -1px 2px rgba(0,0,0,0.55),
-        0 1px 4px rgba(0,0,0,0.30);
-
-    font-size: 11px;
-    font-weight: 800;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-
-    color: #ff8c00;
-
-    text-shadow:
-        0 0 4px rgba(255,140,0,0.25),
-        0 1px 1px rgba(0,0,0,0.75);
-
-    font-family: Arial, sans-serif;
-">
+            <div class="subtitle-badge">
                 Центр комплектування димоходів
             </div>
         </div>
 
-
-
-        <!-- TOGGLER (важливо для мобілки) -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
         <!-- MENU -->
-        <div class="collapse navbar-collapse" id="navbarNav" style="margin-left: 80px;">
+        <div class="collapse navbar-collapse show" id="navbarNav" style="margin-left: 80px;">
             <ul class="navbar-nav">
 
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('main.index') ? 'active fw-bold' : '' }}"
+                    <a class="nav-link {{ request()->routeIs('main.index') ? 'active' : '' }}"
                        href="{{ route('main.index') }}">
                         Main
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('shop.index') ? 'active fw-bold' : '' }}"
+                    <a class="nav-link {{ request()->routeIs('shop.index') ? 'active' : '' }}"
                        href="{{ route('shop.index') }}">
                         Димарі та комплектуючі
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('about.index') ? 'active fw-bold' : '' }}"
+                    <a class="nav-link {{ request()->routeIs('about.index') ? 'active' : '' }}"
                        href="{{ route('about.index') }}">
                         About
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('contacts.index') ? 'active fw-bold' : '' }}"
+                    <a class="nav-link {{ request()->routeIs('contacts.index') ? 'active' : '' }}"
                        href="{{ route('contacts.index') }}">
                         Contacts
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('admin.index') ? 'active fw-bold' : '' }}"
+                    <a class="nav-link {{ request()->routeIs('admin.index') ? 'active' : '' }}"
                        href="{{ route('admin.index') }}">
                         Admin
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('catalog.index') ? 'active fw-bold' : '' }}"
+                    <a class="nav-link {{ request()->routeIs('catalog.index') ? 'active' : '' }}"
                        href="{{ route('catalog.index') }}">
                         Catalog
                     </a>
                 </li>
-
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('descriptions.index') ? 'active fw-bold' : '' }}"
+                    <a class="nav-link {{ request()->routeIs('descriptions.index') ? 'active' : '' }}"
                        href="{{ route('descriptions.index') }}">
-                        Descriptions
+                        Опис елементів
                     </a>
                 </li>
 
-
-
             </ul>
-
         </div>
 
     </div>
-
 </nav>
 
 <!-- CONTENT -->
@@ -189,12 +140,20 @@
         const downBtn = document.querySelector('.scroll-down');
 
         window.addEventListener('scroll', function () {
+
+            const scrollY = window.scrollY;
+            const windowHeight = window.innerHeight;
+            const fullHeight = document.documentElement.scrollHeight;
+
+            // ===== UP BUTTON =====
             if (upBtn) {
-                upBtn.classList.toggle('show', window.scrollY > 200);
+                upBtn.classList.toggle('show', scrollY > 200);
             }
 
+            // ===== DOWN BUTTON =====
             if (downBtn) {
-                const isBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 10;
+                const isBottom = scrollY + windowHeight >= fullHeight - 5;
+
                 downBtn.classList.toggle('hide', isBottom);
             }
         });

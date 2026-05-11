@@ -1,46 +1,325 @@
 @import 'tailwindcss';
 @import "bootstrap/dist/css/bootstrap.min.css";
 
+/* =========================
+   LARAVEL / VITE SOURCES
+========================= */
+
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 @source '../**/*.blade.php';
 @source '../**/*.js';
 
-@theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
-}
-.scroll-top {
-    position: fixed;
-    right: 140px;
-    bottom: 20px;
+/* =========================
+   THEME
+========================= */
 
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji',
+    'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+/* =========================
+   GLOBAL
+========================= */
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+
+.custom-navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1050;
+
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(14px);
+
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+
+    box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+}
+
+/* =========================
+   MENU
+========================= */
+
+.navbar-nav {
+    gap: 22px;
+    align-items: center;
+}
+
+/* =========================
+   LINKS
+========================= */
+
+.nav-link {
+    font-size: 15px;
+    font-weight: 500;
+    color: #333 !important;
+
+    position: relative;
+    transition: 0.2s ease;
+}
+
+/* underline animation */
+.nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+
+    width: 0%;
+    height: 2px;
+
+    background: #0d6efd;
+    transition: 0.25s ease;
+}
+
+.nav-link:hover {
+    color: #0d6efd !important;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.nav-link.active {
+    color: #0d6efd !important;
+    font-weight: 600;
+}
+
+.nav-link.active::after {
+    width: 100%;
+}
+
+/* =========================
+   LOGO
+========================= */
+
+.logo {
+    height: 85px;
+    transition: 0.2s ease;
+}
+
+.logo:hover {
+    transform: scale(1.03);
+}
+
+/* =========================
+   BADGE
+========================= */
+
+.subtitle-badge {
+    display: inline-block;
+    padding: 6px 14px;
+
+    background: linear-gradient(180deg, #5b616b, #242a31);
+    border: 1px solid #7a8088;
+    border-radius: 9px;
+
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+
+    color: #ff8c00;
+
+    box-shadow: inset 0 1px 2px rgba(255,255,255,0.15);
+}
+
+/*==========================
+     PRODUCT CARDS
+ =======================*/
+.product-card {
+    border-radius: 18px;
+    overflow: hidden;
+    background: #fff;
+    transition: 0.25s ease;
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.product-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 14px 35px rgba(0,0,0,0.10);
+}
+
+.product-image-wrapper {
+    background: #fafafa;
+    padding: 10px;
+}
+
+.product-image {
+    height: 240px;
+    object-fit: contain;
+    transition: 0.3s ease;
+}
+
+.product-card:hover .product-image {
+    transform: scale(1.05);
+}
+
+.product-icons {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    opacity: 1;              /* всегда видно */
+    transform: none;
+    transition: 0.2s ease;
+}
+.product-card:hover .product-icons {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.icon-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(255,255,255,0.95);
+    border: 1px solid rgba(0,0,0,0.06);
+
+    line-height: 1;
+    padding: 0;
+}
+
+.icon-btn i {
+    font-size: 16px;
+    line-height: 1;
+}
+
+.icon-btn:hover {
+    background: #111;
+    color: #fff;
+}
+/* цена — важнее */
+.product-price {
+    font-size: 20px;
+    font-weight: 700;
+    color: #111;
+}
+
+.product-title {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.4;
+    min-height: 38px;
+}
+
+.product-specs {
+    font-size: 13px;
+    color: #777;
+}
+
+
+
+.quantity-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.qty-btn {
+    width: 34px;
+    height: 34px;
+    border: none;
+    border-radius: 8px;
+    background: #f3f3f3;
+    font-size: 18px;
+    transition: 0.2s;
+}
+
+.qty-btn:hover {
+    background: #111;
+    color: #fff;
+}
+
+.qty-input {
+    width: 50px;
+    height: 34px;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+/* кнопка */
+.add-cart-btn {
+    border-radius: 12px;
+    font-weight: 600;
+    transition: 0.2s;
+}
+.add-cart-btn:hover {
+    transform: scale(1.02);
+}
+.total-price {
+    opacity: 0;
+    transform: translateY(-3px);
+    transition: 0.2s ease;
+    pointer-events: none;
+    max-height: 0;
+    overflow: hidden;
+}
+
+.total-price.show {
+    opacity: 1;
+    transform: translateY(0);
+    max-height: 100px;
+}
+/* =========================
+   SCROLL BUTTONS
+========================= */
+
+.scroll-top,
+.scroll-down {
+    position: fixed;
     width: 60px;
     height: 60px;
+
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 9999;
+
+    text-decoration: none;
+}
+
+/* TOP */
+.scroll-top {
+    right: 140px;
+    bottom: 20px;
 
     background: #28a745;
     color: white;
 
-    border-radius: 50%;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    gap: 2px;
-
-    text-decoration: none;
-
     box-shadow: 0 6px 15px rgba(0,0,0,0.25);
-
-    z-index: 9999;
 
     opacity: 0;
     visibility: hidden;
+    transform: scale(0.9);
 
-    transform: scale(0.9); /* 👈 старт чуть меньше */
-    transition: transform 0.25s ease, opacity 0.25s ease;
+    transition: 0.25s ease;
 }
 
 .scroll-top.show {
@@ -49,95 +328,61 @@
     transform: scale(1);
 }
 
-.scroll-top:hover {
-    transform: scale(1.05);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+/* DOWN */
+.scroll-down {
+    right: 140px;
+    top: 155px;
+
+    background: #0d6efd;
+    color: white;
+
+    box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+
+    transform: scale(0.95);
+    transition: all 0.25s ease;
 }
 
-
-.scroll-top .arrow {
-    font-size: 16px;
-    line-height: 1;
+.scroll-down:not(.hide) {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+}
+/* скрыта */
+.scroll-down.hide {
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0.85);
+    pointer-events: none;
+}
+/* hover */
+.scroll-top:hover,
+.scroll-down:hover {
+    transform: scale(1.08);
 }
 
-.scroll-top .text {
-    font-size: 16px;
-    line-height: 1;
-}
+/* =========================
+   TABLE
+========================= */
 
 .table {
     table-layout: fixed;
     font-size: 12px;
 }
 
-html {
-    scroll-behavior: smooth;
-}
-.table-wrapper {
-    position: relative; /* 👈 важно */
-}
-.scroll-down {
-    position: fixed;
-    right: 140px;
-    top: 150px;
+/* =========================
+   FILTER / FORMS
+========================= */
 
-    width: 60px;
-    height: 60px;
-
-    background: #0d6efd;
-    color: white;
-
-    border-radius: 50%;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    gap: 2px;
-
-    text-decoration: none;
-
-    box-shadow: 0 6px 15px rgba(0,0,0,0.25);
-
-    z-index: 9999;
-
-    transform: scale(0.95);
-    transition: all 0.25s ease;
-}
-
-/* состояние при появлении */
-.scroll-down:not(.hide) {
-    transform: scale(1);
-}
-
-/* 🔥 красивый hover */
-.scroll-down:hover {
-    transform: scale(1.08);
-    background: #0b5ed7; /* чуть темнее */
-    box-shadow: 0 10px 25px rgba(13,110,253,0.5);
-}
-
-/* 🔥 микро-анимация стрелки */
-.scroll-down:hover .arrow {
-    transform: translateY(2px);
-}
-
-/* стрелка */
-.scroll-down .arrow {
-    font-size: 16px;
-    transition: transform 0.2s ease;
-}
-
-/* текст */
-.scroll-down .text {
-    font-size: 16px;
-}
 .filter-form .form-control {
-    height: 28px;        /* уменьшает высоту */
-    padding: 4px 8px;    /* контролирует “воздух” */
-    font-size: 14px;     /* делает компактнее */
+    height: 28px;
+    padding: 4px 8px;
+    font-size: 14px;
 }
+
+/* =========================
+   CHOICES
+========================= */
+
 .choices {
     font-size: 13px;
 }
@@ -146,15 +391,16 @@ html {
     min-height: 28px !important;
     height: 28px !important;
     padding: 2px 6px !important;
+
     display: flex;
     align-items: center;
     box-sizing: border-box;
 }
 
-.choices__list--single {
-    padding: 0 !important;
-    line-height: 24px;
-}
+/* =========================
+   PRODUCTS
+========================= */
+
 .product-image-wrapper {
     position: relative;
 }
@@ -167,9 +413,7 @@ html {
 
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
 
-    z-index: 10;
     pointer-events: none;
 }
 
@@ -178,50 +422,11 @@ html {
 .right-icons {
     pointer-events: auto;
 }
-.navbar-nav {
-    gap: 18px;
-}
-
-.nav-link {
-    font-size: 15px;
-    font-weight: 500;
-    transition: 0.2s;
-}
-
-.nav-link:hover {
-    color: #0d6efd !important;
-}
-/* =========================
-   ОПИСАНИЕ (rich text)
-========================= */
-.description-content .tab-pane ul {
-    list-style: disc;
-    padding-left: 20px;
-    margin: 10px 0;
-}
-
-.description-content .tab-pane ol {
-    list-style: decimal;
-    padding-left: 20px;
-    margin: 10px 0;
-}
 
 /* =========================
-   BOOTSTRAP TABS (фикс)
+   DESCRIPTION
 ========================= */
-.nav-tabs {
-    padding-left: 0;
-    margin-bottom: 0;
-}
 
-.nav-tabs > li {
-    list-style: none;
-}
-
-/* убираем точки у кнопок (на всякий случай) */
-.nav-tabs .nav-link {
-    list-style: none;
-}
 .description-content .tab-pane {
     line-height: 1.8;
     font-size: 15px;
@@ -234,4 +439,25 @@ html {
 
 .description-content .tab-pane strong {
     color: #111;
+}
+
+.description-content .tab-pane ul {
+    list-style: disc;
+    padding-left: 20px;
+}
+
+.description-content .tab-pane ol {
+    list-style: decimal;
+    padding-left: 20px;
+}
+
+/* tabs reset */
+.nav-tabs {
+    padding-left: 0;
+    margin-bottom: 0;
+}
+
+.nav-tabs > li,
+.nav-tabs .nav-link {
+    list-style: none;
 }

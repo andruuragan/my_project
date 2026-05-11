@@ -241,6 +241,8 @@
 
                                 <div class="position-relative product-image-wrapper">
 
+
+
                                     <img src="{{ Storage::url($catalog->image) }}"
                                          class="card-img-top product-image"
                                          alt="{{ $catalog->name }}"
@@ -293,13 +295,10 @@
                                     </div>
 
                                     <div class="total-price mb-2">
-
-                                        Разом:
-
-                                        <span class="total-sum">
-                                        {{ number_format($catalog->price, 0, '.', ' ') }}
-                                    </span>
-
+                                        <span class="text-muted">Сума:</span>
+                                        <strong class="total-sum">
+                                            {{ number_format($catalog->price, 0, '.', ' ') }}
+                                        </strong>
                                         грн
                                     </div>
 
@@ -370,115 +369,5 @@
     </div>
 
 
-    <style>
-        .product-card {
-            border-radius: 16px;
-            overflow: hidden;
-            transition: 0.25s;
-            background: #fff;
-        }
 
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08) !important;
-        }
-
-        .product-image-wrapper {
-            position: relative;
-            overflow: hidden;
-            background: #fff;
-        }
-
-        .product-image {
-            height: 260px;
-            object-fit: contain;
-            padding: 20px;
-            transition: 0.3s;
-        }
-
-        .product-card:hover .product-image {
-            transform: scale(1.04);
-        }
-
-        .product-icons {
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .icon-btn {
-            width: 38px;
-            height: 38px;
-            border: none;
-            border-radius: 50%;
-            background: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            color: #222;
-            transition: 0.2s;
-        }
-
-        .icon-btn:hover {
-            background: #111;
-            color: #fff;
-        }
-
-        .product-title {
-            font-size: 15px;
-            font-weight: 600;
-            line-height: 1.4;
-            min-height: 42px;
-        }
-
-        .product-specs {
-            font-size: 13px;
-            color: #777;
-        }
-
-        .product-price {
-            font-size: 24px;
-            font-weight: 700;
-            color: #111;
-        }
-
-        .quantity-box {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .qty-btn {
-            width: 34px;
-            height: 34px;
-            border: none;
-            border-radius: 8px;
-            background: #f3f3f3;
-            font-size: 18px;
-            transition: 0.2s;
-        }
-
-        .qty-btn:hover {
-            background: #111;
-            color: #fff;
-        }
-
-        .qty-input {
-            width: 50px;
-            height: 34px;
-            text-align: center;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-        }
-
-        .add-cart-btn {
-            border-radius: 12px;
-            padding: 12px;
-            font-weight: 600;
-        }
-    </style>
 @endsection
