@@ -147,12 +147,15 @@ body {
     overflow: hidden;
     background: #fff;
     transition: 0.25s ease;
-    border: 1px solid rgba(0,0,0,0.05);
+
+    border: 1px solid #e6e6e6;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
 .product-card:hover {
     transform: translateY(-6px);
-    box-shadow: 0 14px 35px rgba(0,0,0,0.10);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    border-color: rgba(0, 0, 0, 0.18);
 }
 
 .product-image-wrapper {
@@ -170,19 +173,7 @@ body {
     transform: scale(1.05);
 }
 
-.product-icons {
-    position: absolute;
-    top: 10px;
-    right: 10px;
 
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-
-    opacity: 1;              /* всегда видно */
-    transform: none;
-    transition: 0.2s ease;
-}
 .product-card:hover .product-icons {
     opacity: 1;
     transform: translateY(0);
@@ -381,12 +372,33 @@ body {
 /* =========================
    FILTER / FORMS
 ========================= */
-
-.filter-form .form-control {
-    height: 28px;
-    padding: 4px 8px;
-    font-size: 14px;
+.filter-card {
+    position: fixed;
+    top: 160px;
+    left: 160px;
+    width: 240px;
+    z-index: 1000;
 }
+
+.products-area {
+    margin-left: 280px;
+}
+
+@media (max-width: 992px) {
+    .filter-card {
+        position: static;
+        width: 100%;
+    }
+
+    .products-area {
+        margin-left: 0;
+    }
+}
+    .filter-form .form-control {
+        height: 28px;
+        padding: 4px 8px;
+        font-size: 14px;
+    }
 
 /* =========================
    CHOICES

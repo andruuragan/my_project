@@ -12,9 +12,9 @@
 
             <!-- SIDEBAR FILTER -->
             <div class="col-xl-2 col-lg-3 mb-4">
-                <div class="card p-3 shadow-sm sticky-top">
+                <div class="card p-3 shadow-sm filter-card">
 
-                    <h5 class="mb-3">Фільтр</h5>
+                    <h5 class="mb-3 text-center">Фільтр</h5>
 
                     <form class="filter-form" method="GET" action="{{ route('shop.index') }}">
 
@@ -229,7 +229,7 @@
             </div>
 
             <!-- PRODUCTS -->
-            <div class="col-lg-9">
+            <div class="col-lg-9 products-area">
 
                 <div class="row">
 
@@ -237,7 +237,7 @@
 
                         <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
 
-                            <div class="card product-card border-0 shadow-sm h-100">
+                            <div class="card product-card shadow-sm h-100">
 
                                 <div class="position-relative product-image-wrapper">
 
@@ -279,7 +279,7 @@
                                     </h6>
 
                                     <div class="product-specs mb-1">
-                                        Ø{{ $catalog->diameter }} • {{ $catalog->thickness }}
+                                        Ø{{ $catalog->diameter }} • {{ $catalog->thickness }} • AISI {{ $catalog->grade }}
                                     </div>
 
                                     <div class="product-price mb-3 price-divider">
@@ -318,7 +318,7 @@
 
                                         <i class="bi bi-cart-plus me-2"></i>
 
-                                        До кошика
+                                        У кошик
 
                                     </button>
 
