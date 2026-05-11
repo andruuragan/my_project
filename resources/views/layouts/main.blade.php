@@ -67,7 +67,7 @@
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('shop.index') ? 'active' : '' }}"
                        href="{{ route('shop.index') }}">
-                        Димарі та комплектуючі
+                        Димоходи та комплектуючі
                     </a>
                 </li>
 

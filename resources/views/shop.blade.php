@@ -274,15 +274,15 @@
 
                                 <div class="card-body d-flex flex-column">
 
-                                    <h6 class="product-title">
+                                    <h6 class="product-title mb-1">
                                         {{ $catalog->name }}
                                     </h6>
 
-                                    <div class="product-specs mb-2">
+                                    <div class="product-specs mb-1">
                                         Ø{{ $catalog->diameter }} • {{ $catalog->thickness }}
                                     </div>
 
-                                    <div class="product-price mb-3">
+                                    <div class="product-price mb-3 price-divider">
 
                                     <span class="item-price"
                                           data-price="{{ $catalog->price }}">
@@ -291,7 +291,7 @@
 
                                     </span>
 
-                                        грн
+                                        грн.
                                     </div>
 
                                     <div class="total-price mb-2">

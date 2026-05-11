@@ -32,6 +32,10 @@
                     <th style="width: 60px;">Кожух</th>
                     <th style="width: 80px;">Цена (грн.)</th>
                     <th style="width: 120px;">Картинка</th>
+
+                    {{-- НОВАЯ КОЛОНКА --}}
+                    <th style="width: 80px;">Описание</th>
+
                     <th style="width: 150px;">Действия</th>
                 </tr>
                 </thead>
@@ -58,6 +62,16 @@
                             @else
                                 -
                             @endif</td>
+
+                        {{-- ОПИСАНИЕ --}}
+                        <td class="text-center">
+                            @if($item->description)
+                                <i class="bi bi-check-circle-fill text-success" style="font-size: 24px;"></i>
+                            @else
+                                <i class="bi bi-x-circle-fill text-danger" style="font-size: 24px;"></i>
+                            @endif
+                        </td>
+
 
                         <td>
 
