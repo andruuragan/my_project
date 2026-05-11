@@ -1,0 +1,237 @@
+@import 'tailwindcss';
+@import "bootstrap/dist/css/bootstrap.min.css";
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+}
+.scroll-top {
+    position: fixed;
+    right: 140px;
+    bottom: 20px;
+
+    width: 60px;
+    height: 60px;
+
+    background: #28a745;
+    color: white;
+
+    border-radius: 50%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 2px;
+
+    text-decoration: none;
+
+    box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+
+    z-index: 9999;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transform: scale(0.9); /* 👈 старт чуть меньше */
+    transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.scroll-top.show {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+}
+
+.scroll-top:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+}
+
+
+.scroll-top .arrow {
+    font-size: 16px;
+    line-height: 1;
+}
+
+.scroll-top .text {
+    font-size: 16px;
+    line-height: 1;
+}
+
+.table {
+    table-layout: fixed;
+    font-size: 12px;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+.table-wrapper {
+    position: relative; /* 👈 важно */
+}
+.scroll-down {
+    position: fixed;
+    right: 140px;
+    top: 150px;
+
+    width: 60px;
+    height: 60px;
+
+    background: #0d6efd;
+    color: white;
+
+    border-radius: 50%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 2px;
+
+    text-decoration: none;
+
+    box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+
+    z-index: 9999;
+
+    transform: scale(0.95);
+    transition: all 0.25s ease;
+}
+
+/* состояние при появлении */
+.scroll-down:not(.hide) {
+    transform: scale(1);
+}
+
+/* 🔥 красивый hover */
+.scroll-down:hover {
+    transform: scale(1.08);
+    background: #0b5ed7; /* чуть темнее */
+    box-shadow: 0 10px 25px rgba(13,110,253,0.5);
+}
+
+/* 🔥 микро-анимация стрелки */
+.scroll-down:hover .arrow {
+    transform: translateY(2px);
+}
+
+/* стрелка */
+.scroll-down .arrow {
+    font-size: 16px;
+    transition: transform 0.2s ease;
+}
+
+/* текст */
+.scroll-down .text {
+    font-size: 16px;
+}
+.filter-form .form-control {
+    height: 28px;        /* уменьшает высоту */
+    padding: 4px 8px;    /* контролирует “воздух” */
+    font-size: 14px;     /* делает компактнее */
+}
+.choices {
+    font-size: 13px;
+}
+
+.choices__inner {
+    min-height: 28px !important;
+    height: 28px !important;
+    padding: 2px 6px !important;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.choices__list--single {
+    padding: 0 !important;
+    line-height: 24px;
+}
+.product-image-wrapper {
+    position: relative;
+}
+
+.product-icons {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    right: 12px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    z-index: 10;
+    pointer-events: none;
+}
+
+.icon-btn,
+.wishlist-btn,
+.right-icons {
+    pointer-events: auto;
+}
+.navbar-nav {
+    gap: 18px;
+}
+
+.nav-link {
+    font-size: 15px;
+    font-weight: 500;
+    transition: 0.2s;
+}
+
+.nav-link:hover {
+    color: #0d6efd !important;
+}
+/* =========================
+   ОПИСАНИЕ (rich text)
+========================= */
+.description-content .tab-pane ul {
+    list-style: disc;
+    padding-left: 20px;
+    margin: 10px 0;
+}
+
+.description-content .tab-pane ol {
+    list-style: decimal;
+    padding-left: 20px;
+    margin: 10px 0;
+}
+
+/* =========================
+   BOOTSTRAP TABS (фикс)
+========================= */
+.nav-tabs {
+    padding-left: 0;
+    margin-bottom: 0;
+}
+
+.nav-tabs > li {
+    list-style: none;
+}
+
+/* убираем точки у кнопок (на всякий случай) */
+.nav-tabs .nav-link {
+    list-style: none;
+}
+.description-content .tab-pane {
+    line-height: 1.8;
+    font-size: 15px;
+    color: #444;
+}
+
+.description-content .tab-pane p {
+    margin-bottom: 12px;
+}
+
+.description-content .tab-pane strong {
+    color: #111;
+}
