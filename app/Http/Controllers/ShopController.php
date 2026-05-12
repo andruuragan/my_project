@@ -53,7 +53,7 @@ class ShopController extends Controller
 
         $catalogs = $query
             ->orderBy('id', 'asc')
-            ->paginate(12)
+            ->paginate(32)
             ->withQueryString();
 
         return view('shop', compact('catalogs'));

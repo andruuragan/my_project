@@ -2,19 +2,22 @@
 
 @section('content')
 
-
+    <div class="title-shop">
 
         <h3 class="mb-4 text-center">
             Димоходи та комплектуючі з нержавіючої сталі
         </h3>
-
+    </div>
         <div class="row">
 
             <!-- SIDEBAR FILTER -->
-            <div class="col-xl-2 col-lg-3 mb-4">
+            <div class="col-xl-2 col-lg-3 mb-4 align-self-start">
                 <div class="card p-3 shadow-sm filter-card">
 
-                    <h5 class="mb-3 text-center">Фільтр</h5>
+                    <h5>
+                        <i class="bi bi-sliders me-2"></i>
+                        Фільтр товарів
+                    </h5>
 
                     <form class="filter-form" method="GET" action="{{ route('shop.index') }}">
 

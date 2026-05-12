@@ -108,6 +108,39 @@
             </ul>
         </div>
 
+        <!-- CONTACT BLOCK -->
+        <div class="header-contact-block">
+
+            <div class="contact-row">
+                <i class="bi bi-clock"></i>
+
+                <div class="contact-content">
+
+                    <div class="contact-value">Пн–Пт: 09:00–18:00</div>
+                </div>
+            </div>
+
+            <div class="contact-row">
+                <i class="bi bi-telephone"></i>
+
+                <div class="contact-content">
+
+                    <div class="contact-value">+38 (099) 123-45-67</div>
+                </div>
+            </div>
+
+            <div class="contact-row">
+                <i class="bi bi-envelope"></i>
+
+                <div class="contact-content">
+
+                    <div class="contact-value">dymsystems@ukr.net</div>
+                </div>
+            </div>
+
+        </div>
+
+
     </div>
 </nav>
 
@@ -189,6 +222,70 @@
     });
 </script>
 </body>
+<footer class="site-footer">
 
+    <div class="container" style="max-width: 1600px;">
+
+        <div class="row gy-2">
+
+            <!-- CONTACTS -->
+            <div class="col-lg-4">
+                <h5 class="footer-title">Контакти</h5>
+
+                <div class="footer-item">
+                    <i class="bi bi-telephone"></i>
+                    +38 (099) 123-45-67
+                </div>
+
+                <div class="footer-item">
+                    <i class="bi bi-envelope"></i>
+                    info@gmail.com
+                </div>
+
+                <div class="footer-item">
+                    <i class="bi bi-geo-alt"></i>
+                    м. Харків, Україна
+                </div>
+
+                <div class="footer-item">
+                    <i class="bi bi-clock"></i>
+                    Пн–Пт: 09:00–18:00
+                </div>
+            </div>
+
+            <!-- INFO -->
+            <div class="col-lg-4">
+                <h5 class="footer-title">Інформація</h5>
+
+                <ul class="footer-links">
+                    <li><a href="#">Про компанію</a></li>
+                    <li><a href="#">Доставка і оплата</a></li>
+                    <li><a href="#">Гарантія</a></li>
+                    <li><a href="#">Контакти</a></li>
+                </ul>
+            </div>
+
+            <!-- ACCOUNT -->
+            <div class="col-lg-4">
+                <h5 class="footer-title">Мій кабінет</h5>
+
+                <ul class="footer-links">
+                    <li><a href="#">Особистий кабінет</a></li>
+                    <li><a href="#">Історія замовлень</a></li>
+                    <li><a href="#">Обране</a></li>
+                    <li><a href="#">Кошик</a></li>
+                </ul>
+            </div>
+
+        </div>
+
+        <!-- BOTTOM -->
+        <div class="footer-bottom">
+            © 2026 DymSystems. Всі права захищені.
+        </div>
+
+    </div>
+
+</footer>
 </html>
 
