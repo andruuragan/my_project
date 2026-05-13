@@ -40,7 +40,7 @@
 <body>
 
 <nav class="navbar navbar-expand-lg custom-navbar">
-    <div class="container" style="max-width: 1600px;">
+    <div class="container container-1600">
 
         <!-- LOGO -->
         <div class="d-flex flex-column" style="gap: 6px;">
@@ -60,48 +60,48 @@
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('main.index') ? 'active' : '' }}"
                        href="{{ route('main.index') }}">
-                        Main
+                        Головна
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('shop.index') ? 'active' : '' }}"
                        href="{{ route('shop.index') }}">
-                        Димоходи та комплектуючі
+                        Каталог товарів
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('about.index') ? 'active' : '' }}"
                        href="{{ route('about.index') }}">
-                        About
+                        Про компанію
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('contacts.index') ? 'active' : '' }}"
                        href="{{ route('contacts.index') }}">
-                        Contacts
+                        Контакти
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('admin.index') ? 'active' : '' }}"
                        href="{{ route('admin.index') }}">
-                        Admin
+                        Адмін
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('catalog.index') ? 'active' : '' }}"
                        href="{{ route('catalog.index') }}">
-                        Catalog
+                        Catalog(admin)
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('descriptions.index') ? 'active' : '' }}"
                        href="{{ route('descriptions.index') }}">
-                        Опис елементів
+                        Опис елементів(admin)
                     </a>
                 </li>
 
@@ -137,6 +137,20 @@
                     <div class="contact-value">dymsystems@ukr.net</div>
                 </div>
             </div>
+            <!-- AUTH BUTTONS -->
+            <div class="header-auth-buttons">
+
+                <a href="#" class="login-btn">
+                    <i class="bi bi-box-arrow-in-right"></i>
+                    Вхід
+                </a>
+
+                <a href="#" class="register-btn">
+                    <i class="bi bi-person-plus"></i>
+                    Реєстрація
+                </a>
+
+            </div>
 
         </div>
 
@@ -145,9 +159,86 @@
 </nav>
 
 <!-- CONTENT -->
-<div class="container" style="max-width: 1600px;">
+<div class="container container-1600">
     @yield('content')
 </div>
+<footer class="site-footer">
+    <div class="container-1600">
+
+        <!-- TOP -->
+        <div class="footer-top">
+
+            <!-- LOGO -->
+            <div class="footer-col footer-brand">
+                <div class="footer-logo">
+                    <img src="/images/favicon.png" width="38" alt="">
+                    <span>DymSystems</span>
+                </div>
+                <p class="footer-text">
+                    Сучасний інтернет-магазин комплектуванння димоходів.
+                </p>
+            </div>
+
+            <!-- CONTACTS -->
+            <div class="footer-col">
+                <h5 class="footer-title">Контакти</h5>
+
+                <div class="footer-item">
+                    <i class="bi bi-geo-alt"></i>
+                    <span> Україна м. Харків </span>
+                </div>
+
+                <div class="footer-item">
+                    <i class="bi bi-telephone"></i>
+                    <span>+380 XX XXX XX XX</span>
+                </div>
+
+                <div class="footer-item">
+                    <i class="bi bi-envelope"></i>
+                    <span>dymsystems@ukr.net</span>
+                </div>
+            </div>
+
+            <!-- LINKS -->
+            <div class="footer-col">
+                <h5 class="footer-title">Навігація</h5>
+
+                <ul class="footer-links">
+                    <li><a href="{{route ('main.index')}}">Головна</a></li>
+                    <li><a href="{{route ('shop.index') }}">Каталог</a></li>
+                    <li><a href="{{route ('contacts.index') }}">Контакти</a></li>
+                </ul>
+            </div>
+
+            <!-- ACCOUNT -->
+            <div class="footer-col">
+                <h5 class="footer-title">Мій кабінет</h5>
+
+                <ul class="footer-links">
+                    <li><a href="#">Особистий кабінет</a></li>
+                    <li><a href="#">Історія замовлень</a></li>
+                    <li><a href="#">Кошик</a></li>
+                </ul>
+            </div>
+
+            <!-- CTA -->
+            <div class="footer-col footer-cta">
+                <a href="{{route ('shop.index') }}" class="footer-shop-btn">
+                    <i class="bi bi-bag"></i>
+                    Перейти в магазин
+                </a>
+            </div>
+
+        </div>
+
+        <!-- BOTTOM -->
+        <div class="footer-bottom">
+            © 2026 DymSystems. Всі права захищені.
+        </div>
+
+    </div>
+</footer>
+
 <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
 <script src="https://cdn.ckeditor.com/ckeditor5/40.2.0/classic/ckeditor.js"></script>
 
@@ -222,70 +313,6 @@
     });
 </script>
 </body>
-<footer class="site-footer">
 
-    <div class="container" style="max-width: 1600px;">
-
-        <div class="row gy-2">
-
-            <!-- CONTACTS -->
-            <div class="col-lg-4">
-                <h5 class="footer-title">Контакти</h5>
-
-                <div class="footer-item">
-                    <i class="bi bi-telephone"></i>
-                    +38 (099) 123-45-67
-                </div>
-
-                <div class="footer-item">
-                    <i class="bi bi-envelope"></i>
-                    info@gmail.com
-                </div>
-
-                <div class="footer-item">
-                    <i class="bi bi-geo-alt"></i>
-                    м. Харків, Україна
-                </div>
-
-                <div class="footer-item">
-                    <i class="bi bi-clock"></i>
-                    Пн–Пт: 09:00–18:00
-                </div>
-            </div>
-
-            <!-- INFO -->
-            <div class="col-lg-4">
-                <h5 class="footer-title">Інформація</h5>
-
-                <ul class="footer-links">
-                    <li><a href="#">Про компанію</a></li>
-                    <li><a href="#">Доставка і оплата</a></li>
-                    <li><a href="#">Гарантія</a></li>
-                    <li><a href="#">Контакти</a></li>
-                </ul>
-            </div>
-
-            <!-- ACCOUNT -->
-            <div class="col-lg-4">
-                <h5 class="footer-title">Мій кабінет</h5>
-
-                <ul class="footer-links">
-                    <li><a href="#">Особистий кабінет</a></li>
-                    <li><a href="#">Історія замовлень</a></li>
-                    <li><a href="#">Обране</a></li>
-                    <li><a href="#">Кошик</a></li>
-                </ul>
-            </div>
-
-        </div>
-
-        <!-- BOTTOM -->
-        <div class="footer-bottom">
-            © 2026 DymSystems. Всі права захищені.
-        </div>
-
-    </div>
-
-</footer>
 </html>
 

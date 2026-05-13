@@ -80,7 +80,7 @@
                     @if($catalog->image)
                         <div class="mb-2">
                             <img src="{{ asset('storage/' . $catalog->image) }}"
-                                 style="max-width: 200px;">
+                                 style="max-width: 150px;">
                         </div>
 
 

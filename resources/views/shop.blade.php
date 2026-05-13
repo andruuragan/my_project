@@ -5,7 +5,7 @@
     <div class="title-shop">
 
         <h3 class="mb-4 text-center">
-            Димоходи та комплектуючі з нержавіючої сталі
+            Каталог елементів димохода
         </h3>
     </div>
         <div class="row">
@@ -218,7 +218,7 @@
                                    class="form-control">
                         </div>
 
-                        <button class="btn btn-dark w-100 btn-icon">
+                        <button class="filter-btn">
                             Застосувати
                         </button>
                         <a href="{{ route('shop.index') }}"
@@ -317,9 +317,9 @@
 
                                     </div>
 
-                                    <button class="btn btn-dark mt-auto add-cart-btn">
+                                    <button class="add-cart-btn">
 
-                                        <i class="bi bi-cart-plus me-2"></i>
+                                        <i class="bi bi-cart-plus"></i>
 
                                         У кошик
 
