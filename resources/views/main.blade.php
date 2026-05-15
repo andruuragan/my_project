@@ -1,6 +1,8 @@
 @extends('layouts.main')
+
 @section('content')
-    <div>
-        This is main page
+    <div class="container-1600">
+        main
+
     </div>
 @endsection

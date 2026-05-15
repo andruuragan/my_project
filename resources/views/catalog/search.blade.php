@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-
+    <div class="container-1600">
     <div class="card p-3 mb-4 shadow-sm">
         <h5 class="mb-3">Фильтр товаров</h5>
         <form method="GET" action="{{ route('catalog.search') }}">
@@ -204,4 +204,5 @@
         @endforeach
     </table>
     {{$items->withQueryString()->links()}}
+    </div>
 @endsection

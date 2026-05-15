@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-
+    <div class="container-1600">
     <div class="title-shop">
 
         <h3 class="mb-4 text-center">
@@ -372,5 +372,5 @@
     </div>
 
 
-
+    </div>
 @endsection

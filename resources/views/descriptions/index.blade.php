@@ -2,7 +2,7 @@
 @extends('layouts.main')
 
 @section('content')
-
+    <div class="container-1600">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h4>Описания</h4>
 
@@ -63,5 +63,5 @@
 
         </div>
     </div>
-
+    </div>
 @endsection

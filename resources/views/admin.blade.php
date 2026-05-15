@@ -1,6 +1,7 @@
 @extends('layouts.main')
+
 @section('content')
-    <div>
-        This is admin page
+    <div class="container-1600">
+        прооп
     </div>
 @endsection

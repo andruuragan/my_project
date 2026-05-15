@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-
+    <div class="container-1600">
     <div class="card shadow-sm p-3">
 
         <h5 class="mb-3">Редактирование</h5>
@@ -56,6 +56,7 @@
 
         </form>
 
+    </div>
     </div>
 
 @endsection

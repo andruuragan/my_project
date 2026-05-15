@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-
+    <div class="container-1600">
     <h3>Элемент</h3>
 
     <table class="table table-bordered table-striped table-hover" style="table-layout: fixed; font-size: 12px;">
@@ -136,5 +136,6 @@
 
             </div>
         </div>
+    </div>
     </div>
 @endsection

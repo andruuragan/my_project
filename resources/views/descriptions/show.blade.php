@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-
+    <div class="container-1600">
     <div class="card shadow-sm p-3">
 
         <h4>{{ $description->name }}</h4>
@@ -26,6 +26,7 @@
             Назад
         </a>
 
+    </div>
     </div>
 
 @endsection

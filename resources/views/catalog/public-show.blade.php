@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-
+    <div class="container-1600">
     <h3 class="mb-3">{{ $catalog->name }}</h3>
 
     <div class="table-responsive">
@@ -139,6 +139,7 @@
 
         </a>
 
+    </div>
     </div>
 
 @endsection
