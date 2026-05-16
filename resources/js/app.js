@@ -1,82 +1,60 @@
-import * as bootstrap from 'bootstrap';
-window.bootstrap = bootstrap;
+import './bootstrap';
 
+
+import Alpine from 'alpinejs';
+
+window.Alpine = Alpine;
+
+Alpine.start();
 document.addEventListener('DOMContentLoaded', function () {
 
-    /* =========================
-       IMAGE MODAL
-    ========================= */
-    const modalEl = document.getElementById('imageModal');
-    const modalImage = document.getElementById('modalImage');
+    const cards = document.querySelectorAll('.product-card');
 
-    if (modalEl && modalImage) {
+    if (!cards.length) return;
 
-        const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
+    cards.forEach(card => {
 
-        document.addEventListener('click', function (e) {
-            const btn = e.target.closest('.open-image');
-            if (!btn) return;
-
-            modalImage.src = btn.dataset.image || '';
-            modal.show();
-        });
-
-        modalEl.addEventListener('hidden.bs.modal', function () {
-            modalImage.src = '';
-        });
-    }
-
-
-    /* =========================
-       PRICE / QUANTITY
-    ========================= */
-    document.querySelectorAll('.product-card').forEach(card => {
-
-        const minusBtn = card.querySelector('.minus');
-        const plusBtn = card.querySelector('.plus');
-        const qtyInput = card.querySelector('.qty-value');
+        const minus = card.querySelector('.minus');
+        const plus = card.querySelector('.plus');
+        const input = card.querySelector('.qty-value');
 
         const priceEl = card.querySelector('.item-price');
+        const totalWrap = card.querySelector('.total-price');
         const totalEl = card.querySelector('.total-sum');
 
-        if (!minusBtn || !plusBtn || !qtyInput || !priceEl || !totalEl) return;
-
-        const basePrice = Number(priceEl.dataset.price || 0);
-
-        const totalBlock = totalEl.closest('.total-price');
-
-        function updateTotal() {
-            let qty = parseInt(qtyInput.value);
-            if (!qty || qty < 1) qty = 1;
-
-            qtyInput.value = qty;
-
-            const total = basePrice * qty;
-            totalEl.textContent = new Intl.NumberFormat('uk-UA').format(total);
-            totalBlock.classList.toggle('show', qty > 1);
-
-            // 🔥 Показ / приховування суми
-            if (qty > 1) {
-                totalBlock.style.display = 'block';
-            } else {
-                totalBlock.style.display = 'none';
-            }
+        if (!minus || !plus || !input || !priceEl || !totalWrap || !totalEl) {
+            return;
         }
 
-        plusBtn.addEventListener('click', () => {
-            qtyInput.value = (parseInt(qtyInput.value) || 1) + 1;
-            updateTotal();
+        const basePrice = parseFloat(
+            priceEl.dataset.price.replace(/\s/g, '')
+        );
+
+        function update() {
+            let qty = parseInt(input.value) || 1;
+            if (qty < 1) qty = 1;
+
+            input.value = qty;
+
+            const total = basePrice * qty;
+
+            totalEl.textContent = total.toLocaleString('uk-UA');
+
+            totalWrap.classList.toggle('show', qty > 1);
+        }
+
+        minus.addEventListener('click', () => {
+            input.value = Math.max(1, (parseInt(input.value) || 1) - 1);
+            update();
         });
 
-        minusBtn.addEventListener('click', () => {
-            let qty = parseInt(qtyInput.value) || 1;
-            if (qty > 1) qtyInput.value = qty - 1;
-            updateTotal();
+        plus.addEventListener('click', () => {
+            input.value = (parseInt(input.value) || 1) + 1;
+            update();
         });
 
-        qtyInput.addEventListener('input', updateTotal);
+        input.addEventListener('input', update);
 
-        updateTotal();
+        update();
     });
 });
-

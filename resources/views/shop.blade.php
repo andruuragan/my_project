@@ -1,13 +1,10 @@
 @extends('layouts.main')
 
 @section('content')
-    <div class="container-1600">
-    <div class="title-shop">
-
-        <h3 class="mb-4 text-center">
-            Каталог елементів димохода
-        </h3>
-    </div>
+    <div class="container-1600 shop-page">
+        <div class="title-shop text-center mb-4">
+            <h3>Каталог елементів димохода</h3>
+        </div>
         <div class="row">
 
             <!-- SIDEBAR FILTER -->
@@ -69,9 +66,9 @@
                         @endphp
 
                         <div class="mb-3">
-                            <label class="form-label">Тип элемента</label>
+                            <label class="form-label" for="type">Тип элемента</label>
 
-                            <select name="type" class="form-control js-choice">
+                            <select id="type" name="type" class="js-choice">
                                 <option value="">Тип элемента (все)</option>
 
                                 @foreach($types as $type)
@@ -99,9 +96,9 @@
                         @endphp
 
                         <div class="mb-3">
-                            <label class="form-label">Діаметр</label>
+                            <label class="form-label" for="diameter">Діаметр</label>
 
-                            <select name="diameter" class="form-control js-choice">
+                            <select id="diameter" name="diameter" class="js-choice">
                                 <option value="">Діаметр (всі)</option>
 
                                 @foreach($diameters as $d)
@@ -123,9 +120,9 @@
                         @endphp
 
                         <div class="mb-3">
-                            <label class="form-label">Товщина сталі</label>
+                            <label class="form-label" for="thickness">Товщина сталі</label>
 
-                            <select name="thickness" class="form-control js-choice">
+                            <select id="thickness" name="thickness" class="js-choice">
                                 <option value="">Толщина (все)</option>
 
                                 @foreach($thicknesses as $t)
@@ -148,9 +145,9 @@
                         @endphp
 
                         <div class="mb-3">
-                            <label class="form-label">Марка нерж.</label>
+                            <label class="form-label" for="grade">Марка нерж.</label>
 
-                            <select name="grade" class="form-control js-choice">
+                            <select id="grade" name="grade" class="js-choice">
                                 <option value="">Марка нерж. (все)</option>
 
                                 @foreach($grades as $value => $label)
@@ -170,9 +167,9 @@
                         @endphp
 
                         <div class="mb-3">
-                            <label class="form-label">Тип димохода</label>
+                            <label class="form-label" for="chimneyType">Тип димохода</label>
 
-                            <select name="chimneyType" class="form-control js-choice">
+                            <select id="chimneyType" name="chimneyType" class="js-choice">
                                 <option value="">Тип дымохода (все)</option>
 
                                 @foreach($chimneyTypes as $type)
@@ -193,9 +190,9 @@
                         @endphp
 
                         <div class="mb-3">
-                            <label class="form-label">Кожух</label>
+                            <label class="form-label" for="casing">Кожух</label>
 
-                            <select name="casing" class="form-control js-choice">
+                            <select id="casing" name="casing" class="js-choice">
                                 <option value="">Кожух (все)</option>
 
                                 @foreach($casings as $casing)
@@ -222,7 +219,7 @@
                             Застосувати
                         </button>
                         <a href="{{ route('shop.index') }}"
-                           class="btn btn-outline-secondary w-100 mt-2 btn-icon">
+                           class="filter-reset-btn">
                             Скинути фільтр
                         </a>
 

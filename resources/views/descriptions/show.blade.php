@@ -23,7 +23,7 @@
         <h6>Додаткова інформація:</h6>
         <div>{!! $description->additional_info !!}</div>
         <a href="{{ route('descriptions.index') }}" class="btn btn-secondary">
-            Назад
+            <i class="bi bi-arrow-left me-1"></i> Назад
         </a>
 
     </div>
