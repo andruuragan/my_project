@@ -51,16 +51,33 @@
                 <h5 class="footer-title">Мій кабінет</h5>
 
                 <ul class="footer-links">
-                    <li><a href="#">Особистий кабінет</a></li>
-                    <li><a href="#">Історія замовлень</a></li>
-                    <li><a href="#">Кошик</a></li>
+                    <li>
+
+                        @auth
+                            <a href="{{ route('dashboard') }}">
+                                <i class="bi bi-person-circle"></i>
+                                Особистий кабінет
+                            </a>
+                        @else
+                            <a href="#"
+                               data-bs-toggle="modal"
+                               data-bs-target="#loginModal">
+
+                                Особистий кабінет
+                            </a>
+                        @endauth
+
+                    </li>
+                    <li><a href="#"><i class="bi bi-box-seam"></i> Історія замовлень</a></li>
+                    <li><a href="{{ route('cart.index') }}"> <i class="bi bi-basket2"></i>
+                            Кошик</a></li>
                 </ul>
             </div>
 
             <!-- CTA -->
             <div class="footer-col footer-cta">
                 <a href="{{route ('shop.index') }}" class="footer-shop-btn">
-                    <i class="bi bi-bag"></i>
+                    <i class="bi bi-cart3"></i>
                     Перейти в магазин
                 </a>
             </div>

@@ -37,20 +37,43 @@
     </style>
 </head>
 
-<body>
+<body class="site-body">
 
-
+<div class="page-wrapper">
 
 <!-- CONTENT -->
 
 
 @include('partials.navbar')
+@if(session('success'))
 
+    <div class="custom-alert success-alert">
+
+        <i class="bi bi-check-circle-fill"></i>
+
+        {{ session('success') }}
+
+    </div>
+
+@endif
+
+@if(session('error'))
+
+    <div class="custom-alert error-alert">
+
+        <i class="bi bi-exclamation-triangle-fill"></i>
+
+        {{ session('error') }}
+
+    </div>
+
+@endif
 <main class="page-content">
     @yield('content')
 </main>
 
 @include('partials.footer')
+</div>
 <!-- REGISTER MODAL -->
 <div class="modal fade" id="registerModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog">
@@ -303,6 +326,24 @@
         });
 
     });
+
+    setTimeout(() => {
+
+        document.querySelectorAll('.custom-alert')
+            .forEach(el => {
+
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(-10px)';
+
+                setTimeout(() => {
+                    if (el) {
+                        el.remove();
+                    }
+                }, 300);
+
+            });
+
+    }, 4500);
 </script>
 </body>
 

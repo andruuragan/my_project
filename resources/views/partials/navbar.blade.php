@@ -54,14 +54,14 @@
 
 
                         <li class="nav-item">
-                            <a class="nav-link {{ request()->routeIs('catalog.index') ? 'active' : '' }}"
+                            <a class="nav-link {{ request()->routeIs('catalog.*') ? 'active' : '' }}"
                                href="{{ route('catalog.index') }}">
                                 Catalog (admin)
                             </a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link {{ request()->routeIs('descriptions.index') ? 'active' : '' }}"
+                            <a class="nav-link {{ request()->routeIs('descriptions.*') ? 'active' : '' }}"
                                href="{{ route('descriptions.index') }}">
                                 Опис (admin)
                             </a>
@@ -96,33 +96,65 @@
 
             <!-- AUTH BLOCK (ЛОГІКА ТУТ, НЕ ВЕРСТКА) -->
             <div class="header-auth-buttons">
-                @if(auth()->check() && auth()->user()->isAdmin())
-                    <a href="{{ route('users.index') }}" class="login-btn admin-btn">
-                        <i class="bi bi-people"></i>
-                        Користувачі
-                    </a>
-                @endif
 
                 @auth
 
-                    <div class="dropdown">
+                    {{-- ADMIN --}}
+                    @if(auth()->user()->isAdmin())
+                        <a href="{{ route('users.index') }}" class="login-btn admin-btn">
+                            <i class="bi bi-people"></i>
+                            Користувачі
+                        </a>
+                    @endif
 
-                        <button class="login-btn dropdown-toggle"
+                    {{-- CART --}}
+                    @php
+                        $cart = session('cart', []);
+                        $cartCount = 0;
+                        $cartTotal = 0;
+
+                        foreach ($cart as $item) {
+                            $qty = $item['qty'] ?? 1;
+                            $price = $item['price'] ?? 0;
+
+                            $cartCount += $qty;
+                            $cartTotal += $price * $qty;
+                        }
+                    @endphp
+
+                    <a href="{{ route('cart.index') }}" class="cart-btn" title="Кошик">
+                        <i class="bi bi-cart3"></i>
+
+                        @if($cartCount > 0)
+                            <span class="cart-count" id="cartCount">{{ $cartCount }}</span>
+                            <span class="cart-total" id="cartTotalNav">
+                    {{ number_format($cartTotal, 0, '.', ' ') }} ₴
+                </span>
+                        @endif
+                    </a>
+
+                    {{-- USER DROPDOWN (ВОТ ТУТ ВЕРНУЛИ КАК НУЖНО) --}}
+                    <div class="dropdown ms-2">
+
+                        <button class="login-btn dropdown-toggle d-flex align-items-center gap-2"
                                 type="button"
                                 data-bs-toggle="dropdown"
                                 aria-expanded="false">
 
                             <i class="bi bi-person-circle"></i>
-                            {{ auth()->user()->name }}
+
+                            <span>
+                    {{ auth()->user()->name }}
+                </span>
 
                         </button>
 
-                        <ul class="dropdown-menu dropdown-menu-end custom-dropdown shadow">
+                        <ul class="dropdown-menu dropdown-menu-end custom-dropdown">
 
                             <li>
                                 <a class="dropdown-item {{ request()->routeIs('dashboard') ? 'active-item' : '' }}"
                                    href="{{ route('dashboard') }}">
-                                    <i class="bi bi-speedometer2"></i>
+                                    <i class="bi bi-speedometer2 me-2"></i>
                                     Dashboard
                                 </a>
                             </li>
@@ -130,18 +162,17 @@
                             <li>
                                 <a class="dropdown-item {{ request()->routeIs('profile.*') ? 'active-item' : '' }}"
                                    href="{{ route('profile.edit') }}">
-                                    <i class="bi bi-gear"></i>
-                                    Профиль
+                                    <i class="bi bi-person me-2"></i>
+                                    Профіль
                                 </a>
                             </li>
-
-                            <li><hr class="dropdown-divider"></li>
 
                             <li>
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
                                     <button class="dropdown-item text-danger">
-                                        Вихід
+                                        <i class="bi bi-box-arrow-right me-2"></i>
+                                        Вийти
                                     </button>
                                 </form>
                             </li>
@@ -152,21 +183,17 @@
 
                 @else
 
-                    <div class="header-auth-buttons">
+                    <button class="login-btn"
+                            data-bs-toggle="modal"
+                            data-bs-target="#loginModal">
+                        Вхід
+                    </button>
 
-                        <button class="login-btn"
-                                data-bs-toggle="modal"
-                                data-bs-target="#loginModal">
-                            Вхід
-                        </button>
-
-                        <button class="register-btn"
-                                data-bs-toggle="modal"
-                                data-bs-target="#registerModal">
-                            Реєстрація
-                        </button>
-
-                    </div>
+                    <button class="register-btn"
+                            data-bs-toggle="modal"
+                            data-bs-target="#registerModal">
+                        Реєстрація
+                    </button>
 
                 @endauth
 

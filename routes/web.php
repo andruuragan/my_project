@@ -21,6 +21,8 @@ use App\Http\Controllers\ContactsController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\CheckoutController;
 
 /* =========================
 | AUTH (Breeze)
@@ -102,4 +104,19 @@ Route::resource('descriptions', DescriptionController::class);
 Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::resource('users', \App\Http\Controllers\Admin\UserController::class);
 });
+
+Route::get('/cart', [CartController::class, 'index'])
+    ->name('cart.index');
+
+Route::post('/cart/add/{catalog}', [CartController::class, 'add'])
+    ->name('cart.add');
+Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
+Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.store');
+Route::delete('/cart/{id}', [CartController::class, 'remove'])
+    ->name('cart.remove');
+Route::post('/cart/clear', [CartController::class, 'clear'])
+    ->name('cart.clear');
+Route::post('/cart/update/{id}', [CartController::class, 'update'])
+    ->name('cart.update');
+
 require __DIR__.'/auth.php';

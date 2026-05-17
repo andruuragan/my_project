@@ -1,15 +1,12 @@
 import './bootstrap';
-
-
 import Alpine from 'alpinejs';
 
 window.Alpine = Alpine;
-
 Alpine.start();
+
 document.addEventListener('DOMContentLoaded', function () {
 
     const cards = document.querySelectorAll('.product-card');
-
     if (!cards.length) return;
 
     cards.forEach(card => {
@@ -22,17 +19,13 @@ document.addEventListener('DOMContentLoaded', function () {
         const totalWrap = card.querySelector('.total-price');
         const totalEl = card.querySelector('.total-sum');
 
-        if (!minus || !plus || !input || !priceEl || !totalWrap || !totalEl) {
-            return;
-        }
+        if (!minus || !plus || !input || !priceEl || !totalWrap || !totalEl) return;
 
-        const basePrice = parseFloat(
-            priceEl.dataset.price.replace(/\s/g, '')
-        );
+        const basePrice = Number(priceEl.dataset.price || 0);
 
         function update() {
-            let qty = parseInt(input.value) || 1;
-            if (qty < 1) qty = 1;
+
+            let qty = Math.max(1, Number(input.value) || 1);
 
             input.value = qty;
 
@@ -44,16 +37,16 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         minus.addEventListener('click', () => {
-            input.value = Math.max(1, (parseInt(input.value) || 1) - 1);
+            input.value = Math.max(1, (Number(input.value) || 1) - 1);
             update();
         });
 
         plus.addEventListener('click', () => {
-            input.value = (parseInt(input.value) || 1) + 1;
+            input.value = (Number(input.value) || 1) + 1;
             update();
         });
 
-        input.addEventListener('input', update);
+        input.addEventListener('change', update);
 
         update();
     });
