@@ -346,17 +346,13 @@
 
     }, 4500);
 </script>
+
+
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-
+        if (typeof refreshCart === 'function') {
             refreshCart();
-
-    });
-</script>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        window.refreshCart();
+        }
     });
 </script>
 </body>

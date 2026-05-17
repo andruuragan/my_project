@@ -233,6 +233,7 @@
 
                             <div class="card product-card shadow-sm h-100">
 
+
                                 <div class="position-relative product-image-wrapper">
 
                                     <img src="{{ Storage::url($catalog->image) }}"
@@ -240,7 +241,32 @@
                                          alt="{{ $catalog->name }}"
                                          loading="lazy">
 
+                                    <div class="product-icons">
+
+                                        <button type="button" class="icon-btn wishlist-btn">
+                                            <i class="bi bi-heart"></i>
+                                        </button>
+
+                                        <div class="right-icons">
+
+                                            <button type="button"
+                                                    class="icon-btn open-image"
+                                                    data-image="{{ Storage::url($catalog->image) }}">
+                                                <i class="bi bi-search"></i>
+                                            </button>
+
+                                            <a href="{{ route('catalog.public.show', $catalog->id) }}"
+                                               class="icon-btn">
+                                                <i class="bi bi-box-arrow-up-right"></i>
+                                            </a>
+
+                                        </div>
+
+                                    </div>
+
                                 </div>
+
+
 
                                 <div class="card-body d-flex flex-column">
 
@@ -326,7 +352,9 @@
 
                 <button type="button"
                         class="btn-close position-absolute top-0 end-0 m-3"
-                        data-bs-dismiss="modal"></button>
+                        style="z-index: 1060;"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"></button>
 
                 <div class="modal-body text-center p-0">
                     <img id="modalImage" class="img-fluid" style="max-height:85vh;">
@@ -375,6 +403,40 @@
                 });
 
             });
+
+        });
+        document.addEventListener('DOMContentLoaded', function () {
+
+            // НАХОДИМ МОДАЛКУ ОДИН РАЗ
+            const modalEl = document.getElementById('imageModal');
+            let modalInstance = null;
+
+            if (modalEl) {
+                modalInstance = bootstrap.Modal.getOrCreateInstance(modalEl);
+            }
+
+            // ОТКРЫТИЕ ИЗОБРАЖЕНИЯ
+            document.querySelectorAll('.open-image').forEach(btn => {
+                btn.addEventListener('click', function () {
+                    const modalImage = document.getElementById('modalImage');
+                    if (modalImage) {
+                        modalImage.src = this.dataset.image;
+                    }
+                    if (modalInstance) {
+                        modalInstance.show();
+                    }
+                });
+            });
+
+            // РУЧНОЕ ЗАКРЫТИЕ НА КРЕСТИК
+            const closeBtn = modalEl ? modalEl.querySelector('.btn-close') : null;
+            if (closeBtn) {
+                closeBtn.addEventListener('click', function () {
+                    if (modalInstance) {
+                        modalInstance.hide();
+                    }
+                });
+            }
 
         });
     </script>

@@ -271,6 +271,8 @@ html, body {
     background: #fafafa;
     padding: 10px;
     position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid #eee;
 }
 
 .product-image {
@@ -708,17 +710,13 @@ html, body {
 
 
 
-.product-icons {
-    position: absolute;
-    top: 12px;
-    left: 12px;
-    right: 12px;
-
-    display: flex;
-    justify-content: space-between;
-
-    pointer-events: none;
-}
+.product-icons { position: absolute;
+    top: 10px; left: 10px; right: 10px;
+    display: flex; justify-content: space-between;
+    align-items: flex-start; opacity: 0;
+    transform: translateY(-4px);
+    transition: all 0.25s ease;
+    z-index: 5; pointer-events: none; }
 
 .icon-btn,
 .wishlist-btn,
@@ -1372,4 +1370,7 @@ html, body {
 }
 .hidden {
     display: none;
+}
+.modal {
+    z-index: 1055;
 }
