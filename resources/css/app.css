@@ -1344,3 +1344,9 @@ html, body {
 .checkout-btn:hover i {
     transform: translateX(4px);
 }
+.cart-count:empty {
+    display: none;
+}
+.hidden {
+    display: none;
+}

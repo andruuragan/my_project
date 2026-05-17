@@ -77,49 +77,15 @@
 
                             <!-- DELETE -->
                             <td>
-                                <button class="btn btn-link text-danger"
-                                        data-bs-toggle="modal"
-                                        data-bs-target="#deleteModal{{ $id }}">
+                                <button class="btn btn-link text-danger delete-btn"
+                                        data-id="{{ $id }}">
                                     <i class="bi bi-trash"></i>
                                 </button>
                             </td>
 
                         </tr>
 
-                        <!-- MODAL (ВНУТРИ FOREACH!) -->
-                        <div class="modal fade" id="deleteModal{{ $id }}" tabindex="-1">
-                            <div class="modal-dialog modal-dialog-centered">
-                                <div class="modal-content">
 
-                                    <div class="modal-header">
-                                        <h5 class="modal-title">Підтвердження</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                                    </div>
-
-                                    <div class="modal-body">
-                                        Видалити товар <strong>{{ $item['title'] }}</strong>?
-                                    </div>
-
-                                    <div class="modal-footer">
-
-                                        <button class="btn btn-secondary" data-bs-dismiss="modal">
-                                            Скасувати
-                                        </button>
-
-                                        <form action="{{ route('cart.remove', $id) }}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-
-                                            <button type="submit" class="btn btn-danger">
-                                                Видалити
-                                            </button>
-                                        </form>
-
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
 
                     @endforeach
 
@@ -132,13 +98,9 @@
             <div class="d-flex justify-content-between align-items-start mt-4">
 
                 <!-- LEFT -->
-                <form action="{{ route('cart.clear') }}" method="POST">
-                    @csrf
-
-                    <button type="submit" class="btn btn-warning">
-                        Очистити кошик
-                    </button>
-                </form>
+                <button id="clearCartBtn" class="btn btn-warning">
+                    Очистити кошик
+                </button>
 
                 <!-- RIGHT -->
                 <div class="text-end">
@@ -164,184 +126,12 @@
         @endif
 
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (window.refreshCart) {
+                window.refreshCart();
+            }
+        });
+    </script>
 @endsection
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
 
-        function parsePrice(text) {
-            return parseFloat(text.replace(/\s/g, '').replace('₴', '')) || 0;
-        }
-
-        function recalcRow(row) {
-            let qty = parseInt(row.querySelector('.qty').value) || 1;
-            let price = parsePrice(row.querySelector('.price-cell').innerText);
-
-            let sum = qty * price;
-
-            row.querySelector('.item-sum').innerText =
-                new Intl.NumberFormat('uk-UA').format(sum) + ' ₴';
-        }
-
-        function recalcTotal() {
-            let total = 0;
-
-            document.querySelectorAll('tr[data-id]').forEach(row => {
-                let qty = parseInt(row.querySelector('.qty').value) || 1;
-                let price = parsePrice(row.querySelector('.price-cell').innerText);
-
-                total += qty * price;
-            });
-
-            document.getElementById('cartTotal').innerText =
-                new Intl.NumberFormat('uk-UA').format(total);
-        }
-
-        function updateServer(row) {
-            let id = row.dataset.id;
-            let qty = row.querySelector('.qty').value;
-
-            fetch(`/cart/update/${id}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                },
-                body: JSON.stringify({ qty })
-            });
-        }
-
-        function handle(row) {
-            recalcRow(row);
-            recalcTotal();
-            updateServer(row);
-        }
-
-        // PLUS
-        document.querySelectorAll('.plus').forEach(btn => {
-            btn.addEventListener('click', function () {
-                let row = this.closest('tr');
-                let input = row.querySelector('.qty');
-
-                input.value = parseInt(input.value) + 1;
-                handle(row);
-            });
-        });
-
-        // MINUS
-        document.querySelectorAll('.minus').forEach(btn => {
-            btn.addEventListener('click', function () {
-                let row = this.closest('tr');
-                let input = row.querySelector('.qty');
-
-                if (input.value > 1) {
-                    input.value = parseInt(input.value) - 1;
-                    handle(row);
-                }
-            });
-        });
-
-        // INPUT
-        document.querySelectorAll('.qty').forEach(input => {
-            input.addEventListener('input', function () {
-                let row = this.closest('tr');
-                handle(row);
-            });
-        });
-
-    });
-    document.addEventListener('DOMContentLoaded', function () {
-
-        function recalcRow(row) {
-            let qty = parseInt(row.querySelector('.qty').value);
-            let priceText = row.querySelector('.price-cell').innerText;
-
-            let price = parseFloat(priceText.replace(/\s/g, '').replace('₴', ''));
-
-            let sum = qty * price;
-
-            row.querySelector('.item-sum').innerText =
-                new Intl.NumberFormat('uk-UA').format(sum) + ' ₴';
-        }
-
-        function recalcTotal() {
-            let total = 0;
-
-            document.querySelectorAll('tr[data-id]').forEach(row => {
-
-                let qty = parseInt(row.querySelector('.qty').value);
-                let priceText = row.querySelector('.price-cell').innerText;
-
-                let price = parseFloat(priceText.replace(/\s/g, '').replace('₴', ''));
-
-                total += qty * price;
-            });
-
-            document.getElementById('cartTotal').innerText =
-                new Intl.NumberFormat('uk-UA').format(total);
-        }
-
-        function updateNavbar(data) {
-
-            let countEl = document.getElementById('cartCount');
-            let totalEl = document.getElementById('cartTotalNav');
-
-            if (countEl) {
-                countEl.innerText = data.count;
-            }
-
-            if (totalEl) {
-                totalEl.innerText =
-                    new Intl.NumberFormat('uk-UA').format(data.total) + ' ₴';
-            }
-        }
-
-        function updateServer(row) {
-
-            let id = row.dataset.id;
-            let qty = row.querySelector('.qty').value;
-
-            fetch(`/cart/update/${id}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                },
-                body: JSON.stringify({ qty })
-            })
-                .then(res => res.json())
-                .then(data => {
-
-                    recalcRow(row);
-                    recalcTotal();
-                    updateNavbar(data); // 👈 ВОТ ГЛАВНОЕ
-                });
-        }
-
-        function handle(row) {
-            updateServer(row);
-        }
-
-        document.querySelectorAll('.plus').forEach(btn => {
-            btn.addEventListener('click', function () {
-                let row = this.closest('tr');
-                let input = row.querySelector('.qty');
-
-                input.value = parseInt(input.value) + 1;
-                handle(row);
-            });
-        });
-
-        document.querySelectorAll('.minus').forEach(btn => {
-            btn.addEventListener('click', function () {
-                let row = this.closest('tr');
-                let input = row.querySelector('.qty');
-
-                if (input.value > 1) {
-                    input.value = parseInt(input.value) - 1;
-                    handle(row);
-                }
-            });
-        });
-
-    });
-</script>

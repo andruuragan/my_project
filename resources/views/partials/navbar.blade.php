@@ -123,16 +123,13 @@
                     @endphp
 
                     <a href="{{ route('cart.index') }}" class="cart-btn" title="Кошик">
+
                         <i class="bi bi-cart3"></i>
 
-                        @if($cartCount > 0)
-                            <span class="cart-count" id="cartCount">{{ $cartCount }}</span>
-                            <span class="cart-total" id="cartTotalNav">
-                    {{ number_format($cartTotal, 0, '.', ' ') }} ₴
-                </span>
-                        @endif
-                    </a>
+                        <span id="cartCount" class="cart-count"></span>
+                        <span id="cartTotalNav" class="cart-total"></span>
 
+                    </a>
                     {{-- USER DROPDOWN (ВОТ ТУТ ВЕРНУЛИ КАК НУЖНО) --}}
                     <div class="dropdown ms-2">
 

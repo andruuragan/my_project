@@ -48,34 +48,51 @@ class CartController extends Controller
 
         session()->put('cart', $cart);
 
-        return back()->with('success', 'Товар додано в кошик');
+        return response()->json([
+            'success' => true,
+            'count' => collect($cart)->sum('qty'),
+            'total' => collect($cart)->sum(function ($item) {
+                return $item['price'] * $item['qty'];
+            }),
+        ]);
     }
     public function remove($id)
     {
         $cart = session()->get('cart', []);
 
-        if (isset($cart[$id])) {
-            unset($cart[$id]);
-        }
+        unset($cart[$id]);
 
         session()->put('cart', $cart);
 
-        return back()->with('success', 'Товар видалено з кошика');
+        return $this->cartResponse($cart);
     }
     public function update(Request $request, $id)
     {
         $cart = session()->get('cart', []);
 
         if (!isset($cart[$id])) {
-            return response()->json(['error' => 'not found'], 404);
+            return response()->json(['error' => true]);
         }
 
-        $qty = max(1, (int) $request->qty);
+        $qty = max(1, (int)$request->qty);
 
         $cart[$id]['qty'] = $qty;
 
         session()->put('cart', $cart);
 
+        return $this->cartResponse($cart);
+    }
+
+    public function clear()
+    {
+        session()->forget('cart');
+
+        return response()->json([
+            'success' => true
+        ]);
+    }
+    private function cartResponse($cart)
+    {
         $total = 0;
         $count = 0;
 
@@ -85,15 +102,20 @@ class CartController extends Controller
         }
 
         return response()->json([
-            'total' => $total,
             'count' => $count,
+            'total' => $total,
         ]);
     }
-
-    public function clear()
+    public function state()
     {
-        session()->forget('cart');
+        $cart = session('cart', []);
 
-        return back();
+        $count = collect($cart)->sum('qty');
+        $total = collect($cart)->sum(fn ($i) => $i['price'] * $i['qty']);
+
+        return response()->json([
+            'count' => $count,
+            'total' => $total,
+        ]);
     }
 }

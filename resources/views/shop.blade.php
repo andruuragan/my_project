@@ -269,7 +269,9 @@
                                         грн
                                     </div>
 
-                                    <form action="{{ route('cart.add', $catalog) }}" method="POST">
+                                    <form class="add-to-cart-form"
+                                          action="{{ route('cart.add', $catalog->id) }}"
+                                          method="POST">
                                         @csrf
 
                                         <div class="quantity-box">
@@ -333,6 +335,49 @@
             </div>
         </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+
+            function format(n) {
+                return new Intl.NumberFormat('uk-UA').format(n);
+            }
+
+            // =======================
+            // GLOBAL CART REFRESH
+            // =======================
+
+            // =======================
+            // ADD TO CART
+            // =======================
+            document.querySelectorAll('.add-to-cart-form').forEach(form => {
+
+                form.addEventListener('submit', function (e) {
+                    e.preventDefault();
+
+                    fetch(form.action, {
+                        method: 'POST',
+                        headers: {
+                            'X-CSRF-TOKEN': form.querySelector('[name="_token"]').value,
+                            'Accept': 'application/json'
+                        },
+                        body: new FormData(form)
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+
+                            if (!data.success) {
+                                alert(data.message || 'Помилка');
+                                return;
+                            }
+
+                            refreshCart(); // ✔ единый источник правды
+                        });
+                });
+
+            });
+
+        });
+    </script>
 
 @endsection
 

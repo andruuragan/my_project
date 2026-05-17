@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>Catalog</title>
 
@@ -344,6 +345,19 @@
             });
 
     }, 4500);
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+
+            refreshCart();
+
+    });
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        window.refreshCart();
+    });
 </script>
 </body>
 
