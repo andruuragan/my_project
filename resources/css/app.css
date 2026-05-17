@@ -785,6 +785,7 @@ html, body {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+    gap: 2px;
 }
 
 .header-actions {
@@ -795,9 +796,12 @@ html, body {
 .header-right {
     flex: 0 0 auto;
     display: flex;
-    flex-direction: column;
-    align-items: flex-end;
+    flex-direction: column;   /* Строго в столбик, как ты и хочешь */
+    align-items: flex-end;    /* Выравнивание по правому краю */
+    justify-content: center;  /* Центрируем весь столбик по вертикали шапки */
     min-width: 260px;
+    height: 70px;             /* Четко привязываем к высоте логотипа */
+    position: relative;       /* База для позиционирования внутренних элементов */
 }
 
 @media (max-width: 768px) {
@@ -839,7 +843,7 @@ html, body {
 .header-auth-buttons {
     display: flex;
     gap: 10px;
-    margin-top: 6px;
+    margin-top: 0;
 }
 .site-footer {
     background: #111;
@@ -1191,6 +1195,8 @@ html, body {
 }
 .cart-btn {
     position: relative;
+    width: 100px;          /* ключ */
+    min-width: 120px;      /* защита */
 
     display: flex;
     align-items: center;
@@ -1199,6 +1205,9 @@ html, body {
     padding: 10px 16px;
 
     border-radius: 14px;
+    box-sizing: border-box;
+
+
 
     background: linear-gradient(180deg, #ff9d00, #ff6a00);
 
@@ -1211,6 +1220,7 @@ html, body {
 
     box-shadow:
         0 8px 20px rgba(255,140,0,0.25);
+    font-variant-numeric: tabular-nums;
 }
 
 .cart-btn:hover {
@@ -1237,10 +1247,23 @@ html, body {
     display: flex;
     align-items: center;
     justify-content: center;
+
+
+    min-width: 22px;
+    text-align: center;
+
+    font-variant-numeric: tabular-nums;
 }
 
 .cart-total {
-    font-size: 14px;
+    min-width: 90px;       /* ключ */
+    text-align: right;
+    display: inline-block;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
+.cart-btn * {
+    flex-shrink: 0;
 }
 .custom-alert {
     position: fixed;

@@ -126,8 +126,11 @@
 
                         <i class="bi bi-cart3"></i>
 
-                        <span id="cartCount" class="cart-count"></span>
-                        <span id="cartTotalNav" class="cart-total"></span>
+                        <span class="cart-count" id="cartCount">0</span>
+
+                        <span class="cart-total">
+        <span id="cartTotalNav">0</span> ₴
+    </span>
 
                     </a>
                     {{-- USER DROPDOWN (ВОТ ТУТ ВЕРНУЛИ КАК НУЖНО) --}}
