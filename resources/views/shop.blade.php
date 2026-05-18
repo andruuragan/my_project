@@ -306,16 +306,20 @@
             }
 
             // ОТКРЫТИЕ ИЗОБРАЖЕНИЯ
-            document.querySelectorAll('.open-image').forEach(btn => {
-                btn.addEventListener('click', function () {
-                    const modalImage = document.getElementById('modalImage');
-                    if (modalImage) {
-                        modalImage.src = this.dataset.image;
-                    }
-                    if (modalInstance) {
-                        modalInstance.show();
-                    }
-                });
+            document.addEventListener('click', function (e) {
+
+                const btn = e.target.closest('.open-image');
+                if (!btn) return;
+
+                const modalEl = document.getElementById('imageModal');
+                const modalImage = document.getElementById('modalImage');
+
+                if (!modalEl || !modalImage) return;
+
+                modalImage.src = btn.dataset.image;
+
+                const modalInstance = bootstrap.Modal.getOrCreateInstance(modalEl);
+                modalInstance.show();
             });
 
             // РУЧНОЕ ЗАКРЫТИЕ НА КРЕСТИК
