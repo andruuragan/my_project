@@ -18,27 +18,24 @@ class CartController extends Controller
     {
         if (!auth()->check()) {
 
-            return response()->json([
-                'success' => false,
-                'message' => 'Необхідна авторизація'
-            ], 401);
+            if ($request->expectsJson()) {
+                return response()->json([
+                    'success' => false,
+                    'auth' => false,
+                    'message' => 'Потрібно авторизуватись'
+                ], 401);
+            }
+
+            return redirect()->route('login');
         }
+
         $cart = session()->get('cart', []);
 
-        // количество
-        $qty = (int) $request->qty;
+        $qty = max(1, (int)$request->qty);
 
-        if ($qty < 1) {
-            $qty = 1;
-        }
-
-        // если товар уже есть
         if (isset($cart[$catalog->id])) {
-
             $cart[$catalog->id]['qty'] += $qty;
-
         } else {
-
             $cart[$catalog->id] = [
                 'id' => $catalog->id,
                 'title' => $catalog->name,
@@ -53,9 +50,7 @@ class CartController extends Controller
         return response()->json([
             'success' => true,
             'count' => collect($cart)->sum('qty'),
-            'total' => collect($cart)->sum(function ($item) {
-                return $item['price'] * $item['qty'];
-            }),
+            'total' => collect($cart)->sum(fn($i) => $i['price'] * $i['qty']),
         ]);
     }
     public function remove($id)

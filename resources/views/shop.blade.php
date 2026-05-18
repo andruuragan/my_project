@@ -253,72 +253,48 @@
         </div>
     </div>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('submit', function (e) {
+            const form = e.target.closest('.add-to-cart-form');
+            if (!form) return;
 
-            function format(n) {
-                return new Intl.NumberFormat('uk-UA').format(n);
-            }
+            e.preventDefault();
 
-            // =======================
-            // GLOBAL CART REFRESH
-            // =======================
+            fetch(form.action, {
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': form.querySelector('[name="_token"]').value,
+                    'Accept': 'application/json',
+                    'X-Requested-With': 'XMLHttpRequest'
+                },
+                body: new FormData(form)
+            })
+                .then(async res => {
 
-            // =======================
-            // ADD TO CART
-            // =======================
-            document.querySelectorAll('.add-to-cart-form').forEach(form => {
+                    const data = await res.json().catch(() => null);
 
-                form.addEventListener('submit', function (e) {
-                    e.preventDefault();
+                    if (res.status === 401) {
+                        showAlert('Потрібно авторизуватись', 'error');
+                        return null;
+                    }
 
-                    fetch(form.action, {
-                        method: 'POST',
-                        headers: {
-                            'X-CSRF-TOKEN': form.querySelector('[name="_token"]').value,
-                            'Accept': 'application/json'
-                        },
-                        body: new FormData(form)
-                    })
-                        .then(async res => {
+                    if (!res.ok) {
+                        showAlert(data?.message || 'Помилка', 'error');
+                        return null;
+                    }
 
-                            if (res.status === 401) {
+                    return data;
+                })
+                .then(data => {
+                    if (!data) return;
 
-                                showAlert(
-                                    'Для покупок потрібно авторізуватись',
-                                    'error'
-                                );
-
-                                return null;
-                            }
-
-                            return res.json();
-                        })
-                        .then(data => {
-
-                            if (!data) return;
-
-                            if (!data.success) {
-
-                                showAlert(
-                                    data.message || 'Помилка',
-                                    'error'
-                                );
-
-                                return;
-                            }
-
-                            refreshCart();
-
-                            showAlert(
-                                'Товар додано у кошик',
-                                'success'
-                            );
-                        });
+                    refreshCart();
+                    showAlert('Додано у кошик', 'success');
                 });
-
-            });
-
         });
+
+
+
+
         document.addEventListener('DOMContentLoaded', function () {
 
             // НАХОДИМ МОДАЛКУ ОДИН РАЗ

@@ -9,53 +9,68 @@ Alpine.start();
 const csrf = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 document.addEventListener('DOMContentLoaded', function () {
 
-    const cards = document.querySelectorAll('.product-card');
-    if (!cards.length) return;
+    // ✅ функция должна быть отдельно
+    function updateCard(card) {
 
-    cards.forEach(card => {
-
-        const minus = card.querySelector('.minus');
-        const plus = card.querySelector('.plus');
         const input = card.querySelector('.qty-value');
-
         const priceEl = card.querySelector('.item-price');
         const totalWrap = card.querySelector('.total-price');
         const totalEl = card.querySelector('.total-sum');
 
-        if (!minus || !plus || !input || !priceEl || !totalWrap || !totalEl) return;
+        if (!input || !priceEl || !totalEl) return;
 
         const basePrice = Number(priceEl.dataset.price || 0);
 
-        function update() {
+        let qty = Math.max(1, Number(input.value) || 1);
 
-            let qty = Math.max(1, Number(input.value) || 1);
+        input.value = qty;
 
-            input.value = qty;
+        const total = basePrice * qty;
 
-            const total = basePrice * qty;
+        totalEl.textContent = total.toLocaleString('uk-UA');
 
-            totalEl.textContent = total.toLocaleString('uk-UA');
-
+        if (totalWrap) {
             totalWrap.classList.toggle('show', qty > 1);
         }
+    }
 
-        minus.addEventListener('click', () => {
-            input.value = Math.max(1, (Number(input.value) || 1) - 1);
-            update();
-        });
+    // ➕➖ работает даже после фильтра
+    document.addEventListener('click', function (e) {
 
-        plus.addEventListener('click', () => {
-            input.value = (Number(input.value) || 1) + 1;
-            update();
-        });
+        const plus = e.target.closest('.plus');
+        const minus = e.target.closest('.minus');
 
-        input.addEventListener('change', update);
+        if (!plus && !minus) return;
 
-        update();
+        const card = e.target.closest('.product-card');
+        if (!card) return;
+
+        const input = card.querySelector('.qty-value');
+        if (!input) return;
+
+        if (plus) {
+            input.value = (parseInt(input.value) || 1) + 1;
+        }
+
+        if (minus) {
+            input.value = Math.max(1, (parseInt(input.value) || 1) - 1);
+        }
+
+        updateCard(card);
+    });
+
+    // ручной ввод
+    document.addEventListener('input', function (e) {
+
+        if (!e.target.classList.contains('qty-value')) return;
+
+        const card = e.target.closest('.product-card');
+        if (!card) return;
+
+        updateCard(card);
     });
 
 });
-
 window.refreshCart = function () {
 
     fetch('/cart/state')
