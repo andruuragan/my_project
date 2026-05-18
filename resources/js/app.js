@@ -72,7 +72,7 @@ window.refreshCart = function () {
 
             if (totalEl) {
                 totalEl.innerText =
-                    new Intl.NumberFormat('uk-UA').format(data.total) + ' ₴';
+                    new Intl.NumberFormat('uk-UA').format(data.total) + ' грн.';
 
                 totalEl.classList.toggle('hidden', data.total === 0);
             }
@@ -81,7 +81,7 @@ window.refreshCart = function () {
 document.addEventListener('DOMContentLoaded', function () {
 
     function parsePrice(text) {
-        return parseFloat(text.replace(/\s/g, '').replace('₴', '')) || 0;
+        return parseFloat(text.replace(/\s/g, '').replace('грн.', '')) || 0;
     }
 
     function format(n) {
@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', function () {
         let price = parsePrice(row.querySelector('.price-cell').innerText);
 
         row.querySelector('.item-sum').innerText =
-            format(qty * price) + ' ₴';
+            format(qty * price) + ' грн.';
     }
 
     function recalcTotal() {
@@ -215,3 +215,33 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
 });
+window.showAlert = function (message, type = 'success') {
+
+    const alert = document.createElement('div');
+
+    alert.className =
+        `custom-alert ${type}-alert`;
+
+    alert.innerHTML = `
+        <i class="bi ${
+        type === 'success'
+            ? 'bi-check-circle-fill'
+            : 'bi-exclamation-triangle-fill'
+    }"></i>
+
+        ${message}
+    `;
+
+    document.body.appendChild(alert);
+
+    setTimeout(() => {
+
+        alert.style.opacity = '0';
+        alert.style.transform = 'translateX(40px)';
+
+        setTimeout(() => {
+            alert.remove();
+        }, 300);
+
+    }, 4000);
+};

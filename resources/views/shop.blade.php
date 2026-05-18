@@ -390,15 +390,40 @@
                         },
                         body: new FormData(form)
                     })
-                        .then(res => res.json())
+                        .then(async res => {
+
+                            if (res.status === 401) {
+
+                                showAlert(
+                                    'Для покупок потрібно авторізуватись',
+                                    'error'
+                                );
+
+                                return null;
+                            }
+
+                            return res.json();
+                        })
                         .then(data => {
 
+                            if (!data) return;
+
                             if (!data.success) {
-                                alert(data.message || 'Помилка');
+
+                                showAlert(
+                                    data.message || 'Помилка',
+                                    'error'
+                                );
+
                                 return;
                             }
 
-                            refreshCart(); // ✔ единый источник правды
+                            refreshCart();
+
+                            showAlert(
+                                'Товар додано у кошик',
+                                'success'
+                            );
                         });
                 });
 

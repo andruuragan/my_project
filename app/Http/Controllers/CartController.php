@@ -18,8 +18,10 @@ class CartController extends Controller
     {
         if (!auth()->check()) {
 
-            return back()->with('error', 'Спочатку увійдіть в акаунт');
-
+            return response()->json([
+                'success' => false,
+                'message' => 'Необхідна авторизація'
+            ], 401);
         }
         $cart = session()->get('cart', []);
 

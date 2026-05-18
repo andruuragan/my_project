@@ -155,7 +155,7 @@
                                 <a class="dropdown-item {{ request()->routeIs('dashboard') ? 'active-item' : '' }}"
                                    href="{{ route('dashboard') }}">
                                     <i class="bi bi-speedometer2 me-2"></i>
-                                    Dashboard
+                                    Особистий кабінет
                                 </a>
                             </li>
 
