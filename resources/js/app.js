@@ -245,3 +245,35 @@ window.showAlert = function (message, type = 'success') {
 
     }, 4000);
 };
+document.addEventListener('DOMContentLoaded', function () {
+
+    const filterForm = document.querySelector('.filter-form');
+
+    if (!filterForm) return;
+
+    filterForm.addEventListener('submit', function (e) {
+
+        e.preventDefault();
+
+        const formData = new FormData(filterForm);
+
+        const params = new URLSearchParams(formData);
+
+        fetch(`/dymohody-ta-komplektuyuchi?${params.toString()}`, {
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest'
+            }
+        })
+            .then(res => res.text())
+            .then(html => {
+
+                document.getElementById('productsWrapper').innerHTML = html;
+
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+    });
+
+});

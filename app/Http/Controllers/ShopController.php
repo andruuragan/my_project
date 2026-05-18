@@ -56,6 +56,10 @@ class ShopController extends Controller
             ->paginate(32)
             ->withQueryString();
 
+        if ($request->ajax()) {
+            return view('partials.products', compact('catalogs'))->render();
+        }
+
         return view('shop', compact('catalogs'));
     }
 }
