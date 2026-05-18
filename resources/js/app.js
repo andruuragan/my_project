@@ -72,26 +72,25 @@ document.addEventListener('DOMContentLoaded', function () {
 
 });
 window.refreshCart = function () {
-
     fetch('/cart/state')
         .then(res => res.json())
         .then(data => {
-
             const countEl = document.getElementById('cartCount');
             const totalEl = document.getElementById('cartTotalNav');
 
             if (countEl) {
                 countEl.innerText = data.count;
-                countEl.classList.toggle('hidden', data.count === 0);
+                // Вместо класса .hidden (если он не скрывает элемент),
+                // можно управлять стилем напрямую, либо оставь как было, если .hidden настроен в CSS
+                countEl.style.display = data.count === 0 ? 'none' : 'inline-block';
             }
 
             if (totalEl) {
-                totalEl.innerText =
-                    new Intl.NumberFormat('uk-UA').format(data.total) + ' грн.';
-
-                totalEl.classList.toggle('hidden', data.total === 0);
+                // Форматируем только чистое число, без дописок "грн."
+                totalEl.innerText = new Intl.NumberFormat('uk-UA').format(data.total);
             }
-        });
+        })
+        .catch(err => console.error('Помилка оновлення кошика:', err));
 };
 document.addEventListener('DOMContentLoaded', function () {
 

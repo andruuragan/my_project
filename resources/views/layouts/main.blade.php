@@ -348,13 +348,13 @@
 </script>
 
 
-<script>
+<!--<script>
     document.addEventListener('DOMContentLoaded', function () {
         if (typeof refreshCart === 'function') {
             refreshCart();
         }
     });
-</script>
+</script>-->
 </body>
 
 </html>

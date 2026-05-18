@@ -52,11 +52,19 @@
                     @if(auth()->user()->isAdmin())
 
 
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->routeIs('admin.*') ? 'active' : '' }}"
+                               href="{{ route('admin.index') }}">
+                               Admin
+                            </a>
+                        </li>
+
+
 
                         <li class="nav-item">
                             <a class="nav-link {{ request()->routeIs('catalog.*') ? 'active' : '' }}"
                                href="{{ route('catalog.index') }}">
-                                Catalog (admin)
+                                Catalog
                             </a>
                         </li>
 
@@ -123,15 +131,14 @@
                     @endphp
 
                     <a href="{{ route('cart.index') }}" class="cart-btn" title="Кошик">
-
                         <i class="bi bi-cart3"></i>
 
-                        <span class="cart-count" id="cartCount">0</span>
+                        <span class="cart-count" id="cartCount">{{ $cartCount }}</span>
 
+                        {{-- Заворачиваем цену и валюту в один флекс-контейнер --}}
                         <span class="cart-total">
-        <span id="cartTotalNav">0</span> ₴
+        <span id="cartTotalNav">{{ number_format($cartTotal, 0, '.', ' ') }}</span> грн.
     </span>
-
                     </a>
                     {{-- USER DROPDOWN (ВОТ ТУТ ВЕРНУЛИ КАК НУЖНО) --}}
                     <div class="dropdown ms-2">
