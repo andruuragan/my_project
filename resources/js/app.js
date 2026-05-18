@@ -291,3 +291,47 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
 });
+/*function animateFlyToCart(imgElement) {
+    const cartBtn = document.getElementById('cartBtnContainer') || document.querySelector('.cart-btn');
+    if (!imgElement || !cartBtn) return;
+
+    // 1. Получаем координаты картинки товара на экране
+    const imgRect = imgElement.getBoundingClientRect();
+    // 2. Получаем координаты кнопки корзины в навбаре
+    const cartRect = cartBtn.getBoundingClientRect();
+
+    // 3. Создаем клона картинки
+    const clone = imgElement.cloneNode(true);
+    clone.classList.add('flying-cart-item');
+
+    // Ставим клона точно поверх оригинальной картинки
+    clone.style.left = `${imgRect.left}px`;
+    clone.style.top = `${imgRect.top}px`;
+    clone.style.width = `${imgRect.width}px`;
+    clone.style.height = `${imgRect.height}px`;
+
+    document.body.appendChild(clone);
+
+    // 4. Запускаем полет (нужен микро-таймаут, чтобы браузер успел отрисовать клон)
+    requestAnimationFrame(() => {
+        // Вычисляем точку приземления (центр кнопки корзины)
+        const targetX = cartRect.left + (cartRect.width / 2) - (imgRect.width / 4);
+        const targetY = cartRect.top + (cartRect.height / 2) - (imgRect.height / 4);
+
+        // Перемещаем клон в корзину, одновременно сжимая его до 20px и делая полупрозрачным
+        clone.style.transform = `translate(${targetX - imgRect.left}px, ${targetY - imgRect.top}px) scale(0.15)`;
+        clone.style.opacity = '0.4';
+    });
+
+    // 5. Когда анимация завершилась (через 800мс), удаляем клона и слегка "встряхиваем" корзину
+    setTimeout(() => {
+        clone.remove();
+
+        // Эффект микро-удара для корзины (по желанию)
+        cartBtn.style.transform = 'scale(1.15)';
+        setTimeout(() => {
+            cartBtn.style.transform = 'none';
+        }, 150);
+
+    }, 800);
+}*/

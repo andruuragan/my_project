@@ -71,7 +71,7 @@
                         <li class="nav-item">
                             <a class="nav-link {{ request()->routeIs('descriptions.*') ? 'active' : '' }}"
                                href="{{ route('descriptions.index') }}">
-                                Опис (admin)
+                                Опис
                             </a>
                         </li>
 

@@ -1210,10 +1210,11 @@ html, body {
     color: #fff;
     text-decoration: none;
     font-weight: 700;
-    transition: 0.25s ease;
+
     box-shadow: 0 8px 20px rgba(255,140,0,0.25);
     font-variant-numeric: tabular-nums;
     white-space: nowrap;   /* Запрещаем любой перенос чего-либо внутри кнопки */
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), background 0.25s ease;
 }
 
 .cart-btn:hover {
@@ -1373,4 +1374,21 @@ html, body {
 }
 .modal {
     z-index: 1055;
+}
+/* Летающий призрак товара */
+.flying-cart-item {
+    position: fixed;
+    z-index: 99999;
+    pointer-events: none; /* Чтобы копия не мешала кликам в полете */
+    object-fit: contain;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+
+    /* Плавность анимации: position меняется через JS, а размеры и прозрачность — через CSS */
+    transition:
+        transform 0.8s cubic-bezier(0.25, 1, 0.5, 1),
+        opacity 0.8s ease-in-out,
+        width 0.8s ease,
+        height 0.8s ease;
 }

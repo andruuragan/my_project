@@ -253,23 +253,126 @@
         </div>
     </div>
     <script>
-        document.addEventListener('submit', function (e) {
-            const form = e.target.closest('.add-to-cart-form');
-            if (!form) return;
+        function animateFlyToCart(imgElement) {
+            // Ищем саму кнопку корзины (или её контейнер), куда должна прилететь картинка
+            const cartBtn = document.querySelector('.cart-btn') || document.getElementById('cartBtnContainer');
+            if (!imgElement || !cartBtn) {
+                console.warn('Анимация отменена: не найден элемент картинки или кнопка корзины в навбаре.');
+                return;
+            }
+
+            // Получаем координаты стартовой точки (картинка) и финиша (корзина)
+            const imgRect = imgElement.getBoundingClientRect();
+            const cartRect = cartBtn.getBoundingClientRect();
+
+            // Создаем временный клон картинки
+            const clone = imgElement.cloneNode(true);
+            clone.classList.add('flying-cart-item');
+
+            // Стилизуем клон и ставим его точно поверх оригинала
+            clone.style.position = 'fixed';
+            clone.style.zIndex = '99999';
+            clone.style.pointerEvents = 'none';
+            clone.style.objectFit = 'contain';
+            clone.style.background = '#fff';
+            clone.style.borderRadius = '12px';
+            clone.style.boxShadow = '0 10px 25px rgba(0,0,0,0.15)';
+            clone.style.transition = 'transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.8s ease, width 0.8s ease, height 0.8s ease';
+
+            clone.style.left = `${imgRect.left}px`;
+            clone.style.top = `${imgRect.top}px`;
+            clone.style.width = `${imgRect.width}px`;
+            clone.style.height = `${imgRect.height}px`;
+
+            document.body.appendChild(clone);
+
+            // Запускаем полёт в следующем кадре анимации
+            // Запускаем полёт в следующем кадре анимации
+            // Запускаем полёт в следующем кадре анимации
+            // Запускаем полёт в следующем кадре анимации
+            requestAnimationFrame(() => {
+                // 1. Принудительно меняем точку трансформации на верхний левый угол клона.
+                // Это уберёт хаотичные смещения при масштабировании (scale).
+                clone.style.transformOrigin = 'left top';
+
+                // 2. Рассчитываем точные координаты левого верхнего угла иконки корзины.
+                // cartRect.left + 15px — это как раз место, где начинается рисунок корзины.
+                const targetX = cartRect.left + 15;
+
+                // cartRect.top + половина высоты кнопки — и вычитаем примерно 8-10px,
+                // чтобы маленькая картинка встала ровно по центру высоты иконки.
+                const targetY = cartRect.top + (cartRect.height / 2) - 8;
+
+                // 3. Перемещаем клон ровно в цель и уменьшаем его до фиксированного размера
+                clone.style.transform = `translate(${targetX - imgRect.left}px, ${targetY - imgRect.top}px) scale(0.12)`;
+                clone.style.opacity = '0.15'; // Делаем почти прозрачным в самой корзине
+            });
+
+            // После завершения полёта удаляем клон и пружиним корзину
+            setTimeout(() => {
+                clone.remove();
+
+                cartBtn.style.transform = 'scale(1.15)';
+                setTimeout(() => {
+                    cartBtn.style.transform = 'none';
+                }, 150);
+            }, 800);
+        }
+
+        // ======= 2. ОБРАБОТЧИК КЛИКА «КУПИТИ» =======
+        document.addEventListener('click', function (e) {
+            const buyBtn = e.target.closest('.add-cart-btn');
+            if (!buyBtn) return;
 
             e.preventDefault();
 
-            fetch(form.action, {
+            // Находим карточку и картинку внутри неё
+            const card = buyBtn.closest('.product-card');
+            if (!card) {
+                console.error('Карточка продукту (.product-card) не знайдена!');
+                return;
+            }
+
+            const productImg = card.querySelector('.product-image');
+
+            // Вызываем функцию полёта, которую мы объявили выше
+            if (productImg) {
+                animateFlyToCart(productImg);
+            } else {
+                console.warn('Картинка с классом .product-image не найдена внутри карточки!');
+            }
+
+            // Дальше твой рабочий AJAX-запрос
+            const form = buyBtn.closest('form');
+            let url, csrfToken, formData;
+
+            if (form) {
+                url = form.action;
+                csrfToken = form.querySelector('[name="_token"]')?.value;
+                formData = new FormData(form);
+            } else {
+                const productId = buyBtn.dataset.id;
+                url = `/shop/${productId}/add`;
+                csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
+                formData = new FormData();
+                formData.append('qty', 1);
+            }
+
+            if (!csrfToken) {
+                showAlert('Помилка безпеки (відсутній токен)', 'error');
+                return;
+            }
+
+            fetch(url, {
                 method: 'POST',
                 headers: {
-                    'X-CSRF-TOKEN': form.querySelector('[name="_token"]').value,
+                    'X-CSRF-TOKEN': csrfToken,
                     'Accept': 'application/json',
                     'X-Requested-With': 'XMLHttpRequest'
                 },
-                body: new FormData(form)
+                body: formData
             })
                 .then(async res => {
-
                     const data = await res.json().catch(() => null);
 
                     if (res.status === 401) {
@@ -287,11 +390,18 @@
                 .then(data => {
                     if (!data) return;
 
-                    refreshCart();
-                    showAlert('Додано у кошик', 'success');
+                    if (data.success) {
+                        if (typeof refreshCart === 'function') {
+                            refreshCart();
+                        }
+                        showAlert('Додано у кошик', 'success');
+                    }
+                })
+                .catch(err => {
+                    console.error('Помилка:', err);
+                    showAlert('Сталася помилка при додаванні', 'error');
                 });
         });
-
 
 
 
