@@ -7,14 +7,32 @@
             История заказов пользователя: {{ $user->name }}
         </h3>
 
+        {{-- FILTER --}}
+        <form method="GET" class="mb-3 d-flex gap-2">
+
+            <select name="status" class="form-select" style="max-width: 200px;">
+                <option value="">Все статусы</option>
+                <option value="pending">Ожидает</option>
+                <option value="paid">Оплачен</option>
+                <option value="cancelled">Отменён</option>
+            </select>
+
+            <button class="btn btn-primary">
+                Фильтр
+            </button>
+
+        </form>
+
         <a href="{{ route('users.show', $user) }}" class="btn btn-secondary mb-3">
             ← Назад к пользователю
         </a>
 
         @if($orders->isEmpty())
+
             <div class="alert alert-info">
                 У пользователя пока нет заказов
             </div>
+
         @else
 
             <table class="table table-hover align-middle">
@@ -25,6 +43,7 @@
                     <th>Статус</th>
                     <th>Сумма</th>
                     <th>Дата</th>
+                    <th>Смена статуса</th>
                     <th>Действия</th>
                 </tr>
                 </thead>
@@ -32,14 +51,12 @@
                 <tbody>
 
                 @foreach($orders as $order)
+
                     <tr>
 
-                        <!-- ID -->
-                        <td>
-                            #{{ $order->id }}
-                        </td>
+                        <td>#{{ $order->id }}</td>
 
-                        <!-- STATUS -->
+                        {{-- STATUS BADGE --}}
                         <td>
                             @if($order->status === 'pending')
                                 <span class="badge bg-warning text-dark">Ожидает</span>
@@ -48,36 +65,56 @@
                             @elseif($order->status === 'cancelled')
                                 <span class="badge bg-danger">Отменён</span>
                             @else
-                                <span class="badge bg-secondary">
-                                {{ $order->status }}
-                            </span>
+                                <span class="badge bg-secondary">{{ $order->status }}</span>
                             @endif
                         </td>
 
-                        <!-- TOTAL -->
                         <td>
                             <strong>
                                 {{ number_format($order->total_price, 0, '.', ' ') }} ₴
                             </strong>
                         </td>
 
-                        <!-- DATE -->
                         <td>
                             {{ $order->created_at->format('d.m.Y H:i') }}
                         </td>
 
-                        <!-- ACTIONS -->
+                        {{-- STATUS CHANGE --}}
                         <td>
+                            <form method="POST" action="{{ route('admin.orders.status', $order) }}">
+                                @csrf
+                                @method('PATCH')
 
+                                <select name="status"
+                                        onchange="this.form.submit()"
+                                        class="form-select form-select-sm">
+
+                                    <option value="pending" {{ $order->status == 'pending' ? 'selected' : '' }}>
+                                        pending
+                                    </option>
+
+                                    <option value="paid" {{ $order->status == 'paid' ? 'selected' : '' }}>
+                                        paid
+                                    </option>
+
+                                    <option value="cancelled" {{ $order->status == 'cancelled' ? 'selected' : '' }}>
+                                        cancelled
+                                    </option>
+
+                                </select>
+                            </form>
+                        </td>
+
+                        {{-- ACTIONS --}}
+                        <td>
                             <a href="{{ route('profile.orders.show', $order) }}"
-                               class="btn btn-sm btn-outline-info"
-                               title="Просмотр заказа">
+                               class="btn btn-sm btn-outline-info">
                                 <i class="bi bi-eye"></i>
                             </a>
-
                         </td>
 
                     </tr>
+
                 @endforeach
 
                 </tbody>

@@ -39,7 +39,9 @@ class UserController extends Controller
 
     public function show(User $user)
     {
-        return view('admin.users.show', compact('user'));
+        $orders = $user->orders()->latest()->get();
+
+        return view('admin.users.show', compact('user', 'orders'));
     }
 
     public function edit(User $user)

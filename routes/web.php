@@ -107,6 +107,8 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 });
 Route::get('/admin/users/{user}/orders', [\App\Http\Controllers\Admin\AdminUserOrderController::class, 'index'])
     ->name('admin.users.orders');
+Route::patch('/admin/orders/{order}/status', [OrderController::class, 'updateStatus'])
+    ->name('admin.orders.status');
 
 
 Route::middleware('auth')->group(function () {

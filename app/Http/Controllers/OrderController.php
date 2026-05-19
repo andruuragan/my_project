@@ -32,4 +32,16 @@ public function index()
 
         return view('profile.orders.show', compact('order'));
     }
+    public function updateStatus(Request $request, Order $order)
+    {
+        $request->validate([
+            'status' => 'required|in:pending,paid,cancelled',
+        ]);
+
+        $order->update([
+            'status' => $request->status
+        ]);
+
+        return back()->with('success', 'Статус обновлён');
+    }
 }

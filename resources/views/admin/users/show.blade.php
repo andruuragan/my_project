@@ -23,6 +23,16 @@
 
             </div>
         </div>
+        <div class="mb-3">
+
+            <div><strong>Всего заказов:</strong> {{ $orders->count() }}</div>
+
+            <div>
+                <strong>Сумма покупок:</strong>
+                {{ number_format($orders->sum('total_price'), 0, '.', ' ') }} ₴
+            </div>
+
+        </div>
 
         {{-- CARD --}}
         <div class="card shadow-sm border-0 p-3 p-md-4">
@@ -81,12 +91,12 @@
                                 <th>ID</th>
                                 <td>#{{ $user->id }}</td>
                             </tr>
-                            <tr>
-                            <a href="{{ route('admin.users.orders', $user) }}"
-                               class="btn btn-primary mt-3">
-                                История заказов
-                            </a>
-                            </tr>
+                            <div class="mt-3">
+                                <a href="{{ route('admin.users.orders', $user) }}"
+                                   class="btn btn-primary">
+                                    История заказов
+                                </a>
+                            </div>
 
                         </table>
 
