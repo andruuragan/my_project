@@ -70,16 +70,13 @@
                             <div>
                                 <h5 class="mb-0">Заказы</h5>
                                 <small class="text-muted">История покупок</small>
+
                             </div>
                         </div>
 
-                        <p class="text-muted mb-3">
-                            Пока нет заказов
-                        </p>
-
-                        <button class="btn btn-sm btn-outline-warning" disabled>
-                            Скоро будет
-                        </button>
+                        <a href="{{ route('profile.orders') }}" class="btn btn-primary">
+                            Заказы (история покупок)
+                        </a>
 
                     </div>
                 </div>

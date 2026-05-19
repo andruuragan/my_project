@@ -1226,15 +1226,20 @@ html, body {
     position: absolute;
 
     top: -6px;
-    right: -6px;
+    left: -6px;
 
     width: 22px;
     height: 22px;
 
     border-radius: 50%;
 
-    background: #111;
-    color: #fff;
+    background: linear-gradient(
+        180deg,
+        rgba(255,255,255,0.92) 0%,
+        rgba(255,246,237,0.92) 100%
+    );
+    color: #000000;
+    border: 2px solid rgba(217,119,6,0.25);
 
     font-size: 11px;
 
@@ -1328,9 +1333,7 @@ html, body {
         transform: translateX(50px);
     }
 }
-.cart-count:empty {
-    display: none;
-}
+
 .checkout-btn {
     display: inline-flex;
     align-items: center;

@@ -38,9 +38,9 @@ class CartController extends Controller
         } else {
             $cart[$catalog->id] = [
                 'id' => $catalog->id,
-                'title' => $catalog->name,
+                'title' => $catalog->title ?? $catalog->name ?? 'Без названия',
                 'price' => $catalog->price,
-                'image' => $catalog->image,
+                'image' => $catalog->image ?? null,
                 'qty' => $qty,
             ];
         }

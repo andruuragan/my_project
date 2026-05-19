@@ -1,6 +1,12 @@
 @extends('layouts.main')
 
 @section('content')
+
+    @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
     <div class="container-1600">
 
         <h2 class="mb-4">Оформлення замовлення</h2>
@@ -17,10 +23,11 @@
                 <strong>Сума:</strong> {{ number_format($cartTotal, 0, '.', ' ') }} ₴
             </div>
 
-            <form method="POST" action="{{ route('checkout.store') }}">
+            <form method="POST" action="{{ route('checkout.store') }}"
+                  onsubmit="this.querySelector('button').disabled = true;">
                 @csrf
 
-                <button class="checkout-btn">
+                <button type="submit" class="checkout-btn">
                     Підтвердити замовлення
                     <i class="bi bi-arrow-right ms-2"></i>
                 </button>

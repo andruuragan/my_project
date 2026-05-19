@@ -81,6 +81,12 @@
                                 <th>ID</th>
                                 <td>#{{ $user->id }}</td>
                             </tr>
+                            <tr>
+                            <a href="{{ route('admin.users.orders', $user) }}"
+                               class="btn btn-primary mt-3">
+                                История заказов
+                            </a>
+                            </tr>
 
                         </table>
 

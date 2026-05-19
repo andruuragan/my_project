@@ -23,6 +23,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\OrderController;
 
 /* =========================
 | AUTH (Breeze)
@@ -104,6 +105,8 @@ Route::resource('descriptions', DescriptionController::class);
 Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::resource('users', \App\Http\Controllers\Admin\UserController::class);
 });
+Route::get('/admin/users/{user}/orders', [\App\Http\Controllers\Admin\AdminUserOrderController::class, 'index'])
+    ->name('admin.users.orders');
 
 
 Route::middleware('auth')->group(function () {
@@ -128,7 +131,19 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/cart/clear', [CartController::class, 'clear'])
         ->name('cart.clear');
+
+
+
+    Route::get('/profile/orders', [\App\Http\Controllers\OrderController::class, 'index'])
+            ->name('profile.orders');
+    Route::get('/profile/orders/{order}', [\App\Http\Controllers\OrderController::class, 'show'])
+        ->name('profile.orders.show');
+
+
 });
+
+
+
 
 Route::get('/cart/state', [CartController::class, 'state']);
 require __DIR__.'/auth.php';
