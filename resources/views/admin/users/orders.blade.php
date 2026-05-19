@@ -100,10 +100,23 @@
 
                         {{-- ACTIONS --}}
                         <td>
-                            <a href="{{ route('profile.orders.show', $order) }}"
-                               class="btn btn-sm btn-outline-info">
-                                <i class="bi bi-eye"></i>
-                            </a>
+                            <div class="d-flex align-items-center gap-2">
+
+                                <a href="{{ route('profile.orders.show', $order) }}"
+                                   class="btn btn-sm btn-outline-info">
+                                    <i class="bi bi-eye"></i>
+                                </a>
+
+                                {{-- КНОПКА УДАЛЕНИЯ ДЛЯ АДМИНА --}}
+                                <td>
+                                    <button type="button"
+                                            onclick="deleteOrder(this, '{{ route('admin.orders.destroy', $order) }}')"
+                                            class="btn btn-sm btn-outline-danger">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </td>
+
+                            </div>
                         </td>
 
                     </tr>

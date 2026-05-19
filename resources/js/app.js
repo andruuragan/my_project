@@ -342,6 +342,57 @@ window.changeOrderStatus = function(selectElement, url) {
             }
         });
 };
+// Функция AJAX-удаления заказа
+window.deleteOrder = function(buttonElement, url) {
+    if (!confirm('Ви впевнені, що хочете видалити цей замовлення?')) return;
+
+    // Блокируем кнопку на время запроса
+    buttonElement.disabled = true;
+
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+            'X-HTTP-Method-Override': 'DELETE', // Laravel поймет, что это DELETE запрос
+            'Accept': 'application/json'
+        }
+    })
+        .then(response => {
+            if (!response.ok) throw new Error('Помилка сервера');
+            return response.json();
+        })
+        .then(data => {
+            // Выводим уведомление через твою функцию
+            if (typeof window.showAlert === 'function') {
+                window.showAlert(data.message || 'Замовлення видалено', 'success');
+            }
+
+            // Красиво удаляем строку из таблицы с анимацией или просто .remove()
+            const row = buttonElement.closest('tr');
+            if (row) {
+                row.style.transition = 'all 0.3s ease';
+                row.style.opacity = '0';
+                row.style.transform = 'scale(0.95)';
+
+                setTimeout(() => {
+                    row.remove();
+
+                    // Если таблица стала пустой, можно показать сообщение "У пользователя пока нет заказов"
+                    const tbody = document.querySelector('table.table tbody');
+                    if (tbody && tbody.children.length === 0) {
+                        location.reload(); // Проще всего обновить страницу, чтобы Laravel показал alert-info
+                    }
+                }, 300);
+            }
+        })
+        .catch(error => {
+            buttonElement.disabled = false;
+            if (typeof window.showAlert === 'function') {
+                window.showAlert('Не вдалося видалити замовлення', 'error');
+            }
+        });
+};
 /*function animateFlyToCart(imgElement) {
     const cartBtn = document.getElementById('cartBtnContainer') || document.querySelector('.cart-btn');
     if (!imgElement || !cartBtn) return;

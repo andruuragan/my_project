@@ -24,6 +24,7 @@ use App\Http\Controllers\ShopController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\Admin\AdminOrderController;
 
 /* =========================
 | AUTH (Breeze)
@@ -143,6 +144,15 @@ Route::middleware('auth')->group(function () {
 
 
 });
+
+Route::middleware(['auth', 'admin'])
+    ->prefix('admin')
+    ->group(function () {
+
+        Route::delete('/orders/{order}', [AdminOrderController::class, 'destroy'])
+            ->name('admin.orders.destroy');
+
+    });
 
 
 

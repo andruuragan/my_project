@@ -67,12 +67,12 @@
 
                             <!-- PRICE -->
                             <td class="price-cell">
-                                {{ number_format($price, 0, '.', ' ') }} ₴
+                                {{ number_format($price, 0, '.', ' ') }} грн.
                             </td>
 
                             <!-- SUM -->
                             <td class="item-sum">
-                                {{ number_format($sum, 0, '.', ' ') }} ₴
+                                {{ number_format($sum, 0, '.', ' ') }} грн.
                             </td>
 
                             <!-- DELETE -->
@@ -98,9 +98,18 @@
             <div class="d-flex justify-content-between align-items-start mt-4">
 
                 <!-- LEFT -->
-                <button id="clearCartBtn" class="btn btn-warning">
-                    Очистити кошик
-                </button>
+                <div class="d-flex gap-2">
+
+                    <button id="clearCartBtn" class="btn btn-warning">
+                        Очистити кошик
+                    </button>
+
+                    <a href="{{ route('shop.index') }}" class="btn btn-success">
+                        <i class="bi bi-plus-lg"></i>
+                        Додати товар
+                    </a>
+
+                </div>
 
                 <!-- RIGHT -->
                 <div class="text-end">
@@ -110,7 +119,7 @@
                         <span id="cartTotal">
                 {{ number_format($total, 0, '.', ' ') }}
             </span>
-                        ₴
+                        грн.
                     </h4>
 
                     <a href="{{ route('checkout.index') }}"
