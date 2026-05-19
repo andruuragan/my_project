@@ -57,20 +57,18 @@
                     </div>
 
                     {{-- RIGHT --}}
+                    {{-- RIGHT --}}
                     <div class="col-md-8">
 
                         <table class="table table-sm table-borderless">
-
                             <tr>
                                 <th style="width:180px;">Email</th>
                                 <td>{{ $user->email }}</td>
                             </tr>
-
                             <tr>
                                 <th>Телефон</th>
                                 <td>{{ $user->phone ?? '—' }}</td>
                             </tr>
-
                             <tr>
                                 <th>Роль</th>
                                 <td>
@@ -81,28 +79,29 @@
                                     @endif
                                 </td>
                             </tr>
-
                             <tr>
                                 <th>Дата реєстрації</th>
                                 <td>{{ optional($user->created_at)->format('d.m.Y H:i') }}</td>
                             </tr>
-
                             <tr>
                                 <th>ID</th>
                                 <td>#{{ $user->id }}</td>
                             </tr>
-                            <div class="mt-3">
-                                <a href="{{ route('admin.users.orders', $user) }}"
-                                   class="btn btn-primary">
-                                    Історія замовлень
-                                </a>
-                            </div>
-
                         </table>
+
+                        <!-- Кнопку выносим ИЗ таблицы чуть ниже -->
+                        <div class="mt-3">
+                            <a href="{{ route('admin.users.orders', $user) }}"
+                               class="btn btn-primary">
+                                Історія замовлень
+                            </a>
+                        </div>
 
                     </div>
 
-                </div>
+                    </div>
+
+
 
             </div>
         </div>
@@ -112,12 +111,13 @@
 
             <form action="{{ route('users.destroy', $user) }}"
                   method="POST"
-                  onsubmit="return confirm('Удалить пользователя?')">
+                  id="delete-user-form-{{ $user->id }}"
+                  onsubmit="if(confirm('Видалити клієнта?')) { this.querySelector('button').disabled = true; return true; } return false;">
 
                 @csrf
                 @method('DELETE')
 
-                <button class="btn btn-outline-danger">
+                <button type="submit" class="btn btn-outline-danger">
                     <i class="bi bi-trash3"></i> Видалити клієнта
                 </button>
 
