@@ -328,23 +328,32 @@
 
     });
 
-    setTimeout(() => {
+    // ===== УПРАВЛЕНИЕ УВЕДОМЛЕНИЯМИ И БОРЬБА С BFCACHE =====
+    function hideAlerts() {
+        document.querySelectorAll('.custom-alert').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(-10px)';
+            setTimeout(() => {
+                if (el) el.remove();
+            }, 300);
+        });
+    }
 
-        document.querySelectorAll('.custom-alert')
-            .forEach(el => {
+    // Скрываем уведомления через 4.5 секунды после обычной загрузки
+    setTimeout(hideAlerts, 4500);
 
-                el.style.opacity = '0';
-                el.style.transform = 'translateY(-10px)';
+    // Защита от кнопки "Назад" в браузере (bfcache)
+    // Защита от кнопки "Назад" в браузере (уничтожаем bfcache для обновления данных)
+    window.addEventListener('pageshow', function (event) {
+        // Проверяем: пришел ли пользователь на страницу через кнопку Назад/Вперед
+        const performanceEntries = performance.getEntriesByType('navigation');
+        const isBackForward = performanceEntries.length > 0 && performanceEntries[0].type === 'back_forward';
 
-                setTimeout(() => {
-                    if (el) {
-                        el.remove();
-                    }
-                }, 300);
-
-            });
-
-    }, 4500);
+        if (event.persisted || isBackForward) {
+            // Принудительно и жестко перезагружаем страницу с сервера, чтобы подтянуть свежую таблицу
+            window.location.reload();
+        }
+    });
 </script>
 
 

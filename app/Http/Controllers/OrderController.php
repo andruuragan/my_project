@@ -42,6 +42,16 @@ public function index()
             'status' => $request->status
         ]);
 
+        // Если запрос пришел через fetch/ajax, возвращаем JSON
+        if ($request->expectsJson()) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Статус успешно обновлён',
+                'status' => $order->status
+            ]);
+        }
+
+        // На всякий случай оставляем обычный редирект, если форма отправится стандартным способом
         return back()->with('success', 'Статус обновлён');
     }
 }

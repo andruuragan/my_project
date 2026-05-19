@@ -291,6 +291,57 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
 });
+// Функция AJAX-смены статуса заказа (чтобы не забивать историю браузера)
+window.changeOrderStatus = function(selectElement, url) {
+    const status = selectElement.value;
+    selectElement.disabled = true;
+
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+            'X-HTTP-Method-Override': 'PATCH',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify({ status: status })
+    })
+        .then(response => {
+            if (!response.ok) throw new Error('Помилка сервера');
+            return response.json();
+        })
+        .then(data => {
+            selectElement.disabled = false;
+
+            if (typeof window.showAlert === 'function') {
+                window.showAlert('Статус успішно оновлено!', 'success');
+            }
+
+            // === НАХОДИМ И ОБНОВЛЯЕМ БЕЙДЖ В ТАБЛИЦЕ ===
+            const row = selectElement.closest('tr');
+            if (row) {
+                const badgeCell = row.querySelector('.status-badge-cell');
+                if (badgeCell) {
+                    // Генерируем новый HTML в зависимости от статуса
+                    if (status === 'pending') {
+                        badgeCell.innerHTML = '<span class="badge bg-warning text-dark">Ожидает</span>';
+                    } else if (status === 'paid') {
+                        badgeCell.innerHTML = '<span class="badge bg-success">Оплачен</span>';
+                    } else if (status === 'cancelled') {
+                        badgeCell.innerHTML = '<span class="badge bg-danger">Отменён</span>';
+                    } else {
+                        badgeCell.innerHTML = `<span class="badge bg-secondary">${status}</span>`;
+                    }
+                }
+            }
+        })
+        .catch(error => {
+            selectElement.disabled = false;
+            if (typeof window.showAlert === 'function') {
+                window.showAlert('Не вдалося оновити статус', 'error');
+            }
+        });
+};
 /*function animateFlyToCart(imgElement) {
     const cartBtn = document.getElementById('cartBtnContainer') || document.querySelector('.cart-btn');
     if (!imgElement || !cartBtn) return;
