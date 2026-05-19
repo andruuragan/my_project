@@ -107,14 +107,14 @@
                                     <i class="bi bi-eye"></i>
                                 </a>
 
-                                {{-- КНОПКА УДАЛЕНИЯ ДЛЯ АДМИНА --}}
-                                <td>
-                                    <button type="button"
-                                            onclick="deleteOrder(this, '{{ route('admin.orders.destroy', $order) }}')"
-                                            class="btn btn-sm btn-outline-danger">
-                                        <i class="bi bi-trash"></i>
-                                    </button>
-                                </td>
+                                <button type="button"
+                                        onclick="deleteOrder(this, '{{ route('admin.orders.destroy', $order) }}')"
+                                        class="btn btn-sm btn-outline-danger">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+
+                            </div>
+                        </td>
 
                             </div>
                         </td>

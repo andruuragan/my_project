@@ -17,10 +17,10 @@ class AdminOrderController extends Controller
         if (request()->expectsJson()) {
             return response()->json([
                 'success' => true,
-                'message' => 'Заказ успешно удалён'
+                'message' => 'Заказ видалено'
             ]);
         }
 
-        return back()->with('success', 'Заказ успешно удалён');
+        return back()->with('success', 'Заказ видалено');
     }
 }
