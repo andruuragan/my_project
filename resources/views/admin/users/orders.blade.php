@@ -4,33 +4,33 @@
     <div class="container-1600">
 
         <h3>
-            История заказов пользователя: {{ $user->name }}
+            Історія замовлень клієнта: {{ $user->name }}
         </h3>
 
         {{-- FILTER --}}
         <form method="GET" class="mb-3 d-flex gap-2">
 
             <select name="status" class="form-select" style="max-width: 200px;">
-                <option value="">Все статусы</option>
-                <option value="pending">Ожидает</option>
-                <option value="paid">Оплачен</option>
-                <option value="cancelled">Отменён</option>
+                <option value="">Всі статуси</option>
+                <option value="pending">Чекає</option>
+                <option value="paid">Сплачено</option>
+                <option value="cancelled">Скасовано</option>
             </select>
 
             <button class="btn btn-primary">
-                Фильтр
+                Фільтр
             </button>
 
         </form>
 
         <a href="{{ route('users.show', $user) }}" class="btn btn-secondary mb-3">
-            ← Назад к пользователю
+            ← Назад до клієнта
         </a>
 
         @if($orders->isEmpty())
 
             <div class="alert alert-info">
-                У пользователя пока нет заказов
+                У клієнта поки немає замовлень
             </div>
 
         @else
@@ -41,10 +41,10 @@
                 <tr>
                     <th>ID</th>
                     <th>Статус</th>
-                    <th>Сумма</th>
+                    <th>Сума</th>
                     <th>Дата</th>
-                    <th>Смена статуса</th>
-                    <th>Действия</th>
+                    <th>Зміна статуса</th>
+                    <th>Дія</th>
                 </tr>
                 </thead>
 
@@ -59,11 +59,11 @@
                         {{-- STATUS BADGE --}}
                         <td class="status-badge-cell">
                             @if($order->status === 'pending')
-                                <span class="badge bg-warning text-dark">Ожидает</span>
+                                <span class="badge bg-warning text-dark">Чекає</span>
                             @elseif($order->status === 'paid')
-                                <span class="badge bg-success">Оплачен</span>
+                                <span class="badge bg-success">Сплачено</span>
                             @elseif($order->status === 'cancelled')
-                                <span class="badge bg-danger">Отменён</span>
+                                <span class="badge bg-danger">Скасовано</span>
                             @else
                                 <span class="badge bg-secondary">{{ $order->status }}</span>
                             @endif
@@ -71,7 +71,7 @@
 
                         <td>
                             <strong>
-                                {{ number_format($order->total_price, 0, '.', ' ') }} ₴
+                                {{ number_format($order->total_price, 0, '.', ' ') }} грн.
                             </strong>
                         </td>
 

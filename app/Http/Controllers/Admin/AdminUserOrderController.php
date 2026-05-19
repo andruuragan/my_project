@@ -10,13 +10,13 @@ class AdminUserOrderController extends Controller
 {
     public function index(User $user, Request $request)
     {
-        $query = $user->orders()->with('items')->latest();
-
-        if ($request->filled('status')) {
-            $query->where('status', $request->status);
-        }
-
-        $orders = $query->get();
+        $orders = $user->orders()
+            ->with('items')
+            ->when($request->filled('status'), function ($query) use ($request) {
+                $query->where('status', $request->status);
+            })
+            ->latest()
+            ->get(); // или ->paginate(15);
 
         return view('admin.users.orders', compact('user', 'orders'));
     }

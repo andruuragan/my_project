@@ -6,14 +6,14 @@
         {{-- HEADER --}}
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h3 class="mb-0">
-                👤 Пользователь #{{ $user->id }}
+                👤 Клієнт #{{ $user->id }}
             </h3>
 
             <div class="d-flex gap-2">
 
                 <a href="{{ route('users.edit', $user) }}"
                    class="btn btn-warning btn-sm">
-                    <i class="bi bi-pencil"></i> Редактировать
+                    <i class="bi bi-pencil"></i> Редагувати
                 </a>
 
                 <a href="{{ route('users.index') }}"
@@ -25,10 +25,10 @@
         </div>
         <div class="mb-3">
 
-            <div><strong>Всего заказов:</strong> {{ $orders->count() }}</div>
+            <div><strong>Кіл-сть замовлень:</strong> {{ $orders->count() }}</div>
 
             <div>
-                <strong>Сумма покупок:</strong>
+                <strong>Сума покупок:</strong>
                 {{ number_format($orders->sum('total_price'), 0, '.', ' ') }} ₴
             </div>
 
@@ -83,7 +83,7 @@
                             </tr>
 
                             <tr>
-                                <th>Дата регистрации</th>
+                                <th>Дата реєстрації</th>
                                 <td>{{ optional($user->created_at)->format('d.m.Y H:i') }}</td>
                             </tr>
 
@@ -94,7 +94,7 @@
                             <div class="mt-3">
                                 <a href="{{ route('admin.users.orders', $user) }}"
                                    class="btn btn-primary">
-                                    История заказов
+                                    Історія замовлень
                                 </a>
                             </div>
 
@@ -118,7 +118,7 @@
                 @method('DELETE')
 
                 <button class="btn btn-outline-danger">
-                    <i class="bi bi-trash3"></i> Удалить пользователя
+                    <i class="bi bi-trash3"></i> Видалити клієнта
                 </button>
 
             </form>

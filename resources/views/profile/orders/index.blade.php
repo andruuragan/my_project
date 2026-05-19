@@ -3,10 +3,10 @@
 @section('content')
     <div class="container-1600">
 
-        <h2 class="mb-4">Заказы (история покупок)</h2>
+        <h2 class="mb-4">Замовлення (історія замовлень)</h2>
 
         @if($orders->isEmpty())
-            <p>У вас ещё нет заказов</p>
+            <p>У вас ще немає замовлень</p>
         @else
 
             @foreach($orders as $order)
@@ -14,7 +14,7 @@
 
                     <div class="d-flex justify-content-between">
                         <div>
-                            <strong>Заказ #{{ $order->id }}</strong>
+                            <strong>Замовлення #{{ $order->id }}</strong>
                         </div>
 
                         <div>
@@ -28,7 +28,7 @@
                     </div>
 
                     <a href="{{ route('profile.orders.show', $order->id) }}">
-                        Смотреть детали
+                        Дивитись деталі
                     </a>
 
                 </div>

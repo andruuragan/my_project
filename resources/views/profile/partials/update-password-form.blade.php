@@ -2,11 +2,11 @@
 
     <header class="mb-4">
         <h5 class="mb-1">
-            Смена пароля
+            Зміна пароля
         </h5>
 
         <p class="text-muted mb-0">
-            Используйте надёжный пароль для безопасности аккаунта
+            Використовуйте надійний пароль для безпеки облікового запису
         </p>
     </header>
 
@@ -20,7 +20,7 @@
 
             {{-- CURRENT PASSWORD --}}
             <div class="col-md-4">
-                <label class="form-label">Текущий пароль</label>
+                <label class="form-label">Поточний пароль</label>
 
                 <input id="update_password_current_password"
                        name="current_password"
@@ -35,7 +35,7 @@
 
             {{-- NEW PASSWORD --}}
             <div class="col-md-4">
-                <label class="form-label">Новый пароль</label>
+                <label class="form-label">Новий пароль</label>
 
                 <input id="update_password_password"
                        name="password"
@@ -50,7 +50,7 @@
 
             {{-- CONFIRM PASSWORD --}}
             <div class="col-md-4">
-                <label class="form-label">Подтверждение</label>
+                <label class="form-label">Підтвердження</label>
 
                 <input id="update_password_password_confirmation"
                        name="password_confirmation"
@@ -69,12 +69,12 @@
         <div class="mt-4 d-flex justify-content-between align-items-center">
 
             <button type="submit" class="btn btn-primary">
-                Сохранить пароль
+                Зберегти пароль
             </button>
 
             @if (session('status') === 'password-updated')
                 <span class="text-success">
-                    ✔ Пароль обновлён
+                    ✔ Пароль оновлено
                 </span>
             @endif
 

@@ -4,6 +4,9 @@
 
     <div class="container-1600 shop-page">
 
+        {{-- Невидимая распорка, которая создаст фиксированное пространство --}}
+        <div style="height: 20px; width: 100%;"></div>
+
         <div class="title-shop text-center mb-4">
             <h3>Каталог елементів димохода</h3>
         </div>
@@ -22,7 +25,7 @@
                     <form class="filter-form" method="GET" action="{{ route('shop.index') }}">
 
                         <div class="mb-3">
-                            <label class="form-label">Назва</label>
+                            <label class="form-label">Назва елемента</label>
                             <input type="text"
                                    name="name"
                                    value="{{ request('name') }}"
@@ -115,10 +118,10 @@
                         @endphp
 
                         <div class="mb-3">
-                            <label class="form-label" for="thickness">Товщина сталі</label>
+                            <label class="form-label" for="thickness">Товщина нерж.</label>
 
                             <select id="thickness" name="thickness" class="js-choice">
-                                <option value="">Толщина (все)</option>
+                                <option value="">Все</option>
 
                                 @foreach($thicknesses as $t)
                                     <option value="{{ $t }}"
@@ -143,7 +146,7 @@
                             <label class="form-label" for="grade">Марка нерж.</label>
 
                             <select id="grade" name="grade" class="js-choice">
-                                <option value="">Марка нерж. (все)</option>
+                                <option value="">Все</option>
 
                                 @foreach($grades as $value => $label)
                                     <option value="{{ $value }}"
@@ -165,7 +168,7 @@
                             <label class="form-label" for="chimneyType">Тип димохода</label>
 
                             <select id="chimneyType" name="chimneyType" class="js-choice">
-                                <option value="">Тип дымохода (все)</option>
+                                <option value="">Все</option>
 
                                 @foreach($chimneyTypes as $type)
                                     <option value="{{ $type }}"
@@ -188,7 +191,7 @@
                             <label class="form-label" for="casing">Кожух</label>
 
                             <select id="casing" name="casing" class="js-choice">
-                                <option value="">Кожух (все)</option>
+                                <option value="">Все</option>
 
                                 @foreach($casings as $casing)
                                     <option value="{{ $casing }}"

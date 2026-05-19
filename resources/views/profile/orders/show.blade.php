@@ -26,7 +26,7 @@
             <!-- RIGHT -->
             <div class="text-end">
                 <h4>
-                    Сума:
+                    Разом:
                     <span>
                     {{ number_format($order->total_price, 0, '.', ' ') }}
                 </span>

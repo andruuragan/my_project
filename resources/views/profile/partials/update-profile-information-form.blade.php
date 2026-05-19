@@ -1,12 +1,13 @@
+
 <section>
 
     <header class="mb-4">
         <h5 class="mb-1">
-            Профиль пользователя
+            Профіль клієнта
         </h5>
 
         <p class="text-muted mb-0">
-            Обновите имя и email аккаунта
+            Обновити ім'я и email аккаунта
         </p>
     </header>
 
@@ -27,7 +28,7 @@
 
             {{-- NAME --}}
             <div class="col-md-6">
-                <label class="form-label">Имя</label>
+                <label class="form-label">ім'я</label>
 
                 <input id="name"
                        name="name"
@@ -64,17 +65,18 @@
             <div class="alert alert-warning mt-4">
 
                 <div class="mb-2">
-                    Email не подтверждён.
+                    Email не підтверджено.
                 </div>
 
                 <button form="send-verification"
                         class="btn btn-link p-0">
-                    Отправить письмо подтверждения
+
+                    Надіслати листа підтвердження
                 </button>
 
                 @if (session('status') === 'verification-link-sent')
                     <div class="text-success mt-2">
-                        Письмо отправлено
+                        Лист відправлен
                     </div>
                 @endif
 
@@ -85,12 +87,12 @@
         <div class="mt-4 d-flex justify-content-between align-items-center">
 
             <button type="submit" class="btn btn-primary">
-                Сохранить
+                Зберегти
             </button>
 
             @if (session('status') === 'profile-updated')
                 <span class="text-success">
-                    ✔ Сохранено
+                    ✔ Збереженно
                 </span>
             @endif
 

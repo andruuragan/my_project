@@ -2,11 +2,11 @@
 
     <header class="mb-4">
         <h5 class="mb-1 text-danger">
-            Удаление аккаунта
+            Видалення облікового запису
         </h5>
 
         <p class="text-muted mb-0">
-            После удаления аккаунта все данные будут безвозвратно удалены
+            Після видалення облікового запису всі дані будуть безповоротно видалені
         </p>
     </header>
 
@@ -17,7 +17,7 @@
             data-bs-target="#deleteAccountModal">
 
         <i class="bi bi-trash3"></i>
-        Удалить аккаунт
+        Видалити обліковий запис
     </button>
 
     {{-- MODAL --}}
@@ -32,7 +32,7 @@
 
                 <div class="modal-header">
                     <h5 class="modal-title text-danger">
-                        Подтверждение удаления
+                        Підтвердження видалення
                     </h5>
 
                     <button type="button"
@@ -50,11 +50,11 @@
                     <div class="modal-body">
 
                         <p class="mb-3">
-                            Вы уверены, что хотите удалить аккаунт? Это действие нельзя отменить.
+                            Ви впевнені, що хочете видалити обліковий запис? Цю дію не можна скасувати.
                         </p>
 
                         <label class="form-label">
-                            Введите пароль для подтверждения
+                            Введіть пароль для підтвердження
                         </label>
 
                         <input type="password"
@@ -76,13 +76,13 @@
                                 class="btn btn-secondary"
                                 data-bs-dismiss="modal">
 
-                            Отмена
+                            Скасування
                         </button>
 
                         <button type="submit"
                                 class="btn btn-danger">
 
-                            Удалить
+                            Видалити
                         </button>
 
                     </div>

@@ -3,7 +3,7 @@
 @section('content')
     <div class="container py-4">
 
-        <h3 class="mb-4">👤 Профиль</h3>
+        <h3 class="mb-4">👤 Профіль</h3>
 
         <div class="card shadow-sm border-0 mb-4">
             <div class="card-body">

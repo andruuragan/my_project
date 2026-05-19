@@ -7,7 +7,7 @@
         <div class="d-flex justify-content-between align-items-center mb-4">
 
             <h3 class="mb-0">
-                ➕ Создать пользователя
+                ➕ Створити обліковий запис
             </h3>
 
             <a href="{{ route('users.index') }}"
@@ -30,8 +30,7 @@
 
                         {{-- NAME --}}
                         <div class="col-md-6">
-                            <label class="form-label">Имя</label>
-
+                            <label class="form-label">Ім'я</label>
                             <input type="text"
                                    name="name"
                                    class="form-control"
@@ -108,7 +107,7 @@
 
                         {{-- CONFIRM --}}
                         <div class="col-md-6">
-                            <label class="form-label">Подтверждение пароля</label>
+                            <label class="form-label">Підтвердження пароля</label>
 
                             <input type="password"
                                    name="password_confirmation"
@@ -122,7 +121,7 @@
                     <div class="mt-4 d-flex justify-content-end">
 
                         <button type="submit" class="btn btn-primary">
-                            <i class="bi bi-check2-circle"></i> Создать
+                            <i class="bi bi-check2-circle"></i> Створити
                         </button>
 
                     </div>

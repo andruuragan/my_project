@@ -7,7 +7,7 @@
         <div class="d-flex justify-content-between align-items-center mb-4">
 
             <h3 class="mb-0">
-                ✏️ Редактирование пользователя #{{ $user->id }}
+                ✏️ Редагування  облікового запису #{{ $user->id }}
             </h3>
 
             <a href="{{ route('users.index') }}"
@@ -31,7 +31,7 @@
 
                         {{-- NAME --}}
                         <div class="col-md-6">
-                            <label class="form-label">Имя</label>
+                            <label class="form-label">Им'я</label>
 
                             <input type="text"
                                    name="name"
@@ -101,7 +101,7 @@
                         {{-- PASSWORD --}}
                         <div class="col-md-6">
                             <label class="form-label">
-                                Пароль (оставь пустым если не менять)
+                                Пароль (залиш пустим якщо не міняти)
                             </label>
 
                             <input type="password"
@@ -115,7 +115,7 @@
 
                         {{-- CONFIRM --}}
                         <div class="col-md-6">
-                            <label class="form-label">Подтверждение пароля</label>
+                            <label class="form-label">Підтверження пароля</label>
 
                             <input type="password"
                                    name="password_confirmation"
@@ -129,11 +129,11 @@
 
                         <a href="{{ route('users.index') }}"
                            class="btn btn-secondary">
-                            Отмена
+                            Відміна
                         </a>
 
                         <button type="submit" class="btn btn-warning">
-                            <i class="bi bi-check2-circle"></i> Сохранить
+                            <i class="bi bi-check2-circle"></i> Зберегти
                         </button>
 
                     </div>

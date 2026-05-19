@@ -374,8 +374,20 @@ html, body {
     text-align: center;
     border: 1px solid #ddd;
     border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+/* Прячем браузерные стрелочки, которые сдвигают цифру влево */
+.qty-input::-webkit-outer-spin-button,
+.qty-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
 
+.qty-input[type=number] {
+    -moz-appearance: textfield; /* Для Firefox */
+}
 /* кнопка */
 .add-cart-btn {
     display: flex;
