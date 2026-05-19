@@ -24,11 +24,11 @@ public function index()
 }
     public function show(Order $order)
     {
-        if ($order->user_id !== auth()->id()) {
+        if (!auth()->user()->isAdmin() && $order->user_id !== auth()->id()) {
             abort(403);
         }
 
-        $order->load('items');
+        $order = Order::with('items')->findOrFail($order->id);
 
         return view('profile.orders.show', compact('order'));
     }
