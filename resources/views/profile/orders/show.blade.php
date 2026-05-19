@@ -30,7 +30,7 @@
                     <span>
                     {{ number_format($order->total_price, 0, '.', ' ') }}
                 </span>
-                    ₴
+                    грн.
                 </h4>
             </div>
 
@@ -75,13 +75,13 @@
 
                         <!-- PRICE -->
                         <td>
-                            {{ number_format($item->price, 0, '.', ' ') }} ₴
+                            {{ number_format($item->price, 0, '.', ' ') }} грн.
                         </td>
 
                         <!-- SUM -->
                         <td>
                             <strong>
-                                {{ number_format($item->total, 0, '.', ' ') }} ₴
+                                {{ number_format($item->total, 0, '.', ' ') }} грн.
                             </strong>
                         </td>
 

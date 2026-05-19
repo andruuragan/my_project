@@ -84,6 +84,6 @@ class CheckoutController extends Controller
         session()->forget('cart');
 
         return redirect()->route('shop.index')
-            ->with('success', 'Замовлення оформлено');
+            ->with('success', 'Замовлення підтверджено');
     }
 }
