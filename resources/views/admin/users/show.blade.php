@@ -6,7 +6,7 @@
         {{-- HEADER --}}
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h3 class="mb-0">
-                👤 Клієнт #{{ $user->id }}
+                👤 Клієнт №{{ $user->id }}
             </h3>
 
             <div class="d-flex gap-2">

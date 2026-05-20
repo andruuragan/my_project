@@ -20,16 +20,12 @@ class AdminOrdersController extends Controller
 
             // SEARCH (ID или имя пользователя)
             ->when($request->search, function ($query) use ($request) {
-
                 $query->where(function ($sub) use ($request) {
-
                     $sub->where('id', $request->search)
                         ->orWhereHas('user', function ($q) use ($request) {
                             $q->where('name', 'like', "%{$request->search}%");
                         });
-
                 });
-
             })
 
             // STATUS FILTER
@@ -68,38 +64,43 @@ class AdminOrdersController extends Controller
 
         $totalOrders = (clone $statsQuery)->count();
 
+        // Эти карточки пусть показывают общую картину за всё время (или тоже привяжите к $statsQuery по желанию)
         $todayOrders = Order::whereDate('created_at', today())->count();
-
-        $monthOrders = Order::whereMonth('created_at', now()->month)
-            ->whereYear('created_at', now()->year)
-            ->count();
-
-        $monthRevenue = Order::whereMonth('created_at', now()->month)
-            ->whereYear('created_at', now()->year)
-            ->sum('total_price');
-
+        $monthOrders = Order::whereMonth('created_at', now()->month)->whereYear('created_at', now()->year)->count();
+        $monthRevenue = Order::whereMonth('created_at', now()->month)->whereYear('created_at', now()->year)->sum('total_price');
         $averageCheck = Order::avg('total_price');
-
         $cancelledOrders = Order::where('status', 'cancelled')->count();
-        $ordersByDay = Order::selectRaw('DATE(created_at) as date, COUNT(*) as count')
+
+        // ================= DYNAMIC CHART DATA =================
+        // Теперь график строится С УЧЕТОМ фильтров менеджера!
+        $ordersByDay = (clone $baseQuery)
+            ->selectRaw('DATE(created_at) as date, COUNT(*) as count')
             ->groupBy('date')
             ->orderBy('date')
             ->get();
 
         $labels = $ordersByDay->pluck('date')->toArray();
         $values = $ordersByDay->pluck('count')->toArray();
-        return view('admin.orders.index', compact(
-            'orders',
-            'totalOrders',
-            'todayOrders',
-            'monthOrders',
-            'monthRevenue',
-            'averageCheck',
-            'cancelledOrders',
-            'labels',
-            'values'
-        ));
 
+        // ЕСЛИ ЭТО AJAX ЗАПРОС (нажата кнопка Фильтр или пагинация)
+        // ... весь код сборки запроса, подсчета stats и графика остается прежним ...
+
+        // ЕСЛИ ЭТО AJAX ЗАПРОС
+        if ($request->ajax()) {
+            return response()->json([
+                // Рендерим ТОЛЬКО изолированный файл таблицы!
+                'table_html' => view('admin.orders.table', compact('orders'))->render(),
+                'labels' => $labels,
+                'values' => $values,
+                'total_orders' => $totalOrders
+            ]);
+        }
+
+        // Обычная загрузка страницы
+        return view('admin.orders.index', compact(
+            'orders', 'totalOrders', 'todayOrders', 'monthOrders',
+            'monthRevenue', 'averageCheck', 'cancelledOrders', 'labels', 'values'
+        ));
     }
     public function search(Request $request)
     {

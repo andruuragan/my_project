@@ -14,7 +14,7 @@
 
                     <div class="d-flex justify-content-between">
                         <div>
-                            <strong>Замовлення #{{ $order->id }}</strong>
+                            <strong>Замовлення №{{ $order->id }}</strong>
                         </div>
 
                         <div>

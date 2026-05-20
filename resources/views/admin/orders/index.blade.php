@@ -4,362 +4,230 @@
     <div class="container-1600">
 
         {{-- ================= STATISTICS ================= --}}
-        <div class="row mb-4">
-
-            <div class="col-md-2">
+        <div class="row g-3 mb-4">
+            <div class="col-6 col-sm-4 col-md-2">
                 <div class="card shadow-sm border-0 h-100 p-3">
-                    <small class="text-muted">Всього замовлень</small>
-                    <h4 class="fw-bold mb-0">{{ $totalOrders }}</h4>
+                    <small class="text-muted d-block text-truncate">Всього замовлень</small>
+                    <h4 class="fw-bold mb-0 text-dark">{{ $totalOrders }}</h4>
                 </div>
             </div>
-
-            <div class="col-md-2">
+            <div class="col-6 col-sm-4 col-md-2">
                 <div class="card shadow-sm border-0 h-100 p-3">
-                    <small class="text-muted">Сьогодні</small>
-                    <h4 class="fw-bold mb-0">{{ $todayOrders }}</h4>
+                    <small class="text-muted d-block text-truncate">Сьогодні</small>
+                    <h4 class="fw-bold mb-0 text-primary">{{ $todayOrders }}</h4>
                 </div>
             </div>
-
-            <div class="col-md-2">
+            <div class="col-6 col-sm-4 col-md-2">
                 <div class="card shadow-sm border-0 h-100 p-3">
-                    <small class="text-muted">За місяць</small>
-                    <h4 class="fw-bold mb-0">{{ $monthOrders }}</h4>
+                    <small class="text-muted d-block text-truncate">За місяць</small>
+                    <h4 class="fw-bold mb-0 text-info">{{ $monthOrders }}</h4>
                 </div>
             </div>
-
-            <div class="col-md-3">
+            <div class="col-6 col-sm-6 col-md-3">
                 <div class="card shadow-sm border-0 h-100 p-3">
-                    <small class="text-muted">Виручка за місяць</small>
-                    <h4 class="fw-bold mb-0">
-                        {{ number_format($monthRevenue, 0, '.', ' ') }} грн.
+                    <small class="text-muted d-block text-truncate">Виручка за місяць</small>
+                    <h4 class="fw-bold mb-0 text-success">
+                        {{ number_format($monthRevenue, 0, '.', ' ') }} <small class="fs-6 fw-normal">грн</small>
                     </h4>
                 </div>
             </div>
-
-            <div class="col-md-2">
+            <div class="col-6 col-sm-6 col-md-2">
                 <div class="card shadow-sm border-0 h-100 p-3">
-                    <small class="text-muted">Середній чек</small>
-                    <h4 class="fw-bold mb-0">
-                        {{ number_format($averageCheck, 0, '.', ' ') }} грн.
+                    <small class="text-muted d-block text-truncate">Середній чек</small>
+                    <h4 class="fw-bold mb-0 text-purple">
+                        {{ number_format($averageCheck, 0, '.', ' ') }} <small class="fs-6 fw-normal">грн</small>
                     </h4>
                 </div>
             </div>
-
-            <div class="col-md-1">
+            <div class="col-6 col-sm-4 col-md-1">
                 <div class="card shadow-sm border-0 h-100 p-3">
-                    <small class="text-muted">Скасовані</small>
-                    <h4 class="fw-bold mb-0">{{ $cancelledOrders }}</h4>
+                    <small class="text-muted d-block text-truncate">Скасовані</small>
+                    <h4 class="fw-bold mb-0 text-danger">{{ $cancelledOrders }}</h4>
                 </div>
             </div>
-
         </div>
 
-
-        {{-- ================= FILTERS ================= --}}
-        <form method="GET"
-              id="filtersForm"
-              class="card shadow-sm border-0 p-4 mb-4">
-
-            <div class="row g-3 align-items-end">
-
-                <div class="col-md-3">
-                    <input type="text"
-                           name="search"
-                           class="form-control shadow-sm"
-                           placeholder="Пошук по ID або клієнту...">
-                </div>
-
-                {{-- STATUS --}}
-                <div class="col-md-2">
-                    <select name="status" class="form-select shadow-sm">
-                        <option value="">Статус</option>
-                        <option value="pending">очікує</option>
-                        <option value="paid">сплачено</option>
-                        <option value="processing">обробка</option>
-                        <option value="shipped">відпралено</option>
-                        <option value="completed">завершено</option>
-                        <option value="cancelled">скасовано</option>
-                    </select>
-                </div>
-
-                {{-- DATE RANGE --}}
-                <div class="col-md-4">
-                    <div class="d-flex align-items-center gap-2">
-
-                        <span class="small text-muted">з</span>
-
-                        <input type="date"
-                               name="date_from"
-                               value="{{ request('date_from') }}"
-                               class="form-control">
-
-                        <span class="small text-muted">по</span>
-
-                        <input type="date"
-                               name="date_to"
-                               value="{{ request('date_to') }}"
-                               class="form-control">
-
+        {{-- ================= FILTERS & ACTIONS ================= --}}
+        <div class="card shadow-sm border-0 p-4 mb-4">
+            <form method="GET" id="filtersForm">
+                <!-- Верхний ряд: Основные фильтры -->
+                <div class="row g-3 mb-3">
+                    <div class="col-md-4">
+                        <label class="form-label small text-muted fw-semibold">Пошук</label>
+                        <input type="text" name="search" value="{{ request('search') }}" class="form-control" placeholder="ID або ім'я клієнта...">
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label small text-muted fw-semibold">Статус</label>
+                        <select name="status" class="form-select">
+                            <option value="">Всі статуси</option>
+                            <option value="pending" @selected(request('status') === 'pending')>очікує</option>
+                            <option value="paid" @selected(request('status') === 'paid')>сплачено</option>
+                            <option value="processing" @selected(request('status') === 'processing')>обробка</option>
+                            <option value="shipped" @selected(request('status') === 'shipped')>відправлено</option>
+                            <option value="completed" @selected(request('status') === 'completed')>завершено</option>
+                            <option value="cancelled" @selected(request('status') === 'cancelled')>скасовано</option>
+                        </select>
+                    </div>
+                    <div class="col-md-5">
+                        <label class="form-label small text-muted fw-semibold">Період замовлень</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-white text-muted">з</span>
+                            <input type="date" name="date_from" value="{{ request('date_from') }}" class="form-control">
+                            <span class="input-group-text bg-white text-muted">по</span>
+                            <input type="date" name="date_to" value="{{ request('date_to') }}" class="form-control">
+                        </div>
                     </div>
                 </div>
 
-                {{-- MIN PRICE --}}
-                <div class="col-md-2">
-                    <input type="number"
-                           name="min_price"
-                           placeholder="Мін. сума"
-                           value="{{ request('min_price') }}"
-                           class="form-control">
+                <!-- Нижний ряд: Цены и Кнопки управления -->
+                <div class="row g-3 align-items-end">
+                    <div class="col-md-3 col-sm-6">
+                        <label class="form-label small text-muted fw-semibold">Мін. сума</label>
+                        <input type="number" name="min_price" value="{{ request('min_price') }}" placeholder="0 грн" class="form-control">
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <label class="form-label small text-muted fw-semibold">Макс. сума</label>
+                        <input type="number" name="max_price" value="{{ request('max_price') }}" placeholder="Мах грн" class="form-control">
+                    </div>
+
+                    <!-- Кнопки выровнены по правому краю -->
+                    <div class="col-md-6 text-md-end d-flex gap-2 justify-content-end mt-3 mt-md-0">
+                        <button type="submit" class="btn btn-dark px-4">
+                            <i class="bi bi-funnel me-1"></i> Фільтр
+                        </button>
+                        <a href="{{ url()->current() }}" class="btn btn-light px-3 border">
+                            <i class="bi bi-x-circle me-1"></i> Скинути
+                        </a>
+                        <a href="{{ route('admin.orders.export', request()->query()) }}" id="exportBtn" class="btn btn-success px-3">
+                            <i class="bi bi-file-earmark-excel me-1"></i> Export Excel
+                        </a>
+                    </div>
                 </div>
+            </form>
+        </div>
 
-                {{-- MAX PRICE --}}
-                <div class="col-md-2">
-                    <input type="number"
-                           name="max_price"
-                           placeholder="Макс. сума"
-                           value="{{ request('max_price') }}"
-                           class="form-control">
-                </div>
-
-                {{-- BUTTONS --}}
-                <div class="col-md-1 d-grid">
-                    <button class="btn btn-dark">
-                        Фільтр
-                    </button>
-                </div>
-
-                <div class="col-md-1 d-grid">
-                    <a href="{{ url()->current() }}"
-                       class="btn btn-outline-secondary">
-                        Скинути
-                    </a>
-                </div>
-                <div class="col-md-1 d-grid">
-                    <a href="{{ route('admin.orders.export', request()->query()) }}"
-                       class="btn btn-success">
-                        Export Excel
-                    </a>
-
-                </div>
-
-            </div>
-
-        </form>
+        {{-- ================= CHART ================= --}}
         <div class="card shadow-sm border-0 p-3 mb-4">
-            <canvas id="ordersChart" height="100"></canvas>
+            <div style="position: relative; width:100%; height:160px;">
+                <canvas id="ordersChart"></canvas>
+            </div>
         </div>
 
         {{-- ================= TABLE ================= --}}
-        <div class="card shadow-sm border-0">
 
-            <div class="table-responsive">
-
-                <table class="table table-hover align-middle mb-0">
-
-                    <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Клієнт</th>
-                        <th>Статус</th>
-                        <th>Сума</th>
-                        <th>Товарів</th>
-                        <th>Дата</th>
-                        <th>Дія</th>
-                    </tr>
-                    </thead>
-
-                    <tbody>
-
-                    @foreach($orders as $order)
-
-                        <tr>
-
-                            <td>#{{ $order->id }}</td>
-
-                            <td>{{ $order->user->name ?? '—' }}</td>
-
-                            <td>
-                                <select class="form-select form-select-sm status-select"
-                                        data-id="{{ $order->id }}"
-                                        style="width: 135px;">
-
-                                    <option value="pending" @selected($order->status === 'pending')>очікує</option>
-                                    <option value="paid" @selected($order->status === 'paid')>сплачено</option>
-                                    <option value="processing" @selected($order->status === 'processing')>обробка</option>
-                                    <option value="shipped" @selected($order->status === 'shipped')>відправлено</option>
-                                    <option value="completed" @selected($order->status === 'completed')>завершено</option>
-                                    <option value="cancelled" @selected($order->status === 'cancelled')>скасовано</option>
-
-                                </select>
-                            </td>
-
-                            <td>
-                                {{ number_format($order->total_price, 0, '.', ' ') }} грн.
-                            </td>
-
-                            <td>
-                                {{ $order->items->count() }}
-                            </td>
-
-                            <td>
-                                {{ $order->created_at->format('d.m.Y / H:i') }}
-                            </td>
-
-                            <td>
-                                <a href="{{ route('profile.orders.show', $order) }}"
-                                   class="btn btn-sm btn-outline-primary rounded-pill px-3">
-                                    <i class="bi bi-eye"></i>
-                                </a>
-                            </td>
-
-                        </tr>
-
-                    @endforeach
-
-                    </tbody>
-
-                </table>
-
-            </div>
-
+        <div id="dynamicContentZone">
+            @include('admin.orders.table')
         </div>
-
         {{-- ================= PAGINATION ================= --}}
-        <div class="mt-4">
-            {{ $orders->links() }}
-        </div>
+
 
     </div>
+
+    {{-- ================= JAVASCRIPT ================= --}}
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-        let timer;
-
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
     <script>
         document.addEventListener('DOMContentLoaded', function () {
 
+            // 1. ИНИЦИАЛИЗАЦИЯ ГРАФИКА
             const canvas = document.getElementById('ordersChart');
+            let ordersChart = null;
 
-            if (!canvas) return;
+            function updateChart(labels, values) {
+                if (!canvas) return;
 
-            const labels = @json($labels ?? []);
-            const values = @json($values ?? []);
+                if (ordersChart) {
+                    ordersChart.destroy(); // Обязательно уничтожаем старый экземпляр, чтобы графики не накладывались
+                }
 
-            // если нет данных — не рисуем
-            if (!labels.length || !values.length) {
-                console.log('Нет данных для графика');
-                return;
+                ordersChart = new Chart(canvas, {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Замовлення',
+                            data: values,
+                            borderColor: '#0d6efd',
+                            backgroundColor: 'rgba(13, 110, 253, 0.05)',
+                            fill: true,
+                            borderWidth: 2,
+                            tension: 0.2,
+                            pointRadius: 3
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: { legend: { display: false } },
+                        scales: { y: { beginAtZero: true } }
+                    }
+                });
             }
 
-            new Chart(canvas, {
-                type: 'line',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        label: 'Замовлення',
-                        data: values,
-                        borderWidth: 2,
-                        tension: 0.3
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    plugins: {
-                        legend: {
-                            display: true
-                        }
-                    }
-                }
+            // Запуск графика при первой загрузке страницы данными из Blade
+            updateChart(@json($labels ?? []), @json($values ?? []));
+
+
+            // 2. ОБРАБОТКА ФИЛЬТРАЦИИ (AJAX)
+            const form = document.getElementById('filtersForm');
+
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                loadOrders();
             });
 
-        });
-    </script>
-    <script>
-        document.getElementById('filtersForm').addEventListener('input', function () {
+            function loadOrders(url = null) {
+                const currentUrl = url || window.location.pathname;
+                const queryString = new URLSearchParams(new FormData(form)).toString();
+                const fetchUrl = `${currentUrl}?${queryString}`;
 
-            clearTimeout(timer);
+                window.history.pushState({}, '', fetchUrl);
 
-            timer = setTimeout(() => {
-                loadOrders();
-            }, 500);
-
-        });
-        const form = document.getElementById('filtersForm');
-
-        form.addEventListener('input', triggerLoad);
-        form.addEventListener('change', triggerLoad);
-
-        let timer;
-
-        function triggerLoad() {
-            clearTimeout(timer);
-
-            timer = setTimeout(() => {
-                loadOrders();
-            }, 500);
-        }
-        document.addEventListener('click', function (e) {
-
-            let link = e.target.closest('.pagination a');
-
-            if (!link) return;
-
-            e.preventDefault();
-
-            fetch(link.href, {
-                headers: {
-                    'X-Requested-With': 'XMLHttpRequest'
+                const exportBtn = document.getElementById('exportBtn');
+                if(exportBtn) {
+                    exportBtn.href = `/admin/orders/export?${queryString}`;
                 }
-            })
-                .then(res => res.text())
-                .then(html => {
-                    document.querySelector('tbody').innerHTML =
-                        new DOMParser()
-                            .parseFromString(html, 'text/html')
-                            .querySelector('tbody')
-                            .innerHTML;
 
-                    document.querySelector('.pagination').innerHTML =
-                        new DOMParser()
-                            .parseFromString(html, 'text/html')
-                            .querySelector('.pagination')
-                            .innerHTML;
-                });
+                fetch(fetchUrl, { headers: { 'X-Requested-With': 'XMLHttpRequest' } })
+                    .then(res => res.json())
+                    .then(data => {
 
-        });
-    </script>
-    <script>
-        const ctx = document.getElementById('ordersChart');
+                        // 1. Просто вставляем готовую таблицу и пагинацию в их общую зону
+                        document.getElementById('dynamicContentZone').innerHTML = data.table_html;
 
-        new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: @json($labels),
-                datasets: [{
-                    label: 'Замовлення',
-                    data: @json($values),
-                    borderWidth: 2,
-                    tension: 0.3
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        display: true
-                    }
-                }
+                        // 2. Обновляем цифру "Всього замовлень" на карточке
+                        const totalCounter = document.querySelector('.card h4.text-dark');
+                        if(totalCounter) totalCounter.innerText = data.total_orders;
+
+                        // 3. Обновляем график
+                        updateChart(data.labels, data.values);
+
+                        // 4. Переподключаем статусы
+                        bindStatusSelects();
+                    })
+                    .catch(err => console.error('Помилка завантаження:', err));
             }
-        });
-    </script>
-    <script>
-        document.querySelectorAll('.status-select').forEach(select => {
+            // 3. АСИНХРОННАЯ ПАГИНАЦИЯ
+            document.getElementById('paginationContainer').addEventListener('click', function (e) {
+                const link = e.target.closest('.pagination a');
+                if (!link) return;
+                e.preventDefault();
+                loadOrders(link.href);
+            });
 
-            select.addEventListener('change', function () {
+            // 4. ИЗМЕНЕНИЕ СТАТУСА ЗАКАЗА В ТАБЛИЦЕ
+            function bindStatusSelects() {
+                document.querySelectorAll('.status-select').forEach(select => {
+                    select.removeEventListener('change', handleStatusChange);
+                    select.addEventListener('change', handleStatusChange);
+                });
+            }
 
-                let orderId = this.dataset.id;
-                let status = this.value;
+            function handleStatusChange() {
+                const orderId = this.dataset.id;
+                const status = this.value;
+                const selectElement = this;
+
+                selectElement.disabled = true;
 
                 fetch(`/admin/orders/${orderId}/status`, {
                     method: 'PATCH',
@@ -371,21 +239,16 @@
                 })
                     .then(res => res.json())
                     .then(data => {
-
+                        selectElement.disabled = false;
                         if (data.success) {
-
-                            // можно добавить визуальный feedback
-                            this.classList.add('border-success');
-
-                            setTimeout(() => {
-                                this.classList.remove('border-success');
-                            }, 1000);
+                            selectElement.classList.add('is-valid');
+                            setTimeout(() => selectElement.classList.remove('is-valid'), 1200);
                         }
+                    })
+                    .catch(() => selectElement.disabled = false);
+            }
 
-                    });
-
-            });
-
+            bindStatusSelects();
         });
     </script>
 @endsection

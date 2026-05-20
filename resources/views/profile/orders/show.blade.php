@@ -3,7 +3,7 @@
 @section('content')
     <div class="container-1600">
 
-        <h2 class="mb-4">Заказ #{{ $order->id }}</h2>
+        <h2 class="mb-4">Заказ №{{ $order->id }}</h2>
 
         {{-- INFO BLOCK (как в корзине итог) --}}
         <div class="d-flex justify-content-between align-items-start mb-4">
