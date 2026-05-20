@@ -86,6 +86,7 @@ class AdminOrdersController extends Controller
         // ... весь код сборки запроса, подсчета stats и графика остается прежним ...
 
         // ЕСЛИ ЭТО AJAX ЗАПРОС
+        // ЕСЛИ ЭТО AJAX ЗАПРОС
         if ($request->ajax()) {
             return response()->json([
                 // Рендерим ТОЛЬКО изолированный файл таблицы!
@@ -93,8 +94,13 @@ class AdminOrdersController extends Controller
                 'labels' => $labels,
                 'values' => $values,
                 'total_orders' => $totalOrders
-            ]);
+            ])
+                // Добавляем заголовки, которые кричат браузеру: "НЕ КЭШИРУЙ МЕНЯ!"
+                ->header('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0, post-check=0, pre-check=0')
+                ->header('Pragma', 'no-cache')
+                ->header('Expires', 'Sat, 26 Jul 1997 05:00:00 GMT');
         }
+
 
         // Обычная загрузка страницы
         return view('admin.orders.index', compact(
