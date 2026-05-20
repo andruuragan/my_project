@@ -45,33 +45,39 @@
 <!-- CONTENT -->
 
 
-@include('partials.navbar')
-@if(session('success'))
+    <!-- CONTENT -->
 
-    <div class="custom-alert success-alert">
+    @include('partials.navbar')
 
-        <i class="bi bi-check-circle-fill"></i>
+    {{-- Новое уведомление об ошибке доступа (403) для обычных пользователей --}}
+    @if(session('error_alert'))
+        <div class="container mt-3">
+            <div class="alert alert-danger alert-dismissible fade show shadow-sm border-0" role="alert">
+                <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                {{ session('error_alert') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>
+    @endif
 
-        {{ session('success') }}
+    {{-- Ваши стандартные уведомления каталога --}}
+    @if(session('success'))
+        <div class="custom-alert success-alert">
+            <i class="bi bi-check-circle-fill"></i>
+            {{ session('success') }}
+        </div>
+    @endif
 
-    </div>
+    @if(session('error'))
+        <div class="custom-alert error-alert">
+            <i class="bi bi-exclamation-triangle-fill"></i>
+            {{ session('error') }}
+        </div>
+    @endif
 
-@endif
-
-@if(session('error'))
-
-    <div class="custom-alert error-alert">
-
-        <i class="bi bi-exclamation-triangle-fill"></i>
-
-        {{ session('error') }}
-
-    </div>
-
-@endif
-<main class="page-content">
-    @yield('content')
-</main>
+    <main class="page-content">
+        @yield('content')
+    </main>
 
 @include('partials.footer')
 </div>

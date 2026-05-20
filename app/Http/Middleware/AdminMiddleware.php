@@ -8,17 +8,20 @@ use Symfony\Component\HttpFoundation\Response;
 
 class AdminMiddleware
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  Closure(Request): (Response)  $next
-     */
-    public function handle($request, Closure $next)
+    public function handle(Request $request, Closure $next): Response
     {
-        if (!auth()->check() || auth()->user()->role !== 'admin') {
-            abort(403);
+        // 1. Используем правильный метод isAdmin() из твоей модели User!
+        if (auth()->check() && auth()->user()->isAdmin()) {
+            return $next($request);
         }
 
-        return $next($request);
+        // 2. Если это обычный покупатель (role === 'user'):
+        if (auth()->check()) {
+            return redirect()->route('shop.index')
+                ->with('error_alert', 'У вас немає прав доступу до цього розділу.');
+        }
+
+        // 3. Если это гость:
+        return redirect()->route('shop.index')->with('open_login_modal', true);
     }
 }
