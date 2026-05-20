@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Models\OrderItem;
 use Illuminate\Http\Request;
+use App\Exports\OrderDetailsExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class OrderController extends Controller
 {
@@ -35,7 +37,7 @@ public function index()
     public function updateStatus(Request $request, Order $order)
     {
         $request->validate([
-            'status' => 'required|in:pending,paid,cancelled',
+            'status' => 'required|in:pending,paid,processing,shipped,completed,cancelled',
         ]);
 
         $order->update([
@@ -53,5 +55,12 @@ public function index()
 
         // На всякий случай оставляем обычный редирект, если форма отправится стандартным способом
         return back()->with('success', 'Статус обновлён');
+    }
+    public function exportExcel(Order $order)
+    {
+        return Excel::download(
+            new OrderDetailsExport($order),
+            'order-' . $order->id . '.xlsx'
+        );
     }
 }

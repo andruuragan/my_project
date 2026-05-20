@@ -27,9 +27,8 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('shop.index') ? 'active' : '' }}"
-                       href="{{ route('shop.index') }}">
-                        Каталог товарів
+                    <a class="nav-link d-inline-flex align-items-center {{ request()->routeIs('shop.index') ? 'active' : '' }}" href="{{ route('shop.index') }}">
+                        <i class="bi bi-grid-fill me-2"></i> Каталог товарів
                     </a>
                 </li>
 

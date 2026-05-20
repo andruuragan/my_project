@@ -319,18 +319,48 @@ window.changeOrderStatus = function(selectElement, url) {
 
             // === НАХОДИМ И ОБНОВЛЯЕМ БЕЙДЖ В ТАБЛИЦЕ ===
             const row = selectElement.closest('tr');
+
             if (row) {
+
                 const badgeCell = row.querySelector('.status-badge-cell');
+
                 if (badgeCell) {
+
                     // Генерируем новый HTML в зависимости от статуса
                     if (status === 'pending') {
-                        badgeCell.innerHTML = '<span class="badge bg-warning text-dark">Ожидает</span>';
+
+                        badgeCell.innerHTML =
+                            '<span class="badge bg-warning text-dark">Очікує</span>';
+
                     } else if (status === 'paid') {
-                        badgeCell.innerHTML = '<span class="badge bg-success">Оплачен</span>';
+
+                        badgeCell.innerHTML =
+                            '<span class="badge bg-success">Сплачено</span>';
+
+                    } else if (status === 'processing') {
+
+                        badgeCell.innerHTML =
+                            '<span class="badge bg-primary">Обробка</span>';
+
+                    } else if (status === 'shipped') {
+
+                        badgeCell.innerHTML =
+                            '<span class="badge bg-info text-dark">Відправлено</span>';
+
+                    } else if (status === 'completed') {
+
+                        badgeCell.innerHTML =
+                            '<span class="badge bg-dark">Завершено</span>';
+
                     } else if (status === 'cancelled') {
-                        badgeCell.innerHTML = '<span class="badge bg-danger">Отменён</span>';
+
+                        badgeCell.innerHTML =
+                            '<span class="badge bg-danger">Скасовано</span>';
+
                     } else {
-                        badgeCell.innerHTML = `<span class="badge bg-secondary">${status}</span>`;
+
+                        badgeCell.innerHTML =
+                            `<span class="badge bg-secondary">${status}</span>`;
                     }
                 }
             }

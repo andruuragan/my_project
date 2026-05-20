@@ -12,9 +12,13 @@
 
             <select name="status" class="form-select" style="max-width: 200px;">
                 <option value="">Всі статуси</option>
-                <option value="pending">Чекає</option>
+                <option value="pending">Очікує</option>
                 <option value="paid">Сплачено</option>
+                <option value="processing">Обробка</option>
+                <option value="shipped'">Відправлено</option>
+                <option value="completed'">Завершено</option>
                 <option value="cancelled">Скасовано</option>
+
             </select>
 
             <button class="btn btn-primary">
@@ -59,12 +63,20 @@
                         {{-- STATUS BADGE --}}
                         <td class="status-badge-cell">
                             @if($order->status === 'pending')
-                                <span class="badge bg-warning text-dark">Чекає</span>
+                                <span class="badge bg-warning text-dark">Очікує</span>
                             @elseif($order->status === 'paid')
                                 <span class="badge bg-success">Сплачено</span>
+                            @elseif($order->status === 'processing')
+                                <span class="badge bg-danger">Обробка</span>
+                            @elseif($order->status === 'shipped')
+                                <span class="badge bg-danger">Відправлено</span>
+                            @elseif($order->status === 'completed')
+                                <span class="badge bg-danger">Завершено</span>
                             @elseif($order->status === 'cancelled')
                                 <span class="badge bg-danger">Скасовано</span>
+
                             @else
+
                                 <span class="badge bg-secondary">{{ $order->status }}</span>
                             @endif
                         </td>
@@ -82,20 +94,30 @@
                         {{-- STATUS CHANGE --}}
                         {{-- STATUS CHANGE --}}
                         <td>
-                            <select name="status"
+                            <select name="status" style="width: 135px;"
                                     onchange="window.changeOrderStatus(this, '{{ route('admin.orders.status', $order) }}')"
                                     class="form-select form-select-sm">
 
                                 <option value="pending" {{ $order->status == 'pending' ? 'selected' : '' }}>
-                                    pending
+                                    Очікує
                                 </option>
                                 <option value="paid" {{ $order->status == 'paid' ? 'selected' : '' }}>
-                                    paid
+                                    Сплачено
+                                </option>
+                                <option value="processing" {{ $order->status == 'processing' ? 'selected' : '' }}>
+                                    Обробка
+                                </option>
+                                <option value="shipped" {{ $order->status == 'shipped' ? 'selected' : '' }}>
+                                    Відправлено
+                                </option>
+                                <option value="completed" {{ $order->status == 'completed' ? 'selected' : '' }}>
+                                    Завершено
                                 </option>
                                 <option value="cancelled" {{ $order->status == 'cancelled' ? 'selected' : '' }}>
-                                    cancelled
+                                    Скасовано
                                 </option>
                             </select>
+
                         </td>
 
                         {{-- ACTIONS --}}

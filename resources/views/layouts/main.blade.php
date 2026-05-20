@@ -204,6 +204,7 @@
 <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
 <script src="https://cdn.ckeditor.com/ckeditor5/40.2.0/classic/ckeditor.js"></script>
 
+
 @if ($errors->register->any())
     <script>
         document.addEventListener('DOMContentLoaded', function () {

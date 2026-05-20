@@ -25,6 +25,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\Admin\AdminOrderController;
+use App\Http\Controllers\Admin\AdminOrdersController;
 
 /* =========================
 | AUTH (Breeze)
@@ -61,35 +62,32 @@ Route::get('/dymsystems', function () {
 | ADMIN PAGE
 ========================= */
 
-Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
+// Обертываем все роуты в группу с посредниками защиты
+Route::middleware(['auth', 'admin'])->group(function () {
 
-/* =========================
-| CATALOG (ADMIN CRUD)
-========================= */
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
 
-Route::get('/catalog', IndexController::class)->name('catalog.index');
-Route::get('/catalog/create', CreateController::class)->name('catalog.create');
-Route::post('/catalog', StoreController::class)->name('catalog.store');
+    /* =========================
+    | CATALOG (ADMIN CRUD)
+    ========================= */
+    // Чтобы постоянно не писать '/catalog', можно добавить префикс и имя (опционально, см. Вариант 2)
+    Route::get('/catalog', IndexController::class)->name('catalog.index');
+    Route::get('/catalog/create', CreateController::class)->name('catalog.create');
+    Route::post('/catalog', StoreController::class)->name('catalog.store');
+    Route::get('/catalog/search', SearchController::class)->name('catalog.search');
+    Route::get('/catalog/{catalog}/edit', EditController::class)->name('catalog.edit');
+    Route::patch('/catalog/{catalog}', UpdateController::class)->name('catalog.update');
+    Route::delete('/catalog/{catalog}', DestroyController::class)->name('catalog.destroy');
+    Route::delete('/catalog/{catalog}/image', [CatalogImageController::class, 'removeImage'])->name('catalog.image.remove');
 
-Route::get('/catalog/search', SearchController::class)->name('catalog.search');
+    /* =========================
+    | ADMIN SHOW & RESOURCES
+    ========================= */
+    Route::get('/admin/catalog/{catalog}', \App\Http\Controllers\Catalog\ShowController::class)->name('admin.catalog.show');
+    Route::resource('descriptions', DescriptionController::class);
 
-Route::get('/catalog/{catalog}/edit', EditController::class)->name('catalog.edit');
-Route::patch('/catalog/{catalog}', UpdateController::class)->name('catalog.update');
-Route::delete('/catalog/{catalog}', DestroyController::class)->name('catalog.destroy');
+});
 
-Route::delete('/catalog/{catalog}/image', [CatalogImageController::class, 'removeImage'])
-    ->name('catalog.image.remove');
-
-/* =========================
-| ADMIN SHOW
-========================= */
-
-Route::get('/admin/catalog/{catalog}', \App\Http\Controllers\Catalog\ShowController::class)
-    ->name('admin.catalog.show');
-
-/* =========================
-| PUBLIC CATALOG (ВАЖЛИВО: ВНИЗУ!)
-========================= */
 
 Route::get('/catalog/{catalog}', [CatalogController::class, 'publicShow'])
     ->name('catalog.public.show');
@@ -98,7 +96,7 @@ Route::get('/catalog/{catalog}', [CatalogController::class, 'publicShow'])
 | DESCRIPTIONS
 ========================= */
 
-Route::resource('descriptions', DescriptionController::class);
+
 
 /* =========================
 | AUTH ROUTES
@@ -108,8 +106,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 });
 Route::get('/admin/users/{user}/orders', [\App\Http\Controllers\Admin\AdminUserOrderController::class, 'index'])
     ->name('admin.users.orders');
-Route::patch('/admin/orders/{order}/status', [OrderController::class, 'updateStatus'])
-    ->name('admin.orders.status');
+
 
 
 Route::middleware('auth')->group(function () {
@@ -141,6 +138,8 @@ Route::middleware('auth')->group(function () {
             ->name('profile.orders');
     Route::get('/profile/orders/{order}', [\App\Http\Controllers\OrderController::class, 'show'])
         ->name('profile.orders.show');
+    Route::get('/orders/{order}/excel', [OrderController::class, 'exportExcel'])
+        ->name('orders.export.excel');
 
 
 });
@@ -152,10 +151,28 @@ Route::middleware(['auth', 'admin'])
         Route::delete('/orders/{order}', [AdminOrderController::class, 'destroy'])
             ->name('admin.orders.destroy');
 
+
     });
 
 
+Route::prefix('admin')
+    ->middleware(['auth', 'admin'])
+    ->group(function () {
 
+        Route::get('/orders', [AdminOrdersController::class, 'index'])
+            ->name('admin.orders.index');
+
+        Route::get('/orders/search', [AdminOrdersController::class, 'search'])
+            ->name('admin.orders.search');
+
+        Route::get('/orders/export', [AdminOrdersController::class, 'export'])
+            ->name('admin.orders.export');
+
+        Route::patch('/orders/{order}/status', [AdminOrdersController::class, 'updateStatus'])
+            ->name('admin.orders.status');
+    });
 
 Route::get('/cart/state', [CartController::class, 'state']);
+
+
 require __DIR__.'/auth.php';

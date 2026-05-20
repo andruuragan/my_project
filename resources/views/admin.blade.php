@@ -2,23 +2,29 @@
 
 @section('content')
     <div class="container-1600">
-       <h2> страница админа</h2>
+
+        <h2>Сторінка адміністратора</h2>
 
         <div>
             <a class="btn btn-warning fw-semibold px-4"
                href="{{ route('catalog.index') }}">
                 Catalog
             </a>
-    </div>
+        </div>
 
         <div>
-
-
-            <a class=" btn btn-primary {{ request()->routeIs('descriptions.*') ? 'active' : '' }}"
+            <a class="btn btn-primary {{ request()->routeIs('descriptions.*') ? 'active' : '' }}"
                href="{{ route('descriptions.index') }}">
                 Опис (admin)
             </a>
+        </div>
 
-    </div>
+        <div>
+            <a class="btn btn-dark fw-semibold px-4"
+               href="{{ route('admin.orders.index') }}">
+                Замовлення
+            </a>
+        </div>
+
     </div>
 @endsection

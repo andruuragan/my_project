@@ -19,7 +19,7 @@
 
                 <div class="mt-2">
                     <strong>Дата:</strong>
-                    {{ $order->created_at->format('d.m.Y H:i') }}
+                    {{ $order->created_at->format('d.m.Y / H:i') }}
                 </div>
             </div>
 
@@ -94,12 +94,17 @@
         </div>
 
         {{-- BACK BUTTON --}}
-        <div class="mt-4">
-            <a href="{{ route('profile.orders') }}"
-               class="btn btn-secondary">
-                ← Назад до замовлень
-            </a>
-        </div>
+        <a href="javascript:history.back()"
+           class="btn btn-secondary">
+            ← Назад
+        </a>
+        <a href="{{ route('orders.export.excel', $order) }}"
+           class="btn btn-success">
+
+            <i class="bi bi-file-earmark-excel"></i>
+            Excel
+
+        </a>
 
     </div>
 @endsection
