@@ -4,8 +4,7 @@
 
     <div class="container-1600 shop-page">
 
-        {{-- Невидимая распорка, которая создаст фиксированное пространство --}}
-        <div style="height: 20px; width: 100%;"></div>
+
 
         <div class="title-shop text-center mb-4">
             <h3>Каталог елементів димохода</h3>
@@ -255,6 +254,19 @@
             </div>
         </div>
     </div>
+    @push('styles')
+        <style>
+            select.js-choice {
+                opacity: 0 !important;
+                display: block !important;
+                position: absolute;
+                width: 100%;
+                height: 42px;
+                z-index: -1;
+                pointer-events: none;
+            }
+        </style>
+    @endpush
     <script>
         function animateFlyToCart(imgElement) {
             // Ищем саму кнопку корзины (или её контейнер), куда должна прилететь картинка
@@ -450,4 +462,11 @@
 
 @endsection
 
-
+@push('styles')
+    <style>
+        /* Повністю ховаємо рідні селектори, поки JS не перетворить їх на красиві */
+        select.js-choice {
+            display: none !important;
+        }
+    </style>
+@endpush

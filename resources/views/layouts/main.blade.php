@@ -1,5 +1,3 @@
-<!doctype html>
-<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -30,12 +28,14 @@
             margin: 0;
         }
 
-
-
         .logo {
             height: 100px;
         }
+        /* 1. Ховаємо початкові селектори, щоб вони не розпирали фільтр до завантаження JS */
     </style>
+
+    {{-- МІСЦЕ ДЛЯ СБОРУ СТИЛІВ З ІНШИХ ФАЙЛІВ (БЛЕЙДІВ) --}}
+    @stack('styles')
 </head>
 
 <body class="site-body">

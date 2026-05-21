@@ -49,6 +49,7 @@ html, body {
     flex-direction: column;
 }
 
+
 .page-wrapper {
     flex: 1;
     display: flex;
@@ -1409,4 +1410,13 @@ html, body {
         opacity 0.8s ease-in-out,
         width 0.8s ease,
         height 0.8s ease;
+}
+/* Фіксуємо висоту контейнера, щоб сторінка не стрибала вгору-вниз при оновленні */
+.products-area {
+    min-height: 600px; /* Або будь-яка середня висота твого каталогу */
+}
+
+/* Додатково: плавний ефект для карток при завантаженні */
+#productsWrapper {
+    will-change: opacity;
 }

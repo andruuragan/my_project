@@ -43,9 +43,25 @@
                         <!-- Блок ціни, кількості та кнопки -->
                         <div class="bg-light p-3 rounded-3 mb-4 border product-card-container">
                             <div class="d-flex flex-wrap align-items-center justify-content-between gap-4">
-                                <div>
-                                    <span class="text-muted small d-block text-uppercase fw-bold">Ціна:</span>
-                                    <span class="fs-2 fw-black text-primary">{{ number_format($catalog->price, 0, '.', ' ') }} <small class="fs-5 fw-normal text-muted">грн</small></span>
+                                <div class="d-flex gap-4">
+                                    <!-- Базова ціна за 1 шт -->
+                                    <div>
+                                        <span class="text-muted small d-block text-uppercase fw-bold">Ціна:</span>
+                                        <span class="fs-2 fw-black text-primary">
+                                            {{ number_format($catalog->price, 0, '.', ' ') }}
+                                            <small class="fs-5 fw-normal text-muted">грн</small>
+                                        </span>
+                                    </div>
+
+                                    <!-- Загальна сума (показується при зміні кількості) -->
+                                    <!-- Додано клас ms-4 (або ms-5 для більшого відступу) -->
+                                    <div id="total-price-block" class="d-none" style="margin-left: 50px; transition: all 0.3s ease;">
+                                        <span class="text-muted small d-block text-uppercase fw-bold text-success">Разом:</span>
+                                        <span class="fs-2 fw-black text-success">
+        <span id="dynamic-total">{{ number_format($catalog->price, 0, '.', ' ') }}</span>
+        <small class="fs-5 fw-normal text-muted">грн</small>
+    </span>
+                                    </div>
                                 </div>
 
                                 <div class="d-flex flex-wrap align-items-center gap-3">
@@ -65,7 +81,7 @@
                                             </div>
                                         </div>
 
-                                        <!-- Кнопка додавання (Ваш фірмовий помаранчевий #d97706) -->
+                                        <!-- Кнопка додавання -->
                                         <div class="d-flex align-items-end" style="height: 46px; margin-top: auto;">
                                             <button type="button"
                                                     id="add-to-cart-{{ $catalog->id }}"
@@ -86,18 +102,15 @@
                                         <!-- Маленький стиль для гарного ефекту наведення (hover) -->
                                         <style>
                                             .custom-orange-btn:hover {
-                                                background-color: #b45309 !important; /* Трохи темніший при наведенні */
+                                                background-color: #b45309 !important;
                                                 border-color: #b45309 !important;
                                                 color: #fff !important;
                                             }
-                                            /* Повне зачищення стрілочок для Chrome, Safari, Edge, Opera */
                                             .custom-qty-input::-webkit-outer-spin-button,
                                             .custom-qty-input::-webkit-inner-spin-button {
                                                 -webkit-appearance: none;
                                                 margin: 0;
                                             }
-
-                                            /* Повне зачищення для Firefox */
                                             .custom-qty-input {
                                                 -moz-appearance: textfield !important;
                                                 text-align: center !important;
@@ -203,32 +216,56 @@
 
     </div>
 
-    {{-- АЯКС СКРИПТ З КІЛЬКІСТЮ ТА ОНОВЛЕННЯМ НАВБАРУ --}}
+    {{-- АЯКС СКРИПТ --}}
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            // Керування кнопками кількості
+            // Керування кнопками кількості та динамічний перерахунок суми
             const btnMinus = document.getElementById('btn-minus');
             const btnPlus = document.getElementById('btn-plus');
             const qtyInput = document.getElementById('product-qty');
+
+            // Оголошуємо ОДИН раз для всього скрипта
+            const addToCartBtn = document.querySelector('.add-to-cart-btn');
+            const basePrice = addToCartBtn ? parseFloat(addToCartBtn.getAttribute('data-price')) : 0;
+
+            const totalPriceBlock = document.getElementById('total-price-block');
+            const dynamicTotal = document.getElementById('dynamic-total');
+
+            function updateLiveTotal() {
+                if (!qtyInput || !dynamicTotal || !totalPriceBlock || basePrice === 0) return;
+
+                let currentQty = parseInt(qtyInput.value) || 1;
+                let total = basePrice * currentQty;
+
+                // Форматуємо число з пропусками (наприклад: 12 500)
+                dynamicTotal.textContent = new Intl.NumberFormat('uk-UA').format(total);
+
+                // Якщо кількість > 1, плавно показуємо блок "Разом", якщо 1 — ховаємо
+                if (currentQty > 1) {
+                    totalPriceBlock.classList.remove('d-none');
+                } else {
+                    totalPriceBlock.classList.add('d-none');
+                }
+            }
 
             if (btnMinus && btnPlus && qtyInput) {
                 btnMinus.addEventListener('click', function () {
                     let current = parseInt(qtyInput.value) || 1;
                     if (current > 1) {
                         qtyInput.value = current - 1;
+                        updateLiveTotal();
                     }
                 });
 
                 btnPlus.addEventListener('click', function () {
                     let current = parseInt(qtyInput.value) || 1;
                     qtyInput.value = current + 1;
+                    updateLiveTotal();
                 });
             }
 
             // AJAX додавання в кошик
-            const addToCartBtn = document.querySelector('.add-to-cart-btn');
             const successMsg = document.querySelector('.cart-success-msg');
-
             const navbarCartCount = document.getElementById('cartCount');
             const navbarCartSum = document.getElementById('cartTotalNav');
 
@@ -236,8 +273,6 @@
                 addToCartBtn.addEventListener('click', function () {
                     const url = this.getAttribute('data-url');
                     const btnText = this.querySelector('.btn-text');
-
-                    // Зчитуємо актуальну кількість прямо перед відправкою запиту
                     const selectedQty = qtyInput ? (parseInt(qtyInput.value) || 1) : 1;
 
                     if (!url) {
@@ -254,7 +289,6 @@
                             'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '',
                             'Accept': 'application/json'
                         },
-                        // Передаємо обрану кількість у параметрі 'qty', як очікує ваш CartController
                         body: JSON.stringify({ qty: selectedQty })
                     })
                         .then(response => {
@@ -264,10 +298,10 @@
                         .then(data => {
                             addToCartBtn.disabled = false;
 
-                            // 1. ПЕРЕТВОРЮЄМО КНОПКУ НА ЗЕЛЕНУ ПРИ УСПІХУ
-                            addToCartBtn.removeAttribute('style'); // Прибираємо помаранчевий inline-стиль
-                            addToCartBtn.classList.remove('custom-orange-btn'); // Прибираємо клас ховеру
-                            addToCartBtn.classList.add('btn-success'); // Додаємо зелений колір Bootstrap
+                            // Перетворюємо кнопку на зелену
+                            addToCartBtn.removeAttribute('style');
+                            addToCartBtn.classList.remove('custom-orange-btn');
+                            addToCartBtn.classList.add('btn-success');
 
                             if (btnText) btnText.textContent = 'У кошику';
 
@@ -275,7 +309,7 @@
                                 successMsg.classList.remove('d-none');
                             }
 
-                            // Оновлення лічильника кількості в навбарі
+                            // Оновлення кількості в навбарі
                             if (navbarCartCount && data.count !== undefined) {
                                 navbarCartCount.textContent = data.count;
                                 navbarCartCount.classList.remove('d-none');

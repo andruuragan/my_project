@@ -260,17 +260,18 @@ window.showAlert = function (message, type = 'success') {
     }, 4000);
 };
 document.addEventListener('DOMContentLoaded', function () {
-
     const filterForm = document.querySelector('.filter-form');
+    const productsWrapper = document.getElementById('productsWrapper');
 
-    if (!filterForm) return;
+    if (!filterForm || !productsWrapper) return;
 
-    filterForm.addEventListener('submit', function (e) {
-
-        e.preventDefault();
+    // Створюємо функцію для автоматичного відправлення форми при зміні селекторів
+    function sendFilterAjax() {
+        // Робимо блок товарів напівпрозорим, показуючи користувачу, що йде завантаження
+        productsWrapper.style.transition = 'opacity 0.2s ease';
+        productsWrapper.style.opacity = '0.5';
 
         const formData = new FormData(filterForm);
-
         const params = new URLSearchParams(formData);
 
         fetch(`/dymohody-ta-komplektuyuchi?${params.toString()}`, {
@@ -280,16 +281,46 @@ document.addEventListener('DOMContentLoaded', function () {
         })
             .then(res => res.text())
             .then(html => {
+                // Оновлюємо тільки контент картками
+                productsWrapper.innerHTML = html;
 
-                document.getElementById('productsWrapper').innerHTML = html;
+                // Плавне повернення прозорості
+                productsWrapper.style.opacity = '1';
 
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
+                // ЯКЩО у тебе використовуються кастомні тултіпи з минулого кроку (Варіант 2),
+                // або якщо треба оживити якісь інші скрипти всередині карток, викликай їх тут:
+                if (typeof initAwesomeTooltips === 'function') {
+                    initAwesomeTooltips();
+                }
+            })
+            .catch(err => {
+                console.error('Помилка фільтрації:', err);
+                productsWrapper.style.opacity = '1';
             });
+    }
+
+    // 1. Замість різкого сабміту форми, ловимо зміни в усіх селекторах та інпутах
+    filterForm.querySelectorAll('select, input').forEach(element => {
+        // Подія 'change' ідеально працює для селекторів (Choices.js) та радіо/чекбоксів
+        element.addEventListener('change', sendFilterAjax);
     });
 
+    // Для текстового пошуку по назві робимо невелику затримку (debounde),
+    // щоб запит не йшов на кожну введену літеру
+    const nameInput = filterForm.querySelector('input[name="name"]');
+    if (nameInput) {
+        let timeout;
+        nameInput.addEventListener('input', function() {
+            clearTimeout(timeout);
+            timeout = setTimeout(sendFilterAjax, 500); // Запит піде через 0.5 сек після зупинки вводу
+        });
+    }
+
+    // На випадок, якщо користувач натисне Enter або кнопку "Застосувати"
+    filterForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        sendFilterAjax();
+    });
 });
 // Функция AJAX-смены статуса заказа (чтобы не забивать историю браузера)
 window.changeOrderStatus = function(selectElement, url) {

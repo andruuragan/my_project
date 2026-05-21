@@ -11,7 +11,7 @@
                         <img src="{{ Storage::url($catalog->image) }}"
                              class="product-image"
                              alt="{{ $catalog->name }}"
-                             loading="lazy"
+
                              style="max-height: 100%; object-fit: contain; transition: transform 0.3s ease;">
 
                         <!-- ІКОНКИ ПОВЕРХ ФОТО -->
@@ -200,6 +200,13 @@
     .custom-orange-tooltip .tooltip-arrow::before {
         border-top-color: #d97706 !important;
     }
+    /* Фіксуємо каркас картинки, щоб при loading="lazy" нічого не стрибало */
+    .product-image-wrapper .product-image {
+        width: 100% !important;
+        height: 100% !important;
+    }
+
+
 </style>
 
 {{-- СКРИПТ ІНІЦІАЛІЗАЦІЇ ПІДКАЗОК --}}
