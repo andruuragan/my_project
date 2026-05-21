@@ -45,4 +45,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Order::class);
     }
+    public function wishlists()
+    {
+        // Користувач має багато обраних товарів
+        return $this->belongsToMany(Catalog::class, 'wishlists', 'user_id', 'catalog_id')->withTimestamps();
+    }
 }

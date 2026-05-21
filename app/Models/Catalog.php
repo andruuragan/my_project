@@ -37,4 +37,9 @@ class Catalog extends Model
     {
         return $this->belongsTo(Description::class);
     }
+    public function likedByUsers()
+    {
+        // Товар лайкнутий багатьма користувачами
+        return $this->belongsToMany(User::class, 'wishlists', 'catalog_id', 'user_id')->withTimestamps();
+    }
 }

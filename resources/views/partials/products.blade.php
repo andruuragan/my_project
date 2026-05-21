@@ -16,8 +16,16 @@
 
                         <!-- ІКОНКИ ПОВЕРХ ФОТО -->
                         <div class="product-icons p-3 d-flex justify-content-between w-100 position-absolute top-0 start-0">
-                            <button type="button" class="icon-btn wishlist-btn rounded-circle shadow-sm border-0 d-flex align-items-center justify-content-center bg-white" style="width: 36px; height: 36px;">
-                                <i class="bi bi-heart text-muted"></i>
+                            <button type="button"
+                                    class="icon-btn wishlist-btn rounded-circle shadow-sm border-0 d-flex align-items-center justify-content-center bg-white"
+                                    data-id="{{ $catalog->id }}"
+                                    style="width: 36px; height: 36px;">
+                                <!-- Перевіряємо, чи лайкнув ЦЕЙ конкретний товар ПОТОЧНИЙ користувач -->
+                                @if(Auth::check() && Auth::user()->wishlists->contains($catalog->id))
+                                    <i class="bi bi-heart-fill text-danger"></i>
+                                @else
+                                    <i class="bi bi-heart text-muted"></i>
+                                @endif
                             </button>
 
                             <div class="right-icons d-flex gap-2">
@@ -57,22 +65,24 @@
 
                         <!-- 3. Технічні характеристики -->
                         <div class="product-specs small text-uppercase fw-bold text-muted mt-2 mb-3" style="letter-spacing: 0.5px; font-size: 0.72rem;">
-                            Ø{{ $catalog->diameter }} • {{ $catalog->thickness }} мм • AISI {{ $catalog->grade }}
+                            Ø{{ $catalog->diameter }} • {{ $catalog->thickness }} • AISI {{ $catalog->grade }}
                         </div>
 
                         <!-- Блок Ціни -->
                         <div class="mt-auto pt-2 border-top border-light">
                             <div class="d-flex align-items-baseline gap-1 mb-1">
-                            <span class="fs-4 fw-bold text-dark item-price" data-price="{{ $catalog->price }}">
-                                {{ number_format($catalog->price, 0, '.', ' ') }}
-                            </span>
-                                <span class="small text-muted">грн/шт</span>
+                                <!-- Основна ціна: глибока, велика, помітна -->
+                                <span class="fs-3 fw-bold item-price" data-price="{{ $catalog->price }}" style="color: #111827; font-weight: 800;">
+            {{ number_format($catalog->price, 0, '.', ' ') }}
+        </span>
+                                <span class="small text-muted fw-medium">грн/шт</span>
                             </div>
 
-                            <!-- Динамічна сума -->
+                            <!-- Динамічна сума: стає спокійною темно-помаранчевою, коли змінюється кількість -->
                             <div class="total-price mb-3 invisible-initial" style="font-size: 0.85rem; height: 20px;">
                                 <span class="text-muted">Разом:</span>
-                                <strong class="total-sum text-primary">{{ number_format($catalog->price, 0, '.', ' ') }}</strong> <span class="text-primary fw-medium">грн</span>
+                                <strong class="total-sum" style="color: #b45309;">{{ number_format($catalog->price, 0, '.', ' ') }}</strong>
+                                <span class="fw-medium" style="color: #b45309;">грн</span>
                             </div>
                         </div>
 
@@ -223,6 +233,45 @@
                 const tooltip = new bootstrap.Tooltip(target);
                 tooltip.show();
             }
+        });
+    });
+    document.addEventListener('DOMContentLoaded', function () {
+        document.body.addEventListener('click', function (event) {
+            const btn = event.target.closest('.wishlist-btn');
+            if (!btn) return;
+
+            const catalogId = btn.dataset.id;
+
+            // Відправка запиту на Laravel
+            fetch(`/wishlist/toggle/${catalogId}`, {
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                }
+            })
+                .then(response => {
+                    if (response.status === 401) {
+                        alert('Будь ласка, увійдіть в акаунт, щоб додавати товари в обране.');
+                        window.location.href = '/login';
+                        return;
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data && data.success) {
+                        const icon = btn.querySelector('i');
+                        if (data.is_liked) {
+                            // Якщо лайкнули — робимо сердечко червоним і зафарбованим
+                            icon.className = 'bi bi-heart-fill text-danger';
+                        } else {
+                            // Якщо прибрали лайк — повертаємо сірий колір
+                            icon.className = 'bi bi-heart text-muted';
+                        }
+                    }
+                })
+                .catch(error => console.error('Error:', error));
         });
     });
 </script>

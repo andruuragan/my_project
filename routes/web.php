@@ -24,6 +24,7 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\Admin\AdminOrderController;
 use App\Http\Controllers\Admin\AdminOrdersController;
+use App\Http\Controllers\WishlistController;
 
 /* ==========================================================================
 |  1. PUBLIC PAGES & AUTH CONTROL (Breeze)
@@ -47,7 +48,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::post('/wishlist/toggle/{catalog}', [WishlistController::class, 'toggle'])->name('wishlist.toggle');
+    Route::get('/profile/wishlist', [WishlistController::class, 'index'])->name('profile.wishlist');
 });
+
 
 /* ==========================================================================
 |  2. CUSTOMER AREA (Auth Required)
@@ -106,6 +110,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('/orders/export', [AdminOrdersController::class, 'export'])->name('admin.orders.export');
     Route::patch('/orders/{order}/status', [AdminOrdersController::class, 'updateStatus'])->name('admin.orders.status');
     Route::delete('/orders/{order}', [AdminOrderController::class, 'destroy'])->name('admin.orders.destroy');
+    Route::post('/products/{id}/reset-likes', [AdminController::class, 'resetLikes'])->name('admin.products.reset-likes');
 });
 
 /* ==========================================================================

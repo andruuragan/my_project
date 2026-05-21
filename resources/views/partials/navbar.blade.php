@@ -78,7 +78,7 @@
 
 
 
-                        <li class="nav-item">
+                      {{--  <li class="nav-item">
                             <a class="nav-link {{ request()->routeIs('catalog.*') ? 'active' : '' }}"
                                href="{{ route('catalog.index') }}">
                                 Catalog
@@ -90,7 +90,7 @@
                                href="{{ route('descriptions.index') }}">
                                 Опис
                             </a>
-                        </li>
+                        </li>--}}
 
                     @endif
                 @endauth

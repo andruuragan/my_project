@@ -562,7 +562,7 @@ html, body {
     font-weight: 700;
     color: #222;
 
-    margin-bottom: 22px !important;
+    margin-bottom: 16px !important;
 }
 
 @media (max-width: 992px) {
@@ -576,10 +576,10 @@ html, body {
 /* INPUTS */
 .filter-form .form-control,
 .choices__inner {
-    height: 28px !important;
-    min-height: 28px !important;
+    height: 32px !important;
+    min-height: 32px !important;
 
-    padding: 0 12px !important;
+    padding: 0 10px !important;
 
     display: flex !important;
     align-items: center !important;
@@ -611,13 +611,13 @@ html, body {
 
 /* SPACING */
 .filter-form .mb-3 {
-    margin-bottom: 18px !important;
+    margin-bottom: 10px !important;
 }
 
 /* BUTTON */
 .filter-btn {
     height: 44px;
-    padding: 0 22px;
+    padding: 0 18px;
 
     border-radius: 12px;
     border: 1px solid rgba(217,119,6,0.35);
@@ -862,7 +862,7 @@ html, body {
 .site-footer {
     background: #111;
     color: #fff;
-    padding: 50px 0 20px;
+    padding: 25px 0 20px;
     margin-top: 50px;
 }
 
