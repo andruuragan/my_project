@@ -68,7 +68,7 @@
                         @endauth
 
                     </li>
-                    <li><a href="#"><i class="bi bi-box-seam"></i> Історія замовлень</a></li>
+                    <li><a href="{{ route('profile.orders') }}"><i class="bi bi-box-seam"></i> Історія замовлень</a></li>
                     <li><a href="{{ route('cart.index') }}"> <i class="bi bi-basket2"></i>
                             Кошик</a></li>
                 </ul>
