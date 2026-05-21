@@ -164,7 +164,7 @@
                 <div class="card shadow-sm border-0 bg-white rounded-3 p-4">
                     <ul class="nav nav-tabs card-header-tabs flex-wrap" role="tablist">
                         <li class="nav-item">
-                            <button class="nav-link active fw-medium px-4" data-bs-toggle="tab" data-bs-target="#ov">Огляд</button>
+                            <button class="nav-link active fw-medium px-4" data-bs-toggle="tab" data-bs-target="#ov">Опис</button>
                         </li>
                         <li class="nav-item">
                             <button class="nav-link fw-medium px-4" data-bs-toggle="tab" data-bs-target="#adv">Переваги</button>
