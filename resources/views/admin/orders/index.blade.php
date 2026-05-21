@@ -5,6 +5,7 @@
 
         {{-- ================= STATISTICS ================= --}}
         <div class="row g-3 mb-4">
+
             <div class="col-6 col-sm-4 col-md-2">
                 <div class="card shadow-sm border-0 h-100 p-3">
                     <small class="text-muted d-block text-truncate">Всього замовлень</small>
@@ -120,7 +121,9 @@
         </div>
         {{-- ================= PAGINATION ================= --}}
 
-
+        <a href="{{ route('admin.index') }}" class="btn btn-secondary mb-3">
+            ← Назад
+        </a>
     </div>
 
     {{-- ================= JAVASCRIPT ================= --}}

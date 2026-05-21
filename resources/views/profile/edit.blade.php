@@ -2,6 +2,9 @@
 
 @section('content')
     <div class="container py-4">
+        <a href="{{ url()->previous() }}" class="btn btn-secondary mb-3">
+            ← Назад
+        </a>
 
         <h3 class="mb-4">👤 Профіль</h3>
 
@@ -28,6 +31,8 @@
 
             </div>
         </div>
+
+
 
     </div>
 @endsection
