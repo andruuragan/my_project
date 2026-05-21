@@ -6,8 +6,12 @@
 
 
 
-        <div class="title-shop text-center mb-4">
-            <h3>Каталог елементів димохода</h3>
+        <div class="title-shop text-center mb-5 mt-3">
+            <h1 class="fw-bold text-dark position-relative d-inline-block pb-3 fs-2">
+                Каталог елементів димохода
+                <!-- Акцентне підкреслення -->
+                <span class="position-absolute bottom-0 start-50 translate-middle-x rounded-pill" style="width: 80px; height: 4px; background-color: #d97706;"></span>
+            </h1>
         </div>
 
         <div class="row">
@@ -211,13 +215,20 @@
                                    class="form-control">
                         </div>
 
-                        <button class="filter-btn" type="submit">
-                            Застосувати
-                        </button>
+                        <!-- flex-column вибудовує їх вертикально, gap-2 робить відступ між ними -->
+                        <div class="d-flex flex-column gap-2 mt-3">
 
-                        <a href="{{ route('shop.index') }}" class="filter-reset-btn">
-                            Скинути
-                        </a>
+                            <a href="{{ route('shop.index') }}" class="filter-reset-btn text-center py-2 btn btn-outline-secondary rounded-pill w-100">
+                                Скинути
+                            </a>
+
+                            <button class="filter-btn  rounded-pill w-100" type="submit">
+                                Застосувати
+                            </button>
+
+                        </div>
+
+
 
                     </form>
 

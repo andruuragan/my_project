@@ -10,6 +10,10 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css">
@@ -25,6 +29,12 @@
 
         /* трохи чистоти зверху */
         body {
+            /* Основний шрифт для всього сайту */
+            font-family: 'Inter', sans-serif;
+            /* Для великих заголовків та цін можна задати Montserrat, він виглядає солідніше */
+            h1, h2, h3, .fs-2, .fw-black {
+                font-family: 'Montserrat', sans-serif;
+            }
             margin: 0;
         }
 
