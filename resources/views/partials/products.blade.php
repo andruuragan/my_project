@@ -205,9 +205,17 @@
 {{-- СКРИПТ ІНІЦІАЛІЗАЦІЇ ПІДКАЗОК --}}
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-            return new bootstrap.Tooltip(tooltipTriggerEl)
+        // Делегування: слухаємо наведення мишки (`mouseover`) на всьому документі
+        document.body.addEventListener('mouseover', function (event) {
+            // Шукаємо, чи навели ми на іконку з підказкою (або всередину неї)
+            const target = event.target.closest('[data-bs-toggle="tooltip"]');
+
+            // Якщо знайшли і на ньому ще НЕМАЄ ініціалізованого тултіпа від Bootstrap
+            if (target && !bootstrap.Tooltip.getInstance(target)) {
+                // Створюємо тултіп «на льоту» і відразу показуємо
+                const tooltip = new bootstrap.Tooltip(target);
+                tooltip.show();
+            }
         });
     });
 </script>
