@@ -85,7 +85,7 @@
                                 <form class="add-to-cart-form" action="{{ route('cart.add', $catalog->id) }}" method="POST">
                                     @csrf
                                     <div class="d-flex align-items-center gap-2">
-                                        <div class="input-group rounded-pill border border-secondary-subtle overflow-hidden bg-white custom-qty-group" style="width: 100px; min-width: 100px; height: 40px;">
+                                        <div class="input-group rounded-pill border border-secondary-subtle overflow-hidden bg-white custom-qty-group" style="width: 90px; min-width: 90px; height: 40px;">
                                             <button type="button" class="btn p-0 fw-bold qty-btn minus" style="width: 32px;">−</button>
                                             <input type="number"
                                                    name="qty"
@@ -96,7 +96,8 @@
                                             <button type="button" class="btn p-0 fw-bold qty-btn plus" style="width: 32px;">+</button>
                                         </div>
 
-                                        <button class="btn btn-orange flex-grow-1 rounded-pill d-flex align-items-center justify-content-center gap-2 text-white fw-medium shadow-sm add-cart-btn" style="height: 40px; background-color: #d97706; border: none; font-size: 0.9rem; white-space: nowrap;">
+                                        <button class="btn btn-orange flex-grow-1 rounded-pill d-flex align-items-center justify-content-center gap-2 text-white fw-medium shadow-sm add-cart-btn"
+                                                style="height: 40px; border: none; font-size: 0.9rem; white-space: nowrap;">
                                             <i class="bi bi-cart3"></i>
                                             <span>Купити</span>
                                         </button>
@@ -170,6 +171,8 @@
 
             document.body.addEventListener('click', function (e) {
                 const openBtn = e.target.closest('.open-image');
+
+                // ИСПРАВЛЕНО: Теперь предотвращаем дефолтное поведение ТОЛЬКО если кликнули по лупе
                 if (openBtn) {
                     e.preventDefault();
                     const imageUrl = openBtn.getAttribute('data-image');
@@ -216,8 +219,9 @@
 
 
             // ==========================================
-            // 3. РОБОТА КНОПКИ "КУПИТИ" (AJAX)
             // ==========================================
+// 3. РОБОТА КНОПКИ "КУПИТИ" (AJAX)
+// ==========================================
             document.body.addEventListener('submit', function (e) {
                 if (e.target.classList.contains('add-to-cart-form')) {
                     e.preventDefault();
@@ -238,8 +242,6 @@
                         .then(data => {
                             if (data.success) {
 
-                                // ВЛУЧАЄМО ТОЧНО В ЦІЛЬ НАВБАРУ ЗА ID:
-
                                 // Оновлення кількості (id="cartCount")
                                 const cartCountElement = document.getElementById('cartCount');
                                 if (cartCountElement) {
@@ -252,24 +254,26 @@
                                     cartTotalElement.textContent = new Intl.NumberFormat('uk-UA').format(data.total);
                                 }
 
-                                // Анімація кнопки успіху
+                                // Анімація кнопки успіху за допомогою CSS-класу
                                 const buyBtn = form.querySelector('.add-cart-btn');
                                 if (buyBtn) {
                                     const originalContent = buyBtn.innerHTML;
+
+                                    // Вмикаємо зелений стан
                                     buyBtn.innerHTML = '<i class="bi bi-check-lg"></i> Додано!';
-                                    buyBtn.style.setProperty('background-color', '#198754', 'important');
+                                    buyBtn.classList.add('btn-success-animated');
 
                                     setTimeout(() => {
+                                        // Через 1 секунду повертаємо все назад
                                         buyBtn.innerHTML = originalContent;
-                                        buyBtn.style.setProperty('background-color', '#d97706', 'important');
-                                    }, 2000);
+                                        buyBtn.classList.remove('btn-success-animated');
+                                    }, 1000);
                                 }
                             }
                         })
                         .catch(error => console.error('Помилка додавання:', error));
                 }
             });
-
 
             // ==========================================
             // 4. ЖИВЕ ВИДАЛЕННЯ З ОБРАНОГО
@@ -314,6 +318,25 @@
     </script>
 
     <style>
+        .btn-orange {
+            /* Додаємо background-color в список плавно змінюваних властивостей */
+            transition: background-color 0.3s ease, color 0.2s ease, transform 0.1s ease !important;
+            background-color: #d97706;
+        }
+
+        .btn-orange:hover {
+            background-color: #b45309 !important;
+            color: #fff !important;
+        }
+
+        /* Цей клас тимчасово додається через JS при покупці */
+        .add-cart-btn.btn-success-animated {
+            background: #198754 !important;
+            border-color: #198754 !important;
+            color: #fff !important;
+            transform: scale(1.03);
+        }
+
         /* Ефект наведення на хрестик модалки */
         #closeModalBtn:hover {
             color: #d97706 !important;

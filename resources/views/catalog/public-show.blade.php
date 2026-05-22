@@ -47,8 +47,8 @@
                                     <!-- Базова ціна за 1 шт -->
                                     <div>
                                         <span class="text-muted small d-block text-uppercase fw-bold">Ціна:</span>
-                                        <span class="fs-2 fw-black text-primary">
-                                            {{ number_format($catalog->price, 0, '.', ' ') }}
+                                        <span class="fs-2 fw-black" style="color: #d97706;">
+                                             {{ number_format($catalog->price, 0, '.', ' ') }}
                                             <small class="fs-5 fw-normal text-muted">грн</small>
                                         </span>
                                     </div>
