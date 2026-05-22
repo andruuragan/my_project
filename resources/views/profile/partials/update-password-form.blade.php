@@ -20,11 +20,11 @@
 
             {{-- CURRENT PASSWORD --}}
             <div class="col-md-4">
-                <label class="form-label">Поточний пароль</label>
+                <!-- Добавляем for="current_password" -->
+                <label class="form-label" for="current_password">Поточний пароль</label>
 
-                <input id="update_password_current_password"
-                       name="current_password"
-                       type="password"
+                <!-- Добавляем id="current_password" в сам инпут -->
+                <input type="password" id="current_password" name="current_password"
                        class="form-control"
                        autocomplete="current-password">
 
@@ -35,11 +35,11 @@
 
             {{-- NEW PASSWORD --}}
             <div class="col-md-4">
-                <label class="form-label">Новий пароль</label>
+                <!-- Добавляем for="new_password" -->
+                <label class="form-label" for="new_password">Новий пароль</label>
 
-                <input id="update_password_password"
-                       name="password"
-                       type="password"
+                <!-- Добавляем id="new_password" в инпут нового пароля -->
+                <input type="password" id="new_password" name="password"
                        class="form-control"
                        autocomplete="new-password">
 
@@ -50,11 +50,11 @@
 
             {{-- CONFIRM PASSWORD --}}
             <div class="col-md-4">
-                <label class="form-label">Підтвердження</label>
+                <!-- Добавляем for="password_confirmation" -->
+                <label class="form-label" for="password_confirmation">Підтвердження</label>
 
-                <input id="update_password_password_confirmation"
-                       name="password_confirmation"
-                       type="password"
+                <!-- Добавляем id="password_confirmation" в инпут подтверждения пароля -->
+                <input type="password" id="password_confirmation" name="password_confirmation"
                        class="form-control"
                        autocomplete="new-password">
 

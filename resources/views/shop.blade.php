@@ -8,7 +8,7 @@
 
         <div class="title-shop text-center mb-5 mt-3">
             <h1 class="fw-bold text-dark position-relative d-inline-block pb-3 fs-2">
-                Каталог елементів димохода
+                Каталог елементів димоходу
                 <!-- Акцентне підкреслення -->
                 <span class="position-absolute bottom-0 start-50 translate-middle-x rounded-pill" style="width: 80px; height: 4px; background-color: #d97706;"></span>
             </h1>
@@ -28,11 +28,14 @@
                     <form class="filter-form" method="GET" action="{{ route('shop.index') }}">
 
                         <div class="mb-3">
-                            <label class="form-label">Назва елемента</label>
+                            <!-- Связываем через for -->
+                            <label class="form-label" for="element_name">Назва елемента</label>
                             <input type="text"
+                                   id="element_name"
                                    name="name"
                                    value="{{ request('name') }}"
-                                   class="form-control">
+                                   class="form-control"
+                                   autocomplete="off">
                         </div>
 
                         {{-- TYPE --}}
@@ -43,7 +46,7 @@
                                 'Коліно 90°',
                                 'Трійник 90°',
                                 'Трійник 45°',
-                                'Вольпер',
+                                'Волпер',
                                 'Грибок',
                                 'Іскрогасник',
                                 'Регулятор тяги(Кагла)',
@@ -75,8 +78,12 @@
                         @endphp
 
                         <div class="mb-3">
-                            <label class="form-label">Тип</label>
-                            <select name="type" class="js-choice">
+                            <!-- Связываем через for -->
+                            <label class="form-label" for="element_type">Тип</label>
+                            <select id="element_type"
+                                    name="type"
+                                    class="js-choice"
+                                    autocomplete="off">
                                 <option value="">Все</option>
                                 @foreach($types as $type)
                                     <option value="{{ $type }}" @selected(request('type') == $type)>
@@ -100,8 +107,12 @@
                         @endphp
 
                         <div class="mb-3">
-                            <label class="form-label">Діаметр</label>
-                            <select name="diameter" class="js-choice">
+                            <!-- Связываем через for -->
+                            <label class="form-label" for="element_diameter">Діаметр</label>
+                            <select id="element_diameter"
+                                    name="diameter"
+                                    class="js-choice"
+                                    autocomplete="off">
                                 <option value="">Все</option>
                                 @foreach($diameters as $d)
                                     <option value="{{ $d }}" @selected(request('diameter') == $d)>
@@ -208,11 +219,14 @@
 
                         {{-- PRICE --}}
                         <div class="mb-3">
-                            <label class="form-label">Ціна до</label>
+                            <!-- Связываем через for -->
+                            <label class="form-label" for="price_to">Ціна до</label>
                             <input type="number"
+                                   id="price_to"
                                    name="price_to"
                                    value="{{ request('price_to') }}"
-                                   class="form-control">
+                                   class="form-control"
+                                   autocomplete="off">
                         </div>
 
                         <!-- flex-column вибудовує їх вертикально, gap-2 робить відступ між ними -->
@@ -468,6 +482,49 @@
                 });
             }
 
+        });
+        document.addEventListener('DOMContentLoaded', function () {
+            const elements = document.querySelectorAll('.js-choice');
+
+            elements.forEach(element => {
+                new Choices(element, {
+                    searchEnabled: true, // или твои другие настройки, если они есть
+                    shouldSort: false,
+
+                    callbackOnInit: function() {
+                        // Получаем контейнер, который создал Choices.js для этого селекта
+                        const container = this.containerOuter.element;
+                        if (!container) return;
+
+                        // Находим внутри него скрытый поисковый инпут-клон
+                        const clonedInput = container.querySelector('.choices__input--cloned');
+
+                        if (clonedInput) {
+                            // Берем ID оригинального селекта (например, element_type, element_diameter)
+                            const originalId = element.id || 'choices';
+
+                            // Устанавливаем уникальные id и name для инспектора Chrome
+                            clonedInput.setAttribute('id', `${originalId}_search`);
+                            clonedInput.setAttribute('name', `${originalId}_search_name`);
+
+                            // Дополнительно дублируем в свойства объекта для верности
+                            clonedInput.id = `${originalId}_search`;
+                            clonedInput.name = `${originalId}_search_name`;
+                        }
+                    }
+                });
+            });
+
+            // На случай, если Choices.js инициализировался где-то еще параллельно:
+            // Жестко проходим по всем клонам через 100мс и закрываем вопрос
+            setTimeout(() => {
+                document.querySelectorAll('.choices__input--cloned').forEach((input, index) => {
+                    if (!input.hasAttribute('id') || input.id === '') {
+                        input.setAttribute('id', `choices_auto_id_${index}`);
+                        input.setAttribute('name', `choices_auto_name_${index}`);
+                    }
+                });
+            }, 100);
         });
     </script>
 

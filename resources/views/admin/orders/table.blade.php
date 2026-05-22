@@ -22,7 +22,13 @@
                         <small class="text-muted">{{ $order->user->email ?? '' }}</small>
                     </td>
                     <td>
-                        <select class="form-select form-select-sm status-select fw-medium bg-light" data-id="{{ $order->id }}">
+                        <!-- Добавили динамические id, name, autocomplete и aria-label -->
+                        <select id="status_select_{{ $order->id }}"
+                                name="status_{{ $order->id }}"
+                                class="form-select form-select-sm status-select fw-medium bg-light"
+                                data-id="{{ $order->id }}"
+                                autocomplete="off"
+                                aria-label="Статус замовлення №{{ $order->id }}">
                             <option value="pending" @selected($order->status === 'pending')>очікує</option>
                             <option value="paid" @selected($order->status === 'paid')>сплачено</option>
                             <option value="processing" @selected($order->status === 'processing')>обробка</option>

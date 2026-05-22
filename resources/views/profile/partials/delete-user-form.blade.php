@@ -53,11 +53,13 @@
                             Ви впевнені, що хочете видалити обліковий запис? Цю дію не можна скасувати.
                         </p>
 
-                        <label class="form-label">
+                        <!-- Добавляем for="confirm_action_password" -->
+                        <label class="form-label" for="confirm_action_password">
                             Введіть пароль для підтвердження
                         </label>
 
-                        <input type="password"
+                        <!-- Добавляем id="confirm_action_password" в сам инпут -->
+                        <input type="password" id="confirm_action_password"
                                name="password"
                                class="form-control"
                                required>

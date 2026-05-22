@@ -186,7 +186,7 @@
                             <button class="nav-link fw-medium px-4" data-bs-toggle="tab" data-bs-target="#usage">Застосування</button>
                         </li>
                         <li class="nav-item">
-                            <button class="nav-link fw-medium px-4" data-bs-toggle="tab" data-bs-target="#why">Чому ми</button>
+                            <button class="nav-link fw-medium px-4" data-bs-toggle="tab" data-bs-target="#why">Чому ми!</button>
                         </li>
                         <li class="nav-item">
                             <button class="nav-link fw-medium px-4" data-bs-toggle="tab" data-bs-target="#extra">Додатково</button>

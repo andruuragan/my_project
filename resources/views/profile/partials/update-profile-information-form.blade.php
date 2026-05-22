@@ -7,7 +7,7 @@
         </h5>
 
         <p class="text-muted mb-0">
-            Обновити ім'я и email аккаунта
+            Обновити ім'я и email облікового запису
         </p>
     </header>
 
@@ -28,13 +28,14 @@
 
             {{-- NAME --}}
             <div class="col-md-6">
-                <label class="form-label">ім'я</label>
+                <!-- Добавляем for="name" -->
+                <label class="form-label" for="name">Ім'я</label>
 
-                <input id="name"
-                       name="name"
-                       type="text"
+                <!-- Добавляем id="name" в сам инпут имени -->
+                <input type="text" id="name" name="name"
                        class="form-control"
                        value="{{ old('name', $user->name) }}"
+                       autocomplete="name"
                        required>
 
                 @error('name')
@@ -44,13 +45,14 @@
 
             {{-- EMAIL --}}
             <div class="col-md-6">
-                <label class="form-label">Email</label>
+                <!-- Добавляем for="register_email" -->
+                <label class="form-label" for="register_email">Email</label>
 
-                <input id="email"
-                       name="email"
-                       type="email"
+                <!-- Добавляем id="register_email" в инпут -->
+                <input type="email" id="register_email" name="email"
                        class="form-control"
                        value="{{ old('email', $user->email) }}"
+                       autocomplete="email"
                        required>
 
                 @error('email')
@@ -76,7 +78,7 @@
 
                 @if (session('status') === 'verification-link-sent')
                     <div class="text-success mt-2">
-                        Лист відправлен
+                        Лист відправлений
                     </div>
                 @endif
 

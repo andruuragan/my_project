@@ -54,12 +54,22 @@
                 <!-- Верхний ряд: Основные фильтры -->
                 <div class="row g-3 mb-3">
                     <div class="col-md-4">
-                        <label class="form-label small text-muted fw-semibold">Пошук</label>
-                        <input type="text" name="search" value="{{ request('search') }}" class="form-control" placeholder="ID або ім'я клієнта...">
+                        <!-- Связываем через for -->
+                        <label class="form-label small text-muted fw-semibold" for="client_search">Пошук</label>
+                        <input type="text"
+                               id="client_search"
+                               name="search"
+                               value="{{ request('search') }}"
+                               class="form-control"
+                               placeholder="ID або ім'я клієнта..."
+                               autocomplete="off">
                     </div>
                     <div class="col-md-3">
-                        <label class="form-label small text-muted fw-semibold">Статус</label>
-                        <select name="status" class="form-select">
+                        <label class="form-label small text-muted fw-semibold" for="filter_status">Статус</label>
+                        <select id="filter_status"
+                                name="status"
+                                class="form-select"
+                                autocomplete="off">
                             <option value="">Всі статуси</option>
                             <option value="pending" @selected(request('status') === 'pending')>очікує</option>
                             <option value="paid" @selected(request('status') === 'paid')>сплачено</option>
@@ -69,26 +79,56 @@
                             <option value="cancelled" @selected(request('status') === 'cancelled')>скасовано</option>
                         </select>
                     </div>
-                    <div class="col-md-5">
-                        <label class="form-label small text-muted fw-semibold">Період замовлень</label>
-                        <div class="input-group">
-                            <span class="input-group-text bg-white text-muted">з</span>
-                            <input type="date" name="date_from" value="{{ request('date_from') }}" class="form-control">
-                            <span class="input-group-text bg-white text-muted">по</span>
-                            <input type="date" name="date_to" value="{{ request('date_to') }}" class="form-control">
+                        <div class="col-md-5">
+                            <!-- 1. Меняем label на div, чтобы не ломать логику связей «один ярлык — одно поле» -->
+                            <div class="form-label small text-muted fw-semibold mb-2">Період замовлень</div>
+
+                            <div class="input-group">
+                                <!-- 2. Связываем первый текстовый маркер с инпутом "date_from" -->
+                                <label class="input-group-text bg-white text-muted" for="date_from_field">з</label>
+                                <input type="date"
+                                       id="date_from_field"
+                                       name="date_from"
+                                       value="{{ request('date_from') }}"
+                                       class="form-control"
+                                       autocomplete="off">
+
+                                <!-- 3. Связываем второй текстовый маркер с инпутом "date_to" -->
+                                <label class="input-group-text bg-white text-muted" for="date_to_field">по</label>
+                                <input type="date"
+                                       id="date_to_field"
+                                       name="date_to"
+                                       value="{{ request('date_to') }}"
+                                       class="form-control"
+                                       autocomplete="off">
+                            </div>
                         </div>
-                    </div>
                 </div>
 
                 <!-- Нижний ряд: Цены и Кнопки управления -->
                 <div class="row g-3 align-items-end">
                     <div class="col-md-3 col-sm-6">
-                        <label class="form-label small text-muted fw-semibold">Мін. сума</label>
-                        <input type="number" name="min_price" value="{{ request('min_price') }}" placeholder="0 грн" class="form-control">
+                        <!-- Связываем минимальную сумму -->
+                        <label class="form-label small text-muted fw-semibold" for="filter_min_price">Мін. сума</label>
+                        <input type="number"
+                               id="filter_min_price"
+                               name="min_price"
+                               value="{{ request('min_price') }}"
+                               placeholder="0 грн"
+                               class="form-control"
+                               autocomplete="off">
                     </div>
+
                     <div class="col-md-3 col-sm-6">
-                        <label class="form-label small text-muted fw-semibold">Макс. сума</label>
-                        <input type="number" name="max_price" value="{{ request('max_price') }}" placeholder="Мах грн" class="form-control">
+                        <!-- Связываем максимальную сумму -->
+                        <label class="form-label small text-muted fw-semibold" for="filter_max_price">Макс. сума</label>
+                        <input type="number"
+                               id="filter_max_price"
+                               name="max_price"
+                               value="{{ request('max_price') }}"
+                               placeholder="Мах грн"
+                               class="form-control"
+                               autocomplete="off">
                     </div>
 
                     <!-- Кнопки выровнены по правому краю -->

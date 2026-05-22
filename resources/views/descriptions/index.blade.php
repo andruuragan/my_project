@@ -4,10 +4,10 @@
 @section('content')
     <div class="container-1600">
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h4>Описания</h4>
+        <h4>Опис</h4>
 
         <a href="{{ route('descriptions.create') }}" class="btn btn-primary btn-icon">
-            + Создать
+            + Створити
         </a>
     </div>
 
@@ -18,8 +18,8 @@
                 <thead class="table-light">
                 <tr>
                     <th>ID</th>
-                    <th>Название</th>
-                    <th width="220">Действия</th>
+                    <th>Назва</th>
+                    <th width="220">Дія</th>
                 </tr>
                 </thead>
 
@@ -32,23 +32,23 @@
                         <td class="d-flex gap-2">
 
                             <a href="{{ route('descriptions.show', $description->id) }}"
-                               class="btn btn-sm btn-info btn-icon">
+                               class="btn btn-sm btn-info btn-icon" title="дивитись">
                                 <i class="bi bi-eye"></i>
                             </a>
 
                             <a href="{{ route('descriptions.edit', $description->id) }}"
-                               class="btn btn-sm btn-warning btn-icon">
+                               class="btn btn-sm btn-warning btn-icon" title="редагувати">
                                 <i class="bi bi-pencil"></i>
                             </a>
 
                             <form action="{{ route('descriptions.destroy', $description->id) }}"
                                   method="POST"
-                                  onsubmit="return confirm('Ты точно хочешь удалить это описание?')">
+                                  onsubmit="return confirm('Ти точно бажаєш видалити цей опис?')">
 
                                 @csrf
                                 @method('DELETE')
 
-                                <button type="submit" class="btn btn-sm btn-danger btn-icon">
+                                <button type="submit" class="btn btn-sm btn-danger btn-icon" title="видалити">
                                     <i class="bi bi-trash"></i>
                                 </button>
 

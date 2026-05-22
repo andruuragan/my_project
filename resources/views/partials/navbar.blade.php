@@ -265,10 +265,11 @@
 
                     <!-- EMAIL -->
                     <div class="mb-3">
-                        <label class="form-label">Email</label>
+                        <!-- Добавляем for="..." -->
+                        <label class="form-label" for="email">Email</label>
 
-                        <input type="email"
-                               name="email"
+                        <!-- Добавляем точно такой же id="..." -->
+                        <input type="email" id="email" name="email"
                                class="form-control"
                                autocomplete="off"
                                required>
@@ -276,10 +277,11 @@
 
                     <!-- PASSWORD -->
                     <div class="mb-3">
-                        <label class="form-label">Пароль</label>
+                        <!-- Добавляем for="password" -->
+                        <label class="form-label" for="password">Пароль</label>
 
-                        <input type="password"
-                               name="password"
+                        <!-- Добавляем id="password" в сам инпут пароля -->
+                        <input type="password" id="password" name="password"
                                class="form-control"
                                autocomplete="new-password"
                                required>
@@ -291,7 +293,11 @@
                                name="remember"
                                class="form-check-input">
 
-                        <label class="form-check-label">
+                        <!-- Добавляем id="remember_me" к инпуту -->
+                        <input type="checkbox" id="remember_me" name="remember" class="form-check-input" ...>
+
+                        <!-- Добавляем for="remember_me" к лейблу -->
+                        <label class="form-check-label" for="remember_me">
                             Запам'ятати мене
                         </label>
                     </div>
