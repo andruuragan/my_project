@@ -26,6 +26,24 @@ class ProfileUpdateRequest extends FormRequest
                 'max:255',
                 Rule::unique(User::class)->ignore($this->user()->id),
             ],
+            // Добавляем валидацию для номера телефона
+            'phone' => [
+                'required',
+                'string',
+                'max:255',
+                Rule::unique(User::class)->ignore($this->user()->id),
+            ],
+        ];
+    }
+
+    /**
+     * Кастомные сообщения об ошибках на украинском языке
+     */
+    public function messages(): array
+    {
+        return [
+            'phone.required' => 'Номер телефону є обовʼязковим для заповнення.',
+            'phone.unique' => 'Цей номер телефону вже використовується іншим користувачем.',
         ];
     }
 }

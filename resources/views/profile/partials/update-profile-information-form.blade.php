@@ -28,12 +28,9 @@
 
             {{-- NAME --}}
             <div class="col-md-6">
-                <!-- Добавляем for="name" -->
                 <label class="form-label" for="name">Ім'я</label>
-
-                <!-- Добавляем id="name" в сам инпут имени -->
                 <input type="text" id="name" name="name"
-                       class="form-control"
+                       class="form-control @error('name') is-invalid @enderror"
                        value="{{ old('name', $user->name) }}"
                        autocomplete="name"
                        required>
@@ -45,12 +42,9 @@
 
             {{-- EMAIL --}}
             <div class="col-md-6">
-                <!-- Добавляем for="register_email" -->
                 <label class="form-label" for="register_email">Email</label>
-
-                <!-- Добавляем id="register_email" в инпут -->
                 <input type="email" id="register_email" name="email"
-                       class="form-control"
+                       class="form-control @error('email') is-invalid @enderror"
                        value="{{ old('email', $user->email) }}"
                        autocomplete="email"
                        required>
@@ -60,44 +54,51 @@
                 @enderror
             </div>
 
+            {{-- PHONE (Новое поле телефона) --}}
+            <div class="col-12">
+                <label class="form-label" for="phone">Номер телефону</label>
+                <input type="text" id="phone" name="phone"
+                       class="form-control @error('phone') is-invalid @enderror"
+                       value="{{ old('phone', $user->phone) }}"
+                       placeholder="+38 (000) 000-00-00"
+                       required>
+
+                @error('phone')
+                <small class="text-danger">{{ $message }}</small>
+                @enderror
+            </div>
+
         </div>
 
         {{-- VERIFY INFO --}}
         @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
             <div class="alert alert-warning mt-4">
-
                 <div class="mb-2">
                     Email не підтверджено.
                 </div>
-
                 <button form="send-verification"
                         class="btn btn-link p-0">
-
                     Надіслати листа підтвердження
                 </button>
-
                 @if (session('status') === 'verification-link-sent')
                     <div class="text-success mt-2">
                         Лист відправлений
                     </div>
                 @endif
-
             </div>
         @endif
 
         {{-- BUTTON --}}
         <div class="mt-4 d-flex justify-content-between align-items-center">
-
             <button type="submit" class="btn btn-primary">
                 Зберегти
             </button>
 
             @if (session('status') === 'profile-updated')
                 <span class="text-success">
-                    ✔ Збереженно
+                    ✔ Збережено
                 </span>
             @endif
-
         </div>
 
     </form>

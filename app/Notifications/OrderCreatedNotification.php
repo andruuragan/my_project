@@ -33,6 +33,9 @@ class OrderCreatedNotification extends Notification
     /**
      * Формирование красивого сообщения для Телеграм
      */
+    /**
+     * Формирование красивого сообщения для Телеграм
+     */
     public function toTelegram($notifiable)
     {
         $itemsList = "";
@@ -41,8 +44,13 @@ class OrderCreatedNotification extends Notification
             $itemsList .= "• {$item->product_name} x {$item->quantity} шт. — " . number_format($item->price, 0, '.', ' ') . " грн\n";
         }
 
+        // Получаем данные клиента (авторизованного или гостя)
         $customerName = auth()->user()->name ?? 'Гість';
         $customerEmail = auth()->user()->email ?? 'Не вказано';
+        
+        // 🔥 Достаем телефон: сначала у залогиненного юзера, если нет — пишем "Не вказано"
+        $customerPhone = auth()->user()->phone ?? 'Не вказано'; 
+        
         $totalPrice = number_format($this->order->total_price, 0, '.', ' ');
 
         return TelegramMessage::create()
@@ -50,6 +58,7 @@ class OrderCreatedNotification extends Notification
             ->line("📦 *Нове замовлення №{$this->order->id}*")
             ->line("----------------------------------")
             ->line("👤 *Клієнт:* {$customerName}")
+            ->line("📞 *Телефон:* {$customerPhone}") // <-- Вот она, новая строчка с телефоном!
             ->line("📧 *Email:* {$customerEmail}")
             ->line("💰 *Сума замовлення:* {$totalPrice} грн")
             ->line("")
