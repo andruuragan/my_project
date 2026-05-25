@@ -50,4 +50,8 @@ class User extends Authenticatable
         // Користувач має багато обраних товарів
         return $this->belongsToMany(Catalog::class, 'wishlists', 'user_id', 'catalog_id')->withTimestamps();
     }
+    public function routeNotificationForTelegram()
+    {
+        return env('TELEGRAM_CHAT_ID');
+    }
 }

@@ -34,14 +34,12 @@ return [
             'channel' => env('SLACK_BOT_USER_DEFAULT_CHANNEL'),
         ],
     ],
-    'telegram' => [
-        'token' => env('TELEGRAM_BOT_TOKEN'),
-        'options' => [
-            'client' => [
-                'verify' => false, // <-- Отключаем проверку SSL-сертификата (только для локальной разработки!)
-            ],
-        ],
+    'telegram-bot-api' => [
+    'token' => env('TELEGRAM_BOT_TOKEN'),
+    'guzzle' => [
+        'verify' => false, // Это спасет от cURL error 60 / 28 на локалке
     ],
+],
 
 
 ];

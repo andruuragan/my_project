@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\OrderItem;
-// Добавляем импорт фасада уведомлений и нашего нового класса
 use App\Notifications\OrderCreatedNotification;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Http;
 
 class CheckoutController extends Controller
 {
@@ -48,10 +48,10 @@ class CheckoutController extends Controller
                 ->with('error', 'Кошик порожній');
         }
 
-        // 1. создаём заказ
+        // 1. Создаём заказ
         $order = Order::create([
             'user_id' => auth()->id(),
-            'total_price' => 0, // временно
+            'total_price' => 0, // Временно
             'status' => Order::STATUS_PENDING,
         ]);
 
@@ -75,36 +75,24 @@ class CheckoutController extends Controller
             ]);
         }
 
-        // 3. обновляем итог заказа
+        // 2. Обновляем итог заказа
         $order->update([
             'total_price' => $total,
         ]);
 
-        // 🔥 ОТПРАВКА УВЕДОМЛЕНИЯ В TELEGRAM
-        // Подгружаем связь items, чтобы уведомление знало, какие товары внутри заказа
-        // 🔥 ПРЯМАЯ ОТПРАВКА В TELEGRAM (Обход cURL error 60)
-        $itemsList = "";
-        foreach ($order->items as $item) {
-            $itemsList .= "• {$item->product_name} x {$item->quantity} шт. — " . number_format($item->price, 0, '.', ' ') . " грн\n";
+       // 🔥 ОТПРАВКА УВЕДОМЛЕНИЯ В TELEGRAM (Через штатную систему Laravel)
+        try {
+            Notification::route('telegram', env('TELEGRAM_ADMIN_CHAT_ID'))
+                ->notify(new OrderCreatedNotification($order));
+        } catch (\Exception $e) {
+            // Если на локалке пропадет интернет, сайт не упадет, а просто запишет ошибку в лог
+            logger()->error("Telegram failed: " . $e->getMessage());
         }
 
-        $message = "📦 *Нове замовлення №{$order->id}*\n"
-            . "----------------------------------\n"
-            . "👤 *Клієнт:* " . (auth()->user()->name ?? 'Гість') . "\n"
-            . "📧 *Email:* " . (auth()->user()->email ?? 'Не вказано') . "\n"
-            . "💰 *Сума замовлення:* " . number_format($order->total_price, 0, '.', ' ') . " грн\n\n"
-            . "🛒 *Склад замовлення:*\n"
-            . $itemsList
-            . "----------------------------------";
-
-        // Отправляем обычный POST-запрос, который слушается AppServiceProvider
-        \Illuminate\Support\Facades\Http::post("https://api.telegram.org/bot" . env('TELEGRAM_BOT_TOKEN') . "/sendMessage", [
-            'chat_id' => env('TELEGRAM_ADMIN_CHAT_ID'),
-            'text' => $message,
-            'parse_mode' => 'Markdown',
-        ]);
-
         // 4. очищаем корзину
+        session()->forget('cart');
+
+        // 4. Очищаем корзину
         session()->forget('cart');
 
         return redirect()->route('shop.index')
