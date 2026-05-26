@@ -287,11 +287,13 @@ html, body {
 }
 
 
-.product-card:hover .product-icons {
-    opacity: 1;
-    transform: translateY(0);
+/* Делаем сам контейнер иконок видимым изначально */
+.product-icons {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
 }
 
+/* Кнопки-иконки: видны сразу, оформлены аккуратно */
 .icon-btn {
     width: 38px;
     height: 38px;
@@ -301,11 +303,14 @@ html, body {
     align-items: center;
     justify-content: center;
 
-    background: rgba(255,255,255,0.95);
-    border: 1px solid rgba(0,0,0,0.06);
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(0, 0, 0, 0.06);
 
     line-height: 1;
     padding: 0;
+    color: #6c757d;
+    /* Добавим базовый цвет иконки (серый), чтобы он не был прозрачным */
+    transition: all 0.2s ease;
 }
 
 .icon-btn i {
@@ -313,9 +318,16 @@ html, body {
     line-height: 1;
 }
 
+/* Ховер непосредственно на саму кнопку */
 .icon-btn:hover {
     background: #111;
-    color: #fff;
+    color: #fff !important;
+    /* Белый текст/иконка при наведении */
+}
+
+/* Если внутри есть цветное сердечко (би-heart-fill), оставляем его красным */
+.icon-btn:hover i.bi-heart-fill {
+    color: #dc3545 !important;
 }
 /* цена — важнее */
 .product-price {
@@ -389,9 +401,9 @@ html, body {
     margin: 0;
 }
 
-.qty-input[type=number] {
-    -moz-appearance: textfield; /* Для Firefox */
-}
+/*.qty-input[type=number] {
+    -moz-appearance: textfield;  Для Firefox 
+}*/
 /* кнопка */
 .add-cart-btn {
     display: flex;

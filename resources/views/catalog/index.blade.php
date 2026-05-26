@@ -5,7 +5,7 @@
     <div class="container mt-4">
         <div class="table-wrapper">
 
-            <h1 >Каталог</h1>
+            <h1>Каталог</h1>
             <a href="#bottom" class="scroll-down">
                 <span class="arrow">▼</span>
                 <span class="text">Вниз</span>
@@ -25,7 +25,7 @@
                     <th style="width: 60px;">ID</th>
                     <th style="width: 300px;">Название</th>
                     <th style="width: 110px;">Тип элемента</th>
-                    <th style="width: 70px;">Толщина</th>
+                    <th style="width: 70px;">Thickness</th>
                     <th style="width: 80px;">Марка нерж.</th>
                     <th style="width: 80px;">Диаметр</th>
                     <th style="width: 120px;">Тип дымохода</th>
@@ -74,7 +74,6 @@
 
 
                         <td>
-
                             <a href="{{ route('admin.catalog.show', $item->id) }}"
                                class="btn btn-sm btn-outline-info btn-icon me-2">
                                 <i class="bi bi-eye"></i>
@@ -110,13 +109,14 @@
 
         </div>
     </div>
-    {{-- 🔥 МОДАЛКА --}}
-    <div class="modal fade" id="deleteModal" tabindex="-1">
+
+    {{-- 🔥 МОДАЛКА УДАЛЕНИЯ (ИСПРАВЛЕННАЯ ФОРМА) --}}
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
 
                 <div class="modal-header">
-                    <h5 class="modal-title">Подтверждение</h5>
+                    <h5 class="modal-title">Подтверждение удаления</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
 
@@ -125,24 +125,54 @@
                 </div>
 
                 <div class="modal-footer">
-
-                    <form id="deleteForm" method="POST">
+                    <form id="deleteForm" method="POST" style="display: inline;">
                         @csrf
                         @method('DELETE')
 
-                        <button class="btn btn-danger">
+                        <button type="submit" class="btn btn-danger">
                             Удалить
                         </button>
                     </form>
 
-                    <button class="btn btn-secondary" data-bs-dismiss="modal">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                         Отмена
                     </button>
-
                 </div>
 
             </div>
         </div>
     </div>
+
+    {{-- 🛠 JS ДЛЯ ДИНАМИЧЕСКОЙ ПОДСТАНОВКИ ID В РОУТ --}}
+   {{-- 🛠 ПОЛНОСТЬЮ АВТОНОМНЫЙ И НАДЕЖНЫЙ СКРИПТ --}}
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    // 1. Находим все кнопки удаления в таблице
+    const deleteButtons = document.querySelectorAll('[data-bs-target="#deleteModal"]');
+    const deleteModalElement = document.getElementById('deleteModal');
+    
+    if (deleteModalElement && deleteButtons.length > 0) {
+        // Инициализируем модальное окно Bootstrap вручную
+        const bsModal = new bootstrap.Modal(deleteModalElement);
+
+        deleteButtons.forEach(button => {
+            button.addEventListener('click', function (e) {
+                e.preventDefault(); // На всякий случай предотвращаем дефолтное поведение
+
+                const itemId = this.getAttribute('data-id');
+                const deleteForm = document.getElementById('deleteForm');
+                
+                if (deleteForm && itemId) {
+                    // Явно прописываем роут админки
+                    deleteForm.action = `/admin/catalog/${itemId}`;
+                    
+                    // Принудительно показываем модалку на экран
+                    bsModal.show();
+                }
+            });
+        });
+    }
+});
+</script>
 
 @endsection

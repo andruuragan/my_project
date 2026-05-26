@@ -1,19 +1,53 @@
-
-
 import './bootstrap';
-
 import * as bootstrap from 'bootstrap';
 window.bootstrap = bootstrap;
-import Alpine from 'alpinejs';
 
+import Alpine from 'alpinejs';
 window.Alpine = Alpine;
 Alpine.start();
-const csrf = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+const csrf = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
+
+// Глобальная функция инициализации Choices.js с защитой
+window.initGlobalChoices = function () {
+    if (typeof Choices === 'undefined') return;
+
+    document.querySelectorAll('.js-choice').forEach(element => {
+        // Жесткая проверка: если Choices уже сидит на элементе, игнорируем его
+        if (element.classList.contains('choices__input') ||
+            element.closest('.choices') ||
+            element.dataset.choicesInitialized === 'true' ||
+            element.hasAttribute('data-choices-initialized')) {
+            return;
+        }
+
+        element.setAttribute('data-choices-initialized', 'true');
+        element.dataset.choicesInitialized = 'true';
+
+        new Choices(element, {
+            searchEnabled: true,
+            shouldSort: false,
+            itemSelectText: '',
+            callbackOnInit: function () {
+                const container = this.containerOuter.element;
+                if (!container) return;
+                const clonedInput = container.querySelector('.choices__input--cloned');
+                if (clonedInput) {
+                    const originalId = element.id || 'choices';
+                    clonedInput.setAttribute('id', `${originalId}_search`);
+                    clonedInput.setAttribute('name', `${originalId}_search_name`);
+                }
+            }
+        });
+    });
+};
+
 document.addEventListener('DOMContentLoaded', function () {
+    // Запускаем Choices при первой загрузке страницы
+    window.initGlobalChoices();
 
-    // ✅ функция должна быть отдельно
+    // ======= УПРАВЛЕНИЕ КОЛИЧЕСТВОМ В КАРТОЧКАХ =======
     function updateCard(card) {
-
         const input = card.querySelector('.qty-value');
         const priceEl = card.querySelector('.item-price');
         const totalWrap = card.querySelector('.total-price');
@@ -22,13 +56,10 @@ document.addEventListener('DOMContentLoaded', function () {
         if (!input || !priceEl || !totalEl) return;
 
         const basePrice = Number(priceEl.dataset.price || 0);
-
         let qty = Math.max(1, Number(input.value) || 1);
-
         input.value = qty;
 
         const total = basePrice * qty;
-
         totalEl.textContent = total.toLocaleString('uk-UA');
 
         if (totalWrap) {
@@ -36,9 +67,8 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // ➕➖ работает даже после фильтра
+    // Делегирование кликов для ПЛЮС / МИНУС (работает динамически)
     document.addEventListener('click', function (e) {
-
         const plus = e.target.closest('.plus');
         const minus = e.target.closest('.minus');
 
@@ -53,7 +83,6 @@ document.addEventListener('DOMContentLoaded', function () {
         if (plus) {
             input.value = (parseInt(input.value) || 1) + 1;
         }
-
         if (minus) {
             input.value = Math.max(1, (parseInt(input.value) || 1) - 1);
         }
@@ -61,18 +90,68 @@ document.addEventListener('DOMContentLoaded', function () {
         updateCard(card);
     });
 
-    // ручной ввод
+    // Ручной ввод количества
     document.addEventListener('input', function (e) {
-
         if (!e.target.classList.contains('qty-value')) return;
-
         const card = e.target.closest('.product-card');
         if (!card) return;
 
         updateCard(card);
     });
 
+    // ======= ДИНАМИЧЕСКИЙ АЯКС-ФИЛЬТР ТОВАРОВ =======
+    const filterForm = document.querySelector('.filter-form');
+    const productsWrapper = document.getElementById('productsWrapper');
+
+    if (filterForm && productsWrapper) {
+        function sendFilterAjax() {
+            productsWrapper.style.transition = 'opacity 0.2s ease';
+            productsWrapper.style.opacity = '0.5';
+
+            const formData = new FormData(filterForm);
+            const params = new URLSearchParams(formData);
+
+            fetch(`/dymohody-ta-komplektuyuchi?${params.toString()}`, {
+                headers: { 'X-Requested-With': 'XMLHttpRequest' }
+            })
+                .then(res => res.text())
+                .then(html => {
+                    productsWrapper.innerHTML = html;
+                    productsWrapper.style.opacity = '1';
+
+                    // Важно: Переинициализируем кастомные фичи внутри карточек, если они есть
+                    if (typeof initAwesomeTooltips === 'function') {
+                        initAwesomeTooltips();
+                    }
+                })
+                .catch(err => {
+                    console.error('Помилка фільтрації:', err);
+                    productsWrapper.style.opacity = '1';
+                });
+        }
+
+        // Следим за изменениями фильтров
+        filterForm.querySelectorAll('select, input').forEach(element => {
+            element.addEventListener('change', sendFilterAjax);
+        });
+
+        const nameInput = filterForm.querySelector('input[name="name"]');
+        if (nameInput) {
+            let timeout;
+            nameInput.addEventListener('input', function () {
+                clearTimeout(timeout);
+                timeout = setTimeout(sendFilterAjax, 500);
+            });
+        }
+
+        filterForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            sendFilterAjax();
+        });
+    }
 });
+
+// ======= СИСТЕМНЫЕ ФУНКЦИИ КОРЗИНЫ (ГЛОБАЛЬНЫЕ) =======
 window.refreshCart = function () {
     fetch('/cart/state')
         .then(res => res.json())
@@ -82,19 +161,19 @@ window.refreshCart = function () {
 
             if (countEl) {
                 countEl.innerText = data.count;
-                // Вместо класса .hidden (если он не скрывает элемент),
-                // можно управлять стилем напрямую, либо оставь как было, если .hidden настроен в CSS
                 countEl.style.display = data.count === 0 ? 'none' : 'inline-block';
             }
-
             if (totalEl) {
-                // Форматируем только чистое число, без дописок "грн."
                 totalEl.innerText = new Intl.NumberFormat('uk-UA').format(data.total);
             }
         })
         .catch(err => console.error('Помилка оновлення кошика:', err));
 };
+
+// Логика страницы корзины (работа с таблицей товаров)
 document.addEventListener('DOMContentLoaded', function () {
+    const cartTable = document.querySelector('table.table');
+    if (!cartTable) return; // Защита, если мы не на странице корзины
 
     function parsePrice(text) {
         return parseFloat(text.replace(/\s/g, '').replace('грн.', '')) || 0;
@@ -107,28 +186,21 @@ document.addEventListener('DOMContentLoaded', function () {
     function recalcRow(row) {
         let qty = parseInt(row.querySelector('.qty').value) || 1;
         let price = parsePrice(row.querySelector('.price-cell').innerText);
-
-        row.querySelector('.item-sum').innerText =
-            format(qty * price) + ' грн.';
+        row.querySelector('.item-sum').innerText = format(qty * price) + ' грн.';
     }
 
     function recalcTotal() {
         let total = 0;
-
         document.querySelectorAll('tr[data-id]').forEach(row => {
             let qty = parseInt(row.querySelector('.qty').value) || 1;
             let price = parsePrice(row.querySelector('.price-cell').innerText);
-
             total += qty * price;
         });
-
-        document.getElementById('cartTotal').innerText = format(total);
+        const totalEl = document.getElementById('cartTotal');
+        if (totalEl) totalEl.innerText = format(total);
     }
 
     function updateServer(row) {
-
-        const csrf = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-
         let id = row.dataset.id;
         let qty = row.querySelector('.qty').value;
 
@@ -142,52 +214,39 @@ document.addEventListener('DOMContentLoaded', function () {
             body: JSON.stringify({ qty })
         })
             .then(res => res.json())
-            .then(data => {
+            .then(() => {
                 recalcRow(row);
                 recalcTotal();
                 window.refreshCart();
             });
     }
 
-    // PLUS
-    document.querySelectorAll('.plus').forEach(btn => {
-        btn.addEventListener('click', function () {
-            let row = this.closest('tr');
-            let input = row.querySelector('.qty');
+    // Слушатели для корзины (Плюс / Минус / Ввод)
+    cartTable.addEventListener('click', function (e) {
+        const plus = e.target.closest('.plus');
+        const minus = e.target.closest('.minus');
+        const delBtn = e.target.closest('.delete-btn');
 
+        if (plus) {
+            let row = plus.closest('tr');
+            let input = row.querySelector('.qty');
             input.value = parseInt(input.value) + 1;
             updateServer(row);
-        });
-    });
+        }
 
-    // MINUS
-    document.querySelectorAll('.minus').forEach(btn => {
-        btn.addEventListener('click', function () {
-            let row = this.closest('tr');
+        if (minus) {
+            let row = minus.closest('tr');
             let input = row.querySelector('.qty');
-
-            if (input.value > 1) {
+            if (parseInt(input.value) > 1) {
                 input.value = parseInt(input.value) - 1;
                 updateServer(row);
             }
-        });
-    });
+        }
 
-    // INPUT
-    document.querySelectorAll('.qty').forEach(input => {
-        input.addEventListener('input', function () {
-            updateServer(this.closest('tr'));
-        });
-    });
-
-    // DELETE
-    document.querySelectorAll('.delete-btn').forEach(btn => {
-        btn.addEventListener('click', function () {
-
+        if (delBtn) {
             if (!confirm('Видалити товар?')) return;
-
-            let id = this.dataset.id;
-            let row = this.closest('tr');
+            let id = delBtn.dataset.id;
+            let row = delBtn.closest('tr');
 
             fetch(`/cart/remove/${id}`, {
                 method: 'DELETE',
@@ -197,21 +256,24 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             })
                 .then(res => res.json())
-                .then(data => {
+                .then(() => {
                     row.remove();
                     recalcTotal();
                     window.refreshCart();
                 });
-        });
+        }
     });
 
-    // CLEAR
-    const clearBtn = document.querySelector('#clearCartBtn');
+    cartTable.addEventListener('input', function (e) {
+        if (e.target.classList.contains('qty')) {
+            updateServer(e.target.closest('tr'));
+        }
+    });
 
+    const clearBtn = document.querySelector('#clearCartBtn');
     if (clearBtn) {
         clearBtn.addEventListener('click', function (e) {
             e.preventDefault();
-
             if (!confirm('Очистити кошик?')) return;
 
             fetch('/cart/clear', {
@@ -224,108 +286,33 @@ document.addEventListener('DOMContentLoaded', function () {
                 .then(res => res.json())
                 .then(() => {
                     document.querySelectorAll('tr[data-id]').forEach(r => r.remove());
-                    document.getElementById('cartTotal').innerText = '0';
+                    const totalEl = document.getElementById('cartTotal');
+                    if (totalEl) totalEl.innerText = '0';
                     window.refreshCart();
                 });
         });
     }
-
 });
+
+// Глобальные уведомления
 window.showAlert = function (message, type = 'success') {
-
     const alert = document.createElement('div');
-
-    alert.className =
-        `custom-alert ${type}-alert`;
-
+    alert.className = `custom-alert ${type}-alert`;
     alert.innerHTML = `
-        <i class="bi ${
-        type === 'success'
-            ? 'bi-check-circle-fill'
-            : 'bi-exclamation-triangle-fill'
-    }"></i>
-
+        <i class="bi ${type === 'success' ? 'bi-check-circle-fill' : 'bi-exclamation-triangle-fill'}"></i>
         ${message}
     `;
-
     document.body.appendChild(alert);
 
     setTimeout(() => {
-
         alert.style.opacity = '0';
         alert.style.transform = 'translateX(40px)';
-
-        setTimeout(() => {
-            alert.remove();
-        }, 300);
-
+        setTimeout(() => { alert.remove(); }, 300);
     }, 4000);
 };
-document.addEventListener('DOMContentLoaded', function () {
-    const filterForm = document.querySelector('.filter-form');
-    const productsWrapper = document.getElementById('productsWrapper');
 
-    if (!filterForm || !productsWrapper) return;
-
-    // Створюємо функцію для автоматичного відправлення форми при зміні селекторів
-    function sendFilterAjax() {
-        // Робимо блок товарів напівпрозорим, показуючи користувачу, що йде завантаження
-        productsWrapper.style.transition = 'opacity 0.2s ease';
-        productsWrapper.style.opacity = '0.5';
-
-        const formData = new FormData(filterForm);
-        const params = new URLSearchParams(formData);
-
-        fetch(`/dymohody-ta-komplektuyuchi?${params.toString()}`, {
-            headers: {
-                'X-Requested-With': 'XMLHttpRequest'
-            }
-        })
-            .then(res => res.text())
-            .then(html => {
-                // Оновлюємо тільки контент картками
-                productsWrapper.innerHTML = html;
-
-                // Плавне повернення прозорості
-                productsWrapper.style.opacity = '1';
-
-                // ЯКЩО у тебе використовуються кастомні тултіпи з минулого кроку (Варіант 2),
-                // або якщо треба оживити якісь інші скрипти всередині карток, викликай їх тут:
-                if (typeof initAwesomeTooltips === 'function') {
-                    initAwesomeTooltips();
-                }
-            })
-            .catch(err => {
-                console.error('Помилка фільтрації:', err);
-                productsWrapper.style.opacity = '1';
-            });
-    }
-
-    // 1. Замість різкого сабміту форми, ловимо зміни в усіх селекторах та інпутах
-    filterForm.querySelectorAll('select, input').forEach(element => {
-        // Подія 'change' ідеально працює для селекторів (Choices.js) та радіо/чекбоксів
-        element.addEventListener('change', sendFilterAjax);
-    });
-
-    // Для текстового пошуку по назві робимо невелику затримку (debounde),
-    // щоб запит не йшов на кожну введену літеру
-    const nameInput = filterForm.querySelector('input[name="name"]');
-    if (nameInput) {
-        let timeout;
-        nameInput.addEventListener('input', function() {
-            clearTimeout(timeout);
-            timeout = setTimeout(sendFilterAjax, 500); // Запит піде через 0.5 сек після зупинки вводу
-        });
-    }
-
-    // На випадок, якщо користувач натисне Enter або кнопку "Застосувати"
-    filterForm.addEventListener('submit', function (e) {
-        e.preventDefault();
-        sendFilterAjax();
-    });
-});
-// Функция AJAX-смены статуса заказа (чтобы не забивать историю браузера)
-window.changeOrderStatus = function(selectElement, url) {
+// Смена статусов (Админ-панель)
+window.changeOrderStatus = function (selectElement, url) {
     const status = selectElement.value;
     selectElement.disabled = true;
 
@@ -345,71 +332,33 @@ window.changeOrderStatus = function(selectElement, url) {
         })
         .then(data => {
             selectElement.disabled = false;
+            if (typeof window.showAlert === 'function') window.showAlert('Статус успішно оновлено!', 'success');
 
-            if (typeof window.showAlert === 'function') {
-                window.showAlert('Статус успішно оновлено!', 'success');
-            }
-
-            // === НАХОДИМ И ОБНОВЛЯЕМ БЕЙДЖ В ТАБЛИЦЕ ===
             const row = selectElement.closest('tr');
-
             if (row) {
-
                 const badgeCell = row.querySelector('.status-badge-cell');
-
                 if (badgeCell) {
-
-                    // Генерируем новый HTML в зависимости от статуса
-                    if (status === 'pending') {
-
-                        badgeCell.innerHTML =
-                            '<span class="badge bg-warning text-dark">Очікує</span>';
-
-                    } else if (status === 'paid') {
-
-                        badgeCell.innerHTML =
-                            '<span class="badge bg-success">Сплачено</span>';
-
-                    } else if (status === 'processing') {
-
-                        badgeCell.innerHTML =
-                            '<span class="badge bg-primary">Обробка</span>';
-
-                    } else if (status === 'shipped') {
-
-                        badgeCell.innerHTML =
-                            '<span class="badge bg-info text-dark">Відправлено</span>';
-
-                    } else if (status === 'completed') {
-
-                        badgeCell.innerHTML =
-                            '<span class="badge bg-dark">Завершено</span>';
-
-                    } else if (status === 'cancelled') {
-
-                        badgeCell.innerHTML =
-                            '<span class="badge bg-danger">Скасовано</span>';
-
-                    } else {
-
-                        badgeCell.innerHTML =
-                            `<span class="badge bg-secondary">${status}</span>`;
-                    }
+                    const badges = {
+                        pending: '<span class="badge bg-warning text-dark">Очікує</span>',
+                        paid: '<span class="badge bg-success">Сплачено</span>',
+                        processing: '<span class="badge bg-primary">Обробка</span>',
+                        shipped: '<span class="badge bg-info text-dark">Відправлено</span>',
+                        completed: '<span class="badge bg-dark">Завершено</span>',
+                        cancelled: '<span class="badge bg-danger">Скасовано</span>'
+                    };
+                    badgeCell.innerHTML = badges[status] || `<span class="badge bg-secondary">${status}</span>`;
                 }
             }
         })
         .catch(error => {
             selectElement.disabled = false;
-            if (typeof window.showAlert === 'function') {
-                window.showAlert('Не вдалося оновити статус', 'error');
-            }
+            if (typeof window.showAlert === 'function') window.showAlert('Не вдалося оновити статус', 'error');
         });
 };
-// Функция AJAX-удаления заказа
-window.deleteOrder = function(buttonElement, url) {
-    if (!confirm('Ви впевнені, що хочете видалити цей замовлення?')) return;
 
-    // Блокируем кнопку на время запроса
+// Удаление заказа (Админ-панель)
+window.deleteOrder = function (buttonElement, url) {
+    if (!confirm('Ви впевнені, що хочете видалити цей замовлення?')) return;
     buttonElement.disabled = true;
 
     fetch(url, {
@@ -417,7 +366,7 @@ window.deleteOrder = function(buttonElement, url) {
         headers: {
             'Content-Type': 'application/json',
             'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-            'X-HTTP-Method-Override': 'DELETE', // Laravel поймет, что это DELETE запрос
+            'X-HTTP-Method-Override': 'DELETE',
             'Accept': 'application/json'
         }
     })
@@ -426,77 +375,66 @@ window.deleteOrder = function(buttonElement, url) {
             return response.json();
         })
         .then(data => {
-            // Выводим уведомление через твою функцию
-            if (typeof window.showAlert === 'function') {
-                window.showAlert(data.message || 'Замовлення видалено', 'success');
-            }
+            if (typeof window.showAlert === 'function') window.showAlert(data.message || 'Замовлення видалено', 'success');
 
-            // Красиво удаляем строку из таблицы с анимацией или просто .remove()
             const row = buttonElement.closest('tr');
             if (row) {
                 row.style.transition = 'all 0.3s ease';
                 row.style.opacity = '0';
                 row.style.transform = 'scale(0.95)';
-
                 setTimeout(() => {
                     row.remove();
-
-                    // Если таблица стала пустой, можно показать сообщение "У пользователя пока нет заказов"
                     const tbody = document.querySelector('table.table tbody');
-                    if (tbody && tbody.children.length === 0) {
-                        location.reload(); // Проще всего обновить страницу, чтобы Laravel показал alert-info
-                    }
+                    if (tbody && tbody.children.length === 0) location.reload();
                 }, 300);
             }
         })
         .catch(error => {
             buttonElement.disabled = false;
-            if (typeof window.showAlert === 'function') {
-                window.showAlert('Не вдалося видалити замовлення', 'error');
-            }
+            if (typeof window.showAlert === 'function') window.showAlert('Не вдалося видалити замовлення', 'error');
         });
 };
-/*function animateFlyToCart(imgElement) {
-    const cartBtn = document.getElementById('cartBtnContainer') || document.querySelector('.cart-btn');
-    if (!imgElement || !cartBtn) return;
+window.initGlobalChoices = function () {
+    if (typeof Choices === 'undefined') return;
 
-    // 1. Получаем координаты картинки товара на экране
-    const imgRect = imgElement.getBoundingClientRect();
-    // 2. Получаем координаты кнопки корзины в навбаре
-    const cartRect = cartBtn.getBoundingClientRect();
+    document.querySelectorAll('.js-choice').forEach(element => {
+        // Проверка на двойную инициализацию
+        if (element.classList.contains('choices__input') ||
+            element.closest('.choices') ||
+            element.hasAttribute('data-choices-initialized')) {
+            return;
+        }
 
-    // 3. Создаем клона картинки
-    const clone = imgElement.cloneNode(true);
-    clone.classList.add('flying-cart-item');
+        element.setAttribute('data-choices-initialized', 'true');
 
-    // Ставим клона точно поверх оригинальной картинки
-    clone.style.left = `${imgRect.left}px`;
-    clone.style.top = `${imgRect.top}px`;
-    clone.style.width = `${imgRect.width}px`;
-    clone.style.height = `${imgRect.height}px`;
+        new Choices(element, {
+            searchEnabled: true,
+            shouldSort: false,
+            itemSelectText: '',
+            // 1. Исправляем инпут во время инициализации конкретного селектора
+            callbackOnInit: function () {
+                const container = this.containerOuter.element;
+                if (!container) return;
 
-    document.body.appendChild(clone);
-
-    // 4. Запускаем полет (нужен микро-таймаут, чтобы браузер успел отрисовать клон)
-    requestAnimationFrame(() => {
-        // Вычисляем точку приземления (центр кнопки корзины)
-        const targetX = cartRect.left + (cartRect.width / 2) - (imgRect.width / 4);
-        const targetY = cartRect.top + (cartRect.height / 2) - (imgRect.height / 4);
-
-        // Перемещаем клон в корзину, одновременно сжимая его до 20px и делая полупрозрачным
-        clone.style.transform = `translate(${targetX - imgRect.left}px, ${targetY - imgRect.top}px) scale(0.15)`;
-        clone.style.opacity = '0.4';
+                const clonedInput = container.querySelector('.choices__input--cloned');
+                if (clonedInput) {
+                    const originalId = element.id || 'choices_field';
+                    // Привязываем имя поискового инпута к ID оригинального селектора
+                    clonedInput.setAttribute('id', `${originalId}_search`);
+                    clonedInput.setAttribute('name', `${originalId}_search_name`);
+                }
+            }
+        });
     });
 
-    // 5. Когда анимация завершилась (через 800мс), удаляем клона и слегка "встряхиваем" корзину
-    setTimeout(() => {
-        clone.remove();
-
-        // Эффект микро-удара для корзины (по желанию)
-        cartBtn.style.transform = 'scale(1.15)';
-        setTimeout(() => {
-            cartBtn.style.transform = 'none';
-        }, 150);
-
-    }, 800);
-}*/
+    // 2. Железобетонная зачистка для ВСЕХ созданных инпутов Choices на странице
+    // (на случай, если плагин успел сгенерировать инпуты до callback)
+    document.querySelectorAll('.choices__input--cloned').forEach((input, index) => {
+        if (!input.hasAttribute('id') || input.getAttribute('id') === '') {
+            input.setAttribute('id', `choices_search_fallback_${index}`);
+        }
+        if (!input.hasAttribute('name') || input.getAttribute('name') === '') {
+            input.setAttribute('name', `choices_name_fallback_${index}`);
+        }
+    });
+};

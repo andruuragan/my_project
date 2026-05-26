@@ -217,7 +217,53 @@
     </div>
 
     {{-- АЯКС СКРИПТ --}}
+   {{-- АЯКС СКРИПТ З АНІМАЦІЄЮ ПОЛЬОТУ --}}
     <script>
+        // 1. Глобальна функція анімації польоту товару в кошик
+        function animateFlyToCart(imgElement) {
+            const cartBtn = document.querySelector('.cart-btn') || document.getElementById('cartBtnContainer') || document.getElementById('cartTotalNav');
+            if (!imgElement || !cartBtn) return;
+
+            const imgRect = imgElement.getBoundingClientRect();
+            const cartRect = cartBtn.getBoundingClientRect();
+
+            const clone = imgElement.cloneNode(true);
+            clone.classList.add('flying-cart-item');
+
+            clone.style.position = 'fixed';
+            clone.style.zIndex = '99999';
+            clone.style.pointerEvents = 'none';
+            clone.style.objectFit = 'contain';
+            clone.style.background = '#fff';
+            clone.style.borderRadius = '12px';
+            clone.style.boxShadow = '0 10px 25px rgba(0,0,0,0.15)';
+            clone.style.transition = 'transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.8s ease, width 0.8s ease, height 0.8s ease';
+
+            clone.style.left = `${imgRect.left}px`;
+            clone.style.top = `${imgRect.top}px`;
+            clone.style.width = `${imgRect.width}px`;
+            clone.style.height = `${imgRect.height}px`;
+
+            document.body.appendChild(clone);
+
+            requestAnimationFrame(() => {
+                clone.style.transformOrigin = 'left top';
+                const targetX = cartRect.left + 15;
+                const targetY = cartRect.top + (cartRect.height / 2) - 8;
+                clone.style.transform = `translate(${targetX - imgRect.left}px, ${targetY - imgRect.top}px) scale(0.12)`;
+                clone.style.opacity = '0.15';
+            });
+
+            setTimeout(() => {
+                clone.remove();
+                
+                // Анімація легкої пульсації для кнопки/іконки кошика, куди прилетів товар
+                cartBtn.style.transition = 'transform 0.15s ease';
+                cartBtn.style.transform = 'scale(1.15)';
+                setTimeout(() => { cartBtn.style.transform = 'none'; }, 150);
+            }, 800);
+        }
+
         document.addEventListener('DOMContentLoaded', function () {
             // Керування кнопками кількості та динамічний перерахунок суми
             const btnMinus = document.getElementById('btn-minus');
@@ -297,6 +343,13 @@
                         })
                         .then(data => {
                             addToCartBtn.disabled = false;
+
+                            // Визвано функцію анімації польоту
+                            // Шукаємо зображення товару в лівій колонці
+                            const productImg = document.querySelector('.col-md-5 img, .col-lg-4 img');
+                            if (productImg) {
+                                animateFlyToCart(productImg);
+                            }
 
                             // Перетворюємо кнопку на зелену
                             addToCartBtn.removeAttribute('style');
