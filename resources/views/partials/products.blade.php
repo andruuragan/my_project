@@ -2,10 +2,10 @@
     <div class="row">
 
         @forelse($catalogs as $catalog)
-
             <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
                 <div class="card product-card shadow-sm h-100 border-0 rounded-4 overflow-hidden position-relative bg-white">
 
+                    {{-- ЗОБРАЖЕННЯ ТА КНОПКИ ВЕРХУ --}}
                     <div class="position-relative product-image-wrapper bg-light d-flex align-items-center justify-content-center" style="height: 220px; overflow: hidden;">
                         <img src="{{ Storage::url($catalog->image) }}"
                              class="product-image"
@@ -29,6 +29,7 @@
                                         class="icon-btn guest-wishlist-btn rounded-circle shadow-sm border-0 d-flex align-items-center justify-content-center bg-white"
                                         data-bs-toggle="modal" 
                                         data-bs-target="#loginModal"
+                                        data-bs-toggle="tooltip"
                                         data-bs-placement="top"
                                         data-bs-custom-class="custom-orange-tooltip"
                                         data-bs-title="Авторизуйтесь, щоб додати в обране"
@@ -62,8 +63,8 @@
                         </div>
                     </div>
 
+                    {{-- ОПИС ТА ХАРАКТЕРИСТИКИ --}}
                     <div class="card-body d-flex flex-column p-3">
-                        
                         <h6 class="mb-2 line-clamp-2" style="height: 40px; overflow: hidden; line-height: 1.3;">
                             <a href="{{ route('catalog.public.show', $catalog->id) }}" class="product-title-link fw-semibold text-decoration-none">
                                 {{ $catalog->name }}
@@ -76,6 +77,7 @@
                             Ø{{ $catalog->diameter }} • {{ $catalog->thickness }} • AISI {{ $catalog->grade }}
                         </div>
 
+                        {{-- ЦІНА --}}
                         <div class="mt-auto pt-2">
                             <div class="d-flex align-items-center mb-1">
                                 <div class="price-badge px-3 py-1 rounded-3 d-inline-flex align-items-baseline">
@@ -93,9 +95,9 @@
                             </div>
                         </div>
 
+                        {{-- КНОПКА КУПИТИ / КІЛЬКІСТЬ --}}
                         <form class="add-to-cart-form" action="{{ route('cart.add', $catalog->id) }}" method="POST">
                             @csrf
-
                             <div class="d-flex align-items-center justify-content-between gap-2 mt-1">
                                 <div class="input-group rounded-pill border border-secondary-subtle overflow-hidden bg-light custom-qty-group" style="width: 105px; height: 40px;">
                                     <button type="button" class="btn p-0 fw-bold qty-btn minus" style="width: 34px;">−</button>
@@ -110,25 +112,23 @@
 
                                 @auth
                                     <button type="submit" 
-                                            class="btn-cart-circle add-cart-btn shadow-sm d-flex align-items-center justify-content-center rounded-3" 
+                                            class="btn-cart-circle add-cart-btn shadow-sm d-flex align-items-center justify-content-center" 
                                             data-bs-toggle="tooltip"
                                             data-bs-placement="top"
                                             data-bs-custom-class="custom-orange-tooltip"
-                                            data-bs-title="Додати у кошик"
-                                            style="width: 40px; height: 40px;">
+                                            data-bs-title="Додати у кошик">
                                         <i class="bi bi-cart3 fs-5"></i>
                                     </button>
                                 @else
                                     <div data-bs-toggle="tooltip"
                                          data-bs-placement="top"
                                          data-bs-custom-class="custom-orange-tooltip"
-                                         data-bs-title="Авторизуйтесь для додавання товару">
-                                         
+                                         data-bs-title="Авторизуйтесь для додавання товару"
+                                         style="width: 44px; height: 44px;">
                                         <button type="button" 
-                                                class="btn-cart-circle add-cart-btn shadow-sm d-flex align-items-center justify-content-center rounded-3" 
+                                                class="btn-cart-circle add-cart-btn shadow-sm d-flex align-items-center justify-content-center" 
                                                 data-bs-toggle="modal"
-                                                data-bs-target="#loginModal"
-                                                style="width: 40px; height: 40px;">
+                                                data-bs-target="#loginModal">
                                             <i class="bi bi-cart3 fs-5"></i>
                                         </button>
                                     </div>
@@ -139,7 +139,6 @@
                     </div>
                 </div>
             </div>
-
         @empty
             <div class="col-12 text-center py-5">
                 <p class="text-muted">Товари не знайдені</p>
@@ -155,114 +154,165 @@
 
 {{-- СТИЛІ КАРТКИ --}}
 <style>
-    .product-card {
-        transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .product-card:hover {
-        transform: translateY(-6px);
-        box-shadow: 0 12px 26px rgba(0,0,0,0.08) !important;
-    }
-    .product-card:hover .product-image {
-        transform: scale(1.04);
-    }
+.product-card {
+    border: 1px solid transparent !important;
+    transition:
+        transform 0.28s cubic-bezier(0.4, 0, 0.2, 1),
+        box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1),
+        border-color 0.28s ease;
+}
 
-    .product-title-link {
-        color: #1f2937;
-        transition: color 0.2s ease;
-    }
-    .product-title-link:hover {
-        color: #d97706;
-    }
+.product-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 26px rgba(0,0,0,0.08) !important;
+    border-color: rgba(217,119,6,0.15);
+}
 
-    .price-badge {
-        background-color: rgba(31, 25, 19, 0.1); 
-        color: #111827; 
-        border: 1px solid rgba(217, 119, 6, 0.12); 
-    }
-    .item-price {
-        font-weight: 850;
-        letter-spacing: -0.5px;
-    }
-    .currency-label {
-        color: #d97706; 
-        font-size: 1.05rem;
-    }
-    .text-muted-dark {
-        color: #4b5563;
-    }
+.product-card:hover .product-image {
+    transform: scale(1.04);
+}
 
-    .btn-cart-circle {
-        background: #d97706;
-        color: #ffffff;
-        border: none;
-        transition: all 0.2s ease;
-    }
-    .btn-cart-circle:hover {
-        background: #b45309;
-        transform: scale(1.08);
-    }
-    .btn-cart-circle:active {
-        transform: scale(0.95);
-    }
+.product-title-link {
+    color: #1f2937;
+    transition: color 0.2s ease;
+}
 
-    .custom-qty-group .qty-btn {
-        color: #4b5563;
-        background-color: transparent;
-        border: none;
-        box-shadow: none !important;
-        transition: background-color 0.15s ease, color 0.15s ease;
-    }
-    .custom-qty-group .qty-btn:hover {
-        background-color: #1f2937 !important;
-        color: #ffffff !important;
-    }
+.product-title-link:hover {
+    color: #d97706;
+}
 
-    .icon-btn {
-        transition: all 0.2s ease;
-        opacity: 0.65; 
-    }
-    .product-card:hover .icon-btn {
-        opacity: 1;
-    }
-    .icon-btn:hover {
-        transform: scale(1.1);
-    }
-    .icon-btn:hover i {
-        color: #d97706 !important;
-    }
-    .icon-btn:hover i.bi-heart-fill {
-        color: #dc3545 !important;
-    }
+.product-image-wrapper {
+    border-bottom: 1px solid rgba(0,0,0,0.04);
+}
 
-    .custom-orange-tooltip .tooltip-inner {
-        background-color: #d97706 !important;
-        color: #ffffff !important;
-        font-weight: 500;
-        font-size: 0.78rem;
-        padding: 5px 10px;
-        border-radius: 20px;
-    }
-    .custom-orange-tooltip .tooltip-arrow::before {
-        border-top-color: #d97706 !important;
-    }
-    
-    .product-image-wrapper .product-image {
-        width: 100% !important;
-        height: 100% !important;
-    }
-    .qty-input::-webkit-outer-spin-button,
-    .qty-input::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-    }
+.product-image-wrapper .product-image {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.product-specs {
+    background: rgba(0,0,0,0.03);
+    padding: 6px 10px;
+    border-radius: 10px;
+    display: inline-flex;
+    width: fit-content;
+}
+
+.price-badge {
+    background-color: rgba(31, 25, 19, 0.1);
+    color: #111827;
+    border: 1px solid rgba(217, 119, 6, 0.12);
+    backdrop-filter: blur(6px);
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.5),
+        0 2px 6px rgba(0,0,0,0.03);
+}
+
+.item-price {
+    font-weight: 850;
+    letter-spacing: -0.5px;
+}
+
+.currency-label {
+    color: #d97706;
+    font-size: 1.05rem;
+}
+
+.text-muted-dark {
+    color: #4b5563;
+}
+
+/* Кнопка кошика — фіксований розмір для всіх станів */
+.btn-cart-circle {
+    background: #d97706;
+    color: #ffffff;
+    border: none;
+    width: 44px;
+    height: 44px;
+    border-radius: 14px;
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.btn-cart-circle:hover {
+    background: #b45309;
+    transform: scale(1.08);
+    box-shadow: 0 8px 18px rgba(217,119,6,0.25);
+}
+
+.btn-cart-circle:active {
+    transform: scale(0.95);
+}
+
+.custom-qty-group .qty-btn {
+    color: #4b5563;
+    background-color: transparent;
+    border: none;
+    box-shadow: none !important;
+    transition:
+        background-color 0.15s ease,
+        color 0.15s ease;
+}
+
+.custom-qty-group .qty-btn:hover {
+    background-color: #1f2937 !important;
+    color: #ffffff !important;
+}
+
+/* Плавна поява верхніх іконок при ховері */
+/* Іконки завжди видимі */
+.icon-btn {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    opacity: 1;               /* Завжди непрозорі */
+    transform: translateY(0);  /* Початкова позиція без зміщення */
+}
+
+/* Видаляємо ефект появи при ховері на картку, 
+   але залишаємо невелике збільшення самої іконки, коли курсор прямо на ній */
+.icon-btn:hover {
+    transform: scale(1.1) !important;
+}
+
+.icon-btn:hover {
+    transform: scale(1.1) !important;
+}
+
+.icon-btn:hover i {
+    color: #d97706 !important;
+}
+
+.icon-btn:hover i.bi-heart-fill {
+    color: #dc3545 !important;
+}
+
+.custom-orange-tooltip .tooltip-inner {
+    background-color: #d97706 !important;
+    color: #ffffff !important;
+    font-weight: 500;
+    font-size: 0.78rem;
+    padding: 5px 10px;
+    border-radius: 20px;
+}
+
+.custom-orange-tooltip .tooltip-arrow::before {
+    border-top-color: #d97706 !important;
+}
+
+.qty-input::-webkit-outer-spin-button,
+.qty-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
 </style>
 
 {{-- ФУНКЦІОНАЛ (JS) --}}
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-    // Безопасная инициализация тултипов при наведении
+    // Надійна ініціалізація тултипів для динамічних об'єктів
     document.body.addEventListener('mouseover', function (event) {
-        const target = event.target.closest('[data-bs-title]');
+        const target = event.target.closest('[data-bs-toggle="tooltip"]');
         if (target && typeof bootstrap !== 'undefined' && !bootstrap.Tooltip.getInstance(target)) {
             const tooltip = new bootstrap.Tooltip(target, {
                 trigger: 'hover'

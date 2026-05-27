@@ -31,13 +31,14 @@
 
                         {{-- NAME --}}
                         <div class="col-md-6">
-                            <label class="form-label">Им'я</label>
-
-                            <input type="text"
-                                   name="name"
-                                   class="form-control"
-                                   value="{{ old('name', $user->name) }}"
-                                   required>
+                           <label class="form-label" for="name">Ім'я</label>
+<input type="text"
+       name="name"
+       id="name" {{-- id має точно збігатися з for у лейблі --}}
+       class="form-control"
+       value="{{ old('name', $user->name) }}"
+       autocomplete="name"
+       required>
 
                             @error('name')
                             <small class="text-danger">{{ $message }}</small>
@@ -46,13 +47,15 @@
 
                         {{-- EMAIL --}}
                         <div class="col-md-6">
-                            <label class="form-label">Email</label>
+                            <label class="form-label" for="email">Email</label>
 
-                            <input type="email"
-                                   name="email"
-                                   class="form-control"
-                                   value="{{ old('email', $user->email) }}"
-                                   required>
+<input type="email"
+       name="email"
+       id="email"
+       class="form-control"
+       value="{{ old('email', $user->email) }}"
+       autocomplete="email"
+       required>
 
                             @error('email')
                             <small class="text-danger">{{ $message }}</small>
@@ -61,14 +64,17 @@
 
                         {{-- PHONE --}}
                         <div class="col-md-6">
-                            <label class="form-label">Телефон</label>
+                            <label class="form-label" for="phone">Телефон</label>
 
-                            <input type="text"
-                                   name="phone"
-                                   class="form-control"
-                                   value="{{ old('phone', $user->phone) }}"
-                                   inputmode="numeric"
-                                   oninput="this.value=this.value.replace(/[^0-9+]/g,'')">
+<input type="text"
+       name="phone"
+       id="phone"
+       class="form-control"
+       value="{{ old('phone', $user->phone) }}"
+       inputmode="numeric"
+       oninput="this.value=this.value.replace(/[^0-9+]/g,'')"
+       autocomplete="tel"
+       required>
 
                             @error('phone')
                             <small class="text-danger">{{ $message }}</small>
@@ -77,10 +83,11 @@
 
                         {{-- ROLE --}}
                         <div class="col-md-6">
-                            <label class="form-label">Роль</label>
-
-                            <select name="role" class="form-select">
-
+                            <label class="form-label" for="role">Роль</label>
+                            <select name="role" 
+        id="role" {{-- Додано id для зв'язку з label --}}
+        class="form-select" 
+        required>
                                 <option value="user"
                                     {{ old('role', $user->role) == 'user' ? 'selected' : '' }}>
                                     User
@@ -100,12 +107,13 @@
 
                         {{-- PASSWORD --}}
                         <div class="col-md-6">
-                            <label class="form-label">
-                                Пароль (залиш пустим якщо не міняти)
-                            </label>
+                            <label class="form-label" for="password">
+    Пароль (залиш пустим якщо не міняти)
+</label>
 
                             <input type="password"
                                    name="password"
+                                   id="password" 
                                    class="form-control">
 
                             @error('password')
@@ -115,12 +123,15 @@
 
                         {{-- CONFIRM --}}
                         <div class="col-md-6">
-                            <label class="form-label">Підтверження пароля</label>
+    <label class="form-label" for="password_confirmation">Підтвердження пароля</label>
 
-                            <input type="password"
-                                   name="password_confirmation"
-                                   class="form-control">
-                        </div>
+    <input type="password"
+           name="password_confirmation"
+           id="password_confirmation" {{-- Додано id для зв'язку з label --}}
+           class="form-control"
+           autocomplete="new-password" {{-- Браузер розуміє, що це пара для нового пароля --}}
+           placeholder="••••••••">
+</div>
 
                     </div>
 
