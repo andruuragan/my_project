@@ -58,10 +58,11 @@
             <div class="col-12">
                 <label class="form-label" for="phone">Номер телефону</label>
                 <input type="text" id="phone" name="phone"
-                       class="form-control @error('phone') is-invalid @enderror"
-                       value="{{ old('phone', $user->phone) }}"
-                       placeholder="+38 (000) 000-00-00"
-                       required>
+       class="form-control @error('phone') is-invalid @enderror"
+       value="{{ old('phone', $user->phone) }}"
+       placeholder="+38 (000) 000-00-00"
+       autocomplete="tel"
+       required>
 
                 @error('phone')
                 <small class="text-danger">{{ $message }}</small>

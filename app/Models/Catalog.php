@@ -42,4 +42,5 @@ class Catalog extends Model
         // Товар лайкнутий багатьма користувачами
         return $this->belongsToMany(User::class, 'wishlists', 'catalog_id', 'user_id')->withTimestamps();
     }
+    
 }

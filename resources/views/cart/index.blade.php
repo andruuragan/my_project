@@ -57,9 +57,11 @@
                                     <button type="button" class="qty-btn minus">−</button>
 
                                     <input type="number"
-                                           class="qty-input qty text-center"
-                                           value="{{ $qty }}"
-                                           min="1">
+       name="qty"
+       autocomplete="off"
+       class="qty-input qty text-center"
+       value="{{ $qty }}"
+       min="1">
 
                                     <button type="button" class="qty-btn plus">+</button>
                                 </div>

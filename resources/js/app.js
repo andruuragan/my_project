@@ -8,12 +8,11 @@ Alpine.start();
 
 const csrf = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
 
-// Глобальная функция инициализации Choices.js с защитой
+// ======= 1. ГЛОБАЛЬНАЯ ИНИЦИАЛИЗАЦИЯ CHOICES.JS =======
 window.initGlobalChoices = function () {
     if (typeof Choices === 'undefined') return;
 
     document.querySelectorAll('.js-choice').forEach(element => {
-        // Жесткая проверка: если Choices уже сидит на элементе, игнорируем его
         if (element.classList.contains('choices__input') ||
             element.closest('.choices') ||
             element.dataset.choicesInitialized === 'true' ||
@@ -36,21 +35,62 @@ window.initGlobalChoices = function () {
                     const originalId = element.id || 'choices';
                     clonedInput.setAttribute('id', `${originalId}_search`);
                     clonedInput.setAttribute('name', `${originalId}_search_name`);
+                    // Исправление доступности: добавляем скрытый aria-label для роботов-валидаторов
+                    clonedInput.setAttribute('aria-label', 'Пошук варіантів');
                 }
             }
         });
     });
+
+    document.querySelectorAll('.choices__input--cloned').forEach((input, index) => {
+        if (!input.hasAttribute('id') || input.getAttribute('id') === '') {
+            input.setAttribute('id', `choices_search_fallback_${index}`);
+        }
+        if (!input.hasAttribute('name') || input.getAttribute('name') === '') {
+            input.setAttribute('name', `choices_name_fallback_${index}`);
+        }
+        if (!input.hasAttribute('aria-label')) {
+            input.setAttribute('aria-label', 'Пошук');
+        }
+    });
 };
 
-document.addEventListener('DOMContentLoaded', function () {
-    // Запускаем Choices при первой загрузке страницы
-    window.initGlobalChoices();
+// ======= NEW: ИНИЦИАЛИЗАЦИЯ CKEDITOR С ИСПРАВЛЕНИЕМ ЛЕЙБЛОВ =======
+window.initRichTextEditors = function () {
+    if (typeof ClassicEditor === 'undefined') return;
 
-    // ======= УПРАВЛЕНИЕ КОЛИЧЕСТВОМ В КАРТОЧКАХ =======
+    document.querySelectorAll('.rich-text').forEach(textarea => {
+        // Проверяем, не инициализирован ли редактор ранее
+        if (textarea.dataset.editorInitialized === 'true') return;
+        textarea.setAttribute('data-editorInitialized', 'true');
+
+        ClassicEditor
+            .create(textarea, {
+                placeholder: 'Введіть текст тут...'
+            })
+            .then(editor => {
+                const editableElement = editor.ui.view.editable.element;
+                // Привязываем внутренний voice-label редактора к ID оригинального textarea
+                if (editableElement && textarea.id) {
+                    editableElement.setAttribute('aria-label', textarea.id);
+                }
+            })
+            .catch(error => {
+                console.error('Помилка инициалізації CKEditor:', error);
+            });
+    });
+};
+
+// ======= 2. ОБЩИЕ СКРИПТЫ ДОКУМЕНТА =======
+document.addEventListener('DOMContentLoaded', function () {
+    window.initGlobalChoices();
+    window.initRichTextEditors(); // Запускаем наши текстовые редакторы
+
+    // Управление количеством в карточках товаров
     function updateCard(card) {
-        const input = card.querySelector('.qty-value');
+        const input = card.querySelector('.qty-input');
         const priceEl = card.querySelector('.item-price');
-        const totalWrap = card.querySelector('.total-price');
+        const totalWrap = card.querySelector('.total-price-box');
         const totalEl = card.querySelector('.total-sum');
 
         if (!input || !priceEl || !totalEl) return;
@@ -63,43 +103,88 @@ document.addEventListener('DOMContentLoaded', function () {
         totalEl.textContent = total.toLocaleString('uk-UA');
 
         if (totalWrap) {
-            totalWrap.classList.toggle('show', qty > 1);
+            totalWrap.style.opacity = qty > 1 ? '1' : '0';
         }
     }
 
-    // Делегирование кликов для ПЛЮС / МИНУС (работает динамически)
+    // Централизованное делегирование кликов (Плюс, Минус, Тултипы, Лайки)
     document.addEventListener('click', function (e) {
-        const plus = e.target.closest('.plus');
-        const minus = e.target.closest('.minus');
+        const target = e.target;
 
-        if (!plus && !minus) return;
-
-        const card = e.target.closest('.product-card');
-        if (!card) return;
-
-        const input = card.querySelector('.qty-value');
-        if (!input) return;
-
-        if (plus) {
-            input.value = (parseInt(input.value) || 1) + 1;
-        }
-        if (minus) {
-            input.value = Math.max(1, (parseInt(input.value) || 1) - 1);
+        // Скрытие тултипа при клике "В корзину"
+        const cartBtn = target.closest('.add-cart-btn');
+        if (cartBtn && typeof bootstrap !== 'undefined') {
+            const tooltipInstance = bootstrap.Tooltip.getInstance(cartBtn);
+            if (tooltipInstance) tooltipInstance.hide();
         }
 
-        updateCard(card);
+        // Кнопки Плюс и Минус в каталоге
+        const plus = target.closest('.plus');
+        const minus = target.closest('.minus');
+
+        if (plus || minus) {
+            const card = target.closest('.product-card');
+            if (!card) return;
+
+            const input = card.querySelector('.qty-input');
+            if (!input) return;
+
+            let currentQty = parseInt(input.value) || 1;
+
+            if (plus) currentQty++;
+            if (minus && currentQty > 1) currentQty--;
+
+            input.value = currentQty;
+            updateCard(card);
+            return;
+        }
+
+        // Логика Избранного (Лайки)
+        if (target.closest('.guest-wishlist-btn')) return;
+        const wishlistBtn = target.closest('.wishlist-btn');
+        if (wishlistBtn) {
+            const catalogId = wishlistBtn.dataset.id;
+
+            fetch(`/wishlist/toggle/${catalogId}`, {
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': csrf || document.querySelector('meta[name="csrf-token"]')?.getAttribute('content'),
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                }
+            })
+                .then(response => {
+                    if (response.status === 401 && typeof bootstrap !== 'undefined') {
+                        const loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
+                        loginModal.show();
+                        return;
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data && data.success) {
+                        const icon = wishlistBtn.querySelector('i');
+                        if (data.is_liked) {
+                            icon.className = 'bi bi-heart-fill text-danger';
+                        } else {
+                            icon.className = 'bi bi-heart text-muted';
+                        }
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        }
     });
 
-    // Ручной ввод количества
+    // Ручной ввод количества в каталоге
     document.addEventListener('input', function (e) {
-        if (!e.target.classList.contains('qty-value')) return;
+        if (!e.target.classList.contains('qty-input')) return;
         const card = e.target.closest('.product-card');
         if (!card) return;
 
         updateCard(card);
     });
 
-    // ======= ДИНАМИЧЕСКИЙ АЯКС-ФИЛЬТР ТОВАРОВ =======
+    // Динамический AJAX-фильтр
     const filterForm = document.querySelector('.filter-form');
     const productsWrapper = document.getElementById('productsWrapper');
 
@@ -119,7 +204,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     productsWrapper.innerHTML = html;
                     productsWrapper.style.opacity = '1';
 
-                    // Важно: Переинициализируем кастомные фичи внутри карточек, если они есть
                     if (typeof initAwesomeTooltips === 'function') {
                         initAwesomeTooltips();
                     }
@@ -130,7 +214,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 });
         }
 
-        // Следим за изменениями фильтров
         filterForm.querySelectorAll('select, input').forEach(element => {
             element.addEventListener('change', sendFilterAjax);
         });
@@ -151,7 +234,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
-// ======= СИСТЕМНЫЕ ФУНКЦИИ КОРЗИНЫ (ГЛОБАЛЬНЫЕ) =======
+// ======= 3. СИСТЕМНЫЕ ФУНКЦИИ КОРЗИНЫ (ГЛОБАЛЬНЫЕ) =======
 window.refreshCart = function () {
     fetch('/cart/state')
         .then(res => res.json())
@@ -170,10 +253,10 @@ window.refreshCart = function () {
         .catch(err => console.error('Помилка оновлення кошика:', err));
 };
 
-// Логика страницы корзины (работа с таблицей товаров)
+// ======= 4. ЛОГИКА СТРАНИЦЫ КОРЗИНЫ (ТАБЛИЦА) =======
 document.addEventListener('DOMContentLoaded', function () {
     const cartTable = document.querySelector('table.table');
-    if (!cartTable) return; // Защита, если мы не на странице корзины
+    if (!cartTable) return;
 
     function parsePrice(text) {
         return parseFloat(text.replace(/\s/g, '').replace('грн.', '')) || 0;
@@ -208,7 +291,7 @@ document.addEventListener('DOMContentLoaded', function () {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': csrf,
+                'X-CSRF-TOKEN': csrf || document.querySelector('meta[name="csrf-token"]')?.getAttribute('content'),
                 'Accept': 'application/json'
             },
             body: JSON.stringify({ qty })
@@ -221,7 +304,7 @@ document.addEventListener('DOMContentLoaded', function () {
             });
     }
 
-    // Слушатели для корзины (Плюс / Минус / Ввод)
+    // Клики внутри корзины (Плюс / Минус / Удаление)
     cartTable.addEventListener('click', function (e) {
         const plus = e.target.closest('.plus');
         const minus = e.target.closest('.minus');
@@ -251,7 +334,7 @@ document.addEventListener('DOMContentLoaded', function () {
             fetch(`/cart/remove/${id}`, {
                 method: 'DELETE',
                 headers: {
-                    'X-CSRF-TOKEN': csrf,
+                    'X-CSRF-TOKEN': csrf || document.querySelector('meta[name="csrf-token"]')?.getAttribute('content'),
                     'Accept': 'application/json'
                 }
             })
@@ -264,12 +347,14 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
+    // Ручной ввод количества в корзине
     cartTable.addEventListener('input', function (e) {
         if (e.target.classList.contains('qty')) {
             updateServer(e.target.closest('tr'));
         }
     });
 
+    // Очистка корзины целиком
     const clearBtn = document.querySelector('#clearCartBtn');
     if (clearBtn) {
         clearBtn.addEventListener('click', function (e) {
@@ -279,7 +364,7 @@ document.addEventListener('DOMContentLoaded', function () {
             fetch('/cart/clear', {
                 method: 'POST',
                 headers: {
-                    'X-CSRF-TOKEN': csrf,
+                    'X-CSRF-TOKEN': csrf || document.querySelector('meta[name="csrf-token"]')?.getAttribute('content'),
                     'Accept': 'application/json'
                 }
             })
@@ -294,7 +379,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
-// Глобальные уведомления
+// ======= 5. АДМИН-ФУНКЦИИ И УВЕДОМЛЕНИЯ =======
 window.showAlert = function (message, type = 'success') {
     const alert = document.createElement('div');
     alert.className = `custom-alert ${type}-alert`;
@@ -311,7 +396,6 @@ window.showAlert = function (message, type = 'success') {
     }, 4000);
 };
 
-// Смена статусов (Админ-панель)
 window.changeOrderStatus = function (selectElement, url) {
     const status = selectElement.value;
     selectElement.disabled = true;
@@ -356,7 +440,6 @@ window.changeOrderStatus = function (selectElement, url) {
         });
 };
 
-// Удаление заказа (Админ-панель)
 window.deleteOrder = function (buttonElement, url) {
     if (!confirm('Ви впевнені, що хочете видалити цей замовлення?')) return;
     buttonElement.disabled = true;
@@ -393,48 +476,4 @@ window.deleteOrder = function (buttonElement, url) {
             buttonElement.disabled = false;
             if (typeof window.showAlert === 'function') window.showAlert('Не вдалося видалити замовлення', 'error');
         });
-};
-window.initGlobalChoices = function () {
-    if (typeof Choices === 'undefined') return;
-
-    document.querySelectorAll('.js-choice').forEach(element => {
-        // Проверка на двойную инициализацию
-        if (element.classList.contains('choices__input') ||
-            element.closest('.choices') ||
-            element.hasAttribute('data-choices-initialized')) {
-            return;
-        }
-
-        element.setAttribute('data-choices-initialized', 'true');
-
-        new Choices(element, {
-            searchEnabled: true,
-            shouldSort: false,
-            itemSelectText: '',
-            // 1. Исправляем инпут во время инициализации конкретного селектора
-            callbackOnInit: function () {
-                const container = this.containerOuter.element;
-                if (!container) return;
-
-                const clonedInput = container.querySelector('.choices__input--cloned');
-                if (clonedInput) {
-                    const originalId = element.id || 'choices_field';
-                    // Привязываем имя поискового инпута к ID оригинального селектора
-                    clonedInput.setAttribute('id', `${originalId}_search`);
-                    clonedInput.setAttribute('name', `${originalId}_search_name`);
-                }
-            }
-        });
-    });
-
-    // 2. Железобетонная зачистка для ВСЕХ созданных инпутов Choices на странице
-    // (на случай, если плагин успел сгенерировать инпуты до callback)
-    document.querySelectorAll('.choices__input--cloned').forEach((input, index) => {
-        if (!input.hasAttribute('id') || input.getAttribute('id') === '') {
-            input.setAttribute('id', `choices_search_fallback_${index}`);
-        }
-        if (!input.hasAttribute('name') || input.getAttribute('name') === '') {
-            input.setAttribute('name', `choices_name_fallback_${index}`);
-        }
-    });
 };
