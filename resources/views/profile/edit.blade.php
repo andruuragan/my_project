@@ -2,9 +2,10 @@
 
 @section('content')
     <div class="container py-4">
-        <a href="{{ url()->previous() }}" class="btn btn-secondary mb-3">
-            ← Назад
-        </a>
+      <a href="#" onclick="smartBack(); return false;" class="btn btn-secondary mb-3">
+    ← Назад
+</a>
+    
 
         <h3 class="mb-4">👤 Профіль</h3>
 
@@ -35,4 +36,20 @@
 
 
     </div>
+   
+<script>
+function smartBack() {
+    // document.referrer — це адреса сторінки, з якої прийшов користувач
+    const previousPage = document.referrer;
+    
+    // Якщо попередньою сторінкою був сам профіль (петля), 
+    // або ми не знаємо звідки прийшли — йдемо на головну.
+    // Якщо ж є реальна попередня сторінка — йдемо туди.
+    if (previousPage && !previousPage.includes('/profile')) {
+        window.location.href = previousPage;
+    } else {
+        window.location.href = "{{ route('main.index') }}";
+    }
+}
+</script>
 @endsection

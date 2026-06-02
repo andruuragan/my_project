@@ -103,5 +103,27 @@
         </div>
 
     </form>
-
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const profileForm = document.querySelector('form[action="{{ route('profile.update') }}"]');
+    
+    if (profileForm) {
+        profileForm.addEventListener('submit', function (e) {
+            const mask = window.profilePhoneMaskInstance;
+            
+            // Якщо маска існує і не заповнена повністю — блокуємо відправку
+            if (mask && !mask.masked.isComplete) {
+                e.preventDefault(); // Зупиняємо відправку
+                
+                // Візуально показуємо помилку
+                const phoneInput = document.getElementById('phone');
+                phoneInput.classList.add('is-invalid');
+                
+                alert('Будь ласка, введіть повний номер телефону у форматі +38 (0XX) XXX-XX-XX');
+                return false;
+            }
+        });
+    }
+});
+</script>
 </section>

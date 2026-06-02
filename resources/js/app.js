@@ -55,28 +55,48 @@ window.initGlobalChoices = function () {
     });
 };
 
-// ======= NEW: ИНИЦИАЛИЗАЦИЯ CKEDITOR С ИСПРАВЛЕНИЕМ ЛЕЙБЛОВ =======
+// ======= ИСПРАВЛЕНО: НАДЕЖНАЯ ИНИЦИАЛИЗАЦИЯ CKEDITOR =======
 window.initRichTextEditors = function () {
     if (typeof ClassicEditor === 'undefined') return;
 
     document.querySelectorAll('.rich-text').forEach(textarea => {
-        // Проверяем, не инициализирован ли редактор ранее
-        if (textarea.dataset.editorInitialized === 'true') return;
-        textarea.setAttribute('data-editorInitialized', 'true');
+        // 1. Проверяем текстовый класс-маркер
+        if (textarea.classList.contains('ck-editor-init')) return;
+
+        // 2. Железобетонная физическая проверка DOM: если рядом уже лежит созданный CKEditor, выходим
+        if (textarea.nextElementSibling && textarea.nextElementSibling.classList.contains('ck-editor')) {
+            textarea.classList.add('ck-editor-init');
+            return;
+        }
+
+        // 3. МГНОВЕННО маркируем элемент ДО асинхронного вызова ClassicEditor.create
+        textarea.classList.add('ck-editor-init');
 
         ClassicEditor
             .create(textarea, {
                 placeholder: 'Введіть текст тут...'
             })
             .then(editor => {
-                const editableElement = editor.ui.view.editable.element;
-                // Привязываем внутренний voice-label редактора к ID оригинального textarea
-                if (editableElement && textarea.id) {
-                    editableElement.setAttribute('aria-label', textarea.id);
+                // Доступ к обертке созданного редактора для исправления accessibility (accessibility-валидаторы)
+                const editorWrapper = editor.ui.view.element;
+                if (editorWrapper) {
+                    const voiceLabel = editorWrapper.querySelector('.ck-voice-label');
+                    const editable = editorWrapper.querySelector('.ck-editor__editable');
+
+                    if (voiceLabel && editable) {
+                        if (!editable.hasAttribute('aria-label')) {
+                            editable.setAttribute('aria-label', voiceLabel.textContent || textarea.id || 'Редактор');
+                        }
+                        // Скрываем служебный voice-label, чтобы он визуально не ломал верстку
+                        voiceLabel.style.display = 'none';
+                        voiceLabel.style.visibility = 'hidden';
+                    }
                 }
             })
             .catch(error => {
-                console.error('Помилка инициалізації CKEditor:', error);
+                // Если произошла ошибка, снимаем маркер, чтобы можно было попробовать инициализировать снова
+                textarea.classList.remove('ck-editor-init');
+                console.error('Помилка ініціалізації CKEditor:', error);
             });
     });
 };
@@ -155,8 +175,11 @@ document.addEventListener('DOMContentLoaded', function () {
             })
                 .then(response => {
                     if (response.status === 401 && typeof bootstrap !== 'undefined') {
-                        const loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
-                        loginModal.show();
+                        const loginModalElement = document.getElementById('loginModal');
+                        if (loginModalElement) {
+                            const loginModal = bootstrap.Modal.getOrCreateInstance(loginModalElement);
+                            loginModal.show();
+                        }
                         return;
                     }
                     return response.json();
@@ -304,7 +327,6 @@ document.addEventListener('DOMContentLoaded', function () {
             });
     }
 
-    // Клики внутри корзины (Плюс / Минус / Удаление)
     cartTable.addEventListener('click', function (e) {
         const plus = e.target.closest('.plus');
         const minus = e.target.closest('.minus');
@@ -347,14 +369,12 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    // Ручной ввод количества в корзине
     cartTable.addEventListener('input', function (e) {
         if (e.target.classList.contains('qty')) {
             updateServer(e.target.closest('tr'));
         }
     });
 
-    // Очистка корзины целиком
     const clearBtn = document.querySelector('#clearCartBtn');
     if (clearBtn) {
         clearBtn.addEventListener('click', function (e) {
@@ -416,7 +436,7 @@ window.changeOrderStatus = function (selectElement, url) {
         })
         .then(data => {
             selectElement.disabled = false;
-            if (typeof window.showAlert === 'function') window.showAlert('Статус успішно оновлено!', 'success');
+            if (typeof window.showAlert === 'function') window.showAlert('Статус успешно оновлено!', 'success');
 
             const row = selectElement.closest('tr');
             if (row) {
@@ -477,3 +497,34 @@ window.deleteOrder = function (buttonElement, url) {
             if (typeof window.showAlert === 'function') window.showAlert('Не вдалося видалити замовлення', 'error');
         });
 };
+
+document.addEventListener('hide.bs.modal', function (event) {
+    const closingModal = event.target;
+    if (document.activeElement && closingModal.contains(document.activeElement)) {
+        document.activeElement.blur();
+    }
+});
+// 1. Оголошуємо глобально на самому початку скрипта
+// 1. Оголошуємо глобально
+window.phoneMaskInstance = null;
+document.addEventListener('DOMContentLoaded', function () {
+    // Маска для головного поля телефону (якщо є)
+    const phoneInput = document.getElementById('phone');
+    if (phoneInput) {
+        window.phoneMaskInstance = IMask(phoneInput, { mask: '+38 (000) 000-00-00' });
+    }
+
+    // Маска для телефону в модальному вікні реєстрації
+    const regPhoneInput = document.getElementById('register_phone');
+    if (regPhoneInput) {
+        window.regPhoneMaskInstance = IMask(regPhoneInput, { mask: '+38 (000) 000-00-00' });
+    }
+    const profilePhoneInput = document.getElementById('phone');
+    if (profilePhoneInput) {
+        window.profilePhoneMaskInstance = IMask(profilePhoneInput, {
+            mask: '+38 (000) 000-00-00'
+        });
+    }
+});
+
+   

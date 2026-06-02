@@ -25,6 +25,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\Admin\AdminOrderController;
 use App\Http\Controllers\Admin\AdminOrdersController;
 use App\Http\Controllers\WishlistController;
+use App\Http\Controllers\BlogController;
 
 /* ==========================================================================
 |  1. PUBLIC PAGES & AUTH CONTROL (Breeze)
@@ -112,6 +113,21 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::delete('/orders/{order}', [AdminOrderController::class, 'destroy'])->name('admin.orders.destroy');
     Route::post('/products/{id}/reset-likes', [AdminController::class, 'resetLikes'])->name('admin.products.reset-likes');
 });
+// Сторінка калькулятора димоходу
+Route::view('/chimney-calculator', 'pages.chimney-calculator')
+    ->name('chimney.calculator');
+
+// Сторінка інструкції "Як обрати діаметр димоходу"
+Route::view('/how-to-choose-chimney-diameter', 'pages.diameter')
+    ->name('chimney.diameter');
+
+// Сторінка правил безпечного монтажу системи
+Route::view('/montazh-dymohodu-pravyla', 'pages.installation-rules')
+    ->name('chimney.installation-rules');
+    // Обробка заявок на монтаж з форми
+Route::post('/order-installation', [App\Http\Controllers\CheckoutController::class, 'storeLead'])
+    ->name('leads.store');
+    Route::get('/blog/pomylky-montazhu', [BlogController::class, 'showInstallationErrors'])->name('blog.installation-errors');
 
 /* ==========================================================================
 |  4. SYSTEM INCLUDES

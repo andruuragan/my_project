@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Http;
 class CheckoutController extends Controller
 {
     /**
-     * Страница оформления заказа
+     * Сторінка оформлення замовлення
      */
     public function index()
     {
@@ -37,7 +37,7 @@ class CheckoutController extends Controller
     }
 
     /**
-     * Обработка заказа
+     * Обробка замовлення з кошика
      */
     public function store(Request $request)
     {
@@ -48,10 +48,10 @@ class CheckoutController extends Controller
                 ->with('error', 'Кошик порожній');
         }
 
-        // 1. Создаём заказ
+        // 1. Створюємо замовлення
         $order = Order::create([
             'user_id' => auth()->id(),
-            'total_price' => 0, // Временно
+            'total_price' => 0, // Тимчасово
             'status' => Order::STATUS_PENDING,
         ]);
 
@@ -75,27 +75,61 @@ class CheckoutController extends Controller
             ]);
         }
 
-        // 2. Обновляем итог заказа
+        // 2. Оновлюємо підсумкову вартість
         $order->update([
             'total_price' => $total,
         ]);
 
-       // 🔥 ОТПРАВКА УВЕДОМЛЕНИЯ В TELEGRAM (Через штатную систему Laravel)
+        // 3. Відправка сповіщення в Telegram
         try {
             Notification::route('telegram', env('TELEGRAM_ADMIN_CHAT_ID'))
                 ->notify(new OrderCreatedNotification($order));
         } catch (\Exception $e) {
-            // Если на локалке пропадет интернет, сайт не упадет, а просто запишет ошибку в лог
             logger()->error("Telegram failed: " . $e->getMessage());
         }
 
-        // 4. очищаем корзину
-        session()->forget('cart');
-
-        // 4. Очищаем корзину
+        // 4. Очищаємо кошик (дублікат прибрано)
         session()->forget('cart');
 
         return redirect()->route('shop.index')
             ->with('success', 'Замовлення підтверджено');
+    }
+
+    /**
+     * Обробка заявок на монтаж димоходу (Лід-форма)
+     */
+    public function storeLead(Request $request)
+    {
+        // 1. Валідація вхідних даних
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'phone' => 'required|string|max:20',
+            'device_type' => 'required|string',
+        ]);
+
+        // 2. Миттєве сповіщення в Telegram про нову заявку на замір
+        try {
+            $chatId = env('TELEGRAM_ADMIN_CHAT_ID');
+            $botToken = env('TELEGRAM_BOT_TOKEN'); // Переконайся, що цей токен є в .env
+
+            if ($chatId && $botToken) {
+               $text = "🛠️ <b>НОВА ЗАЯВКА НА КОНСУЛЬТАЦІЮ</b> 🛠️\n\n"
+      . "👤 <b>Ім'я:</b> " . e($validated['name']) . "\n"
+      . "📞 <b>Телефон:</b> " . e($validated['phone']) . "\n"
+      . "🔥 <b>Опалювальний прилад:</b> " . e($validated['device_type']);
+
+Http::post("https://api.telegram.org/bot{$botToken}/sendMessage", [
+    'chat_id' => $chatId,
+    'text' => $text,
+    'parse_mode' => 'HTML', // Замінили на HTML
+]);
+            }
+        } catch (\Exception $e) {
+            logger()->error("Telegram lead notification failed: " . $e->getMessage());
+        }
+
+        // 3. Повертаємо користувача назад із сесійним повідомленням
+        return response()->json(['success' => 'Дякуємо! Заявку успішно прийнято.']);
+         //return redirect()->back()->with('success', 'Дякуємо! Заявку успішно прийнято. Наш інженер зв\'яжеться з вами найближчим часом.');
     }
 }

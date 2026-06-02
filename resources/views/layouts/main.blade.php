@@ -1,27 +1,41 @@
-
 <!DOCTYPE html>
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="google" content="notranslate">
 
-    <title>Catalog</title>
+    <title>DymSystems</title>
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
-    <!-- Google Fonts -->
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
 
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+            }
+        };
+    </script>
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="https://unpkg.com/imask"></script>
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css">
+    
     <style>
         .btn-icon {
             transition: all 0.2s ease;
@@ -32,24 +46,26 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.15);
         }
 
-        /* трохи чистоти зверху */
         body {
-            /* Основний шрифт для всього сайту */
             font-family: 'Inter', sans-serif;
-            /* Для великих заголовків та цін можна задати Montserrat, він виглядає солідніше */
-            h1, h2, h3, .fs-2, .fw-black {
-                font-family: 'Montserrat', sans-serif;
-            }
             margin: 0;
+        }
+        
+        h1, h2, h3, .fs-2, .fw-black {
+            font-family: 'Montserrat', sans-serif;
         }
 
         .logo {
             height: 100px;
         }
-        /* 1. Ховаємо початкові селектори, щоб вони не розпирали фільтр до завантаження JS */
+
+        /* ФИКС: Жестко скрываем оригинальные textarea, пока JS инициализируется */
+        textarea.rich-text {
+            display: none !important;
+        }
     </style>
 
-    {{-- МІСЦЕ ДЛЯ СБОРУ СТИЛІВ З ІНШИХ ФАЙЛІВ (БЛЕЙДІВ) --}}
+    {{-- МІСЦЕ ДЛЯ ЗБОРУ СТИЛІВ З ІНШИХ БЛЕЙДІВ --}}
     @stack('styles')
 </head>
 
@@ -57,14 +73,9 @@
 
 <div class="page-wrapper">
 
-<!-- CONTENT -->
-
-
-    <!-- CONTENT -->
-
     @include('partials.navbar')
 
-    {{-- Новое уведомление об ошибке доступа (403) для обычных пользователей --}}
+    {{-- Повідомлення про помилку доступу (403) --}}
     @if(session('error_alert'))
         <div class="container mt-3">
             <div class="alert alert-danger alert-dismissible fade show shadow-sm border-0" role="alert">
@@ -75,7 +86,7 @@
         </div>
     @endif
 
-    {{-- Ваши стандартные уведомления каталога --}}
+    {{-- Стандартні повідомлення каталогу --}}
     @if(session('success'))
         <div class="custom-alert success-alert">
             <i class="bi bi-check-circle-fill"></i>
@@ -94,148 +105,73 @@
         @yield('content')
     </main>
 
-@include('partials.footer')
+    @include('partials.footer')
 </div>
-<!-- REGISTER MODAL -->
+
 <div class="modal fade" id="registerModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-
             <div class="modal-header">
                 <h5 class="modal-title">Реєстрація</h5>
-
-                <button type="button"
-                        class="btn-close"
-                        data-bs-dismiss="modal">
-                </button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
-            <form id="registerForm"
-                  method="POST"
-                  action="{{ route('register') }}"
-                  autocomplete="off">
-
+            <form id="registerForm" method="POST" action="{{ route('register') }}" autocomplete="off">
                 @csrf
-
                 <div class="modal-body">
-
-                    {{-- ERRORS --}}
                     @if ($errors->register->any())
                         <div class="alert alert-danger">
-
                             <ul class="mb-0 ps-3">
                                 @foreach ($errors->register->all() as $error)
                                     <li>{{ $error }}</li>
                                 @endforeach
                             </ul>
-
                         </div>
                     @endif
 
-                    {{-- NAME --}}
                     <div class="mb-3">
                         <label for="register_name">Ім’я</label>
-
-                        <input id="register_name"
-                               name="name"
-                               type="text"
-                               class="form-control"
-                               autocomplete="off"
-                               required>
+                        <input id="register_name" name="name" type="text" class="form-control" autocomplete="off" required>
                     </div>
 
-                    {{-- EMAIL --}}
                     <div class="mb-3">
                         <label for="register_email">Email</label>
-
-                        <input id="register_email"
-                               name="email"
-                               type="email"
-                               class="form-control"
-                               autocomplete="off"
-                               required>
+                        <input id="register_email" name="email" type="email" class="form-control" autocomplete="off" required>
                     </div>
 
-                    {{-- PHONE --}}
                     <div class="mb-3">
                         <label for="register_phone">Телефон</label>
-
-                        <input id="register_phone"
-                               name="phone"
-                               type="tel"
-                               class="form-control"
-                               autocomplete="off"
-                               inputmode="numeric"
-                               pattern="[0-9+() -]+"
-                               maxlength="20">
+                        <input id="register_phone" name="phone" type="tel" class="form-control"  placeholder="+38 (___) ___-__-__"  autocomplete="off" inputmode="numeric" pattern="[0-9+() -]+" maxlength="20">
                     </div>
 
-                    {{-- PASSWORD --}}
                     <div class="mb-3">
                         <label for="register_password">Пароль</label>
-
-                        <input id="register_password"
-                               type="password"
-                               name="password"
-                               class="form-control"
-                               autocomplete="new-password"
-                               required>
+                        <input id="register_password" type="password" name="password" class="form-control" autocomplete="new-password" required>
                     </div>
 
-                    {{-- PASSWORD CONFIRM --}}
                     <div class="mb-3">
-                        <label for="register_password_confirmation">
-                            Підтвердження пароля
-                        </label>
-
-                        <input id="register_password_confirmation"
-                               type="password"
-                               name="password_confirmation"
-                               class="form-control"
-                               autocomplete="new-password"
-                               required>
+                        <label for="register_password_confirmation">Підтвердження пароля</label>
+                        <input id="register_password_confirmation" type="password" name="password_confirmation" class="form-control" autocomplete="new-password" required>
                     </div>
-
                 </div>
 
                 <div class="modal-footer">
-
-                    <button type="button"
-                            class="btn btn-secondary"
-                            data-bs-dismiss="modal">
-
-                        Закрити
-                    </button>
-
-                    <button type="submit"
-                            class="btn btn-warning">
-
-                        Зареєструватись
-                    </button>
-
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрити</button>
+                    <button type="submit" class="btn btn-warning">Зареєструватись</button>
                 </div>
-
             </form>
-
         </div>
     </div>
 </div>
 
-
 <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
 <script src="https://cdn.ckeditor.com/ckeditor5/40.2.0/classic/ckeditor.js"></script>
-
 
 @if ($errors->register->any())
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-
-            const registerModal = new bootstrap.Modal(
-                document.getElementById('registerModal')
-            );
-
+            const registerModal = new bootstrap.Modal(document.getElementById('registerModal'));
             registerModal.show();
-
         });
     </script>
 @endif
@@ -245,47 +181,48 @@
 
         // ===== REGISTER MODAL RESET =====
         const registerModalEl = document.getElementById('registerModal');
-
         if (registerModalEl) {
-
             registerModalEl.addEventListener('hidden.bs.modal', function () {
-
-                // очищаем alert ошибки
                 const alertBox = registerModalEl.querySelector('.alert-danger');
-
-                if (alertBox) {
-                    alertBox.remove();
-                }
-
-                // очищаем пароли
+                if (alertBox) alertBox.remove();
                 document.getElementById('register_password').value = '';
                 document.getElementById('register_password_confirmation').value = '';
-
             });
-
         }
-        const phone = document.getElementById('register_phone');
 
+        const phone = document.getElementById('register_phone');
         if (phone) {
             phone.addEventListener('input', function () {
                 this.value = this.value.replace(/[^0-9+() -]/g, '');
             });
         }
 
-        // ===== CKEDITOR =====
+        // ===== УМНЫЙ И БЕЗОПАСНЫЙ CKEDITOR =====
         document.querySelectorAll('.rich-text').forEach((el) => {
-
             if (el.classList.contains('ck-editor-init')) return;
-
             ClassicEditor
                 .create(el)
                 .then(editor => {
                     el.classList.add('ck-editor-init');
+                    
+                    // Работаем с accessibility напрямую через созданный инстанс
+                    const editorWrapper = editor.ui.view.element;
+                    if (editorWrapper) {
+                        const voiceLabel = editorWrapper.querySelector('.ck-voice-label');
+                        const editable = editorWrapper.querySelector('.ck-editor__editable');
+                        
+                        if (voiceLabel && editable) {
+                            if (!editable.hasAttribute('aria-label')) {
+                                editable.setAttribute('aria-label', voiceLabel.textContent);
+                            }
+                            // Скрываем лейбл стилями, чтобы НЕ ломать DOM и JS самого CKEditor
+                            voiceLabel.style.display = 'none';
+                        }
+                    }
                 })
                 .catch(error => {
                     console.error(error);
                 });
-
         });
 
         // ===== SCROLL BUTTONS =====
@@ -293,7 +230,6 @@
         const downBtn = document.querySelector('.scroll-down');
 
         window.addEventListener('scroll', function () {
-
             const scrollY = window.scrollY;
             const windowHeight = window.innerHeight;
             const fullHeight = document.documentElement.scrollHeight;
@@ -301,27 +237,18 @@
             if (upBtn) {
                 upBtn.classList.toggle('show', scrollY > 200);
             }
-
             if (downBtn) {
-
-                const isBottom =
-                    scrollY + windowHeight >= fullHeight - 5;
-
+                const isBottom = scrollY + windowHeight >= fullHeight - 5;
                 downBtn.classList.toggle('hide', isBottom);
-
             }
-
         });
 
         // ===== DELETE MODALS =====
         const setupDeleteModal = (modalId, formId, urlPattern) => {
-
             const modalEl = document.getElementById(modalId);
-
             if (!modalEl) return;
 
             modalEl.addEventListener('show.bs.modal', function (event) {
-
                 const button = event.relatedTarget;
                 const id = button?.getAttribute('data-id');
                 const form = document.getElementById(formId);
@@ -329,9 +256,7 @@
                 if (form && id) {
                     form.action = urlPattern.replace(':id', id);
                 }
-
             });
-
         };
 
         setupDeleteModal('deleteModal', 'deleteForm', '/catalog/:id');
@@ -339,18 +264,15 @@
 
         // ===== CHOICES =====
         document.querySelectorAll('.js-choice').forEach(function (el) {
-
             new Choices(el, {
                 searchEnabled: true,
                 shouldSort: false,
                 itemSelectText: '',
             });
-
         });
-
     });
 
-    // ===== УПРАВЛЕНИЕ УВЕДОМЛЕНИЯМИ И БОРЬБА С BFCACHE =====
+    // ===== УПРАВЛІННЯ УВЕДОМЛЕННЯМИ =====
     function hideAlerts() {
         document.querySelectorAll('.custom-alert').forEach(el => {
             el.style.opacity = '0';
@@ -360,27 +282,28 @@
             }, 300);
         });
     }
-
-    // Скрываем уведомления через 4.5 секунды после обычной загрузки
     setTimeout(hideAlerts, 4500);
 
-    // Защита от кнопки "Назад" в браузере (bfcache)
-    // Защита от кнопки "Назад" в браузере (уничтожаем bfcache для обновления данных)
+    // Захист від кнопки "Назад" в браузере (уничтожаем bfcache)
     window.addEventListener('pageshow', function (event) {
-        // Проверяем: пришел ли пользователь на страницу через кнопку Назад/Вперед
         const performanceEntries = performance.getEntriesByType('navigation');
         const isBackForward = performanceEntries.length > 0 && performanceEntries[0].type === 'back_forward';
 
         if (event.persisted || isBackForward) {
-            // Принудительно и жестко перезагружаем страницу с сервера, чтобы подтянуть свежую таблицу
             window.location.reload();
         }
     });
+    document.getElementById('registerForm').addEventListener('submit', function (e) {
+    const mask = window.regPhoneMaskInstance;
+    
+    // Перевірка: якщо маска ініціалізована і не заповнена до кінця
+    if (mask && !mask.masked.isComplete) {
+        e.preventDefault(); // Зупиняємо відправку
+        alert('Будь ласка, введіть повний номер телефону (у форматі +38 (0XX) XXX-XX-XX).');
+        return false;
+    }
+});
 </script>
 
-
-
 </body>
-
 </html>
-

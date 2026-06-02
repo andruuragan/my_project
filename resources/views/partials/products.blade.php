@@ -7,7 +7,9 @@
 
                     {{-- ЗОБРАЖЕННЯ ТА КНОПКИ ВЕРХУ --}}
                     <div class="position-relative product-image-wrapper bg-light d-flex align-items-center justify-content-center" style="height: 220px; overflow: hidden;">
-                        <img src="{{ Storage::url($catalog->image) }}"
+                        
+                        {{-- ВИПРАВЛЕНО: Перевірка на наявність картинки --}}
+                        <img src="{{ $catalog->image ? Storage::url($catalog->image) : asset('images/no-image.svg') }}"
                              class="product-image"
                              alt="{{ $catalog->name }}"
                              style="max-height: 100%; object-fit: contain; transition: transform 0.3s ease;">
@@ -46,7 +48,8 @@
                                         data-bs-custom-class="custom-orange-tooltip"
                                         data-bs-title="Збільшити фото"
                                         style="width: 36px; height: 36px;"
-                                        data-image="{{ Storage::url($catalog->image) }}">
+                                        {{-- ВИПРАВЛЕНО: Перевірка для кнопки збільшення --}}
+                                        data-image="{{ $catalog->image ? Storage::url($catalog->image) : asset('images/no-image.svg') }}">
                                     <i class="bi bi-search text-muted"></i>
                                 </button>
 
@@ -222,7 +225,6 @@
     color: #4b5563;
 }
 
-/* Кнопка кошика — фіксований розмір для всіх станів */
 .btn-cart-circle {
     background: #d97706;
     color: #ffffff;
@@ -261,18 +263,10 @@
     color: #ffffff !important;
 }
 
-/* Плавна поява верхніх іконок при ховері */
-/* Іконки завжди видимі */
 .icon-btn {
     transition: transform 0.2s ease, box-shadow 0.2s ease;
-    opacity: 1;               /* Завжди непрозорі */
-    transform: translateY(0);  /* Початкова позиція без зміщення */
-}
-
-/* Видаляємо ефект появи при ховері на картку, 
-   але залишаємо невелике збільшення самої іконки, коли курсор прямо на ній */
-.icon-btn:hover {
-    transform: scale(1.1) !important;
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .icon-btn:hover {
@@ -310,7 +304,6 @@
 {{-- ФУНКЦІОНАЛ (JS) --}}
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-    // Надійна ініціалізація тултипів для динамічних об'єктів
     document.body.addEventListener('mouseover', function (event) {
         const target = event.target.closest('[data-bs-toggle="tooltip"]');
         if (target && typeof bootstrap !== 'undefined' && !bootstrap.Tooltip.getInstance(target)) {
