@@ -141,8 +141,11 @@
             <p class="text-muted">Ми підготували для вас онлайн-калькулятор та інструкції, які допоможуть зробити правильний вибір без помилок.</p>
         </div>
         <div class="col-md-6 text-md-end">
-            <a href="{{ route('useful.index') }}" class="btn btn-dark px-4 py-2">Перейти до розділу "Корисна інформація"</a>
-        </div>
+    <a href="{{ route('useful.index') }}"
+       class="btn btn-dark btn-lg px-5 py-3 fw-semibold">
+        Перейти до розділу "Корисна інформація"
+    </a>
+</div>
     </div>
 </section>
 <section class="container-1600 py-5">
