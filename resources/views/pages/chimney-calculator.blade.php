@@ -17,6 +17,9 @@
                         <li class="breadcrumb-item">
                             <a href="{{ route('main.index') }}" class="text-decoration-none text-white-50 hover-orange transition-all">Головна</a>
                         </li>
+                        <li class="breadcrumb-item">
+                            <a href="{{ route('useful.index') }}" class="text-decoration-none text-white-50 hover-orange transition-all">Корисна інформація</a>
+                        </li>
                         <li class="breadcrumb-item active text-white" aria-current="page" style="--bs-breadcrumb-divider-color: rgba(255,255,255,0.4);">
                             <span style="color: #f97316; font-weight: 500;">Калькулятор димоходу</span>
                         </li>
@@ -612,6 +615,32 @@ html {
         width: 100%;
         padding: 12px 20px;
     }
+}
+/* --- ВИПРАВЛЕННЯ ДЛЯ BREADCRUMBS --- */
+.breadcrumb .breadcrumb-item a {
+    color: rgba(255, 255, 255, 0.7) !important; /* Робимо посилання чіткішими */
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.breadcrumb .breadcrumb-item a:hover {
+    color: #f97316 !important; /* Помаранчевий при наведенні */
+}
+
+/* Примусово виділяємо роздільник */
+.breadcrumb-item + .breadcrumb-item::before {
+    content: "/";
+    color: rgba(255, 255, 255, 0.5) !important; /* Роздільник не буде зливатися */
+    padding: 0 10px; /* Додаємо "повітря" навколо знаку */
+    font-weight: 300;
+}
+
+/* Щоб активний елемент (Калькулятор) виділявся */
+.breadcrumb-item.active {
+    color: #f97316 !important;
+}
+.breadcrumb {
+    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
 }
 </style>
 

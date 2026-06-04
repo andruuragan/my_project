@@ -63,6 +63,19 @@ html {
     position: relative;
     z-index: 5;
 }
+/* Ефект наведення на посилання у навігації банера */
+.hero-glow nav a {
+    transition: all 0.3s ease;
+    color: rgba(255, 255, 255, 0.5) !important;
+    text-decoration: none !important;
+}
+
+.hero-glow nav a:hover {
+    color: #ffffff !important;
+    text-decoration: underline !important;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+}
+
 </style>
 
 <main class="bg-light pb-5">
@@ -80,6 +93,8 @@ html {
                     <nav class="mb-3">
                         <a href="{{ route('main.index') }}" class="text-white-50 text-decoration-none">Головна</a> 
                         <span class="text-white-50 mx-2">/</span> 
+                        <a href="{{ route('useful.index') }}" class="text-white-50 text-decoration-none">Корисна інформація</a> 
+                        <span class="text-white-50 mx-2">/</span>
                         <span class="text-white">Монтаж</span>
                     </nav>
                     <div class="mb-3">
@@ -99,7 +114,7 @@ html {
 
                     <div class="d-flex gap-3 mt-4">
                         <a href="#form" class="btn btn-warning px-4 fw-bold shadow">
-                            Отримати розрахунок
+                            Отримати консультацію
                         </a>
                         <a href="{{ route('chimney.calculator') }}" class="btn btn-outline-light px-4">
                             Калькулятор

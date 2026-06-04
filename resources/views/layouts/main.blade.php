@@ -5,8 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="google" content="notranslate">
+    <meta name="description"
+      content="Виготовлення та продаж димоходів з нержавіючої сталі. Сендвіч-димоходи, труби, комплектуючі, обичайки та фасонні елементи власного виробництва.">
 
-    <title>DymSystems</title>
+<meta name="keywords"
+      content="димоходи, димоходи з нержавіючої сталі, сендвіч димоходи, труби для димоходу, комплектуючі для димоходів, виробництво димоходів, AISI 304, AISI 321, AISI 430">
+    <meta property="og:title" content="DymSystems — Димоходи з нержавіючої сталі">
+<meta property="og:description" content="Виробництво та продаж димоходів і комплектуючих з нержавіючої сталі.">
+<meta property="og:image" content="{{ asset('images/og-image.jpg') }}">
+<meta property="og:type" content="website">
+<meta property="og:url" content="{{ url()->current() }}">
+    <title>DymSystems — Виробництво димоходів з нержавіючої сталі</title>
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 

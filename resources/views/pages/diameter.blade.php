@@ -8,7 +8,10 @@
             <li class="breadcrumb-item">
     <a href="{{ route('main.index') }}" class="text-decoration-none text-muted">Головна</a>
 </li>
-            <li class="breadcrumb-item active" aria-current="page" style="color: #ea580c;">Розрахунок димоходу</li>
+<li class="breadcrumb-item">
+    <a href="{{ route('useful.index') }}" class="text-decoration-none text-muted">Корисна інформація</a>
+</li>
+            <li class="breadcrumb-item active" aria-current="page" style="color: #ea580c;">Розрахунок діаметру та висоти димоходу</li>
         </ol>
     </nav>
 
@@ -402,5 +405,14 @@ g \cdot H \cdot
         transform: translateY(-2px);
         box-shadow: 0 8px 20px rgba(234, 88, 12, 0.4);
     }
+    /* Ефект наведення для хлібних кришок */
+.breadcrumb-item a {
+    transition: color 0.2s ease-in-out;
+}
+
+.breadcrumb-item a:hover {
+    color: #ea580c !important; /* Ваш фірмовий помаранчевий колір */
+    text-decoration: underline !important; /* Підкреслення для кращого акценту */
+}
 </style>
 @endsection

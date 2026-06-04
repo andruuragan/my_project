@@ -40,29 +40,32 @@
                                 </button>
                             @endauth
 
-                            <div class="right-icons d-flex gap-2">
-                                <button type="button"
-                                        class="icon-btn open-image rounded-circle shadow-sm border-0 d-flex align-items-center justify-content-center bg-white"
-                                        data-bs-toggle="tooltip"
-                                        data-bs-placement="top"
-                                        data-bs-custom-class="custom-orange-tooltip"
-                                        data-bs-title="Збільшити фото"
-                                        style="width: 36px; height: 36px;"
-                                        {{-- ВИПРАВЛЕНО: Перевірка для кнопки збільшення --}}
-                                        data-image="{{ $catalog->image ? Storage::url($catalog->image) : asset('images/no-image.svg') }}">
-                                    <i class="bi bi-search text-muted"></i>
-                                </button>
+                           {{-- Змінено: flex-column для вертикального стеку --}}
+<div class="right-icons d-flex flex-column gap-2">
+    
+    {{-- Кнопка "Детальніше" тепер ПЕРША --}}
+    <a href="{{ route('catalog.public.show', $catalog->id) }}"
+       class="icon-btn rounded-circle shadow-sm border-0 d-flex align-items-center justify-content-center bg-white"
+       data-bs-toggle="tooltip"
+       data-bs-placement="left"
+       data-bs-custom-class="custom-orange-tooltip"
+       data-bs-title="Детальніше про товар"
+       style="width: 36px; height: 36px;">
+        <i class="bi bi-box-arrow-up-right text-muted"></i>
+    </a>
 
-                                <a href="{{ route('catalog.public.show', $catalog->id) }}"
-                                   class="icon-btn rounded-circle shadow-sm border-0 d-flex align-items-center justify-content-center bg-white"
-                                   data-bs-toggle="tooltip"
-                                   data-bs-placement="top"
-                                   data-bs-custom-class="custom-orange-tooltip"
-                                   data-bs-title="Детальніше про товар"
-                                   style="width: 36px; height: 36px;">
-                                    <i class="bi bi-box-arrow-up-right text-muted"></i>
-                                </a>
-                            </div>
+    {{-- Кнопка "Лупа" тепер ДРУГА (під нею) --}}
+    <button type="button"
+            class="icon-btn open-image rounded-circle shadow-sm border-0 d-flex align-items-center justify-content-center bg-white"
+            data-bs-toggle="tooltip"
+            data-bs-placement="left"
+            data-bs-custom-class="custom-orange-tooltip"
+            data-bs-title="Збільшити фото"
+            style="width: 36px; height: 36px;"
+            data-image="{{ $catalog->image ? Storage::url($catalog->image) : asset('images/no-image.svg') }}">
+        <i class="bi bi-search text-muted"></i>
+    </button>
+</div>
                         </div>
                     </div>
 
@@ -76,10 +79,15 @@
 
                         <div class="my-1" style="height: 1px; background: linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,0.08) 20%, rgba(0,0,0,0.08) 80%, rgba(0,0,0,0));"></div>
 
-                        <div class="product-specs small text-uppercase fw-bold text-muted mt-2 mb-3" style="letter-spacing: 0.5px; font-size: 0.72rem;">
-                            Ø{{ $catalog->diameter }} • {{ $catalog->thickness }} • AISI {{ $catalog->grade }}
-                        </div>
-
+                        <div class="product-specs d-flex flex-wrap gap-2 mt-2 mb-3">
+       @if(!empty($catalog->diameter) && $catalog->diameter != 0)
+       <span class="badge bg-light text-dark border border-secondary-subtle rounded-pill">
+            Ø {{ $catalog->diameter }}
+        </span>
+    @endif
+        <span class="badge bg-light text-dark border border-secondary-subtle rounded-pill">{{ $catalog->thickness }}</span>
+        <span class="badge bg-warning text-white border-0 rounded-pill">AISI {{ $catalog->grade }}</span>
+    </div>
                         {{-- ЦІНА --}}
                         <div class="mt-auto pt-2">
                             <div class="d-flex align-items-center mb-1">
@@ -163,6 +171,12 @@
         transform 0.28s cubic-bezier(0.4, 0, 0.2, 1),
         box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1),
         border-color 0.28s ease;
+        border: 1px solid rgba(0,0,0,0.05) !important;
+}
+.badge {
+    padding: 0.4em 0.8em;
+    font-weight: 500;
+    letter-spacing: 0.01em;
 }
 
 .product-card:hover {
@@ -172,7 +186,7 @@
 }
 
 .product-card:hover .product-image {
-    transform: scale(1.04);
+    transform: scale(1.06);
 }
 
 .product-title-link {
@@ -186,6 +200,7 @@
 
 .product-image-wrapper {
     border-bottom: 1px solid rgba(0,0,0,0.04);
+    
 }
 
 .product-image-wrapper .product-image {
@@ -194,11 +209,15 @@
 }
 
 .product-specs {
-    background: rgba(0,0,0,0.03);
-    padding: 6px 10px;
-    border-radius: 10px;
-    display: inline-flex;
-    width: fit-content;
+    gap: 6px;
+    padding: 6px 2px;
+    background: rgba(0,0,0,0.02);
+    border-radius: 12px;
+}
+
+.product-specs .badge {
+    font-size: 0.7rem;
+    font-weight: 500;
 }
 
 .price-badge {
@@ -211,9 +230,22 @@
         0 2px 6px rgba(0,0,0,0.03);
 }
 
+
 .item-price {
-    font-weight: 850;
-    letter-spacing: -0.5px;
+     font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: #111827;
+}
+.product-icons, 
+.right-icons {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.product-card:hover .product-icons,
+.product-card:hover .right-icons {
+    opacity: 1;
 }
 
 .currency-label {
@@ -236,6 +268,7 @@
         background 0.2s ease,
         transform 0.2s ease,
         box-shadow 0.2s ease;
+        box-shadow: 0 4px 12px rgba(217, 119, 6, 0.3) !important;
 }
 
 .btn-cart-circle:hover {
@@ -264,13 +297,22 @@
 }
 
 .icon-btn {
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    opacity: 1;
-    transform: translateY(0);
+    background: rgba(255,255,255,0.92) !important;
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(0,0,0,0.06) !important;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.08) !important;
 }
 
 .icon-btn:hover {
-    transform: scale(1.1) !important;
+    transform: translateY(-2px) scale(1.05) !important;
+    background: #f9fafb !important; /* Легке сіре при наведенні */
+    box-shadow: 0 6px 14px rgba(0,0,0,0.2) !important;
+}
+
+/* Колір іконки всередині */
+.icon-btn i {
+    font-size: 1rem;
+    color: #374151 !important;
 }
 
 .icon-btn:hover i {
@@ -299,7 +341,18 @@
     -webkit-appearance: none;
     margin: 0;
 }
+
+    /* Переопределяем цвет для всех элементов с классом bg-warning */
+    .bg-warning {
+        background-color: #d97706 !important; /* Насыщенный оранжевый */
+        color: #ffffff !important;           /* Белый текст для контраста */
+    }
+    .price-badge {
+    background: linear-gradient(135deg, rgba(217,119,6,0.15), rgba(0,0,0,0.03));
+    border: 1px solid rgba(217,119,6,0.25);
+}
 </style>
+
 
 {{-- ФУНКЦІОНАЛ (JS) --}}
 <script>
@@ -312,6 +365,22 @@ document.addEventListener('DOMContentLoaded', function () {
             });
             tooltip.show();
         }
+    });
+});
+document.querySelectorAll('.add-cart-btn').forEach(button => {
+    button.addEventListener('click', function() {
+        const icon = this.querySelector('i');
+        const originalIcon = icon.className;
+        
+        // Змінюємо іконку на галочку
+        icon.className = 'bi bi-check2';
+        this.style.backgroundColor = '#10b981'; // Зелений колір успіху
+
+        // Повертаємо назад через 1.5 секунди
+        setTimeout(() => {
+            icon.className = originalIcon;
+            this.style.backgroundColor = '#d97706'; // Оригінальний помаранчевий
+        }, 1500);
     });
 });
 </script>

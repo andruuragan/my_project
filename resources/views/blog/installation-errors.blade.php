@@ -6,6 +6,7 @@
         {{-- Навігація --}}
         <nav class="mb-4 breadcrumb-nav">
     <a href="{{ route('main.index') }}" class="text-decoration-none text-muted small">Головна</a> / 
+    <a href="{{ route('useful.index') }}" class="text-decoration-none text-muted small">Корисна інформація</a> /
     <a href="{{ route('chimney.installation-rules') }}" class="text-decoration-none text-muted small">Монтаж</a> / 
     <a href="{{ route('blog.installation-errors') }}" 
    class="text-decoration-none small {{ request()->routeIs('blog.installation-errors') ? 'active text-warning' : 'text-muted' }}">

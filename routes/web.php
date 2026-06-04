@@ -128,7 +128,7 @@ Route::view('/montazh-dymohodu-pravyla', 'pages.installation-rules')
 Route::post('/order-installation', [App\Http\Controllers\CheckoutController::class, 'storeLead'])
     ->name('leads.store');
     Route::get('/blog/pomylky-montazhu', [BlogController::class, 'showInstallationErrors'])->name('blog.installation-errors');
-
+Route::get('/useful-info', [App\Http\Controllers\UsefulController::class, 'index'])->name('useful.index');
 /* ==========================================================================
 |  4. SYSTEM INCLUDES
 |  ========================================================================== */
