@@ -19,3 +19,4 @@ COPY . .
 # Установка зависимостей с игнорированием платформенных требований
 # (так как мы уже установили расширения выше)
 RUN composer install --no-dev --optimize-autoloader --no-interaction --ignore-platform-reqs
+CMD ["php-fpm"]
