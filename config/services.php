@@ -40,6 +40,8 @@ return [
         'verify' => false, // Это спасет от cURL error 60 / 28 на локалке
     ],
 ],
-
+'telegram' => [
+    'chat_id' => env('TELEGRAM_ADMIN_CHAT_ID'),
+],
 
 ];
