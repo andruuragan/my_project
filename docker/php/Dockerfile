@@ -20,13 +20,15 @@ COPY . .
 # Установка зависимостей
 RUN composer install --no-dev --optimize-autoloader --no-interaction
 
-# Права доступа
-RUN chmod -R 775 storage bootstrap/cache
+# 🔥 КРИТИЧЕСКИЙ ШАГ: Установка прав и владельца
+RUN mkdir -p storage/framework/{cache,views,sessions} bootstrap/cache && \
+    chown -R www-data:www-data storage bootstrap/cache && \
+    chmod -R 775 storage bootstrap/cache
 
 # Порт
 EXPOSE 10000
 
 # Команда для запуска
-# Важно: если ключ не задан, сайт упадет. 
-# Можно добавить команду для генерации ключа, если его нет
-CMD php -r "file_exists('.env') || copy('.env.example', '.env');" && php artisan key:generate --force && php -S 0.0.0.0:10000 -t public
+CMD php -r "file_exists('.env') || copy('.env.example', '.env');" && \
+    php artisan key:generate --force && \
+    php -S 0.0.0.0:10000 -t public
