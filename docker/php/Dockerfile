@@ -1,5 +1,6 @@
 FROM php:8.4-fpm
 
+# Установка системных зависимостей
 RUN apt-get update && apt-get install -y \
     git curl zip unzip \
     libpng-dev libonig-dev libxml2-dev \
@@ -8,22 +9,24 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install pdo_mysql pdo_pgsql mbstring exif pcntl bcmath gd zip \
     && rm -rf /var/lib/apt/lists/*
 
+# Установка Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www
 
-COPY composer.json composer.lock ./
-
-RUN composer install \
-    --no-dev \
-    --optimize-autoloader \
-    --no-interaction \
-    --prefer-dist
-
+# Копируем файлы проекта
 COPY . .
 
+# Установка зависимостей
+RUN composer install --no-dev --optimize-autoloader --no-interaction
+
+# Права доступа
 RUN chmod -R 775 storage bootstrap/cache
 
-EXPOSE 9000
+# Порт
+EXPOSE 10000
 
-CMD ["php-fpm"]
+# Команда для запуска
+# Важно: если ключ не задан, сайт упадет. 
+# Можно добавить команду для генерации ключа, если его нет
+CMD php -r "file_exists('.env') || copy('.env.example', '.env');" && php artisan key:generate --force && php -S 0.0.0.0:10000 -t public
