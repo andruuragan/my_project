@@ -18,31 +18,33 @@ class OrderDetailsExport implements FromArray, ShouldAutoSize, WithEvents
     }
 
     public function array(): array
-    {
-        $rows = [];
+{
+    $rows = [];
 
-        // Блок информации о заказе (Инфо-карта) — Строки 1-4
-        $rows[] = ['Замовлення', '№' . $this->order->id];
-        $rows[] = ['Дата', $this->order->created_at->format('d.m.Y / H:i')];
-        $rows[] = ['Статус', $this->formatStatus($this->order->status)];
-        $rows[] = ['Разом', (float) $this->order->total_price];
+    $rows[] = ['Замовлення', '№' . $this->order->id];
+    $rows[] = ['Дата', $this->order->created_at?->format('d.m.Y / H:i')];
+    $rows[] = ['Статус', $this->formatStatus($this->order->status)];
 
-        $rows[] = []; // Сместили на 2 строки выше: теперь здесь только один пустой ряд для отступа (Строка 5)
+    $rows[] = [
+        'Разом',
+        (float) str_replace([' ', ','], ['', '.'], $this->order->total_price ?? 0)
+    ];
 
-        // Таблица товаров (Теперь это Строка 6 в Excel)
-        $rows[] = ['Товар', 'Кількість', 'Ціна', 'Сума'];
+    $rows[] = [];
 
-        foreach ($this->order->items as $item) {
-            $rows[] = [
-                $item->product_name,
-                (int) $item->quantity,
-                (float) $item->price,
-                (float) $item->total,
-            ];
-        }
+    $rows[] = ['Товар', 'Кількість', 'Ціна', 'Сума'];
 
-        return $rows;
+    foreach ($this->order->items as $item) {
+        $rows[] = [
+            $item->product_name ?? '',
+            (int) ($item->quantity ?? 0),
+            (float) ($item->price ?? 0),
+            (float) ($item->total ?? 0),
+        ];
     }
+
+    return $rows;
+}
 
     public function registerEvents(): array
     {
@@ -54,7 +56,7 @@ class OrderDetailsExport implements FromArray, ShouldAutoSize, WithEvents
                 // --- 1. КРАСИМ ИНФО-КАРТУ (Строки 1-4) ---
                 $sheet->getStyle('A1:A4')->getFont()->setBold(true);
                 $sheet->getStyle('A1:B4')->getAlignment()->setHorizontal(Alignment::HORIZONTAL_LEFT);
-                $sheet->getStyle('B4')->getNumberFormat()->setFormatCode('#,##0" грн"');
+                $sheet->getStyle('B4')->getNumberFormat()->setFormatCode('#,##0.00');
 
                 $sheet->getStyle('A1:B4')->applyFromArray([
                     'borders' => [
