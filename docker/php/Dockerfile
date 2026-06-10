@@ -11,22 +11,21 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www
 
-# dependencies first
-COPY composer.json composer.lock ./
-RUN composer install --no-dev --no-scripts --optimize-autoloader --no-interaction
-
-# app code
+# 1. копируем ВСЁ СРАЗУ (важно для artisan)
 COPY . .
 
-# Laravel setup
+# 2. dependencies
+RUN composer install --no-dev --optimize-autoloader --no-interaction
+
+# 3. Laravel safety
 RUN mkdir -p bootstrap/cache storage
+RUN chmod -R 775 storage bootstrap/cache
+
+# 4. cache (не критично)
 RUN php artisan package:discover || true
 
-# frontend
-RUN npm install
-RUN npm run build
-
-RUN chmod -R 775 storage bootstrap/cache
+# 5. frontend build (можно оставить, но лучше отдельно)
+RUN npm install && npm run build
 
 EXPOSE 10000
 
