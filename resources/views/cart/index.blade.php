@@ -42,7 +42,7 @@
 
                             <!-- IMAGE -->
                             <td style="width:80px">
-                                <img src="{{ Storage::url($item['image']) }}"
+                                <img src="{{ asset($item['image']) }}"
                                      style="width:60px;height:60px;object-fit:contain;">
                             </td>
 
