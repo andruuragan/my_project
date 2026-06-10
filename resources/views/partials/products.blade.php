@@ -9,7 +9,7 @@
                     <div class="position-relative product-image-wrapper bg-light d-flex align-items-center justify-content-center" style="height: 220px; overflow: hidden;">
                         
                         {{-- ВИПРАВЛЕНО: Перевірка на наявність картинки --}}
-                        <img src="{{ $catalog->image ? Storage::url($catalog->image) : asset('images/no-image.svg') }}"
+                        <img src="{{ $catalog->image ? asset('storage/' . $catalog->image) : asset('images/no-image.svg') }}"
                              class="product-image"
                              alt="{{ $catalog->name }}"
                              style="max-height: 100%; object-fit: contain; transition: transform 0.3s ease;">
