@@ -62,7 +62,7 @@
             data-bs-custom-class="custom-orange-tooltip"
             data-bs-title="Збільшити фото"
             style="width: 36px; height: 36px;"
-            data-image="{{ $catalog->image ? Storage::url($catalog->image) : asset('images/no-image.svg') }}">
+            data-image="{{ $catalog->image ? asset($catalog->image) : asset('images/no-image.svg') }}">
         <i class="bi bi-search text-muted"></i>
     </button>
 </div>

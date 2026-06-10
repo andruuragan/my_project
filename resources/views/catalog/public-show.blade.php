@@ -20,7 +20,7 @@
                 <!-- Ліва колона: Велика картинка -->
                 <div class="col-12 col-md-5 col-lg-4 text-center d-flex align-items-center justify-content-center bg-light rounded-3 p-3" style="min-height: 350px;">
                     @if($catalog->image)
-                        <img src="{{ asset('storage/' . $catalog->image) }}"
+                        <img src="{{ asset($catalog->image) }}"
                              alt="{{ $catalog->name }}"
                              class="img-fluid"
                              style="max-width: 100%; max-height: 350px; width: auto; height: auto; object-fit: contain; border-radius: 8px;">
