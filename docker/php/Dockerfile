@@ -10,21 +10,21 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www
 
-# 1. код
+# dependencies first
+COPY composer.json composer.lock ./
+RUN composer install --no-dev --no-scripts --optimize-autoloader --no-interaction
+
+# app code
 COPY . .
 
-# 2. зависимости PHP
-RUN composer install --no-dev --optimize-autoloader --no-interaction
-
-# 3. Laravel cache safety
+# Laravel setup
 RUN mkdir -p bootstrap/cache storage
 RUN php artisan package:discover || true
 
-# 4. frontend
+# frontend
 RUN npm install
 RUN npm run build
 
-# 5. права
 RUN chmod -R 775 storage bootstrap/cache
 
 EXPOSE 10000
