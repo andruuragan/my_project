@@ -11,15 +11,22 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www
 
-COPY . .
+COPY storage/app/public storage/app/public
 
-RUN mkdir -p bootstrap/cache
-RUN chmod -R 777 bootstrap/cache
+RUN mkdir -p storage/framework/views \
+    storage/framework/cache \
+    storage/framework/sessions \
+    storage/logs \
+    bootstrap/cache
+
+RUN chmod -R 775 storage bootstrap/cache
 
 RUN composer install --no-dev --optimize-autoloader --no-interaction
 
-RUN npm install
-RUN npm run build
+RUN npm install && npm run build
+
+# ❌ НЕ делаем cache на build этапе (важно для Render)
+# RUN php artisan config:cache
 
 EXPOSE 10000
 
