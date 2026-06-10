@@ -11,7 +11,7 @@
                         <div class="card product-card shadow-sm h-100 border-0 rounded-4 overflow-hidden position-relative">
 
                             <div class="position-relative product-image-wrapper bg-light d-flex align-items-center justify-content-center" style="height: 220px; overflow: hidden;">
-                                <img src="{{ Storage::url($catalog->image) }}"
+                                <img src="{{ asset($catalog->image) }}"
                                      class="product-image"
                                      alt="{{ $catalog->name }}"
                                      style="max-height: 100%; object-fit: contain; transition: transform 0.3s ease;">

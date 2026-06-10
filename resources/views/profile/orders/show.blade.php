@@ -74,7 +74,7 @@
                         <!-- IMAGE -->
                         <td style="width:80px">
                             @if($item->product_image)
-                                <img src="{{ asset('storage/' . $item->product_image) }}"
+                                <img src="{{ asset($item->product_image) }}"
                                      style="width:60px;height:60px;object-fit:contain;">
                             @endif
                         </td>
