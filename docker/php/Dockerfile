@@ -11,7 +11,7 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www
 
-COPY storage/app/public storage/app/public
+COPY . .
 
 RUN mkdir -p storage/framework/views \
     storage/framework/cache \
