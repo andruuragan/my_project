@@ -72,7 +72,7 @@
         <tr>
             <th>Картинка</th>
             <td>  @if($catalog->image)
-                    <img src="{{ asset('storage/' . $catalog->image) }}"
+                    <img src="{{ asset($catalog->image) }}"
                          style="max-width:200px; height:auto;">
                 @else
                     Нет изображения

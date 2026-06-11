@@ -57,7 +57,7 @@
                         <td>{{  $item->casing == 'н' ? '-' : $item->casing}}</td>
                         <td>{{ $item->price }}</td>
                         <td>@if($item->image)
-                                <img src="{{ asset('storage/' . $item->image) }}"
+                                <img src="{{ asset($item->image) }}"
                                      style="width: 60px; height: 60px; object-fit: cover;">
                             @else
                                 -
