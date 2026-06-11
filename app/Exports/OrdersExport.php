@@ -20,15 +20,6 @@ class OrdersExport implements FromCollection, WithHeadings, WithStyles, ShouldAu
 {
     public function __construct(private $request) {}
 
-   class OrdersExport implements FromCollection
-{
-    protected $request;
-
-    public function __construct($request)
-    {
-        $this->request = $request;
-    }
-
     /**
      * @return Collection
      */
@@ -46,7 +37,7 @@ class OrdersExport implements FromCollection, WithHeadings, WithStyles, ShouldAu
             })
             ->get();
     }
-}
+
     // Передаем чистые данные, форматирование доверяем Excel
     public function map($order): array
     {
