@@ -14,12 +14,25 @@ use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 use PhpOffice\PhpSpreadsheet\Style\Alignment;
 use PhpOffice\PhpSpreadsheet\Style\Border;
 use Maatwebsite\Excel\Concerns\WithEvents;
+use Illuminate\Support\Collection;
 
 class OrdersExport implements FromCollection, WithHeadings, WithStyles, ShouldAutoSize, WithMapping, WithColumnFormatting, WithEvents
 {
     public function __construct(private $request) {}
 
-    public function collection()
+   class OrdersExport implements FromCollection
+{
+    protected $request;
+
+    public function __construct($request)
+    {
+        $this->request = $request;
+    }
+
+    /**
+     * @return Collection
+     */
+    public function collection(): Collection
     {
         return Order::with('user')
             ->when($this->request->status, function ($q) {
@@ -33,7 +46,7 @@ class OrdersExport implements FromCollection, WithHeadings, WithStyles, ShouldAu
             })
             ->get();
     }
-
+}
     // Передаем чистые данные, форматирование доверяем Excel
     public function map($order): array
     {
