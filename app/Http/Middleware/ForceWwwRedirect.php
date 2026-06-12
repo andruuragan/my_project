@@ -4,7 +4,6 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\Response;
 
 class ForceWwwRedirect
 {
@@ -12,7 +11,15 @@ class ForceWwwRedirect
     {
         $host = $request->getHost();
 
-        if ($host === 'dymsystems.pp.ua') {
+        // Список доменов, которые нужно перенаправлять на www
+        $domainsToRedirect = [
+            'dymsystems.pp.ua',
+            // Сюда можно добавить другие ваши зеркала, если они появятся:
+            // 'dymsystems.com', 
+            // 'dymsystems.net',
+        ];
+
+        if (in_array($host, $domainsToRedirect, true)) {
             return redirect()->to(
                 'https://www.dymsystems.pp.ua' . $request->getRequestUri(),
                 301

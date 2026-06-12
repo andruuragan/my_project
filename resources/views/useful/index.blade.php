@@ -82,7 +82,7 @@
                                 <div class="postcard-img-wrapper">
                                     {{-- Виводимо картинку --}}
                                     @if($item->image)
-                                        <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->name }}" class="postcard-img">
+                                        <img src="{{ asset($item->image) }}" alt="{{ $item->name }}" class="postcard-img">
                                     @else
                                         {{-- Заглушка, якщо у товару немає фото --}}
                                         <div class="postcard-placeholder">

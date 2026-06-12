@@ -11,7 +11,7 @@ class IndexController extends Controller
 {
     public function __invoke()
     {
-        $items = Catalog::orderBy('id', 'asc')->paginate(250);
+        $items = Catalog::orderBy('id', 'asc')->paginate(20);
 
         return view('catalog.index', compact('items'));
     }
