@@ -186,15 +186,16 @@
 
                    <!-- Мобільна версія: Акордеон -->
 <div class="accordion d-md-none" id="mobileAccordion">
-    @php
-        $items = [
-            'ov' => ['title' => 'Опис', 'content' => $catalog->description->overview],
-            'adv' => ['title' => 'Переваги', 'content' => $catalog->description->advantages],
-            'usage' => ['title' => 'Застосування', 'content' => $catalog->description->usage],
-            'why' => ['title' => 'Чому ми!', 'content' => $catalog->description->why_choose_us],
-            'extra' => ['title' => 'Додатково', 'content' => $catalog->description->additional_info],
-        ];
-    @endphp
+   @php
+    $items = [
+        // Використовуємо optional(), щоб уникнути помилки, якщо description null
+        'ov' => ['title' => 'Опис', 'content' => optional($catalog->description)->overview],
+        'adv' => ['title' => 'Переваги', 'content' => optional($catalog->description)->advantages],
+        'usage' => ['title' => 'Застосування', 'content' => optional($catalog->description)->usage],
+        'why' => ['title' => 'Чому ми!', 'content' => optional($catalog->description)->why_choose_us],
+        'extra' => ['title' => 'Додатково', 'content' => optional($catalog->description)->additional_info],
+    ];
+@endphp
 
     @foreach($items as $key => $item)
         {{-- Визначаємо, чи це перший елемент --}}
@@ -224,13 +225,13 @@
     @endforeach
 </div>
 
-                    <div class="tab-content mt-4 text-secondary lh-base d-none d-md-block">
-                        <div class="tab-pane fade show active" id="ov">{!! $catalog->description->overview ?? 'Опис відсутній' !!}</div>
-                        <div class="tab-pane fade" id="adv">{!! $catalog->description->advantages ?? 'Інформація відсутня' !!}</div>
-                        <div class="tab-pane fade" id="usage">{!! $catalog->description->usage ?? 'Інформація відсутня' !!}</div>
-                        <div class="tab-pane fade" id="why">{!! $catalog->description->why_choose_us ?? 'Інформація відсутня' !!}</div>
-                        <div class="tab-pane fade" id="extra">{!! $catalog->description->additional_info ?? 'Інформація відсутня' !!}</div>
-                    </div>
+                   <div class="tab-content mt-4 text-secondary lh-base d-none d-md-block">
+    <div class="tab-pane fade show active" id="ov">{!! optional($catalog->description)->overview ?? 'Опис відсутній' !!}</div>
+    <div class="tab-pane fade" id="adv">{!! optional($catalog->description)->advantages ?? 'Інформація відсутня' !!}</div>
+    <div class="tab-pane fade" id="usage">{!! optional($catalog->description)->usage ?? 'Інформація відсутня' !!}</div>
+    <div class="tab-pane fade" id="why">{!! optional($catalog->description)->why_choose_us ?? 'Інформація відсутня' !!}</div>
+    <div class="tab-pane fade" id="extra">{!! optional($catalog->description)->additional_info ?? 'Інформація відсутня' !!}</div>
+</div>
                 </div>
             @endif
         </div>

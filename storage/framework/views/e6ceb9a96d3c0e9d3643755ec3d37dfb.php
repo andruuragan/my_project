@@ -185,15 +185,16 @@
 
                    <!-- Мобільна версія: Акордеон -->
 <div class="accordion d-md-none" id="mobileAccordion">
-    <?php
-        $items = [
-            'ov' => ['title' => 'Опис', 'content' => $catalog->description->overview],
-            'adv' => ['title' => 'Переваги', 'content' => $catalog->description->advantages],
-            'usage' => ['title' => 'Застосування', 'content' => $catalog->description->usage],
-            'why' => ['title' => 'Чому ми!', 'content' => $catalog->description->why_choose_us],
-            'extra' => ['title' => 'Додатково', 'content' => $catalog->description->additional_info],
-        ];
-    ?>
+   <?php
+    $items = [
+        // Використовуємо optional(), щоб уникнути помилки, якщо description null
+        'ov' => ['title' => 'Опис', 'content' => optional($catalog->description)->overview],
+        'adv' => ['title' => 'Переваги', 'content' => optional($catalog->description)->advantages],
+        'usage' => ['title' => 'Застосування', 'content' => optional($catalog->description)->usage],
+        'why' => ['title' => 'Чому ми!', 'content' => optional($catalog->description)->why_choose_us],
+        'extra' => ['title' => 'Додатково', 'content' => optional($catalog->description)->additional_info],
+    ];
+?>
 
     <?php $__currentLoopData = $items; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
         
@@ -225,13 +226,13 @@
     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 </div>
 
-                    <div class="tab-content mt-4 text-secondary lh-base d-none d-md-block">
-                        <div class="tab-pane fade show active" id="ov"><?php echo $catalog->description->overview ?? 'Опис відсутній'; ?></div>
-                        <div class="tab-pane fade" id="adv"><?php echo $catalog->description->advantages ?? 'Інформація відсутня'; ?></div>
-                        <div class="tab-pane fade" id="usage"><?php echo $catalog->description->usage ?? 'Інформація відсутня'; ?></div>
-                        <div class="tab-pane fade" id="why"><?php echo $catalog->description->why_choose_us ?? 'Інформація відсутня'; ?></div>
-                        <div class="tab-pane fade" id="extra"><?php echo $catalog->description->additional_info ?? 'Інформація відсутня'; ?></div>
-                    </div>
+                   <div class="tab-content mt-4 text-secondary lh-base d-none d-md-block">
+    <div class="tab-pane fade show active" id="ov"><?php echo optional($catalog->description)->overview ?? 'Опис відсутній'; ?></div>
+    <div class="tab-pane fade" id="adv"><?php echo optional($catalog->description)->advantages ?? 'Інформація відсутня'; ?></div>
+    <div class="tab-pane fade" id="usage"><?php echo optional($catalog->description)->usage ?? 'Інформація відсутня'; ?></div>
+    <div class="tab-pane fade" id="why"><?php echo optional($catalog->description)->why_choose_us ?? 'Інформація відсутня'; ?></div>
+    <div class="tab-pane fade" id="extra"><?php echo optional($catalog->description)->additional_info ?? 'Інформація відсутня'; ?></div>
+</div>
                 </div>
             <?php endif; ?>
         </div>
