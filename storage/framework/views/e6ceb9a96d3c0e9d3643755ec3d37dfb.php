@@ -171,53 +171,70 @@
         </div>
 
         <!-- Таби з описами -->
-        <div class="description-content mt-4">
+       <div class="description-content mt-4">
             <?php if(optional($catalog->description)): ?>
                 <div class="card shadow-sm border-0 bg-white rounded-3 p-4">
-                    <ul class="nav nav-tabs card-header-tabs flex-wrap" role="tablist">
-                        <li class="nav-item">
-                            <button class="nav-link active fw-medium px-4" data-bs-toggle="tab" data-bs-target="#ov">Опис</button>
-                        </li>
-                        <li class="nav-item">
-                            <button class="nav-link fw-medium px-4" data-bs-toggle="tab" data-bs-target="#adv">Переваги</button>
-                        </li>
-                        <li class="nav-item">
-                            <button class="nav-link fw-medium px-4" data-bs-toggle="tab" data-bs-target="#usage">Застосування</button>
-                        </li>
-                        <li class="nav-item">
-                            <button class="nav-link fw-medium px-4" data-bs-toggle="tab" data-bs-target="#why">Чому ми!</button>
-                        </li>
-                        <li class="nav-item">
-                            <button class="nav-link fw-medium px-4" data-bs-toggle="tab" data-bs-target="#extra">Додатково</button>
-                        </li>
+                    
+                    <ul class="nav nav-tabs card-header-tabs flex-wrap d-none d-md-flex" role="tablist" id="descTabs">
+                        <li class="nav-item"><button class="nav-link active fw-medium px-4" data-bs-toggle="tab" data-bs-target="#ov">Опис</button></li>
+                        <li class="nav-item"><button class="nav-link fw-medium px-4" data-bs-toggle="tab" data-bs-target="#adv">Переваги</button></li>
+                        <li class="nav-item"><button class="nav-link fw-medium px-4" data-bs-toggle="tab" data-bs-target="#usage">Застосування</button></li>
+                        <li class="nav-item"><button class="nav-link fw-medium px-4" data-bs-toggle="tab" data-bs-target="#why">Чому ми!</button></li>
+                        <li class="nav-item"><button class="nav-link fw-medium px-4" data-bs-toggle="tab" data-bs-target="#extra">Додатково</button></li>
                     </ul>
 
-                    <div class="tab-content mt-4 text-secondary lh-base">
-                        <div class="tab-pane fade show active" id="ov">
-                            <?php echo $catalog->description->overview ?? '<p class="text-muted">Опис відсутній</p>'; ?>
+                   <!-- Мобільна версія: Акордеон -->
+<div class="accordion d-md-none" id="mobileAccordion">
+    <?php
+        $items = [
+            'ov' => ['title' => 'Опис', 'content' => $catalog->description->overview],
+            'adv' => ['title' => 'Переваги', 'content' => $catalog->description->advantages],
+            'usage' => ['title' => 'Застосування', 'content' => $catalog->description->usage],
+            'why' => ['title' => 'Чому ми!', 'content' => $catalog->description->why_choose_us],
+            'extra' => ['title' => 'Додатково', 'content' => $catalog->description->additional_info],
+        ];
+    ?>
 
-                        </div>
-                        <div class="tab-pane fade" id="adv">
-                            <?php echo $catalog->description->advantages ?? '<p class="text-muted">Інформація відсутня</p>'; ?>
+    <?php $__currentLoopData = $items; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+        
+        <?php
+            $isOpen = ($key === 'ov'); 
+        ?>
 
-                        </div>
-                        <div class="tab-pane fade" id="usage">
-                            <?php echo $catalog->description->usage ?? '<p class="text-muted">Інформація відсутня</p>'; ?>
+        <div class="accordion-item border-start-0 border-end-0">
+            <h2 class="accordion-header">
+                
+                <button class="accordion-button fw-bold <?php echo e($isOpen ? '' : 'collapsed'); ?>" 
+                        type="button" 
+                        data-bs-toggle="collapse" 
+                        data-bs-target="#acc-<?php echo e($key); ?>">
+                    <?php echo e($item['title']); ?>
 
-                        </div>
-                        <div class="tab-pane fade" id="why">
-                            <?php echo $catalog->description->why_choose_us ?? '<p class="text-muted">Інформація відсутня</p>'; ?>
+                </button>
+            </h2>
+            
+            <div id="acc-<?php echo e($key); ?>" 
+                 class="accordion-collapse collapse <?php echo e($isOpen ? 'show' : ''); ?>" 
+                 data-bs-parent="#mobileAccordion">
+                <div class="accordion-body text-secondary">
+                    <?php echo $item['content'] ?? '<p class="text-muted">Інформація відсутня</p>'; ?>
 
-                        </div>
-                        <div class="tab-pane fade" id="extra">
-                            <?php echo $catalog->description->additional_info ?? '<p class="text-muted">Інформація відсутня</p>'; ?>
+                </div>
+            </div>
+        </div>
+    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+</div>
 
-                        </div>
+                    <div class="tab-content mt-4 text-secondary lh-base d-none d-md-block">
+                        <div class="tab-pane fade show active" id="ov"><?php echo $catalog->description->overview ?? 'Опис відсутній'; ?></div>
+                        <div class="tab-pane fade" id="adv"><?php echo $catalog->description->advantages ?? 'Інформація відсутня'; ?></div>
+                        <div class="tab-pane fade" id="usage"><?php echo $catalog->description->usage ?? 'Інформація відсутня'; ?></div>
+                        <div class="tab-pane fade" id="why"><?php echo $catalog->description->why_choose_us ?? 'Інформація відсутня'; ?></div>
+                        <div class="tab-pane fade" id="extra"><?php echo $catalog->description->additional_info ?? 'Інформація відсутня'; ?></div>
                     </div>
                 </div>
             <?php endif; ?>
         </div>
-
     </div>
 
     

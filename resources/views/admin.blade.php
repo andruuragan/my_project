@@ -57,8 +57,8 @@
                         <thead>
                         <tr>
                             <th>Товар</th>
-                            <th>Характеристики</th>
-                            <th class="text-center">Кількість лайків</th>
+                            <th>Опис</th>
+                            <th class="text-center">Лайки</th>
                             <th class="text-end">Дія</th> <!-- Новий стовпчик -->
                         </tr>
                         </thead>

@@ -1432,3 +1432,31 @@ html, body {
 #productsWrapper {
     will-change: opacity;
 }
+/* Робимо кнопки акордеону приємнішими */
+.accordion-button:not(.collapsed) {
+    background-color: #fff8f1;
+    /* Легкий відтінок при розгортанні */
+    color: #d97706;
+    /* Колір вашої основної кнопки */
+    box-shadow: none;
+}
+
+.accordion-button:focus {
+    box-shadow: none;
+    border-color: #d97706;
+}
+
+/* Прибираємо зайві рамки, якщо вони є */
+.accordion-item {
+    border-left: none !important;
+    border-right: none !important;
+    border-radius: 0 !important;
+}
+
+/* Щоб на мобільних текст був не занадто притиснутий */
+@media (max-width: 767px) {
+    .accordion-body {
+        padding: 1rem;
+        font-size: 0.95rem;
+    }
+}

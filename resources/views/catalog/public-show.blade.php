@@ -172,48 +172,68 @@
         </div>
 
         <!-- Таби з описами -->
-        <div class="description-content mt-4">
+       <div class="description-content mt-4">
             @if(optional($catalog->description))
                 <div class="card shadow-sm border-0 bg-white rounded-3 p-4">
-                    <ul class="nav nav-tabs card-header-tabs flex-wrap" role="tablist">
-                        <li class="nav-item">
-                            <button class="nav-link active fw-medium px-4" data-bs-toggle="tab" data-bs-target="#ov">Опис</button>
-                        </li>
-                        <li class="nav-item">
-                            <button class="nav-link fw-medium px-4" data-bs-toggle="tab" data-bs-target="#adv">Переваги</button>
-                        </li>
-                        <li class="nav-item">
-                            <button class="nav-link fw-medium px-4" data-bs-toggle="tab" data-bs-target="#usage">Застосування</button>
-                        </li>
-                        <li class="nav-item">
-                            <button class="nav-link fw-medium px-4" data-bs-toggle="tab" data-bs-target="#why">Чому ми!</button>
-                        </li>
-                        <li class="nav-item">
-                            <button class="nav-link fw-medium px-4" data-bs-toggle="tab" data-bs-target="#extra">Додатково</button>
-                        </li>
+                    
+                    <ul class="nav nav-tabs card-header-tabs flex-wrap d-none d-md-flex" role="tablist" id="descTabs">
+                        <li class="nav-item"><button class="nav-link active fw-medium px-4" data-bs-toggle="tab" data-bs-target="#ov">Опис</button></li>
+                        <li class="nav-item"><button class="nav-link fw-medium px-4" data-bs-toggle="tab" data-bs-target="#adv">Переваги</button></li>
+                        <li class="nav-item"><button class="nav-link fw-medium px-4" data-bs-toggle="tab" data-bs-target="#usage">Застосування</button></li>
+                        <li class="nav-item"><button class="nav-link fw-medium px-4" data-bs-toggle="tab" data-bs-target="#why">Чому ми!</button></li>
+                        <li class="nav-item"><button class="nav-link fw-medium px-4" data-bs-toggle="tab" data-bs-target="#extra">Додатково</button></li>
                     </ul>
 
-                    <div class="tab-content mt-4 text-secondary lh-base">
-                        <div class="tab-pane fade show active" id="ov">
-                            {!! $catalog->description->overview ?? '<p class="text-muted">Опис відсутній</p>' !!}
-                        </div>
-                        <div class="tab-pane fade" id="adv">
-                            {!! $catalog->description->advantages ?? '<p class="text-muted">Інформація відсутня</p>' !!}
-                        </div>
-                        <div class="tab-pane fade" id="usage">
-                            {!! $catalog->description->usage ?? '<p class="text-muted">Інформація відсутня</p>' !!}
-                        </div>
-                        <div class="tab-pane fade" id="why">
-                            {!! $catalog->description->why_choose_us ?? '<p class="text-muted">Інформація відсутня</p>' !!}
-                        </div>
-                        <div class="tab-pane fade" id="extra">
-                            {!! $catalog->description->additional_info ?? '<p class="text-muted">Інформація відсутня</p>' !!}
-                        </div>
+                   <!-- Мобільна версія: Акордеон -->
+<div class="accordion d-md-none" id="mobileAccordion">
+    @php
+        $items = [
+            'ov' => ['title' => 'Опис', 'content' => $catalog->description->overview],
+            'adv' => ['title' => 'Переваги', 'content' => $catalog->description->advantages],
+            'usage' => ['title' => 'Застосування', 'content' => $catalog->description->usage],
+            'why' => ['title' => 'Чому ми!', 'content' => $catalog->description->why_choose_us],
+            'extra' => ['title' => 'Додатково', 'content' => $catalog->description->additional_info],
+        ];
+    @endphp
+
+    @foreach($items as $key => $item)
+        {{-- Визначаємо, чи це перший елемент --}}
+        @php
+            $isOpen = ($key === 'ov'); 
+        @endphp
+
+        <div class="accordion-item border-start-0 border-end-0">
+            <h2 class="accordion-header">
+                {{-- Якщо відкритий, прибираємо клас 'collapsed' --}}
+                <button class="accordion-button fw-bold {{ $isOpen ? '' : 'collapsed' }}" 
+                        type="button" 
+                        data-bs-toggle="collapse" 
+                        data-bs-target="#acc-{{$key}}">
+                    {{ $item['title'] }}
+                </button>
+            </h2>
+            {{-- Якщо відкритий, додаємо клас 'show' --}}
+            <div id="acc-{{$key}}" 
+                 class="accordion-collapse collapse {{ $isOpen ? 'show' : '' }}" 
+                 data-bs-parent="#mobileAccordion">
+                <div class="accordion-body text-secondary">
+                    {!! $item['content'] ?? '<p class="text-muted">Інформація відсутня</p>' !!}
+                </div>
+            </div>
+        </div>
+    @endforeach
+</div>
+
+                    <div class="tab-content mt-4 text-secondary lh-base d-none d-md-block">
+                        <div class="tab-pane fade show active" id="ov">{!! $catalog->description->overview ?? 'Опис відсутній' !!}</div>
+                        <div class="tab-pane fade" id="adv">{!! $catalog->description->advantages ?? 'Інформація відсутня' !!}</div>
+                        <div class="tab-pane fade" id="usage">{!! $catalog->description->usage ?? 'Інформація відсутня' !!}</div>
+                        <div class="tab-pane fade" id="why">{!! $catalog->description->why_choose_us ?? 'Інформація відсутня' !!}</div>
+                        <div class="tab-pane fade" id="extra">{!! $catalog->description->additional_info ?? 'Інформація відсутня' !!}</div>
                     </div>
                 </div>
             @endif
         </div>
-
     </div>
 
     {{-- АЯКС СКРИПТ --}}
