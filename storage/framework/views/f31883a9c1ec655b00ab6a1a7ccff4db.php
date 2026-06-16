@@ -1,8 +1,6 @@
-@extends('layouts.main')
+<?php $__env->startSection('content'); ?>
 
-@section('content')
-
-@php
+<?php
 // Определяем переменные здесь, чтобы они были доступны во всем шаблоне
 $rules = [
     ['bi-arrows-expand', 'Висота', 'Мінімум 5 м для стабільної тяги'],
@@ -11,7 +9,7 @@ $rules = [
     ['bi-exclamation-triangle', 'Безпека', 'Пожежні відступи обов’язкові'],
     ['bi-droplet', 'Конденсат', 'Збір системи по потоку конденсату'],
 ];
-@endphp
+?>
 
 <style>
 /* ===== PREMIUM UI LAYER ===== */
@@ -80,9 +78,9 @@ html {
 
 <main class="bg-light pb-5">
 <div class="container-1600 my-5">
-    {{-- HERO --}}
+    
     <div class="position-relative text-white d-flex align-items-center hero-glow rounded-4 overflow-hidden"
-        style="min-height: 520px; background: url('{{ asset('images/chimney/hero-banner.webp') }}') center/cover no-repeat;">
+        style="min-height: 520px; background: url('<?php echo e(asset('images/chimney/hero-banner.webp')); ?>') center/cover no-repeat;">
 
         <div class="position-absolute w-100 h-100"
              style="background: linear-gradient(90deg, rgba(15,23,42,0.85), rgba(15,23,42,0.4));"></div>
@@ -91,9 +89,9 @@ html {
             <div class="row align-items-center">
                 <div class="col-lg-7">
                     <nav class="mb-3">
-                        <a href="{{ route('main.index') }}" class="text-white-50 text-decoration-none">Головна</a> 
+                        <a href="<?php echo e(route('main.index')); ?>" class="text-white-50 text-decoration-none">Головна</a> 
                         <span class="text-white-50 mx-2">/</span> 
-                        <a href="{{ route('useful.index') }}" class="text-white-50 text-decoration-none">Корисна інформація</a> 
+                        <a href="<?php echo e(route('useful.index')); ?>" class="text-white-50 text-decoration-none">Корисна інформація</a> 
                         <span class="text-white-50 mx-2">/</span>
                         <span class="text-white">Монтаж</span>
                     </nav>
@@ -116,7 +114,7 @@ html {
                         <a href="#form" class="btn btn-warning px-4 fw-bold shadow">
                             Отримати консультацію
                         </a>
-                        <a href="{{ route('chimney.calculator') }}" class="btn btn-outline-light px-4">
+                        <a href="<?php echo e(route('chimney.calculator')); ?>" class="btn btn-outline-light px-4">
                             Калькулятор
                         </a>
                     </div>
@@ -125,7 +123,7 @@ html {
         </div>
     </div>
 
-    {{-- FEATURES --}}
+    
     <div class="container mt-5 px-0">
         <div class="row g-4">
             <div class="col-md-4">
@@ -159,49 +157,49 @@ html {
             </div>
         </div>
 
-   {{-- ОСНОВНА СІТКА --}}
+   
     <div class="row mt-5 g-4">
-        {{-- ЛЕВАЯ КОЛОНКА (Правила + Схема) --}}
+        
         <div class="col-lg-8">
             <div class="p-card p-4 p-md-5 mb-4">
                 <h2 class="fw-bold mb-4">5 ключових правил монтажу</h2>
                 <div class="row g-4">
-                    @foreach($rules as $r)
+                    <?php $__currentLoopData = $rules; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $r): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <div class="col-md-6">
                             <div class="d-flex">
                                 <div class="p-icon me-3 flex-shrink-0">
-                                    <i class="bi {{ $r[0] }}"></i>
+                                    <i class="bi <?php echo e($r[0]); ?>"></i>
                                 </div>
                                 <div>
-                                    <h5 class="fw-bold mb-1">{{ $r[1] }}</h5>
-                                    <p class="text-muted small mb-0">{{ $r[2] }}</p>
+                                    <h5 class="fw-bold mb-1"><?php echo e($r[1]); ?></h5>
+                                    <p class="text-muted small mb-0"><?php echo e($r[2]); ?></p>
                                 </div>
                             </div>
                         </div>
-                    @endforeach
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </div>
             </div>
 
             <div class="p-card p-4 text-center">
                 <h4 class="fw-bold mb-3">Інженерна схема монтажу</h4>
-                <img src="{{ asset('images/chimney/chimney-main-schema.webp') }}" 
+                <img src="<?php echo e(asset('images/chimney/chimney-main-schema.webp')); ?>" 
                      class="img-fluid rounded-4" 
                      alt="Схема монтажу димоходу">
             </div>
         </div>
 
-        {{-- ПРАВАЯ КОЛОНКА (САЙДБАР) --}}
+        
         <div class="col-lg-4">
             <div class="sticky-top" style="top: 140px;">
                 <div id="form" class="p-card p-4 mb-4">
                     <h4 class="fw-bold mb-2">Консультація</h4>
                     <p class="text-muted small mb-3">Підбір системи та безкоштовний розрахунок.</p>
-                   <form action="{{ route('leads.store') }}" 
-      data-action="{{ route('leads.store') }}" 
+                   <form action="<?php echo e(route('leads.store')); ?>" 
+      data-action="<?php echo e(route('leads.store')); ?>" 
       method="POST" 
       class="needs-validation" 
       novalidate>
-    @csrf
+    <?php echo csrf_field(); ?>
     
     <input type="hidden" name="device_type" value="Консультація з блогу">
 
@@ -222,36 +220,36 @@ html {
                     <i class="bi bi-calculator fs-2 text-warning"></i>
                     <h5 class="fw-bold mt-2">Калькулятор</h5>
                     <p class="small text-white-50">Розрахунок діаметра та висоти онлайн.</p>
-                    <a href="{{ route('chimney.calculator') }}" class="btn btn-outline-light w-100">Відкрити</a>
+                    <a href="<?php echo e(route('chimney.calculator')); ?>" class="btn btn-outline-light w-100">Відкрити</a>
                 </div>
             </div>
         </div>
     </div>
 
-    {{-- БЛОК ОШИБОК (Полноширинный, находится за пределами основного row) --}}
+    
     <div class="mt-4">
         <div class="p-card p-4 p-md-5">
             <h3 class="fw-bold mb-4">Типові помилки під час монтажу</h3>
             <div class="row">
                 <div class="col-12 mb-4">
-                    <img src="{{ asset('images/chimney/pomulku_montag.webp') }}" 
+                    <img src="<?php echo e(asset('images/chimney/pomulku_montag.webp')); ?>" 
                          class="img-fluid rounded-4 shadow-sm w-100" 
                          alt="Типові помилки монтажу димоходу">
                 </div>
             </div>
             <div class="row g-3">
-                @foreach(['Завуження діаметра', 'Відсутність утеплення', 'Довгі горизонти', 'Неправильні стики', 'Відсутність ревізії', 'Недостатня висота'] as $m)
+                <?php $__currentLoopData = ['Завуження діаметра', 'Відсутність утеплення', 'Довгі горизонти', 'Неправильні стики', 'Відсутність ревізії', 'Недостатня висота']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $m): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                   <div class="col-6 col-md-4 col-lg-2">
                         <div class="border rounded-3 p-3 bg-light text-center h-100">
                             <i class="bi bi-x-circle-fill text-danger d-block mb-2"></i>
-                            <span class="small fw-medium">{{ $m }}</span>
+                            <span class="small fw-medium"><?php echo e($m); ?></span>
                         </div>
                     </div>
-                @endforeach
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </div>
         </div>
     </div>
-    {{-- БЛОК СТАТТІ --}}
+    
 <div class="mt-5">
     <div class="p-card p-4 p-md-5" style="background: #f8fafc;">
         <div class="row align-items-center">
@@ -263,11 +261,11 @@ html {
                 <p class="text-muted">
                     У нашій статті ми детально розібрали, як інженерний підхід до вибору матеріалів та дотримання пожежних норм подовжує термін служби вашої опалювальної системи на десятиліття.
                 </p>
-                <a href="{{ route('blog.installation-errors') }}" class="btn btn-outline-dark fw-bold mt-2">Читати повну статтю</a>
+                <a href="<?php echo e(route('blog.installation-errors')); ?>" class="btn btn-outline-dark fw-bold mt-2">Читати повну статтю</a>
             </div>
             <div class="col-lg-6 text-lg-end mt-4 mt-lg-0">
                 <div class="position-relative">
-                    <img src="{{ asset('images/chimney/article-preview.webp') }}" 
+                    <img src="<?php echo e(asset('images/chimney/article-preview.webp')); ?>" 
                          class="img-fluid rounded-4 shadow-lg" 
                          alt="Професійний монтаж димоходу">
                 </div>
@@ -276,7 +274,7 @@ html {
     </div>
 </div>
 
-    {{-- НИЖНІЙ СТАЦІОНАРНИЙ БАНЕР --}}
+    
     <div class="mt-5">
         <div class="p-card p-5 text-center" style="background: linear-gradient(135deg,#0f172a,#1e293b); color:#fff;">
             <h3 class="fw-bold">Потрібен монтаж під ключ?</h3>
@@ -289,7 +287,7 @@ html {
 
 
 <script>
-document.querySelectorAll('form[action="{{ route("leads.store") }}"]').forEach(form => {
+document.querySelectorAll('form[action="<?php echo e(route("leads.store")); ?>"]').forEach(form => {
     form.addEventListener('submit', async (e) => {
         // 1. Стандартна перевірка Bootstrap (замість старого блоку)
         if (!form.checkValidity()) {
@@ -365,4 +363,5 @@ function showFlashMessage(text) {
 }
 </script>
 
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.main', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH /var/www/my_project/resources/views/pages/installation-rules.blade.php ENDPATH**/ ?>

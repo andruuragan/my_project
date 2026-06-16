@@ -1,6 +1,4 @@
-@extends('layouts.main')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
     <div class="container-1600">
         <div class="text-center mb-5">
             <h1 class="fw-bold">Контакти</h1>
@@ -101,4 +99,6 @@
 
         </div>
     </div>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.main', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH /var/www/my_project/resources/views/contacts.blade.php ENDPATH**/ ?>

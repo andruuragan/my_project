@@ -1,6 +1,4 @@
-@extends('layouts.main')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
 
     <div class="container-1600 shop-page">
 
@@ -21,20 +19,20 @@
                         Фільтр товарів
                     </h5>
 
-                    <form class="filter-form" method="GET" action="{{ route('shop.index') }}">
+                    <form class="filter-form" method="GET" action="<?php echo e(route('shop.index')); ?>">
 
                         <div class="mb-3">
                             <label class="form-label" for="element_name">Назва елемента</label>
                             <input type="text"
                                    id="element_name"
                                    name="name"
-                                   value="{{ request('name') }}"
+                                   value="<?php echo e(request('name')); ?>"
                                    class="form-control"
                                    autocomplete="off">
                         </div>
 
-                        {{-- TYPE --}}
-                        @php
+                        
+                        <?php
                             $types = [
                                 'Труба', 'Коліно 45°', 'Коліно 90°', 'Трійник 90°', 'Трійник 45°',
                                 'Волпер', 'Грибок', 'Іскрогасник', 'Регулятор тяги(Кагла)', 'Лійка',
@@ -44,22 +42,23 @@
                                 'Стіновий хомут', 'Монтажний хомут', 'Конус', 'Термоґрибок', 'Дека',
                                 'Заглушка', 'Старт-сендвіч', 'Труба-подовжувач', 'Прохід', 'Відображувач', 'Труба овальна'
                             ];
-                        @endphp
+                        ?>
 
                         <div class="mb-3" x-ignore>
                             <label class="form-label" for="filter-element_type">Тип</label>
                             <select id="filter-element_type" name="type" class="js-choice" autocomplete="off">
                                 <option value="">Все</option>
-                                @foreach($types as $type)
-                                    <option value="{{ $type }}" @selected(request('type') == $type)>
-                                        {{ $type }}
+                                <?php $__currentLoopData = $types; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $type): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <option value="<?php echo e($type); ?>" <?php if(request('type') == $type): echo 'selected'; endif; ?>>
+                                        <?php echo e($type); ?>
+
                                     </option>
-                                @endforeach
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </select>
                         </div>
 
-                        {{-- DIAMETER --}}
-                        @php
+                        
+                        <?php
                             $diameters = [
                                 '100', '110', '120', '125', '130', '140', '150', '160', '170', '180',
                                 '190', '200', '210', '220', '230', '240', '250', '260', '270', '280',
@@ -72,106 +71,111 @@
                                 '150/250', '160/260', '180/280', '200/300', '100х200',
                                  '110х220', '110х230', '110х240', '120х220', '120х230', '120х240'
                             ];
-                        @endphp
+                        ?>
 
                         <div class="mb-3" x-ignore>
                             <label class="form-label" for="filter-element_diameter">Діаметр(розмір)</label>
                             <select id="filter-element_diameter" name="diameter" class="js-choice" autocomplete="off">
                                 <option value="">Все</option>
-                                @foreach($diameters as $d)
-                                    <option value="{{ $d }}" @selected(request('diameter') == $d)>
-                                        {{ $d }}
+                                <?php $__currentLoopData = $diameters; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $d): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <option value="<?php echo e($d); ?>" <?php if(request('diameter') == $d): echo 'selected'; endif; ?>>
+                                        <?php echo e($d); ?>
+
                                     </option>
-                                @endforeach
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </select>
                         </div>
 
-                        {{-- THICKNESS --}}
-                        @php
+                        
+                        <?php
                             $thicknesses = ['0,5 мм', '0,8 мм', '1 мм', '2 мм'];
-                        @endphp
+                        ?>
 
                         <div class="mb-3" x-ignore>
                             <label class="form-label" for="filter-thickness">Товщина нерж.</label>
                             <select id="filter-thickness" name="thickness" class="js-choice" autocomplete="off">
                                 <option value="">Все</option>
-                                @foreach($thicknesses as $t)
-                                    <option value="{{ $t }}" @selected(request('thickness') == $t)>
-                                        {{ $t }}
+                                <?php $__currentLoopData = $thicknesses; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $t): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <option value="<?php echo e($t); ?>" <?php if(request('thickness') == $t): echo 'selected'; endif; ?>>
+                                        <?php echo e($t); ?>
+
                                     </option>
-                                @endforeach
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </select>
                         </div>
 
-                        {{-- GRADE --}}
-                        @php
+                        
+                        <?php
                             $grades = [
                                 '304' => '304 AISI',
                                 '321' => '321 AISI',
                                 '201' => '201 AISI',
                                 '430' => '430 AISI',
                             ];
-                        @endphp
+                        ?>
 
                         <div class="mb-3" x-ignore>
                             <label class="form-label" for="filter-grade">Марка нерж.</label>
                             <select id="filter-grade" name="grade" class="js-choice" autocomplete="off">
                                 <option value="">Все</option>
-                                @foreach($grades as $value => $label)
-                                    <option value="{{ $value }}" @selected(request('grade') == $value)>
-                                        {{ $label }}
+                                <?php $__currentLoopData = $grades; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $value => $label): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <option value="<?php echo e($value); ?>" <?php if(request('grade') == $value): echo 'selected'; endif; ?>>
+                                        <?php echo e($label); ?>
+
                                     </option>
-                                @endforeach
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </select>
                         </div>
 
-                        {{-- CHIMNEY TYPE --}}
-                        @php
+                        
+                        <?php
                             $chimneyTypes = ['Одностінний', 'Термо'];
-                        @endphp
+                        ?>
 
                         <div class="mb-3" x-ignore>
                             <label class="form-label" for="filter-chimneyType">Тип димохода</label>
                             <select id="filter-chimneyType" name="chimneyType" class="js-choice" autocomplete="off">
                                 <option value="">Все</option>
-                                @foreach($chimneyTypes as $type)
-                                    <option value="{{ $type }}" @selected(request('chimneyType') == $type)>
-                                        {{ $type }}
+                                <?php $__currentLoopData = $chimneyTypes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $type): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <option value="<?php echo e($type); ?>" <?php if(request('chimneyType') == $type): echo 'selected'; endif; ?>>
+                                        <?php echo e($type); ?>
+
                                     </option>
-                                @endforeach
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </select>
                         </div>
 
-                        {{-- CASING --}}
-                        @php
+                        
+                        <?php
                             $casings = ['н/н', 'н/оц'];
-                        @endphp
+                        ?>
 
                         <div class="mb-3" x-ignore>
                             <label class="form-label" for="filter-casing">Кожух</label>
                             <select id="filter-casing" name="casing" class="js-choice" autocomplete="off">
                                 <option value="">Все</option>
-                                @foreach($casings as $casing)
-                                    <option value="{{ $casing }}" @selected(request('casing') == $casing)>
-                                        {{ $casing }}
+                                <?php $__currentLoopData = $casings; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $casing): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <option value="<?php echo e($casing); ?>" <?php if(request('casing') == $casing): echo 'selected'; endif; ?>>
+                                        <?php echo e($casing); ?>
+
                                     </option>
-                                @endforeach
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </select>
                         </div>
 
-                        {{-- PRICE --}}
+                        
                         <div class="mb-3">
                             <label class="form-label" for="price_to">Ціна до</label>
                             <input type="number"
                                    id="price_to"
                                    name="price_to"
-                                   value="{{ request('price_to') }}"
+                                   value="<?php echo e(request('price_to')); ?>"
                                    class="form-control"
                                    autocomplete="off">
                         </div>
 
                         <div class="d-flex flex-column gap-2 mt-3">
-                            <a href="{{ route('shop.index') }}" class="filter-reset-btn text-center py-2 btn btn-outline-secondary rounded-pill w-100">
+                            <a href="<?php echo e(route('shop.index')); ?>" class="filter-reset-btn text-center py-2 btn btn-outline-secondary rounded-pill w-100">
                                 Скинути
                             </a>
                             <button class="filter-btn rounded-pill w-100" type="submit">
@@ -186,14 +190,14 @@
 
             <div class="col-lg-9 products-area">
                 <div id="productsWrapper">
-                    @include('partials.products', ['catalogs' => $catalogs])
+                    <?php echo $__env->make('partials.products', ['catalogs' => $catalogs], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
                 </div>
             </div>
 
         </div>
     </div>
 
-    {{-- MODAL FOR IMAGE VIEW --}}
+    
     <div class="modal fade" id="imageModal" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
@@ -326,9 +330,9 @@
     });
     </script>
 
-@endsection
+<?php $__env->stopSection(); ?>
 
-@push('styles')
+<?php $__env->startPush('styles'); ?>
     <style>
         /* Скрытие оригинальных селекторов */
         select.js-choice {
@@ -342,4 +346,5 @@
             opacity: 0 !important;
         }
     </style>
-@endpush
+<?php $__env->stopPush(); ?>
+<?php echo $__env->make('layouts.main', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH /var/www/my_project/resources/views/shop.blade.php ENDPATH**/ ?>

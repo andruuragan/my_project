@@ -1,8 +1,6 @@
-@extends('layouts.main')
+<?php $__env->startSection('content'); ?>
 
-@section('content')
 
-{{-- 1. Hero Секція (Перший екран) --}}
 
 <section class="container-1600 my-5">
 <div class="hero-production p-4 p-md-5 shadow-lg">
@@ -25,10 +23,10 @@
         </p>
 
         <div class="d-flex gap-3">
-            <a href="{{ route('shop.index') }}" class="btn btn-warning btn-lg fw-bold px-4">
+            <a href="<?php echo e(route('shop.index')); ?>" class="btn btn-warning btn-lg fw-bold px-4">
                 Купити димохід
             </a>
-            <a href="{{ route('useful.index') }}" class="btn btn-outline-light btn-lg px-4">
+            <a href="<?php echo e(route('useful.index')); ?>" class="btn btn-outline-light btn-lg px-4">
                 Корисна інформація
             </a>
         </div>
@@ -55,7 +53,7 @@
     </div>
 
    <div class="row g-4">
-    @foreach([
+    <?php $__currentLoopData = [
     [
         'cat' => 'single',
         'img' => 'single-wall-banner.webp',
@@ -81,23 +79,23 @@
         'title' => 'Система овальних нержавіючіх димоходів',
         'desc' => 'Труби, коліна, трійники, ревізії.'
     ]
-] as $item)
+]; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
     <div class="col-12 col-md-6">
         <div class="card h-100 border-0 shadow-sm custom-product-card">
-            <a href="{{ route('shop.index', ['category' => $item['cat']]) }}" class="img-container">
-                <img src="{{ asset('images/chimney/' . $item['img']) }}" alt="{{ $item['title'] }}" class="product-img">
+            <a href="<?php echo e(route('shop.index', ['category' => $item['cat']])); ?>" class="img-container">
+                <img src="<?php echo e(asset('images/chimney/' . $item['img'])); ?>" alt="<?php echo e($item['title']); ?>" class="product-img">
             </a>
             <div class="card-body p-4 text-center">
-                @if(isset($item['badge']))
-                    <span class="badge bg-warning text-dark mb-3 px-3 py-2">{{ $item['badge'] }}</span>
-                @endif
-                <h3 class="h4 fw-bold mb-3">{{ $item['title'] }}</h3>
-                <p class="text-muted mb-4">{{ $item['desc'] }}</p>
-                <a href="{{ route('shop.index', ['category' => $item['cat']]) }}" class="btn btn-outline-dark rounded-pill px-4">Каталог</a>
+                <?php if(isset($item['badge'])): ?>
+                    <span class="badge bg-warning text-dark mb-3 px-3 py-2"><?php echo e($item['badge']); ?></span>
+                <?php endif; ?>
+                <h3 class="h4 fw-bold mb-3"><?php echo e($item['title']); ?></h3>
+                <p class="text-muted mb-4"><?php echo e($item['desc']); ?></p>
+                <a href="<?php echo e(route('shop.index', ['category' => $item['cat']])); ?>" class="btn btn-outline-dark rounded-pill px-4">Каталог</a>
             </div>
         </div>
     </div>
-    @endforeach
+    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 </div>
 </section>
 
@@ -139,7 +137,7 @@
         </div>
     </div>
 </section>
-{{-- 3. Блок швидких посилань (Замість великих карток) --}}
+
 <section class="container-1600 py-5">
     <div class="row g-4 align-items-center">
         <div class="col-md-6">
@@ -147,7 +145,7 @@
             <p class="text-muted">Ми підготували для вас онлайн-калькулятор та інструкції, які допоможуть зробити правильний вибір без помилок.</p>
         </div>
         <div class="col-md-6 text-md-end">
-    <a href="{{ route('useful.index') }}"
+    <a href="<?php echo e(route('useful.index')); ?>"
        class="btn btn-dark btn-lg px-5 py-3 fw-semibold">
         Перейти до розділу "Корисна інформація"
     </a>
@@ -199,7 +197,7 @@
             </div>
 
             <div class="col-lg-4 text-lg-end mt-4 mt-lg-0">
-                <a href="{{ route('chimney.installation-rules') }}#form"
+                <a href="<?php echo e(route('chimney.installation-rules')); ?>#form"
                    class="btn btn-warning btn-lg fw-bold px-4">
                     Отримати консультацію
                 </a>
@@ -217,32 +215,32 @@
     </div>
 
     <div class="row g-4">
-        {{-- Масив з даними для швидкої зміни --}}
-        @foreach([
+        
+        <?php $__currentLoopData = [
             ['img' => 'house-project.webp', 'title' => 'Приватний будинок', 'text' => 'Сендвіч-димохід Ø200 мм для твердопаливного котла. Висота 7.5 м, утеплення 50 мм.', 'meta' => ['стабільна тяга', 'відсутність конденсату', 'зовнішній монтаж']],
             ['img' => 'commercial-project.webp', 'title' => 'Котельня комерційна', 'text' => 'Модульна система з AISI 321 для газових котлів. Ø250 мм, інженерний розрахунок.', 'meta' => ['висока температура', 'кислотостійка сталь', 'ревізійні вузли']],
             ['img' => 'industrial-project.webp', 'title' => 'Промисловий об’єкт', 'text' => 'Димова система великого діаметра Ø300+ мм. Робота з високим навантаженням.', 'meta' => ['підсилена конструкція', 'теплоізоляція 50 мм', 'довгий ресурс']]
-        ] as $item)
+        ]; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
         <div class="col-lg-4">
             <div class="card h-100 border-0 shadow-sm custom-product-card overflow-hidden">
                 <div class="img-container">
-                    <img src="{{ asset('images/chimney/' . $item['img']) }}" alt="{{ $item['title'] }}" class="product-img">
+                    <img src="<?php echo e(asset('images/chimney/' . $item['img'])); ?>" alt="<?php echo e($item['title']); ?>" class="product-img">
                 </div>
                 <div class="card-body p-4">
-                    <h3 class="h5 fw-bold mb-3 text-center">{{ $item['title'] }}</h3>
-                    <p class="text-muted small mb-3">{{ $item['text'] }}</p>
+                    <h3 class="h5 fw-bold mb-3 text-center"><?php echo e($item['title']); ?></h3>
+                    <p class="text-muted small mb-3"><?php echo e($item['text']); ?></p>
                     <div class="case-meta border-top pt-3 mt-2">
-                        @foreach($item['meta'] as $m)
-                            <div class="small text-dark mb-1"><i class="bi bi-check2-circle text-warning me-2"></i>{{ $m }}</div>
-                        @endforeach
+                        <?php $__currentLoopData = $item['meta']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $m): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <div class="small text-dark mb-1"><i class="bi bi-check2-circle text-warning me-2"></i><?php echo e($m); ?></div>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </div>
                 </div>
             </div>
         </div>
-        @endforeach
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
     </div>
 </section>
-{{-- 4. Переваги (Короткий блок для довіри) --}}
+
 <section class="py-5 border-top bg-white">
     <div class="container-1600">
 
@@ -312,7 +310,7 @@
     min-height: 550px;
     /* Використовуємо headbanner.webp через asset() */
     background: linear-gradient(90deg, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23, 42, 0.4) 60%, rgba(15, 23, 42, 0.1) 100%), 
-                url('{{ asset('images/chimney/headbanner.webp') }}') center/cover no-repeat;
+                url('<?php echo e(asset('images/chimney/headbanner.webp')); ?>') center/cover no-repeat;
     display: flex;
     align-items: center;
     color: #fff;
@@ -543,4 +541,5 @@ section {
     padding-top: 12px;
 }
 </style>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.main', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH /var/www/my_project/resources/views/main.blade.php ENDPATH**/ ?>

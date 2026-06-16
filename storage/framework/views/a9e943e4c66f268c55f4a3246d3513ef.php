@@ -1,32 +1,32 @@
 <div id="productsWrapper">
     <div class="row">
 
-        @forelse($catalogs as $catalog)
+        <?php $__empty_1 = true; $__currentLoopData = $catalogs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $catalog): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
             <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
                 <div class="card product-card shadow-sm h-100 border-0 rounded-4 overflow-hidden position-relative bg-white">
 
-                    {{-- ЗОБРАЖЕННЯ ТА КНОПКИ ВЕРХУ --}}
+                    
                     <div class="position-relative product-image-wrapper bg-light d-flex align-items-center justify-content-center" style="height: 220px; overflow: hidden;">
                         
-                        {{-- ВИПРАВЛЕНО: Перевірка на наявність картинки --}}
-                        <img src="{{ $catalog->image ? asset($catalog->image) : asset('images/no-image.svg') }}"
+                        
+                        <img src="<?php echo e($catalog->image ? asset($catalog->image) : asset('images/no-image.svg')); ?>"
                              class="product-image"
-                             alt="{{ $catalog->name }}"
+                             alt="<?php echo e($catalog->name); ?>"
                              style="max-height: 100%; object-fit: contain; transition: transform 0.3s ease;">
 
                         <div class="product-icons p-3 d-flex justify-content-between w-100 position-absolute top-0 start-0">
-                            @auth
+                            <?php if(auth()->guard()->check()): ?>
                                 <button type="button"
                                         class="icon-btn wishlist-btn rounded-circle shadow-sm border-0 d-flex align-items-center justify-content-center bg-white"
-                                        data-id="{{ $catalog->id }}"
+                                        data-id="<?php echo e($catalog->id); ?>"
                                         style="width: 36px; height: 36px;">
-                                    @if(Auth::user()->wishlists->contains($catalog->id))
+                                    <?php if(Auth::user()->wishlists->contains($catalog->id)): ?>
                                         <i class="bi bi-heart-fill text-danger"></i>
-                                    @else
+                                    <?php else: ?>
                                         <i class="bi bi-heart text-muted"></i>
-                                    @endif
+                                    <?php endif; ?>
                                 </button>
-                            @else
+                            <?php else: ?>
                                 <button type="button"
                                         class="icon-btn guest-wishlist-btn rounded-circle shadow-sm border-0 d-flex align-items-center justify-content-center bg-white"
                                         data-bs-toggle="modal" 
@@ -38,13 +38,13 @@
                                         style="width: 36px; height: 36px;">
                                     <i class="bi bi-heart text-muted"></i>
                                 </button>
-                            @endauth
+                            <?php endif; ?>
 
-                           {{-- Змінено: flex-column для вертикального стеку --}}
+                           
 <div class="right-icons d-flex flex-column gap-2">
     
-    {{-- Кнопка "Детальніше" тепер ПЕРША --}}
-    <a href="{{ route('catalog.public.show', $catalog->id) }}"
+    
+    <a href="<?php echo e(route('catalog.public.show', $catalog->id)); ?>"
        class="icon-btn rounded-circle shadow-sm border-0 d-flex align-items-center justify-content-center bg-white"
        data-bs-toggle="tooltip"
        data-bs-placement="left"
@@ -54,7 +54,7 @@
         <i class="bi bi-box-arrow-up-right text-muted"></i>
     </a>
 
-    {{-- Кнопка "Лупа" тепер ДРУГА (під нею) --}}
+    
     <button type="button"
             class="icon-btn open-image rounded-circle shadow-sm border-0 d-flex align-items-center justify-content-center bg-white"
             data-bs-toggle="tooltip"
@@ -62,41 +62,44 @@
             data-bs-custom-class="custom-orange-tooltip"
             data-bs-title="Збільшити фото"
             style="width: 36px; height: 36px;"
-            data-image="{{ $catalog->image ? asset($catalog->image) : asset('images/no-image.svg') }}">
+            data-image="<?php echo e($catalog->image ? asset($catalog->image) : asset('images/no-image.svg')); ?>">
         <i class="bi bi-search text-muted"></i>
     </button>
 </div>
                         </div>
                     </div>
 
-                    {{-- ОПИС ТА ХАРАКТЕРИСТИКИ --}}
+                    
                     <div class="card-body d-flex flex-column p-3">
                         <h6 class="mb-2 line-clamp-2" style="height: 40px; overflow: hidden; line-height: 1.3;">
-                            <a href="{{ route('catalog.public.show', $catalog->id) }}" class="product-title-link fw-semibold text-decoration-none">
-                                {{ $catalog->name }}
+                            <a href="<?php echo e(route('catalog.public.show', $catalog->id)); ?>" class="product-title-link fw-semibold text-decoration-none">
+                                <?php echo e($catalog->name); ?>
+
                             </a>
                         </h6>
 
                         <div class="my-1" style="height: 1px; background: linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,0.08) 20%, rgba(0,0,0,0.08) 80%, rgba(0,0,0,0));"></div>
 
                         <div class="product-specs d-flex flex-wrap gap-2 mt-2 mb-3">
-      @if(!empty($catalog->diameter) && $catalog->diameter != 0)
+      <?php if(!empty($catalog->diameter) && $catalog->diameter != 0): ?>
     <span class="badge bg-light text-dark border border-secondary-subtle rounded-pill">
-        @if($catalog->type !== 'Труба овальна')
+        <?php if($catalog->type !== 'Труба овальна'): ?>
             Ø
-        @endif
-        {{ $catalog->diameter }}
+        <?php endif; ?>
+        <?php echo e($catalog->diameter); ?>
+
     </span>
-@endif
-        <span class="badge bg-light text-dark border border-secondary-subtle rounded-pill">{{ $catalog->thickness }}</span>
-        <span class="badge bg-warning text-white border-0 rounded-pill">AISI {{ $catalog->grade }}</span>
+<?php endif; ?>
+        <span class="badge bg-light text-dark border border-secondary-subtle rounded-pill"><?php echo e($catalog->thickness); ?></span>
+        <span class="badge bg-warning text-white border-0 rounded-pill">AISI <?php echo e($catalog->grade); ?></span>
     </div>
-                        {{-- ЦІНА --}}
+                        
                         <div class="mt-auto pt-2">
                             <div class="d-flex align-items-center mb-1">
                                 <div class="price-badge px-3 py-1 rounded-3 d-inline-flex align-items-baseline">
-                                    <span class="fs-4 fw-bold item-price" data-price="{{ $catalog->price }}">
-                                        {{ number_format($catalog->price, 0, '.', ' ') }}
+                                    <span class="fs-4 fw-bold item-price" data-price="<?php echo e($catalog->price); ?>">
+                                        <?php echo e(number_format($catalog->price, 0, '.', ' ')); ?>
+
                                     </span>
                                     <span class="currency-label fw-bold ms-1">₴</span>
                                 </div>
@@ -104,14 +107,14 @@
 
                             <div class="total-price-box mb-2" style="font-size: 0.82rem; height: 18px; opacity: 0; transition: opacity 0.2s ease;">
                                 <span class="text-muted">Разом:</span>
-                                <strong class="total-sum text-muted-dark">{{ number_format($catalog->price, 0, '.', ' ') }}</strong>
+                                <strong class="total-sum text-muted-dark"><?php echo e(number_format($catalog->price, 0, '.', ' ')); ?></strong>
                                 <span class="fw-medium text-muted-dark">₴</span>
                             </div>
                         </div>
 
-                        {{-- КНОПКА КУПИТИ / КІЛЬКІСТЬ --}}
-                        <form class="add-to-cart-form" action="{{ route('cart.add', $catalog->id) }}" method="POST">
-                            @csrf
+                        
+                        <form class="add-to-cart-form" action="<?php echo e(route('cart.add', $catalog->id)); ?>" method="POST">
+                            <?php echo csrf_field(); ?>
                             <div class="d-flex align-items-center justify-content-between gap-2 mt-1">
                                 <div class="input-group rounded-pill border border-secondary-subtle overflow-hidden bg-light custom-qty-group" style="width: 105px; height: 40px;">
                                     <button type="button" class="btn p-0 fw-bold qty-btn minus" style="width: 34px;">−</button>
@@ -124,7 +127,7 @@
                                     <button type="button" class="btn p-0 fw-bold qty-btn plus" style="width: 34px;">+</button>
                                 </div>
 
-                                @auth
+                                <?php if(auth()->guard()->check()): ?>
                                     <button type="submit" 
                                             class="btn-cart-circle add-cart-btn shadow-sm d-flex align-items-center justify-content-center" 
                                             data-bs-toggle="tooltip"
@@ -133,7 +136,7 @@
                                             data-bs-title="Додати у кошик">
                                         <i class="bi bi-cart3 fs-5"></i>
                                     </button>
-                                @else
+                                <?php else: ?>
                                     <div data-bs-toggle="tooltip"
                                          data-bs-placement="top"
                                          data-bs-custom-class="custom-orange-tooltip"
@@ -146,27 +149,28 @@
                                             <i class="bi bi-cart3 fs-5"></i>
                                         </button>
                                     </div>
-                                @endauth
+                                <?php endif; ?>
                             </div>
                         </form>
 
                     </div>
                 </div>
             </div>
-        @empty
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
             <div class="col-12 text-center py-5">
                 <p class="text-muted">Товари не знайдені</p>
             </div>
-        @endforelse
+        <?php endif; ?>
 
     </div>
 
     <div class="d-flex justify-content-center mt-4">
-        {{ $catalogs->links() }}
+        <?php echo e($catalogs->links()); ?>
+
     </div>
 </div>
 
-{{-- СТИЛІ КАРТКИ --}}
+
 <style>
 .product-card {
     border: 1px solid transparent !important;
@@ -357,7 +361,7 @@
 </style>
 
 
-{{-- ФУНКЦІОНАЛ (JS) --}}
+
 <script>
 document.addEventListener('DOMContentLoaded', function () {
     document.body.addEventListener('mouseover', function (event) {
@@ -386,4 +390,4 @@ document.querySelectorAll('.add-cart-btn').forEach(button => {
         }, 1500);
     });
 });
-</script>
+</script><?php /**PATH /var/www/my_project/resources/views/partials/products.blade.php ENDPATH**/ ?>
