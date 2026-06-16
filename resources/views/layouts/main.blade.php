@@ -44,6 +44,7 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css">
+    <link rel="stylesheet" href="{{ asset('css/mobile-navbar.css') }}">
     
     <style>
         .btn-icon {
@@ -58,6 +59,8 @@
         body {
             font-family: 'Inter', sans-serif;
             margin: 0;
+            overflow-x: hidden;
+    max-width: 100%;
         }
         
         h1, h2, h3, .fs-2, .fw-black {
@@ -80,9 +83,14 @@
 
 <body class="site-body">
 
-<div class="page-wrapper">
+{{-- Выносим мобильный хедер за пределы page-wrapper --}}
+    @include('components.mobile-navbar')
 
-    @include('partials.navbar')
+    <div class="page-wrapper">
+        @include('partials.navbar')
+
+    
+    
 
     {{-- Повідомлення про помилку доступу (403) --}}
     @if(session('error_alert'))

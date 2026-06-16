@@ -224,13 +224,13 @@ g \cdot H \cdot
                         <tr>
                             <th>Тип приладу</th>
                             <th>Потужність / Параметр</th>
-                            <th>Рекомендований переріз</th>
+                            <th>Рекомен. переріз</th>
                             <th>Особливість монтажу</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="fw-semibold">Твердопаливний котел</td>
+                            <td class="fw-semibold">Твервний котел</td>
                             <td>До 16 кВт<br><small class="text-muted">16 – 35 кВт</small></td>
                             <td><strong>150–180 мм</strong><br><small class="text-muted">180–220 мм</small></td>
                             <td>Запас потужності 20%</td>
@@ -251,7 +251,7 @@ g \cdot H \cdot
                             <td class="fw-semibold">Камін</td>
                             <td>Відкрита топка</td>
                             <td><strong>1/8 – 1/10 площі топки</strong></td>
-                            <td>Мінімальний діаметр 200 мм</td>
+                            <td>Мінім. діаметр 200 мм</td>
                         </tr>
                     </tbody>
                 </table>
@@ -413,6 +413,23 @@ g \cdot H \cdot
 .breadcrumb-item a:hover {
     color: #ea580c !important; /* Ваш фірмовий помаранчевий колір */
     text-decoration: underline !important; /* Підкреслення для кращого акценту */
+}
+@media (max-width: 475px) {
+.scale-title { font-weight: 700; font-size: 0.8em; }
+    .scale-desc { font-size: 0.7rem; opacity: 0.9; }
+     .progress-scale-container {
+       
+        height: 60px;
+       
+    }
+     .custom-tech-table th {
+        padding: 2px;
+        font-weight: 400;
+    }
+    
+    .custom-tech-table td {
+        padding: 8px;
+    }
 }
 </style>
 @endsection

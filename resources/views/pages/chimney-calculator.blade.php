@@ -615,6 +615,11 @@ html {
         width: 100%;
         padding: 12px 20px;
     }
+    .calc-title {
+    font-size: 2rem;
+    font-weight:600;
+   
+}
 }
 /* --- ВИПРАВЛЕННЯ ДЛЯ BREADCRUMBS --- */
 .breadcrumb .breadcrumb-item a {

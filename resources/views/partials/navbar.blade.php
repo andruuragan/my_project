@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg custom-navbar">
+<nav class="navbar navbar-expand-lg custom-navbar d-none d-lg-flex">
     <div class="container-1600 header-inner">
 
         <!-- LOGO -->
@@ -289,9 +289,7 @@
 
                     <!-- REMEMBER -->
                     <div class="form-check mb-3">
-                        <input type="checkbox"
-                               name="remember"
-                               class="form-check-input">
+                        
 
                         <!-- Добавляем id="remember_me" к инпуту -->
                         <input type="checkbox" id="remember_me" name="remember" class="form-check-input" ...>

@@ -446,12 +446,12 @@
 .seo-content {
     background: #fff;
     border-radius: 18px;
-    padding: 40px;
+    padding: 20px;
     box-shadow: 0 8px 25px rgba(0,0,0,0.04);
 }
 
 .seo-content h2 {
-    font-size: 28px;
+    font-size: 24px;
     line-height: 1.3;
 }
 
@@ -464,7 +464,7 @@
     background: linear-gradient(135deg, #0f172a, #1e293b);
     border-radius: 20px;
       border: 1px solid rgba(255,255,255,0.08);
-    padding: 40px;
+    padding: 20px;
     color: #fff;
     box-shadow: 0 15px 40px rgba(0,0,0,0.15);
     position: relative;
@@ -522,14 +522,14 @@ section {
 }
 
 .case-title {
-    font-size: 18px;
-    font-weight: 700;
+    font-size: 14px;
+    font-weight: 500;
     margin-bottom: 10px;
     color: #0f172a;
 }
 
 .case-text {
-    font-size: 14px;
+    font-size: 12px;
     color: #4b5563;
     line-height: 1.6;
     margin-bottom: 15px;
@@ -541,6 +541,39 @@ section {
     line-height: 1.6;
     border-top: 1px solid rgba(0,0,0,0.06);
     padding-top: 12px;
+}
+@media (max-width: 991px) {
+    /* 1. Делаем высоту автоматической, чтобы текст не вылезал */
+    .hero-production {
+        min-height: auto !important;
+        padding: 20px 10px !important; /* Уменьшаем отступы */
+        border-radius: 16px;
+        /* Можно чуть сменить позицию картинки, чтобы фокус был на центре */
+        background-position: center center !important; 
+    }
+
+    /* 2. Уменьшаем размер заголовка */
+    .hero-production h1 {
+        font-size: 2rem !important; /* Было display-3 (около 3.5rem) */
+        margin-bottom: 1rem !important;
+    }
+
+    /* 3. Делаем кнопки вертикальными для удобства нажатия пальцем */
+    .hero-production .d-flex {
+        flex-direction: column !important;
+        gap: 12px !important;
+    }
+
+    /* 4. Настраиваем кнопки, чтобы они были на всю ширину */
+    .hero-production .btn {
+        width: 100% !important;
+        margin: 0 !important;
+    }
+
+    /* 5. Убираем лишние отступы внутри блока */
+    .hero-production .row {
+        margin: 0 !important;
+    }
 }
 </style>
 @endsection

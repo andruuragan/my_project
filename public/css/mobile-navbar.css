@@ -1,0 +1,229 @@
+/* =========================
+   MOBILE NAVBAR BASE
+========================= */
+
+.mobile-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 64px;
+   
+    background: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    z-index: 1040;
+        /* Сделаем его чуть ниже, чем у offcanvas */
+}
+
+.mobile-navbar-inner {
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 14px;
+}
+
+/* =========================
+   BURGER
+========================= */
+
+.mobile-burger {
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+}
+
+/* =========================
+   LOGO
+========================= */
+
+.mobile-logo img {
+    height: 34px;
+    object-fit: contain;
+}
+
+/* =========================
+   RIGHT ICONS
+========================= */
+
+.mobile-right {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.mobile-cart,
+.mobile-user {
+    position: relative;
+    color: #fff;
+    font-size: 22px;
+    text-decoration: none;
+    background: transparent;
+    border: none;
+}
+
+.cart-badge {
+    position: absolute;
+    top: -6px;
+    right: -8px;
+    background: #3b82f6;
+    color: #fff;
+    font-size: 11px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* =========================
+   OFFCANVAS
+========================= */
+
+.mobile-offcanvas {
+    width: 45% !important;
+    background: #0f172a;
+    color: #fff;
+    z-index: 1060 !important;
+}
+
+.offcanvas-header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.offcanvas-title-block {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.offcanvas-title-block img {
+    height: 34px;
+}
+
+.subtitle {
+    font-size: 12px;
+    color: #94a3b8;
+}
+
+/* =========================
+   MENU LINKS
+========================= */
+
+.mobile-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 10px;
+}
+
+.mobile-menu a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 14px;
+    border-radius: 12px;
+    color: #e2e8f0;
+    text-decoration: none;
+    transition: 0.2s;
+    font-size: 15px;
+}
+
+.mobile-menu a i {
+    font-size: 18px;
+}
+
+.mobile-menu a:hover {
+    background: rgba(59, 130, 246, 0.15);
+    color: #fff;
+}
+
+.mobile-menu a.active {
+    background: rgba(59, 130, 246, 0.25);
+    color: #fff;
+}
+
+/* =========================
+   DIVIDER
+========================= */
+
+.mobile-menu hr {
+    border-color: rgba(255, 255, 255, 0.08);
+    margin: 10px 0;
+}
+
+/* =========================
+   AUTH BUTTONS
+========================= */
+
+.mobile-auth {
+    width: 100%;
+    padding: 12px;
+    border-radius: 12px;
+    border: none;
+    background: #3b82f6;
+    color: #fff;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.mobile-auth.secondary {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* =========================
+   LOGOUT
+========================= */
+
+.mobile-logout {
+    width: 100%;
+    padding: 12px;
+    border-radius: 12px;
+    border: none;
+    background: rgba(239, 68, 68, 0.15);
+    color: #f87171;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* =========================
+   FOOTER INFO
+========================= */
+
+.mobile-footer {
+    margin-top: 20px;
+    font-size: 12px;
+    color: #94a3b8;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+/* Убедитесь, что мобильный хедер всегда виден */
+.mobile-navbar {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1040;
+}
+
+@media (max-width: 991px) {
+
+    /* "Отодвигаем" содержимое страницы на высоту хедера (64px) */
+    body {
+        padding-top: 64px !important;
+    }
+
+    /* Убеждаемся, что page-wrapper не конфликтует */
+    .page-wrapper {
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+    }
+}

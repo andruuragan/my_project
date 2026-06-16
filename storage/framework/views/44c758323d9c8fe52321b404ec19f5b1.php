@@ -1,201 +1,48 @@
 <?php $__env->startSection('content'); ?>
 
-    <div class="container-1600 shop-page">
+   <div class="container-1600 shop-page">
+    <div class="title-shop text-center mb-5 mt-3">
+         <h1 class="fw-bold text-dark position-relative d-inline-block pb-3 fs-2">
 
-        <div class="title-shop text-center mb-5 mt-3">
-            <h1 class="fw-bold text-dark position-relative d-inline-block pb-3 fs-2">
                 Каталог елементів димоходу
+
                 <span class="position-absolute bottom-0 start-50 translate-middle-x rounded-pill" style="width: 80px; height: 4px; background-color: #d97706;"></span>
+
             </h1>
         </div>
 
-        <div class="row">
+    <button class="btn btn-warning d-lg-none mb-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#filterOffcanvas">
+        <i class="bi bi-sliders"></i> Фільтр товарів
+    </button>
 
-            <div class="col-xl-2 col-lg-3 mb-4 align-self-start">
-                <div class="card p-3 shadow-sm filter-card">
-
-                    <h5>
-                        <i class="bi bi-sliders me-2"></i>
-                        Фільтр товарів
-                    </h5>
-
-                    <form class="filter-form" method="GET" action="<?php echo e(route('shop.index')); ?>">
-
-                        <div class="mb-3">
-                            <label class="form-label" for="element_name">Назва елемента</label>
-                            <input type="text"
-                                   id="element_name"
-                                   name="name"
-                                   value="<?php echo e(request('name')); ?>"
-                                   class="form-control"
-                                   autocomplete="off">
-                        </div>
-
-                        
-                        <?php
-                            $types = [
-                                'Труба', 'Коліно 45°', 'Коліно 90°', 'Трійник 90°', 'Трійник 45°',
-                                'Волпер', 'Грибок', 'Іскрогасник', 'Регулятор тяги(Кагла)', 'Лійка',
-                                'Окапник', 'Закінчення димоходу', 'Переход', 'Радіатор', 'Ревізія',
-                                'Розета', 'Сітка', 'Скоба', 'Криза', 'Кронштейн',
-                                'Розвантажувальна підставка', 'Обжимний хомут', 'Хомут під розтяжки',
-                                'Стіновий хомут', 'Монтажний хомут', 'Конус', 'Термоґрибок', 'Дека',
-                                'Заглушка', 'Старт-сендвіч', 'Труба-подовжувач', 'Прохід', 'Відображувач', 'Труба овальна'
-                            ];
-                        ?>
-
-                        <div class="mb-3" x-ignore>
-                            <label class="form-label" for="filter-element_type">Тип</label>
-                            <select id="filter-element_type" name="type" class="js-choice" autocomplete="off">
-                                <option value="">Все</option>
-                                <?php $__currentLoopData = $types; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $type): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <option value="<?php echo e($type); ?>" <?php if(request('type') == $type): echo 'selected'; endif; ?>>
-                                        <?php echo e($type); ?>
-
-                                    </option>
-                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                            </select>
-                        </div>
-
-                        
-                        <?php
-                            $diameters = [
-                                '100', '110', '120', '125', '130', '140', '150', '160', '170', '180',
-                                '190', '200', '210', '220', '230', '240', '250', '260', '270', '280',
-                                '290', '300', '310', '320', '330', '350', '360', '370', '380', '400',
-                                '420', '450', '460', '500', '520', '860',
-                                '100/160', '110/180', '120/180', '130/200', '140/200',
-                                '150/220', '160/220', '180/250', '200/260', '220/280',
-                                '230/300', '250/320', '300/360', '350/420', '400/460',
-                                '500/560', '100/200', '120/220', '130/230', '140/240',
-                                '150/250', '160/260', '180/280', '200/300', '100х200',
-                                 '110х220', '110х230', '110х240', '120х220', '120х230', '120х240'
-                            ];
-                        ?>
-
-                        <div class="mb-3" x-ignore>
-                            <label class="form-label" for="filter-element_diameter">Діаметр(розмір)</label>
-                            <select id="filter-element_diameter" name="diameter" class="js-choice" autocomplete="off">
-                                <option value="">Все</option>
-                                <?php $__currentLoopData = $diameters; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $d): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <option value="<?php echo e($d); ?>" <?php if(request('diameter') == $d): echo 'selected'; endif; ?>>
-                                        <?php echo e($d); ?>
-
-                                    </option>
-                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                            </select>
-                        </div>
-
-                        
-                        <?php
-                            $thicknesses = ['0,5 мм', '0,8 мм', '1 мм', '2 мм'];
-                        ?>
-
-                        <div class="mb-3" x-ignore>
-                            <label class="form-label" for="filter-thickness">Товщина нерж.</label>
-                            <select id="filter-thickness" name="thickness" class="js-choice" autocomplete="off">
-                                <option value="">Все</option>
-                                <?php $__currentLoopData = $thicknesses; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $t): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <option value="<?php echo e($t); ?>" <?php if(request('thickness') == $t): echo 'selected'; endif; ?>>
-                                        <?php echo e($t); ?>
-
-                                    </option>
-                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                            </select>
-                        </div>
-
-                        
-                        <?php
-                            $grades = [
-                                '304' => '304 AISI',
-                                '321' => '321 AISI',
-                                '201' => '201 AISI',
-                                '430' => '430 AISI',
-                            ];
-                        ?>
-
-                        <div class="mb-3" x-ignore>
-                            <label class="form-label" for="filter-grade">Марка нерж.</label>
-                            <select id="filter-grade" name="grade" class="js-choice" autocomplete="off">
-                                <option value="">Все</option>
-                                <?php $__currentLoopData = $grades; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $value => $label): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <option value="<?php echo e($value); ?>" <?php if(request('grade') == $value): echo 'selected'; endif; ?>>
-                                        <?php echo e($label); ?>
-
-                                    </option>
-                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                            </select>
-                        </div>
-
-                        
-                        <?php
-                            $chimneyTypes = ['Одностінний', 'Термо'];
-                        ?>
-
-                        <div class="mb-3" x-ignore>
-                            <label class="form-label" for="filter-chimneyType">Тип димохода</label>
-                            <select id="filter-chimneyType" name="chimneyType" class="js-choice" autocomplete="off">
-                                <option value="">Все</option>
-                                <?php $__currentLoopData = $chimneyTypes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $type): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <option value="<?php echo e($type); ?>" <?php if(request('chimneyType') == $type): echo 'selected'; endif; ?>>
-                                        <?php echo e($type); ?>
-
-                                    </option>
-                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                            </select>
-                        </div>
-
-                        
-                        <?php
-                            $casings = ['н/н', 'н/оц'];
-                        ?>
-
-                        <div class="mb-3" x-ignore>
-                            <label class="form-label" for="filter-casing">Кожух</label>
-                            <select id="filter-casing" name="casing" class="js-choice" autocomplete="off">
-                                <option value="">Все</option>
-                                <?php $__currentLoopData = $casings; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $casing): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <option value="<?php echo e($casing); ?>" <?php if(request('casing') == $casing): echo 'selected'; endif; ?>>
-                                        <?php echo e($casing); ?>
-
-                                    </option>
-                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                            </select>
-                        </div>
-
-                        
-                        <div class="mb-3">
-                            <label class="form-label" for="price_to">Ціна до</label>
-                            <input type="number"
-                                   id="price_to"
-                                   name="price_to"
-                                   value="<?php echo e(request('price_to')); ?>"
-                                   class="form-control"
-                                   autocomplete="off">
-                        </div>
-
-                        <div class="d-flex flex-column gap-2 mt-3">
-                            <a href="<?php echo e(route('shop.index')); ?>" class="filter-reset-btn text-center py-2 btn btn-outline-secondary rounded-pill w-100">
-                                Скинути
-                            </a>
-                            <button class="filter-btn rounded-pill w-100" type="submit">
-                                Застосувати
-                            </button>
-                        </div>
-
-                    </form>
-
+    <div class="row">
+        
+        <div class="offcanvas offcanvas-start" tabindex="-1" id="filterOffcanvas">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title">Фільтр товарів</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+            </div>
+            <div class="offcanvas-body">
+                <div class="card p-3 border-0">
+                    <?php echo $__env->make('partials.filter-form', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
                 </div>
             </div>
-
-            <div class="col-lg-9 products-area">
-                <div id="productsWrapper">
-                    <?php echo $__env->make('partials.products', ['catalogs' => $catalogs], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
-                </div>
-            </div>
-
         </div>
-    </div>
+
+        <div class="col-xl-2 col-lg-3 mb-4 d-none d-lg-block">
+            <div class="card p-3 shadow-sm filter-card">
+                 <h5><i class="bi bi-sliders me-2"></i> Фільтр</h5>
+                 <?php echo $__env->make('partials.filter-form', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+            </div>
+        </div>
+
+        <div class="col-lg-9 products-area">
+            <div id="productsWrapper">
+                <?php echo $__env->make('partials.products', ['catalogs' => $catalogs], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+            </div>
+        </div>
+    </div> </div>
+           
 
     
     <div class="modal fade" id="imageModal" tabindex="-1">

@@ -44,6 +44,7 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css">
+    <link rel="stylesheet" href="<?php echo e(asset('css/mobile-navbar.css')); ?>">
     
     <style>
         .btn-icon {
@@ -58,6 +59,8 @@
         body {
             font-family: 'Inter', sans-serif;
             margin: 0;
+            overflow-x: hidden;
+    max-width: 100%;
         }
         
         h1, h2, h3, .fs-2, .fw-black {
@@ -80,9 +83,14 @@
 
 <body class="site-body">
 
-<div class="page-wrapper">
 
-    <?php echo $__env->make('partials.navbar', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+    <?php echo $__env->make('components.mobile-navbar', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+
+    <div class="page-wrapper">
+        <?php echo $__env->make('partials.navbar', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+
+    
+    
 
     
     <?php if(session('error_alert')): ?>
