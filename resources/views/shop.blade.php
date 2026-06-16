@@ -177,6 +177,18 @@
             if (modalInstance) modalInstance.show();
         });
     });
+    document.addEventListener('submit', function (e) {
+    if (e.target.matches('.filter-form')) {
+        // Находим элемент offcanvas
+        const offcanvasEl = document.getElementById('filterOffcanvas');
+        if (offcanvasEl) {
+            const bsOffcanvas = bootstrap.Offcanvas.getInstance(offcanvasEl);
+            if (bsOffcanvas) {
+                bsOffcanvas.hide(); // Закрываем фильтр
+            }
+        }
+    }
+});
     </script>
 
 @endsection
