@@ -32,7 +32,7 @@
                                                 data-bs-custom-class="custom-orange-tooltip"
                                                 data-bs-title="Збільшити photo"
                                                 style="width: 36px; height: 36px;"
-                                                data-image="{{ Storage::url($catalog->image) }}">
+                                                data-image="{{ asset($catalog->image) }}">
                                             <i class="bi bi-search text-muted"></i>
                                         </button>
 
