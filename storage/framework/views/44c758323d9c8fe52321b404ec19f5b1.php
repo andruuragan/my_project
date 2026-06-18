@@ -221,11 +221,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 document.addEventListener('submit', function (e) {
     if (e.target.matches('.filter-form')) {
-        e.preventDefault();
-        console.log('Форма отправлена, запускаю AJAX...'); // ДОБАВЬТЕ ЭТО
-        
-        window.sendFilterAjax(); 
-        
         const offcanvasEl = document.getElementById('filterOffcanvas');
         if (offcanvasEl) {
             const bsOffcanvas = bootstrap.Offcanvas.getInstance(offcanvasEl);
