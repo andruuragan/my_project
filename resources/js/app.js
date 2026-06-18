@@ -16,34 +16,64 @@ window.sendFilterAjax = function () {
     const filterForm = document.querySelector('.filter-form');
     const productsWrapper = document.getElementById('productsWrapper');
 
-    if (!filterForm || !productsWrapper) return;
+    // 1. Проверка существования элементов
+    if (!filterForm || !productsWrapper) {
+        console.error('Filter form or productsWrapper not found in DOM');
+        return;
+    }
 
+    // 2. Визуальная индикация
+    productsWrapper.style.transition = 'opacity 0.2s ease';
     productsWrapper.style.opacity = '0.5';
 
+    // 3. Сбор данных
     const formData = new FormData(filterForm);
     const params = new URLSearchParams(formData).toString();
 
-    fetch(`${filterForm.action}?${params}`, {
-        headers: { 'X-Requested-With': 'XMLHttpRequest' }
+    // 4. Запрос
+    fetch(`${filterForm.action || window.location.href}?${params}`, {
+        method: 'GET', // Фильтры обычно передаются через GET
+        headers: {
+            'X-Requested-With': 'XMLHttpRequest',
+            'Accept': 'text/html'
+        }
     })
-        .then(response => response.text())
+        .then(res => {
+            if (!res.ok) throw new Error('Network response was not ok');
+            return res.text();
+        })
         .then(html => {
+            // 5. Обновление контента
             productsWrapper.innerHTML = html;
             productsWrapper.style.opacity = '1';
 
-            // Переинициализируем Choices, чтобы фильтры снова работали
-            if (typeof window.initGlobalChoices === 'function') {
-                window.initGlobalChoices();
+            // 6. ПЕРЕИНИЦИАЛИЗАЦИЯ (Критический момент)
+            // Сначала удаляем старые экземпляры Choices, если они висят на элементах
+            if (window.Choices) {
+                document.querySelectorAll('.js-choice').forEach(el => {
+                    // Если Choices был инициализирован, удаляем его экземпляр перед пересозданием
+                    if (el.choicesInstance) {
+                        el.choicesInstance.destroy();
+                    }
+                });
             }
+
+            // Вызываем инициализаторы
+            if (typeof window.initGlobalChoices === 'function') window.initGlobalChoices();
+            if (typeof window.initAwesomeTooltips === 'function') window.initAwesomeTooltips();
         })
-        .catch(error => console.error('Ошибка:', error));
+        .catch(err => {
+            console.error('AJAX Filter Error:', err);
+            productsWrapper.style.opacity = '1';
+        });
 };
 
 // 2. Функция инициализации Choices
 window.initGlobalChoices = function () {
+    // Находим все селекторы, которые еще не инициализированы
     document.querySelectorAll('.js-choice').forEach(element => {
-        if (element.dataset.choicesInitialized === 'true') return;
-        element.dataset.choicesInitialized = 'true';
+        // Проверка: если уже есть класс от Choices, пропускаем
+        if (element.classList.contains('choices__input')) return;
 
         const choice = new Choices(element, {
             searchEnabled: true,
@@ -51,17 +81,30 @@ window.initGlobalChoices = function () {
             itemSelectText: '',
         });
 
-        // Слушаем изменение
+        // Слушаем изменение (теперь делегирование будет работать точнее)
         element.addEventListener('change', function () {
             window.sendFilterAjax();
         });
     });
 };
-
 // 3. Запуск при загрузке
 document.addEventListener('DOMContentLoaded', () => {
+    // Инициализации
     window.initGlobalChoices();
-});
+    window.initRichTextEditors();
+
+    // Настройка фильтра
+    const filterForm = document.querySelector('.filter-form');
+    if (filterForm) {
+        filterForm.addEventListener('change', (e) => {
+            if (e.target.matches('input, select')) window.sendFilterAjax();
+        });
+
+        filterForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            window.sendFilterAjax();
+        });
+    }
 
 // ======= ИСПРАВЛЕНО: НАДЕЖНАЯ ИНИЦИАЛИЗАЦИЯ CKEDITOR =======
 window.initRichTextEditors = function () {

@@ -187,8 +187,7 @@ document.addEventListener('click', function (e) {
         if (typeof showAlert === 'function') showAlert('Додано у кошик', 'success');
         
         const originalContent = buyBtn.innerHTML;
-        buyBtn.innerHTML = '<i class="bi bi-check-lg"></i> Додано!';
-        buyBtn.classList.add('btn-success-animated');
+       
         
         setTimeout(() => { 
             buyBtn.innerHTML = originalContent; 
@@ -224,9 +223,13 @@ document.addEventListener('DOMContentLoaded', function () {
 document.addEventListener('submit', function (e) {
     if (e.target.matches('.filter-form')) {
         const offcanvasEl = document.getElementById('filterOffcanvas');
-        if (offcanvasEl) {
+        
+        // Добавляем проверку наличия bootstrap и экземпляра offcanvas
+        if (offcanvasEl && typeof bootstrap !== 'undefined') {
             const bsOffcanvas = bootstrap.Offcanvas.getInstance(offcanvasEl);
-            if (bsOffcanvas) bsOffcanvas.hide();
+            if (bsOffcanvas) {
+                bsOffcanvas.hide();
+            }
         }
     }
 });
