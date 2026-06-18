@@ -54,6 +54,125 @@ window.refreshCart = function () {
 
 // --- ЕДИНЫЙ ЗАПУСК ---
 document.addEventListener('DOMContentLoaded', () => {
+
+    document.addEventListener('click', function (e) {
+
+        const plus = e.target.closest('.plus');
+        const minus = e.target.closest('.minus');
+
+        if (!plus && !minus) return;
+
+        const card = e.target.closest('.product-card');
+        if (!card) return;
+
+        const input = card.querySelector('.qty-input');
+        if (!input) return;
+
+        let qty = parseInt(input.value) || 1;
+
+        if (plus) qty++;
+        if (minus && qty > 1) qty--;
+
+        input.value = qty;
+
+        const priceEl = card.querySelector('.item-price');
+        const totalEl = card.querySelector('.total-sum');
+        const totalWrap = card.querySelector('.total-price-box');
+
+        if (priceEl && totalEl) {
+            const total = qty * Number(priceEl.dataset.price);
+            totalEl.textContent = total.toLocaleString('uk-UA');
+
+            if (totalWrap) {
+                totalWrap.style.opacity = qty > 1 ? '1' : '0';
+            }
+        }
+    });
+    const cartTable = document.querySelector('table.table');
+
+    if (cartTable) {
+
+        cartTable.addEventListener('click', function (e) {
+
+            const plus = e.target.closest('.plus');
+            const minus = e.target.closest('.minus');
+
+            if (plus || minus) {
+
+                const row = e.target.closest('tr[data-id]');
+                const input = row.querySelector('.qty');
+
+                let qty = parseInt(input.value) || 1;
+
+                if (plus) qty++;
+                if (minus && qty > 1) qty--;
+
+                input.value = qty;
+
+                fetch(`/cart/update/${row.dataset.id}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': csrf,
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({ qty })
+                })
+                    .then(res => res.json())
+                    .then(() => location.reload());
+
+                return;
+            }
+
+        });
+
+    }
+    const clearBtn = document.getElementById('clearCartBtn');
+
+    if (clearBtn) {
+
+        clearBtn.addEventListener('click', function (e) {
+
+            e.preventDefault();
+
+            if (!confirm('Очистити весь кошик?')) {
+                return;
+            }
+
+            fetch('/cart/clear', {
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': csrf,
+                    'Accept': 'application/json'
+                }
+            })
+                .then(() => location.reload())
+                .catch(err => console.error(err));
+
+        });
+
+    }
+    document.addEventListener('click', function (e) {
+
+        const btn = e.target.closest('.delete-btn');
+
+        if (!btn) return;
+
+        if (!confirm('Видалити товар із кошика?')) {
+            return;
+        }
+
+        fetch(`/cart/remove/${btn.dataset.id}`, {
+            method: 'DELETE',
+            headers: {
+                'X-CSRF-TOKEN': csrf,
+                'Accept': 'application/json'
+            }
+        })
+            .then(() => location.reload())
+            .catch(err => console.error(err));
+
+    });
     //window.initGlobalChoices();
     window.initRichTextEditors();
 
