@@ -264,8 +264,22 @@ document.addEventListener('DOMContentLoaded', function () {
         requestAnimationFrame(() => {
             requestAnimationFrame(() => {
                 clone.style.transformOrigin = 'left top';
-                const targetX = cartRect.left + (cartRect.width / 2) - (imgRect.width * 0.1 / 2);
-                const targetY = cartRect.top + (cartRect.height / 2) - (imgRect.height * 0.1 / 2);
+                // окремі поправки для телефону
+const mobileOffsetX = window.innerWidth < 992 ? 300 : 0;
+const mobileOffsetY = window.innerWidth < 992 ? 40 : 0;
+
+// точка приземлення
+const targetX =
+    cartRect.left +
+    (cartRect.width / 2) -
+    (imgRect.width * 0.1 / 2) +
+    mobileOffsetX;
+
+const targetY =
+    cartRect.top +
+    (cartRect.height / 2) -
+    (imgRect.height * 0.1 / 2) +
+    mobileOffsetY;
                 
                 clone.style.transform = `translate(${targetX - imgRect.left}px, ${targetY - imgRect.top}px) scale(0.1)`;
                 clone.style.opacity = '0.1';
@@ -329,58 +343,67 @@ document.addEventListener('DOMContentLoaded', function () {
     // ==========================================
     // РОБОТА КНОПКИ "КУПИТИ" (AJAX + АНІМАЦІЯ)
     // ==========================================
-    document.body.addEventListener('submit', function (e) {
-        if (e.target.classList.contains('add-to-cart-form')) {
-            e.preventDefault();
+    // РОБОТА КНОПКИ "КУПИТИ" (AJAX + АНІМАЦІЯ)
+// РОБОТА КНОПКИ "КУПИТИ" (AJAX + АНІМАЦІЯ)
+document.body.addEventListener('submit', function (e) {
+    if (e.target.classList.contains('add-to-cart-form')) {
+        e.preventDefault();
 
-            const form = e.target;
-            const url = form.action;
-            const formData = new FormData(form);
+        const form = e.target;
+        const url = form.action;
+        const formData = new FormData(form);
+        const productCard = form.closest('.product-card');
+        const productImage = productCard ? productCard.querySelector('.product-image') : null;
 
-            const productCard = form.closest('.product-card');
-            const productImage = productCard ? productCard.querySelector('.product-image') : null;
+        fetch(url, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest',
+                'Accept': 'application/json'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                if (productImage) { animateFlyToCart(productImage); }
 
-            fetch(url, {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'X-Requested-With': 'XMLHttpRequest',
-                    'Accept': 'application/json'
+                // 1. Обновление количества (в бейджах)
+                const countIds = ['cartCount', 'cartCountDesktop', 'cartCountMobile'];
+                countIds.forEach(id => {
+                    const el = document.getElementById(id);
+                    if (el) el.textContent = data.count;
+                });
+
+                // 2. Обновление суммы (текст под иконкой)
+                const totalIds = ['cartTotalNav', 'cartTotalDesktop', 'cartTotalMobile'];
+                totalIds.forEach(id => {
+                    const el = document.getElementById(id);
+                    if (el) el.textContent = new Intl.NumberFormat('uk-UA').format(data.total);
+                });
+
+                // 3. Управление отображением кружочка-бейджа
+                const badge = document.getElementById('cartBadgeMobile');
+                if (badge) {
+                    badge.style.display = (data.count > 0) ? 'flex' : 'none';
                 }
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    if (productImage) {
-                        animateFlyToCart(productImage);
-                    }
 
-                    const cartCountElement = document.getElementById('cartCount');
-                    if (cartCountElement) {
-                        cartCountElement.textContent = data.count;
-                    }
-
-                    const cartTotalElement = document.getElementById('cartTotalNav');
-                    if (cartTotalElement && data.total) {
-                        cartTotalElement.textContent = new Intl.NumberFormat('uk-UA').format(data.total);
-                    }
-
-                    const buyBtn = form.querySelector('.add-cart-btn');
-                    if (buyBtn) {
-                        const originalContent = buyBtn.innerHTML;
-                        buyBtn.innerHTML = '<i class="bi bi-check-lg"></i> Додано!';
-                        buyBtn.classList.add('btn-success-animated');
-
-                        setTimeout(() => {
-                            buyBtn.innerHTML = originalContent;
-                            buyBtn.classList.remove('btn-success-animated');
-                        }, 500);
-                    }
+                // 4. Анимация кнопки
+                const buyBtn = form.querySelector('.add-cart-btn');
+                if (buyBtn) {
+                    const originalContent = buyBtn.innerHTML;
+                    buyBtn.innerHTML = '<i class="bi bi-check-lg"></i> Додано!';
+                    buyBtn.classList.add('btn-success-animated');
+                    setTimeout(() => {
+                        buyBtn.innerHTML = originalContent;
+                        buyBtn.classList.remove('btn-success-animated');
+                    }, 1500);
                 }
-            })
-            .catch(error => console.error('Помилка додавання:', error));
-        }
-    });
+            }
+        })
+        .catch(error => console.error('Помилка додавання:', error));
+    }
+});
 
     // ==========================================
     // ЖИВЕ ВИДАЛЕННЯ З ОБРАНОГО

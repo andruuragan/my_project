@@ -135,16 +135,19 @@
                         }
                     ?>
 
-                    <a href="<?php echo e(route('cart.index')); ?>" class="cart-btn" title="Кошик">
-                        <i class="bi bi-cart3"></i>
+                   <a href="<?php echo e(route('cart.index')); ?>" class="cart-btn" title="Кошик">
+    <i class="bi bi-cart3"></i>
 
-                        <span class="cart-count" id="cartCount"><?php echo e($cartCount); ?></span>
+    <span class="cart-count" id="cartCountDesktop">
+        <?php echo e($cartCount); ?>
 
-                        
-                        <span class="cart-total">
-        <span id="cartTotalNav"><?php echo e(number_format($cartTotal, 0, '.', ' ')); ?></span> грн.
     </span>
-                    </a>
+
+    <span id="cartTotalDesktop">
+        <?php echo e(number_format($cartTotal, 0, '.', ' ')); ?>
+
+    </span>
+</a>
                     
                     <div class="dropdown ms-2">
 

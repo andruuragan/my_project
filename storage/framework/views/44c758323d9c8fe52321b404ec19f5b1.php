@@ -60,134 +60,181 @@
         </div>
     </div>
 
-    <script>
-    // Анимация полета товара в корзину
-    function animateFlyToCart(imgElement) {
-        const cartBtn = document.querySelector('.cart-btn') || document.getElementById('cartBtnContainer');
-        if (!imgElement || !cartBtn) return;
+   <script>
+// 1. Анимация полета
+function animateFlyToCart(imgElement) {
+    const cartBtn = document.querySelector('.cart-btn') || document.getElementById('cartBtnContainer');
+    if (!imgElement || !cartBtn) return;
 
-        const imgRect = imgElement.getBoundingClientRect();
-        const cartRect = cartBtn.getBoundingClientRect();
+    const imgRect = imgElement.getBoundingClientRect();
+    const cartRect = cartBtn.getBoundingClientRect();
 
-        const clone = imgElement.cloneNode(true);
-        clone.classList.add('flying-cart-item');
+    const clone = imgElement.cloneNode(true);
+    clone.classList.add('flying-cart-item');
+    clone.style.position = 'fixed';
+    clone.style.zIndex = '99999';
+    clone.style.pointerEvents = 'none';
+    clone.style.objectFit = 'contain';
+    clone.style.background = '#fff';
+    clone.style.borderRadius = '12px';
+    clone.style.boxShadow = '0 10px 25px rgba(0,0,0,0.15)';
+    clone.style.transition = 'transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.8s ease, width 0.8s ease, height 0.8s ease';
+    clone.style.left = `${imgRect.left}px`;
+    clone.style.top = `${imgRect.top}px`;
+    clone.style.width = `${imgRect.width}px`;
+    clone.style.height = `${imgRect.height}px`;
 
-        clone.style.position = 'fixed';
-        clone.style.zIndex = '99999';
-        clone.style.pointerEvents = 'none';
-        clone.style.objectFit = 'contain';
-        clone.style.background = '#fff';
-        clone.style.borderRadius = '12px';
-        clone.style.boxShadow = '0 10px 25px rgba(0,0,0,0.15)';
-        clone.style.transition = 'transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.8s ease, width 0.8s ease, height 0.8s ease';
+    document.body.appendChild(clone);
 
-        clone.style.left = `${imgRect.left}px`;
-        clone.style.top = `${imgRect.top}px`;
-        clone.style.width = `${imgRect.width}px`;
-        clone.style.height = `${imgRect.height}px`;
+    requestAnimationFrame(() => {
+        clone.style.transformOrigin = 'left top';
+        const mobileOffsetX = window.innerWidth < 992 ? 300 : 0;
+        const mobileOffsetY = window.innerWidth < 992 ? 30 : 0;
+        const targetX = cartRect.left + 15 + mobileOffsetX;
+        const targetY = cartRect.top + (cartRect.height / 2) - 8 + mobileOffsetY;
+        clone.style.transform = `translate(${targetX - imgRect.left}px, ${targetY - imgRect.top}px) scale(0.12)`;
+        clone.style.opacity = '0.15';
+    });
 
-        document.body.appendChild(clone);
+    setTimeout(() => {
+        clone.remove();
+        cartBtn.style.transform = 'scale(1.15)';
+        setTimeout(() => { cartBtn.style.transform = 'none'; }, 150);
+    }, 800);
+}
 
-        requestAnimationFrame(() => {
-            clone.style.transformOrigin = 'left top';
-            const targetX = cartRect.left + 15;
-            const targetY = cartRect.top + (cartRect.height / 2) - 8;
-            clone.style.transform = `translate(${targetX - imgRect.left}px, ${targetY - imgRect.top}px) scale(0.12)`;
-            clone.style.opacity = '0.15';
-        });
+// 2. Делегированный клик «КУПИТИ»
+document.addEventListener('click', function (e) {
+    const buyBtn = e.target.closest('.add-cart-btn');
+    if (!buyBtn) return;
 
-        setTimeout(() => {
-            clone.remove();
-            cartBtn.style.transform = 'scale(1.15)';
-            setTimeout(() => { cartBtn.style.transform = 'none'; }, 150);
-        }, 800);
+    e.preventDefault();
+    const card = buyBtn.closest('.product-card');
+    if (!card) return;
+
+    const productImg = card.querySelector('.product-image');
+    if (productImg) animateFlyToCart(productImg);
+
+    const form = buyBtn.closest('form');
+    let url, csrfToken, formData;
+
+    if (form) {
+        url = form.action;
+        csrfToken = form.querySelector('[name="_token"]')?.value;
+        formData = new FormData(form);
+    } else {
+        const productId = buyBtn.dataset.id;
+        url = `/shop/${productId}/add`;
+        csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
+        formData = new FormData();
+        formData.append('qty', 1);
     }
 
-    // Делегированный клик «КУПИТИ» (работает и после AJAX фильтрации)
-    document.addEventListener('click', function (e) {
-        const buyBtn = e.target.closest('.add-cart-btn');
-        if (!buyBtn) return;
+    if (!csrfToken) return;
 
-        e.preventDefault();
+    // ИНДИКАЦИЯ ПРОЦЕССА
+    buyBtn.classList.add('active-process');
+    buyBtn.disabled = true;
 
-        const card = buyBtn.closest('.product-card');
-        if (!card) return;
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': csrfToken,
+            'Accept': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest'
+        },
+        body: formData
+    })
+    .then(res => res.ok ? res.json() : null)
+   .then(data => {
+    buyBtn.classList.remove('active-process');
+    buyBtn.disabled = false;
+    if (!data) return;
 
-        const productImg = card.querySelector('.product-image');
-        if (productImg) animateFlyToCart(productImg);
-
-        const form = buyBtn.closest('form');
-        let url, csrfToken, formData;
-
-        if (form) {
-            url = form.action;
-            csrfToken = form.querySelector('[name="_token"]')?.value;
-            formData = new FormData(form);
-        } else {
-            const productId = buyBtn.dataset.id;
-            url = `/shop/${productId}/add`;
-            csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
-            formData = new FormData();
-            formData.append('qty', 1);
-        }
-
-        if (!csrfToken) return;
-
-        fetch(url, {
-            method: 'POST',
-            headers: {
-                'X-CSRF-TOKEN': csrfToken,
-                'Accept': 'application/json',
-                'X-Requested-With': 'XMLHttpRequest'
-            },
-            body: formData
-        })
-        .then(async res => {
-            if (!res.ok) return null;
-            return res.json().catch(() => null);
-        })
-        .then(data => {
-            if (data && data.success) {
-                if (typeof refreshCart === 'function') refreshCart();
-                if (typeof showAlert === 'function') showAlert('Додано у кошик', 'success');
-            }
-        })
-        .catch(err => console.error('Помилка:', err));
+    // 1. Обновляем количество
+    const countIds = ['cartCountMobile', 'cartCountDesktop', 'cartCount'];
+    countIds.forEach(id => {
+        const el = document.getElementById(id);
+        if (el && typeof data.count !== 'undefined') el.textContent = data.count;
     });
 
-    // Обработка модальных окон изображений
-    document.addEventListener('DOMContentLoaded', function () {
-        const modalEl = document.getElementById('imageModal');
-        let modalInstance = null;
-
-        if (modalEl && typeof bootstrap !== 'undefined') {
-            modalInstance = bootstrap.Modal.getOrCreateInstance(modalEl);
+    // 2. Обновляем сумму (с логикой скрытия если 0)
+    const totalIds = ['cartTotalMobile', 'cartTotalDesktop', 'cartTotalNav'];
+    totalIds.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+            if (data.count > 0 && typeof data.total !== 'undefined') {
+                el.textContent = new Intl.NumberFormat('uk-UA').format(data.total);
+                el.style.display = ''; // Показываем элемент
+            } else {
+                el.textContent = '0'; // Или оставьте пустым, если нужно
+                // el.style.display = 'none'; // Раскомментируйте, если нужно полностью скрывать сумму
+            }
         }
+    });
 
-        document.addEventListener('click', function (e) {
-            const btn = e.target.closest('.open-image');
-            if (!btn) return;
+    // 3. Управление видимостью бейджа с количеством
+    const badge = document.getElementById('cartBadgeMobile');
+    if (badge) {
+        badge.style.display = (data.count > 0) ? 'flex' : 'none';
+    }
 
-            const modalImage = document.getElementById('modalImage');
-            if (!modalEl || !modalImage) return;
+    // 4. Уведомления и анимация
+    if (data.success) {
+        if (typeof refreshCart === 'function') refreshCart();
+        if (typeof showAlert === 'function') showAlert('Додано у кошик', 'success');
+        
+        const originalContent = buyBtn.innerHTML;
+        buyBtn.innerHTML = '<i class="bi bi-check-lg"></i> Додано!';
+        buyBtn.classList.add('btn-success-animated');
+        
+        setTimeout(() => { 
+            buyBtn.innerHTML = originalContent; 
+            buyBtn.classList.remove('btn-success-animated'); 
+        }, 1500);
+    }
+})
+    .catch(err => {
+        buyBtn.classList.remove('active-process');
+        buyBtn.disabled = false;
+        console.error('Помилка:', err);
+    });
+});
 
+// 3. Остальные обработчики (DOMContent...)
+document.addEventListener('DOMContentLoaded', function () {
+    const modalEl = document.getElementById('imageModal');
+    let modalInstance = null;
+    if (modalEl && typeof bootstrap !== 'undefined') {
+        modalInstance = bootstrap.Modal.getOrCreateInstance(modalEl);
+    }
+    document.addEventListener('click', function (e) {
+        const btn = e.target.closest('.open-image');
+        if (!btn) return;
+        const modalImage = document.getElementById('modalImage');
+        if (modalImage) {
             modalImage.src = btn.dataset.image;
             if (modalInstance) modalInstance.show();
-        });
+        }
     });
-    document.addEventListener('submit', function (e) {
+});
+
+document.addEventListener('submit', function (e) {
     if (e.target.matches('.filter-form')) {
-        // Находим элемент offcanvas
+        e.preventDefault();
+        console.log('Форма отправлена, запускаю AJAX...'); // ДОБАВЬТЕ ЭТО
+        
+        window.sendFilterAjax(); 
+        
         const offcanvasEl = document.getElementById('filterOffcanvas');
         if (offcanvasEl) {
             const bsOffcanvas = bootstrap.Offcanvas.getInstance(offcanvasEl);
-            if (bsOffcanvas) {
-                bsOffcanvas.hide(); // Закрываем фильтр
-            }
+            if (bsOffcanvas) bsOffcanvas.hide();
         }
     }
 });
-    </script>
+
+</script>
 
 <?php $__env->stopSection(); ?>
 

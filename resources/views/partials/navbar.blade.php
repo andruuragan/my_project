@@ -147,16 +147,17 @@
                         }
                     @endphp
 
-                    <a href="{{ route('cart.index') }}" class="cart-btn" title="Кошик">
-                        <i class="bi bi-cart3"></i>
+                   <a href="{{ route('cart.index') }}" class="cart-btn" title="Кошик">
+    <i class="bi bi-cart3"></i>
 
-                        <span class="cart-count" id="cartCount">{{ $cartCount }}</span>
-
-                        {{-- Заворачиваем цену и валюту в один флекс-контейнер --}}
-                        <span class="cart-total">
-        <span id="cartTotalNav">{{ number_format($cartTotal, 0, '.', ' ') }}</span> грн.
+    <span class="cart-count" id="cartCountDesktop">
+        {{ $cartCount }}
     </span>
-                    </a>
+
+    <span id="cartTotalDesktop">
+        {{ number_format($cartTotal, 0, '.', ' ') }}
+    </span>
+</a>
                     {{-- USER DROPDOWN (ВОТ ТУТ ВЕРНУЛИ КАК НУЖНО) --}}
                     <div class="dropdown ms-2">
 

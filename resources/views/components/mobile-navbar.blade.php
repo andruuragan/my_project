@@ -21,23 +21,26 @@
         <div class="mobile-right">
 
             <!-- CART -->
-            @php
-                $cart = session('cart', []);
-                $cartCount = 0;
-
-                foreach ($cart as $item) {
-                    $cartCount += $item['qty'] ?? 1;
-                }
-            @endphp
-
-            <a href="{{ route('cart.index') }}" class="mobile-cart">
-                <i class="bi bi-cart3"></i>
-
-                @if($cartCount > 0)
-                    <span class="cart-badge">{{ $cartCount }}</span>
-                @endif
-            </a>
-
+          @php
+    $cart = session('cart', []);
+    $cartCount = 0;
+    $cartTotal = 0;
+    foreach ($cart as $item) {
+        $cartCount += $item['qty'] ?? 1;
+        $cartTotal += ($item['price'] ?? 0) * ($item['qty'] ?? 1);
+    }
+@endphp
+<a href="{{ route('cart.index') }}" class="mobile-cart mobile-cart-icon">
+    <div class="cart-icon-wrapper">
+        <i class="bi bi-cart3"></i>
+        <span class="cart-badge" id="cartBadgeMobile" style="{{ $cartCount == 0 ? 'display:none;' : '' }}">
+            <span id="cartCountMobile">{{ $cartCount }}</span>
+        </span>
+    </div>
+    <span class="cart-total-text" id="cartTotalMobile">
+        {{ number_format($cartTotal, 0, '.', ' ') }}
+    </span>
+</a>
             <!-- USER -->
             @auth
                 <a href="{{ route('dashboard') }}" class="mobile-user">

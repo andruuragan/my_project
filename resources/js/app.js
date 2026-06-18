@@ -1,5 +1,7 @@
 import './bootstrap';
 import * as bootstrap from 'bootstrap';
+import Choices from 'choices.js';
+window.Choices = Choices; // Это сделает его доступным для вашей функции window.initGlobalChoices
 window.bootstrap = bootstrap;
 
 import Alpine from 'alpinejs';
@@ -9,51 +11,57 @@ Alpine.start();
 const csrf = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
 
 // ======= 1. ГЛОБАЛЬНАЯ ИНИЦИАЛИЗАЦИЯ CHOICES.JS =======
+// 1. Глобальная функция AJAX-фильтрации
+window.sendFilterAjax = function () {
+    const filterForm = document.querySelector('.filter-form');
+    const productsWrapper = document.getElementById('productsWrapper');
+
+    if (!filterForm || !productsWrapper) return;
+
+    productsWrapper.style.opacity = '0.5';
+
+    const formData = new FormData(filterForm);
+    const params = new URLSearchParams(formData).toString();
+
+    fetch(`${filterForm.action}?${params}`, {
+        headers: { 'X-Requested-With': 'XMLHttpRequest' }
+    })
+        .then(response => response.text())
+        .then(html => {
+            productsWrapper.innerHTML = html;
+            productsWrapper.style.opacity = '1';
+
+            // Переинициализируем Choices, чтобы фильтры снова работали
+            if (typeof window.initGlobalChoices === 'function') {
+                window.initGlobalChoices();
+            }
+        })
+        .catch(error => console.error('Ошибка:', error));
+};
+
+// 2. Функция инициализации Choices
 window.initGlobalChoices = function () {
-    if (typeof Choices === 'undefined') return;
-
     document.querySelectorAll('.js-choice').forEach(element => {
-        if (element.classList.contains('choices__input') ||
-            element.closest('.choices') ||
-            element.dataset.choicesInitialized === 'true' ||
-            element.hasAttribute('data-choices-initialized')) {
-            return;
-        }
-
-        element.setAttribute('data-choices-initialized', 'true');
+        if (element.dataset.choicesInitialized === 'true') return;
         element.dataset.choicesInitialized = 'true';
 
-        new Choices(element, {
+        const choice = new Choices(element, {
             searchEnabled: true,
             shouldSort: false,
             itemSelectText: '',
-            callbackOnInit: function () {
-                const container = this.containerOuter.element;
-                if (!container) return;
-                const clonedInput = container.querySelector('.choices__input--cloned');
-                if (clonedInput) {
-                    const originalId = element.id || 'choices';
-                    clonedInput.setAttribute('id', `${originalId}_search`);
-                    clonedInput.setAttribute('name', `${originalId}_search_name`);
-                    // Исправление доступности: добавляем скрытый aria-label для роботов-валидаторов
-                    clonedInput.setAttribute('aria-label', 'Пошук варіантів');
-                }
-            }
+        });
+
+        // Слушаем изменение
+        element.addEventListener('change', function () {
+            window.sendFilterAjax();
         });
     });
-
-    document.querySelectorAll('.choices__input--cloned').forEach((input, index) => {
-        if (!input.hasAttribute('id') || input.getAttribute('id') === '') {
-            input.setAttribute('id', `choices_search_fallback_${index}`);
-        }
-        if (!input.hasAttribute('name') || input.getAttribute('name') === '') {
-            input.setAttribute('name', `choices_name_fallback_${index}`);
-        }
-        if (!input.hasAttribute('aria-label')) {
-            input.setAttribute('aria-label', 'Пошук');
-        }
-    });
 };
+
+// 3. Запуск при загрузке
+document.addEventListener('DOMContentLoaded', () => {
+    window.initGlobalChoices();
+});
 
 // ======= ИСПРАВЛЕНО: НАДЕЖНАЯ ИНИЦИАЛИЗАЦИЯ CKEDITOR =======
 window.initRichTextEditors = function () {
@@ -207,7 +215,7 @@ document.addEventListener('DOMContentLoaded', function () {
         updateCard(card);
     });
 
-    // Динамический AJAX-фильтр
+    // ======= Динамический AJAX-фильтр =======
     const filterForm = document.querySelector('.filter-form');
     const productsWrapper = document.getElementById('productsWrapper');
 
@@ -219,17 +227,15 @@ document.addEventListener('DOMContentLoaded', function () {
             const formData = new FormData(filterForm);
             const params = new URLSearchParams(formData);
 
-            fetch(`/dymohody-ta-komplektuyuchi?${params.toString()}`, {
+            fetch(`${filterForm.action}?${params.toString()}`, {
                 headers: { 'X-Requested-With': 'XMLHttpRequest' }
             })
                 .then(res => res.text())
                 .then(html => {
                     productsWrapper.innerHTML = html;
                     productsWrapper.style.opacity = '1';
-
-                    if (typeof initAwesomeTooltips === 'function') {
-                        initAwesomeTooltips();
-                    }
+                    if (typeof initAwesomeTooltips === 'function') initAwesomeTooltips();
+                    window.initGlobalChoices();
                 })
                 .catch(err => {
                     console.error('Помилка фільтрації:', err);
@@ -237,10 +243,14 @@ document.addEventListener('DOMContentLoaded', function () {
                 });
         }
 
-        filterForm.querySelectorAll('select, input').forEach(element => {
-            element.addEventListener('change', sendFilterAjax);
+        // 1. Единый обработчик изменений в форме
+        filterForm.addEventListener('change', function (e) {
+            if (e.target.matches('input, select')) {
+                sendFilterAjax();
+            }
         });
 
+        // 2. Обработка текстового поля с задержкой
         const nameInput = filterForm.querySelector('input[name="name"]');
         if (nameInput) {
             let timeout;
@@ -250,32 +260,55 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         }
 
+        // 3. Блокируем стандартную отправку формы
         filterForm.addEventListener('submit', function (e) {
             e.preventDefault();
             sendFilterAjax();
         });
     }
-});
+    // ВСЁ! Здесь заканчивается логика фильтра внутри DOMContentLoaded
+}); // Эта скобка закрывает DOMContentLoaded
 
 // ======= 3. СИСТЕМНЫЕ ФУНКЦИИ КОРЗИНЫ (ГЛОБАЛЬНЫЕ) =======
 window.refreshCart = function () {
-    fetch('/cart/state')
-        .then(res => res.json())
-        .then(data => {
-            const countEl = document.getElementById('cartCount');
-            const totalEl = document.getElementById('cartTotalNav');
-
-            if (countEl) {
-                countEl.innerText = data.count;
-                countEl.style.display = data.count === 0 ? 'none' : 'inline-block';
-            }
-            if (totalEl) {
-                totalEl.innerText = new Intl.NumberFormat('uk-UA').format(data.total);
-            }
+    fetch('/cart/state', {
+        headers: { 'Accept': 'application/json' }
+    })
+        .then(res => {
+            if (!res.ok) throw new Error('Network response was not ok');
+            return res.json();
         })
-        .catch(err => console.error('Помилка оновлення кошика:', err));
-};
+        .then(data => {
+            // Элементы для десктопа и мобильной версии
+            const countElements = [
+                document.getElementById('cartCountDesktop'),
+                document.getElementById('cartCountMobile')
+            ];
 
+            const totalElements = [
+                document.getElementById('cartTotalDesktop'),
+                document.getElementById('cartTotalMobile')
+            ];
+
+            // Обновление счетчика товаров
+            countElements.forEach(el => {
+                if (el) {
+                    el.innerText = data.count;
+                    // Если товаров 0, скрываем бейдж, если > 0 — показываем
+                    el.style.display = (data.count > 0) ? 'inline-block' : 'none';
+                }
+            });
+
+            // Обновление суммы
+            totalElements.forEach(el => {
+                if (el) {
+                    // Форматируем сумму как "1 000"
+                    el.innerText = new Intl.NumberFormat('uk-UA').format(data.total);
+                }
+            });
+        })
+        .catch(err => console.error('Ошибка обновления корзины:', err));
+};
 // ======= 4. ЛОГИКА СТРАНИЦЫ КОРЗИНЫ (ТАБЛИЦА) =======
 document.addEventListener('DOMContentLoaded', function () {
     const cartTable = document.querySelector('table.table');
@@ -526,5 +559,3 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 });
-
-   

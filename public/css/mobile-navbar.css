@@ -56,7 +56,31 @@
     gap: 14px;
 }
 
-.mobile-cart,
+.mobile-cart {
+    display: flex;
+    flex-direction: column;
+    /* Вертикальное расположение */
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    /* Расстояние между иконкой и суммой */
+    text-decoration: none;
+    color: #fff;
+    min-width: 40px;
+}
+.cart-icon-wrapper {
+    position: relative;
+    /* Чтобы бейдж "прилип" к иконке */
+    font-size: 20px;
+    line-height: 1;
+}
+.cart-total-text {
+    font-size: 14px;
+    /* Сумма чуть мельче */
+    color: #94a3b8;
+    line-height: 1;
+    white-space: nowrap;
+}
 .mobile-user {
     position: relative;
     color: #fff;
@@ -65,20 +89,23 @@
     background: transparent;
     border: none;
 }
-
 .cart-badge {
     position: absolute;
-    top: -6px;
+    top: -5px;
     right: -8px;
     background: #3b82f6;
     color: #fff;
-    font-size: 11px;
-    width: 18px;
-    height: 18px;
+    font-size: 10px;
+    width: 16px;
+    height: 16px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-weight: 700;
+}
+.separator {
+    opacity: 0.6;
 }
 
 /* =========================
@@ -213,6 +240,7 @@
     right: 0;
     z-index: 1040;
 }
+
 
 @media (max-width: 991px) {
 
