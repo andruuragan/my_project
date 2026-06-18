@@ -1,48 +1,38 @@
 FROM php:8.4-fpm
 
-# Системные зависимости
-RUN apt-get update && apt-get install -y \
-    git curl zip unzip nodejs npm \
+# Установка Node.js (актуальная версия) и системных зависимостей
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
+    && apt-get update && apt-get install -y \
+    git curl zip unzip nodejs \
     libpng-dev libjpeg-dev libfreetype6-dev \
     libonig-dev libxml2-dev libzip-dev libpq-dev \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install gd pdo_mysql pdo_pgsql mbstring exif pcntl bcmath zip
 
-# Composer
+# Установка Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www
 
-# Копируем проект
+# Копируем файлы проекта
 COPY . .
 
-# Laravel системные папки
-RUN mkdir -p \
-    storage/framework/views \
-    storage/framework/cache \
-    storage/framework/sessions \
-    storage/logs \
-    bootstrap/cache
+# Подготовка папок Laravel и прав доступа
+RUN mkdir -p storage/framework/{views,cache,sessions} storage/logs bootstrap/cache \
+    && chmod -R 775 storage bootstrap/cache
 
-# Права
-RUN chmod -R 775 storage bootstrap/cache
-
-# Composer install
+# Установка PHP зависимостей
 RUN composer install --no-dev --optimize-autoloader --no-interaction
 
-# Node dependencies + build
-RUN npm ci || npm install
-RUN npm run build
+# Установка JS зависимостей и сборка фронтенда
+RUN npm install && npm run build
 
-# Storage link (важно для картинок)
+# Создание ссылки для картинок
 RUN php artisan storage:link || true
-
-# НЕ кэшируем конфиги на build (важно для Render)
-# RUN php artisan config:cache
 
 EXPOSE 10000
 
-CMD php artisan serve --host=0.0.0.0 --port=10000
+CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=10000"]
 
 #FROM php:8.4-fpm
 

@@ -12,39 +12,28 @@ Alpine.start();
 const csrf = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
 
 // --- ГЛОБАЛЬНЫЕ ФУНКЦИИ ---
-window.sendFilterAjax = function () {
-    const filterForm = document.querySelector('.filter-form');
+window.sendFilterAjax = function (form) {
     const productsWrapper = document.getElementById('productsWrapper');
-    if (!filterForm || !productsWrapper) return;
+    if (!form || !productsWrapper) return;
 
-    productsWrapper.style.transition = 'opacity 0.2s ease';
     productsWrapper.style.opacity = '0.5';
 
-    const params = new URLSearchParams(new FormData(filterForm)).toString();
-    fetch(`${filterForm.action || window.location.href}?${params}`, {
-        headers: { 'X-Requested-With': 'XMLHttpRequest', 'Accept': 'text/html' }
+    const params = new URLSearchParams(new FormData(form)).toString();
+
+    fetch(`${form.action}?${params}`, {
+        headers: {
+            'X-Requested-With': 'XMLHttpRequest',
+            'Accept': 'text/html'
+        }
     })
         .then(res => res.text())
         .then(html => {
             productsWrapper.innerHTML = html;
             productsWrapper.style.opacity = '1';
-            if (window.Choices) {
-                document.querySelectorAll('.js-choice').forEach(el => {
-                    if (el.choicesInstance) el.choicesInstance.destroy();
-                });
-            }
-            if (typeof window.initGlobalChoices === 'function') window.initGlobalChoices();
-            if (typeof window.initAwesomeTooltips === 'function') window.initAwesomeTooltips();
         });
 };
 
-window.initGlobalChoices = function () {
-    document.querySelectorAll('.js-choice').forEach(element => {
-        if (element.classList.contains('choices__input')) return;
-        element.choicesInstance = new Choices(element, { searchEnabled: true, shouldSort: false, itemSelectText: '' });
-        element.addEventListener('change', () => window.sendFilterAjax());
-    });
-};
+
 
 window.initRichTextEditors = function () {
     if (typeof ClassicEditor === 'undefined') return;
@@ -65,14 +54,23 @@ window.refreshCart = function () {
 
 // --- ЕДИНЫЙ ЗАПУСК ---
 document.addEventListener('DOMContentLoaded', () => {
-    window.initGlobalChoices();
+    //window.initGlobalChoices();
     window.initRichTextEditors();
 
-    const filterForm = document.querySelector('.filter-form');
-    if (filterForm) {
-        filterForm.addEventListener('change', (e) => { if (e.target.matches('input, select')) window.sendFilterAjax(); });
-        filterForm.addEventListener('submit', (e) => { e.preventDefault(); window.sendFilterAjax(); });
-    }
+    document.querySelectorAll('.filter-form').forEach(form => {
+
+        form.addEventListener('change', (e) => {
+            if (e.target.matches('input, select')) {
+                window.sendFilterAjax(form);
+            }
+        });
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            window.sendFilterAjax(form);
+        });
+
+    });
 
     const phoneInputs = document.querySelectorAll('#phone, #register_phone');
     phoneInputs.forEach(input => {
