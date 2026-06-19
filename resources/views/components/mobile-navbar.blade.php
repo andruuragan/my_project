@@ -42,17 +42,27 @@
     </span>
 </a>
             <!-- USER -->
-            @auth
-                <a href="{{ route('dashboard') }}" class="mobile-user">
-                    <i class="bi bi-person-circle"></i>
-                </a>
-            @else
-                <button class="mobile-user"
-                        data-bs-toggle="modal"
-                        data-bs-target="#loginModal">
-                    <i class="bi bi-person-circle"></i>
-                </button>
-            @endauth
+           @auth
+
+    <!-- WISHLIST -->
+    <a href="{{ route('profile.wishlist') }}" class="mobile-user mobile-wishlist">
+        <i class="bi bi-heart"></i>
+    </a>
+
+    <!-- USER -->
+    <a href="{{ route('dashboard') }}" class="mobile-user">
+        <i class="bi bi-person-circle"></i>
+    </a>
+
+@else
+
+    <button class="mobile-user"
+            data-bs-toggle="modal"
+            data-bs-target="#loginModal">
+        <i class="bi bi-person-circle"></i>
+    </button>
+
+@endauth
 
         </div>
 

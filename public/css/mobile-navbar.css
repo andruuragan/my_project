@@ -258,4 +258,11 @@
                width: 65%;
                max-width: 320px;
            }
-}
+           }
+.mobile-wishlist {
+    text-decoration: none;
+     color: inherit;
+    }
+        .mobile-wishlist i {
+            color: #dc3545;
+        }

@@ -26,6 +26,7 @@ use App\Http\Controllers\Admin\AdminOrderController;
 use App\Http\Controllers\Admin\AdminOrdersController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CompareController;
 
 /* ==========================================================================
 |  1. PUBLIC PAGES & AUTH CONTROL (Breeze)
@@ -132,5 +133,5 @@ Route::get('/useful-info', [App\Http\Controllers\UsefulController::class, 'index
 /* ==========================================================================
 |  4. SYSTEM INCLUDES
 |  ========================================================================== */
-
+Route::get('/compare', [CompareController::class, 'index'])->name('compare.index');
 require __DIR__.'/auth.php';

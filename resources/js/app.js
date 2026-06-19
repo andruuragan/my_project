@@ -12,27 +12,60 @@ Alpine.start();
 const csrf = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
 
 // --- ГЛОБАЛЬНЫЕ ФУНКЦИИ ---
+window.initGlobalChoices = function () {
+    document.querySelectorAll('.js-choice').forEach(element => {
+        // 1. Проверяем, инициализирован ли он уже через библиотеку
+        // У Choices есть встроенное свойство .passedElement
+        if (element.classList.contains('choices__input') || element.dataset.choicesInitialized) {
+            return;
+        }
+
+        try {
+            const choice = new Choices(element, {
+                searchEnabled: true,
+                shouldSort: false,
+                itemSelectText: ''
+            });
+
+            // 2. Отмечаем элемент как инициализированный
+            element.dataset.choicesInitialized = 'true';
+
+            // 3. Безопасно получаем доступ к контейнеру
+            if (choice && choice.containerOuter && choice.containerOuter.element) {
+                const searchInput = choice.containerOuter.element.querySelector('.choices__input--cloned');
+                if (searchInput) {
+                    const originalId = element.id || 'choices-unknown';
+                    searchInput.name = 'choices-search-' + originalId;
+                    searchInput.id = 'choices-search-input-' + originalId;
+                    searchInput.setAttribute('autocomplete', 'off');
+                }
+            }
+        } catch (error) {
+            console.warn('Choices.js уже инициализирован или ошибка:', error);
+        }
+    });
+};
 window.sendFilterAjax = function (form) {
     const productsWrapper = document.getElementById('productsWrapper');
     if (!form || !productsWrapper) return;
 
     productsWrapper.style.opacity = '0.5';
-
     const params = new URLSearchParams(new FormData(form)).toString();
 
     fetch(`${form.action}?${params}`, {
-        headers: {
-            'X-Requested-With': 'XMLHttpRequest',
-            'Accept': 'text/html'
-        }
+        headers: { 'X-Requested-With': 'XMLHttpRequest', 'Accept': 'text/html' }
     })
         .then(res => res.text())
         .then(html => {
             productsWrapper.innerHTML = html;
             productsWrapper.style.opacity = '1';
+
+            // ВАЖНО: Инициализируем Choices для новых элементов, пришедших с сервера
+            window.initGlobalChoices();
+            updateCompareButton();
+            syncCompareButtons();
         });
 };
-
 
 
 window.initRichTextEditors = function () {
@@ -54,7 +87,8 @@ window.refreshCart = function () {
 
 // --- ЕДИНЫЙ ЗАПУСК ---
 document.addEventListener('DOMContentLoaded', () => {
-
+    window.initGlobalChoices();
+    
     document.addEventListener('click', function (e) {
 
         const plus = e.target.closest('.plus');
@@ -173,6 +207,152 @@ document.addEventListener('DOMContentLoaded', () => {
             .catch(err => console.error(err));
 
     });
+    document.addEventListener('click', function (e) {
+
+        const wishlistBtn = e.target.closest('.wishlist-btn');
+
+        if (!wishlistBtn) return;
+
+        const catalogId = wishlistBtn.dataset.id;
+
+        fetch(`/wishlist/toggle/${catalogId}`, {
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': csrf,
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
+        })
+            .then(response => {
+
+                if (response.status === 401) {
+
+                    const loginModal = document.getElementById('loginModal');
+
+                    if (loginModal) {
+                        bootstrap.Modal.getOrCreateInstance(loginModal).show();
+                    }
+
+                    return null;
+                }
+
+                return response.json();
+            })
+            .then(data => {
+
+                if (!data || !data.success) return;
+
+                const icon = wishlistBtn.querySelector('i');
+
+                if (data.is_liked) {
+                    icon.className = 'bi bi-heart-fill text-danger';
+                } else {
+                    icon.className = 'bi bi-heart text-muted';
+                }
+
+            })
+            .catch(console.error);
+
+    });
+
+
+
+   
+    // Список товаров для сравнения
+    // Список товаров для сравнения
+    let compareList = JSON.parse(localStorage.getItem('compareList') || '[]')
+        .map(String); // 👈 важно: всегда строки
+
+    function saveCompareList() {
+        localStorage.setItem('compareList', JSON.stringify(compareList));
+    }
+
+    function updateCompareButton() {
+        const btn = document.getElementById('compareFloatingBtn');
+        const count = document.getElementById('compareCount');
+
+        if (!btn || !count) return;
+
+        count.textContent = compareList.length;
+
+        // показываем только если есть хотя бы 1 товар
+        btn.classList.toggle('is-hidden', compareList.length === 0);
+    }
+
+    function syncCompareButtons() {
+        document.querySelectorAll('.compare-btn').forEach(btn => {
+            const id = String(btn.dataset.id || ''); // 👈 защита
+
+            const active = compareList.includes(id);
+
+            btn.classList.toggle('active', active);
+
+            btn.innerHTML = active
+                ? '<i class="bi bi-check-lg text-success"></i>'
+                : '<i class="bi bi-shuffle text-muted"></i>';
+        });
+    }
+
+    // один обработчик
+    document.addEventListener('click', function (e) {
+        const btn = e.target.closest('.compare-btn');
+        if (!btn) return;
+
+        const id = String(btn.dataset.id || '');
+        if (!id) return;
+
+        const index = compareList.indexOf(id);
+
+        // 1. УДАЛЕНИЕ (ВСЕГДА РАЗРЕШЕНО)
+        if (index !== -1) {
+            compareList.splice(index, 1);
+            saveCompareList();
+            updateCompareButton();
+            syncCompareButtons();
+            return;
+        }
+
+        // 2. ДОБАВЛЕНИЕ С ЛИМИТОМ
+        if (compareList.length >= 4) {
+            alert('Можна порівнювати максимум 4 товари');
+            return;
+        }
+
+        compareList.push(id);
+
+        saveCompareList();
+        updateCompareButton();
+        syncCompareButtons();
+    });
+  
+
+    // init при загрузке
+    updateCompareButton();
+    syncCompareButtons();
+    document.getElementById('compareFloatingBtn')?.addEventListener('click', function () {
+        if (compareList.length < 2) {
+            alert('Потрібно мінімум 2 товари для порівняння');
+            return;
+        }
+
+        window.location.href = '/compare?ids=' + compareList.join(',');
+    });
+    document.getElementById('compareFloatingBtn')?.addEventListener('click', function () {
+
+        if (compareList.length < 2) {
+            alert('Потрібно мінімум 2 товари для порівняння');
+            return;
+        }
+
+        const url = '/compare?ids=' + compareList.join(',');
+        window.location.href = url;
+    });
+    
+
+
+
+
+    
     //window.initGlobalChoices();
     window.initRichTextEditors();
 

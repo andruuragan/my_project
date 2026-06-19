@@ -24,7 +24,7 @@
                         @endphp
 
                         <div class="mb-3" x-ignore>
-                            <label class="form-label" for="filter-element_type">Тип</label>
+                            <label class="form-label" for="filter-element_type">Назва(список)</label>
                             <select id="filter-element_type" name="type" class="js-choice" autocomplete="off">
                                 <option value="">Все</option>
                                 @foreach($types as $type)
@@ -120,21 +120,25 @@
                         </div>
 
                         {{-- CASING --}}
-                        @php
-                            $casings = ['н/н', 'н/оц'];
-                        @endphp
+@php
+    // Ключ - то, что уходит в базу/фильтр, Значение - то, что видит юзер
+    $casings = [
+        'н/н'  => 'нержавійка (AISI 201)',
+        'н/оц' => 'оцинковка'
+    ];
+@endphp
 
-                        <div class="mb-3" x-ignore>
-                            <label class="form-label" for="filter-casing">Кожух</label>
-                            <select id="filter-casing" name="casing" class="js-choice" autocomplete="off">
-                                <option value="">Все</option>
-                                @foreach($casings as $casing)
-                                    <option value="{{ $casing }}" @selected(request('casing') == $casing)>
-                                        {{ $casing }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
+<div class="mb-3" x-ignore>
+    <label class="form-label" for="filter-casing">Кожух</label>
+    <select id="filter-casing" name="casing" class="js-choice" autocomplete="off">
+        <option value="">Все</option>
+        @foreach($casings as $value => $label)
+            <option value="{{ $value }}" @selected(request('casing') == $value)>
+                {{ $label }}
+            </option>
+        @endforeach
+    </select>
+</div>
 
                         {{-- PRICE --}}
                         <div class="mb-3">

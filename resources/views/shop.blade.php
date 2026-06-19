@@ -39,12 +39,17 @@
         </div>
 
         <div class="col-lg-9 products-area">
+            <button id="compareFloatingBtn" class="compare-floating-btn is-hidden" type="button">
+    <i class="bi bi-shuffle me-2"></i>
+    <span id="compareCount">0</span>
+    <span class="ms-1">товари для порівняння</span>
+</button>
             <div id="productsWrapper">
                 @include('partials.products', ['catalogs' => $catalogs])
             </div>
         </div>
     </div> </div>
-           
+          
 
     {{-- MODAL FOR IMAGE VIEW --}}
     <div class="modal fade" id="imageModal" tabindex="-1">
@@ -249,7 +254,108 @@ document.addEventListener('submit', function (e) {
             height: 1px !important;
             width: 1px !important;
             overflow: hidden;
-            opacity: 0 !important;
+            opacity: 0 !important;         
+            
         }
+        //==================================
+
+   .compare-floating-btn {
+    .compare-floating-btn 
+    position: sticky;
+    top: 90px;
+    z-index: 10;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+
+    padding: 10px 14px;
+    border-radius: 14px;
+
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+/* hover эффект */
+.compare-floating-btn:hover {
+    transform: translateY(0) scale(1.03);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+    background: #f9fafb;
+}
+
+/* скрытие */
+.compare-floating-btn.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    pointer-events: none;
+}
+.compare-floating-btn {
+    position: fixed;
+
+    /* ↓ ниже хедера */
+    top: 270px;
+
+    /* ↓ чуть левее от края */
+    right: 60px !important;
+
+    z-index: 99999;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+
+    padding: 10px 14px;
+    border-radius: 14px;
+
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+/* hover */
+.compare-floating-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+}
+
+/* скрытие */
+.compare-floating-btn.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    pointer-events: none;
+}
+/* бейдж */
+#compareCount {
+    background: #d97706;
+    color: #fff;
+    font-size: 12px;
+    padding: 2px 6px;
+    border-radius: 999px;
+    min-width: 22px;
+    text-align: center;
+}
+@media (min-width: 992px) {
+    .compare-floating-btn {
+        right: 15px;
+    }
+}
+/* адаптив */
+@media (max-width: 768px) {
+    .compare-floating-btn {
+        right: 10px;
+        top: 90px;
+        padding: 8px 10px;
+        font-size: 13px;
+    }
+}
+
+
     </style>
 @endpush

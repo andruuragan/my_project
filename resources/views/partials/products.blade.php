@@ -15,30 +15,44 @@
                              style="max-height: 100%; object-fit: contain; transition: transform 0.3s ease;">
 
                         <div class="product-icons p-3 d-flex justify-content-between w-100 position-absolute top-0 start-0">
-                            @auth
-                                <button type="button"
-                                        class="icon-btn wishlist-btn rounded-circle shadow-sm border-0 d-flex align-items-center justify-content-center bg-white"
-                                        data-id="{{ $catalog->id }}"
-                                        style="width: 36px; height: 36px;">
-                                    @if(Auth::user()->wishlists->contains($catalog->id))
-                                        <i class="bi bi-heart-fill text-danger"></i>
-                                    @else
-                                        <i class="bi bi-heart text-muted"></i>
-                                    @endif
-                                </button>
-                            @else
-                                <button type="button"
-                                        class="icon-btn guest-wishlist-btn rounded-circle shadow-sm border-0 d-flex align-items-center justify-content-center bg-white"
-                                        data-bs-toggle="modal" 
-                                        data-bs-target="#loginModal"
-                                        data-bs-toggle="tooltip"
-                                        data-bs-placement="top"
-                                        data-bs-custom-class="custom-orange-tooltip"
-                                        data-bs-title="Авторизуйтесь, щоб додати в обране"
-                                        style="width: 36px; height: 36px;">
-                                    <i class="bi bi-heart text-muted"></i>
-                                </button>
-                            @endauth
+                          <div class="left-icons d-flex flex-column gap-2">
+
+    {{-- wishlist (оставляем как есть с auth внутри) --}}
+    @auth
+        <button type="button"
+                class="icon-btn wishlist-btn rounded-circle shadow-sm border-0 d-flex align-items-center justify-content-center bg-white"
+                data-id="{{ $catalog->id }}">
+            @if(Auth::user()->wishlists->contains($catalog->id))
+                <i class="bi bi-heart-fill text-danger"></i>
+            @else
+                <i class="bi bi-heart text-muted"></i>
+            @endif
+        </button>
+    @else
+        <button type="button"
+                class="icon-btn guest-wishlist-btn rounded-circle shadow-sm border-0 d-flex align-items-center justify-content-center bg-white"
+                data-bs-toggle="modal"
+                data-bs-target="#loginModal">
+            <i class="bi bi-heart text-muted"></i>
+        </button>
+    @endauth
+
+
+    {{-- ✅ СРАВНЕНИЕ ВСЕГДА ВИДИМО --}}
+    <button type="button"
+        class="icon-btn compare-btn rounded-circle shadow-sm border-0 d-flex align-items-center justify-content-center bg-white"
+        data-id="{{ $catalog->id }}"
+        data-bs-toggle="tooltip"
+        data-bs-placement="right"
+        data-bs-custom-class="custom-orange-tooltip"
+        data-bs-title="Порівняти"
+        style="width: 36px; height: 36px;">
+
+    <i class="bi bi-shuffle"></i>
+</button>
+
+</div>
+                            
 
                            {{-- Змінено: flex-column для вертикального стеку --}}
 <div class="right-icons d-flex flex-column gap-2">
@@ -164,6 +178,7 @@
     <div class="d-flex justify-content-center mt-4">
         {{ $catalogs->links() }}
     </div>
+   
 </div>
 
 {{-- СТИЛІ КАРТКИ --}}
@@ -354,6 +369,32 @@
     background: linear-gradient(135deg, rgba(217,119,6,0.15), rgba(0,0,0,0.03));
     border: 1px solid rgba(217,119,6,0.25);
 }
+//==========================================
+.compare-floating-btn {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+
+    background: #d97706;
+    color: white;
+
+    padding: 12px 18px;
+    border-radius: 50px;
+
+    font-weight: 600;
+    cursor: pointer;
+
+    z-index: 1050;
+
+    box-shadow: 0 8px 25px rgba(0,0,0,.15);
+
+    transition: all .25s ease;
+}
+
+.compare-floating-btn:hover {
+    transform: translateY(-2px);
+}
+
 </style>
 
 
