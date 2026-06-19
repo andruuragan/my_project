@@ -1,4 +1,24 @@
 <div id="productsWrapper">
+ <div class="shop-toolbar d-flex justify-content-between align-items-center mb-3">
+<div class="text-muted">
+    Знайдено: <span id="productsTotal"><?php echo e($catalogs->total()); ?></span>
+</div>
+
+         <div class="sort-box">
+            <select name="sort"
+                    form="mainFilterForm"
+                    class="js-choice"
+                    onchange="window.sendFilterAjax(document.getElementById('mainFilterForm'))">
+
+                <option value="">Всі товари</option>
+                <option value="price_asc" <?php if(request('sort') == 'price_asc'): echo 'selected'; endif; ?>>Від дешевих</option>
+                <option value="price_desc" <?php if(request('sort') == 'price_desc'): echo 'selected'; endif; ?>>Від дорогих</option>
+                <option value="name_asc" <?php if(request('sort') == 'name_asc'): echo 'selected'; endif; ?>>За назвою</option>
+
+            </select>
+        </div>
+
+    </div>
     <div class="row">
 
         <?php $__empty_1 = true; $__currentLoopData = $catalogs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $catalog): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
@@ -398,7 +418,19 @@
 .compare-floating-btn:hover {
     transform: translateY(-2px);
 }
+.shop-toolbar {
+    background: #fff;
+    padding: 12px 16px;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+}
 
+.sort-box {
+   width: 170px;
+}
+.sort-box .choices {
+    width: 100% !important;
+}
 </style>
 
 

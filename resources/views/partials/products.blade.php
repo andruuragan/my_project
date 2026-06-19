@@ -1,4 +1,24 @@
 <div id="productsWrapper">
+ <div class="shop-toolbar d-flex justify-content-between align-items-center mb-3">
+<div class="text-muted">
+    Знайдено: <span id="productsTotal">{{ $catalogs->total() }}</span>
+</div>
+
+         <div class="sort-box">
+            <select name="sort"
+                    form="mainFilterForm"
+                    class="js-choice"
+                    onchange="window.sendFilterAjax(document.getElementById('mainFilterForm'))">
+
+                <option value="">Всі товари</option>
+                <option value="price_asc" @selected(request('sort') == 'price_asc')>Від дешевих</option>
+                <option value="price_desc" @selected(request('sort') == 'price_desc')>Від дорогих</option>
+                <option value="name_asc" @selected(request('sort') == 'name_asc')>За назвою</option>
+
+            </select>
+        </div>
+
+    </div>
     <div class="row">
 
         @forelse($catalogs as $catalog)
@@ -394,7 +414,19 @@
 .compare-floating-btn:hover {
     transform: translateY(-2px);
 }
+.shop-toolbar {
+    background: #fff;
+    padding: 12px 16px;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+}
 
+.sort-box {
+   width: 170px;
+}
+.sort-box .choices {
+    width: 100% !important;
+}
 </style>
 
 

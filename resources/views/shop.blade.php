@@ -39,6 +39,14 @@
         </div>
 
         <div class="col-lg-9 products-area">
+          
+   
+
+       
+
+      
+
+        
             <button id="compareFloatingBtn" class="compare-floating-btn is-hidden" type="button">
     <i class="bi bi-shuffle me-2"></i>
     <span id="compareCount">0</span>
@@ -341,6 +349,7 @@ document.addEventListener('submit', function (e) {
     min-width: 22px;
     text-align: center;
 }
+
 @media (min-width: 992px) {
     .compare-floating-btn {
         right: 15px;

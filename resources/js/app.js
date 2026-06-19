@@ -12,13 +12,17 @@ Alpine.start();
 const csrf = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
 
 // --- ГЛОБАЛЬНЫЕ ФУНКЦИИ ---
+window.choicesInstances = window.choicesInstances || [];
+
 window.initGlobalChoices = function () {
+
     document.querySelectorAll('.js-choice').forEach(element => {
-        // 1. Проверяем, инициализирован ли он уже через библиотеку
-        // У Choices есть встроенное свойство .passedElement
-        if (element.classList.contains('choices__input') || element.dataset.choicesInitialized) {
-            return;
-        }
+
+        // уже инициализирован
+        if (element.dataset.choicesInitialized === 'true') return;
+
+        // защита от повторного DOM wrap
+        if (element.closest('.choices')) return;
 
         try {
             const choice = new Choices(element, {
@@ -27,46 +31,52 @@ window.initGlobalChoices = function () {
                 itemSelectText: ''
             });
 
-            // 2. Отмечаем элемент как инициализированный
+            window.choicesInstances.push(choice);
             element.dataset.choicesInitialized = 'true';
 
-            // 3. Безопасно получаем доступ к контейнеру
-            if (choice && choice.containerOuter && choice.containerOuter.element) {
-                const searchInput = choice.containerOuter.element.querySelector('.choices__input--cloned');
-                if (searchInput) {
-                    const originalId = element.id || 'choices-unknown';
-                    searchInput.name = 'choices-search-' + originalId;
-                    searchInput.id = 'choices-search-input-' + originalId;
-                    searchInput.setAttribute('autocomplete', 'off');
-                }
-            }
-        } catch (error) {
-            console.warn('Choices.js уже инициализирован или ошибка:', error);
+        } catch (e) {
+            console.warn('Choices error:', e);
         }
     });
 };
 window.sendFilterAjax = function (form) {
+
     const productsWrapper = document.getElementById('productsWrapper');
     if (!form || !productsWrapper) return;
 
     productsWrapper.style.opacity = '0.5';
-    const params = new URLSearchParams(new FormData(form)).toString();
+
+    const formData = new FormData(form);
+    const params = new URLSearchParams(formData).toString();
 
     fetch(`${form.action}?${params}`, {
-        headers: { 'X-Requested-With': 'XMLHttpRequest', 'Accept': 'text/html' }
+        headers: {
+            'X-Requested-With': 'XMLHttpRequest',
+            'Accept': 'application/json'
+        }
     })
-        .then(res => res.text())
-        .then(html => {
-            productsWrapper.innerHTML = html;
+        .then(res => res.json())
+        .then(data => {
+
+            if (!data || !data.html) return;
+
+            productsWrapper.innerHTML = data.html;
             productsWrapper.style.opacity = '1';
 
-            // ВАЖНО: Инициализируем Choices для новых элементов, пришедших с сервера
+            // total
+            const totalEl = document.getElementById('productsTotal');
+            if (totalEl) {
+                totalEl.textContent = data.total ?? 0;
+            }
+
+            // reinit UI
             window.initGlobalChoices();
-            updateCompareButton();
-            syncCompareButtons();
+        })
+        .catch(err => {
+            console.error('Filter error:', err);
+            productsWrapper.style.opacity = '1';
         });
 };
-
 
 window.initRichTextEditors = function () {
     if (typeof ClassicEditor === 'undefined') return;
@@ -263,11 +273,11 @@ document.addEventListener('DOMContentLoaded', () => {
     let compareList = JSON.parse(localStorage.getItem('compareList') || '[]')
         .map(String); // 👈 важно: всегда строки
 
-    function saveCompareList() {
+    window.saveCompareList = function () {
         localStorage.setItem('compareList', JSON.stringify(compareList));
     }
 
-    function updateCompareButton() {
+    window.syncCompareButtons = function () {
         const btn = document.getElementById('compareFloatingBtn');
         const count = document.getElementById('compareCount');
 
@@ -279,7 +289,7 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.classList.toggle('is-hidden', compareList.length === 0);
     }
 
-    function syncCompareButtons() {
+    window.updateCompareButton = function () {
         document.querySelectorAll('.compare-btn').forEach(btn => {
             const id = String(btn.dataset.id || ''); // 👈 защита
 
@@ -306,9 +316,9 @@ document.addEventListener('DOMContentLoaded', () => {
         // 1. УДАЛЕНИЕ (ВСЕГДА РАЗРЕШЕНО)
         if (index !== -1) {
             compareList.splice(index, 1);
-            saveCompareList();
-            updateCompareButton();
-            syncCompareButtons();
+            window.saveCompareList();
+            window.updateCompareButton();
+            window.syncCompareButtons();
             return;
         }
 
@@ -320,15 +330,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
         compareList.push(id);
 
-        saveCompareList();
-        updateCompareButton();
-        syncCompareButtons();
+        window.saveCompareList();
+        window.updateCompareButton();
+        window.syncCompareButtons();
     });
   
 
     // init при загрузке
-    updateCompareButton();
-    syncCompareButtons();
+    window.updateCompareButton();
+    window.syncCompareButtons();
     document.getElementById('compareFloatingBtn')?.addEventListener('click', function () {
         if (compareList.length < 2) {
             alert('Потрібно мінімум 2 товари для порівняння');

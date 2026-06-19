@@ -1,4 +1,4 @@
- <form class="filter-form" method="GET" action="{{ route('shop.index') }}">
+ <form class="filter-form" id="mainFilterForm" method="GET" action="{{ route('shop.index') }}">
 
                         <div class="mb-3">
                             <label class="form-label" for="element_name">Назва елемента</label>
@@ -151,6 +151,9 @@
                                    autocomplete="off">
                         </div>
 
+
+                        
+
                         <div class="d-flex flex-column gap-2 mt-3">
                             <a href="{{ route('shop.index') }}" class="filter-reset-btn text-center py-2 btn btn-outline-secondary rounded-pill w-100">
                                 Скинути
@@ -161,3 +164,4 @@
                         </div>
 
                     </form>
+ 
