@@ -305,7 +305,7 @@ document.addEventListener('submit', function (e) {
     position: fixed;
 
     /* ↓ ниже хедера */
-    top: 270px;
+    top: 220px;
 
     /* ↓ чуть левее от края */
     right: 60px !important;

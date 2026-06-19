@@ -302,7 +302,7 @@
     requestAnimationFrame(() => {
         const mobile = window.innerWidth < 992;
 
-        const mobileOffsetX = mobile ? 320 : 0;
+        const mobileOffsetX = mobile ? 340 : 0;
         const mobileOffsetY = mobile ? 70 : 0;
 
        const offsetX = -100; // левее
