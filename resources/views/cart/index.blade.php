@@ -144,5 +144,61 @@
             }
         });
     </script>
+    <style>
+        .quantity-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        @media (max-width: 767px) {
+            .quantity-box {
+                flex-direction: column;
+                gap: 2px;
+            }
+
+            .qty-input {
+                width: 50px !important;
+                order: 2;
+            }
+
+            .qty-btn.minus {
+                order: 3;
+            }
+
+            .qty-btn.plus {
+                order: 1;
+            }
+        }
+    /* Базові стилі для quantity-box */
+.quantity-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+/* На мобільних: перемикаємо на стовпчик */
+@media (max-width: 767px) {
+    .quantity-box {
+        flex-direction: column; /* Кнопки стають зверху та знизу */
+        gap: 2px;
+    }
+
+    .qty-input {
+        width: 50px !important; /* Робимо поле трохи вужчим для мобілок */
+        order: 2; /* Встановлюємо порядок елементів */
+    }
+
+    .qty-btn.minus {
+        order: 3; /* Мінус знизу */
+    }
+
+    .qty-btn.plus {
+        order: 1; /* Плюс зверху */
+    }
+}
+</style>
 @endsection
 

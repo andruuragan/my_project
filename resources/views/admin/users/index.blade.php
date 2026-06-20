@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container-1600">
-        <h3>Клієнт</h3>
+        <h3>Клієнти</h3>
 
         <a href="{{ route('users.create') }}" class="btn btn-primary mb-3">
             <i class="bi bi-plus-lg me-1"></i> Добавити клієнта
