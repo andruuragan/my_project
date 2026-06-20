@@ -347,16 +347,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         window.location.href = '/compare?ids=' + compareList.join(',');
     });
-    document.getElementById('compareFloatingBtn')?.addEventListener('click', function () {
-
-        if (compareList.length < 2) {
-            alert('Потрібно мінімум 2 товари для порівняння');
-            return;
-        }
-
-        const url = '/compare?ids=' + compareList.join(',');
-        window.location.href = url;
-    });
+   
     
 
 
