@@ -9,7 +9,7 @@
     right: 0;
     height: 64px;
    
-    background: rgba(29, 46, 82, 0.95);
+    background: rgba(23, 35, 63, 0.95);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     z-index: 1040;
@@ -114,8 +114,7 @@
 
 .mobile-offcanvas {
     width: 45% !important;
-    background: rgba(29, 46, 82, 0.95);
-    backdrop-filter: blur(12px);
+    background: #0f172a;
     color: #fff;
     z-index: 1060 !important;
 }
