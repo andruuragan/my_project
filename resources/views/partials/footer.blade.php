@@ -75,12 +75,12 @@
             </div>
 
             <!-- CTA -->
-            <div class="footer-col footer-cta">
-                <a href="{{route ('shop.index') }}" class="footer-shop-btn">
-                    <i class="bi bi-cart3"></i>
-                    Перейти в магазин
-                </a>
-            </div>
+           <div class="footer-col footer-cta mt-4 pt-3 border-top border-md-0 pt-md-0 mt-md-0">
+    <a href="{{route ('shop.index') }}" class="footer-shop-btn">
+        <i class="bi bi-cart3"></i>
+        Перейти в магазин
+    </a>
+</div>
 
         </div>
 
