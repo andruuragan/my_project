@@ -13,70 +13,7 @@ $rules = [
 ];
 @endphp
 
-<style>
-/* ===== PREMIUM UI LAYER ===== */
-html {
-    scroll-behavior: smooth;
-}
 
-.p-card {
-    background: #fff;
-    border-radius: 18px;
-    box-shadow: 0 12px 35px rgba(15, 23, 42, 0.08);
-    border: 1px solid rgba(15, 23, 42, 0.05);
-    transition: all .25s ease;
-}
-
-.p-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 18px 50px rgba(15, 23, 42, 0.15);
-}
-
-.p-icon {
-    width: 52px;
-    height: 52px;
-    border-radius: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(135deg,#f59e0b,#d97706);
-    color: #fff;
-    box-shadow: 0 10px 25px rgba(217,119,6,0.35);
-}
-
-.hero-glow {
-    background: radial-gradient(circle at 20% 20%, rgba(245,158,11,.25), transparent 40%),
-                radial-gradient(circle at 80% 30%, rgba(15,23,42,.6), transparent 40%);
-}
-
-.soft-text {
-    color: rgba(255,255,255,0.75);
-}
-
-#form {
-    /* Оптимальний відступ для більшості Navbar */
-    scroll-margin-top: 150px; 
-}
-
-/* Гарантуємо, що кнопки в Hero можна натиснути */
-.position-relative .btn {
-    position: relative;
-    z-index: 5;
-}
-/* Ефект наведення на посилання у навігації банера */
-.hero-glow nav a {
-    transition: all 0.3s ease;
-    color: rgba(255, 255, 255, 0.5) !important;
-    text-decoration: none !important;
-}
-
-.hero-glow nav a:hover {
-    color: #ffffff !important;
-    text-decoration: underline !important;
-    text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
-}
-
-</style>
 
 <main class="bg-light pb-5">
 <div class="container-1600 my-5">
@@ -365,5 +302,69 @@ function showFlashMessage(text) {
     setTimeout(() => div.remove(), 4000);
 }
 </script>
+<style>
+/* ===== PREMIUM UI LAYER ===== */
+html {
+    scroll-behavior: smooth;
+}
+
+.p-card {
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 12px 35px rgba(15, 23, 42, 0.08);
+    border: 1px solid rgba(15, 23, 42, 0.05);
+    transition: all .25s ease;
+}
+
+.p-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 50px rgba(15, 23, 42, 0.15);
+}
+
+.p-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg,#f59e0b,#d97706);
+    color: #fff;
+    box-shadow: 0 10px 25px rgba(217,119,6,0.35);
+}
+
+.hero-glow {
+    background: radial-gradient(circle at 20% 20%, rgba(245,158,11,.25), transparent 40%),
+                radial-gradient(circle at 80% 30%, rgba(15,23,42,.6), transparent 40%);
+}
+
+.soft-text {
+    color: rgba(255,255,255,0.75);
+}
+
+#form {
+    /* Оптимальний відступ для більшості Navbar */
+    scroll-margin-top: 150px; 
+}
+
+/* Гарантуємо, що кнопки в Hero можна натиснути */
+.position-relative .btn {
+    position: relative;
+    z-index: 5;
+}
+/* Ефект наведення на посилання у навігації банера */
+.hero-glow nav a {
+    transition: all 0.3s ease;
+    color: rgba(255, 255, 255, 0.5) !important;
+    text-decoration: none !important;
+}
+
+.hero-glow nav a:hover {
+    color: #ffffff !important;
+    text-decoration: underline !important;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+}
+
+</style>
 
 @endsection
