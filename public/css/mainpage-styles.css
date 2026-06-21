@@ -244,6 +244,24 @@ section {
     border-top: 1px solid rgba(0, 0, 0, 0.06);
     padding-top: 12px;
 }
+.technology-card {
+    border-radius: 18px;
+    overflow: hidden;
+    transition: .3s ease;
+}
+
+.technology-card:hover {
+    transform: translateY(-6px);
+}
+
+.technology-card img {
+    height: 220px;
+    object-fit: cover;
+}
+
+.technology-card h3 {
+    min-height: 55px;
+}
 
 @media (max-width: 991px) {
 

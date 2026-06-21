@@ -46,7 +46,7 @@
 
         
             <button id="compareFloatingBtn" class="compare-floating-btn is-hidden" type="button">
-    <i class="fa-solid fa-code-compare fa-lg"></i>
+    <i class="bi bi-shuffle me-2"></i>
     <span id="compareCount">0</span>
     <span class="ms-1">товари для порівняння</span>
 </button>
