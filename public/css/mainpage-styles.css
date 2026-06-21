@@ -1,0 +1,284 @@
+.hero-production {
+    min-height: 550px;
+
+    display: flex;
+    align-items: center;
+    color: #fff;
+    border-radius: 24px;
+    position: relative;
+    overflow: hidden;
+}
+
+.production-badge {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.hero-production p {
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* Контейнер картинки: задає фіксовану висоту і приховує вихід за краї */
+.img-container {
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+}
+
+.product-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 15px;
+    transition: transform .4s ease;
+}
+
+
+
+/* Ефекти картки */
+.custom-product-card {
+    transition: all 0.3s ease;
+    border-radius: 16px;
+}
+
+.custom-product-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* При наведенні на картку картинка плавно збільшується */
+.custom-product-card:hover .product-img {
+    transform: scale(1.1);
+}
+
+.custom-product-card h3 {
+    font-size: 18px;
+    line-height: 1.3;
+}
+
+.custom-product-card p {
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* легкий технічний акцент */
+.custom-product-card {
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.hero-production {
+    position: relative;
+    /* важливо для absolute блоку */
+}
+
+/* правий нижній блок */
+.hero-stats-overlay {
+    position: absolute;
+    right: 25px;
+    bottom: 25px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    background: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(10px);
+
+    padding: 16px 18px;
+    border-radius: 14px;
+
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    max-width: 260px;
+}
+
+/* елементи */
+.hero-stats-overlay .stat-item {
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+/* мобільна адаптація */
+@media (max-width: 768px) {
+    .hero-stats-overlay {
+        position: static;
+        margin-top: 20px;
+        max-width: 100%;
+    }
+}
+
+.trust-block {
+    background: #f8fafc;
+    /* замість білого */
+    border-radius: 20px;
+    padding: 50px 20px;
+    box-shadow: none;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.trust-number {
+    font-size: 42px;
+    font-weight: 800;
+    color: #0f172a;
+    line-height: 1;
+}
+
+.trust-label {
+    font-size: 14px;
+    color: #6b7280;
+    margin-top: 5px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.trust-item {
+    padding: 10px;
+}
+
+.seo-content {
+    background: #fff;
+    border-radius: 18px;
+    padding: 20px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.04);
+}
+
+.seo-content h2 {
+    font-size: 24px;
+    line-height: 1.3;
+}
+
+.seo-content p {
+    color: #4b5563;
+    line-height: 1.7;
+    margin-bottom: 15px;
+}
+
+.cta-block {
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 20px;
+    color: #fff;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-block h2 {
+    letter-spacing: 0.2px;
+}
+
+/* легкий glow ефект */
+.cta-block::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 300px;
+    height: 300px;
+    background: rgba(255, 193, 7, 0.15);
+    border-radius: 50%;
+    filter: blur(40px);
+}
+
+.cta-text {
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.6;
+}
+
+section {
+    scroll-margin-top: 80px;
+}
+
+/* чергування фону */
+.section-light {
+    background: #ffffff;
+}
+
+.section-gray {
+    background: #f8fafc;
+}
+
+.section-dark {
+    background: #0f172a;
+    color: #fff;
+}
+
+.case-card {
+    background: #fff;
+    border-radius: 18px;
+    padding: 25px;
+    height: 100%;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.case-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+}
+
+.case-title {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    color: #0f172a;
+}
+
+.case-text {
+    font-size: 12px;
+    color: #4b5563;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.case-meta {
+    font-size: 13px;
+    color: #1f2937;
+    line-height: 1.6;
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+    padding-top: 12px;
+}
+
+@media (max-width: 991px) {
+
+    /* 1. Делаем высоту автоматической, чтобы текст не вылезал */
+    .hero-production {
+        min-height: auto !important;
+        padding: 20px 10px !important;
+        /* Уменьшаем отступы */
+        border-radius: 16px;
+        /* Можно чуть сменить позицию картинки, чтобы фокус был на центре */
+        background-position: center center !important;
+    }
+
+    /* 2. Уменьшаем размер заголовка */
+    .hero-production h1 {
+        font-size: 2rem !important;
+        /* Было display-3 (около 3.5rem) */
+        margin-bottom: 1rem !important;
+    }
+
+    /* 3. Делаем кнопки вертикальными для удобства нажатия пальцем */
+    .hero-production .d-flex {
+        flex-direction: column !important;
+        gap: 12px !important;
+    }
+
+    /* 4. Настраиваем кнопки, чтобы они были на всю ширину */
+    .hero-production .btn {
+        width: 100% !important;
+        margin: 0 !important;
+    }
+
+    /* 5. Убираем лишние отступы внутри блока */
+    .hero-production .row {
+        margin: 0 !important;
+    }
+}
+
