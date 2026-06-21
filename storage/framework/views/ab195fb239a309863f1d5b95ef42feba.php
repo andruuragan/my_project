@@ -7,7 +7,7 @@
             <!-- LOGO -->
             <div class="footer-col footer-brand">
                 <div class="footer-logo">
-                    <img src="<?php echo e(asset('images/favicon.png')); ?>" style="width:38px;" alt="">
+                    <img src="<?php echo e(asset('images/favicon.png')); ?>" style="width:38px;" alt="logo_favicon">
                     <span>DymSystems</span>
                 </div>
                 <p class="footer-text">
@@ -75,12 +75,12 @@
             </div>
 
             <!-- CTA -->
-            <div class="footer-col footer-cta">
-                <a href="<?php echo e(route ('shop.index')); ?>" class="footer-shop-btn">
-                    <i class="bi bi-cart3"></i>
-                    Перейти в магазин
-                </a>
-            </div>
+           <div class="footer-col footer-cta mt-4 pt-3 border-top border-md-0 pt-md-0 mt-md-0">
+    <a href="<?php echo e(route ('shop.index')); ?>" class="footer-shop-btn">
+        <i class="bi bi-cart3"></i>
+        Перейти в магазин
+    </a>
+</div>
 
         </div>
 

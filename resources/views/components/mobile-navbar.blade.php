@@ -74,6 +74,7 @@
 <div class="offcanvas offcanvas-start mobile-offcanvas"
      tabindex="-1"
      id="mobileMenu"
+     role="dialog" 
      aria-labelledby="mobileMenuLabel">
 
     <div class="offcanvas-header">

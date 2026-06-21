@@ -7,7 +7,7 @@
             <!-- LOGO -->
             <div class="footer-col footer-brand">
                 <div class="footer-logo">
-                    <img src="{{ asset('images/favicon.png') }}" style="width:38px;" alt="">
+                    <img src="{{ asset('images/favicon.png') }}" style="width:38px;" alt="logo_favicon">
                     <span>DymSystems</span>
                 </div>
                 <p class="footer-text">

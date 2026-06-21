@@ -8,9 +8,11 @@
                 <img src="{{ asset('images/logo.png') }}" class="logo" alt="Logo">
             </a>
 
-            <div class="subtitle-badge">
-                Центр комплектації димарів
-            </div>
+            <a href="{{ route('contacts.index') }}" class="subtitle-link">
+    <div class="subtitle-badge">
+        Центр комплектації димарів
+    </div>
+</a>
         </div>
         </div>
 
@@ -293,7 +295,8 @@
                         
 
                         <!-- Добавляем id="remember_me" к инпуту -->
-                        <input type="checkbox" id="remember_me" name="remember" class="form-check-input" ...>
+                        <input type="checkbox" id="remember_me" name="remember" class="form-check-input"
+       {{ old('remember') ? 'checked' : '' }}>
 
                         <!-- Добавляем for="remember_me" к лейблу -->
                         <label class="form-check-label" for="remember_me">

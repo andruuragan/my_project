@@ -265,7 +265,7 @@ document.addEventListener('submit', function (e) {
             opacity: 0 !important;         
             
         }
-        //==================================
+       /* //==================================*/
 
    .compare-floating-btn {
     .compare-floating-btn 

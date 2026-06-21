@@ -1,0 +1,33 @@
+ .btn-icon {
+     transition: all 0.2s ease;
+ }
+
+ .btn-icon:hover {
+     transform: translateY(-2px);
+     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+ }
+
+ body {
+     font-family: 'Inter', sans-serif;
+     margin: 0;
+     overflow-x: hidden;
+     max-width: 100%;
+ }
+
+ h1,
+ h2,
+ h3,
+ .fs-2,
+ .fw-black {
+     font-family: 'Montserrat', sans-serif;
+ }
+
+ .logo {
+     height: 100px;
+ }
+
+ /* ФИКС: Жестко скрываем оригинальные textarea, пока JS инициализируется */
+ textarea.rich-text {
+     display: none !important;
+ }
+

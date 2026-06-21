@@ -714,19 +714,21 @@ function calculateChimney() {
     let displayDiameter = diameter + ' мм';
     let shopQueryParam = '';
 
-    if (insulation === 'yes') {
-        if (sandwichMap[diameter]) {
-            const outerDiameter = sandwichMap[diameter];
-            displayDiameter = `${diameter}/${outerDiameter} мм (сендвіч)`;
-            shopQueryParam = `?diameter=${diameter}/${outerDiameter}&chimneyType=Термо`;
-        } else {
-            displayDiameter = `${diameter} мм (сендвіч)`;
-            shopQueryParam = `?diameter=${diameter}&chimneyType=Термо`;
-        }
+   if (insulation === 'yes') {
+    const casing = encodeURIComponent('н/н');
+
+    if (sandwichMap[diameter]) {
+        const outerDiameter = sandwichMap[diameter];
+        displayDiameter = `${diameter}/${outerDiameter} мм (сендвіч)`;
+        shopQueryParam = `?diameter=${diameter}/${outerDiameter}&chimneyType=Термо&grade=304&&thickness=${encodeURIComponent('0,8 мм')}&casing=${casing}`;
     } else {
-        displayDiameter = `${diameter} мм (одностінний)`;
-        shopQueryParam = `?diameter=${diameter}&chimneyType=Одностінний`;
+        displayDiameter = `${diameter} мм (сендвіч)`;
+        shopQueryParam = `?diameter=${diameter}&chimneyType=Термо&grade=304&&thickness=${encodeURIComponent('0,8 мм')}&casing=${casing}`;
     }
+} else {
+    displayDiameter = `${diameter} мм (одностінний)`;
+    shopQueryParam = `?diameter=${diameter}&chimneyType=Одностінний&grade=304&&thickness=${encodeURIComponent('0,8 мм')}`;
+}
 
     const recommendedHeight = Math.max(5, height);
 
@@ -748,26 +750,41 @@ function calculateChimney() {
     document.getElementById('heightResult').innerText = recommendedHeight + ' м';
     document.getElementById('draftResult').innerText = draft.toFixed(1) + ' Па';
 
-    document.getElementById('recommendation').innerHTML = `
-        <i class="bi bi-check-circle-fill text-orange me-2"></i>
-        <strong>Рекомендація:</strong> ${insulation === 'yes' ? 'Утеплений сендвіч-димохід' : 'Одностінний димохід'} з нержавіючої сталі (AISI 304/321).
-    `;
+   document.getElementById('recommendation').innerHTML = `
+    <i class="bi bi-check-circle-fill text-orange me-2"></i>
+    <strong>Рекомендація:</strong>
+    ${
+        insulation === 'yes'
+            ? 'Утеплений сендвіч-димохід з нержавіючої сталі (AISI 304/321) в кожусі з нержавійки AISI 201 (0.5 мм).'
+            : 'Одностінний димохід з нержавіючої сталі (AISI 304/321)'
+    }.
+`;
 
     let currentSandwichText = insulation === 'yes' && sandwichMap[diameter] 
         ? `${diameter}/${sandwichMap[diameter]} мм` 
         : `${diameter} мм`;
 
-    let explanationText = `
-        <div class="mb-2">
-            Рекомендований внутрішній діаметр труби <strong>${diameter} мм</strong> підібрано відповідно до потужності <strong>${power} кВт</strong>.
-        </div>
-        ${insulation === 'yes' ? `
-        <div class="mb-2">
-            Оскільки обрано варіант з утепленням, вам підходить сендвіч-система розміром <strong>${currentSandwichText}</strong>.
-        </div>` : ''}
-        <div class="mb-2">
-            Рекомендована висота <strong>${recommendedHeight} м</strong> забезпечує стабільну тягу.
-        </div>
+    const diameterText = insulation === 'yes'
+    ? `Рекомендований внутрішній діаметр труби <strong>${diameter} мм</strong> підібрано відповідно до потужності <strong>${power} кВт</strong>.`
+    : `Рекомендований діаметр труби <strong>${diameter} мм</strong> підібрано відповідно до потужності <strong>${power} кВт</strong>.`;
+
+let explanationText = `
+    <div class="mb-2">
+        ${diameterText}
+    </div>
+
+    ${insulation === 'yes' ? `
+    <div class="mb-2">
+        Оскільки обрано варіант з утепленням, вам підходить сендвіч-система розміром <strong>${currentSandwichText}</strong>.
+    </div>` : ''}
+
+     <div class="mb-2">
+        Рекомендована товщина нержавійки min 0.8 мм., що забезпечує довговічність та стійкість до корозії.
+    </div>
+
+    <div class="mb-2">
+        Рекомендована висота <strong>${recommendedHeight} м</strong> забезпечує стабільну тягу.
+    </div>
         ${height < 5 ? `
         <div class="alert alert-warning py-2 px-3 my-2 small rounded-3">
             <i class="bi bi-exclamation-triangle-fill me-1"></i>

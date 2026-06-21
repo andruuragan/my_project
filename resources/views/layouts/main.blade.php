@@ -44,43 +44,12 @@
     <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
 @vite(['resources/css/app.css', 'resources/js/app.js'])
+<link rel="stylesheet" href="{{ asset('css/custom-styles.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css">
     <link rel="stylesheet" href="{{ asset('css/mobile-navbar.css') }}">
     
-    <style>
-        .btn-icon {
-            transition: all 0.2s ease;
-        }
-
-        .btn-icon:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            margin: 0;
-            overflow-x: hidden;
-    max-width: 100%;
-        }
-        
-        h1, h2, h3, .fs-2, .fw-black {
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .logo {
-            height: 100px;
-        }
-
-        /* ФИКС: Жестко скрываем оригинальные textarea, пока JS инициализируется */
-        textarea.rich-text {
-            display: none !important;
-        }
-    </style>
-
-    {{-- МІСЦЕ ДЛЯ ЗБОРУ СТИЛІВ З ІНШИХ БЛЕЙДІВ --}}
-    @stack('styles')
+   @stack('styles')
 </head>
 
 <body class="site-body">

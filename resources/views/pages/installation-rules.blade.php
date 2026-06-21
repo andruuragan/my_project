@@ -320,6 +320,7 @@ document.querySelectorAll('form[action="{{ route("leads.store") }}"]').forEach(f
     'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
     'Accept': 'application/json'
 }
+});
 
             if (response.ok) {
                 // Очищаємо поля

@@ -206,7 +206,7 @@ g \cdot H \cdot
                 </div>
                 <div class="progress-scale-item style-high" style="width: 30%">
                     <span class="scale-title">понад 60 Pa</span>
-                    <span class="scale-desc">Надмірна (втрати)</span>
+                    <span class="scale-desc">Надмірна</span>
                 </div>
             </div>
         </section>
@@ -230,7 +230,7 @@ g \cdot H \cdot
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="fw-semibold">Твервний котел</td>
+                            <td class="fw-semibold">Тверд-ний котел</td>
                             <td>До 16 кВт<br><small class="text-muted">16 – 35 кВт</small></td>
                             <td><strong>150–180 мм</strong><br><small class="text-muted">180–220 мм</small></td>
                             <td>Запас потужності 20%</td>

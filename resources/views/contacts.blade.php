@@ -8,97 +8,89 @@
         </div>
 
         <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
-
             <div class="card-body p-4 p-lg-5">
+                <div class="row gy-5">
+                    
+                    <div class="col-lg-6">
+                        <h4 class="mb-4">Наші координати</h4>
+                        <div class="row gy-4">
+                            @php
+                                $contacts = [
+                                    ['icon' => 'building-fill', 'title' => 'Назва компанії', 'text' => 'Центр Комплектації Димарів'],
+                                    ['icon' => 'person-fill', 'title' => 'Контактна особа', 'text' => 'Ваше ім\'я'],
+                                    ['icon' => 'geo-alt-fill', 'title' => 'Адреса', 'text' => 'м. Харків, вул. Прикладна, 1'],
+                                    ['icon' => 'telephone-fill', 'title' => 'Телефон', 'text' => '+38 (0XX) XXX-XX-XX<br>+38 (0XX) XXX-XX-XX', 'is_link' => true],
+                                    ['icon' => 'envelope-fill', 'title' => 'Email', 'text' => 'dymsystems@ukr.net', 'is_link' => true, 'href' => 'mailto:dymsystems@ukr.net'],
+                                    ['icon' => 'globe2', 'title' => 'Сайт', 'text' => 'www.dymsystems.pp.ua', 'is_link' => true, 'href' => '/'],
+                                    ['icon' => 'clock-fill', 'title' => 'Графік роботи', 'text' => 'Пн–Пт: 09:00 – 18:00<br>Сб–Нд: вихідний']
+                                ];
+                            @endphp
 
-                <div class="row gy-4 align-items-start">
-
-                    <div class="col-md-4">
-                        <div class="d-flex align-items-center">
-                            <i class="bi bi-building-fill text-warning fs-4 me-3"></i>
-                            <span class="fw-semibold">Назва компанії</span>
+                            @foreach($contacts as $item)
+                                <div class="col-sm-6">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <i class="bi bi-{{ $item['icon'] }} text-warning fs-4 me-3"></i>
+                                        <span class="fw-semibold">{{ $item['title'] }}</span>
+                                    </div>
+                                    <div class="text-muted ps-5">
+                                        @if(isset($item['is_link']))
+                                            <a href="{{ $item['href'] ?? '#' }}" class="text-decoration-none">{{ $item['text'] }}</a>
+                                        @else
+                                            {!! $item['text'] !!}
+                                        @endif
+                                    </div>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
-                    <div class="col-md-8">
-                        Центр Комплектації Димарів
-                    </div>
 
-                    <div class="col-md-4">
-                        <div class="d-flex align-items-center">
-                            <i class="bi bi-person-fill text-warning fs-4 me-3"></i>
-                            <span class="fw-semibold">Контактна особа</span>
-                        </div>
-                    </div>
-                    <div class="col-md-8">
-                        Ваше ім'я
-                    </div>
+                    <div class="col-lg-6">
+                        <div class="bg-light p-4 p-lg-5 rounded-4 h-100">
+                            <h4 class="mb-4">Якщо у вас виникли питання — заповніть, будь-ласка, форму і ми зв'яжемося з вами.</h4>
+                            <form action="{{ route('contact.send') }}" method="POST">
+                                @csrf
+                                <div class="mb-3">
+                                    <input
+    type="text"
+    name="name"
+    class="form-control form-control-lg"
+    placeholder="Ваше ім'я"
+    autocomplete="name"
+    required
+>
 
-                    <div class="col-md-4">
-                        <div class="d-flex align-items-center">
-                            <i class="bi bi-geo-alt-fill text-warning fs-4 me-3"></i>
-                            <span class="fw-semibold">Адреса</span>
+                                </div>
+                                <div class="mb-3">
+                                    <input
+    type="email"
+    name="email"
+    class="form-control form-control-lg"
+    placeholder="Email"
+    autocomplete="email"
+    required
+>
+                                </div>
+                                <div class="mb-3">
+                                    
+                                    <input 
+    type="tel" 
+    name="phone" 
+    id="phone" 
+    class="form-control form-control-lg"
+    placeholder="+38 (___) ___-__-__" 
+    autocomplete="tel" 
+    required>
+                                </div>
+                                <div class="mb-4">
+                                    <textarea name="message" class="form-control form-control-lg" rows="4" placeholder="Ваше повідомлення"></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-warning btn-lg w-100 fw-bold">Відправити повідомлення</button>
+                            </form>
                         </div>
-                    </div>
-                    <div class="col-md-8">
-                        м. Харків, вул. Прикладна, 1
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="d-flex align-items-center">
-                            <i class="bi bi-telephone-fill text-warning fs-4 me-3"></i>
-                            <span class="fw-semibold">Телефон</span>
-                        </div>
-                    </div>
-                    <div class="col-md-8">
-                        <a href="tel:+380XXXXXXXXX" class="text-decoration-none">
-                            +38 (0XX) XXX-XX-XX
-                        </a>
-                        <br>
-                        <a href="tel:+380XXXXXXXXX" class="text-decoration-none">
-                            +38 (0XX) XXX-XX-XX
-                        </a>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="d-flex align-items-center">
-                            <i class="bi bi-envelope-fill text-warning fs-4 me-3"></i>
-                            <span class="fw-semibold">Email</span>
-                        </div>
-                    </div>
-                    <div class="col-md-8">
-                        <a href="mailto:info@example.com" class="text-decoration-none">
-                           dymsystems@ukr.net
-                        </a>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="d-flex align-items-center">
-                            <i class="bi bi-globe2 text-warning fs-4 me-3"></i>
-                            <span class="fw-semibold">Сайт</span>
-                        </div>
-                    </div>
-                    <div class="col-md-8">
-                        <a href="/" class="text-decoration-none">
-                            www.dymsystems.pp.ua
-                        </a>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="d-flex align-items-center">
-                            <i class="bi bi-clock-fill text-warning fs-4 me-3"></i>
-                            <span class="fw-semibold">Графік роботи</span>
-                        </div>
-                    </div>
-                    <div class="col-md-8">
-                        Пн–Пт: 09:00 – 18:00<br>
-                        Сб: вихідний<br>
-                        Нд: вихідний
                     </div>
 
                 </div>
-
             </div>
-
         </div>
     </div>
 @endsection

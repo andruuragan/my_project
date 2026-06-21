@@ -134,4 +134,5 @@ Route::get('/useful-info', [App\Http\Controllers\UsefulController::class, 'index
 |  4. SYSTEM INCLUDES
 |  ========================================================================== */
 Route::get('/compare', [CompareController::class, 'index'])->name('compare.index');
+Route::post('/contacts/send', [App\Http\Controllers\ContactsController::class, 'send'])->name('contact.send');
 require __DIR__.'/auth.php';

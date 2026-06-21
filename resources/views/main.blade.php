@@ -257,7 +257,7 @@
 
             <div class="col-lg-2 col-md-4 col-6">
                 <i class="bi bi-shield-check fs-1 text-warning"></i>
-                <h6 class="mt-3 fw-bold">AISI 304 / 321</h6>
+                <h3 class="mt-3 fw-bold fs-6">AISI 304 / 321</h3>
                 <small class="text-muted">
                     Стійкість до корозії та високих температур
                 </small>
@@ -265,7 +265,7 @@
 
             <div class="col-lg-2 col-md-4 col-6">
                 <i class="bi bi-gear-wide-connected fs-1 text-warning"></i>
-                <h6 class="mt-3 fw-bold">Власне виробництво</h6>
+               <h3 class="mt-3 fw-bold fs-6">Власне виробництво</h3>
                 <small class="text-muted">
                     Контроль якості на кожному етапі
                 </small>
@@ -273,7 +273,7 @@
 
             <div class="col-lg-2 col-md-4 col-6">
                 <i class="bi bi-calendar-check fs-1 text-warning"></i>
-                <h6 class="mt-3 fw-bold">12+ років</h6>
+                <h3 class="mt-3 fw-bold fs-6">12+ років</h3>
                 <small class="text-muted">
                     Досвід виробництва та монтажу
                 </small>
@@ -281,7 +281,7 @@
 
             <div class="col-lg-2 col-md-4 col-6">
                 <i class="bi bi-award fs-1 text-warning"></i>
-                <h6 class="mt-3 fw-bold">Гарантія якості</h6>
+                <h3 class="mt-3 fw-bold fs-6">Гарантія якості</h3>
                 <small class="text-muted">
                     Відповідність технічним вимогам
                 </small>
@@ -289,7 +289,7 @@
 
             <div class="col-lg-2 col-md-4 col-6">
                 <i class="bi bi-truck fs-1 text-warning"></i>
-                <h6 class="mt-3 fw-bold">Швидка доставка</h6>
+                <h3 class="mt-3 fw-bold fs-6">Швидка доставка</h3>
                 <small class="text-muted">
                     Відправлення по всій Україні
                 </small>
@@ -297,7 +297,7 @@
 
             <div class="col-lg-2 col-md-4 col-6">
                 <i class="bi bi-person-workspace fs-1 text-warning"></i>
-                <h6 class="mt-3 fw-bold">Консультація інженера</h6>
+                <h3 class="mt-3 fw-bold fs-6">Консультація інженера</h3>
                 <small class="text-muted">
                     Допомога з розрахунком системи
                 </small>
