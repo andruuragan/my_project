@@ -287,7 +287,7 @@ style="background: linear-gradient(90deg, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23,
                 </p>
             </div>
 
-            <div class="col-lg-4 text-lg-end mt-4 mt-lg-0">
+            <div class="col-lg-4 text-center text-lg-end mt-4 mt-lg-0">
                 <a href="<?php echo e(route('chimney.installation-rules')); ?>#form"
                    class="btn btn-warning btn-lg fw-bold px-4">
                     Отримати консультацію
