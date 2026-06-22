@@ -313,7 +313,7 @@ style="background: linear-gradient(90deg, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23,
             ['img' => 'industrial-project.webp', 'title' => 'Промисловий об’єкт', 'text' => 'Димова система великого діаметра Ø300+ мм. Робота з високим навантаженням.', 'meta' => ['підсилена конструкція', 'теплоізоляція 50 мм', 'довгий ресурс']]
         ]; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
         <div class="col-lg-4">
-            <div class="card h-100 border-0 shadow-sm custom-product-card overflow-hidden">
+            <div class="card h-100 border-0 shadow-sm custom-product-card project-card overflow-hidden">
                 <div class="img-container">
                     <img src="<?php echo e(asset('images/chimney/' . $item['img'])); ?>" alt="<?php echo e($item['title']); ?>" class="product-img">
                 </div>
@@ -511,6 +511,29 @@ style="background: linear-gradient(90deg, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23,
 
     </div>
 </section>
+<script>
+   document.addEventListener('DOMContentLoaded', () => {
 
+    const animatedCards = document.querySelectorAll(
+        '.technology-card, .project-card'
+    );
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('show');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.15
+    });
+
+    animatedCards.forEach(card => {
+        observer.observe(card);
+    });
+
+});
+</script>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layouts.main', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH /var/www/my_project/resources/views/main.blade.php ENDPATH**/ ?>

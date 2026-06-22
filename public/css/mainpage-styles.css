@@ -247,10 +247,22 @@ section {
 .technology-card {
     border-radius: 18px;
     overflow: hidden;
-    transition: .3s ease;
+
+    opacity: 0;
+    transform: translateY(30px);
+
+    transition:
+        opacity .7s ease,
+        transform .7s ease,
+        box-shadow .3s ease;
 }
 
-.technology-card:hover {
+.technology-card.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.technology-card.show:hover {
     transform: translateY(-6px);
 }
 
@@ -265,6 +277,24 @@ section {
  /* =========================================================== */
  .accordion-button:hover {
      color: #ffc107;
+ }
+ /* =========================================================== */
+ .project-card {
+     opacity: 0;
+     transform: translateY(30px);
+     transition:
+         opacity .7s ease,
+         transform .7s ease,
+         box-shadow .3s ease;
+ }
+
+ .project-card.show {
+     opacity: 1;
+     transform: translateY(0);
+ }
+
+ .project-card.show:hover {
+     transform: translateY(-6px);
  }
 @media (max-width: 991px) {
 
