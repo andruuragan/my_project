@@ -13,7 +13,7 @@
             <div class="row g-4">
                 {{-- КАЛЬКУЛЯТОР --}}
                 <div class="col-lg-4 col-md-6">
-                    <div class="useful-card h-100">
+                    <div class="useful-card h-100 useful-fade">
                        <a href="{{ route('chimney.calculator') }}" class="d-block">
     <div class="useful-image-wrapper">
         <img src="{{ asset('images/chimney/calculator.webp') }}" alt="Калькулятор димоходу" class="useful-image">
@@ -30,7 +30,7 @@
 
                 {{-- ДІАМЕТР --}}
                 <div class="col-lg-4 col-md-6">
-                    <div class="useful-card h-100">
+                   <div class="useful-card h-100 useful-fade">
                         <a href="{{ route('chimney.diameter') }}" class="d-block overflow-hidden rounded-4">
     <div class="useful-image-wrapper">
         <img src="{{ asset('images/chimney/diameter.webp') }}" alt="Як обрати діаметр" class="useful-image">
@@ -47,7 +47,7 @@
 
                 {{-- МОНТАЖ --}}
                 <div class="col-lg-4 col-md-6">
-                    <div class="useful-card h-100">
+                    <div class="useful-card h-100 useful-fade">
                         <a href="{{ route('chimney.installation-rules') }}" class="d-block overflow-hidden rounded-4">
     <div class="useful-image-wrapper">
         <img src="{{ asset('images/chimney/montage.webp') }}" alt="Монтаж димоходу" class="useful-image">

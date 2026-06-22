@@ -294,6 +294,10 @@ section {
     transform: translateX(50px) translateY(-2px);
      opacity: 1;
  }
+ @media (max-width: 767px) {
+    .accordion-collapse.show .accordion-body {
+            transform: translateX(10px) translateY(-2px);
+ }
  .accordion-button {
      font-weight: 700;
     transition: background 0.2s ease, color 0.2s ease;

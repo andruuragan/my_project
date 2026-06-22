@@ -120,17 +120,17 @@
 
                     <div class="mb-3">
                         <label for="register_name">Ім’я</label>
-                        <input id="register_name" name="name" type="text" class="form-control" autocomplete="off" required>
+                        <input id="register_name" name="name" type="text" class="form-control" autocomplete="name" required>
                     </div>
 
                     <div class="mb-3">
                         <label for="register_email">Email</label>
-                        <input id="register_email" name="email" type="email" class="form-control" autocomplete="off" required>
+                        <input id="register_email" name="email" type="email" class="form-control" autocomplete="email" required>
                     </div>
 
                     <div class="mb-3">
                         <label for="register_phone">Телефон</label>
-                        <input id="register_phone" name="phone" type="tel" class="form-control"  placeholder="+38 (___) ___-__-__"  autocomplete="off" inputmode="numeric" pattern="[0-9+() -]+" maxlength="20">
+                        <input id="register_phone" name="phone" type="tel" class="form-control"  placeholder="+38 (___) ___-__-__"  autocomplete="tel" inputmode="numeric" pattern="[0-9+() -]+" maxlength="20">
                     </div>
 
                     <div class="mb-3">

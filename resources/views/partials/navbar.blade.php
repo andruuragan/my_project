@@ -274,7 +274,7 @@
                         <!-- Добавляем точно такой же id="..." -->
                         <input type="email" id="email" name="email"
                                class="form-control"
-                               autocomplete="off"
+                               autocomplete="username"
                                required>
                     </div>
 
@@ -286,7 +286,7 @@
                         <!-- Добавляем id="password" в сам инпут пароля -->
                         <input type="password" id="password" name="password"
                                class="form-control"
-                               autocomplete="new-password"
+                               autocomplete="current-password"
                                required>
                     </div>
 

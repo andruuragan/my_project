@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // =============================================
     const cards = document.querySelectorAll(
-        '.technology-card, .project-card, .solution-card, .value-card, .gallery-item, .workflow-card'
+        '.technology-card, .project-card, .solution-card, .value-card, .gallery-item, .workflow-card, .useful-fade'
     );
 
     const observer = new IntersectionObserver((entries) => {

@@ -1553,3 +1553,15 @@ header {
 .gallery-item:nth-child(6) {
     transition-delay: 0.3s;
 }
+.useful-fade {
+    opacity: 0;
+    transform: translateY(30px);
+    transition:
+        opacity .7s ease,
+        transform .7s ease;
+}
+
+.useful-fade.show {
+    opacity: 1;
+    transform: translateY(0);
+}
