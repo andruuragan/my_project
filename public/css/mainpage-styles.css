@@ -275,6 +275,29 @@ section {
     min-height: 55px;
 }
  /* =========================================================== */
+ .accordion-item {
+     margin-bottom: 12px;
+     border-radius: 12px;
+     overflow: hidden;
+     border: 1px solid rgba(0, 0, 0, 0.08);
+ }
+ .accordion-body {
+     padding-top: 20px;
+     padding-bottom: 20px;
+     line-height: 1.6;
+     color: #4b5563;
+    transform: translateX(0);
+        transition: transform 0.4s ease, opacity 0.4s ease;
+        opacity: 0.85;
+ }
+ .accordion-collapse.show .accordion-body {
+    transform: translateX(50px) translateY(-2px);
+     opacity: 1;
+ }
+ .accordion-button {
+     font-weight: 700;
+    transition: background 0.2s ease, color 0.2s ease;
+ }
  .accordion-button:hover {
      color: #ffc107;
  }
