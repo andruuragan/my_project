@@ -331,6 +331,121 @@ style="background: linear-gradient(90deg, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23,
         @endforeach
     </div>
 </section>
+
+<section class="container-1600 py-5">
+    <div class="text-center mb-5">
+        <h2 class="fw-bold display-6 mb-3">Актуальні питання та популярні відповіді</h2>
+        <div class="mx-auto bg-warning" style="width: 60px; height: 3px;"></div>
+    </div>
+
+    <div class="accordion" id="faqAccordion">
+
+        <div class="accordion-item">
+            <h3 class="accordion-header">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                    Яку нержавіючу сталь краще обрати для димоходу?
+                </button>
+            </h3>
+            <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    Для більшості побутових систем використовуються марки AISI 201, AISI 304 та AISI 321. Вони стійкі до корозії, конденсату та високих температур.
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h3 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                    Який діаметр димоходу потрібен для котла?
+                </button>
+            </h3>
+            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    Діаметр підбирається відповідно до потужності обладнання та рекомендацій виробника котла. Неправильно підібраний діаметр може погіршити тягу.
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h3 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                    Чим відрізняється сендвіч-димохід від одностінного?
+                </button>
+            </h3>
+            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    Сендвіч-система має шар теплоізоляції між двома трубами, що зменшує утворення конденсату та покращує стабільність тяги.
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h3 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                    Яка товщина сталі оптимальна для димоходу?
+                </button>
+            </h3>
+            <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    Найчастіше використовується сталь товщиною від 0,5 до 1 мм. Вибір залежить від типу палива та температурного режиму роботи.
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h3 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+                    Чи можна встановлювати димохід зовні будинку?
+                </button>
+            </h3>
+            <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    Так, для зовнішнього монтажу рекомендується використовувати утеплені сендвіч-димоходи, які забезпечують стабільну тягу в холодну пору року.
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h3 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq6">
+                    Як часто потрібно чистити димохід?
+                </button>
+            </h3>
+            <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    Рекомендується проводити профілактичний огляд та очищення не рідше одного разу на рік або частіше при інтенсивній експлуатації.
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h3 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq7">
+                    Чи виготовляєте ви димоходи за індивідуальними розмірами?
+                </button>
+            </h3>
+            <div id="faq7" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    Так, ми можемо виготовити нестандартні елементи та димохідні системи відповідно до технічного завдання замовника.
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h3 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq8">
+                    Яка гарантія на продукцію?
+                </button>
+            </h3>
+            <div id="faq8" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    Термін гарантії залежить від типу виробу та марки сталі. Детальну інформацію можна отримати під час консультації.
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
 {{-- 4. Переваги (Короткий блок для довіри) --}}
 <section class="py-5 border-top bg-white">
     <div class="container-1600">
