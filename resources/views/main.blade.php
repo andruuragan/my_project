@@ -232,7 +232,7 @@ style="background: linear-gradient(90deg, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23,
 <section class="container-1600 py-5">
     <div class="row g-4 align-items-center">
         <div class="col-md-6">
-            <h3>Потрібна допомога з вибором?</h3>
+         <h3><strong>Потрібна допомога з вибором?</strong></h3>
             <p class="text-muted">Ми підготували для вас онлайн-калькулятор та інструкції, які допоможуть зробити правильний вибір без помилок.</p>
         </div>
         <div class="col-md-6 text-md-end">
