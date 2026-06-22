@@ -97,6 +97,30 @@ window.refreshCart = function () {
 
 // --- ЕДИНЫЙ ЗАПУСК ---
 document.addEventListener('DOMContentLoaded', () => {
+
+    // =============================================
+    const cards = document.querySelectorAll(
+        '.technology-card, .project-card, .solution-card, .value-card, .gallery-item, .workflow-card'
+    );
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('show');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.15
+    });
+
+    cards.forEach(card => observer.observe(card));
+
+
+
+// =============================================
+
+    
     window.initGlobalChoices();
     
     document.addEventListener('click', function (e) {
@@ -194,6 +218,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 .catch(err => console.error(err));
 
         });
+        
 
     }
     document.addEventListener('click', function (e) {

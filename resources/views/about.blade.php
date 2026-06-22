@@ -87,23 +87,98 @@
         </div>
     </section>
 
-    {{-- Workflow Section --}}
-    <section class="py-5 bg-light">
+   {{-- Workflow Section --}}
+<section class="py-5 bg-light">
+    <div class="text-center mb-5">
+        <h2 class="fw-bold">Як ми працюємо</h2>
+        <div class="mx-auto bg-warning" style="width:60px; height:3px;"></div>
+    </div>
+
+    <div class="row text-center g-4">
+
+        @php
+            $steps = [
+                ['icon' => 'bi-chat-dots', 'title' => 'Консультація'],
+                ['icon' => 'bi-diagram-3', 'title' => 'Підбір комплектуючих'],
+                ['icon' => 'bi-gear', 'title' => 'Виробництво'],
+                ['icon' => 'bi-truck', 'title' => 'Доставка клієнту'],
+            ];
+        @endphp
+
+        @foreach($steps as $key => $step)
+            <div class="col-md-3">
+                <div class="card border-0 shadow-sm p-4 h-100 workflow-card">
+
+                    <div class="mb-3 text-warning fs-1">
+                        <i class="bi {{ $step['icon'] }}"></i>
+                    </div>
+
+                    <h3 class="fw-bold text-warning mb-2">{{ $key + 1 }}</h3>
+                    <p class="fw-bold mb-0">{{ $step['title'] }}</p>
+
+                </div>
+            </div>
+        @endforeach
+
+    </div>
+</section>
+<section class="py-5 bg-light">
+    <div class="container-1600">
+
         <div class="text-center mb-5">
-            <h2 class="fw-bold">Як ми працюємо</h2>
+            <h2 class="fw-bold">Наші цінності</h2>
             <div class="mx-auto bg-warning" style="width:60px; height:3px;"></div>
         </div>
-        <div class="row text-center g-4">
-            @foreach(['Консультація', 'Підбір комплектуючих', 'Виробництво', 'Доставка клієнту'] as $key => $step)
-                <div class="col-md-3">
-                    <div class="card border-0 shadow-sm p-4">
-                        <h3 class="text-warning">{{ $key + 1 }}</h3>
-                        <p class="fw-bold">{{ $step }}</p>
+
+        <div class="row g-4">
+
+            @php
+                $values = [
+                    [
+                        'icon' => 'bi-people',
+                        'title' => 'Бездоганний досвід клієнта',
+                        'text' => ' Якісний димохід — це той, який не створює проблем. Ми супроводжуємо клієнта на всіх етапах:
+                        від підбору конфігурації до вирішення технічних питань після монтажу.'
+                    ],
+                    [
+                        'icon' => 'bi-cpu',
+                        'title' => 'Технологічне лідерство',
+                        'text' => 'Використовуємо сучасне обладнання європейського рівня, що дозволяє забезпечувати стабільну якість
+                        та виконання замовлень у визначені терміни.'
+                    ],
+                    [
+                        'icon' => 'bi-check2-circle',
+                        'title' => 'Контроль якості',
+                        'text' => ' Кожен виріб проходить перевірку відповідності стандартам. Це гарантує надійність монтажу
+                        та довговічність системи димоходу.'
+                    ],
+                    [
+                        'icon' => 'bi-award',
+                        'title' => 'Естетика та дизайн',
+                        'text' => ' Ми створюємо не лише функціональні, а й візуально привабливі димоходи.
+                        Використовуємо дзеркальну нержавіючу сталь і лазерне зварювання для ідеального вигляду.'
+                    ],
+                ];
+            @endphp
+
+            @foreach($values as $item)
+                <div class="col-md-6 col-lg-3">
+                    <div class="card border-0 shadow-sm p-4 h-100 value-card text-center">
+
+                        <div class="value-icon mb-3 text-warning">
+                            <i class="bi {{ $item['icon'] }}"></i>
+                        </div>
+
+                        <h5 class="fw-bold mb-3">{{ $item['title'] }}</h5>
+                        <p class="text-muted mb-0">{{ $item['text'] }}</p>
+
                     </div>
                 </div>
             @endforeach
+
         </div>
-    </section>
+    </div>
+</section>
 
     {{-- Production Gallery --}}
     <section class="py-5">
@@ -113,7 +188,7 @@
         </div>
         <div class="row g-4">
             @for($i = 1; $i <= 6; $i++)
-                <div class="col-md-4">
+                <div class="col-md-4 gallery-item">
                     <img src="{{ asset('images/about/production'.$i.'.webp') }}"
                          class="img-fluid rounded-4 shadow-sm"
                          alt="Виробництво">

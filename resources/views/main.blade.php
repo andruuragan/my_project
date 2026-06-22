@@ -511,26 +511,5 @@ style="background: linear-gradient(90deg, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23,
 
     </div>
 </section>
-<script>
-   document.addEventListener('DOMContentLoaded', () => {
 
-    const cards = document.querySelectorAll(
-        '.technology-card, .project-card, .solution-card'
-    );
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('show');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, {
-        threshold: 0.15
-    });
-
-    cards.forEach(card => observer.observe(card));
-
-});
-</script>
 @endsection

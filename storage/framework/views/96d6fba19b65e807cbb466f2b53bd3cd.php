@@ -511,27 +511,6 @@ style="background: linear-gradient(90deg, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23,
 
     </div>
 </section>
-<script>
-   document.addEventListener('DOMContentLoaded', () => {
 
-    const cards = document.querySelectorAll(
-        '.technology-card, .project-card, .solution-card'
-    );
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('show');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, {
-        threshold: 0.15
-    });
-
-    cards.forEach(card => observer.observe(card));
-
-});
-</script>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layouts.main', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH /var/www/my_project/resources/views/main.blade.php ENDPATH**/ ?>

@@ -1491,3 +1491,65 @@ header {
 .compare-btn.active i {
     color: white !important;
 }
+.workflow-card {
+    transition: all .3s ease;
+    border-radius: 16px;
+}
+
+.workflow-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+}
+.value-card {
+    border-radius: 18px;
+    transition: all .3s ease;
+    opacity: 0;
+    transform: translateY(25px);
+}
+
+.value-card.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.value-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
+}
+
+.value-icon {
+    font-size: 40px;
+}
+.gallery-item {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all .7s ease;
+}
+
+.gallery-item.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+.gallery-item:nth-child(1) {
+    transition-delay: 0.05s;
+}
+
+.gallery-item:nth-child(2) {
+    transition-delay: 0.1s;
+}
+
+.gallery-item:nth-child(3) {
+    transition-delay: 0.15s;
+}
+
+.gallery-item:nth-child(4) {
+    transition-delay: 0.2s;
+}
+
+.gallery-item:nth-child(5) {
+    transition-delay: 0.25s;
+}
+
+.gallery-item:nth-child(6) {
+    transition-delay: 0.3s;
+}
