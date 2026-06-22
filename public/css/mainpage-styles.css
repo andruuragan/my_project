@@ -296,6 +296,32 @@ section {
  .project-card.show:hover {
      transform: translateY(-6px);
  }
+ /* =========================================================== */
+ .solution-card {
+     opacity: 0;
+     transition: opacity .8s ease;
+ }
+
+ .solution-card.show {
+     opacity: 1;
+ }
+
+ .solution-card .img-container {
+     overflow: hidden;
+ }
+
+ .solution-card .product-img {
+     transform: scale(1.15);
+     transition: transform 1s ease;
+ }
+
+ .solution-card.show .product-img {
+     transform: scale(1);
+ }
+
+ .solution-card:hover .product-img {
+     transform: scale(1.05);
+ }
 @media (max-width: 991px) {
 
     /* 1. Делаем высоту автоматической, чтобы текст не вылезал */

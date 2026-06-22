@@ -83,7 +83,7 @@ style="background: linear-gradient(90deg, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23,
     ]
 ]; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
     <div class="col-12 col-md-6">
-        <div class="card h-100 border-0 shadow-sm custom-product-card">
+        <div class="card h-100 border-0 shadow-sm custom-product-card solution-card">
             <a href="<?php echo e(route('shop.index', ['category' => $item['cat']])); ?>" class="img-container">
                 <img src="<?php echo e(asset('images/chimney/' . $item['img'])); ?>" alt="<?php echo e($item['title']); ?>" class="product-img">
             </a>
@@ -514,8 +514,8 @@ style="background: linear-gradient(90deg, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23,
 <script>
    document.addEventListener('DOMContentLoaded', () => {
 
-    const animatedCards = document.querySelectorAll(
-        '.technology-card, .project-card'
+    const cards = document.querySelectorAll(
+        '.technology-card, .project-card, .solution-card'
     );
 
     const observer = new IntersectionObserver((entries) => {
@@ -529,9 +529,7 @@ style="background: linear-gradient(90deg, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23,
         threshold: 0.15
     });
 
-    animatedCards.forEach(card => {
-        observer.observe(card);
-    });
+    cards.forEach(card => observer.observe(card));
 
 });
 </script>
