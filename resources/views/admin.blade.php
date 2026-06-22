@@ -9,7 +9,7 @@
     </div>
 
     <div class="row g-4">
-        <div class="col-12 col-md-4">
+       <div class="col-12 col-md-6 col-xl-3">
             <div class="card h-100 shadow-sm border-0 bg-white p-4 rounded-3 text-center">
                 <h4 class="fw-bold text-dark mb-2">Замовлення</h4>
                 <p class="text-muted small mb-4">Перегляд нових замовлень, зміна статусів.</p>
@@ -17,7 +17,7 @@
             </div>
         </div>
 
-        <div class="col-12 col-md-4">
+        <div class="col-12 col-md-6 col-xl-3">
             <div class="card h-100 shadow-sm border-0 bg-white p-4 rounded-3 text-center">
                 <h4 class="fw-bold text-dark mb-2">Каталог товарів</h4>
                 <p class="text-muted small mb-4">Редагування цін, діаметрів та наявності.</p>
@@ -25,13 +25,25 @@
             </div>
         </div>
 
-        <div class="col-12 col-md-4">
+        <div class="col-12 col-md-6 col-xl-3">
             <div class="card h-100 shadow-sm border-0 bg-white p-4 rounded-3 text-center">
                 <h4 class="fw-bold text-dark mb-2">Описи товарів</h4>
                 <p class="text-muted small mb-4">Редагування SEO-текстів та переваг.</p>
                 <a href="{{ route('descriptions.index') }}" class="btn btn-primary w-100 py-2 rounded-3 fw-semibold">Редагувати описи</a>
             </div>
         </div>
+        <div class="col-12 col-md-6 col-xl-3">
+    <div class="card h-100 shadow-sm border-0 bg-white p-4 rounded-3 text-center">
+        <h4 class="fw-bold text-dark mb-2">Користувачі</h4>
+        <p class="text-muted small mb-4">
+            Перегляд та керування користувачами.
+        </p>
+        <a href="{{ route('users.index') }}"
+           class="btn btn-success w-100 py-2 rounded-3 fw-semibold">
+            Керувати користувачами
+        </a>
+    </div>
+</div>
     </div> <div class="mt-5 bg-white p-4 rounded-3 shadow-sm border border-secondary-subtle">
         <h4 class="fw-bold text-dark mb-3">🔥 Що найбільше лайкають</h4>
 

@@ -5,7 +5,7 @@
 <section class="container-1600 my-5">
 <div class="hero-production p-4 p-md-5 shadow-lg"
 style="background: linear-gradient(90deg, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23, 42, 0.4) 60%, rgba(15, 23, 42, 0.1) 100%),
-     url('<?php echo e(asset('images/chimney/headbanner.webp')); ?>') center/cover no-repeat;">>
+     url('<?php echo e(asset('images/chimney/headbanner.webp')); ?>') center/cover no-repeat;">
        <div class="row w-100 align-items-center">
     
     <!-- ЛІВА ЧАСТИНА -->

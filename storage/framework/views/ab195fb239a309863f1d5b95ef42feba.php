@@ -75,7 +75,7 @@
             </div>
 
             <!-- CTA -->
-           <div class="footer-col footer-cta mt-4 pt-3 border-top border-md-0 pt-md-0 mt-md-0">
+           <div class="footer-col footer-cta mt-4 pt-3 border-top border-md-0 pt-md-2 mt-md-2">
     <a href="<?php echo e(route ('shop.index')); ?>" class="footer-shop-btn">
         <i class="bi bi-cart3"></i>
         Перейти в магазин

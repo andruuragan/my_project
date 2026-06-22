@@ -21,7 +21,24 @@
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
                         <td>{{ $user->role }}</td>
-                        <td>
+                        <td><div class="d-flex gap-2">
+        <a href="{{ route('users.show', $user) }}" class="btn btn-sm btn-outline-info">
+            <i class="bi bi-eye"></i>
+        </a>
+
+        <a href="{{ route('users.edit', $user) }}" class="btn btn-sm btn-outline-warning">
+            <i class="bi bi-pencil-square"></i>
+        </a>
+
+        <form action="{{ route('users.destroy', $user) }}" method="POST" style="display:inline;">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-sm btn-outline-danger"
+                    onclick="return confirm('Видалити?')">
+                <i class="bi bi-trash3"></i>
+            </button>
+        </form>
+    </div>
                             </td>
                     </tr>
                 @endforeach
@@ -54,8 +71,7 @@
 
         {{ $users->links() }}
     </div>
-@endsection
-<style>
+    <style>
 @media (max-width: 767px) {
     .card {
         border: 1px solid #ddd;
@@ -63,3 +79,4 @@
     }
 }
 </style>
+@endsection

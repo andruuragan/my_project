@@ -19,7 +19,7 @@
                                     ['icon' => 'building-fill', 'title' => 'Назва компанії', 'text' => 'Центр Комплектації Димарів'],
                                     ['icon' => 'person-fill', 'title' => 'Контактна особа', 'text' => 'Ваше ім\'я'],
                                     ['icon' => 'geo-alt-fill', 'title' => 'Адреса', 'text' => 'м. Харків, вул. Прикладна, 1'],
-                                    ['icon' => 'telephone-fill', 'title' => 'Телефон', 'text' => '+38 (0XX) XXX-XX-XX<br>+38 (0XX) XXX-XX-XX', 'is_link' => true],
+                                    ['icon' => 'telephone-fill', 'title' => 'Телефон', 'text' => '+38 (0XX) XXX-XX-X0<br>+38 (0XX) XXX-XX-XX', 'is_link' => true],
                                     ['icon' => 'envelope-fill', 'title' => 'Email', 'text' => 'dymsystems@ukr.net', 'is_link' => true, 'href' => 'mailto:dymsystems@ukr.net'],
                                     ['icon' => 'globe2', 'title' => 'Сайт', 'text' => 'www.dymsystems.pp.ua', 'is_link' => true, 'href' => '/'],
                                     ['icon' => 'clock-fill', 'title' => 'Графік роботи', 'text' => 'Пн–Пт: 09:00 – 18:00<br>Сб–Нд: вихідний']
@@ -34,10 +34,12 @@
                                     </div>
                                     <div class="text-muted ps-5">
                                         @if(isset($item['is_link']))
-                                            <a href="{{ $item['href'] ?? '#' }}" class="text-decoration-none">{{ $item['text'] }}</a>
-                                        @else
-                                            {!! $item['text'] !!}
-                                        @endif
+    <a href="{{ $item['href'] ?? '#' }}" class="text-decoration-none">
+        {!! $item['text'] !!}
+    </a>
+@else
+    {!! $item['text'] !!}
+@endif
                                     </div>
                                 </div>
                             @endforeach
