@@ -25,7 +25,7 @@
         </div>
         <div class="footer-item">
             <i class="bi bi-telephone"></i>
-            <a href="tel:+380XXXXXXXXX" class="text-white">+380 XX XXX XX XX</a>
+            <a href="tel:+380XXXXXXXXX" class="text-white">+380 12 345 67 89</a>
         </div>
         <div class="footer-item">
             <i class="bi bi-envelope"></i>

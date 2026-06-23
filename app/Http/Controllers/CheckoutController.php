@@ -8,6 +8,9 @@ use App\Models\OrderItem;
 use App\Notifications\OrderCreatedNotification;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\OrderConfirmedMail;
+use App\Notifications\OrderCreatedForCustomer;
 
 class CheckoutController extends Controller
 {
@@ -87,6 +90,17 @@ class CheckoutController extends Controller
         } catch (\Exception $e) {
             logger()->error("Telegram failed: " . $e->getMessage());
         }
+        // EMAIL клиенту
+$user = auth()->user();
+
+try {
+    if ($user && $user->email) {
+        Mail::to($user->email)
+            ->send(new OrderConfirmedMail($order));
+    }
+} catch (\Exception $e) {
+    logger()->error("Customer mail failed: " . $e->getMessage());
+}
 
         // 4. Очищаємо кошик (дублікат прибрано)
         session()->forget('cart');
