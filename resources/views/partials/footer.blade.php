@@ -8,7 +8,7 @@
             <div class="footer-col footer-brand">
                 <div class="footer-logo">
                     <img src="{{ asset('images/favicon.png') }}" style="width:38px;" alt="logo_favicon">
-                    <span>DymSystems</span>
+                     <strong>DymSystems</strong>
                 </div>
                 <p class="footer-text">
                     Сучасний інтернет-магазин комплектації димарів.
@@ -17,7 +17,7 @@
 
             <!-- CONTACTS -->
             <div class="footer-col">
-                <h4 class="footer-title">Контакти</h4>
+                <h3 class="footer-title">Контакти</h3>
 
                 <div class="footer-item">
                     <i class="bi bi-geo-alt"></i>
@@ -37,7 +37,7 @@
 
             <!-- LINKS -->
             <div class="footer-col">
-                <h4 class="footer-title">Навігація</h4>
+                <h3 class="footer-title">Навігація</h3>
 
                 <ul class="footer-links">
                     <li><a href="{{route ('main.index')}}">Головна</a></li>
@@ -48,7 +48,7 @@
 
             <!-- ACCOUNT -->
             <div class="footer-col">
-                <h4 class="footer-title">Мій кабінет</h4>
+                <h3 class="footer-title">Мій кабінет</h3>
 
                 <ul class="footer-links">
                     <li>

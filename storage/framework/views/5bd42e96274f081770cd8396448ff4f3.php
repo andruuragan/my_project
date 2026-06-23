@@ -187,7 +187,7 @@
 
                             <li>
                                 <form method="POST" action="<?php echo e(route('logout')); ?>">
-                                    <?php echo csrf_field(); ?>
+                                    <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
                                     <button class="dropdown-item text-danger">
                                         <i class="bi bi-box-arrow-right me-2"></i>
                                         Вийти
@@ -230,7 +230,17 @@
         <div class="modal-content border-0 shadow-lg rounded-4">
 
             <div class="modal-header">
-                <h5 class="modal-title">Вхід в акаунт</h5>
+                <div class="text-center mb-3">
+    <img src="<?php echo e(asset('images/logo.png')); ?>"
+         alt="Логотип DymSystems"
+         width="80">
+
+    
+
+    <div class="text-muted fw-bold fs-6 mt-3">
+        Вхід в акаунт
+    </div>
+</div>
 
                 <button type="button"
                         class="btn-close"
@@ -253,7 +263,7 @@
                 <?php endif; ?>
 
                 <form method="POST" action="<?php echo e(route('login')); ?>">
-                    <?php echo csrf_field(); ?>
+                    <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
 
 
 

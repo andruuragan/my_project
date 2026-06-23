@@ -104,12 +104,29 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Реєстрація</h5>
+
+<div class="text-center mb-3">
+    <img src="<?php echo e(asset('images/logo.png')); ?>"
+         alt="Логотип DymSystems"
+         width="80">
+
+   
+
+    <div class="text-muted fw-bold fs-6 mt-3">
+        Реєстрація
+    </div>
+</div>
+
+                
+
+
+
+
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
             <form id="registerForm" method="POST" action="<?php echo e(route('register')); ?>" autocomplete="off">
-                <?php echo csrf_field(); ?>
+               <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
                 <div class="modal-body">
                     <?php if($errors->register->any()): ?>
                         <div class="alert alert-danger">

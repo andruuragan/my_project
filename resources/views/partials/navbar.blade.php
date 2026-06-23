@@ -239,7 +239,17 @@
         <div class="modal-content border-0 shadow-lg rounded-4">
 
             <div class="modal-header">
-                <h5 class="modal-title">Вхід в акаунт</h5>
+                <div class="text-center mb-3">
+    <img src="{{ asset('images/logo.png') }}"
+         alt="Логотип DymSystems"
+         width="80">
+
+    
+
+    <div class="text-muted fw-bold fs-6 mt-3">
+        Вхід в акаунт
+    </div>
+</div>
 
                 <button type="button"
                         class="btn-close"
