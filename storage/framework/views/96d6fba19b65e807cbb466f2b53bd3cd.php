@@ -232,7 +232,7 @@ style="background: linear-gradient(90deg, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23,
 <section class="container-1600 py-5">
     <div class="row g-4 align-items-center">
         <div class="col-md-6">
-         <h3><strong>Потрібна допомога з вибором?</strong></h3>
+         <h2 class="fw-bold">Потрібна допомога з вибором?</h2>
             <p class="text-muted">Ми підготували для вас онлайн-калькулятор та інструкції, які допоможуть зробити правильний вибір без помилок.</p>
         </div>
         <div class="col-md-6 text-md-end">
@@ -342,7 +342,7 @@ style="background: linear-gradient(90deg, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23,
 
         <div class="accordion-item">
             <h3 class="accordion-header">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                <button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
                     Яку нержавіючу сталь краще обрати для димоходу?
                 </button>
             </h3>
@@ -355,7 +355,7 @@ style="background: linear-gradient(90deg, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23,
 
         <div class="accordion-item">
             <h3 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
                     Який діаметр димоходу потрібен для котла?
                 </button>
             </h3>
@@ -368,7 +368,7 @@ style="background: linear-gradient(90deg, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23,
 
         <div class="accordion-item">
             <h3 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
                     Чим відрізняється сендвіч-димохід від одностінного?
                 </button>
             </h3>
@@ -381,7 +381,7 @@ style="background: linear-gradient(90deg, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23,
 
         <div class="accordion-item">
             <h3 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
                     Яка товщина сталі оптимальна для димоходу?
                 </button>
             </h3>
@@ -394,7 +394,7 @@ style="background: linear-gradient(90deg, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23,
 
         <div class="accordion-item">
             <h3 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+                <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
                     Чи можна встановлювати димохід зовні будинку?
                 </button>
             </h3>
@@ -407,7 +407,7 @@ style="background: linear-gradient(90deg, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23,
 
         <div class="accordion-item">
             <h3 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq6">
+                <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faq6">
                     Як часто потрібно чистити димохід?
                 </button>
             </h3>
@@ -420,7 +420,7 @@ style="background: linear-gradient(90deg, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23,
 
         <div class="accordion-item">
             <h3 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq7">
+                <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faq7">
                     Чи виготовляєте ви димоходи за індивідуальними розмірами?
                 </button>
             </h3>
@@ -433,7 +433,7 @@ style="background: linear-gradient(90deg, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23,
 
         <div class="accordion-item">
             <h3 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq8">
+                <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faq8">
                     Яка гарантія на продукцію?
                 </button>
             </h3>
