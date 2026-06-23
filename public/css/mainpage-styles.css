@@ -296,7 +296,7 @@ section {
  }
  @media (max-width: 767px) {
     .accordion-collapse.show .accordion-body {
-            transform: translateX(10px) translateY(-2px);
+            transform: translateX(20px) translateY(-2px);
  }
  .accordion-button {
      font-weight: 700;

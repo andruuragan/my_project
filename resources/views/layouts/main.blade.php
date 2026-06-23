@@ -106,7 +106,7 @@
             </div>
 
             <form id="registerForm" method="POST" action="{{ route('register') }}" autocomplete="off">
-                @csrf
+               <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <div class="modal-body">
                     @if ($errors->register->any())
                         <div class="alert alert-danger">

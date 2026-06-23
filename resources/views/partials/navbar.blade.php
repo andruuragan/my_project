@@ -196,7 +196,7 @@
 
                             <li>
                                 <form method="POST" action="{{ route('logout') }}">
-                                    @csrf
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <button class="dropdown-item text-danger">
                                         <i class="bi bi-box-arrow-right me-2"></i>
                                         Вийти
@@ -262,7 +262,7 @@
                 @endif
 
                 <form method="POST" action="{{ route('login') }}">
-                    @csrf
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
 
 
