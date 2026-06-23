@@ -15,29 +15,27 @@
                 </p>
             </div>
 
-            <!-- CONTACTS -->
-            <div class="footer-col">
-                <h4 class="footer-title">Контакти</h4>
-
-                <div class="footer-item">
-                    <i class="bi bi-geo-alt"></i>
-                    <span> Україна м. Харків </span>
-                </div>
-
-                <div class="footer-item">
-                    <i class="bi bi-telephone"></i>
-                    <span>+380 XX XXX XX XX</span>
-                </div>
-
-                <div class="footer-item">
-                    <i class="bi bi-envelope"></i>
-                    <span>dymsystems@ukr.net</span>
-                </div>
-            </div>
-
+          <!-- CONTACTS -->
+<div class="footer-col">
+    <div class="footer-title">Контакти</div>
+    <address class="footer-contact-info">
+        <div class="footer-item">
+            <i class="bi bi-geo-alt"></i>
+            <span>Харків, Україна</span>
+        </div>
+        <div class="footer-item">
+            <i class="bi bi-telephone"></i>
+            <a href="tel:+380XXXXXXXXX" class="text-white">+380 XX XXX XX XX</a>
+        </div>
+        <div class="footer-item">
+            <i class="bi bi-envelope"></i>
+            <a href="mailto:dymsystems@ukr.net" class="text-white">dymsystems@ukr.net</a>
+        </div>
+    </address>
+</div>
             <!-- LINKS -->
             <div class="footer-col">
-                <h4 class="footer-title">Навігація</h4>
+                <div class="footer-title">Навігація</div>
 
                 <ul class="footer-links">
                     <li><a href="{{route ('main.index')}}">Головна</a></li>
@@ -48,7 +46,7 @@
 
             <!-- ACCOUNT -->
             <div class="footer-col">
-                <h4 class="footer-title">Мій кабінет</h4>
+                <div class="footer-title">Мій кабінет</div>
 
                 <ul class="footer-links">
                     <li>
