@@ -17,7 +17,7 @@
 
             <!-- CONTACTS -->
             <div class="footer-col">
-                <h3 class="footer-title">Контакти</h3>
+                <h4 class="footer-title">Контакти</h4>
 
                 <div class="footer-item">
                     <i class="bi bi-geo-alt"></i>
@@ -37,7 +37,7 @@
 
             <!-- LINKS -->
             <div class="footer-col">
-                <h3 class="footer-title">Навігація</h3>
+                <h4 class="footer-title">Навігація</h4>
 
                 <ul class="footer-links">
                     <li><a href="<?php echo e(route ('main.index')); ?>">Головна</a></li>
@@ -48,7 +48,7 @@
 
             <!-- ACCOUNT -->
             <div class="footer-col">
-                <h3 class="footer-title">Мій кабінет</h3>
+                <h4 class="footer-title">Мій кабінет</h4>
 
                 <ul class="footer-links">
                     <li>
