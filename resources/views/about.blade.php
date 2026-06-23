@@ -107,7 +107,7 @@
 
         @foreach($steps as $key => $step)
             <div class="col-md-3">
-                <div class="card border-0 shadow-sm p-4 h-100 workflow-card">
+                <div class="card border-0 shadow-sm p-4 h-100 workfup-card">
 
                     <div class="mb-3 text-warning fs-1">
                         <i class="bi {{ $step['icon'] }}"></i>
