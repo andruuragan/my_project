@@ -71,12 +71,12 @@
             <div class="d-flex gap-2">
                 <button id="clearCartBtn" class="btn btn-warning">Очистити кошик</button>
             </div>
-            <div class="text-end">
-                <h4>Загальна сума: <span id="cartTotal">{{ number_format($total, 0, '.', ' ') }}</span> грн.</h4>
-                <a href="{{ route('checkout.index') }}" class="checkout-btn mt-3 d-inline-flex align-items-center gap-2">
-                    Оформити замовлення <i class="bi bi-arrow-right"></i>
-                </a>
-            </div>
+            <div class="text-end text-md-end text-center"> 
+    <h4>Загальна сума: <span id="cartTotal">{{ number_format($total, 0, '.', ' ') }}</span> грн.</h4>
+    <a href="{{ route('checkout.index') }}" class="checkout-btn mt-3 d-inline-flex justify-content-center align-items-center gap-2 w-100 w-md-auto">
+        Оформити замовлення <i class="bi bi-arrow-right"></i>
+    </a>
+</div>
         </div>
     @endif
 </div>
