@@ -10,6 +10,7 @@
 
 <meta name="keywords"
       content="димоходи, димоходи з нержавіючої сталі, сендвіч димоходи, труби для димоходу, комплектуючі для димоходів, виробництво димоходів, AISI 304, AISI 321, AISI 430">
+      <link rel="canonical" href="<?php echo e(url()->current()); ?>">
     <meta property="og:title" content="DymSystems — Димоходи з нержавіючої сталі">
 <meta property="og:description" content="Виробництво та продаж димоходів і комплектуючих з нержавіючої сталі.">
 <meta property="og:image" content="<?php echo e(asset('images/og-image.jpg')); ?>">
