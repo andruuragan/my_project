@@ -14,6 +14,10 @@ return Application::configure(basePath: dirname(__DIR__))
     )
    ->withMiddleware(function (Middleware $middleware): void {
 
+    // Додаємо підтримку довірених проксі (для Render)
+    $middleware->trustProxies(at: '*');
+
+    // Ваші існуючі мідлвари
     $middleware->append(\App\Http\Middleware\ForceWwwRedirect::class);
 
     $middleware->alias([
