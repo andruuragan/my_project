@@ -511,6 +511,27 @@ style="background: linear-gradient(90deg, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23,
 
     </div>
 </section>
+<script>
+   
+document.addEventListener('DOMContentLoaded', function () {
+    const params = new URLSearchParams(window.location.search);
 
+    if (params.get('modal') === 'login') {
+        const loginModal = document.getElementById('loginModal');
+
+        if (loginModal) {
+            new bootstrap.Modal(loginModal).show();
+        }
+    }
+
+    if (params.get('modal') === 'register') {
+        const registerModal = document.getElementById('registerModal');
+
+        if (registerModal) {
+            new bootstrap.Modal(registerModal).show();
+        }
+    }
+});
+</script>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layouts.main', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH /var/www/my_project/resources/views/main.blade.php ENDPATH**/ ?>

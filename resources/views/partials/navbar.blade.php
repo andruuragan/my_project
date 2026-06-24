@@ -298,7 +298,14 @@
                                class="form-control"
                                autocomplete="current-password"
                                required>
+                               <div class="mt-2 text-end">
+        <a href="{{ route('password.request') }}" class="text-decoration-none text-muted" style="font-size: 0.85rem;">
+            Забули пароль?
+        </a>
+    </div>
                     </div>
+
+                    
 
                     <!-- REMEMBER -->
                     <div class="form-check mb-3">

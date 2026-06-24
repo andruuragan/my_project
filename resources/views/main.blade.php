@@ -511,5 +511,26 @@ style="background: linear-gradient(90deg, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23,
 
     </div>
 </section>
+<script>
+   
+document.addEventListener('DOMContentLoaded', function () {
+    const params = new URLSearchParams(window.location.search);
 
+    if (params.get('modal') === 'login') {
+        const loginModal = document.getElementById('loginModal');
+
+        if (loginModal) {
+            new bootstrap.Modal(loginModal).show();
+        }
+    }
+
+    if (params.get('modal') === 'register') {
+        const registerModal = document.getElementById('registerModal');
+
+        if (registerModal) {
+            new bootstrap.Modal(registerModal).show();
+        }
+    }
+});
+</script>
 @endsection
