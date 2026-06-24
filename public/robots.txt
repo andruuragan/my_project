@@ -1,2 +1,14 @@
 User-agent: *
-Disallow:
+Disallow: /cart
+Disallow: /profile/
+Disallow: /checkout
+Disallow: /login
+Disallow: /register
+Disallow: /password/
+Disallow: /email/
+Disallow: /livewire/
+Disallow: /_debugbar/
+Disallow: /catalog/*?sort=
+Disallow: /catalog/*?price_to=
+
+Sitemap: https://www.dymsystems.pp.ua/sitemap.xml
