@@ -12,6 +12,7 @@ class GenerateSitemap extends Command
 
     public function handle()
     {
+        config(['app.url' => 'https://www.dymsystems.pp.ua']);
         $sitemap = Sitemap::create();
 
         // 1. Додаємо основні сторінки
@@ -25,7 +26,7 @@ class GenerateSitemap extends Command
         Catalog::chunk(1000, function ($catalogs) use ($sitemap) {
             foreach ($catalogs as $item) {
                 // Використовуємо ваш маршрут '/catalog/{catalog}'
-                $sitemap->add(Url::create("/catalog/{$item->id}") 
+                $sitemap->add(Url::create(config('app.url') . "/catalog/{$item->id}") 
                     ->setPriority(0.7)
                     ->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY));
             }
