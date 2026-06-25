@@ -154,7 +154,8 @@ $rules = [
     class="form-control mb-3" 
     placeholder="+38 (___) ___-__-__" 
     autocomplete="tel" 
-    required>
+    required
+    pattern="\+38\s\(\d{3}\)\s\d{3}-\d{2}-\d{2}">
     
     <button type="submit" class="btn btn-warning w-100 fw-bold">Відправити</button>
 </form>
@@ -393,6 +394,34 @@ html {
         'name' => '5 критичних помилок при монтажі димоходу',
         'item' => url('/useful-info/blog/pomylky-montazhu')
       ]
+    ]
+  ]
+], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
+</script>
+@endpush
+@push('schema-breadcrumbs')
+<script type="application/ld+json">
+{!! json_encode([
+  '@context' => 'https://schema.org',
+  '@type' => 'BreadcrumbList',
+  'itemListElement' => [
+    [
+      '@type' => 'ListItem',
+      'position' => 1,
+      'name' => 'Головна',
+      'item' => url('/')
+    ],
+    [
+      '@type' => 'ListItem',
+      'position' => 2,
+      'name' => 'Корисна інформація',
+      'item' => url('/useful-info')
+    ],
+    [
+      '@type' => 'ListItem',
+      'position' => 3,
+      'name' => 'Монтаж димоходу',
+      'item' => url('/useful-info/montazh-dymohodu-pravyla')
     ]
   ]
 ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}

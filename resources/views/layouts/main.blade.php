@@ -61,11 +61,13 @@
 @stack('schema-json-ld')
 @stack('schema-contact')
 @stack('schema-about')
+@stack('schema-breadcrumbs')
 @stack('schema-useful')
 @stack('schema-useful-item1')
 @stack('schema-useful-item2')
 @stack('schema-useful-item3')
 @stack('schema-article')
+
 
 {{-- SEO Schema Organization --}}
 <script type="application/ld+json">

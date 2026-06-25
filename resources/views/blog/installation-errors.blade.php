@@ -156,3 +156,37 @@
 ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
 </script>
 @endpush
+@push('schema-breadcrumbs')
+<script type="application/ld+json">
+{!! json_encode([
+  '@context' => 'https://schema.org',
+  '@type' => 'BreadcrumbList',
+  'itemListElement' => [
+    [
+      '@type' => 'ListItem',
+      'position' => 1,
+      'name' => 'Головна',
+      'item' => url('/')
+    ],
+    [
+      '@type' => 'ListItem',
+      'position' => 2,
+      'name' => 'Корисна інформація',
+      'item' => url('/useful-info')
+    ],
+    [
+      '@type' => 'ListItem',
+      'position' => 3,
+      'name' => 'Монтаж димоходу: правила та вимоги',
+      'item' => url('/useful-info/montazh-dymohodu-pravyla')
+    ],
+    [
+      '@type' => 'ListItem',
+      'position' => 4,
+      'name' => '5 критичних помилок при монтажі димоходу',
+      'item' => url('/useful-info/blog/pomylky-montazhu')
+    ]
+  ]
+], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
+</script>
+@endpush

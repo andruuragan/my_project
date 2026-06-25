@@ -533,4 +533,24 @@ $value = context()->get($__contextArgs[0]); ?>' => 'https://schema.org',
 
 </script>
 <?php $__env->stopPush(); ?>
+<?php $__env->startPush('schema-breadcrumbs'); ?>
+<script type="application/ld+json">
+<?php echo json_encode([
+  '<?php $__contextArgs = [];
+if (context()->has($__contextArgs[0])) :
+if (isset($value)) { $__contextPrevious[] = $value; }
+$value = context()->get($__contextArgs[0]); ?>' => 'https://schema.org',
+  '@type' => 'BreadcrumbList',
+  'itemListElement' => [
+    [
+      '@type' => 'ListItem',
+      'position' => 1,
+      'name' => 'Головна',
+      'item' => url('/')
+    ]
+  ]
+], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES); ?>
+
+</script>
+<?php $__env->stopPush(); ?>
 <?php echo $__env->make('layouts.main', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH /var/www/my_project/resources/views/main.blade.php ENDPATH**/ ?>

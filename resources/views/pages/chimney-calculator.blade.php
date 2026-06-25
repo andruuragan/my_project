@@ -829,3 +829,31 @@ let explanationText = `
 ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
 </script>
 @endpush
+@push('schema-breadcrumbs')
+<script type="application/ld+json">
+{!! json_encode([
+  '@context' => 'https://schema.org',
+  '@type' => 'BreadcrumbList',
+  'itemListElement' => [
+    [
+      '@type' => 'ListItem',
+      'position' => 1,
+      'name' => 'Головна',
+      'item' => url('/')
+    ],
+    [
+      '@type' => 'ListItem',
+      'position' => 2,
+      'name' => 'Корисна інформація',
+      'item' => url('/useful-info')
+    ],
+    [
+      '@type' => 'ListItem',
+      'position' => 3,
+      'name' => 'Калькулятор димоходу',
+      'item' => url('/useful-info/chimney-calculator')
+    ]
+  ]
+], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
+</script>
+@endpush

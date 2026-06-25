@@ -61,11 +61,13 @@
 <?php echo $__env->yieldPushContent('schema-json-ld'); ?>
 <?php echo $__env->yieldPushContent('schema-contact'); ?>
 <?php echo $__env->yieldPushContent('schema-about'); ?>
+<?php echo $__env->yieldPushContent('schema-breadcrumbs'); ?>
 <?php echo $__env->yieldPushContent('schema-useful'); ?>
 <?php echo $__env->yieldPushContent('schema-useful-item1'); ?>
 <?php echo $__env->yieldPushContent('schema-useful-item2'); ?>
 <?php echo $__env->yieldPushContent('schema-useful-item3'); ?>
 <?php echo $__env->yieldPushContent('schema-article'); ?>
+
 
 
 <script type="application/ld+json">
