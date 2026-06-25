@@ -12,7 +12,7 @@
                 <p class="fs-5 text-white-50 mb-4">Проектуємо та виготовляємо димохідні системи з високоякісної нержавіючої сталі. Гарантія герметичності, відповідність пожежним нормам та індивідуальні рішення.</p>
                 <div class="d-flex gap-3">
                     <a href="<?php echo e(route('shop.index')); ?>" class="btn btn-warning btn-lg fw-bold px-4">Купити димохід</a>
-                    <a href="<?php echo e(route('useful.index')); ?>" class="btn btn-outline-light btn-lg px-4">Корисна інформація</a>
+                    <a href="<?php echo e(route('useful.index')); ?>" class="btn btn-outline-light btn-lg px-4">Корисна інформація про димоходи</a>
                 </div>
             </div>
             <div class="col-lg-5">

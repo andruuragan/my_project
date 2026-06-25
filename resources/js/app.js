@@ -398,8 +398,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     const phoneInputs = document.querySelectorAll('#phone, #register_phone');
+
     phoneInputs.forEach(input => {
-        IMask(input, { mask: '+38 (000) 000-00-00' });
+        const mask = IMask(input, {
+            mask: '+38 (000) 000-00-00'
+        });
+
+        if (input.id === 'register_phone') {
+            window.regPhoneMaskInstance = mask;
+        }
     });
 });
 
