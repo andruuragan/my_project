@@ -1,4 +1,8 @@
 @extends('layouts.main')
+@section('title', '5 критичних помилок при монтажі димоходу | DymSystems')
+
+@section('description',
+'Дізнайтеся про 5 найпоширеніших помилок при монтажі димоходу. Причини виникнення зворотної тяги, перегріву конструкцій та пожежонебезпечних ситуацій. Практичні поради від DymSystems.')
 
 @section('content')
 <main class="py-5 bg-white">
@@ -134,3 +138,21 @@
 
 </style>
 @endsection
+@push('schema-article')
+<script type="application/ld+json">
+{!! json_encode([
+  '@context' => 'https://schema.org',
+  '@type' => 'Article',
+
+  '@id' => url('/useful-info/blog/pomylky-montazhu#article'),
+  'headline' => '5 критичних помилок при монтажі димоходу',
+  'url' => url('/useful-info/blog/pomylky-montazhu'),
+
+  'publisher' => [
+    '@type' => 'Organization',
+    '@id' => 'https://www.dymsystems.pp.ua/#organization'
+  ]
+
+], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
+</script>
+@endpush

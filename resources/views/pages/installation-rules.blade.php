@@ -1,4 +1,8 @@
 @extends('layouts.main')
+@section('title', 'Монтаж димоходу: правила та вимоги | DymSystems')
+
+@section('description',
+'Правила монтажу димоходу: висота, горизонтальні ділянки, утеплення, безпека та відведення конденсату. Інструкція для правильного встановлення димохідних систем.')
 
 @section('content')
 
@@ -368,3 +372,29 @@ html {
 </style>
 
 @endsection
+@push('schema-useful-item3')
+<script type="application/ld+json">
+{!! json_encode([
+  '@context' => 'https://schema.org',
+  '@type' => 'CollectionPage',
+
+  '@id' => url('/useful-info/montazh-dymohodu-pravyla#page'),
+  'name' => 'Монтаж димоходу: правила та вимоги',
+  'url' => url('/useful-info/montazh-dymohodu-pravyla'),
+
+  'mainEntity' => [
+    '@type' => 'ItemList',
+    '@id' => url('/useful-info/montazh-dymohodu-pravyla#itemlist'),
+
+    'itemListElement' => [
+      [
+        '@type' => 'ListItem',
+        'position' => 1,
+        'name' => '5 критичних помилок при монтажі димоходу',
+        'item' => url('/useful-info/blog/pomylky-montazhu')
+      ]
+    ]
+  ]
+], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
+</script>
+@endpush

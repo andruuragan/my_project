@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', 'Калькулятор димоходу')
+@section('title', 'Калькулятор димоходу | DymSystems')
 @section('description', 'Online калькулятор розрахунку димоходу.')
 
 @section('content')
@@ -812,3 +812,20 @@ let explanationText = `
 }
 </script>
 @endsection
+@push('schema-useful-item1')
+<script type="application/ld+json">
+{!! json_encode([
+  '@context' => 'https://schema.org',
+  '@type' => 'WebApplication',
+  '@id' => url('/useful-info/chimney-calculator#page'),
+
+  'name' => 'Калькулятор димоходу',
+  'url' => url('/useful-info/chimney-calculator'),
+
+  'publisher' => [
+    '@type' => 'Organization',
+    '@id' => 'https://www.dymsystems.pp.ua/#organization'
+  ]
+], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
+</script>
+@endpush

@@ -1,3 +1,8 @@
+<?php $__env->startSection('title', 'Каталог димоходів та комплектуючих | DymSystems'); ?>
+
+<?php $__env->startSection('description', 'Каталог димоходів, сендвіч-димоходів, труб та комплектуючих з нержавіючої сталі від DymSystems.'); ?>
+
+
 <?php $__env->startSection('content'); ?>
 
    <div class="container-1600 shop-page">

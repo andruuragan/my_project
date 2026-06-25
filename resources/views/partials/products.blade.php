@@ -1,3 +1,4 @@
+
 <div id="productsWrapper">
  <div class="shop-toolbar d-flex justify-content-between align-items-center mb-3">
 <div class="text-muted">
@@ -22,6 +23,7 @@
     <div class="row">
 
         @forelse($catalogs as $catalog)
+        
             <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
                 <div class="card product-card shadow-sm h-100 border-0 rounded-4 overflow-hidden position-relative bg-white">
 
@@ -192,7 +194,26 @@
                 <p class="text-muted">Товари не знайдені</p>
             </div>
         @endforelse
+@push('schema-itemlist')
+<script type="application/ld+json">
+@php
+$schema = [
+    '@context' => 'https://schema.org',
+    '@type' => 'ItemList',
+    'itemListElement' => $catalogs->getCollection()->map(function ($c, $i) {
+        return [
+            '@type' => 'ListItem',
+            'position' => $i + 1,
+            'name' => $c->name,
+            'url' => route('catalog.public.show', $c->id),
+        ];
+    })->values()->toArray(),
+];
+@endphp
 
+{!! json_encode($schema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
+</script>
+@endpush
     </div>
 
     <div class="d-flex justify-content-center mt-4">
@@ -389,7 +410,7 @@
     background: linear-gradient(135deg, rgba(217,119,6,0.15), rgba(0,0,0,0.03));
     border: 1px solid rgba(217,119,6,0.25);
 }
-//==========================================
+
 .compare-floating-btn {
     position: fixed;
     bottom: 25px;
@@ -433,30 +454,40 @@
 {{-- ФУНКЦІОНАЛ (JS) --}}
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-    document.body.addEventListener('mouseover', function (event) {
-        const target = event.target.closest('[data-bs-toggle="tooltip"]');
-        if (target && typeof bootstrap !== 'undefined' && !bootstrap.Tooltip.getInstance(target)) {
-            const tooltip = new bootstrap.Tooltip(target, {
-                trigger: 'hover'
-            });
-            tooltip.show();
-        }
-    });
-});
-document.querySelectorAll('.add-cart-btn').forEach(button => {
-    button.addEventListener('click', function() {
-        const icon = this.querySelector('i');
-        const originalIcon = icon.className;
-        
-        // Змінюємо іконку на галочку
-        icon.className = 'bi bi-check2';
-        this.style.backgroundColor = '#10b981'; // Зелений колір успіху
 
-        // Повертаємо назад через 1.5 секунди
+    // ===== ADD TO CART ANIMATION =====
+    document.addEventListener('click', function (e) {
+        const button = e.target.closest('.add-cart-btn');
+        if (!button) return;
+
+        const icon = button.querySelector('i');
+        if (!icon) return;
+
+        const originalClass = icon.className;
+
+        icon.classList.remove('bi-cart3');
+        icon.classList.add('bi-check2');
+
+        button.style.backgroundColor = '#10b981';
+
         setTimeout(() => {
-            icon.className = originalIcon;
-            this.style.backgroundColor = '#d97706'; // Оригінальний помаранчевий
+            icon.className = originalClass;
+            button.style.backgroundColor = '#d97706';
         }, 1500);
     });
+
+    // ===== TOOLTIP (SAFE INIT) =====
+    document.body.addEventListener('mouseover', function (event) {
+        const target = event.target.closest('[data-bs-toggle="tooltip"]');
+
+        if (!target || typeof bootstrap === 'undefined') return;
+
+        if (!bootstrap.Tooltip.getInstance(target)) {
+            new bootstrap.Tooltip(target, {
+                trigger: 'hover'
+            });
+        }
+    });
+
 });
 </script>

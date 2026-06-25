@@ -1,50 +1,29 @@
 <?php $__env->startSection('content'); ?>
 
 
-
 <section class="container-1600 my-5">
-<div class="hero-production p-4 p-md-5 shadow-lg"
-style="background: linear-gradient(90deg, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23, 42, 0.4) 60%, rgba(15, 23, 42, 0.1) 100%),
-     url('<?php echo e(asset('images/chimney/headbanner.webp')); ?>') center/cover no-repeat;">
-       <div class="row w-100 align-items-center">
-    
-    <!-- ЛІВА ЧАСТИНА -->
-    <div class="col-lg-7">
-        <span class="badge production-badge px-3 py-2 rounded-pill mb-3">
-            <i class="bi bi-shield-check text-warning me-1"></i> Виробництво з 2012 року
-        </span>
-
-        <h1 class="display-3 fw-bold mb-4">
-            Надійні димоходи <br>
-            <span class="text-warning">від виробника</span>
-        </h1>
-
-        <p class="fs-5 text-white-50 mb-4">
-            Проектуємо та виготовляємо димохідні системи з високоякісної нержавіючої сталі. 
-            Гарантія герметичності, відповідність пожежним нормам та індивідуальні рішення.
-        </p>
-
-        <div class="d-flex gap-3">
-            <a href="<?php echo e(route('shop.index')); ?>" class="btn btn-warning btn-lg fw-bold px-4">
-                Купити димохід
-            </a>
-            <a href="<?php echo e(route('useful.index')); ?>" class="btn btn-outline-light btn-lg px-4">
-                Корисна інформація
-            </a>
+    <div class="hero-production p-4 p-md-5 shadow-lg" style="background: linear-gradient(90deg, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23, 42, 0.4) 60%, rgba(15, 23, 42, 0.1) 100%), url('<?php echo e(asset('images/chimney/headbanner.webp')); ?>') center/cover no-repeat;">
+        <div class="row w-100 align-items-center">
+            <div class="col-lg-7">
+                <span class="badge production-badge px-3 py-2 rounded-pill mb-3">
+                    <i class="bi bi-shield-check text-warning me-1"></i> Виробництво з 2012 року
+                </span>
+                <h1 class="display-3 fw-bold mb-4">Надійні димоходи <br><span class="text-warning">від виробника</span></h1>
+                <p class="fs-5 text-white-50 mb-4">Проектуємо та виготовляємо димохідні системи з високоякісної нержавіючої сталі. Гарантія герметичності, відповідність пожежним нормам та індивідуальні рішення.</p>
+                <div class="d-flex gap-3">
+                    <a href="<?php echo e(route('shop.index')); ?>" class="btn btn-warning btn-lg fw-bold px-4">Купити димохід</a>
+                    <a href="<?php echo e(route('useful.index')); ?>" class="btn btn-outline-light btn-lg px-4">Корисна інформація</a>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="hero-stats-overlay">
+                    <div class="stat-item">✓ Власне виробництво</div>
+                    <div class="stat-item">✓ AISI 304 / 321</div>
+                    <div class="stat-item">✓ Гарантія до 10 років</div>
+                    <div class="stat-item">✓ Доставка по Україні</div>
+                </div>
+            </div>
         </div>
-    </div>
-
-    <!-- ПРАВА ЧАСТИНА -->
-    <div class="col-lg-5">
-        <div class="hero-stats-overlay">
-    <div class="stat-item">✓ Власне виробництво</div>
-    <div class="stat-item">✓ AISI 304 / 321</div>
-    <div class="stat-item">✓ Гарантія до 10 років</div>
-    <div class="stat-item">✓ Доставка по Україні</div>
-</div>
-    </div>
-
-</div>
     </div>
 </section>
 
@@ -534,4 +513,24 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 </script>
 <?php $__env->stopSection(); ?>
+
+<?php $__env->startPush('schema-json-ld'); ?>
+<script type="application/ld+json">
+<?php echo json_encode([
+  '<?php $__contextArgs = [];
+if (context()->has($__contextArgs[0])) :
+if (isset($value)) { $__contextPrevious[] = $value; }
+$value = context()->get($__contextArgs[0]); ?>' => 'https://schema.org',
+  '@type' => 'WebSite',
+  'name' => 'DymSystems',
+  'url' => 'https://www.dymsystems.pp.ua',
+  'potentialAction' => [
+    '@type' => 'SearchAction',
+    'target' => 'https://www.dymsystems.pp.ua/shop?search={search_term_string}',
+    'query-input' => 'required name=search_term_string'
+  ]
+], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES); ?>
+
+</script>
+<?php $__env->stopPush(); ?>
 <?php echo $__env->make('layouts.main', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH /var/www/my_project/resources/views/main.blade.php ENDPATH**/ ?>

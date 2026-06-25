@@ -1,5 +1,17 @@
 @extends('layouts.main')
-
+@section('title',
+    !empty($catalog)
+        ? $catalog->name . ' | DymSystems'
+        : 'Елемент димоходу | DymSystems'
+)
+@section('description',
+    !empty($catalog)
+        ? \Illuminate\Support\Str::limit(
+            strip_tags(optional($catalog->description)->overview ?? $catalog->name),
+            160
+        )
+        : 'Елемент димоходу від DymSystems'
+)
 @section('content')
     <div class="container-1600 py-4">
 
@@ -423,3 +435,36 @@ if (addToCartBtn) {
         }); 
     </script>
 @endsection
+
+
+@push('schema-product')
+<script type="application/ld+json">
+{!! json_encode([
+  '@context' => 'https://schema.org',
+  '@type' => 'Product',
+
+  'name' => $catalog->name,
+
+  'image' => $catalog->image
+      ? asset($catalog->image)
+      : asset('images/no-image.svg'),
+
+  'description' => strip_tags($catalog->description ?? ''),
+
+  'brand' => [
+    '@type' => 'Brand',
+    'name' => 'DymSystems'
+  ],
+
+  'url' => url()->current(),
+
+  'offers' => [
+    '@type' => 'Offer',
+    'priceCurrency' => 'UAH',
+    'price' => (float) $catalog->price,
+    'availability' => 'https://schema.org/InStock',
+    'url' => url()->current()
+  ]
+], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
+</script>
+@endpush

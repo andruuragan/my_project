@@ -1,4 +1,8 @@
 @extends('layouts.main')
+@section('title', 'Контакти | DymSystems')
+@section('description',
+    'Контакти DymSystems. Телефони для замовлення димоходів, адреса, графік роботи та форма зворотного зв’язку.'
+)
 
 @section('content')
     <div class="container-1600">
@@ -99,3 +103,18 @@
         </div>
     </div>
 @endsection
+@push('schema-contact')
+<script type="application/ld+json">
+{!! json_encode([
+  '@context' => 'https://schema.org',
+  '@type' => 'ContactPage',
+  'name' => 'Контакти DymSystems',
+  'url' => url()->current(),
+
+  'mainEntity' => [
+    '@type' => 'Organization',
+    '@id' => 'https://www.dymsystems.pp.ua/#organization'
+  ]
+], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
+</script>
+@endpush

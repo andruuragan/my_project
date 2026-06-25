@@ -1,4 +1,8 @@
 @extends('layouts.main')
+@section('title', 'Корисна інформація про димоходи | DymSystems')
+
+@section('description',
+'Корисна інформація про димоходи: калькулятор димоходу, підбір діаметра, правила монтажу та рекомендації щодо вибору димохідних систем.')
 
 @section('content')
     <div class="container-1600 my-5">
@@ -312,3 +316,41 @@ a:hover .useful-image-wrapper {
         }
     </style>
 @endsection
+@push('schema-useful')
+<script type="application/ld+json">
+{!! json_encode([
+  '@context' => 'https://schema.org',
+  '@type' => 'CollectionPage',
+
+  '@id' => url('/useful-info#page'),
+  'name' => 'Корисна інформація про димоходи DymSystems',
+  'url' => url('/useful-info'),
+
+  'mainEntity' => [
+    '@type' => 'ItemList',
+    '@id' => url('/useful-info#itemlist'),
+
+    'itemListElement' => [
+      [
+        '@type' => 'ListItem',
+        'position' => 1,
+        'name' => 'Калькулятор димоходу',
+        'item' => url('/useful-info/chimney-calculator')
+      ],
+      [
+        '@type' => 'ListItem',
+        'position' => 2,
+        'name' => 'Вибір діаметра димоходу',
+        'item' => url('/useful-info/how-to-choose-chimney-diameter')
+      ],
+      [
+        '@type' => 'ListItem',
+        'position' => 3,
+        'name' => 'Монтаж димоходу: правила та вимоги',
+        'item' => url('/useful-info/montazh-dymohodu-pravyla')
+      ],
+    ]
+  ]
+], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
+</script>
+@endpush

@@ -1,4 +1,8 @@
 @extends('layouts.main')
+@section('title', 'Каталог димоходів та комплектуючих | DymSystems')
+
+@section('description', 'Каталог димоходів, сендвіч-димоходів, труб та комплектуючих з нержавіючої сталі від DymSystems.')
+
 
 @section('content')
 

@@ -1,5 +1,7 @@
 @extends('layouts.main')
-
+@section('title', 'Про нас | DymSystems')
+@section('description',
+'Історія компанії DymSystems, власне виробництво димоходів з нержавіючої сталі, технології та контроль якості.')
 @section('content')
 <div class="container-1600">
     {{-- Hero Section --}}
@@ -261,3 +263,19 @@
     </div>
 </div>
 @endsection
+@push('schema-about')
+<script type="application/ld+json">
+{!! json_encode([
+  '@context' => 'https://schema.org',
+  '@type' => 'AboutPage',
+  'name' => 'Про компанію DymSystems',
+  'url' => url()->current(),
+
+  'mainEntity' => [
+    '@type' => 'Thing',
+    'name' => 'DymSystems',
+    'description' => 'Виробництво та продаж димоходів з нержавіючої сталі'
+  ]
+], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
+</script>
+@endpush

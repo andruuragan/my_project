@@ -1,4 +1,8 @@
 @extends('layouts.main')
+@section('title', 'Розрахунок димоходу для твердопаливного котла | DymSystems')
+
+@section('description',
+'Повний посібник з розрахунку димоходу для твердопаливного котла. Підбір діаметра, висоти та параметрів димохідної системи для безпечної роботи опалення.')
 
 @section('content')
 <div class="container my-5" style="max-width: 1000px;">
@@ -433,3 +437,20 @@ g \cdot H \cdot
 }
 </style>
 @endsection
+@push('schema-useful-item2')
+<script type="application/ld+json">
+{!! json_encode([
+  '@context' => 'https://schema.org',
+  '@type' => 'WebPage',
+
+  '@id' => url('/useful-info/how-to-choose-chimney-diameter#page'),
+  'name' => 'Розрахунок димоходу для твердопаливного котла',
+  'url' => url('/useful-info/how-to-choose-chimney-diameter'),
+
+  'publisher' => [
+    '@type' => 'Organization',
+    '@id' => 'https://www.dymsystems.pp.ua/#organization'
+  ]
+], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
+</script>
+@endpush
