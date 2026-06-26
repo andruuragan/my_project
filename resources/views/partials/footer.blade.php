@@ -67,9 +67,14 @@
                                 Особистий кабінет
                             </a>
                         @else
-                            <a href="javascript:void(0);"
-   data-bs-toggle="modal"
-   data-bs-target="#loginModal">
+                        <button
+    type="button"
+    class="footer-link-btn"
+    data-bs-toggle="modal"
+    data-bs-target="#loginModal">
+    Особистий кабінет
+</button>
+                           
 
                                 Особистий кабінет
                             </a>

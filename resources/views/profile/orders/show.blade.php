@@ -111,10 +111,9 @@
 
         {{-- NAVIGATION BUTTONS --}}
         <div class="d-flex gap-2">
-            <a href="javascript:history.back()"
-               class="btn btn-secondary px-4 rounded-pill">
-                ← Назад
-            </a>
+            <button type="button" class="btn btn-outline-secondary" onclick="history.back()">
+    ← Назад
+</button>
             <a href="{{ route('orders.export.excel', $order) }}"
                class="btn btn-success px-4 rounded-pill d-inline-flex align-items-center gap-2">
                 <i class="bi bi-file-earmark-excel"></i>
