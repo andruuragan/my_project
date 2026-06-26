@@ -20,7 +20,13 @@
                     <div class="useful-card h-100 useful-fade">
                        <a href="{{ route('chimney.calculator') }}" class="d-block">
     <div class="useful-image-wrapper">
-        <img src="{{ asset('images/chimney/calculator.webp') }}" alt="Калькулятор димоходу" class="useful-image">
+        <img src="{{ asset('images/chimney/calculator.webp') }}"
+     width="1280"
+     height="714"
+     class="useful-image"
+     alt="Калькулятор димоходу"
+     loading="lazy"
+     decoding="async">
     </div>
 </a>
                         <div class="p-4">
@@ -37,7 +43,11 @@
                    <div class="useful-card h-100 useful-fade">
                         <a href="{{ route('chimney.diameter') }}" class="d-block overflow-hidden rounded-4">
     <div class="useful-image-wrapper">
-        <img src="{{ asset('images/chimney/diameter.webp') }}" alt="Як обрати діаметр" class="useful-image">
+        <img src="{{ asset('images/chimney/diameter.webp') }}"
+     width="1280"
+     height="633"
+     alt="Як обрати діаметр"
+     class="useful-image">
     </div>
 </a>
                         <div class="p-4">
@@ -54,7 +64,13 @@
                     <div class="useful-card h-100 useful-fade">
                         <a href="{{ route('chimney.installation-rules') }}" class="d-block overflow-hidden rounded-4">
     <div class="useful-image-wrapper">
-        <img src="{{ asset('images/chimney/montage.webp') }}" alt="Монтаж димоходу" class="useful-image">
+        <img src="{{ asset('images/chimney/montage.webp') }}"
+     width="1280"
+     height="633"
+     class="useful-image"
+     alt="Монтаж димоходу"
+     loading="lazy"
+     decoding="async">
     </div>
 </a>
                         <div class="p-4">

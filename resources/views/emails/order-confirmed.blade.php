@@ -9,7 +9,10 @@
 <div style="max-width:600px;margin:auto;background:#fff;padding:20px;border-radius:10px;">
  <!-- HEADER (логотип + название) -->
     <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px;">
-        <img src="https://dymsystems.pp.ua/favicon-32x32.png" alt="DymSystems">
+        <img src="https://dymsystems.pp.ua/favicon-32x32.png"
+     width="32"
+     height="32"
+     alt="DymSystems">
 
         <div style="font-size:18px;font-weight:700;color:#111;">
             DymSystems

@@ -32,9 +32,13 @@
                         
                         
                         <img src="<?php echo e($catalog->image ? asset($catalog->image) : asset('images/no-image.svg')); ?>"
-                             class="product-image"
-                             alt="<?php echo e($catalog->name); ?>"
-                             style="max-height: 100%; object-fit: contain; transition: transform 0.3s ease;">
+     width="600"
+     height="600"
+     class="product-image"
+     alt="<?php echo e($catalog->name); ?>"
+     loading="lazy"
+     decoding="async"
+     style="max-height: 100%; object-fit: contain; transition: transform 0.3s ease;">
 
                         <div class="product-icons p-3 d-flex justify-content-between w-100 position-absolute top-0 start-0">
                           <div class="left-icons d-flex flex-column gap-2">

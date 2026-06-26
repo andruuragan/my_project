@@ -39,11 +39,15 @@
                 </a>
             </div>
             <div class="col-lg-5 text-center">
-                <img src="{{ asset('images/chimney/chimney-3d.webp') }}" 
-                     class="img-fluid calc-hero-image" 
-                     style="mix-blend-mode: lighten;" 
-                     alt="3D розрахунок димоходу">
-            </div>
+        <img src="{{ asset('images/chimney/chimney-3d.webp') }}"
+             width="1200"
+             height="675"
+             class="img-fluid calc-hero-image"
+             style="mix-blend-mode: lighten;"
+             alt="3D розрахунок димоходу"
+             loading="lazy"
+             decoding="async">
+    </div>
         </div>
     </section>
 
@@ -170,9 +174,13 @@
                 <div class="sticky-lg-top pt-2" style="top: 100px; z-index: 10;">
                     <div class="pt-3 px-0 pb-3 bg-white rounded-4 border shadow-sm text-center">
                         <img src="{{ asset('images/chimney/budova-dymohodu-z-nerzhaviyuchoyi-stali.webp') }}"
-                             class="img-fluid w-100"
-                             style="max-height:700px; object-fit: contain;"
-                             alt="Будова димоходу з нержавіючої сталі">
+     width="600"
+     height="853"
+     class="img-fluid w-100"
+     style="max-height:700px; object-fit: contain;"
+     alt="Будова димоходу з нержавіючої сталі"
+     loading="lazy"
+     decoding="async">
                         
                         <div class="px-3 mt-3">
                             <div class="p-2 bg-light rounded-3">
@@ -205,10 +213,14 @@
         </div>
 
         <div class="p-3 bg-white rounded-4 border shadow-sm text-center mb-4 overflow-hidden">
-            <img src="{{ asset('images/chimney/pomulku_montagy.webp') }}" 
-                 class="img-fluid rounded-3 w-100" 
-                 style="max-width: 805px; height: auto; object-fit: cover;" 
-                 alt="Поширені помилки при монтажі димоходу">
+           <img src="{{ asset('images/chimney/pomulku_montagy.webp') }}"
+     width="805"
+     height="182"
+     class="img-fluid rounded-3 w-100"
+     style="max-width: 805px; height: auto; object-fit: cover;"
+     alt="Поширені помилки при монтажі димоходу"
+     loading="lazy"
+     decoding="async">
         </div>
 
         <div class="row g-3">
@@ -322,9 +334,13 @@
                 <div class="col-lg-5 order-1 order-lg-2 text-center">
                     <div class="p-3 bg-light rounded-4 border border-dashed d-inline-block w-100" style="max-width: 410px;">
                         <img src="{{ asset('images/chimney/prohod_cherez_krovly.webp') }}"
-                             class="img-fluid rounded-3 shadow-sm bg-white"
-                             style="max-height: 480px; width: auto; object-fit: contain;"
-                             alt="Вузол проходу димоходу через покрівлю">
+     width="438"
+     height="607"
+     class="img-fluid rounded-3 shadow-sm bg-white"
+     style="max-height: 480px; width: auto; height: auto; object-fit: contain;"
+     alt="Вузол проходу димоходу через покрівлю"
+     loading="lazy"
+     decoding="async">
                         <div class="mt-2 text-center">
                             <span class="badge bg-dark-subtle text-dark px-2 py-1 rounded-2 fw-normal" style="font-size: 0.75rem;">
                                 <i class="bi bi-layers me-1"></i> Схема безпечного монтажу даху

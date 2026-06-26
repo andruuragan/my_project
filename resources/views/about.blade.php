@@ -24,10 +24,13 @@
                 </a>
             </div>
             <div class="col-lg-6">
-                <img src="{{ asset('images/about/hero.webp') }}"
-                     class="img-fluid rounded-4 shadow"
-                     alt="DymSystems">
-            </div>
+    <img src="{{ asset('images/about/hero.webp') }}"
+         width="1600"
+         height="535"
+         class="img-fluid rounded-4 shadow"
+         alt="DymSystems"
+         loading="lazy">
+</div>
         </div>
     </section>
 
@@ -39,10 +42,14 @@
         </div>
         <div class="row g-5 align-items-center">
             <div class="col-lg-6">
-                <img src="{{ asset('images/about/company.webp') }}"
-                     class="img-fluid rounded-4 shadow-sm"
-                     alt="Компанія">
-            </div>
+    <img src="{{ asset('images/about/company2.webp') }}"
+         width="1600"
+         height="500"
+         class="img-fluid rounded-4 shadow-sm"
+         alt="Компанія"
+         loading="lazy"
+         decoding="async">
+</div>
             <div class="col-lg-6">
                 <p>Компанія <strong>"Центр Комплектації Димарів"</strong> заснована у 2012 році та спеціалізується на виробництві й постачанні систем модульних димоходів із нержавіючої сталі.</p>
                 <p>Ми пропонуємо комплексні рішення для житлових, комерційних та промислових об'єктів, забезпечуючи високу якість продукції та професійну технічну підтримку.</p>
@@ -192,8 +199,13 @@
             @for($i = 1; $i <= 6; $i++)
                 <div class="col-md-4 gallery-item">
                     <img src="{{ asset('images/about/production'.$i.'.webp') }}"
-                         class="img-fluid rounded-4 shadow-sm"
-                         alt="Виробництво">
+                         width="1200"
+         height="799"
+         class="img-fluid rounded-4 shadow-sm"
+         alt="Виробництво"
+         loading="lazy"
+         decoding="async">
+                         
                 </div>
             @endfor
         </div>

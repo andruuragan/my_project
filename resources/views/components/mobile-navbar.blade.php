@@ -14,8 +14,11 @@
 
         <!-- LOGO -->
         <a href="{{ route('main.index') }}" class="mobile-logo">
-            <img src="{{ asset('images/logo.png') }}" alt="Logo">
-        </a>
+    <img src="{{ asset('images/logo.png') }}"
+         width="120"
+         height="40"
+         alt="Logo">
+</a>
 
         <!-- RIGHT SIDE -->
         <div class="mobile-right">
@@ -80,9 +83,12 @@
     <div class="offcanvas-header">
 
         <div class="offcanvas-title-block">
-            <img src="{{ asset('images/logo.png') }}" alt="Logo">
-            <div class="subtitle">Центр Комплектації Димарів</div>
-        </div>
+    <img src="{{ asset('images/logo.png') }}"
+         width="126"
+         height="42"
+         alt="Logo">
+    <div class="subtitle">Центр Комплектації Димарів</div>
+</div>
 
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
     </div>

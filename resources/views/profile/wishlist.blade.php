@@ -12,9 +12,13 @@
 
                             <div class="position-relative product-image-wrapper bg-light d-flex align-items-center justify-content-center" style="height: 220px; overflow: hidden;">
                                 <img src="{{ asset($catalog->image) }}"
-                                     class="product-image"
-                                     alt="{{ $catalog->name }}"
-                                     style="max-height: 100%; object-fit: contain; transition: transform 0.3s ease;">
+     width="600"
+     height="600"
+     class="product-image"
+     alt="{{ $catalog->name }}"
+     loading="lazy"
+     decoding="async"
+     style="max-height: 100%; object-fit: contain; transition: transform 0.3s ease;">
 
                                 <div class="product-icons p-3 d-flex justify-content-between w-100 position-absolute top-0 start-0">
                                     <button type="button"

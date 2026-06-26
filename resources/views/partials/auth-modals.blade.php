@@ -6,15 +6,15 @@
 <div class="text-center mb-3">
     <img src="{{ asset('images/logo.png') }}"
          alt="Логотип DymSystems"
-         width="80">
-
-   
+         width="80"
+         height="35"
+          loading="lazy"
+     decoding="async">
 
     <div class="text-muted fw-bold fs-6 mt-3">
         Реєстрація
     </div>
 </div>
-
                 
 
 

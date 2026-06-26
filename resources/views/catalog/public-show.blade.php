@@ -32,10 +32,12 @@
                 <!-- Ліва колона: Велика картинка -->
                 <div class="col-12 col-md-5 col-lg-4 text-center d-flex align-items-center justify-content-center bg-light rounded-3 p-3" style="min-height: 350px;">
                     @if($catalog->image)
-                        <img src="{{ asset($catalog->image) }}"
-                             alt="{{ $catalog->name }}"
-                             class="img-fluid"
-                             style="max-width: 100%; max-height: 350px; width: auto; height: auto; object-fit: contain; border-radius: 8px;">
+                       <img src="{{ asset($catalog->image) }}"
+     width="600"
+     height="350"
+     alt="{{ $catalog->name }}"
+     class="img-fluid"
+     style="max-width: 100%; max-height: 350px; width: auto; height: auto; object-fit: contain; border-radius: 8px;">
                     @else
                         <div class="text-muted d-flex flex-column align-items-center">
                             <svg xmlns="https://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" class="bi bi-image text-secondary mb-2" viewBox="0 0 16 16">

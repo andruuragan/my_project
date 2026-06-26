@@ -75,10 +75,12 @@
         {{-- Центральний блок із величезною картинкою --}}
         <div class="text-center mb-4">
             <div class="visual-3d-placeholder py-5 px-3 rounded-4" style="background: radial-gradient(circle, #f8fafc 0%, #e2e8f0 100%);">
-                <img src="{{ asset('images/chimney/sandwich-structure.webp') }}" 
-                     alt="Анатомія сендвіч-димоходу" 
-                     class="img-fluid" 
-                     style="mix-blend-mode: multiply; max-height: 480px; width: auto; object-fit: contain; transform: scale(1.02);">
+                <img src="{{ asset('images/chimney/sandwich-structure.webp') }}"
+     width="800"
+     height="437"
+     alt="Анатомія сендвіч-димоходу"
+     class="img-fluid"
+     style="mix-blend-mode: multiply; max-height: 480px; object-fit: contain;">
             </div>
         </div>
 

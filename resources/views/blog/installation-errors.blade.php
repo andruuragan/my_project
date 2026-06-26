@@ -21,7 +21,13 @@
         <h1 class="display-5 fw-bold mb-4">5 критичних помилок при монтажі димоходу</h1>
         <p class="lead text-muted mb-5">Експертний розбір основних ризиків, що можуть призвести до пожежі у вашому домі.</p>
 
-        <img src="{{ asset('images/chimney/article-main.webp') }}" class="img-fluid rounded-4 mb-5 shadow" alt="Помилки монтажу">
+       <img src="{{ asset('images/chimney/article-main.webp') }}"
+     width="1679"
+     height="937"
+     class="img-fluid rounded-4 mb-5 shadow"
+     alt="Помилки монтажу"
+     loading="lazy"
+     decoding="async">
 
         <article class="fs-5 text-secondary lh-lg">
             <p class="mb-4">Димохід — це «легені» вашого опалювального приладу. Від якості монтажу димохідної системи залежить не лише ефективність опалення, а й безпека вашого дому.</p>

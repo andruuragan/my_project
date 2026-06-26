@@ -63,9 +63,15 @@
 ]; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
     <div class="col-12 col-md-6">
         <div class="card h-100 border-0 shadow-sm custom-product-card solution-card">
-            <a href="<?php echo e(route('shop.index', ['category' => $item['cat']])); ?>" class="img-container">
-                <img src="<?php echo e(asset('images/chimney/' . $item['img'])); ?>" alt="<?php echo e($item['title']); ?>" class="product-img">
-            </a>
+           <a href="<?php echo e(route('shop.index', ['category' => $item['cat']])); ?>" class="img-container">
+    <img src="<?php echo e(asset('images/chimney/' . $item['img'])); ?>"
+         width="500"
+         height="500"
+         alt="<?php echo e($item['title']); ?>"
+         class="product-img"
+         loading="lazy"
+         decoding="async">
+</a>
             <div class="card-body p-4 text-center">
                 <?php if(isset($item['badge'])): ?>
                     <span class="badge bg-warning text-dark mb-3 px-3 py-2"><?php echo e($item['badge']); ?></span>
@@ -145,9 +151,12 @@
             <div class="card border-0 shadow-sm h-100 technology-card">
 
                 <img src="<?php echo e(asset('images/chimney/' . $item['img'])); ?>"
-                     class="card-img-top"
-                     alt="<?php echo e($item['alt']); ?>"
-                     loading="lazy">
+     width="1200"
+     height="800"
+     class="card-img-top"
+     alt="<?php echo e($item['alt']); ?>"
+     loading="lazy"
+     decoding="async">
 
                 <div class="card-body text-center p-4">
                     <h3 class="h5 fw-bold mb-3">
@@ -294,7 +303,11 @@
         <div class="col-lg-4">
             <div class="card h-100 border-0 shadow-sm custom-product-card project-card overflow-hidden">
                 <div class="img-container">
-                    <img src="<?php echo e(asset('images/chimney/' . $item['img'])); ?>" alt="<?php echo e($item['title']); ?>" class="product-img">
+                    <img src="<?php echo e(asset('images/chimney/' . $item['img'])); ?>"
+     width="600"
+     height="400"
+     alt="<?php echo e($item['title']); ?>"
+     class="product-img">
                 </div>
                 <div class="card-body p-4">
                     <h3 class="h5 fw-bold mb-3 text-center"><?php echo e($item['title']); ?></h3>

@@ -4,9 +4,15 @@
         <!-- LOGO -->
         <div class="header-left">
         <div class="d-flex flex-column" style="gap: 6px;">
-            <a href="<?php echo e(route('main.index')); ?>">
-                <img src="<?php echo e(asset('images/logo.png')); ?>" class="logo" alt="Logo">
-            </a>
+           <a href="<?php echo e(route('main.index')); ?>">
+    <img src="<?php echo e(asset('images/logo.png')); ?>"
+         class="logo"
+         alt="Logo"
+         width="250"
+         height="70"
+         loading="lazy"
+         decoding="async">
+</a>
 
             <a href="<?php echo e(route('contacts.index')); ?>" class="subtitle-link">
     <div class="subtitle-badge">
@@ -233,7 +239,10 @@
                 <div class="text-center mb-3">
     <img src="<?php echo e(asset('images/logo.png')); ?>"
          alt="Логотип DymSystems"
-         width="80">
+          width="80"
+         height="35"
+          loading="lazy"
+     decoding="async">
 
     
 

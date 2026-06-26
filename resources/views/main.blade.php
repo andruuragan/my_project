@@ -65,9 +65,15 @@
 ] as $item)
     <div class="col-12 col-md-6">
         <div class="card h-100 border-0 shadow-sm custom-product-card solution-card">
-            <a href="{{ route('shop.index', ['category' => $item['cat']]) }}" class="img-container">
-                <img src="{{ asset('images/chimney/' . $item['img']) }}" alt="{{ $item['title'] }}" class="product-img">
-            </a>
+           <a href="{{ route('shop.index', ['category' => $item['cat']]) }}" class="img-container">
+    <img src="{{ asset('images/chimney/' . $item['img']) }}"
+         width="500"
+         height="500"
+         alt="{{ $item['title'] }}"
+         class="product-img"
+         loading="lazy"
+         decoding="async">
+</a>
             <div class="card-body p-4 text-center">
                 @if(isset($item['badge']))
                     <span class="badge bg-warning text-dark mb-3 px-3 py-2">{{ $item['badge'] }}</span>
@@ -147,9 +153,12 @@
             <div class="card border-0 shadow-sm h-100 technology-card">
 
                 <img src="{{ asset('images/chimney/' . $item['img']) }}"
-                     class="card-img-top"
-                     alt="{{ $item['alt'] }}"
-                     loading="lazy">
+     width="1200"
+     height="800"
+     class="card-img-top"
+     alt="{{ $item['alt'] }}"
+     loading="lazy"
+     decoding="async">
 
                 <div class="card-body text-center p-4">
                     <h3 class="h5 fw-bold mb-3">
@@ -294,7 +303,11 @@
         <div class="col-lg-4">
             <div class="card h-100 border-0 shadow-sm custom-product-card project-card overflow-hidden">
                 <div class="img-container">
-                    <img src="{{ asset('images/chimney/' . $item['img']) }}" alt="{{ $item['title'] }}" class="product-img">
+                    <img src="{{ asset('images/chimney/' . $item['img']) }}"
+     width="600"
+     height="400"
+     alt="{{ $item['title'] }}"
+     class="product-img">
                 </div>
                 <div class="card-body p-4">
                     <h3 class="h5 fw-bold mb-3 text-center">{{ $item['title'] }}</h3>

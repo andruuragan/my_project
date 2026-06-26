@@ -7,7 +7,13 @@
             <!-- LOGO -->
             <div class="footer-col footer-brand">
                 <div class="footer-logo">
-                    <img src="<?php echo e(asset('images/favicon.png')); ?>" style="width:38px;" alt="logo_favicon">
+                    <img src="<?php echo e(asset('images/favicon.png')); ?>"
+     width="48"
+     height="38"
+     style="width:38px;"
+     alt="logo_favicon"
+     loading="lazy"
+     decoding="async">
                      <strong>DymSystems</strong>
                 </div>
                 <p class="footer-text">

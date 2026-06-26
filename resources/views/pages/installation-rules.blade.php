@@ -125,9 +125,13 @@ $rules = [
 
             <div class="p-card p-4 text-center">
                 <h4 class="fw-bold mb-3">Інженерна схема монтажу</h4>
-                <img src="{{ asset('images/chimney/chimney-main-schema.webp') }}" 
-                     class="img-fluid rounded-4" 
-                     alt="Схема монтажу димоходу">
+                <img src="{{ asset('images/chimney/chimney-main-schema.webp') }}"
+     width="1165"
+     height="1350"
+     class="img-fluid rounded-4"
+     alt="Схема монтажу димоходу"
+     loading="lazy"
+     decoding="async">
             </div>
         </div>
 
@@ -176,9 +180,13 @@ $rules = [
             <h3 class="fw-bold mb-4">Типові помилки під час монтажу</h3>
             <div class="row">
                 <div class="col-12 mb-4">
-                    <img src="{{ asset('images/chimney/pomulku_montag.webp') }}" 
-                         class="img-fluid rounded-4 shadow-sm w-100" 
-                         alt="Типові помилки монтажу димоходу">
+                    <img src="{{ asset('images/chimney/pomulku_montag.webp') }}"
+     width="1693"
+     height="929"
+     class="img-fluid rounded-4 shadow-sm w-100"
+     alt="Типові помилки монтажу димоходу"
+     loading="lazy"
+     decoding="async">
                 </div>
             </div>
             <div class="row g-3">
@@ -209,9 +217,13 @@ $rules = [
             </div>
             <div class="col-lg-6 text-lg-end mt-4 mt-lg-0">
                 <div class="position-relative">
-                    <img src="{{ asset('images/chimney/article-preview.webp') }}" 
-                         class="img-fluid rounded-4 shadow-lg" 
-                         alt="Професійний монтаж димоходу">
+                    <img src="{{ asset('images/chimney/article-preview.webp') }}"
+     width="1280"
+     height="714"
+     class="img-fluid rounded-4 shadow-lg"
+     alt="Професійний монтаж димоходу"
+     loading="lazy"
+     decoding="async">
                 </div>
             </div>
         </div>
