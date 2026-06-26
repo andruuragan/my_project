@@ -302,9 +302,11 @@ section {
  .accordion-button {
      font-weight: 700;
     transition: background 0.2s ease, color 0.2s ease;
+    color: #111827;
+        /* базовый тёмный текст */
  }
  .accordion-button:hover {
-     color: #ffc107;
+    color: #ea580c;
  }
  /* =========================================================== */
  .project-card {

@@ -7,7 +7,8 @@
         <button class="mobile-burger" type="button"
                 data-bs-toggle="offcanvas"
                 data-bs-target="#mobileMenu"
-                aria-controls="mobileMenu">
+                aria-controls="mobileMenu"
+                 aria-label="Відкрити меню">
 
             <i class="bi bi-list"></i>
         </button>
@@ -61,7 +62,8 @@
 
     <button class="mobile-user"
             data-bs-toggle="modal"
-            data-bs-target="#loginModal">
+            data-bs-target="#loginModal"
+               aria-label="Увійти в акаунт">
         <i class="bi bi-person-circle"></i>
     </button>
 
