@@ -416,30 +416,7 @@ $schema = [
     border: 1px solid rgba(217,119,6,0.25);
 }
 
-.compare-floating-btn {
-    position: fixed;
-    bottom: 25px;
-    right: 25px;
 
-    background: #d97706;
-    color: white;
-
-    padding: 12px 18px;
-    border-radius: 50px;
-
-    font-weight: 600;
-    cursor: pointer;
-
-    z-index: 1050;
-
-    box-shadow: 0 8px 25px rgba(0,0,0,.15);
-
-    transition: all .25s ease;
-}
-
-.compare-floating-btn:hover {
-    transform: translateY(-2px);
-}
 .shop-toolbar {
     background: #fff;
     padding: 12px 16px;

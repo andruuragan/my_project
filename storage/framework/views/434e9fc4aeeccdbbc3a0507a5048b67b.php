@@ -55,7 +55,7 @@
     
    <?php echo $__env->yieldPushContent('styles'); ?>
    
- 
+ <?php echo $__env->yieldPushContent('schema-FAQ'); ?>
    <?php echo $__env->yieldPushContent('schema-itemlist'); ?>
 <?php echo $__env->yieldPushContent('schema-product'); ?>
 <?php echo $__env->yieldPushContent('schema-json-ld'); ?>

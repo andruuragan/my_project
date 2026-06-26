@@ -61,9 +61,9 @@
                                 Особистий кабінет
                             </a>
                         <?php else: ?>
-                            <a href="#"
-                               data-bs-toggle="modal"
-                               data-bs-target="#loginModal">
+                            <a href="javascript:void(0);"
+   data-bs-toggle="modal"
+   data-bs-target="#loginModal">
 
                                 Особистий кабінет
                             </a>

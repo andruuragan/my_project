@@ -271,26 +271,7 @@ document.addEventListener('submit', function (e) {
         }
        /* //==================================*/
 
-   .compare-floating-btn {
-    .compare-floating-btn 
-    position: sticky;
-    top: 90px;
-    z-index: 10;
-
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-
-    padding: 10px 14px;
-    border-radius: 14px;
-
-    background: #fff;
-    border: 1px solid #e5e7eb;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.12);
-
-    cursor: pointer;
-    transition: all 0.25s ease;
-}
+  
 /* hover эффект */
 .compare-floating-btn:hover {
     transform: translateY(0) scale(1.03);
@@ -306,6 +287,7 @@ document.addEventListener('submit', function (e) {
     pointer-events: none;
 }
 .compare-floating-btn {
+    
     position: fixed;
 
     /* ↓ ниже хедера */
@@ -329,6 +311,7 @@ document.addEventListener('submit', function (e) {
 
     cursor: pointer;
     transition: all 0.25s ease;
+    
 }
 /* hover */
 .compare-floating-btn:hover {

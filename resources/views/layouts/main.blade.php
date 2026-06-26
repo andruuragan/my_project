@@ -55,7 +55,7 @@
     
    @stack('styles')
    
- 
+ @stack('schema-FAQ')
    @stack('schema-itemlist')
 @stack('schema-product')
 @stack('schema-json-ld')

@@ -2,7 +2,9 @@
 
 @section('content')
     <div class="container py-4">
-      <a href="#" onclick="smartBack(); return false;" class="btn btn-secondary mb-3">
+     <a href="javascript:void(0)"
+   onclick="smartBack()"
+   class="btn btn-secondary mb-3">
     ← Назад
 </a>
     

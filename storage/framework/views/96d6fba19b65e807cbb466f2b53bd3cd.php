@@ -553,4 +553,82 @@ $value = context()->get($__contextArgs[0]); ?>' => 'https://schema.org',
 
 </script>
 <?php $__env->stopPush(); ?>
+<?php $__env->startPush('schema-FAQ'); ?>
+<script type="application/ld+json">
+<?php echo json_encode([
+    '<?php $__contextArgs = [];
+if (context()->has($__contextArgs[0])) :
+if (isset($value)) { $__contextPrevious[] = $value; }
+$value = context()->get($__contextArgs[0]); ?>' => 'https://schema.org',
+    '@type' => 'FAQPage',
+    'mainEntity' => [
+        [
+            '@type' => 'Question',
+            'name' => 'Яку нержавіючу сталь краще обрати для димоходу?',
+            'acceptedAnswer' => [
+                '@type' => 'Answer',
+                'text' => 'Для більшості побутових систем використовуються марки AISI 201, AISI 304 та AISI 321. Вони стійкі до корозії, конденсату та високих температур.'
+            ]
+        ],
+        [
+            '@type' => 'Question',
+            'name' => 'Який діаметр димоходу потрібен для котла?',
+            'acceptedAnswer' => [
+                '@type' => 'Answer',
+                'text' => 'Діаметр підбирається відповідно до потужності обладнання та рекомендацій виробника котла. Неправильний підбір може погіршити тягу.'
+            ]
+        ],
+        [
+            '@type' => 'Question',
+            'name' => 'Чим відрізняється сендвіч-димохід від одностінного?',
+            'acceptedAnswer' => [
+                '@type' => 'Answer',
+                'text' => 'Сендвіч-система має шар теплоізоляції між двома трубами, що зменшує утворення конденсату та покращує стабільність тяги.'
+            ]
+        ],
+        [
+            '@type' => 'Question',
+            'name' => 'Яка товщина сталі оптимальна для димоходу?',
+            'acceptedAnswer' => [
+                '@type' => 'Answer',
+                'text' => 'Найчастіше використовується сталь товщиною від 0,5 до 1 мм. Вибір залежить від типу палива та температурного режиму роботи.'
+            ]
+        ],
+        [
+            '@type' => 'Question',
+            'name' => 'Чи можна встановлювати димохід зовні будинку?',
+            'acceptedAnswer' => [
+                '@type' => 'Answer',
+                'text' => 'Так, для зовнішнього монтажу рекомендується використовувати утеплені сендвіч-димоходи, які забезпечують стабільну тягу в холодну пору року.'
+            ]
+        ],
+        [
+            '@type' => 'Question',
+            'name' => 'Як часто потрібно чистити димохід?',
+            'acceptedAnswer' => [
+                '@type' => 'Answer',
+                'text' => 'Рекомендується проводити профілактичний огляд та очищення не рідше одного разу на рік або частіше при інтенсивній експлуатації.'
+            ]
+        ],
+        [
+            '@type' => 'Question',
+            'name' => 'Чи виготовляєте ви димоходи за індивідуальними розмірами?',
+            'acceptedAnswer' => [
+                '@type' => 'Answer',
+                'text' => 'Так, ми виготовляємо нестандартні елементи та димохідні системи відповідно до технічного завдання замовника.'
+            ]
+        ],
+        [
+            '@type' => 'Question',
+            'name' => 'Яка гарантія на продукцію?',
+            'acceptedAnswer' => [
+                '@type' => 'Answer',
+                'text' => 'Термін гарантії залежить від типу виробу та марки сталі. Детальну інформацію можна отримати під час консультації.'
+            ]
+        ]
+    ]
+], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES); ?>
+
+</script>
+<?php $__env->stopPush(); ?>
 <?php echo $__env->make('layouts.main', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH /var/www/my_project/resources/views/main.blade.php ENDPATH**/ ?>
