@@ -52,7 +52,7 @@
                 <!-- Права колона: Назва, ціна, кнопка купування та характеристики -->
                 <div class="col-12 col-md-7 col-lg-8 d-flex flex-column justify-content-between ps-md-4">
                     <div>
-                        <h2 class="fw-bold text-dark mb-3">{{ $catalog->name }}</h2>
+                        <h1 class="fw-bold text-dark mb-3">{{ $catalog->name }}</h1>
 
                         <!-- Блок ціни, кількості та кнопки -->
                         <div class="bg-light p-3 rounded-3 mb-4 border product-card-container">
