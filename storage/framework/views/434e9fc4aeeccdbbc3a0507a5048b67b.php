@@ -46,10 +46,21 @@
    <script defer src="https://unpkg.com/imask"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    
+    <script>
+(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id=GTM-XXXXXXX'+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-XXXXXXX');
+</script>
 <?php echo app('Illuminate\Foundation\Vite')(['resources/css/app.css', 'resources/js/app.js']); ?>
-<link rel="stylesheet" href="<?php echo e(asset('css/custom-styles.css')); ?>">
+
 <link rel="stylesheet" href="<?php echo e(asset('css/mainpage-styles.css')); ?>">
+<link
+    rel="preload"
+    as="image"
+    href="<?php echo e(asset('images/chimney/headbanner.webp')); ?>">
+<link rel="stylesheet" href="<?php echo e(asset('css/custom-styles.css')); ?>">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css">
     <link rel="stylesheet" href="<?php echo e(asset('css/mobile-navbar.css')); ?>">
@@ -101,6 +112,10 @@ $value = context()->get($__contextArgs[0]); ?>' => 'https://schema.org',
 </head>
 
 <body class="site-body">
+    <noscript>
+<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX"
+height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
 
 
     <?php echo $__env->make('components.mobile-navbar', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
@@ -149,8 +164,13 @@ $value = context()->get($__contextArgs[0]); ?>' => 'https://schema.org',
 
  <?php echo $__env->make('partials.auth-modals', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?> 
 
-<script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
-<script src="https://cdn.ckeditor.com/ckeditor5/40.2.0/classic/ckeditor.js"></script>
+
+
+    <script
+        src="https://cdn.ckeditor.com/ckeditor5/40.2.0/classic/ckeditor.js"
+        >
+    </script>
+
 
 <?php if(isset($errors) && $errors->hasBag('register') && $errors->register->any()): ?>
     <script>
@@ -196,12 +216,13 @@ $value = context()->get($__contextArgs[0]); ?>' => 'https://schema.org',
         }
 
         // ===== CKEDITOR =====
-        document.querySelectorAll('.rich-text').forEach((el) => {
-            if (el.classList.contains('ck-editor-init')) return;
-            ClassicEditor.create(el).then(editor => {
-                el.classList.add('ck-editor-init');
-            }).catch(error => console.error(error));
-        });
+      // ===== CKEDITOR =====
+document.querySelectorAll('.rich-text').forEach((el) => {
+    if (el.classList.contains('ck-editor-init')) return;
+    ClassicEditor.create(el).then(editor => {
+        el.classList.add('ck-editor-init');
+    }).catch(error => console.error(error));
+});
 
         // ===== SCROLL BUTTONS =====
         const upBtn = document.querySelector('.scroll-top');

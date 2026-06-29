@@ -967,6 +967,27 @@ header {
     font-size: 13px;
     line-height: 1.5;
 }
+.footer-links a,
+.footer-link-btn {
+    color: #cfcfcf;
+    text-decoration: none;
+    transition: color .2s ease, padding-left .2s ease;
+}
+
+.footer-link-btn {
+    background: transparent;
+    border: 0;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    display: inline;
+}
+
+.footer-links a:hover,
+.footer-link-btn:hover {
+    color: #d97706;
+    padding-left: 4px;
+}
 /* =========================
    TABS
 ========================= */

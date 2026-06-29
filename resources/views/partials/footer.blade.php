@@ -72,12 +72,12 @@
     class="footer-link-btn"
     data-bs-toggle="modal"
     data-bs-target="#loginModal">
+    <i class="bi bi-person-circle"></i>
     Особистий кабінет
 </button>
                            
 
-                                Особистий кабінет
-                            </a>
+                               
                         @endauth
 
                     </li>

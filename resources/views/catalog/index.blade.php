@@ -10,7 +10,7 @@
                 <span class="arrow">▼</span>
                 <span class="text">Вниз</span>
             </a>
-            {{$items->links()}}
+           {{ $items->links('vendor.pagination.bootstrap-5') }}
             <a href="{{ route('catalog.create') }}" class="btn btn-success mb-3 btn-icon">
                 <i class="bi bi-cart-plus"></i> Добавить товар
             </a>
@@ -25,7 +25,7 @@
                     <th style="width: 60px;">ID</th>
                     <th style="width: 300px;">Название</th>
                     <th style="width: 110px;">Тип элемента</th>
-                    <th style="width: 70px;">Thickness</th>
+                    <th style="width: 70px;">Товщина</th>
                     <th style="width: 80px;">Марка нерж.</th>
                     <th style="width: 80px;">Диаметр</th>
                     <th style="width: 120px;">Тип дымохода</th>
@@ -99,7 +99,7 @@
                 </tbody>
             </table>
 
-            {{$items->links()}}
+            {{ $items->links('vendor.pagination.bootstrap-5') }}
             <div id="bottom"></div>
 
             <a href="#top" class="scroll-top">
