@@ -51,7 +51,7 @@
                 Розрахунок діаметра димоходу для твердопаливного котла — першочергове завдання. Він базується на визначенні необхідної площі поперечного перерізу, через яку проходить об'єм газів, що утворюються в процесі горіння. Розрахунок виконується за формулою:
             </p>
 
-           <div class="formula-box-ui my-4">
+          <div class="formula-box-ui my-4" aria-label="Формула розрахунку діаметра димоходу">
     \[
     D = \sqrt{\frac{4 \cdot V}{\pi \cdot w}}
     \]
@@ -131,7 +131,7 @@
                 Висота димоходу забезпечує первинну різницю тисків і виводить димові гази за межі зони аеродинамічного підпору даху. Розрахунок висоти димоходу виконується за формулою природної тяги:
             </p>
 
-            <div class="formula-box-ui my-4">
+            <div class="formula-box-ui my-4" aria-label="Формула розрахунку висоти димоходу">
 \[
 H = \frac{A \cdot Q_n \cdot (T_e - T_h)}
 {S \cdot T_e \cdot T_h}
@@ -152,6 +152,7 @@ H = \frac{A \cdot Q_n \cdot (T_e - T_h)}
                 <h5 class="fw-bold text-dark mb-3 text-center text-md-start"><i class="bi bi-cone-striped text-orange me-2"></i>Нормативи розташування відносно коника даху</h5>
                 <div class="table-responsive">
                     <table class="table table-borderless align-middle mb-0">
+                        <caption>Нормативні вимоги до висоти димоходу відносно коника даху</caption>
                         <tbody>
                             <tr>
                                 <td><span class="badge-distance">до 1.5 метра</span></td>
@@ -184,7 +185,7 @@ H = \frac{A \cdot Q_n \cdot (T_e - T_h)}
                 Статична тяга (самотяга) виникає через різницю густини гарячих газів всередині труби та холодного повітря ззовні:
             </p>
 
-           <div class="formula-box-ui my-4">
+           <div class="formula-box-ui my-4" aria-label="Формула розрахунку тяги">
 \[
 \Delta p =
 g \cdot H \cdot
@@ -226,6 +227,7 @@ g \cdot H \cdot
             
             <div class="table-responsive rounded-3 border">
                 <table class="table table-hover align-middle mb-0 custom-tech-table">
+                    <caption>Рекомендовані параметри перерізу димоходу залежно від типу опалювального приладу</caption>
                     <thead class="table-dark">
                         <tr>
                             <th>Тип приладу</th>
