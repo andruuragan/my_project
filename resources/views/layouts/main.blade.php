@@ -60,6 +60,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     rel="preload"
     as="image"
     href="{{ asset('images/chimney/headbanner.webp') }}">
+   @if(request()->routeIs('chimney.installation-rules'))
+<link
+    rel="preload"
+    as="image"
+    href="{{ asset('images/chimney/hero-banner.webp') }}">
+@endif
 <link rel="stylesheet" href="{{ asset('css/custom-styles.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css">
