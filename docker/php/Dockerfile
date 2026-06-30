@@ -24,6 +24,9 @@ RUN mkdir -p storage/framework/{views,cache,sessions} storage/logs bootstrap/cac
 # Установка PHP зависимостей
 RUN composer install --no-dev --optimize-autoloader --no-interaction
 
+
+
+
 # Установка JS зависимостей и сборка фронтенда
 RUN npm install && npm run build
 
