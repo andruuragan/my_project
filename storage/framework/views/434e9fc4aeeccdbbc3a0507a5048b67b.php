@@ -46,25 +46,23 @@
    <script defer src="https://unpkg.com/imask"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>
-(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+   <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id=GTM-XXXXXXX'+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-XXXXXXX');
-</script>
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-WM93Q7JJ');</script>
+<!-- End Google Tag Manager -->
 <?php echo app('Illuminate\Foundation\Vite')(['resources/css/app.css', 'resources/js/app.js']); ?>
 
 <link rel="stylesheet" href="<?php echo e(asset('css/mainpage-styles.css')); ?>">
 <link
     rel="preload"
     as="image"
-    href="<?php echo e(asset('images/chimney/headbanner.webp')); ?>">
+    href="<?php echo e(asset('images/chimney/headbanner.webp')); ?>"
+    fetchpriority="high">
    <?php if(request()->routeIs('chimney.installation-rules')): ?>
-<link
-    rel="preload"
-    as="image"
-    href="<?php echo e(asset('images/chimney/hero-banner.webp')); ?>">
+
 <?php endif; ?>
 <link rel="stylesheet" href="<?php echo e(asset('css/custom-styles.css')); ?>">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
@@ -118,10 +116,10 @@ $value = context()->get($__contextArgs[0]); ?>' => 'https://schema.org',
 </head>
 
 <body class="site-body">
-    <noscript>
-<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX"
-height="0" width="0" style="display:none;visibility:hidden"></iframe>
-</noscript>
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WM93Q7JJ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 
 
     <?php echo $__env->make('components.mobile-navbar', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
