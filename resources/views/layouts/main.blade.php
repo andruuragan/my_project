@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="google" content="notranslate">
+    <meta name="google-site-verification" content="N942Zh6nwZN18JZqda_Okf7Uu2pqBrRgBR6mPBAYcuk" />
 
     {{-- Заголовок та мета-описи (динамічні) --}}
     <title>@yield('title', 'DymSystems — Виробництво димоходів з нержавіючої сталі')</title>
@@ -109,6 +110,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   'email' => 'dymsystems@ukr.net',
 ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
 </script>
+
 </head>
 
 <body class="site-body">
