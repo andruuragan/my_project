@@ -288,7 +288,7 @@ $schema = [
 }
 
 .product-specs {
-    gap: 6px;
+    gap: 4px;
     padding: 4px 2px;
     background: rgba(0,0,0,0.02);
     border-radius: 12px;
