@@ -315,8 +315,26 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     window.updateCompareButton = function () {
+        const scalesIcon = `
+ <svg xmlns="http://www.w3.org/2000/svg"
+         width="18"
+         height="18"
+         viewBox="0 0 24 24"
+         fill="none"
+         stroke="currentColor"
+         stroke-width="2"
+         stroke-linecap="round"
+         stroke-linejoin="round">
+      <path d="m16 16 3-8 3 8c0 1.7-1.3 3-3 3s-3-1.3-3-3Z"/>
+      <path d="m2 16 3-8 3 8c0 1.7-1.3 3-3 3s-3-1.3-3-3Z"/>
+      <path d="M7 21h10"/>
+      <path d="M12 3v18"/>
+      <path d="M3 7h18"/>
+      <path d="M16 7a4 4 0 0 0-8 0"/>
+    </svg>`;
+
         document.querySelectorAll('.compare-btn').forEach(btn => {
-            const id = String(btn.dataset.id || ''); // 👈 защита
+            const id = String(btn.dataset.id || '');
 
             const active = compareList.includes(id);
 
@@ -324,7 +342,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             btn.innerHTML = active
                 ? '<i class="bi bi-check-lg text-success"></i>'
-                : '<i class="bi bi-shuffle text-muted"></i>';
+                : scalesIcon;
         });
     }
 

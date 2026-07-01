@@ -65,16 +65,32 @@
 
 
     
-    <button type="button"
-        class="icon-btn compare-btn rounded-circle shadow-sm border-0 d-flex align-items-center justify-content-center bg-white"
-        data-id="<?php echo e($catalog->id); ?>"
-        data-bs-toggle="tooltip"
-        data-bs-placement="right"
-        data-bs-custom-class="custom-orange-tooltip"
-        data-bs-title="Порівняти"
-        style="width: 36px; height: 36px;">
+   <button type="button"
+    class="icon-btn compare-btn rounded-circle shadow-sm border-0 d-flex align-items-center justify-content-center bg-white"
+    data-id="<?php echo e($catalog->id); ?>"
+    data-bs-toggle="tooltip"
+    data-bs-placement="right"
+    data-bs-custom-class="custom-orange-tooltip"
+    data-bs-title="Порівняти"
+    style="width:36px;height:36px;">
 
-    <i class="bi bi-shuffle"></i>
+    <svg xmlns="http://www.w3.org/2000/svg"
+         width="18"
+         height="18"
+         viewBox="0 0 24 24"
+         fill="none"
+         stroke="currentColor"
+         stroke-width="2"
+         stroke-linecap="round"
+         stroke-linejoin="round">
+      <path d="m16 16 3-8 3 8c0 1.7-1.3 3-3 3s-3-1.3-3-3Z"/>
+      <path d="m2 16 3-8 3 8c0 1.7-1.3 3-3 3s-3-1.3-3-3Z"/>
+      <path d="M7 21h10"/>
+      <path d="M12 3v18"/>
+      <path d="M3 7h18"/>
+      <path d="M16 7a4 4 0 0 0-8 0"/>
+    </svg>
+
 </button>
 
 </div>
@@ -433,6 +449,21 @@ $schema = [
 }
 .sort-box .choices {
     width: 100% !important;
+}
+.icon-btn svg {
+    width: 18px;
+    height: 18px;
+    color: #374151;
+    stroke: currentColor;
+    transition: color .2s ease;
+}
+
+.icon-btn:hover svg {
+    color: #d97706;
+}
+
+.compare-btn.active svg {
+    color: #198754; /* зеленый, если товар уже в сравнении */
 }
 </style>
 

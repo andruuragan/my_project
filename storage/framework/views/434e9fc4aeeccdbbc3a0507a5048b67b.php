@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
     <meta name="google" content="notranslate">
+    <meta name="google-site-verification" content="N942Zh6nwZN18JZqda_Okf7Uu2pqBrRgBR6mPBAYcuk" />
 
     
     <title><?php echo $__env->yieldContent('title', 'DymSystems — Виробництво димоходів з нержавіючої сталі'); ?></title>
@@ -113,6 +114,7 @@ $value = context()->get($__contextArgs[0]); ?>' => 'https://schema.org',
 ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES); ?>
 
 </script>
+
 </head>
 
 <body class="site-body">
