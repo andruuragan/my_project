@@ -11,8 +11,9 @@ class CatalogController extends Controller
 {
     public function index()
     {
-        $items = Catalog::all();
-        return view('catalog.index', compact('items'));
+         $items = Catalog::paginate(20); // или 20, сколько нужно
+
+    return view('catalog.index', compact('items'));
 
         //return response()->json(Catalog::all(), 200, [], JSON_UNESCAPED_UNICODE);
     }

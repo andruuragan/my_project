@@ -1,69 +1,133 @@
 @if ($paginator->hasPages())
-    <nav class="d-flex justify-items-center justify-content-between">
-        {{-- Мобильная версия --}}
-        <div class="d-flex justify-content-between flex-fill d-sm-none">
-            <ul class="pagination">
-                @if ($paginator->onFirstPage())
-                    <li class="page-item disabled" aria-disabled="true"><span class="page-link">@lang('pagination.previous')</span></li>
-                @else
-                    <li class="page-item"><a class="page-link" href="{{ $paginator->previousPageUrl() }}" rel="prev">@lang('pagination.previous')</a></li>
-                @endif
-                @if ($paginator->hasMorePages())
-                    <li class="page-item"><a class="page-link" href="{{ $paginator->nextPageUrl() }}" rel="next">@lang('pagination.next')</a></li>
-                @else
-                    <li class="page-item disabled" aria-disabled="true"><span class="page-link">@lang('pagination.next')</span></li>
-                @endif
-            </ul>
-        </div>
+<nav class="d-flex justify-content-between align-items-center flex-wrap gap-2">
 
-        {{-- Десктопная версия --}}
-        {{-- Десктопная версия --}}
-<div class="d-none flex-sm-fill d-sm-flex align-items-sm-center justify-content-sm-between">
+    {{-- LEFT INFO --}}
     <div class="small text-muted">
-        {!! __('pagination.showing') !!} <span class="fw-semibold">{{ $paginator->firstItem() }}</span>
-        {!! __('pagination.to') !!} <span class="fw-semibold">{{ $paginator->lastItem() }}</span>
-        {!! __('pagination.of') !!} <span class="fw-semibold">{{ $paginator->total() }}</span>
-        {!! __('pagination.results') !!}
+        @if ($paginator->firstItem())
+            {{ $paginator->firstItem() }}
+            –
+            {{ $paginator->lastItem() }}
+            из
+            {{ $paginator->total() }}
+        @endif
     </div>
 
-            <div>
-                <ul class="pagination">
-                    @if ($paginator->onFirstPage())
-                        <li class="page-item disabled" aria-disabled="true"><span class="page-link" aria-hidden="true">&lsaquo;</span></li>
-                    @else
-                        <li class="page-item"><a class="page-link" href="{{ $paginator->previousPageUrl() }}" rel="prev">&lsaquo;</a></li>
-                    @endif
+    {{-- RIGHT BLOCK --}}
+    <div class="d-flex align-items-center gap-2">
 
-                    @if($paginator->currentPage() > 10)
-                        <li class="page-item"><a class="page-link" href="{{ $paginator->url($paginator->currentPage() - 10) }}" title="На 10 сторінок назад">&laquo;10</a></li>
-                    @endif
+        {{-- STEP SELECT --}}
+        <select id="jumpStep" class="form-select form-select-sm" style="width: 80px;">
+            <option value="10" selected>10</option>
+            <option value="20">20</option>
+            <option value="30">30</option>
+            <option value="40">40</option>
+            <option value="50">50</option>
+        </select>
 
-                    @foreach ($elements as $element)
-                        @if (is_string($element))
-                            <li class="page-item disabled" aria-disabled="true"><span class="page-link">{{ $element }}</span></li>
-                        @endif
-                        @if (is_array($element))
-                            @foreach ($element as $page => $url)
-                                @if ($page == $paginator->currentPage())
-                                    <li class="page-item active" aria-current="page"><span class="page-link">{{ $page }}</span></li>
-                                @else
-                                    <li class="page-item"><a class="page-link" href="{{ $url }}">{{ $page }}</a></li>
-                                @endif
-                            @endforeach
-                        @endif
+        <ul class="pagination mb-0">
+
+            {{-- PREVIOUS --}}
+            <li class="page-item {{ $paginator->onFirstPage() ? 'disabled' : '' }}">
+                @if ($paginator->onFirstPage())
+                    <span class="page-link">&lsaquo;</span>
+                @else
+                    <a class="page-link" href="{{ $paginator->previousPageUrl() }}">&lsaquo;</a>
+                @endif
+            </li>
+
+            {{-- JUMP BACK --}}
+            <li class="page-item">
+                <a class="page-link jump-back" href="#">«</a>
+            </li>
+
+            {{-- PAGES --}}
+            @foreach ($elements as $element)
+                @if (is_string($element))
+                    <li class="page-item disabled">
+                        <span class="page-link">{{ $element }}</span>
+                    </li>
+                @endif
+
+                @if (is_array($element))
+                    @foreach ($element as $page => $url)
+                        <li class="page-item {{ $page == $paginator->currentPage() ? 'active' : '' }}">
+                            @if ($page == $paginator->currentPage())
+                                <span class="page-link">{{ $page }}</span>
+                            @else
+                                <a class="page-link" href="{{ $url }}">{{ $page }}</a>
+                            @endif
+                        </li>
                     @endforeach
+                @endif
+            @endforeach
 
-                    @if($paginator->currentPage() + 10 <= $paginator->lastPage())
-                        <li class="page-item"><a class="page-link" href="{{ $paginator->url($paginator->currentPage() + 10) }}" title="На 10 сторінок вперед">10&raquo;</a></li>
-                    @endif
+            {{-- JUMP FORWARD --}}
+            <li class="page-item">
+                <a class="page-link jump-forward" href="#">»</a>
+            </li>
 
-                    @if ($paginator->hasMorePages())
-                        <li class="page-item"><a class="page-link" href="{{ $paginator->nextPageUrl() }}" rel="next">&rsaquo;</a></li>
-                    @else
-                        <li class="page-item disabled" aria-disabled="true"><span class="page-link" aria-hidden="true">&rsaquo;</span></li>
-                    @endif
-                </ul>
-            </div>
-        </div>
-    </nav>
+            {{-- NEXT --}}
+            <li class="page-item {{ !$paginator->hasMorePages() ? 'disabled' : '' }}">
+                @if ($paginator->hasMorePages())
+                    <a class="page-link" href="{{ $paginator->nextPageUrl() }}">&rsaquo;</a>
+                @else
+                    <span class="page-link">&rsaquo;</span>
+                @endif
+            </li>
+
+        </ul>
+    </div>
+</nav>
+
+{{-- JS --}}
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+    const stepSelect = document.getElementById('jumpStep');
+
+    function getStep() {
+        return parseInt(stepSelect.value || 10);
+    }
+
+    function getCurrentPage() {
+        const url = new URL(window.location.href);
+        return parseInt(url.searchParams.get('page') || 1);
+    }
+
+    function go(page) {
+        const url = new URL(window.location.href);
+        url.searchParams.set('page', page);
+        window.location.href = url.toString();
+    }
+
+    document.addEventListener('click', function (e) {
+
+        const step = getStep();
+        const current = getCurrentPage();
+
+        // BACK
+        if (e.target.closest('.jump-back')) {
+            e.preventDefault();
+
+            let target = current - step;
+            if (target < 1) target = 1;
+
+            go(target);
+        }
+
+        // FORWARD
+        if (e.target.closest('.jump-forward')) {
+            e.preventDefault();
+
+            let target = current + step;
+            const lastPage = {{ $paginator->lastPage() }};
+
+            if (target > lastPage) target = lastPage;
+
+            go(target);
+        }
+    });
+
+});
+</script>
 @endif
