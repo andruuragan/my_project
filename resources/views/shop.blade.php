@@ -355,3 +355,26 @@ document.addEventListener('submit', function (e) {
 
     </style>
 @endpush
+</script>
+@endpush
+@push('schema-webpage')
+<script type="application/ld+json">
+{!! json_encode([
+    '@context' => 'https://schema.org',
+    '@type' => 'WebPage',
+
+    '@id' => url()->current() . '#webpage',
+    'url' => url()->current(),
+
+    'name' => trim($__env->yieldContent('title')),
+    'description' => trim($__env->yieldContent('description')),
+
+    'inLanguage' => 'uk-UA',
+
+    'isPartOf' => [
+        '@type' => 'WebSite',
+        '@id' => url('/') . '#website',
+    ],
+], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
+</script>
+@endpush

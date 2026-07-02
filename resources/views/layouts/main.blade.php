@@ -76,6 +76,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
    @stack('schema-itemlist')
 @stack('schema-product')
 @stack('schema-json-ld')
+@stack('schema-webpage')
 @stack('schema-contact')
 @stack('schema-about')
 @stack('schema-breadcrumbs')
@@ -108,6 +109,30 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   ],
 
   'email' => 'dymsystems@ukr.net',
+], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
+</script>
+
+<script type="application/ld+json">
+{!! json_encode([
+    '@context' => 'https://schema.org',
+    '@type' => 'WebSite',
+    '@id' => url('/') . '#website',
+
+    'url' => url('/'),
+    'name' => 'DymSystems',
+
+    'publisher' => [
+        '@id' => url('/') . '#organization',
+    ],
+
+    'inLanguage' => 'uk-UA',
+
+    'potentialAction' => [
+        '@type' => 'SearchAction',
+        'target' => url('/dymohody-ta-komplektuyuchi') . '?name={search_term_string}',
+        'query-input' => 'required name=search_term_string',
+    ],
+
 ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
 </script>
 
