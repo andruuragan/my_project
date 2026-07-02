@@ -1,7 +1,7 @@
 @extends('layouts.main')
-@section('title', 'Про нас | DymSystems')
+@section('title', 'Про нас DymSystems - виробництво димоходів з нержавійки | DymSystems')
 @section('description',
-'Історія компанії DymSystems, власне виробництво димоходів з нержавіючої сталі, технології та контроль якості.')
+'Про нас | DymSystems - виробництво димоходів з нержавіючої сталі. Історія компанії, технології та контроль якості продукції.')
 @section('content')
 <div class="container-1600">
     {{-- Hero Section --}}

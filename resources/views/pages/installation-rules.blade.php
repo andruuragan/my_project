@@ -201,6 +201,30 @@ $rules = [
             </div>
         </div>
     </div>
+
+    <section class="mt-5">
+    <div class="p-card p-4 p-md-5">
+        <h3 class="fw-bold mb-4">Технічні вимоги та етапи монтажу димохідних систем</h3>
+        <div class="row">
+            <div class="col-lg-6">
+                <p>Правильний монтаж димоходу починається з вибору матеріалу. Ми використовуємо нержавіючу сталь марок AISI 321 або 304, які стійкі до високих температур та кислотного середовища.</p>
+                <h5 class="fw-bold">Основні етапи робіт:</h5>
+                <ul class="text-muted">
+                    <li><strong>Проектування:</strong> розрахунок перерізу каналу та висоти труби відносно конька даху.</li>
+                    <li><strong>Монтаж системи "сендвіч":</strong> правильне утеплення базальтовою ватою для запобігання утворенню конденсату.</li>
+                    
+                </ul>
+            </div>
+            <div class="col-lg-6">
+                <p>Особливу увагу приділяємо <strong>пожежній безпеці при проходженні через перекриття та покрівлю</strong>. Використання спеціальних прохідних вузлів (коробів) дозволяє уникнути перегріву дерев'яних конструкцій, що є критично важливим для безпеки вашого дому.</p>
+                <div class="bg-light p-3 rounded-3 border-start border-4 border-warning">
+                    <p class="mb-0 small italic"><strong>Важливо:</strong> Згідно з ДБН, горизонтальні ділянки димоходу повинні бути мінімальними (до 1 м), а загальна висота системи — забезпечувати достатню природну тягу для стабільної роботи котла.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
     {{-- БЛОК СТАТТІ --}}
 <div class="mt-5">
     <div class="p-card p-4 p-md-5" style="background: #f8fafc;">
@@ -233,12 +257,74 @@ $rules = [
     {{-- НИЖНІЙ СТАЦІОНАРНИЙ БАНЕР --}}
     <div class="mt-5">
         <div class="p-card p-5 text-center" style="background: linear-gradient(135deg,#0f172a,#1e293b); color:#fff;">
+            <h2>Чому правильний монтаж димоходу настільки важливий?</h2>
+
+<p>
+Навіть якісний димохід із нержавіючої сталі не забезпечить ефективну роботу,
+якщо під час встановлення були допущені помилки. Неправильний вибір діаметра,
+надмірна кількість горизонтальних ділянок або порушення правил проходу через
+покрівлю можуть негативно вплинути на тягу та безпечність експлуатації.
+</p>
+
+<p>
+Саме тому перед монтажем рекомендується виконати попередній розрахунок,
+врахувати характеристики опалювального обладнання та використовувати
+сертифіковані комплектуючі. Дотримання вимог виробника та будівельних норм
+дозволяє забезпечити стабільну роботу системи протягом багатьох років.
+</p>
             <h3 class="fw-bold">Потрібен монтаж під ключ?</h3>
             <p class="text-white-50">Інженер підбере оптимальне рішення для вашого об'єкта</p>
             <a href="#form" class="btn btn-warning px-4 fw-bold">Отримати консультацію</a>
         </div>
     </div>
+    
 </div>
+<section class="mt-5">
+    <div class="p-card p-4 p-md-5">
+        <h3 class="fw-bold mb-4">Часті запитання про монтаж димоходів</h3>
+        <div class="accordion" id="faqAccordion">
+            <!-- FAQ 1 -->
+            <div class="accordion-item border-0 mb-3">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed shadow-none fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                        Яка марка нержавіючої сталі найкраща для твердопаливного котла?
+                    </button>
+                </h2>
+                <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body text-muted">
+                        Для твердопаливних котлів рекомендується використовувати сталь марки AISI 321 або 304. Вони містять домішки титану або молібдену, що робить їх стійкими до високих температур (до 800°C) та агресивного впливу конденсату з кислотними сполуками.
+                    </div>
+                </div>
+            </div>
+            <!-- FAQ 2 -->
+            <div class="accordion-item border-0 mb-3">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed shadow-none fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                        Чи можна монтувати димохід без утеплення (сендвіча)?
+                    </button>
+                </h2>
+                <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body text-muted">
+                        Монтаж без утеплення допустимий лише всередині опалювального приміщення (якщо димохід проходить через теплу зону). Для зовнішніх ділянок або при проходженні через холодний горищний простір утеплення "сендвіч" є обов'язковим, щоб уникнути швидкого охолодження газів, утворення надмірної кількості конденсату та втрати тяги.
+                    </div>
+                </div>
+            </div>
+            <!-- FAQ 3 -->
+            <div class="accordion-item border-0 mb-3">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed shadow-none fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                        Як часто потрібно проводити обслуговування системи?
+                    </button>
+                </h2>
+                <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body text-muted">
+                        Чистку димохідної системи необхідно проводити мінімум один раз на опалювальний сезон. При використанні смолянистих порід деревини (сосна, ялина) — двічі на сезон. Регулярна профілактика запобігає накопиченню сажі, яка може призвести до її займання.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 </main>
 
 

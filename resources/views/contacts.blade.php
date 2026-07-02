@@ -1,7 +1,7 @@
 @extends('layouts.main')
-@section('title', 'Контакти | DymSystems')
+@section('title', 'Контакти DymSystems: телефон, адреса, графік роботи | DymSystems')
 @section('description',
-    'Контакти DymSystems. Телефони для замовлення димоходів, адреса, графік роботи та форма зворотного зв’язку.'
+    'Контакти DymSystems: телефони для замовлення димоходів, адреса, графік роботи та форма зворотного зв'язку. Зв'яжіться з нами!'
 )
 
 @section('content')
