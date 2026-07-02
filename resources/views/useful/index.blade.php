@@ -203,8 +203,17 @@
     <h2 class="text-center mb-4">Часті запитання!</h2>
     <div class="accordion accordion-flush" id="chimneyFaq">
         <div class="accordion-item">
-            <h3 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q1">Як розрахувати мінімальну висоту димоходу?</button></h3>
-            <div id="q1" class="accordion-collapse collapse" data-bs-parent="#chimneyFaq">
+            <h3 class="accordion-header"><button class="accordion-button"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#q1"
+        aria-expanded="true"
+        aria-controls="q1">
+    Як розрахувати мінімальну висоту димоходу?
+</button></h3>
+           <div id="q1"
+     class="accordion-collapse collapse show"
+     data-bs-parent="#chimneyFaq">
                 <div class="accordion-body">Висота димоходу залежить від віддаленості від гребеня даху та типу покрівлі. Зазвичай це не менше 5 метрів від колосника до оголовка. Скористайтеся нашим калькулятором для точного розрахунку.</div>
             </div>
         </div>

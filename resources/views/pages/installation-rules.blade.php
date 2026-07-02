@@ -286,11 +286,20 @@ $rules = [
             <!-- FAQ 1 -->
             <div class="accordion-item border-0 mb-3">
                 <h2 class="accordion-header">
-                    <button class="accordion-button collapsed shadow-none fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
-                        Яка марка нержавіючої сталі найкраща для твердопаливного котла?
-                    </button>
+                     <button
+            class="accordion-button shadow-none fw-bold"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#faq1"
+            aria-expanded="true"
+            aria-controls="faq1">
+            Яка марка нержавіючої сталі найкраща для твердопаливного котла?
+        </button>
                 </h2>
-                <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div
+        id="faq1"
+        class="accordion-collapse collapse show"
+        data-bs-parent="#faqAccordion">
                     <div class="accordion-body text-muted">
                         Для твердопаливних котлів рекомендується використовувати сталь марки AISI 321 або 304. Вони містять домішки титану або молібдену, що робить їх стійкими до високих температур (до 800°C) та агресивного впливу конденсату з кислотними сполуками.
                     </div>
