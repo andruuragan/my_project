@@ -359,10 +359,7 @@ document.addEventListener('submit', function (e) {
 <?php $__env->startPush('schema-webpage'); ?>
 <script type="application/ld+json">
 <?php echo json_encode([
-    '<?php $__contextArgs = [];
-if (context()->has($__contextArgs[0])) :
-if (isset($value)) { $__contextPrevious[] = $value; }
-$value = context()->get($__contextArgs[0]); ?>' => 'https://schema.org',
+    '@' . 'context' => 'https://schema.org',
     '@type' => 'WebPage',
 
     '@id' => url()->current() . '#webpage',

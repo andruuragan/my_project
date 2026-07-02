@@ -147,7 +147,7 @@
 @push('schema-article')
 <script type="application/ld+json">
 {!! json_encode([
-  '@context' => 'https://schema.org',
+  '@' . 'context' => 'https://schema.org',
   '@type' => 'Article',
 
   '@id' => url('/useful-info/blog/pomylky-montazhu#article'),
@@ -166,7 +166,7 @@
 @push('schema-breadcrumbs')
 <script type="application/ld+json">
 {!! json_encode([
-  '@context' => 'https://schema.org',
+  '@' . 'context' => 'https://schema.org',
   '@type' => 'BreadcrumbList',
   'itemListElement' => [
     [
@@ -201,7 +201,7 @@
 @push('schema-webpage')
 <script type="application/ld+json">
 {!! json_encode([
-    '@context' => 'https://schema.org',
+    '@' . 'context' => 'https://schema.org',
     '@type' => 'WebPage',
 
     '@id' => url()->current() . '#webpage',

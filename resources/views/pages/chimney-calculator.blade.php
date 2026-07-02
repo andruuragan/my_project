@@ -831,7 +831,7 @@ let explanationText = `
 @push('schema-useful-item1')
 <script type="application/ld+json">
 {!! json_encode([
-  '@context' => 'https://schema.org',
+  '@' . 'context' => 'https://schema.org',
   '@type' => 'WebApplication',
   '@id' => url('/useful-info/chimney-calculator#page'),
 
@@ -848,7 +848,7 @@ let explanationText = `
 @push('schema-breadcrumbs')
 <script type="application/ld+json">
 {!! json_encode([
-  '@context' => 'https://schema.org',
+  '@' . 'context' => 'https://schema.org',
   '@type' => 'BreadcrumbList',
   'itemListElement' => [
     [
@@ -877,7 +877,7 @@ let explanationText = `
 @push('schema-webpage')
 <script type="application/ld+json">
 {!! json_encode([
-    '@context' => 'https://schema.org',
+    '@' . 'context' => 'https://schema.org',
     '@type' => 'WebPage',
 
     '@id' => url()->current() . '#webpage',

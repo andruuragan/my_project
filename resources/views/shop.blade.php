@@ -360,7 +360,7 @@ document.addEventListener('submit', function (e) {
 @push('schema-webpage')
 <script type="application/ld+json">
 {!! json_encode([
-    '@context' => 'https://schema.org',
+    '@' . 'context' => 'https://schema.org',
     '@type' => 'WebPage',
 
     '@id' => url()->current() . '#webpage',

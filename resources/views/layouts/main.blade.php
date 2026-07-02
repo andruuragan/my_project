@@ -90,7 +90,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 {{-- SEO Schema Organization --}}
 <script type="application/ld+json">
 {!! json_encode([
-  '@context' => 'https://schema.org',
+  '@' . 'context' => 'https://schema.org',
   '@type' => 'Organization',
   '@id' => 'https://www.dymsystems.pp.ua/#organization',
 
@@ -114,7 +114,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <script type="application/ld+json">
 {!! json_encode([
-    '@context' => 'https://schema.org',
+    '@' . 'context' => 'https://schema.org',
     '@type' => 'WebSite',
     '@id' => url('/') . '#website',
 

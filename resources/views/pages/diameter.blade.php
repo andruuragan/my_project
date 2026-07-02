@@ -444,7 +444,7 @@ g \cdot H \cdot
 @push('schema-useful-item2')
 <script type="application/ld+json">
 {!! json_encode([
-  '@context' => 'https://schema.org',
+  '@' . 'context' => 'https://schema.org',
   '@type' => 'WebPage',
 
   '@id' => url('/useful-info/how-to-choose-chimney-diameter#page'),
@@ -461,7 +461,7 @@ g \cdot H \cdot
 @push('schema-breadcrumbs')
 <script type="application/ld+json">
 {!! json_encode([
-  '@context' => 'https://schema.org',
+  '@' . 'context' => 'https://schema.org',
   '@type' => 'BreadcrumbList',
   'itemListElement' => [
     [
@@ -490,7 +490,7 @@ g \cdot H \cdot
 @push('schema-webpage')
 <script type="application/ld+json">
 {!! json_encode([
-    '@context' => 'https://schema.org',
+    '@' . 'context' => 'https://schema.org',
     '@type' => 'WebPage',
 
     '@id' => url()->current() . '#webpage',

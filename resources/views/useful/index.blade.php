@@ -420,7 +420,7 @@ a:hover .useful-image-wrapper {
 @push('schema-useful')
 <script type="application/ld+json">
 {!! json_encode([
-  '@context' => 'https://schema.org',
+  '@' . 'context' => 'https://schema.org',
   '@type' => 'CollectionPage',
 
   '@id' => url('/useful-info#page'),
@@ -458,7 +458,7 @@ a:hover .useful-image-wrapper {
 @push('schema-breadcrumbs')
 <script type="application/ld+json">
 {!! json_encode([
-  '@context' => 'https://schema.org',
+  '@' . 'context' => 'https://schema.org',
   '@type' => 'BreadcrumbList',
   'itemListElement' => [
     [
@@ -481,7 +481,7 @@ a:hover .useful-image-wrapper {
 @push('schema-webpage')
 <script type="application/ld+json">
 {!! json_encode([
-    '@context' => 'https://schema.org',
+    '@' . 'context' => 'https://schema.org',
     '@type' => 'WebPage',
 
     '@id' => url()->current() . '#webpage',

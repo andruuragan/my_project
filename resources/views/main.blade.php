@@ -530,7 +530,7 @@ document.addEventListener('DOMContentLoaded', function () {
 @push('schema-json-ld')
 <script type="application/ld+json">
 {!! json_encode([
-  '@context' => 'https://schema.org',
+  '@' . 'context' => 'https://schema.org',
   '@type' => 'WebSite',
   'name' => 'DymSystems',
   'url' => 'https://www.dymsystems.pp.ua',
@@ -545,7 +545,7 @@ document.addEventListener('DOMContentLoaded', function () {
 @push('schema-breadcrumbs')
 <script type="application/ld+json">
 {!! json_encode([
-  '@context' => 'https://schema.org',
+  '@' . 'context' => 'https://schema.org',
   '@type' => 'BreadcrumbList',
   'itemListElement' => [
     [
@@ -561,7 +561,7 @@ document.addEventListener('DOMContentLoaded', function () {
 @push('schema-FAQ')
 <script type="application/ld+json">
 {!! json_encode([
-    '@context' => 'https://schema.org',
+    '@' . 'context' => 'https://schema.org',
     '@type' => 'FAQPage',
     'mainEntity' => [
         [
@@ -635,7 +635,7 @@ document.addEventListener('DOMContentLoaded', function () {
 @push('schema-webpage')
 <script type="application/ld+json">
 {!! json_encode([
-    '@context' => 'https://schema.org',
+    '@' . 'context' => 'https://schema.org',
     '@type' => 'WebPage',
 
     '@id' => url()->current() . '#webpage',

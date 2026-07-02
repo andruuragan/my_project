@@ -221,7 +221,7 @@
 <script type="application/ld+json">
 <?php
 $schema = [
-    '@context' => 'https://schema.org',
+    '@' . 'context' => 'https://schema.org',
     '@type' => 'ItemList',
     'itemListElement' => $catalogs->getCollection()->map(function ($c, $i) {
         return [

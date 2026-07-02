@@ -90,10 +90,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <script type="application/ld+json">
 <?php echo json_encode([
-  '<?php $__contextArgs = [];
-if (context()->has($__contextArgs[0])) :
-if (isset($value)) { $__contextPrevious[] = $value; }
-$value = context()->get($__contextArgs[0]); ?>' => 'https://schema.org',
+  '@' . 'context' => 'https://schema.org',
   '@type' => 'Organization',
   '@id' => 'https://www.dymsystems.pp.ua/#organization',
 
@@ -118,10 +115,7 @@ $value = context()->get($__contextArgs[0]); ?>' => 'https://schema.org',
 
 <script type="application/ld+json">
 <?php echo json_encode([
-    '<?php $__contextArgs = [];
-if (context()->has($__contextArgs[0])) :
-if (isset($value)) { $__contextPrevious[] = $value; }
-$value = context()->get($__contextArgs[0]); ?>' => 'https://schema.org',
+    '@' . 'context' => 'https://schema.org',
     '@type' => 'WebSite',
     '@id' => url('/') . '#website',
 
