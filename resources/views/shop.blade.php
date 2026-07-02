@@ -355,8 +355,8 @@ document.addEventListener('submit', function (e) {
 
     </style>
 @endpush
-</script>
-@endpush
+
+
 @push('schema-webpage')
 <script type="application/ld+json">
 {!! json_encode([
