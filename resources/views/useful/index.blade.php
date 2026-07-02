@@ -10,7 +10,7 @@
         {{-- Блок: Корисна інформація --}}
         <section class="useful-section">
             <div class="text-center mb-5">
-                <h2 class="fw-semibold useful-title">Корисна інформація</h2>
+                <h1 class="fw-semibold useful-title">Корисна інформація</h1>
                 <p class="text-muted useful-subtitle">Поради, калькулятори та інструкції щодо вибору димоходу</p>
             </div>
 
