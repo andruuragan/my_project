@@ -7,6 +7,18 @@
 @section('content')
     <div class="container-1600 my-5">
 
+    <section class="mb-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10 text-center">
+            <h2 class="mb-3">Чому важливо правильно підібрати димохідну систему?</h2>
+            <p class="text-muted">
+                Проектування та монтаж димоходу — це критично важливі етапи, від яких залежить не лише ефективність вашого опалювального обладнання, а й безпека вашого будинку. Неправильно підібраний діаметр або порушення технології монтажу можуть призвести до накопичення конденсату, відсутності тяги та ризику виникнення пожежі. 
+                Наші інструменти допоможуть вам провести <strong>попередній розрахунок димоходу</strong> та ознайомитися з державними стандартами безпеки.
+            </p>
+        </div>
+    </div>
+</section>
+
         {{-- Блок: Корисна інформація --}}
         <section class="useful-section">
             <div class="text-center mb-5">
@@ -84,6 +96,53 @@
             </div>
         </section>
 
+
+        <section class="mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10 px-3">
+
+            <h2 class="mb-4">Що потрібно знати перед вибором димоходу!</h2>
+
+            <p>
+                Димохід є невід'ємною частиною будь-якої системи опалення. Від правильного
+                вибору матеріалу, діаметра та висоти залежить стабільність тяги, економічність
+                роботи обладнання та безпечне відведення продуктів згоряння. Під час проєктування
+                необхідно враховувати тип палива, потужність котла або печі, висоту будівлі,
+                конфігурацію покрівлі та вимоги виробника обладнання.
+            </p>
+
+            <p>
+                У цьому розділі ми зібрали практичні матеріали, які допоможуть самостійно
+                розібратися з основними питаннями. Ви можете скористатися онлайн-калькулятором
+                димоходу, ознайомитися з рекомендаціями щодо вибору діаметра труби та
+                дізнатися про основні правила монтажу димохідних систем із нержавіючої сталі.
+            </p>
+
+            <p>
+                Інформація буде корисною власникам приватних будинків, камінів, твердопаливних,
+                газових і пелетних котлів, банних печей та інших опалювальних приладів.
+                Правильно підібраний димохід забезпечує ефективне відведення димових газів,
+                мінімізує утворення конденсату та подовжує термін служби всієї системи.
+            </p>
+
+        </div>
+    </div>
+</section>
+
+       <section class="my-5 p-4 rounded-4" style="background-color: #f8fafc; border: 1px solid #e2e8f0;">
+    <div class="row align-items-center">
+        <div class="col-md-8">
+            <h4 class="mb-1">Шукаєте надійні комплектуючі?</h4>
+            <p class="text-muted mb-0">Оберіть сертифіковані димоходи з нержавіючої сталі для вашого опалювального обладнання.</p>
+        </div>
+        <div class="col-md-4 text-md-end mt-3 mt-md-0">
+            <a href="{{ route('shop.index') }}" class="btn btn-primary px-4 py-2" style="background-color: #ea580c; border: none;">
+                Перейти в каталог
+            </a>
+        </div>
+    </div>
+</section>
+
         {{-- Блок: Популярні товари --}}
         @if($popularCatalogs->isNotEmpty())
             <div class="mt-5 pt-4">
@@ -140,6 +199,23 @@
                 </div>
             </div>
         @endif
+        <section class="mt-5 pt-5 border-top">
+    <h2 class="text-center mb-4">Часті запитання!</h2>
+    <div class="accordion accordion-flush" id="chimneyFaq">
+        <div class="accordion-item">
+            <h3 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q1">Як розрахувати мінімальну висоту димоходу?</button></h3>
+            <div id="q1" class="accordion-collapse collapse" data-bs-parent="#chimneyFaq">
+                <div class="accordion-body">Висота димоходу залежить від віддаленості від гребеня даху та типу покрівлі. Зазвичай це не менше 5 метрів від колосника до оголовка. Скористайтеся нашим калькулятором для точного розрахунку.</div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h3 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q2">Чи можна зменшувати діаметр труби димоходу?</button></h3>
+            <div id="q2" class="accordion-collapse collapse" data-bs-parent="#chimneyFaq">
+                <div class="accordion-body">Звужувати діаметр димоходу відносно вихідного патрубка котла категорично заборонено, оскільки це призводить до зниження тяги та перегріву системи.</div>
+            </div>
+        </div>
+    </div>
+</section>
     </div>
 
     {{-- Оновлені ультра-компактні стилі --}}
