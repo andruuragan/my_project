@@ -1,6 +1,6 @@
 <?php $__env->startSection('title', 'Каталог димоходів та комплектуючих | DymSystems'); ?>
 
-<?php $__env->startSection('description', 'Каталог димоходів, сендвіч-димоходів, труб та комплектуючих з нержавіючої сталі від DymSystems.'); ?>
+<?php $__env->startSection('description', 'Каталог димоходів та комплектуючих з нержавіючої сталі від DymSystems. Широкий вибір сендвіч-димоходів та труб для вашої системи.'); ?>
 
 
 <?php $__env->startSection('content'); ?>
@@ -353,5 +353,32 @@ document.addEventListener('submit', function (e) {
 
 
     </style>
+<?php $__env->stopPush(); ?>
+
+
+<?php $__env->startPush('schema-webpage'); ?>
+<script type="application/ld+json">
+<?php echo json_encode([
+    '<?php $__contextArgs = [];
+if (context()->has($__contextArgs[0])) :
+if (isset($value)) { $__contextPrevious[] = $value; }
+$value = context()->get($__contextArgs[0]); ?>' => 'https://schema.org',
+    '@type' => 'WebPage',
+
+    '@id' => url()->current() . '#webpage',
+    'url' => url()->current(),
+
+    'name' => trim($__env->yieldContent('title')),
+    'description' => trim($__env->yieldContent('description')),
+
+    'inLanguage' => 'uk-UA',
+
+    'isPartOf' => [
+        '@type' => 'WebSite',
+        '@id' => url('/') . '#website',
+    ],
+], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES); ?>
+
+</script>
 <?php $__env->stopPush(); ?>
 <?php echo $__env->make('layouts.main', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH /var/www/my_project/resources/views/shop.blade.php ENDPATH**/ ?>
