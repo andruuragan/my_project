@@ -418,8 +418,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const phoneInputs = document.querySelectorAll('#phone, #register_phone');
 
     phoneInputs.forEach(input => {
+
         const mask = IMask(input, {
-            mask: '+38 (000) 000-00-00'
+            mask: '+38 (000) 000-00-00',
+            lazy: true
+        });
+
+        input.addEventListener('focus', () => {
+            if (!input.value) {
+                mask.updateOptions({ lazy: false });
+            }
+        });
+
+        input.addEventListener('blur', () => {
+            if (!input.value) {
+                mask.updateOptions({ lazy: true });
+            }
         });
 
         if (input.id === 'register_phone') {
@@ -427,7 +441,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
-
 // --- АДМИН-ФУНКЦИИ ---
 window.showAlert = function (message, type = 'success') {
     const alert = document.createElement('div');
