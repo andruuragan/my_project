@@ -1,7 +1,7 @@
 @extends('layouts.main')
 @section('title', 'Про нас DymSystems - виробництво димоходів з нержавійки | DymSystems')
 @section('description',
-'Про нас | DymSystems - виробництво димоходів з нержавіючої сталі. Історія компанії, технології та контроль якості продукції.')
+'Про нас | DymSystems - провідний виробник димоходів з нержавіючої сталі. Дізнайтеся історію компанії, наші технології та контроль якості продукції.')
 @section('content')
 <div class="container-1600">
     {{-- Hero Section --}}
@@ -189,6 +189,53 @@
     </div>
 </section>
 
+<section class="py-5">
+    <div class="container-1600">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">Наші технічні стандарти</h2>
+            <div class="mx-auto bg-warning" style="width:60px; height:3px;"></div>
+        </div>
+        <div class="row g-4 text-center">
+            <div class="col-lg-4">
+                <div class="p-4 border rounded shadow-sm h-100">
+                    <h5 class="fw-bold">Якісні матеріали</h5>
+                    <p class="text-muted">Використовуємо сертифіковану нержавіючу сталь марок AISI 304 та AISI 321, що забезпечує стійкість до агресивного конденсату та високих температур.</p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="p-4 border rounded shadow-sm h-100">
+                    <h5 class="fw-bold">Плазмове зварювання</h5>
+                    <p class="text-muted">Застосовуємо технологію зварювання в середовищі інертних газів (TIG). Це гарантує ідеальну герметичність швів, що критично важливо для безпеки димоходу.</p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="p-4 border rounded shadow-sm h-100">
+                    <h5 class="fw-bold">Відповідність ДСТУ</h5>
+                    <p class="text-muted">Вся продукція DymSystems проходить суворий контроль якості та відповідає актуальним пожежним нормам і стандартам безпеки України.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="py-5 bg-light">
+    <div class="container-1600">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">Часті запитання</h2>
+            <div class="mx-auto bg-warning" style="width:60px; height:3px;"></div>
+        </div>
+        <div class="accordion" id="aboutFaq">
+            <div class="accordion-item">
+                <h2 class="accordion-header"><button class="accordion-button" data-bs-toggle="collapse" data-bs-target="#q1">Чи виготовляєте ви нестандартні елементи?</button></h2>
+                <div id="q1" class="accordion-collapse collapse show" data-bs-parent="#aboutFaq"><div class="accordion-body">Так, ми маємо власне виробництво і можемо виготовити перехідники, короби або коліна за вашими індивідуальними кресленнями.</div></div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#q2">Яку гарантію ви надаєте?</button></h2>
+                <div id="q2" class="accordion-collapse collapse" data-bs-parent="#aboutFaq"><div class="accordion-body">Завдяки використанню стійкої нержавіючої сталі, термін експлуатації наших систем становить понад 10 років за умови правильного монтажу.</div></div>
+            </div>
+        </div>
+    </div>
+</section>
+
     {{-- Production Gallery --}}
     <section class="py-5">
         <div class="text-center mb-5">
@@ -278,20 +325,25 @@
 @push('schema-about')
 <script type="application/ld+json">
 {!! json_encode([
-  '@' . 'context' => 'https://schema.org',
-  '@type' => 'AboutPage',
-  'name' => 'Про компанію DymSystems',
-  'url' => url()->current(),
+    '@' . 'context' => 'https://schema.org',
+    '@type' => 'AboutPage',
+    '@id' => url()->current() . '#about',
+    'url' => url()->current(),
+    'name' => 'Про компанію DymSystems',
+    'description' => trim($__env->yieldContent('description')),
+    'inLanguage' => 'uk-UA',
 
-  'mainEntity' => [
-    '@type' => 'Thing',
-    'name' => 'DymSystems',
-    'description' => 'Виробництво та продаж димоходів з нержавіючої сталі'
-  ]
+    'mainEntity' => [
+        '@type' => 'Organization',
+        '@id' => url('/') . '#organization',
+        'name' => 'DymSystems',
+        'url' => url('/'),
+        'logo' => asset('images/logo.webp'),
+        'description' => 'Виробництво та продаж димоходів з нержавіючої сталі'
+    ]
 ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
 </script>
 @endpush
-
 @push('schema-webpage')
 <script type="application/ld+json">
 {!! json_encode([
