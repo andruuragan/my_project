@@ -530,15 +530,17 @@ document.addEventListener('DOMContentLoaded', function () {
 @push('schema-json-ld')
 <script type="application/ld+json">
 {!! json_encode([
-  '@' . 'context' => 'https://schema.org',
-  '@type' => 'WebSite',
-  'name' => 'DymSystems',
-  'url' => 'https://www.dymsystems.pp.ua',
-  'potentialAction' => [
-    '@type' => 'SearchAction',
-    'target' => 'https://www.dymsystems.pp.ua/shop?search={search_term_string}',
-    'query-input' => 'required name=search_term_string'
-  ]
+    '@' . 'context' => 'https://schema.org',
+    '@type' => 'WebSite',
+    '@id' => url('/') . '#website',
+    'url' => url('/'),
+    'name' => 'DymSystems',
+    'inLanguage' => 'uk-UA',
+    'potentialAction' => [
+        '@type' => 'SearchAction',
+        'target' => url('/shop') . '?search={search_term_string}',
+        'query-input' => 'required name=search_term_string'
+    ]
 ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
 </script>
 @endpush

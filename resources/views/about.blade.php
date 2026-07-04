@@ -365,3 +365,53 @@
 ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
 </script>
 @endpush
+
+@push('schema-breadcrumb')
+<script type="application/ld+json">
+{!! json_encode([
+    '@' . 'context' => 'https://schema.org',
+    '@type' => 'BreadcrumbList',
+    'itemListElement' => [
+        [
+            '@type' => 'ListItem',
+            'position' => 1,
+            'name' => 'Головна',
+            'item' => url('/')
+        ],
+        [
+            '@type' => 'ListItem',
+            'position' => 2,
+            'name' => 'Про нас',
+            'item' => url()->current()
+        ]
+    ]
+], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
+</script>
+@endpush
+
+@push('schema-FAQ')
+<script type="application/ld+json">
+{!! json_encode([
+    '@' . 'context' => 'https://schema.org',
+    '@type' => 'FAQPage',
+    'mainEntity' => [
+        [
+            '@type' => 'Question',
+            'name' => 'Чи виготовляєте ви нестандартні елементи?',
+            'acceptedAnswer' => [
+                '@type' => 'Answer',
+                'text' => 'Так, ми маємо власне виробництво і можемо виготовити перехідники, короби або коліна за вашими індивідуальними кресленнями.'
+            ]
+        ],
+        [
+            '@type' => 'Question',
+            'name' => 'Яку гарантію ви надаєте?',
+            'acceptedAnswer' => [
+                '@type' => 'Answer',
+                'text' => 'Завдяки використанню стійкої нержавіючої сталі, термін експлуатації наших систем становить понад 10 років за умови правильного монтажу.'
+            ]
+        ]
+    ]
+], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
+</script>
+@endpush
