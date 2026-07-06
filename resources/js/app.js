@@ -87,11 +87,27 @@ window.initRichTextEditors = function () {
 };
 
 window.refreshCart = function () {
-    fetch('/cart/state', { headers: { 'Accept': 'application/json' } })
+    fetch('/cart/state', {
+        headers: { 'Accept': 'application/json' }
+    })
         .then(res => res.json())
         .then(data => {
-            document.querySelectorAll('[id^="cartCount"]').forEach(el => { el.innerText = data.count; el.style.display = data.count > 0 ? 'inline-block' : 'none'; });
-            document.querySelectorAll('[id^="cartTotal"]').forEach(el => { el.innerText = new Intl.NumberFormat('uk-UA').format(data.total); });
+
+            // Обновляем количество
+            document.querySelectorAll('[id^="cartCount"]').forEach(el => {
+                el.innerText = data.count;
+            });
+
+            // Обновляем сумму
+            document.querySelectorAll('[id^="cartTotal"]').forEach(el => {
+                el.innerText = new Intl.NumberFormat('uk-UA').format(data.total);
+            });
+
+            // Показываем/скрываем бейджи
+            document.querySelectorAll('[id^="cartBadge"]').forEach(el => {
+                el.style.display = data.count > 0 ? 'flex' : 'none';
+            });
+
         });
 };
 

@@ -401,23 +401,30 @@ if (productImg) {
     })
     .then(data => {
 
-        btn.textContent = 'У кошику';
+    btn.textContent = 'У кошику';
 
-        // 🔥 оновлення лічильників
-        ['cartCountMobile','cartCountDesktop','cartCount']
-        .forEach(id => {
+    if (typeof window.refreshCart === 'function') {
+        window.refreshCart();
+    } else {
+
+        ['cartCountMobile', 'cartCountDesktop', 'cartCount'].forEach(id => {
             const el = document.getElementById(id);
             if (el) el.textContent = data.count;
         });
 
-        ['cartTotalMobile','cartTotalDesktop','cartTotalNav']
-        .forEach(id => {
+        ['cartTotalMobile', 'cartTotalDesktop', 'cartTotalNav'].forEach(id => {
             const el = document.getElementById(id);
             if (el) {
                 el.textContent = new Intl.NumberFormat('uk-UA').format(data.total);
             }
         });
-    })
+
+        const badge = document.getElementById('cartBadgeMobile');
+        if (badge) {
+            badge.style.display = data.count > 0 ? 'flex' : 'none';
+        }
+    }
+})
     .catch(() => {
         alert('Помилка додавання в кошик');
     })

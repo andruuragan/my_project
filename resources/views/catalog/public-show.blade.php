@@ -389,7 +389,9 @@ if (addToCartBtn) {
             return response.json();
         })
         .then(data => {
+          
     addToCartBtn.disabled = false;
+    
 
     // 1. Анімація польоту
     const productImg = document.querySelector('.col-md-5 img, .col-lg-4 img');
@@ -403,6 +405,7 @@ if (addToCartBtn) {
     if (successMsg) successMsg.classList.remove('d-none');
 
     // 3. Оновлення кошика
+    
     if (typeof window.refreshCart === 'function') {
         window.refreshCart(); 
     } else {
@@ -410,6 +413,7 @@ if (addToCartBtn) {
         ['cartCountMobile', 'cartCountDesktop', 'cartCount'].forEach(id => {
             const el = document.getElementById(id);
             if (el) el.textContent = data.count;
+            
         });
 
         // Оновлення суми
@@ -424,6 +428,7 @@ if (addToCartBtn) {
         const badge = document.getElementById('cartBadgeMobile');
         if (badge) {
             badge.style.display = (data.count > 0) ? 'flex' : 'none';
+            
         }
     }
 })
