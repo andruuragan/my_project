@@ -57,11 +57,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 @vite(['resources/css/app.css', 'resources/js/app.js'])
 
 <link rel="stylesheet" href="{{ asset('css/mainpage-styles.css') }}">
-<link
-    rel="preload"
-    as="image"
-    href="{{ asset('images/chimney/headbanner.webp') }}"
-    fetchpriority="high">
+
    @if(request()->routeIs('chimney.installation-rules'))
 
 @endif

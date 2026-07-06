@@ -67,11 +67,13 @@
     <div class="modal fade" id="imageModal" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
-                <button type="button"
-                        class="btn-close position-absolute top-0 end-0 m-3"
-                        style="z-index: 1060;"
-                        data-bs-dismiss="modal"
-                        aria-label="Close"></button>
+               <button
+    type="button"
+    class="btn-close position-absolute top-0 end-0 m-3"
+    style="z-index:1060;"
+    aria-label="Close"
+    onclick="this.blur(); bootstrap.Modal.getInstance(this.closest('.modal')).hide();">
+</button>
                 <div class="modal-body text-center p-0">
                     <img id="modalImage" class="img-fluid" style="max-height:85vh;">
                 </div>

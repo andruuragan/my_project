@@ -27,6 +27,7 @@ use App\Http\Controllers\Admin\AdminOrdersController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CompareController;
+use App\Http\Controllers\CategoryPageController;
 
 /* ==========================================================================
 |  1. PUBLIC PAGES & AUTH CONTROL (Breeze)
@@ -35,6 +36,9 @@ use App\Http\Controllers\CompareController;
 Route::get('/', [MainController::class, 'index'])->name('main.index');
 Route::get('/contacts', [ContactsController::class, 'index'])->name('contacts.index');
 Route::get('/about', [AboutController::class, 'index'])->name('about.index');
+Route::get('/categories', [CategoryPageController::class, 'index'])
+    ->name('categories.index');
+    Route::post('/search-chimneys', [CategoryPageController::class, 'search']);
 Route::get('/dymohody-ta-komplektuyuchi', [ShopController::class, 'index'])->name('shop.index');
 Route::get('/catalog/{catalog}', [CatalogController::class, 'publicShow'])->name('catalog.public.show');
 

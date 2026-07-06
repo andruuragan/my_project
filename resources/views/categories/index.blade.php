@@ -1,0 +1,754 @@
+@extends('layouts.main')
+
+@section('title', 'Категорії димоходів')
+
+@section('content')
+
+<div class="container-1600 py-5">
+
+    <!-- HERO -->
+<div class="bg-light rounded-4 p-5 mb-5 text-center border">
+
+    <span class="badge bg-warning text-dark px-3 py-2 mb-3">
+        DymSystems
+    </span>
+
+    <h1 class="display-5 fw-bold mb-3">
+        Категорії димохідних систем
+    </h1>
+
+    <p class="lead text-muted mx-auto" style="max-width:800px;">
+        Оберіть тип димохідної системи залежно від способу монтажу,
+        опалювального обладнання та умов експлуатації.
+        Після вибору категорії ви зможете швидко підібрати необхідні
+        елементи та перейти до каталогу товарів.
+    </p>
+
+</div>
+
+   
+       
+
+   <div class="row g-4">
+    @foreach([
+    [
+        'cat' => 'single',
+        'img' => 'single-wall-banner.webp',
+        'title' => 'Система одностінних димоходів',
+        'desc' => 'Ø100–350 мм. Використання: гільзування, внутрішні канали, ремонт існуючих шахт.'
+    ],
+    [
+        'cat' => 'sandwich',
+        'img' => 'sandwich-banner.webp',
+        'title' => 'Термо (сендвіч) система',
+        'desc' => 'Ізоляція 30/50 мм. Призначення: зовнішній монтаж, стабільна тяга, захист від конденсату.',
+        'badge' => 'Хіт продажів'
+    ],
+    [
+        'cat' => 'fittings',
+        'img' => 'fittings-banner.webp',
+        'title' => 'Система кріпленнь, хомутів, завершальних та прохідних елементів',
+        'desc' => 'Коліна, трійники, ревізії, дефлектори. Повна збірка будь-якої конфігурації.'
+    ],
+    [
+        'cat' => 'oval',
+        'img' => 'oval-banner.webp',
+        'title' => 'Система овальних нержавіючіх димоходів',
+        'desc' => 'Труби, коліна, трійники, ревізії.'
+    ]
+] as $item)
+    <div class="col-12 col-md-6">
+        <div class="card h-100 border-0 shadow-sm custom-product-card solution-card">
+           <a href="{{ route('shop.index', ['category' => $item['cat']]) }}" class="img-container">
+    <img src="{{ asset('images/chimney/' . $item['img']) }}"
+         width="500"
+         height="500"
+         alt="{{ $item['title'] }}"
+         class="product-img"
+         loading="lazy"
+         decoding="async">
+</a>
+            <div class="card-body p-4 text-center">
+                @if(isset($item['badge']))
+                    <span class="badge bg-warning text-dark mb-3 px-3 py-2">{{ $item['badge'] }}</span>
+                @endif
+                <h3 class="h4 fw-bold mb-3">{{ $item['title'] }}</h3>
+                <p class="text-muted mb-4">{{ $item['desc'] }}</p>
+                <a href="{{ route('shop.index', ['category' => $item['cat']]) }}" class="btn btn-outline-dark rounded-pill px-4">Каталог</a>
+            </div>
+        </div>
+    </div>
+    @endforeach
+</div>
+<!-- CONFIGURATOR -->
+<div class="mt-5">
+
+    <div class="card border-0 shadow-sm rounded-4">
+
+        <div class="card-body p-5 text-center">
+
+            <div class="display-4 mb-3">
+                <i class="bi bi-sliders"></i>
+            </div>
+
+            <h2 class="fw-bold mb-3">
+                Не знаєте, що обрати?
+            </h2>
+
+            <p class="text-muted mx-auto mb-4" style="max-width:700px;">
+                Скористайтеся конфігуратором димохідної системи.
+                Він допоможе підібрати необхідні елементи відповідно до типу
+                обладнання, діаметра, товщини сталі та інших параметрів.
+            </p>
+
+           <button id="openConfigurator" class="btn btn-warning btn-lg rounded-pill px-5">
+    <i class="bi bi-magic me-2"></i>
+    Конфігуратор
+</button>
+        </div>
+
+    </div>
+
+</div>
+{{-- Конфігуратор --}}
+<section class="mt-5"id="configuratorSection" style="display:none;">
+    <div id="configurator">
+        <div class="d-flex justify-content-between small fw-semibold mb-3">
+    <span id="stepText">Крок 1 із 4</span>
+    <span id="percentText">25%</span>
+</div>
+
+<div class="progress mb-4" style="height:10px;">
+    <div class="progress-bar bg-warning" style="width:25%"></div>
+</div>
+
+<div class="d-flex justify-content-between mt-3">
+    <button id="prevBtn" class="btn btn-outline-secondary btn-sm" style="display:none;">Назад</button>
+</div>
+
+       <div id="step1">
+    <h4 class="fw-bold text-center mb-4">
+        Для якого обладнання потрібен димохід?
+    </h4>
+
+    <div class="row g-3">
+        <div class="col-md-4">
+            <button class="config-option w-100 btn btn-outline-dark p-3"
+                    data-value="304">
+                Камін
+            </button>
+        </div>
+
+        <div class="col-md-4">
+            <button class="config-option w-100 btn btn-outline-dark p-3"
+                    data-value="321">
+                Піч
+            </button>
+        </div>
+
+        <div class="col-md-4">
+            <button class="config-option w-100 btn btn-outline-dark p-3"
+                    data-value="304">
+                Газовий котел
+            </button>
+        </div>
+    </div>
+</div>
+       <div id="step2" style="display:none;">
+    <h4 class="fw-bold text-center mb-4">
+        Де буде встановлено димохід?
+    </h4>
+
+    <div class="row g-3">
+
+        <div class="col-md-6">
+            <button
+                class="config-option w-100 btn btn-outline-dark p-3"
+                data-value="Одностінний">
+
+                <i class="bi bi-house-door d-block fs-3 mb-2"></i>
+                <strong>Всередині будинку</strong>
+                <div class="small text-muted mt-2">
+                    Для монтажу у шахті або всередині приміщення
+                </div>
+
+            </button>
+        </div>
+
+        <div class="col-md-6">
+            <button
+                class="config-option w-100 btn btn-outline-dark p-3"
+                data-value="Термо">
+
+                <i class="bi bi-cloud d-block fs-3 mb-2"></i>
+                <strong>Зовні будинку</strong>
+                <div class="small text-muted mt-2">
+                    Для фасадного монтажу та роботи на відкритому повітрі
+                </div>
+
+            </button>
+        </div>
+
+    </div>
+</div>
+<div id="step2b" style="display:none;">
+    <h4 class="fw-bold text-center mb-4">
+        Виберіть тип зовнішнього кожуха
+    </h4>
+
+   <div class="row g-3">
+
+    <div class="col-md-6">
+        <button class="config-option w-100 btn btn-outline-dark p-3"
+                data-value="н/оц">
+            🟡 Економ
+            <div class="small text-muted mt-2">
+                Оцинкований кожух
+            </div>
+        </button>
+    </div>
+
+    <div class="col-md-6">
+        <button class="config-option w-100 btn btn-outline-dark p-3"
+                data-value="н/н">
+            ⚫ Стандарт
+            <div class="small text-muted mt-2">
+                Нержавійка / нержавійка
+            </div>
+        </button>
+    </div>
+
+</div>
+</div>
+
+      <div id="step3" style="display:none;">
+    <h4 class="fw-bold text-center mb-4">
+        Оберіть діаметр
+    </h4>
+
+    <div id="diameters" class="row g-3"></div>
+</div>
+
+       <div id="step4" style="display:none;">
+    <h4 class="fw-bold text-center mb-4">Товщина сталі</h4>
+
+    <div class="row g-3">
+        <div class="col-md-4">
+            <button class="config-option w-100 btn btn-outline-dark p-3" data-value="0,5 мм">0,5 мм</button>
+        </div>
+        <div class="col-md-4">
+            <button class="config-option w-100 btn btn-outline-dark p-3" data-value="0,8 мм">0,8 мм</button>
+        </div>
+        <div class="col-md-4">
+            <button class="config-option w-100 btn btn-outline-dark p-3" data-value="1 мм">1 мм</button>
+        </div>
+    </div>
+</div>
+
+    </div>
+</section>
+<div id="resultsContainer" class="mt-5" style="display:none;">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="fw-bold">Знайдені рішення:</h3>
+        <button class="btn btn-outline-danger" onclick="location.reload()">
+            Очистити пошук
+        </button>
+    </div>
+
+    <div id="productsGrid" class="row g-4"></div>
+
+    <div class="alert alert-warning border-0 shadow-sm rounded-4 mt-4">
+        <h5 class="fw-bold mb-2">
+            <i class="bi bi-info-circle me-2"></i>
+            Зверніть увагу
+        </h5>
+
+        <p class="mb-0">
+            Конфігуратор підбирає основні елементи димохідної системи. Для повного монтажу також можуть знадобитися кріплення, хомути, прохідні елементи, розтяжки, кронштейни та інші комплектуючі. Переглянути їх можна в окремому розділі каталогу.
+        </p>
+
+        <a href="{{ route('shop.index', ['category' => 'fittings']) }}"
+           class="btn btn-outline-warning rounded-pill mt-3">
+            Переглянути кріплення та комплектуючі
+        </a>
+    </div>
+</div>
+<script>
+    function getTotalSteps() {
+    return state.mount === 'Термо' ? 5 : 4;
+}
+document.addEventListener('DOMContentLoaded', function () {
+    const state = {
+    step: 1,
+    equipment: null,
+    mount: null,
+    casing: null, // 👈 новое
+    diameter: null,
+    thickness: null
+};
+   const steps = {
+    1: document.getElementById('step1'),
+    2: document.getElementById('step2'),
+    2.5: document.getElementById('step2b'), // 👈 новый логический шаг
+    3: document.getElementById('step3'),
+    4: document.getElementById('step4')
+};
+
+    // Єдиний обробник кліків для конфігуратора
+   document.getElementById('configurator').addEventListener('click', function (e) {
+    const btn = e.target.closest('.config-option');
+    if (!btn) return;
+
+    // ===== SAVE STATE =====
+    if (state.step === 1) {
+        state.equipment = btn.dataset.value;
+
+    } else if (state.step === 2) {
+        state.mount = btn.dataset.value;
+
+    } else if (state.step === 2.5) {
+        state.casing = btn.dataset.value;
+
+    } else if (state.step === 3) {
+        state.diameter = btn.dataset.value;
+
+    } else if (state.step === 4) {
+        state.thickness = btn.dataset.value;
+    }
+
+    // ===== ACTIVE STYLE =====
+    steps[state.step].querySelectorAll('.config-option')
+        .forEach(b => b.classList.remove('active'));
+
+    btn.classList.add('active');
+
+    // ===== NEXT STEP =====
+    setTimeout(() => {
+
+        // внешний монтаж → дополнительный шаг
+        if (state.step === 2 && state.mount === "Термо") {
+            showStep(2.5);
+            return;
+        }
+
+        // после 2.5 → диаметр
+       if (state.step === 2.5) {
+    renderDiameters();   // 👈 ВАЖНО
+    showStep(3);
+    return;
+}
+        if (state.step < 4) {
+
+            if (state.step === 2) {
+                renderDiameters();
+            }
+
+            showStep(state.step + 1);
+
+        } else {
+            search();
+        }
+
+    }, 300);
+});
+
+    // Обробка кнопки "Назад"
+  document.getElementById('prevBtn').addEventListener('click', function () {
+    if (state.step === 2.5) {
+        showStep(2);
+        return;
+    }
+
+    if (state.step > 1) {
+        showStep(state.step - 1);
+    }
+});
+const singleDiameters = [
+    "100","110","120","130","140","150","160","180","200","220","230","250","260","280",
+    "300","320"
+];
+
+const thermoDiameters = [
+    "100/160",
+    "110/180",
+    "120/180",
+    "130/200",
+    "140/200",
+    "150/220",
+    "160/220",
+    "180/250",
+    "200/260",
+    "220/280",
+    "230/300",
+    "250/320",
+    "300/360",
+    
+
+    "100/200",
+    "120/220",
+    "130/230",
+    "140/240",
+    "150/250",
+    "160/260",
+    "180/280",
+    "200/300"
+];
+function renderDiameters() {
+
+    const container = document.getElementById('diameters');
+
+    const list = state.mount === "Одностінний"
+        ? singleDiameters
+        : thermoDiameters;
+
+    container.innerHTML = list.map(d => `
+        <div class="col-md-3">
+            <button
+                class="config-option w-100 btn btn-outline-dark p-3"
+                data-value="${d}">
+                ${d}
+            </button>
+        </div>
+    `).join('');
+}
+    // Функція відображення кроку
+   function showStep(n) {
+    Object.values(steps).forEach(s => s.style.display = 'none');
+    steps[n].style.display = 'block';
+    state.step = n;
+
+    document.getElementById('prevBtn').style.display = (n > 1) ? 'block' : 'none';
+
+    let currentStep;
+    let totalSteps;
+
+    if (state.mount === 'Термо') {
+        totalSteps = 5;
+
+        switch (n) {
+            case 1: currentStep = 1; break;
+            case 2: currentStep = 2; break;
+            case 2.5: currentStep = 3; break;
+            case 3: currentStep = 4; break;
+            case 4: currentStep = 5; break;
+        }
+    } else {
+        totalSteps = 4;
+
+        switch (n) {
+            case 1: currentStep = 1; break;
+            case 2: currentStep = 2; break;
+            case 3: currentStep = 3; break;
+            case 4: currentStep = 4; break;
+        }
+    }
+
+    const percent = currentStep / totalSteps * 100;
+
+    document.querySelector('.progress-bar').style.width = percent + '%';
+    document.getElementById('stepText').textContent =
+        `Крок ${currentStep} із ${totalSteps}`;
+    document.getElementById('percentText').textContent =
+        Math.round(percent) + '%';
+}
+
+    // Функція пошуку
+  function search() {
+    fetch('/search-chimneys', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+        },
+        body: JSON.stringify(state)
+    })
+    .then(r => r.json())
+    .then(data => {
+
+       
+
+        renderResults(data);
+    })
+    .catch(err => console.error('ERROR:', err));
+}
+    // Рендер результатів
+function renderResults(response) {
+    const container = document.getElementById('resultsContainer');
+    const grid = document.getElementById('productsGrid');
+
+   
+
+    container.style.display = 'block';
+    grid.innerHTML = response.html;
+}
+    // Кнопка відкриття
+    document.getElementById('openConfigurator').addEventListener('click', function () {
+        document.getElementById('configuratorSection').style.display = 'block';
+        this.closest('.mt-5').style.display = 'none';
+        showStep(1);
+    });
+});
+
+
+
+document.addEventListener('DOMContentLoaded', function () {
+
+    // ===== ADD TO CART ANIMATION =====
+    document.addEventListener('click', function (e) {
+        const button = e.target.closest('.add-cart-btn');
+        if (!button) return;
+
+        const icon = button.querySelector('i');
+        if (!icon) return;
+
+        const originalClass = icon.className;
+
+        icon.classList.remove('bi-cart3');
+        icon.classList.add('bi-check2');
+
+        button.style.backgroundColor = '#10b981';
+
+        setTimeout(() => {
+            icon.className = originalClass;
+            button.style.backgroundColor = '#d97706';
+        }, 1500);
+    });
+
+    // ===== TOOLTIP (SAFE INIT) =====
+    document.body.addEventListener('mouseover', function (event) {
+        const target = event.target.closest('[data-bs-toggle="tooltip"]');
+
+        if (!target || typeof bootstrap === 'undefined') return;
+
+        if (!bootstrap.Tooltip.getInstance(target)) {
+            new bootstrap.Tooltip(target, {
+                trigger: 'hover'
+            });
+        }
+    });
+
+});
+// 1. Анимация полета
+function animateFlyToCart(imgElement) {
+    const cartBtn = document.querySelector('.cart-btn') || document.getElementById('cartBtnContainer');
+    if (!imgElement || !cartBtn) return;
+
+    const imgRect = imgElement.getBoundingClientRect();
+    const cartRect = cartBtn.getBoundingClientRect();
+
+    const clone = imgElement.cloneNode(true);
+    clone.classList.add('flying-cart-item');
+    clone.style.position = 'fixed';
+    clone.style.zIndex = '99999';
+    clone.style.pointerEvents = 'none';
+    clone.style.objectFit = 'contain';
+    clone.style.background = '#fff';
+    clone.style.borderRadius = '12px';
+    clone.style.boxShadow = '0 10px 25px rgba(0,0,0,0.15)';
+    clone.style.transition = 'transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.8s ease, width 0.8s ease, height 0.8s ease';
+    clone.style.left = `${imgRect.left}px`;
+    clone.style.top = `${imgRect.top}px`;
+    clone.style.width = `${imgRect.width}px`;
+    clone.style.height = `${imgRect.height}px`;
+
+    document.body.appendChild(clone);
+
+    requestAnimationFrame(() => {
+        clone.style.transformOrigin = 'left top';
+        const mobileOffsetX = window.innerWidth < 992 ? 300 : 0;
+        const mobileOffsetY = window.innerWidth < 992 ? 30 : 0;
+        const targetX = cartRect.left + 15 + mobileOffsetX;
+        const targetY = cartRect.top + (cartRect.height / 2) - 8 + mobileOffsetY;
+        clone.style.transform = `translate(${targetX - imgRect.left}px, ${targetY - imgRect.top}px) scale(0.12)`;
+        clone.style.opacity = '0.15';
+    });
+
+    setTimeout(() => {
+        clone.remove();
+        cartBtn.style.transform = 'scale(1.15)';
+        setTimeout(() => { cartBtn.style.transform = 'none'; }, 150);
+    }, 800);
+}
+
+// 2. Делегированный клик «КУПИТИ»
+document.addEventListener('click', function (e) {
+    const buyBtn = e.target.closest('.add-cart-btn');
+    if (!buyBtn) return;
+
+    e.preventDefault();
+    const card = buyBtn.closest('.product-card');
+    if (!card) return;
+
+    const productImg = card.querySelector('.product-image');
+    if (productImg) animateFlyToCart(productImg);
+
+    const form = buyBtn.closest('form');
+    let url, csrfToken, formData;
+
+    if (form) {
+        url = form.action;
+        csrfToken = form.querySelector('[name="_token"]')?.value;
+        formData = new FormData(form);
+    } else {
+        const productId = buyBtn.dataset.id;
+        url = `/shop/${productId}/add`;
+        csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
+        formData = new FormData();
+        formData.append('qty', 1);
+    }
+
+    if (!csrfToken) return;
+
+    // ИНДИКАЦИЯ ПРОЦЕССА
+    buyBtn.classList.add('active-process');
+    buyBtn.disabled = true;
+
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': csrfToken,
+            'Accept': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest'
+        },
+        body: formData
+    })
+    .then(res => res.ok ? res.json() : null)
+   .then(data => {
+    buyBtn.classList.remove('active-process');
+    buyBtn.disabled = false;
+    if (!data) return;
+
+    // 1. Обновляем количество
+    const countIds = ['cartCountMobile', 'cartCountDesktop', 'cartCount'];
+    countIds.forEach(id => {
+        const el = document.getElementById(id);
+        if (el && typeof data.count !== 'undefined') el.textContent = data.count;
+    });
+
+    // 2. Обновляем сумму (с логикой скрытия если 0)
+    const totalIds = ['cartTotalMobile', 'cartTotalDesktop', 'cartTotalNav'];
+    totalIds.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+            if (data.count > 0 && typeof data.total !== 'undefined') {
+                el.textContent = new Intl.NumberFormat('uk-UA').format(data.total);
+                el.style.display = ''; // Показываем элемент
+            } else {
+                el.textContent = '0'; // Или оставьте пустым, если нужно
+                // el.style.display = 'none'; // Раскомментируйте, если нужно полностью скрывать сумму
+            }
+        }
+    });
+
+    // 3. Управление видимостью бейджа с количеством
+    const badge = document.getElementById('cartBadgeMobile');
+    if (badge) {
+        badge.style.display = (data.count > 0) ? 'flex' : 'none';
+    }
+
+    // 4. Уведомления и анимация
+    if (data.success) {
+        if (typeof refreshCart === 'function') refreshCart();
+        if (typeof showAlert === 'function') showAlert('Додано у кошик', 'success');
+        
+        const originalContent = buyBtn.innerHTML;
+       
+        
+        setTimeout(() => { 
+            buyBtn.innerHTML = originalContent; 
+            buyBtn.classList.remove('btn-success-animated'); 
+        }, 1500);
+    }
+})
+    .catch(err => {
+        buyBtn.classList.remove('active-process');
+        buyBtn.disabled = false;
+        console.error('Помилка:', err);
+    });
+});
+
+// 3. Остальные обработчики (DOMContent...)
+document.addEventListener('DOMContentLoaded', function () {
+    const modalEl = document.getElementById('imageModal');
+    let modalInstance = null;
+    if (modalEl && typeof bootstrap !== 'undefined') {
+        modalInstance = bootstrap.Modal.getOrCreateInstance(modalEl);
+        
+    }
+    document.addEventListener('click', function (e) {
+        const btn = e.target.closest('.open-image');
+        if (!btn) return;
+        const modalImage = document.getElementById('modalImage');
+        if (modalImage) {
+            modalImage.src = btn.dataset.image;
+            if (modalInstance) modalInstance.show();
+        }
+    });
+});
+
+
+document.addEventListener('submit', function (e) {
+    if (e.target.matches('.filter-form')) {
+        const offcanvasEl = document.getElementById('filterOffcanvas');
+        
+        // Добавляем проверку наличия bootstrap и экземпляра offcanvas
+        if (offcanvasEl && typeof bootstrap !== 'undefined') {
+            const bsOffcanvas = bootstrap.Offcanvas.getInstance(offcanvasEl);
+            if (bsOffcanvas) {
+                bsOffcanvas.hide();
+            }
+        }
+    }
+});
+
+    document.addEventListener('click', function (e) {
+    const btn = e.target.closest('.open-image');
+    if (!btn) return;
+
+    const modalEl = document.getElementById('imageModal');
+    const img = document.getElementById('modalImage');
+
+    if (!modalEl || !img) return;
+
+    img.src = btn.dataset.image;
+
+    bootstrap.Modal.getOrCreateInstance(modalEl).show();
+});
+   document.addEventListener('DOMContentLoaded', function () {
+    const modalEl = document.getElementById('imageModal');
+
+    if (!modalEl) return;
+
+    modalEl.addEventListener('hide.bs.modal', function () {
+        document.activeElement?.blur();
+    });
+});
+
+
+</script>
+<style>
+.config-option {
+    transition: all 0.3s ease;
+    border: 2px solid #333;
+    font-weight: 600;
+}
+.config-option:hover {
+   
+    transform: translateY(-3px);
+}
+.config-option.active {
+    background: #ffc107 !important;
+    border-color: #ffc107 !important;
+    color: #000 !important;
+    box-shadow: 0 4px 10px rgba(255,193,7,0.3);
+}
+/* Анімація появи */
+#configurator > div {
+    animation: fadeIn 0.4s;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+</style>
+@endsection
