@@ -111,6 +111,12 @@
                 Каталог товарів
             </a>
 
+             <a href="{{ route('categories.index') }}"
+               class="{{ request()->routeIs('categories.index') ? 'active' : '' }}">
+                <i class="bi bi-boxes"></i>
+                Категорії димарів
+            </a>
+
             <a href="{{ route('about.index') }}"
                class="{{ request()->routeIs('about.index') ? 'active' : '' }}">
                 <i class="bi bi-info-circle"></i>

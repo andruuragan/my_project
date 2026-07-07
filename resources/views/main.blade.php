@@ -323,6 +323,32 @@
         @endforeach
     </div>
 </section>
+<section class="container-1600 py-5">
+    <div class="cta-block">
+
+        <div class="row align-items-center">
+
+            <div class="col-lg-8">
+                <h2 class="fw-bold mb-3">
+                    Підберіть димохід за кілька хвилин
+                </h2>
+
+                <p class="mb-0 cta-text">
+                    Відповідайте на кілька простих запитань, і конфігуратор запропонує відповідну димохідну систему саме для ваших умов.
+                </p>
+            </div>
+
+            <div class="col-lg-4 text-center text-lg-end mt-4 mt-lg-0">
+                <a href="{{ route('categories.index') }}#configurator1"
+                   class="btn btn-warning btn-lg fw-bold px-4">
+                    Скористатися конфігуратором
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+</section>
 
 <section class="container-1600 py-5">
     <div class="text-center mb-5">

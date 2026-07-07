@@ -45,7 +45,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link d-inline-flex align-items-center {{ request()->routeIs('categories.index') ? 'active' : '' }}" href="{{ route('categories.index') }}">
-                        <i class="bi bi-boxes me-2"></i> Категорії димоходів
+                        <i class="bi bi-boxes me-2"></i> Категорії димарів
                     </a>
                 </li>
 

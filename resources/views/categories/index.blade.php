@@ -81,7 +81,7 @@
     @endforeach
 </div>
 <!-- CONFIGURATOR -->
-<div class="mt-5">
+<div id="configurator1"class="mt-5">
 
     <div class="card border-0 shadow-sm rounded-4">
 
@@ -382,8 +382,9 @@ const thermoDiameters = [
     "230/300",
     "250/320",
     "300/360",
-    
-
+    '350/420',
+    '400/460',
+    '500/560',
     "100/200",
     "120/220",
     "130/230",
