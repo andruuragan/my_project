@@ -26,14 +26,34 @@
 
 </div>
 
-   
+   <section class="py-5">
+<div class="container-1600">
+
+<div class="text-center mb-5">
+    <span class="badge bg-warning text-dark mb-3">
+        Поради
+    </span>
+
+    <h2 class="fw-bold">
+        Як обрати димохід
+    </h2>
+
+    <p class="text-muted mx-auto" style="max-width:800px">
+        Вибір димохідної системи залежить від типу опалювального обладнання,
+        температури димових газів та місця монтажу. Нижче наведено короткі
+        рекомендації, які допоможуть визначитися.
+    </p>
+</div>
+
+</div>
+</section>
        
 
    <div class="row g-4">
     @foreach([
     [
         'cat' => 'single',
-        'img' => 'single-wall-banner.webp',
+        'img' => 'single-wall-banner1.webp',
         'title' => 'Система одностінних димоходів',
         'desc' => 'Ø100–350 мм. Використання: гільзування, внутрішні канали, ремонт існуючих шахт.'
     ],
@@ -59,7 +79,10 @@
 ] as $item)
     <div class="col-12 col-md-6">
         <div class="card h-100 border-0 shadow-sm custom-product-card solution-card">
-           <a href="{{ route('shop.index', ['category' => $item['cat']]) }}" class="img-container">
+           <a href="{{ $item['cat'] == 'single'
+    ? route('single-wall-system')
+    : route('shop.index', ['category' => $item['cat']]) }}"
+   class="img-container">
     <img src="{{ asset('images/chimney/' . $item['img']) }}"
          width="500"
          height="500"
@@ -74,12 +97,18 @@
                 @endif
                 <h3 class="h4 fw-bold mb-3">{{ $item['title'] }}</h3>
                 <p class="text-muted mb-4">{{ $item['desc'] }}</p>
-                <a href="{{ route('shop.index', ['category' => $item['cat']]) }}" class="btn btn-outline-dark rounded-pill px-4">Каталог</a>
+               <a href="{{ $item['cat'] == 'single'
+    ? route('single-wall-system')
+    : route('shop.index', ['category' => $item['cat']]) }}"
+   class="btn btn-outline-dark rounded-pill px-4">
+    Підібрати систему
+</a>
             </div>
         </div>
     </div>
     @endforeach
 </div>
+
 <!-- CONFIGURATOR -->
 <div id="configurator1"class="mt-5">
 
@@ -96,9 +125,10 @@
             </h2>
 
             <p class="text-muted mx-auto mb-4" style="max-width:700px;">
-                Скористайтеся конфігуратором димохідної системи.
-                Він допоможе підібрати необхідні елементи відповідно до типу
-                обладнання, діаметра, товщини сталі та інших параметрів.
+                 Скористайтеся конфігуратором димохідної системи.
+    Він допоможе підібрати необхідні елементи відповідно до типу
+    обладнання, діаметра, товщини сталі та інших параметрів.
+    <strong>Нижче також доступна схема основних елементів димоходу, яка допоможе краще зорієнтуватися в комплектуючих.</strong>
             </p>
 
            <button id="openConfigurator" class="btn btn-warning btn-lg rounded-pill px-5">
@@ -272,7 +302,258 @@
             Переглянути кріплення та комплектуючі
         </a>
     </div>
+
+   
 </div>
+ <section class="mt-5">
+    <div class="card border-0 shadow-sm rounded-4">
+        <div class="card-body p-5">
+
+            <div class="text-center mb-4">
+                <span class="badge bg-warning text-dark mb-3">
+                    Довідка
+                </span>
+
+                <h2 class="fw-bold">
+                    Схема типової димохідної системи
+                </h2>
+
+                <p class="text-muted mx-auto" style="max-width:750px;">
+                    На схемі показано основні елементи димоходу та порядок їх
+                    встановлення. Вона допоможе краще зрозуміти призначення
+                    комплектуючих, які підбирає конфігуратор.
+                </p>
+            </div>
+
+            <div class="text-center">
+               <a href="{{ asset('images/chimney/scema.webp') }}" target="_blank">
+    <img
+        src="{{ asset('images/chimney/scema.webp') }}"
+        class="img-fluid rounded-3 border"
+        alt="Схема елементів димохідної системи">
+</a>
+            </div>
+            <div class="alert alert-light border mt-4 mb-0">
+    <i class="bi bi-info-circle me-2"></i>
+    Схема має ознайомчий характер. Комплектація димохідної системи залежить
+    від типу обладнання, способу монтажу та особливостей вашого об'єкта.
+</div>
+
+        </div>
+    </div>
+</section>
+<section class="py-5">
+    <div class="container-1600">
+
+        <div class="text-center mb-5">
+            <span class="badge bg-warning text-dark mb-3">
+                Поради
+            </span>
+
+            <h2 class="fw-bold">
+                Як обрати тип димохідної системи
+            </h2>
+        </div>
+
+        <div class="row g-4">
+
+            <div class="col-lg-6">
+                <div class="card h-100 border-0 shadow-sm p-4">
+                    <h4 class="fw-bold mb-3">
+                        Одностінний димохід
+                    </h4>
+
+                    <p class="text-muted mb-0">
+                        Використовується всередині приміщення, для гільзування
+                        існуючих каналів та модернізації старих димоходів.
+                        Не рекомендується для відкритого зовнішнього монтажу,
+                        оскільки без утеплення утворюється конденсат.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="card h-100 border-0 shadow-sm p-4">
+                    <h4 class="fw-bold mb-3">
+                        Термо (сендвіч) димохід
+                    </h4>
+
+                    <p class="text-muted mb-0">
+                        Має теплоізоляційний шар між двома трубами,
+                        тому підходить для зовнішнього монтажу,
+                        забезпечує стабільну тягу та зменшує
+                        утворення конденсату.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+<section class="py-5 bg-light rounded-4">
+
+<div class="container-1600">
+
+<div class="text-center mb-5">
+
+<h2 class="fw-bold">
+Для якого обладнання який димохід?
+</h2>
+
+</div>
+
+<div class="row g-4">
+
+<div class="col-md-4">
+<div class="card h-100 border-0 shadow-sm p-4">
+
+<h5 class="fw-bold">
+🔥 Камін
+</h5>
+
+<p class="text-muted mb-0">
+Найчастіше рекомендується сталь AISI 321 товщиною 0,8–1 мм через високі температури роботи.
+</p>
+
+</div>
+</div>
+
+<div class="col-md-4">
+<div class="card h-100 border-0 shadow-sm p-4">
+
+<h5 class="fw-bold">
+🏠 Газовий котел
+</h5>
+
+<p class="text-muted mb-0">
+Для сучасних газових котлів зазвичай достатньо AISI 304 товщиною 0,5 мм.
+</p>
+
+</div>
+</div>
+
+<div class="col-md-4">
+<div class="card h-100 border-0 shadow-sm p-4">
+
+<h5 class="fw-bold">
+🪵 Твердопаливний котел
+</h5>
+
+<p class="text-muted mb-0">
+Рекомендується AISI 321 товщиною 0,8 або 1 мм завдяки високій термостійкості.
+</p>
+
+</div>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="py-5">
+
+<div class="container-1600">
+
+<div class="card border-0 shadow-sm rounded-4">
+
+<div class="card-body text-center p-5">
+
+<h2 class="fw-bold mb-3">
+Не хочете підбирати вручну?
+</h2>
+
+<p class="text-muted mb-4">
+Скористайтеся інтерактивним конфігуратором. Він допоможе
+підібрати димохід відповідно до типу обладнання, марки сталі,
+товщини та діаметра.
+</p>
+
+<a href="#configurator1"
+class="btn btn-warning rounded-pill px-5">
+Запустити конфігуратор
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+<section class="py-5">
+
+<div class="container-1600">
+
+<div class="text-center mb-5">
+
+<h2 class="fw-bold">
+Поширені запитання
+</h2>
+
+</div>
+
+<div class="accordion" id="faq">
+
+<div class="accordion-item">
+<h2 class="accordion-header">
+<button class="accordion-button" data-bs-toggle="collapse" data-bs-target="#faq1">
+Чим відрізняється одностінний димохід від сендвіч-системи?
+</button>
+</h2>
+<div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faq">
+<div class="accordion-body">
+Одностінний димохід використовується всередині приміщень або для гільзування шахт. Сендвіч-система має утеплення та призначена для зовнішнього монтажу.
+</div>
+</div>
+</div>
+
+<div class="accordion-item">
+<h2 class="accordion-header">
+<button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq2">
+Яку марку сталі краще обрати?
+</button>
+</h2>
+<div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faq">
+<div class="accordion-body">
+AISI 304 — універсальний вибір, AISI 321 — для високих температур, AISI 201 — бюджетне рішення.
+</div>
+</div>
+</div>
+
+<div class="accordion-item">
+<h2 class="accordion-header">
+<button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq3">
+Чи можна встановлювати одностінний димохід зовні?
+</button>
+</h2>
+<div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faq">
+<div class="accordion-body">
+Для зовнішнього монтажу рекомендується використовувати утеплені сендвіч-димоходи.
+</div>
+</div>
+</div>
+
+<div class="accordion-item">
+<h2 class="accordion-header">
+<button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq4">
+Як визначити потрібний діаметр?
+</button>
+</h2>
+<div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faq">
+<div class="accordion-body">
+Діаметр визначається відповідно до рекомендацій виробника опалювального обладнання та параметрів димоходу.
+</div>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</section>
 <script>
     function getTotalSteps() {
     return state.mount === 'Термо' ? 5 : 4;
@@ -364,8 +645,8 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 const singleDiameters = [
-    "100","110","120","130","140","150","160","180","200","220","230","250","260","280",
-    "300","320"
+    "100","110","120","130","140","150","160","180","200","220","230","250",
+    "300","350","400","450"
 ];
 
 const thermoDiameters = [
@@ -750,6 +1031,9 @@ document.addEventListener('submit', function (e) {
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
+}
+#configurator1 {
+    scroll-margin-top: 140px;
 }
 </style>
 @endsection

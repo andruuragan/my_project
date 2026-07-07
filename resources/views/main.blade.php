@@ -39,7 +39,7 @@
     @foreach([
     [
         'cat' => 'single',
-        'img' => 'single-wall-banner.webp',
+        'img' => 'single-wall-banner1.webp',
         'title' => 'Система одностінних димоходів',
         'desc' => 'Ø100–350 мм. Використання: гільзування, внутрішні канали, ремонт існуючих шахт.'
     ],
@@ -65,7 +65,10 @@
 ] as $item)
     <div class="col-12 col-md-6">
         <div class="card h-100 border-0 shadow-sm custom-product-card solution-card">
-           <a href="{{ route('shop.index', ['category' => $item['cat']]) }}" class="img-container">
+           <a href="{{ $item['cat'] == 'single'
+    ? route('single-wall-system')
+    : route('shop.index', ['category' => $item['cat']]) }}"
+   class="img-container">
     <img src="{{ asset('images/chimney/' . $item['img']) }}"
          width="500"
          height="500"
@@ -80,7 +83,12 @@
                 @endif
                 <h3 class="h4 fw-bold mb-3">{{ $item['title'] }}</h3>
                 <p class="text-muted mb-4">{{ $item['desc'] }}</p>
-                <a href="{{ route('shop.index', ['category' => $item['cat']]) }}" class="btn btn-outline-dark rounded-pill px-4">Каталог</a>
+                <a href="{{ $item['cat'] == 'single'
+    ? route('single-wall-system')
+    : route('shop.index', ['category' => $item['cat']]) }}"
+   class="btn btn-outline-dark rounded-pill px-4">
+    Підібрати систему
+</a>
             </div>
         </div>
     </div>
@@ -347,7 +355,7 @@
             <div class="col-lg-4 text-center text-lg-end mt-4 mt-lg-0">
                 <a href="{{ route('categories.index') }}#configurator1"
                    class="btn btn-warning btn-lg fw-bold px-4">
-                   <i class="bi bi-arrow-right-circle me-2"></i></i>Підібрати димохід
+                   <i class="bi bi-arrow-right-circle me-2"></i>Підібрати димохід
                 </a>
             </div>
 

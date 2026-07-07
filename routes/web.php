@@ -28,6 +28,7 @@ use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CompareController;
 use App\Http\Controllers\CategoryPageController;
+use App\Http\Controllers\SingleWallSystemController;
 
 /* ==========================================================================
 |  1. PUBLIC PAGES & AUTH CONTROL (Breeze)
@@ -39,6 +40,8 @@ Route::get('/about', [AboutController::class, 'index'])->name('about.index');
 Route::get('/categories', [CategoryPageController::class, 'index'])
     ->name('categories.index');
     Route::post('/search-chimneys', [CategoryPageController::class, 'search']);
+    Route::get('/systema-odnostinnih-dimohodiv', SingleWallSystemController::class)
+    ->name('single-wall-system');
 Route::get('/dymohody-ta-komplektuyuchi', [ShopController::class, 'index'])->name('shop.index');
 Route::get('/catalog/{catalog}', [CatalogController::class, 'publicShow'])->name('catalog.public.show');
 
