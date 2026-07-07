@@ -20,6 +20,11 @@
                         <td>
                             <div class="fw-bold text-dark">{{ $order->user->name ?? 'Гість' }}</div>
                             <small class="text-muted">{{ $order->user->email ?? '' }}</small>
+                             @if(!empty($order->user?->phone))
+        <small class="text-muted d-block">
+            {{ $order->user->phone }}
+        </small>
+    @endif
                         </td>
                         <td>
                             <select class="form-select form-select-sm status-select" data-id="{{ $order->id }}">

@@ -114,7 +114,7 @@
                                id="filter_min_price"
                                name="min_price"
                                value="{{ request('min_price') }}"
-                               placeholder="0 грн"
+                               placeholder="0 грн."
                                class="form-control"
                                autocomplete="off">
                     </div>
@@ -126,7 +126,7 @@
                                id="filter_max_price"
                                name="max_price"
                                value="{{ request('max_price') }}"
-                               placeholder="Мах грн"
+                               placeholder="0 грн."
                                class="form-control"
                                autocomplete="off">
                     </div>
