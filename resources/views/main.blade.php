@@ -330,18 +330,24 @@
 
             <div class="col-lg-8">
                 <h2 class="fw-bold mb-3">
-                    Підберіть димохід за кілька хвилин
+                    Підберіть димохід за 1 хвилину
                 </h2>
 
                 <p class="mb-0 cta-text">
                     Відповідайте на кілька простих запитань, і конфігуратор запропонує відповідну димохідну систему саме для ваших умов.
                 </p>
+                <div class="d-flex flex-wrap gap-3 small fw-semibold text-success mt-3">
+        <span><i class="bi bi-check-circle-fill me-1"></i>Безкоштовно</span>
+        <span><i class="bi bi-check-circle-fill me-1"></i>До 1 хвилини</span>
+        <span><i class="bi bi-check-circle-fill me-1"></i>Без реєстрації</span>
+        <span><i class="bi bi-check-circle-fill me-1"></i>За вашими параметрами</span>
+    </div>
             </div>
 
             <div class="col-lg-4 text-center text-lg-end mt-4 mt-lg-0">
                 <a href="{{ route('categories.index') }}#configurator1"
                    class="btn btn-warning btn-lg fw-bold px-4">
-                    Скористатися конфігуратором
+                   <i class="bi bi-arrow-right-circle me-2"></i></i>Підібрати димохід
                 </a>
             </div>
 
