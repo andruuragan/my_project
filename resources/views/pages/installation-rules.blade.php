@@ -254,6 +254,26 @@ $rules = [
     </div>
 </div>
 
+{{-- Адаптивний банер --}}
+<div class="mt-5">
+    <picture>
+        {{-- Телефон --}}
+        <source
+            media="(max-width: 767.98px)"
+            srcset="{{ asset('images/chimney/addmob.webp') }}">
+
+        {{-- Планшет/ПК --}}
+        <img
+            src="{{ asset('images/chimney/add.webp') }}"
+            alt="Монтаж димоходу"
+            class="img-fluid rounded-4 w-100"
+            width="1600"
+            height="600"
+            loading="lazy"
+            decoding="async">
+    </picture>
+</div>
+
     {{-- НИЖНІЙ СТАЦІОНАРНИЙ БАНЕР --}}
     <div class="mt-5">
         <div class="p-card p-5 text-center" style="background: linear-gradient(135deg,#0f172a,#1e293b); color:#fff;">
