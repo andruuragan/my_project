@@ -1,8 +1,12 @@
 @extends('layouts.main')
 
-@section('title', 'Категорії димоходів')
+@section('title', 'Категорії димоходів | DymSystems')
+@section('description', 'Категорії димарів DymSystems: одностінні димоходи, термо (сендвіч) димоходи, комплектуючі, кріплення та овальні елементи з нержавіючої сталі. | DymSystems')
 
 @section('content')
+
+
+
 
 <div class="container-1600 py-5">
 
