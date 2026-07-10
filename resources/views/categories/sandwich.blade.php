@@ -15,63 +15,61 @@
                             <a href="{{ route('categories.index') }}" class="text-decoration-none text-black-50 hover-orange transition-all">Категорії димарів</a>
                         </li>
                         <li class="breadcrumb-item active text-black" aria-current="page">
-                            <span style="color: #f97316; font-weight: 500;">Система одностінних димоходів</span>
+                            <span style="color: #f97316; font-weight: 500;">Термо (сендвіч) система</span>
                         </li>
                     </ol>
                 </nav>
     <div class="row align-items-center g-5">
 
-        <div class="col-lg-6">
+       <div class="col-lg-6">
 
-            <span class="badge bg-warning text-dark px-3 py-2 mb-3">
-                DymSystems
-            </span>
-           <div class="display-3 text-warning mb-3">
-    <i class="bi bi-ui-checks-grid"></i>
+    <span class="badge bg-warning text-dark px-3 py-2 mb-3">
+        DymSystems
+    </span>
+
+    <h1 class="display-5 fw-bold mb-4">
+        Термо (сендвіч) димохідна система
+    </h1>
+
+    <p class="lead text-muted mb-4">
+        Оберіть характеристики термо (сендвіч) димоходу, після чого ми
+        покажемо лише сумісні елементи відповідно до ваших параметрів.
+    </p>
+
+    <div class="d-flex flex-wrap gap-3 mb-4">
+
+        <span class="badge rounded-pill bg-light text-dark border px-3 py-2">
+            <i class="bi bi-thermometer-half text-warning me-2"></i>
+            З теплоізоляцією
+        </span>
+
+        <span class="badge rounded-pill bg-light text-dark border px-3 py-2">
+            <i class="bi bi-house-check text-success me-2"></i>
+            Для зовнішнього монтажу
+        </span>
+
+        <span class="badge rounded-pill bg-light text-dark border px-3 py-2">
+            <i class="bi bi-check-circle text-primary me-2"></i>
+            Лише сумісні елементи
+        </span>
+
+    </div>
+
+    <a href="#selection"
+       class="btn btn-warning btn-lg rounded-pill px-5 shadow-sm">
+        <i class="bi bi-arrow-right-circle me-2"></i>
+        Почати підбір
+    </a>
+
 </div>
-
-           <h1 class="display-5 fw-bold mb-4">
-    Підбір одностінної димохідної системи
-</h1>
-
-            <p class="lead text-muted mb-4">
-               Оберіть характеристики димохідної системи, після чого ми покажемо лише ті елементи, які підходять саме для вашого вибору.
-            </p>
-
-            <div class="d-flex flex-wrap gap-3 mb-4">
-
-                <span class="badge rounded-pill bg-light text-dark border px-3 py-2">
-    <i class="bi bi-clock-fill text-warning me-2"></i>
-    До 1 хвилини
-</span>
-
-               <span class="badge rounded-pill bg-light text-dark border px-3 py-2">
-    <i class="bi bi-check-circle-fill text-success me-2"></i>
-    Лише сумісні елементи
-</span>
-
-               <span class="badge rounded-pill bg-light text-dark border px-3 py-2">
-    <i class="bi bi-funnel-fill text-primary me-2"></i>
-    Без зайвих фільтрів
-</span>
-
-            </div>
-
-            <a href="#selection"
-   class="btn btn-warning btn-lg rounded-pill px-5 shadow-sm">
-    <i class="bi bi-arrow-right-circle-fill me-2"></i>
-    Почати підбір
-</a>
-
-        </div>
 
         <div class="col-lg-6 text-center">
 
-            <img src="{{ asset('images/chimney/single-wall-banner1.webp') }}"
+            <img src="{{ asset('images/chimney/sandwich-banner.webp') }}"
                  class="img-fluid"
                  width="650"
                  height="650"
-                 alt="Система одностінних димоходів"
+                 alt="Система термо (сендвіч) димоходів"
                  loading="eager">
 
         </div>
@@ -84,7 +82,7 @@
     <div class="text-center mb-5">
 
         <span class="badge bg-warning text-dark mb-3">
-            Підбір за 4 кроки
+            Підбір за 5 кроків
         </span>
 
         <h2 class="fw-bold mb-3">
@@ -101,7 +99,7 @@
 
     <div class="row g-4">
 
-        <div class="col-md-3">
+        <div class="col">
            <div class="card step-card h-100 border-0 shadow-sm text-center p-4"
            style="background:linear-gradient(135deg,#fffdf7,#ffffff)">
 
@@ -120,7 +118,7 @@
             </div>
         </div>
 
-        <div class="col-md-3">
+       <div class="col">
            <div class="card step-card h-100 border-0 shadow-sm text-center p-4"
            style="background:linear-gradient(135deg,#fffdf7,#ffffff)">
             
@@ -142,7 +140,7 @@
             </div>
         </div>
 
-        <div class="col-md-3">
+      <div class="col">
            <div class="card step-card h-100 border-0 shadow-sm text-center p-4"
            style="background:linear-gradient(135deg,#fffdf7,#ffffff)">
 
@@ -163,7 +161,28 @@
             </div>
         </div>
 
-        <div class="col-md-3">
+        <div class="col">
+    <div class="card step-card h-100 border-0 shadow-sm text-center p-4"
+         style="background:linear-gradient(135deg,#fffdf7,#ffffff)">
+
+        <div class="display-5 text-warning mb-3">
+            <i class="bi bi-layers"></i>
+        </div>
+
+        <h5 class="fw-bold">
+            Зовнішній кожух
+        </h5>
+
+        <p class="text-muted small mb-0">
+            Оберіть оцинкований або нержавіючий кожух
+        </p>
+
+    </div>
+</div>
+
+
+
+        <div class="col">
            <div class="card step-card h-100 border-0 shadow-sm text-center p-4"
            style="background:linear-gradient(135deg,#fffdf7,#ffffff)">
 
@@ -198,7 +217,7 @@
             </h5>
 
             <p class="mb-0">
-                Якщо ви не впевнені, який діаметр або марку сталі обрати,
+                Якщо ви не впевнені, який діаметр, зовнішній кожух або марку сталі обрати,
                 скористайтеся нашим конфігуратором. Він допоможе підібрати
                 димохідну систему відповідно до вашого обладнання.
             </p>
@@ -585,13 +604,76 @@
 
     <div class="text-center mb-5">
 
-        <span class="badge bg-warning text-dark mb-3">
-            DymSystems
-        </span>
+       
 
-        <h2 class="fw-bold">
-            Чому обирають наші одностінні димоходи
-        </h2>
+       
+
+        <div class="card border-0 shadow-sm rounded-4 overflow-hidden mb-5"
+     style="background: linear-gradient(135deg,#fff8e8 0%,#ffffff 100%);">
+
+    <div class="card-body p-5">
+
+        <div class="row align-items-center">
+
+            <div class="col-lg-8">
+
+                <span class="badge bg-warning text-dark mb-3">
+                    DymSystems
+                </span>
+
+                <h2 class="fw-bold mb-3">
+                     Чому обирають наші термо (сендвіч) димоходи
+                </h2>
+
+                <p class="text-muted mb-4">
+                    Ми пропонуємо широкий вибір комплектуючих для сендвіч-димоходів,
+                    виготовлених із якісної нержавіючої сталі. Система забезпечує
+                    надійну теплоізоляцію, стабільну тягу та безпечну експлуатацію
+                    протягом багатьох років.
+                </p>
+
+                <div class="d-flex flex-wrap gap-3">
+
+                    <span class="badge rounded-pill bg-light border text-dark px-3 py-2">
+                        <i class="bi bi-fire text-warning me-2"></i>
+                        Висока термостійкість
+                    </span>
+
+                    <span class="badge rounded-pill bg-light border text-dark px-3 py-2">
+                        <i class="bi bi-droplet-half text-primary me-2"></i>
+                        Мінімум конденсату
+                    </span>
+
+                    <span class="badge rounded-pill bg-light border text-dark px-3 py-2">
+                        <i class="bi bi-house-check text-success me-2"></i>
+                        Для зовнішнього монтажу
+                    </span>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-4 text-center mt-4 mt-lg-0">
+
+                <div class="display-1 text-warning">
+                    <i class="bi bi-layers-half"></i>
+                </div>
+
+                <h5 class="fw-bold mt-3">
+                    Сендвіч-система
+                </h5>
+
+                <p class="text-muted mb-0">
+                    Внутрішня труба • Теплоізоляція • Зовнішній кожух
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
 
     </div>
 
@@ -599,31 +681,40 @@
 
         <div class="col-lg-6">
 
-          <div class="d-flex mb-4">
+         <div class="d-flex mb-4">
     <i class="bi bi-check-circle-fill text-success fs-4 me-3"></i>
     <div>
-        Використовуємо нержавіючу сталь <strong>AISI 201, 304, 321 та 430</strong>.
+        Внутрішня труба виготовляється з нержавіючої сталі <strong>AISI 304 або AISI 321</strong>, що забезпечує стійкість до високих температур.
     </div>
 </div>
 
 <div class="d-flex mb-4">
     <i class="bi bi-check-circle-fill text-success fs-4 me-3"></i>
     <div>
-        Точні геометричні розміри забезпечують щільне з'єднання елементів.
+        Теплоізоляційний шар мінімізує утворення конденсату та покращує тягу.
+    </div>
+</div>
+
+<div class="d-flex mb-4">
+    <i class="bi bi-check-circle-fill text-success fs-4 me-3"></i>
+    <div>
+        Зовнішній кожух доступний у двох виконаннях:
+        <strong>оцинкована сталь (Економ)</strong> або
+        <strong>нержавіюча сталь AISI 201 (Стандарт)</strong>.
     </div>
 </div>
 
 <div class="d-flex">
     <i class="bi bi-check-circle-fill text-success fs-4 me-3"></i>
     <div>
-        Повний асортимент комплектуючих для монтажу димохідної системи.
+        Повний асортимент комплектуючих для монтажу сендвіч-димохідної системи.
     </div>
 </div>
 <div class="row text-center mt-5">
 
     <div class="col-4">
-        <div class="display-6 fw-bold text-warning">4</div>
-        <small class="text-muted">Марки сталі</small>
+        <div class="display-6 fw-bold text-warning">2</div>
+        <small class="text-muted">Типи кожуха</small>
     </div>
 
     <div class="col-4">
@@ -657,20 +748,23 @@
                         </p>
                     </div>
                 </div>
-
                 <div class="col-6">
-                    <div class="card feature-card h-100 border-0 shadow-sm p-4 text-center">
-                        <div class="display-6 text-warning">
-    <i class="bi bi-rulers"></i>
+    <div class="card feature-card h-100 border-0 shadow-sm p-4 text-center">
+        <div class="display-6 text-warning">
+            <i class="bi bi-droplet-half"></i>
+        </div>
+
+        <h5 class="fw-bold mt-3">
+            Мінімум конденсату
+        </h5>
+
+        <p class="small text-muted mb-0">
+            Теплоізоляція підтримує стабільну температуру димових газів.
+        </p>
+    </div>
 </div>
-                        <h5 class="fw-bold mt-3">
-                            Точна геометрія
-                        </h5>
-                        <p class="small text-muted mb-0">
-                            Легке складання системи
-                        </p>
-                    </div>
-                </div>
+
+               
 
                 <div class="col-6">
                    <div class="card feature-card h-100 border-0 shadow-sm p-4 text-center">
@@ -685,6 +779,39 @@
                         </p>
                     </div>
                 </div>
+                 <div class="col-6">
+    <div class="card feature-card h-100 border-0 shadow-sm p-4 text-center">
+        <div class="display-6 text-warning">
+            <i class="bi bi-layers"></i>
+        </div>
+
+        <h5 class="fw-bold mt-3">
+            Два типи кожуха
+        </h5>
+
+        <p class="small text-muted mb-0">
+            Економ (оцинкована сталь) або Стандарт (AISI 201).
+        </p>
+    </div>
+</div>
+
+<div class="col-6">
+    <div class="card feature-card h-100 border-0 shadow-sm p-4 text-center">
+        <div class="display-6 text-warning">
+            <i class="bi bi-fire"></i>
+        </div>
+
+        <h5 class="fw-bold mt-3">
+            Висока термостійкість
+        </h5>
+
+        <p class="small text-muted mb-0">
+            Для камінів, печей, твердопаливних та пелетних котлів.
+        </p>
+    </div>
+</div>
+
+
 
                 <div class="col-6">
                     <div class="card feature-card h-100 border-0 shadow-sm p-4 text-center">
@@ -740,7 +867,7 @@
                         data-bs-toggle="collapse"
                         data-bs-target="#faq1">
 
-                    Яка товщина сталі краща?
+                    Чим сендвіч-димохід кращий за одностінний?
 
                 </button>
 
@@ -752,11 +879,9 @@
 
                 <div class="accordion-body">
 
-                    Для більшості газових котлів достатньо товщини
-                    <strong>0,5 мм</strong>. Для твердопаливних котлів,
-                    камінів і печей рекомендується використовувати
-                    <strong>0,8 мм або 1 мм</strong>, оскільки вони краще
-                    витримують високі температури.
+                    Сендвіч-димохід має шар теплоізоляції між внутрішньою та зовнішньою
+    трубою. Це зменшує утворення конденсату, покращує тягу та робить
+    систему безпечнішою для зовнішнього <br> монтажу.
 
                 </div>
 
@@ -773,7 +898,7 @@
                         data-bs-toggle="collapse"
                         data-bs-target="#faq2">
 
-                    Яку марку сталі обрати?
+                    Який зовнішній кожух обрати?
 
                 </button>
 
@@ -785,12 +910,10 @@
 
                 <div class="accordion-body">
 
-                    AISI 304 є універсальним рішенням для більшості
-                    газових котлів. AISI 321 рекомендується для
-                    твердопаливного обладнання та високих температур.
-                    AISI 201 — економічний варіант для <br> менш вимогливих
-                    умов експлуатації.
-
+                    Доступні два варіанти: <strong>Економ</strong> — оцинкована сталь та
+    <strong>Стандарт</strong> — нержавіюча сталь AISI 201.
+    Оцинкований кожух є більш доступним за ціною, тоді як AISI 201 має
+    кращу корозійну <br> стійкість і довший термін служби.
                 </div>
 
             </div>
@@ -806,7 +929,7 @@
                         data-bs-toggle="collapse"
                         data-bs-target="#faq3">
 
-                    Чи можна встановлювати одностінний димохід зовні?
+                    Яка сталь підходить для внутрішньої труби?
 
                 </button>
 
@@ -818,10 +941,9 @@
 
                 <div class="accordion-body">
 
-                    Для зовнішнього монтажу зазвичай рекомендується
-                    використовувати утеплені (сендвіч) димоходи.
-                    Одностінні труби застосовуються переважно всередині
-                    приміщень або як внутрішня вставка.
+                    Для газових котлів зазвичай використовують AISI 304.
+    Для печей, камінів і твердопаливних котлів рекомендується AISI 321,
+    яка краще витримує високі температури.
 
                 </div>
 
@@ -838,7 +960,7 @@
                         data-bs-toggle="collapse"
                         data-bs-target="#faq4">
 
-                    Який діаметр димоходу потрібен?
+                    Де можна встановлювати сендвіч-димохід?
 
                 </button>
 
@@ -850,16 +972,50 @@
 
                 <div class="accordion-body">
 
-                    Діаметр визначається виробником опалювального
-                    обладнання. Якщо ви не впевнені у виборі,
-                    скористайтеся конфігуратором або зверніться до наших
-                    спеціалістів.
+                    Сендвіч-системи підходять як для внутрішнього, так і для зовнішнього
+    монтажу. Завдяки теплоізоляції вони забезпечують стабільну роботу
+    димоходу навіть у холодну пору року.
 
                 </div>
 
             </div>
 
         </div>
+
+         <div class="accordion-item">
+
+            <h2 class="accordion-header">
+
+                <button class="accordion-button collapsed"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#faq5">
+
+                    Чи потрібне утеплення сендвіч-димоходу?
+
+                </button>
+
+            </h2>
+
+            <div id="faq5"
+                 class="accordion-collapse collapse"
+                 data-bs-parent="#faqAccordion">
+
+                <div class="accordion-body">
+
+                    Ні. Сендвіч-димохід вже має теплоізоляційний шар між внутрішньою та
+    зовнішньою трубою, тому в більшості випадків додаткове утеплення не
+    потрібне. Винятком є проходження через пожежонебезпечні ділянки
+    (наприклад, дерев'яні перекриття або покрівлю), де необхідно
+    дотримуватися вимог пожежної безпеки та використовувати відповідні
+    ізоляційні й прохідні елементи.
+
+                </div>
+
+            </div>
+
+        </div>
+        
 
     </div>
 
