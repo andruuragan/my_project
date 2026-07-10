@@ -295,7 +295,7 @@ $schema = [
 }
 
 .product-specs .badge {
-    font-size: 0.7rem;
+    font-size: 11px;
     font-weight: 500;
 }
 

@@ -697,11 +697,29 @@ function renderDiameters() {
         </div>
     `).join('');
 }
+
+function updateThicknessOptions() {
+    const btn05 = document.querySelector('#step4 .config-option[data-value="0,5 мм"]');
+
+    if (!btn05) return;
+
+    const col = btn05.closest('.col-md-4');
+
+    if (state.equipment === "321") {
+        col.style.display = "none";
+    } else {
+        col.style.display = "";
+    }
+}
     // Функція відображення кроку
    function showStep(n) {
     Object.values(steps).forEach(s => s.style.display = 'none');
     steps[n].style.display = 'block';
     state.step = n;
+
+    if (n === 4) {
+    updateThicknessOptions();
+}
 
     document.getElementById('prevBtn').style.display = (n > 1) ? 'block' : 'none';
 
