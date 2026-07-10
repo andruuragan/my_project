@@ -9,13 +9,32 @@
 
 
 <div class="container-1600 py-5">
-
+{{-- Навігаційні крихти (Breadcrumbs) --}}
+                
+                <nav aria-label="breadcrumb" class="mb-4">
+                    <ol class="breadcrumb mb-0">
+                        <li class="breadcrumb-item">
+    <a href="{{ route('main.index') }}"
+       class="text-decoration-none text-black-50 hover-orange">
+        Головна
+    </a>
+</li>
+                        
+                        <li class="breadcrumb-item active text-black" aria-current="page">
+                            
+                            <span style="color: #f97316; font-weight: 500;">Категорії димарів</span>
+                        </li>
+                    </ol>
+                </nav>
     <!-- HERO -->
-<div class="bg-light rounded-4 p-5 mb-5 text-center border">
+<div class="rounded-4 p-5 mb-5 text-center border"
+     style="background: linear-gradient(135deg, #fff8e8 0%, #ffffff 100%);">
 
-    <span class="badge bg-warning text-dark px-3 py-2 mb-3">
-        DymSystems
-    </span>
+ 
+
+   <div class="display-3 text-warning mb-3">
+    <i class="bi bi-house-gear-fill"></i>
+</div>
 
     <h1 class="display-5 fw-bold mb-3">
         Категорії димохідних систем
@@ -27,6 +46,22 @@
         Після вибору категорії ви зможете швидко підібрати необхідні
         елементи та перейти до каталогу товарів.
     </p>
+    <div class="d-flex justify-content-center flex-wrap gap-2 mt-4">
+    <span class="badge bg-light text-dark border px-3 py-2">
+        <i class="bi bi-check-circle-fill text-success me-1"></i>
+        AISI 304 / 321
+    </span>
+
+    <span class="badge bg-light text-dark border px-3 py-2">
+        <i class="bi bi-check-circle-fill text-success me-1"></i>
+        Ø100–500 мм
+    </span>
+
+    <span class="badge bg-light text-dark border px-3 py-2">
+        <i class="bi bi-check-circle-fill text-success me-1"></i>
+        Одностінні та сендвіч
+    </span>
+</div>
 
 </div>
 
@@ -105,7 +140,7 @@
     ? route('single-wall-system')
     : route('shop.index', ['category' => $item['cat']]) }}"
    class="btn btn-outline-dark rounded-pill px-4">
-    Підібрати систему
+    Підібрати систему <i class="bi bi-arrow-right-circle ms-2"></i>
 </a>
             </div>
         </div>
@@ -116,13 +151,14 @@
 <!-- CONFIGURATOR -->
 <div id="configurator1"class="mt-5">
 
-    <div class="card border-0 shadow-sm rounded-4">
+   <div class="card border-0 rounded-4 shadow-lg overflow-hidden"
+     style="background: linear-gradient(135deg,#fff8e8,#ffffff);">
 
         <div class="card-body p-5 text-center">
 
-            <div class="display-4 mb-3">
-                <i class="bi bi-sliders"></i>
-            </div>
+             <div class="display-3 text-warning mb-3">
+            <i class="bi bi-magic"></i>
+        </div>
 
             <h2 class="fw-bold mb-3">
                 Не знаєте, що обрати?
@@ -135,9 +171,10 @@
     <strong>Нижче також доступна схема основних елементів димоходу, яка допоможе краще зорієнтуватися в комплектуючих.</strong>
             </p>
 
-           <button id="openConfigurator" class="btn btn-warning btn-lg rounded-pill px-5">
-    <i class="bi bi-magic me-2"></i>
-    Конфігуратор
+           <button id="openConfigurator"
+        class="btn btn-warning btn-lg rounded-pill px-5 shadow-sm">
+    <i class="bi bi-stars me-2"></i>
+    Запустити конфігуратор
 </button>
         </div>
 
@@ -362,32 +399,64 @@
         <div class="row g-4">
 
             <div class="col-lg-6">
-                <div class="card h-100 border-0 shadow-sm p-4">
+                <div class="card h-100 border-0 shadow rounded-4 p-4"
+     style="background:linear-gradient(135deg,#fff8e8,#ffffff);">
+     <div class="display-5 text-warning mb-3">
+    <i class="bi bi-house-door-fill"></i>
+</div>
                     <h4 class="fw-bold mb-3">
                         Одностінний димохід
                     </h4>
 
-                    <p class="text-muted mb-0">
-                        Використовується всередині приміщення, для гільзування
-                        існуючих каналів та модернізації старих димоходів.
-                        Не рекомендується для відкритого зовнішнього монтажу,
-                        оскільки без утеплення утворюється конденсат.
-                    </p>
+                    <ul class="list-unstyled mb-0">
+
+    <li class="mb-2">
+        <i class="bi bi-check-circle-fill text-success me-2"></i>
+        Монтаж всередині приміщення
+    </li>
+
+    <li class="mb-2">
+        <i class="bi bi-check-circle-fill text-success me-2"></i>
+        Гільзування шахт
+    </li>
+
+    <li>
+        <i class="bi bi-x-circle-fill text-danger me-2"></i>
+        Не рекомендується зовні
+    </li>
+
+</ul>
                 </div>
             </div>
 
             <div class="col-lg-6">
-                <div class="card h-100 border-0 shadow-sm p-4">
+                <div class="card h-100 border-0 shadow rounded-4 p-4"
+     style="background:linear-gradient(135deg,#fff8e8,#ffffff);">
+                    <div class="display-5 text-warning mb-3">
+    <i class="bi bi-shield-check"></i>
+</div>
                     <h4 class="fw-bold mb-3">
                         Термо (сендвіч) димохід
                     </h4>
 
-                    <p class="text-muted mb-0">
-                        Має теплоізоляційний шар між двома трубами,
-                        тому підходить для зовнішнього монтажу,
-                        забезпечує стабільну тягу та зменшує
-                        утворення конденсату.
-                    </p>
+                   <ul class="list-unstyled mb-0">
+
+    <li class="mb-2">
+        <i class="bi bi-check-circle-fill text-success me-2"></i>
+        Для зовнішнього монтажу
+    </li>
+
+    <li class="mb-2">
+        <i class="bi bi-check-circle-fill text-success me-2"></i>
+        Мінімум конденсату
+    </li>
+
+    <li>
+        <i class="bi bi-check-circle-fill text-success me-2"></i>
+        Стабільна тяга
+    </li>
+
+</ul>
                 </div>
             </div>
 
@@ -419,6 +488,11 @@
 <p class="text-muted mb-0">
 Найчастіше рекомендується сталь AISI 321 товщиною 0,8–1 мм через високі температури роботи.
 </p>
+<div class="mt-3">
+    <span class="badge bg-warning text-dark px-3 py-2">
+        AISI 321
+    </span>
+</div>
 
 </div>
 </div>
@@ -433,6 +507,11 @@
 <p class="text-muted mb-0">
 Для сучасних газових котлів зазвичай достатньо AISI 304 товщиною 0,5 мм.
 </p>
+<div class="mt-3">
+    <span class="badge bg-warning text-dark px-3 py-2">
+        AISI 304
+    </span>
+</div>
 
 </div>
 </div>
@@ -445,8 +524,16 @@
 </h5>
 
 <p class="text-muted mb-0">
-Рекомендується AISI 321 товщиною 0,8 або 1 мм завдяки високій термостійкості.
+Рекомендується AISI 321 або AISI 304 товщиною 0,8 або 1 мм завдяки високій термостійкості.
 </p>
+<div class="mt-3">
+    <span class="badge bg-warning text-dark px-3 py-2">
+        AISI 321
+    </span>
+    <span class="badge bg-warning text-dark px-3 py-2">
+        AISI 304
+    </span>
+</div>
 
 </div>
 </div>
@@ -458,34 +545,64 @@
 </section>
 
 <section class="py-5">
+    <div class="container-1600">
 
-<div class="container-1600">
+        <div class="card border-0 shadow-lg rounded-4 cta-configurator">
 
-<div class="card border-0 shadow-sm rounded-4">
+            <div class="card-body text-center p-5">
 
-<div class="card-body text-center p-5">
+                <span class="badge bg-warning text-dark px-3 py-2 mb-3">
+                    Швидкий підбір
+                </span>
 
-<h2 class="fw-bold mb-3">
-Не хочете підбирати вручну?
-</h2>
+                <div class="display-3 text-warning mb-3">
+                    <i class="bi bi-stars"></i>
+                </div>
 
-<p class="text-muted mb-4">
-Скористайтеся інтерактивним конфігуратором. Він допоможе
-підібрати димохід відповідно до типу обладнання, марки сталі,
-товщини та діаметра.
-</p>
+                <h2 class="fw-bold mb-3">
+                    Не хочете підбирати вручну?
+                </h2>
 
-<a href="#configurator1"
-class="btn btn-warning rounded-pill px-5">
-Запустити конфігуратор
-</a>
+                <p class="text-muted mx-auto mb-4" style="max-width:700px;">
+                    Скористайтеся інтерактивним конфігуратором.
+                    Він допоможе підібрати димохід відповідно до типу обладнання,
+                    марки сталі, товщини та діаметра.
+                </p>
 
-</div>
+                <div class="d-flex justify-content-center flex-wrap gap-2 mb-4">
 
-</div>
+                    <span class="badge bg-light border text-dark px-3 py-2">
+                        <i class="bi bi-lightning-charge-fill text-warning me-1"></i>
+                        30 секунд
+                    </span>
 
-</div>
+                    <span class="badge bg-light border text-dark px-3 py-2">
+                        <i class="bi bi-check-circle-fill text-success me-1"></i>
+                        Точний підбір
+                    </span>
 
+                    <span class="badge bg-light border text-dark px-3 py-2">
+                        <i class="bi bi-sliders me-1"></i>
+                        Без помилок
+                    </span>
+
+                </div>
+
+                <a href="#configurator1"
+                   class="btn btn-warning btn-lg rounded-pill px-5 shadow-sm">
+                    <i class="bi bi-magic me-2"></i>
+                    Запустити конфігуратор
+                </a>
+
+                <div class="text-muted small mt-4">
+                    Підбір основних елементів димохідної системи за кілька кліків
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
 </section>
 <section class="py-5">
 
@@ -1056,6 +1173,45 @@ document.addEventListener('submit', function (e) {
 }
 #configurator1 {
     scroll-margin-top: 140px;
+}
+.hover-orange {
+    transition: color .2s ease;
+}
+
+.hover-orange:hover {
+    color: #f97316 !important;
+}
+.cta-configurator{
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg,#fff8e8 0%,#ffffff 100%);
+}
+
+.cta-configurator::before{
+    content:"";
+    position:absolute;
+    width:260px;
+    height:260px;
+    border-radius:50%;
+    background:rgba(249,115,22,.08);
+    top:-120px;
+    right:-120px;
+}
+
+.cta-configurator::after{
+    content:"";
+    position:absolute;
+    width:180px;
+    height:180px;
+    border-radius:50%;
+    background:rgba(255,193,7,.08);
+    bottom:-80px;
+    left:-80px;
+}
+
+.cta-configurator .card-body{
+    position:relative;
+    z-index:2;
 }
 </style>
 @endsection

@@ -6,6 +6,23 @@
 @section('content')
 
     <div class="container-1600 py-5">
+         {{-- Навігаційні крихти (Breadcrumbs) --}}
+                
+                <nav aria-label="breadcrumb" class="mb-4">
+                    <ol class="breadcrumb mb-0">
+                        <li class="breadcrumb-item">
+    <a href="{{ route('main.index') }}"
+       class="text-decoration-none text-black-50 hover-orange">
+        Головна
+    </a>
+</li>
+                        
+                        <li class="breadcrumb-item active text-black" aria-current="page">
+                            
+                            <span style="color: #f97316; font-weight: 500;">Контакти</span>
+                        </li>
+                    </ol>
+                </nav>
     {{-- Заголовок --}}
     <div class="text-center mb-5">
         <h1 class="fw-bold display-5">Контакти DymSystems: телефон, адреса, графік роботи</h1>
@@ -132,6 +149,13 @@
 .contact-form-card{
     max-width:720px;
     margin-inline:auto;
+}
+.hover-orange {
+    transition: color .2s ease;
+}
+
+.hover-orange:hover {
+    color: #f97316 !important;
 }
 </style>
 @endsection

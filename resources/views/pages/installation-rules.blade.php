@@ -58,7 +58,7 @@ $rules = [
                             Отримати консультацію
                         </a>
                         <a href="{{ route('chimney.calculator') }}" class="btn btn-outline-light px-4">
-                            Калькулятор
+                            Калькулятор димоходу
                         </a>
                     </div>
                 </div>

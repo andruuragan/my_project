@@ -6,7 +6,23 @@
 
 @section('content')
     <div class="container-1600 my-5">
-
+ {{-- Навігаційні крихти (Breadcrumbs) --}}
+                
+                <nav aria-label="breadcrumb" class="mb-4">
+                    <ol class="breadcrumb mb-0">
+                        <li class="breadcrumb-item">
+    <a href="{{ route('main.index') }}"
+       class="text-decoration-none text-black-50 hover-orange">
+        Головна
+    </a>
+</li>
+                        
+                        <li class="breadcrumb-item active text-black" aria-current="page">
+                            
+                            <span style="color: #f97316; font-weight: 500;">Корисна інформація</span>
+                        </li>
+                    </ol>
+                </nav>
     <section class="mb-5">
     <div class="row justify-content-center">
         <div class="col-lg-10 text-center">
@@ -137,7 +153,7 @@
         </div>
         <div class="col-md-4 text-md-end mt-3 mt-md-0">
             <a href="{{ route('shop.index') }}" class="btn btn-primary px-4 py-2" style="background-color: #ea580c; border: none;">
-                Перейти в каталог
+                Перейти в каталог<i class="bi bi-arrow-right-circle ms-2"></i>
             </a>
         </div>
     </div>
@@ -415,6 +431,13 @@ a:hover .useful-image-wrapper {
             color: #fff;
             transform: translateY(-1px);
         }
+        .hover-orange {
+    transition: color .2s ease;
+}
+
+.hover-orange:hover {
+    color: #f97316 !important;
+}
     </style>
 @endsection
 @push('schema-useful')

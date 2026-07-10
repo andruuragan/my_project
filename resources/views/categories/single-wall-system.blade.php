@@ -5,7 +5,20 @@
 @section('content')
 
 <section class="container-1600 py-5">
-
+ {{-- Навігаційні крихти (Breadcrumbs) --}}
+                <nav aria-label="breadcrumb" class="mb-4">
+                    <ol class="breadcrumb mb-0">
+                        <li class="breadcrumb-item">
+                            <a href="{{ route('main.index') }}" class="text-decoration-none text-black-50 hover-orange transition-all">Головна</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a href="{{ route('categories.index') }}" class="text-decoration-none text-black-50 hover-orange transition-all">Категорії димарів</a>
+                        </li>
+                        <li class="breadcrumb-item active text-black" aria-current="page">
+                            <span style="color: #f97316; font-weight: 500;">Система одностінних димоходів</span>
+                        </li>
+                    </ol>
+                </nav>
     <div class="row align-items-center g-5">
 
         <div class="col-lg-6">
@@ -13,10 +26,13 @@
             <span class="badge bg-warning text-dark px-3 py-2 mb-3">
                 DymSystems
             </span>
+           <div class="display-3 text-warning mb-3">
+    <i class="bi bi-ui-checks-grid"></i>
+</div>
 
-            <h1 class="display-5 fw-bold mb-4">
-                Система одностінних димоходів
-            </h1>
+           <h1 class="display-5 fw-bold mb-4">
+    Підбір одностінної димохідної системи
+</h1>
 
             <p class="lead text-muted mb-4">
                Оберіть характеристики димохідної системи, після чого ми покажемо лише ті елементи, які підходять саме для вашого вибору.
@@ -25,23 +41,27 @@
             <div class="d-flex flex-wrap gap-3 mb-4">
 
                 <span class="badge rounded-pill bg-light text-dark border px-3 py-2">
-                    ✔ До 1 хвилини
-                </span>
+    <i class="bi bi-clock-fill text-warning me-2"></i>
+    До 1 хвилини
+</span>
 
-                <span class="badge rounded-pill bg-light text-dark border px-3 py-2">
-                    ✔ Лише сумісні елементи
-                </span>
+               <span class="badge rounded-pill bg-light text-dark border px-3 py-2">
+    <i class="bi bi-check-circle-fill text-success me-2"></i>
+    Лише сумісні елементи
+</span>
 
-                <span class="badge rounded-pill bg-light text-dark border px-3 py-2">
-                    ✔ Без зайвих фільтрів
-                </span>
+               <span class="badge rounded-pill bg-light text-dark border px-3 py-2">
+    <i class="bi bi-funnel-fill text-primary me-2"></i>
+    Без зайвих фільтрів
+</span>
 
             </div>
 
             <a href="#selection"
-               class="btn btn-warning btn-lg rounded-pill px-5">
-                Почати підбір
-            </a>
+   class="btn btn-warning btn-lg rounded-pill px-5 shadow-sm">
+    <i class="bi bi-arrow-right-circle-fill me-2"></i>
+    Почати підбір
+</a>
 
         </div>
 
@@ -82,29 +102,32 @@
     <div class="row g-4">
 
         <div class="col-md-3">
-            <div class="card h-100 border-0 shadow-sm text-center p-4">
+           <div class="card step-card h-100 border-0 shadow-sm text-center p-4"
+           style="background:linear-gradient(135deg,#fffdf7,#ffffff)">
 
                 <div class="display-5 text-warning mb-3">
-                    ①
-                </div>
+    <i class="bi bi-circle-square"></i>
+</div>
 
                 <h5 class="fw-bold">
                     Діаметр
                 </h5>
 
                 <p class="text-muted small mb-0">
-                    Оберіть необхідний діаметр димоходу.
+                    Оберіть діаметр
                 </p>
 
             </div>
         </div>
 
         <div class="col-md-3">
-            <div class="card h-100 border-0 shadow-sm text-center p-4">
+           <div class="card step-card h-100 border-0 shadow-sm text-center p-4"
+           style="background:linear-gradient(135deg,#fffdf7,#ffffff)">
+            
 
-                <div class="display-5 text-warning mb-3">
-                    ②
-                </div>
+               <div class="display-5 text-warning mb-3">
+    <i class="bi bi-shield-check"></i>
+</div>
 
                 <h5 class="fw-bold">
                     Марка сталі
@@ -112,7 +135,7 @@
                 </h5>
 
                 <p class="text-muted small mb-0">
-                    Оберіть відповідну марку AISI.
+                    Вкажіть марку сталі
                     
                 </p>
 
@@ -120,11 +143,12 @@
         </div>
 
         <div class="col-md-3">
-            <div class="card h-100 border-0 shadow-sm text-center p-4">
+           <div class="card step-card h-100 border-0 shadow-sm text-center p-4"
+           style="background:linear-gradient(135deg,#fffdf7,#ffffff)">
 
-                <div class="display-5 text-warning mb-3">
-                    ③
-                </div>
+               <div class="display-5 text-warning mb-3">
+    <i class="bi bi-rulers"></i>
+</div>
 
                 <h5 class="fw-bold">
                     Товщина сталі
@@ -132,7 +156,7 @@
                 </h5>
 
                 <p class="text-muted small mb-0">
-                    Вкажіть товщину нержавіючої сталі.
+                    Оберіть товщину нержавіючої сталі
                     
                 </p>
 
@@ -140,25 +164,30 @@
         </div>
 
         <div class="col-md-3">
-            <div class="card h-100 border-0 shadow-sm text-center p-4">
+           <div class="card step-card h-100 border-0 shadow-sm text-center p-4"
+           style="background:linear-gradient(135deg,#fffdf7,#ffffff)">
 
                 <div class="display-5 text-warning mb-3">
-                    ④
-                </div>
+    <i class="bi bi-box-seam"></i>
+</div>
 
                 <h5 class="fw-bold">
                     Елемент системи
                 </h5>
 
                 <p class="text-muted small mb-0">
-                    Отримайте лише сумісні комплектуючі.
+                    Отримайте результат
                 </p>
 
             </div>
         </div>
 
     </div>
-   <div class="alert alert-warning border-0 rounded-4 p-4 mb-5">
+    <div class="alert alert-success border-0 rounded-4 mt-5">
+    <i class="bi bi-check-circle-fill me-2"></i>
+    Після завершення підбору ви побачите лише сумісні комплектуючі.
+</div>
+  <div class="config-alert rounded-4 p-4 mt-5">
 
     <div class="d-lg-flex justify-content-between align-items-center">
 
@@ -570,25 +599,44 @@
 
         <div class="col-lg-6">
 
-            <p>
-                Для виготовлення одностінних димоходів використовуються
-                марки нержавіючої сталі <strong>AISI 304</strong>,
-                <strong>AISI 321</strong> та
-                <strong>AISI 201</strong>.
-            </p>
+          <div class="d-flex mb-4">
+    <i class="bi bi-check-circle-fill text-success fs-4 me-3"></i>
+    <div>
+        Використовуємо нержавіючу сталь <strong>AISI 201, 304, 321 та 430</strong>.
+    </div>
+</div>
 
-            <p>
-                Усі комплектуючі виробляються з дотриманням точних
-                геометричних розмірів, що забезпечує щільне та
-                надійне з'єднання елементів між собою без додаткового
-                підгоняння під час монтажу.
-            </p>
+<div class="d-flex mb-4">
+    <i class="bi bi-check-circle-fill text-success fs-4 me-3"></i>
+    <div>
+        Точні геометричні розміри забезпечують щільне з'єднання елементів.
+    </div>
+</div>
 
-            <p class="mb-0">
-                Асортимент включає труби, коліна, трійники, ревізії,
-                дефлектори, грибки, перехідники, кріплення та інші
-                комплектуючі для побудови повної димохідної системи.
-            </p>
+<div class="d-flex">
+    <i class="bi bi-check-circle-fill text-success fs-4 me-3"></i>
+    <div>
+        Повний асортимент комплектуючих для монтажу димохідної системи.
+    </div>
+</div>
+<div class="row text-center mt-5">
+
+    <div class="col-4">
+        <div class="display-6 fw-bold text-warning">4</div>
+        <small class="text-muted">Марки сталі</small>
+    </div>
+
+    <div class="col-4">
+        <div class="display-6 fw-bold text-warning">1000+</div>
+        <small class="text-muted">Комплектуючих</small>
+    </div>
+
+    <div class="col-4">
+        <div class="display-6 fw-bold text-warning">100%</div>
+        <small class="text-muted">Сумісність</small>
+    </div>
+
+</div>
 
         </div>
 
@@ -597,8 +645,10 @@
             <div class="row g-3">
 
                 <div class="col-6">
-                    <div class="card h-100 border-0 shadow-sm p-4 text-center">
-                        <div class="display-6">🛡️</div>
+                    <div class="card feature-card h-100 border-0 shadow-sm p-4 text-center">
+                        <div class="display-6 text-warning">
+    <i class="bi bi-shield-check"></i>
+</div>
                         <h5 class="fw-bold mt-3">
                             Якісна сталь
                         </h5>
@@ -609,8 +659,10 @@
                 </div>
 
                 <div class="col-6">
-                    <div class="card h-100 border-0 shadow-sm p-4 text-center">
-                        <div class="display-6">📐</div>
+                    <div class="card feature-card h-100 border-0 shadow-sm p-4 text-center">
+                        <div class="display-6 text-warning">
+    <i class="bi bi-rulers"></i>
+</div>
                         <h5 class="fw-bold mt-3">
                             Точна геометрія
                         </h5>
@@ -621,8 +673,10 @@
                 </div>
 
                 <div class="col-6">
-                    <div class="card h-100 border-0 shadow-sm p-4 text-center">
-                        <div class="display-6">🔥</div>
+                   <div class="card feature-card h-100 border-0 shadow-sm p-4 text-center">
+                       <div class="display-6 text-warning">
+    <i class="bi bi-fire"></i>
+</div>
                         <h5 class="fw-bold mt-3">
                             Для різних котлів
                         </h5>
@@ -633,8 +687,10 @@
                 </div>
 
                 <div class="col-6">
-                    <div class="card h-100 border-0 shadow-sm p-4 text-center">
-                        <div class="display-6">⚙️</div>
+                    <div class="card feature-card h-100 border-0 shadow-sm p-4 text-center">
+                        <div class="display-6 text-warning">
+    <i class="bi bi-boxes"></i>
+</div>
                         <h5 class="fw-bold mt-3">
                             Великий вибір
                         </h5>
@@ -642,12 +698,19 @@
                             Повний комплект елементів
                         </p>
                     </div>
+                    
                 </div>
 
             </div>
 
         </div>
-
+<div class="text-center mt-5">
+    <a href="{{ route('shop.index') }}"
+       class="btn btn-warning btn-lg rounded-pill px-5">
+        <i class="bi bi-grid me-2"></i>
+        Переглянути каталог
+    </a>
+</div>
     </div>
 
 </section>
@@ -858,6 +921,37 @@
     margin-top: 8px;
     font-size: .95rem;
     line-height: 1.25;
+}
+.hover-orange {
+    transition: color .2s ease;
+}
+
+.hover-orange:hover {
+    color: #f97316 !important;
+}
+.step-card{
+    transition:.25s;
+    border-radius:18px;
+}
+
+.step-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 18px 35px rgba(0,0,0,.12)!important;
+}
+.config-alert{
+    background:linear-gradient(135deg,#fff8e8,#fffefb);
+    border-left:5px solid #f59e0b;
+    box-shadow:0 12px 30px rgba(0,0,0,.08);
+}
+.feature-card{
+    background: linear-gradient(135deg,#fff9ef,#ffffff);
+    border-radius:18px;
+    transition:.3s;
+}
+
+.feature-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 18px 40px rgba(0,0,0,.12)!important;
 }
 </style>
 

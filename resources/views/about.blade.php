@@ -6,7 +6,25 @@
 <div class="container-1600">
     {{-- Hero Section --}}
     <section class="about-hero py-5 bg-light">
+         {{-- Навігаційні крихти (Breadcrumbs) --}}
+                
+                <nav aria-label="breadcrumb" class="mb-4">
+                    <ol class="breadcrumb mb-0">
+                        <li class="breadcrumb-item">
+    <a href="{{ route('main.index') }}"
+       class="text-decoration-none text-black-50 hover-orange">
+        Головна
+    </a>
+</li>
+                        
+                        <li class="breadcrumb-item active text-black" aria-current="page">
+                            
+                            <span style="color: #f97316; font-weight: 500;">Про нас</span>
+                        </li>
+                    </ol>
+                </nav>
         <div class="row align-items-center g-5">
+            
             <div class="col-lg-6">
                 <h1 class="display-4 fw-bold mb-4">
                     Про компанію "Центр Комплектації Димарів"
@@ -321,6 +339,15 @@
         </div>
     </div>
 </div>
+<style>
+   .hover-orange {
+    transition: color .2s ease;
+}
+
+.hover-orange:hover {
+    color: #f97316 !important;
+}
+</style>
 @endsection
 @push('schema-about')
 <script type="application/ld+json">

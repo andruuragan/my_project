@@ -234,7 +234,7 @@
         <div class="col-md-6 text-md-end">
     <a href="{{ route('useful.index') }}"
        class="btn btn-dark btn-lg px-5 py-3 fw-semibold">
-        Перейти до розділу "Корисна інформація"
+        Перейти до розділу "Корисна інформація"<i class="bi bi-arrow-right-circle ms-2"></i>
     </a>
 </div>
     </div>
@@ -284,11 +284,12 @@
             </div>
 
             <div class="col-lg-4 text-center text-lg-end mt-4 mt-lg-0">
-                <a href="{{ route('chimney.installation-rules') }}#form"
-                   class="btn btn-warning btn-lg fw-bold px-4">
-                    Отримати консультацію
-                </a>
-            </div>
+    <a href="{{ route('chimney.installation-rules') }}#form"
+       class="btn btn-warning btn-lg fw-bold px-4">
+        <i class="bi bi-telephone-fill me-2"></i>
+        Отримати консультацію
+    </a>
+</div>
 
         </div>
 

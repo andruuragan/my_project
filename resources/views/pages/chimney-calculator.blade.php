@@ -34,9 +34,11 @@
                 <p class="calc-subtitle mb-4">
                     Розрахуйте рекомендований діаметр, висоту та орієнтовну тягу димоходу для вашого обладнання.
                 </p>
-                <a href="#calculator" class="btn calc-btn px-4 py-3" aria-label="Перейти до калькулятора димоходу">
-                    Почати розрахунок
-                </a>
+                <a href="#calculator" class="btn calc-btn px-4 py-3 mb-3"
+   aria-label="Перейти до калькулятора димоходу">
+    <i class="bi bi-calculator me-2"></i>
+    Почати розрахунок
+</a>
             </div>
             <div class="col-lg-5 text-center">
         <img src="{{ asset('images/chimney/chimney-3d.webp') }}"
@@ -759,7 +761,7 @@ function calculateChimney() {
     } else if (draft <= 30) {
         draftStatus = 'Тяга знаходиться в нормальному робочому діапазоні.';
     } else {
-        draftStatus = 'Підвищена тяга — можливі втрати тепла, рекомендовано встановлення регулятора (шибера).';
+        draftStatus = 'Підвищена тяга — можливі втрати тепла, рекомендовано встановлення регулятора тяги (кагли).';
     }
 
     document.getElementById('diameterResult').innerText = displayDiameter;

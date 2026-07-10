@@ -7,7 +7,25 @@
 @section('content')
 
    <div class="container-1600 shop-page">
+    
     <div class="title-shop text-center mb-5 mt-3">
+        {{-- Навігаційні крихти (Breadcrumbs) --}}
+                
+                <nav aria-label="breadcrumb" class="mb-4">
+                    <ol class="breadcrumb mb-0">
+                        <li class="breadcrumb-item">
+    <a href="{{ route('main.index') }}"
+       class="text-decoration-none text-black-50 hover-orange">
+        Головна
+    </a>
+</li>
+                        
+                        <li class="breadcrumb-item active text-black" aria-current="page">
+                            
+                            <span style="color: #f97316; font-weight: 500;">Каталог товарів</span>
+                        </li>
+                    </ol>
+                </nav>
          <h1 class="fw-bold text-dark position-relative d-inline-block pb-3 fs-2">
 
                 Каталог елементів димоходу
@@ -353,7 +371,13 @@ document.addEventListener('submit', function (e) {
         font-size: 13px;
     }
 }
+.hover-orange {
+    transition: color .2s ease;
+}
 
+.hover-orange:hover {
+    color: #f97316 !important;
+}
 
     </style>
 @endpush
