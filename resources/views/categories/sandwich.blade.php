@@ -26,6 +26,7 @@
     <span class="badge bg-warning text-dark px-3 py-2 mb-3">
         DymSystems
     </span>
+    <div class="display-3 text-warning mb-3"><i class="bi bi-grid-1x2-fill"></i></div>
 
     <h1 class="display-5 fw-bold mb-4">
         Термо (сендвіч) димохідна система

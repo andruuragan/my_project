@@ -95,7 +95,7 @@
             : route('shop.index', ['category' => $item['cat']]))
 }}"
    class="btn btn-outline-dark rounded-pill px-4">
-    Підібрати систему
+    Підібрати систему <i class="bi bi-arrow-right-circle ms-2"></i>
 </a>
             </div>
         </div>
