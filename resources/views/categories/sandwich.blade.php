@@ -134,7 +134,7 @@
                 </h5>
 
                 <p class="text-muted small mb-0">
-                    Вкажіть марку сталі
+                    Вкажіть марку сталі внутрішньої труби
                     
                 </p>
 
@@ -246,18 +246,18 @@
             {{-- Прогресс --}}
             <div class="d-flex justify-content-between mb-3 small fw-semibold">
                 <span id="stepText">
-                    Крок 1 із 4
+                    Крок 1 із 5
                 </span>
 
                 <span id="percentText">
-                    25%
+                    20%
                 </span>
             </div>
 
             <div class="progress mb-4" style="height:8px;">
                 <div id="progressBar"
                      class="progress-bar bg-warning"
-                     style="width:25%">
+                     style="width:20%">
                 </div>
             </div>
 
@@ -289,15 +289,18 @@
 
                 <h2 class="fw-bold text-center mb-4">
 
-                    Оберіть діаметр
+                    Оберіть діаметр 
 
                 </h2>
 
                 <div class="row g-3">
                     @foreach([
- '100', '110', '120', '125', '130', '140', '150', '160', '180',
-                                '200', '220', '230', '250', 
-                                '300', '350', '400', '450', '500'
+ '100/160', '110/180', '120/180', '130/200', '140/200',
+                                '150/220', '160/220', '180/250', '200/260', '220/280',
+                                '230/300', '250/320', '300/360', '350/420', '400/460',
+                                '500/560',
+                                '100/200', '120/220', '130/230', '140/240',
+                                '150/250', '160/260', '180/280', '200/300'
 ] as $diameter)
 
 <div class="col-lg-2 col-md-2 col-4">
@@ -334,7 +337,7 @@
     {{-- ========================= --}}
 <div id="step2" style="display:none;">
  <h2 class="fw-bold text-center mb-2">
-        Яка нержавіюча сталь вам потрібна?
+       З якої сталі вам потрібна внутрішня труба?
     </h2>
 
     <p class="text-center text-muted mb-4">
@@ -421,7 +424,7 @@
  <div id="step3">
 
     <h2 class="fw-bold text-center mb-2">
-        Оберіть товщину сталі
+        Оберіть товщину сталі внутрішньої труби
     </h2>
 
     <p class="text-center text-muted mb-4">
@@ -435,10 +438,79 @@
 </div>
    
 </div>
- {{-- ========================= --}}
+{{-- ========================= --}}
     {{-- STEP 4 --}}
     {{-- ========================= --}}
 <div id="step4" style="display:none;">
+ 
+
+    <h2 class="fw-bold text-center mb-2">
+        Оберіть зовнішній кожух димоходу
+    </h2>
+
+    <p class="text-center text-muted mb-4">
+        Доступні варіанти.
+    </p>
+ <div class="row g-3 justify-content-center">
+
+        {{-- Н/Н --}}
+        <div class="col-lg-4 col-md-6">
+            <button
+                class="btn btn-outline-dark w-100 option-btn h-100"
+                data-step="casing"
+                data-value="н/н">
+
+                <div class="fw-bold fs-4 mb-2">
+                    Кожух нержавійка (AISI 201)
+                </div>
+
+                <span class="badge bg-success mb-3">
+                    🟢 Стандарт
+                </span>
+
+                <div class="small text-muted">
+                    Класичний варіант для зовнішнього монтажу. Висока корозійна стійкість, довговічність та естетичний вигляд.
+
+            </button>
+        </div>
+
+       
+
+        {{-- Н/ОЦ --}}
+        <div class="col-lg-4 col-md-6">
+            <button
+                class="btn btn-outline-dark w-100 option-btn h-100"
+                data-step="casing"
+                data-value="н/оц">
+
+                <div class="fw-bold fs-4 mb-2">
+                    Кожух із оцинкованої сталі 
+                </div>
+
+                <span class="badge bg-warning text-dark mb-3">
+                    💰 Економ
+                </span>
+
+                <div class="small text-muted">
+                    Доступне рішення для менш вимогливих умов експлуатації. При належному догляді та обслуговуванні служить довго.
+                </div>
+
+            </button>
+        </div>
+
+    </div>
+
+   
+
+
+   
+</div>
+
+
+ {{-- ========================= --}}
+    {{-- STEP 5 --}}
+    {{-- ========================= --}}
+<div id="step5" style="display:none;">
 
     <h2 class="fw-bold text-center mb-2">
         Який елемент вам потрібен?
@@ -603,12 +675,8 @@
 
 <section class="container-1600 py-5">
 
-    <div class="text-center mb-5">
-
-       
-
-       
-
+    <div class="text-center mb-5">    
+      
         <div class="card border-0 shadow-sm rounded-4 overflow-hidden mb-5"
      style="background: linear-gradient(135deg,#fff8e8 0%,#ffffff 100%);">
 
