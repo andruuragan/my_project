@@ -528,70 +528,59 @@
     'images' => [
         'н/н' => '7b0b6942221ee39e7dde23fd22aadf1f21cd694c.webp',
         'н/оц' => '80a561609b910c269e317014ad882cb3252b6872.webp',
-],
+], ],
             ['name' =>'Коліно 45°',
             'images' => [
         'н/н' => 'df29b679a0b7707a616686809abcd618c648a097.webp',
         'н/оц' => 'd613835da3a05b76b031c97b48bc03ab54abe8ba.webp',
-            ],
+            ], ],
             ['name' =>
             'Коліно 90°',
             'images' => [
         'н/н' => '91ee81f2de52a9a37c3aaed728e23fc82eabfb7d.webp',
         'н/оц' => 'ccebfd7346c0463929bf7c714022bdff4e5f1df4.webp',
-            ],
+            ], ],
             ['name' => 'Трійник 90°',
            'images' => [
         'н/н' => '9c50a25508ef6019ba1e6181d02e2d479d9e47e6.webp',
         'н/оц' => '094cdfc096c36e12e0019254d1bef0cf3c456a7f.webp',
-            ],
+            ], ],
             ['name' => 'Трійник 45°',
             'images' => [
         'н/н' => '27cb84058de5fdf94f960d12a23f42a53c47c8fd.webp',
         'н/оц' => '52d804a0690c48f013daf6d49eb878d0585145e0.webp',
-            ],
+            ], ],
             ['name' => 'Регулятор тяги(Кагла)',
             'images' => [
         'н/н' => 'b8a602f7fde18cbdb7c549028bfb810cc86ce972.webp',
         'н/оц' => 'aeac14507ecbaef467f1e7e5796a667744415925.webp',
-            ]
+             ],
             ],
             ['name' => 'Ревізія',
             'images' => [
         'н/н' => '13e8d089e8d0603a37be1af3a7cf8a2989880a61.webp',
         'н/оц' => '479ca422fef268e17acf2a2755a4f8109ebc1465.webp',
-            ]
+             ],
             ],
-            ['name' => 'Розвантажувальна  підсавка',
+            ['name' => 'Конус',
             'images' => [
-        'н/н' => '6c6786f2e63db2cc3abd5b287d9dc0f250f4cac1.webp',
-        'н/оц' => '6c6786f2e63db2cc3abd5b287d9dc0f250f4cac1.webp',
-            ]
+        'н/н' => '497df0f94590eb6627e84cf787904225b8498530.webp',
+        'н/оц' => '550c2f91e2266ddc67f9cba84796c4571e7a236f.webp',
+             ],
             ],
-            ['name' => 'Іскрогасник',
-            'img' => '102c4895a552be612603f552c303b88139600173.webp'
+            ['name' => 'Термоґрибок',
+            'images' => [
+        'н/н' => '1d855c94e9a8b7971f6470c818282c3177472122.webp',
+        'н/оц' => '1d855c94e9a8b7971f6470c818282c3177472122.webp',
             ],
-            ['name' => 'Регулятор тяги(Кагла)',
-            'img' => '85e783177507a9c794bcab90e2cbf841fcd516ad.webp'
             ],
-            ['name' => 'Закінчення димоходу',
-            'img' => 'b8621901edf97997d2fdbc0402944ed1507259f5.webp'
+            ['name' => 'Старт-сендвіч',
+            'images' => [
+        'н/н' => '3a5834a31a698234418276d0333da7134679ccf4.webp',
+        'н/оц' => '3a5834a31a698234418276d0333da7134679ccf4.webp',
             ],
-            ['name' => 'Радіатор',
-            'img' => '56f1b695c42b31c7faff57a768fa0cb6f891680a.webp'
-            ],
-            ['name' => 'Сітка',
-            'img' => 'ea9cc93449a2a910df0e74c2617cf06c57b90f37.webp'
-            ],
-            ['name' => 'Труба-подовжувач',
-            'img' => '044abad5ad84f29eac881da06a1f93017f2d7590.webp'
-            ],
-            ['name' => 'Лійка',
-            'img' => '80731c12dd76219b0954f38d138107e784d693ac.webp'
-            ],
-            ['name' => 'Заглушка',
-            'img' => '70f9709ad093575e0fd014ac3fb5b565c6cc5d7e.webp'
-            ]
+            ]  
+           
         ] as $item)
 
        <div class="col-lg-3 col-md-4 col-6">
@@ -601,9 +590,11 @@
         data-step="type"
         data-value="{{ $item['name'] }}">
 
-        <img src="{{ asset('images/' . $item['img']) }}"
+        <img src="{{ asset('images/' . $item['images']['н/н']) }}"
              width="70"
              height="70"
+             data-stainless="{{ asset('images/' . $item['images']['н/н']) }}"
+    data-galvanized="{{ asset('images/' . $item['images']['н/оц']) }}"
              class="img-fluid mb-2"
              alt="{{ $item['name'] }}">
 
@@ -1203,26 +1194,52 @@
   const selected = {
     diameter: null,
     grade: null,
-    thickness: null,    
+    thickness: null,
+    casing: null,  
     type: null
 };
 const images = {
-    "Труба": "d1766edbf3680e4dd12178e2096689091c5c9fb4.webp",
-    "Коліно 45°": "8f7e3270cccefebd8ef0b01eb791e063a35d53da.webp",
-    "Коліно 90°": "4da6e275628591fb2c427c810aee46c72194787b.webp",
-    "Трійник 90°": "ebad524c975ba8687a00eaa06138a19f67b6ba4e.webp",
-    "Трійник 45°": "5a8399f216645295c4236632e984ba223704ae8f.webp",
-    "Ревізія": "22f0ba5bb03393da27218badeab1788433a38ab6.webp",
-    "Перехід": "1d57149fc14067bd6a4cc811a660d82e27524399.webp",
-    "Грибок": "ae60c4c7157b3a2c8b6856c55f9004e3b7a1b6e3.webp",
-    "Іскрогасник": "102c4895a552be612603f552c303b88139600173.webp",
-    "Регулятор тяги(Кагла)": "85e783177507a9c794bcab90e2cbf841fcd516ad.webp",
-    "Закінчення димоходу": "b8621901edf97997d2fdbc0402944ed1507259f5.webp",
-    "Радіатор": "56f1b695c42b31c7faff57a768fa0cb6f891680a.webp",
-    "Сітка": "ea9cc93449a2a910df0e74c2617cf06c57b90f37.webp",
-    "Труба-подовжувач": "044abad5ad84f29eac881da06a1f93017f2d7590.webp",
-    "Лійка": "80731c12dd76219b0954f38d138107e784d693ac.webp",
-    "Заглушка": "70f9709ad093575e0fd014ac3fb5b565c6cc5d7e.webp"
+   "Труба": {
+        "н/н": "7b0b6942221ee39e7dde23fd22aadf1f21cd694c.webp",
+        "н/оц": "80a561609b910c269e317014ad882cb3252b6872.webp"
+    },
+    "Коліно 45°": {
+        "н/н": "df29b679a0b7707a616686809abcd618c648a097.webp",
+        "н/оц": "d613835da3a05b76b031c97b48bc03ab54abe8ba.webp"
+    },
+    "Коліно 90°": {
+        "н/н": "91ee81f2de52a9a37c3aaed728e23fc82eabfb7d.webp",
+        "н/оц": "ccebfd7346c0463929bf7c714022bdff4e5f1df4.webp"
+    },
+    "Трійник 90°": {
+        "н/н": "9c50a25508ef6019ba1e6181d02e2d479d9e47e6.webp",
+        "н/оц": "094cdfc096c36e12e0019254d1bef0cf3c456a7f.webp"
+    },
+    "Трійник 45°": {
+        "н/н": "27cb84058de5fdf94f960d12a23f42a53c47c8fd.webp",
+        "н/оц": "52d804a0690c48f013daf6d49eb878d0585145e0.webp"
+    },
+    "Регулятор тяги(Кагла)": {
+        "н/н": "b8a602f7fde18cbdb7c549028bfb810cc86ce972.webp",
+        "н/оц": "aeac14507ecbaef467f1e7e5796a667744415925.webp"
+    },
+    "Ревізія": {
+        "н/н": "13e8d089e8d0603a37be1af3a7cf8a2989880a61.webp",
+        "н/оц": "479ca422fef268e17acf2a2755a4f8109ebc1465.webp"
+    },
+    "Конус": {
+        "н/н": "497df0f94590eb6627e84cf787904225b8498530.webp",
+        "н/оц": "550c2f91e2266ddc67f9cba84796c4571e7a236f.webp"
+    },
+    "Термоґрибок": {
+        "н/н": "1d855c94e9a8b7971f6470c818282c3177472122.webp",
+        "н/оц": "1d855c94e9a8b7971f6470c818282c3177472122.webp"
+    },
+    "Старт-сендвіч": {
+        "н/н": "3a5834a31a698234418276d0333da7134679ccf4.webp",
+        "н/оц": "3a5834a31a698234418276d0333da7134679ccf4.webp"
+    }
+    
 };
 const availableThickness = {
     "201": [
@@ -1238,6 +1255,12 @@ const availableThickness = {
         { value: "1 мм", title: "Максимальна" }
     ]
 };
+//const casing = selected.casing;
+
+//const image =
+    //casing === "н/н"
+        //? button.dataset.imgStainless
+        //: button.dataset.imgGalvanized;
 function renderThickness() {
 
     const container = document.getElementById('thicknessContainer');
@@ -1279,7 +1302,7 @@ function showStep(step) {
         el.style.display = 'none';
     });
 
-    if (step <= 4) {
+    if (step <= 5) {
         document.getElementById('step' + step).style.display = 'block';
     } else {
         document.getElementById('finishStep').style.display = 'block';
@@ -1288,14 +1311,18 @@ function showStep(step) {
 <ul class="list-unstyled mb-0">
     <li><strong>Діаметр:</strong> ${selected.diameter} мм</li>
     <li><strong>Сталь:</strong> AISI ${selected.grade}</li>
-    <li><strong>Товщина:</strong> ${selected.thickness}</li>    
+    <li><strong>Товщина:</strong> ${selected.thickness}</li> 
+    <li><strong>Кожух:</strong> ${selected.casing}</li>
     <li><strong>Елемент:</strong> ${selected.type}</li>
 </ul>
 `;
 const img = document.getElementById('summaryImage');
 
-if (images[selected.type]) {
-    img.src = `/images/${images[selected.type]}`;
+if (
+    images[selected.type] &&
+    images[selected.type][selected.casing]
+) {
+    img.src = "/images/" + images[selected.type][selected.casing];
     img.alt = selected.type;
 }
     }
@@ -1307,17 +1334,17 @@ if (images[selected.type]) {
 }
 function updateProgress() {
 
-    const percent = currentStep <= 4
-        ? currentStep * 25
-        : 100;
+   const percent = currentStep <= 5
+    ? currentStep * 100 / 5
+    : 100;
 
     document.getElementById('progressBar').style.width = percent + '%';
 
     document.getElementById('percentText').innerText = percent + '%';
 
     document.getElementById('stepText').innerText =
-        currentStep <= 4
-            ? `Крок ${currentStep} із 4`
+        currentStep <= 5
+            ? `Крок ${currentStep} із 5`
             : 'Готово';
 
     document.getElementById('prevBtn').style.display =
@@ -1346,6 +1373,13 @@ function updateProgress() {
     if (selected.thickness) {
         html += `<span class="badge bg-secondary me-2 mb-2">
             ${selected.thickness}
+        </span>`;
+    }
+    if (selected.casing) {
+        html += `<span class="badge bg-info me-2 mb-2">
+            ${selected.casing === 'н/н'
+    ? 'Нержавійка AISI 201'
+    : 'Оцинкована сталь'}
         </span>`;
     }
 
@@ -1400,10 +1434,10 @@ function bindOptionButtons() {
                 bindOptionButtons();
             }
 
-            if (currentStep < 4) {
+            if (currentStep < 5) {
                 showStep(currentStep + 1);
             } else {
-                showStep(5);
+                showStep(6);
             }
 
         });
@@ -1417,10 +1451,11 @@ document.getElementById('showProducts').addEventListener('click', function () {
    
 
     const params = new URLSearchParams({
-        chimneyType: 'Одностінний',
+        chimneyType: 'Термо',
         diameter: selected.diameter,
         thickness: selected.thickness,
         grade: selected.grade,
+        casing: selected.casing,
         type: selected.type
     });
 
