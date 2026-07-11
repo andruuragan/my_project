@@ -214,14 +214,14 @@
         <div class="col-md-4">
             <button class="config-option w-100 btn btn-outline-dark p-3"
                     data-value="304">
-                Камін
+                Твердопаливний котел
             </button>
         </div>
 
         <div class="col-md-4">
             <button class="config-option w-100 btn btn-outline-dark p-3"
                     data-value="321">
-                Піч
+                Камін
             </button>
         </div>
 

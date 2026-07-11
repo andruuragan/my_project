@@ -23,7 +23,15 @@
                         </li>
                     </ol>
                 </nav>
-    <section class="mb-5">
+    
+
+        {{-- Блок: Корисна інформація --}}
+        <section class="useful-section">
+            <div class="text-center mb-5">
+                <h1 class="fw-semibold useful-title">Корисна інформація</h1>
+                <p class="text-muted useful-subtitle">Поради, калькулятори та інструкції щодо вибору димоходу</p>
+            </div>
+<section class="mb-5">
     <div class="row justify-content-center">
         <div class="col-lg-10 text-center">
             <h2 class="mb-3">Чому важливо правильно підібрати димохідну систему?</h2>
@@ -34,14 +42,6 @@
         </div>
     </div>
 </section>
-
-        {{-- Блок: Корисна інформація --}}
-        <section class="useful-section">
-            <div class="text-center mb-5">
-                <h1 class="fw-semibold useful-title">Корисна інформація</h1>
-                <p class="text-muted useful-subtitle">Поради, калькулятори та інструкції щодо вибору димоходу</p>
-            </div>
-
             <div class="row g-4">
                 {{-- КАЛЬКУЛЯТОР --}}
                 <div class="col-lg-4 col-md-6">
