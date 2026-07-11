@@ -1330,6 +1330,7 @@ if (
 
     updateProgress();
     updateSelected();
+    document.getElementById('selection').scrollIntoView({ behavior: 'smooth' });
 }
 function updateProgress() {
 
@@ -1429,8 +1430,10 @@ function bindOptionButtons() {
             this.classList.add('active');
 
             if (step === 'grade') {
+                selected.thickness = null;
                 renderThickness();
                 bindOptionButtons();
+                updateSelected();
             }
 
             if (currentStep < 5) {
@@ -1446,22 +1449,20 @@ function bindOptionButtons() {
 }
 bindOptionButtons();
 document.getElementById('showProducts').addEventListener('click', function () {
-
-   
-
+    // Перевірка, чи всі кроки заповнені
+    // Важливо: для сендвіч-димоходів у вас 5 кроків, тому перевіряємо і 'casing'
+    if (!selected.diameter || !selected.thickness || !selected.grade || !selected.casing || !selected.type) {
+        alert('Будь ласка, оберіть усі параметри димоходу.');
+        return;
+    }
+    
     const params = new URLSearchParams({
-        chimneyType: 'Термо',
-        diameter: selected.diameter,
-        thickness: selected.thickness,
-        grade: selected.grade,
-        casing: selected.casing,
-        type: selected.type
+        chimneyType: 'Термо', // ТУТ МАЄ БУТИ 'Термо'
+        ...selected
     });
-
+    
     window.location.href = "{{ route('shop.index') }}?" + params.toString();
-
 });
-showStep(1);
   </script>
 
 @endsection

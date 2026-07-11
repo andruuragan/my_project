@@ -1152,8 +1152,10 @@ function bindOptionButtons() {
             this.classList.add('active');
 
             if (step === 'grade') {
+                selected.thickness = null;
                 renderThickness();
                 bindOptionButtons();
+                updateSelected();
             }
 
             if (currentStep < 4) {
@@ -1169,20 +1171,20 @@ function bindOptionButtons() {
 }
 bindOptionButtons();
 document.getElementById('showProducts').addEventListener('click', function () {
-
-   
-
+    // Перевірка, чи всі кроки заповнені
+    if (!selected.diameter || !selected.thickness || !selected.grade || !selected.type) {
+        alert('Будь ласка, оберіть усі параметри димоходу.');
+        return;
+    }
+    
     const params = new URLSearchParams({
         chimneyType: 'Одностінний',
-        diameter: selected.diameter,
-        thickness: selected.thickness,
-        grade: selected.grade,
-        type: selected.type
+        ...selected
     });
-
+    
     window.location.href = "{{ route('shop.index') }}?" + params.toString();
-
 });
+
 showStep(1);
   </script>
 
