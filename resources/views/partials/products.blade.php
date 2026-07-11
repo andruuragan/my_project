@@ -127,11 +127,13 @@
 
                     {{-- ОПИС ТА ХАРАКТЕРИСТИКИ --}}
                     <div class="card-body d-flex flex-column p-3">
-                        <h6 class="mb-2 line-clamp-2" style="height: 40px; overflow: hidden; line-height: 1.3;">
-                            <a href="{{ route('catalog.public.show', $catalog->id) }}" class="product-title-link fw-semibold text-decoration-none">
-                                {{ $catalog->name }}
-                            </a>
-                        </h6>
+                        <h6 class="mb-2">
+    <a href="{{ route('catalog.public.show', $catalog->id) }}" 
+       class="product-title-link fw-semibold text-decoration-none" 
+       style="display: block; line-height: 1.3;">
+        {{ $catalog->name }}
+    </a>
+</h6>
 
                         <div class="my-1" style="height: 1px; background: linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,0.08) 20%, rgba(0,0,0,0.08) 80%, rgba(0,0,0,0));"></div>
 

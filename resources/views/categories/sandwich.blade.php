@@ -525,29 +525,48 @@
         @foreach([
             [
     'name' => 'Труба',
-    'img' => 'd1766edbf3680e4dd12178e2096689091c5c9fb4.webp'
+    'images' => [
+        'н/н' => '7b0b6942221ee39e7dde23fd22aadf1f21cd694c.webp',
+        'н/оц' => '80a561609b910c269e317014ad882cb3252b6872.webp',
 ],
             ['name' =>'Коліно 45°',
-            'img' => '8f7e3270cccefebd8ef0b01eb791e063a35d53da.webp'
+            'images' => [
+        'н/н' => 'df29b679a0b7707a616686809abcd618c648a097.webp',
+        'н/оц' => 'd613835da3a05b76b031c97b48bc03ab54abe8ba.webp',
             ],
             ['name' =>
             'Коліно 90°',
-            'img' => '4da6e275628591fb2c427c810aee46c72194787b.webp'
+            'images' => [
+        'н/н' => '91ee81f2de52a9a37c3aaed728e23fc82eabfb7d.webp',
+        'н/оц' => 'ccebfd7346c0463929bf7c714022bdff4e5f1df4.webp',
             ],
             ['name' => 'Трійник 90°',
-            'img' => 'ebad524c975ba8687a00eaa06138a19f67b6ba4e.webp'
+           'images' => [
+        'н/н' => '9c50a25508ef6019ba1e6181d02e2d479d9e47e6.webp',
+        'н/оц' => '094cdfc096c36e12e0019254d1bef0cf3c456a7f.webp',
             ],
             ['name' => 'Трійник 45°',
-            'img' => '5a8399f216645295c4236632e984ba223704ae8f.webp'
+            'images' => [
+        'н/н' => '27cb84058de5fdf94f960d12a23f42a53c47c8fd.webp',
+        'н/оц' => '52d804a0690c48f013daf6d49eb878d0585145e0.webp',
+            ],
+            ['name' => 'Регулятор тяги(Кагла)',
+            'images' => [
+        'н/н' => 'b8a602f7fde18cbdb7c549028bfb810cc86ce972.webp',
+        'н/оц' => 'aeac14507ecbaef467f1e7e5796a667744415925.webp',
+            ]
             ],
             ['name' => 'Ревізія',
-            'img' => '22f0ba5bb03393da27218badeab1788433a38ab6.webp'
+            'images' => [
+        'н/н' => '13e8d089e8d0603a37be1af3a7cf8a2989880a61.webp',
+        'н/оц' => '479ca422fef268e17acf2a2755a4f8109ebc1465.webp',
+            ]
             ],
-            ['name' => 'Перехід',
-            'img' => '1d57149fc14067bd6a4cc811a660d82e27524399.webp'
-            ],
-            ['name' => 'Грибок',
-            'img' => 'ae60c4c7157b3a2c8b6856c55f9004e3b7a1b6e3.webp'
+            ['name' => 'Розвантажувальна  підсавка',
+            'images' => [
+        'н/н' => '6c6786f2e63db2cc3abd5b287d9dc0f250f4cac1.webp',
+        'н/оц' => '6c6786f2e63db2cc3abd5b287d9dc0f250f4cac1.webp',
+            ]
             ],
             ['name' => 'Іскрогасник',
             'img' => '102c4895a552be612603f552c303b88139600173.webp'
