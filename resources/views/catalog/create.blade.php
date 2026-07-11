@@ -51,8 +51,8 @@
         <select id="element_thickness" name="thickness" class="form-select" autocomplete="off">
             <option value="">Оберіть товщину</option>
             @php
-                // Убрали лишний пробел у '0.5' для чистоты данных
-                $thicknesses = ['0.5', '0.8', '1', '2'];
+                // Убрали лишний пробел у '0,5' для чистоты данных
+                $thicknesses = ['0,5', '0,8', '1', '2'];
             @endphp
             @foreach($thicknesses as $t)
                 @php
