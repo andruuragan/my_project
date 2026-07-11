@@ -1255,12 +1255,7 @@ const availableThickness = {
         { value: "1 мм", title: "Максимальна" }
     ]
 };
-//const casing = selected.casing;
 
-//const image =
-    //casing === "н/н"
-        //? button.dataset.imgStainless
-        //: button.dataset.imgGalvanized;
 function renderThickness() {
 
     const container = document.getElementById('thicknessContainer');
@@ -1312,7 +1307,11 @@ function showStep(step) {
     <li><strong>Діаметр:</strong> ${selected.diameter} мм</li>
     <li><strong>Сталь:</strong> AISI ${selected.grade}</li>
     <li><strong>Товщина:</strong> ${selected.thickness}</li> 
-    <li><strong>Кожух:</strong> ${selected.casing}</li>
+   <li><strong>Кожух:</strong> ${
+    selected.casing === 'н/н'
+        ? 'Нержавіюча сталь AISI 201'
+        : 'Оцинкована сталь'
+}</li>
     <li><strong>Елемент:</strong> ${selected.type}</li>
 </ul>
 `;
@@ -1335,7 +1334,7 @@ if (
 function updateProgress() {
 
    const percent = currentStep <= 5
-    ? currentStep * 100 / 5
+    ? Math.round(currentStep / 5 * 100)
     : 100;
 
     document.getElementById('progressBar').style.width = percent + '%';
