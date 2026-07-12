@@ -573,8 +573,28 @@
         </div>
 
     </div>
+ <div id="productsGrid" class="row g-4 mt-2"></div>
 
+    <div class="alert alert-warning border-0 shadow-sm rounded-4 mt-4">
+        <h5 class="fw-bold mb-2">
+            <i class="bi bi-info-circle me-2"></i>
+            Зверніть увагу
+        </h5>
+
+        <p class="mb-0">
+            Для повного монтажу також можуть знадобитися кріплення, хомути, прохідні елементи, розтяжки, кронштейни та інші комплектуючі. Переглянути їх можна в окремому розділі категорій димарів.
+        </p>
+
+        <a href="{{ route('shop.index', ['category' => 'fittings']) }}"
+           class="btn btn-outline-warning rounded-pill mt-3">
+            Переглянути кріплення та комплектуючі
+        </a>
+    </div>
+
+   
 </div>
+</div>
+
       </div>
 
     </div>
@@ -1060,6 +1080,8 @@ if (images[selected.type]) {
 
     updateProgress();
     updateSelected();
+
+    document.getElementById('selection').scrollIntoView({ behavior: 'smooth' });
 }
 function updateProgress() {
 
