@@ -763,15 +763,48 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
     // Обробка кнопки "Назад"
-  document.getElementById('prevBtn').addEventListener('click', function () {
-    if (state.step === 2.5) {
-        showStep(2);
-        return;
+ document.getElementById('prevBtn').addEventListener('click', function () {
+
+    switch (state.step) {
+
+        case 2.5:
+            state.casing = null;
+            state.diameter = null;
+            state.thickness = null;
+            showStep(2);
+            break;
+
+        case 4:
+            state.thickness = null;
+            showStep(3);
+            break;
+
+        case 3:
+            state.diameter = null;
+            state.casing = null;
+            showStep(
+                state.mount === "Термо" ? 2.5 : 2
+            );
+            break;
+
+        case 2:
+            state.mount = null;
+            state.equipment = null;
+            showStep(1);
+            break;
+
+        default:
+            break;
     }
 
-    if (state.step > 1) {
-        showStep(state.step - 1);
-    }
+    // убираем активные кнопки на следующем шаге
+    Object.values(steps).forEach(step => {
+        if (step) {
+            step.querySelectorAll('.config-option')
+                .forEach(btn => btn.classList.remove('active'));
+        }
+    });
+
 });
 const singleDiameters = [
     "100","110","120","130","140","150","160","180","200","220","230","250",
