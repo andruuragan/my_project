@@ -36,9 +36,47 @@ public function search(Request $request)
     }
 
     $catalogs = $query->get();
+    $recommended = collect();
 
-    return response()->json([
-        'html' => view('partials.cards', compact('catalogs'))->render()
-    ]);
+if (
+    $request->mount === 'Термо' &&
+    $request->casing === 'н/оц'
+) {
+    $recommended = collect();
+
+    // Конус, Старт-сендвіч, Термоґрибок — учитываем толщину
+    $recommended = $recommended->merge(
+        Catalog::query()
+            ->where('chimneyType', 'Термо')
+            ->where('casing', 'н/н')
+            ->where('diameter', $request->diameter)
+            ->where('thickness', $request->thickness)
+             ->where('grade', $request->equipment)
+            ->whereIn('type', [
+                'Конус',
+                'Термоґрибок',
+                'Старт-сендвіч',
+            ])
+            ->whereNotIn('id', $catalogs->pluck('id'))
+            ->get()
+    );
+
+    // Разгрузочная подставка — без учета толщины
+    $recommended = $recommended->merge(
+        Catalog::query()
+            ->where('chimneyType', 'Термо')
+            ->where('casing', 'н/н')
+            ->where('diameter', $request->diameter)
+            ->where('type', 'Розвантажувальна підставка')
+            ->whereNotIn('id', $catalogs->pluck('id'))
+            ->get()
+    );
+}
+   return response()->json([
+    'html' => view('partials.cards', [
+        'catalogs' => $catalogs,
+        'recommended' => $recommended,
+    ])->render()
+]);
 }
 }

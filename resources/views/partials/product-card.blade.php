@@ -1,6 +1,4 @@
-  @forelse($catalogs as $catalog)
-        
-            <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+ <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
                 <div class="card product-card shadow-sm h-100 border-0 rounded-4 overflow-hidden position-relative bg-white">
 
                     {{-- ЗОБРАЖЕННЯ ТА КНОПКИ ВЕРХУ --}}
@@ -40,7 +38,34 @@
     @endauth
 
 
-  
+    {{-- ✅ СРАВНЕНИЕ ВСЕГДА ВИДИМО --}}
+   <button type="button"
+    class="icon-btn compare-btn rounded-circle shadow-sm border-0 d-flex align-items-center justify-content-center bg-white"
+    data-id="{{ $catalog->id }}"
+    data-bs-toggle="tooltip"
+    data-bs-placement="right"
+    data-bs-custom-class="custom-orange-tooltip"
+    data-bs-title="Порівняти"
+    style="width:36px;height:36px;">
+
+    <svg xmlns="http://www.w3.org/2000/svg"
+         width="18"
+         height="18"
+         viewBox="0 0 24 24"
+         fill="none"
+         stroke="currentColor"
+         stroke-width="2"
+         stroke-linecap="round"
+         stroke-linejoin="round">
+      <path d="m16 16 3-8 3 8c0 1.7-1.3 3-3 3s-3-1.3-3-3Z"/>
+      <path d="m2 16 3-8 3 8c0 1.7-1.3 3-3 3s-3-1.3-3-3Z"/>
+      <path d="M7 21h10"/>
+      <path d="M12 3v18"/>
+      <path d="M3 7h18"/>
+      <path d="M16 7a4 4 0 0 0-8 0"/>
+    </svg>
+
+</button>
 
 </div>
                             
@@ -58,7 +83,8 @@
        style="width: 36px; height: 36px;">
         <i class="bi bi-box-arrow-up-right text-muted"></i>
     </a>
-  {{-- Кнопка "Лупа" тепер ДРУГА (під нею) --}}
+
+    {{-- Кнопка "Лупа" тепер ДРУГА (під нею) --}}
     <button type="button"
             class="icon-btn open-image rounded-circle shadow-sm border-0 d-flex align-items-center justify-content-center bg-white"
             data-bs-toggle="tooltip"
@@ -69,18 +95,19 @@
             data-image="{{ $catalog->image ? asset($catalog->image) : asset('images/no-image.svg') }}">
         <i class="bi bi-search text-muted"></i>
     </button>
-  
 </div>
                         </div>
                     </div>
 
                     {{-- ОПИС ТА ХАРАКТЕРИСТИКИ --}}
                     <div class="card-body d-flex flex-column p-3">
-                        <h6 class="mb-2 line-clamp-2" style="height: 40px; overflow: hidden; line-height: 1.3;">
-                            <a href="{{ route('catalog.public.show', $catalog->id) }}" class="product-title-link fw-semibold text-decoration-none">
-                                {{ $catalog->name }}
-                            </a>
-                        </h6>
+                        <h6 class="mb-2">
+    <a href="{{ route('catalog.public.show', $catalog->id) }}" 
+       class="product-title-link fw-semibold text-decoration-none" 
+       style="display: block; line-height: 1.3;">
+        {{ $catalog->name }}
+    </a>
+</h6>
 
                         <div class="my-1" style="height: 1px; background: linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,0.08) 20%, rgba(0,0,0,0.08) 80%, rgba(0,0,0,0));"></div>
 
@@ -158,291 +185,4 @@
                     </div>
                 </div>
             </div>
-        @empty
-            <div class="col-12 text-center py-5">
-                <p class="text-muted">Товари не знайдені</p>
-            </div>
-        @endforelse
-        @if(isset($recommended) && $recommended->isNotEmpty())
-
-<div class="col-12 mt-5">
-    <div class="alert alert-success border-0 shadow-sm rounded-4">
-        <h4 class="fw-bold mb-3">
-            <i class="bi bi-stars me-2"></i>
-            Рекомендуємо також
-        </h4>
-
-        <p class="mb-0">
-            Ви обрали сендвіч-димохід з оцинкованим кожухом.
-            Деякі елементи ми виготовляємо лише в нержавіючому кожусі,
-            оскільки вони безпосередньо контактують із гарячими димовими газами.
-        </p>
-    </div>
-</div>
-
-@foreach($recommended as $catalog)
-
-
-    @include('partials.product-card', ['catalog' => $catalog])
-
-
-@endforeach
-
-@endif
-      <div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-
-       <div class="modal-content border-0 bg-transparent position-relative">
-
-            <!-- КНОПКА -->
-         <button type="button"
-        class="btn-close btn-close-white position-absolute top-0 end-0 m-2"
-        aria-label="Close"
-        style="z-index:1055"
-        onclick="this.blur(); bootstrap.Modal.getInstance(document.getElementById('imageModal')).hide();">
-</button>
-
-            <div class="modal-body text-center p-2">
-                <img id="modalImage"
-                     src=""
-                     class="img-fluid"
-                     style="max-height: 80vh; object-fit: contain;">
-            </div>
-
-        </div>
-
-    </div>
-</div>
-        <style>
-            .btn-close.btn-close-white {
-    filter: brightness(0) invert(1);
-    opacity: 1;
-}
-@media (max-width: 768px) {
-    .btn-close.btn-close-white {
-        filter: none !important;
-        background-color: transparent;
-        opacity: 1;
-    }
-
-    .btn-close.btn-close-white {
-        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e");
-    }
-}
-.product-card {
-    border: 1px solid transparent !important;
-    transition:
-        transform 0.28s cubic-bezier(0.4, 0, 0.2, 1),
-        box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1),
-        border-color 0.28s ease;
-        border: 1px solid rgba(0,0,0,0.05) !important;
-}
-.badge {
-    
-    font-weight: 500;
-    letter-spacing: 0.01em;
-}
-
-.product-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 12px 26px rgba(0,0,0,0.08) !important;
-    border-color: rgba(217,119,6,0.15);
-}
-
-.product-card:hover .product-image {
-    transform: scale(1.06);
-}
-
-.product-title-link {
-    color: #1f2937;
-    transition: color 0.2s ease;
-}
-
-.product-title-link:hover {
-    color: #d97706;
-}
-
-.product-image-wrapper {
-    border-bottom: 1px solid rgba(0,0,0,0.04);
-    
-}
-
-.product-image-wrapper .product-image {
-    width: 100% !important;
-    height: 100% !important;
-}
-
-.product-specs {
-    gap: 2px;
-    padding: 4px 2px;
-    background: rgba(0,0,0,0.02);
-    border-radius: 12px;
-}
-
-.product-specs .badge {
-    font-size: 0.7rem;
-    font-weight: 500;
-}
-
-.price-badge {
-    background-color: rgba(31, 25, 19, 0.1);
-    color: #111827;
-    border: 1px solid rgba(217, 119, 6, 0.12);
-    backdrop-filter: blur(6px);
-    box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.5),
-        0 2px 6px rgba(0,0,0,0.03);
-}
-
-
-.item-price {
-     font-size: 1.5rem;
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    color: #111827;
-}
-.product-icons, 
-.right-icons {
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.product-card:hover .product-icons,
-.product-card:hover .right-icons {
-    opacity: 1;
-}
-
-.currency-label {
-    color: #d97706;
-    font-size: 1.05rem;
-}
-
-.text-muted-dark {
-    color: #4b5563;
-}
-
-.btn-cart-circle {
-    background: #d97706;
-    color: #ffffff;
-    border: none;
-    width: 44px;
-    height: 44px;
-    border-radius: 14px;
-    transition:
-        background 0.2s ease,
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
-        box-shadow: 0 4px 12px rgba(217, 119, 6, 0.3) !important;
-}
-
-.btn-cart-circle:hover {
-    background: #b45309;
-    transform: scale(1.08);
-    box-shadow: 0 8px 18px rgba(217,119,6,0.25);
-}
-
-.btn-cart-circle:active {
-    transform: scale(0.95);
-}
-
-.custom-qty-group .qty-btn {
-    color: #4b5563;
-    background-color: transparent;
-    border: none;
-    box-shadow: none !important;
-    transition:
-        background-color 0.15s ease,
-        color 0.15s ease;
-}
-
-.custom-qty-group .qty-btn:hover {
-    background-color: #1f2937 !important;
-    color: #ffffff !important;
-}
-
-.icon-btn {
-    background: rgba(255,255,255,0.92) !important;
-    backdrop-filter: blur(6px);
-    border: 1px solid rgba(0,0,0,0.06) !important;
-    box-shadow: 0 6px 14px rgba(0,0,0,0.08) !important;
-}
-
-.icon-btn:hover {
-    transform: translateY(-2px) scale(1.05) !important;
-    background: #f9fafb !important; /* Легке сіре при наведенні */
-    box-shadow: 0 6px 14px rgba(0,0,0,0.2) !important;
-}
-
-/* Колір іконки всередині */
-.icon-btn i {
-    font-size: 1rem;
-    color: #374151 !important;
-}
-
-.icon-btn:hover i {
-    color: #d97706 !important;
-}
-
-.icon-btn:hover i.bi-heart-fill {
-    color: #dc3545 !important;
-}
-
-.custom-orange-tooltip .tooltip-inner {
-    background-color: #d97706 !important;
-    color: #ffffff !important;
-    font-weight: 500;
-    font-size: 0.78rem;
-    padding: 5px 10px;
-    border-radius: 20px;
-}
-
-.custom-orange-tooltip .tooltip-arrow::before {
-    border-top-color: #d97706 !important;
-}
-
-.qty-input::-webkit-outer-spin-button,
-.qty-input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-
-    /* Переопределяем цвет для всех элементов с классом bg-warning */
-    .bg-warning {
-        background-color: #d97706 !important; /* Насыщенный оранжевый */
-        color: #ffffff !important;           /* Белый текст для контраста */
-    }
-    .price-badge {
-    background: linear-gradient(135deg, rgba(217,119,6,0.15), rgba(0,0,0,0.03));
-    border: 1px solid rgba(217,119,6,0.25);
-}
-
-
-.shop-toolbar {
-    background: #fff;
-    padding: 12px 16px;
-    border-radius: 12px;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
-}
-
-.sort-box {
-   width: 170px;
-}
-.sort-box .choices {
-    width: 100% !important;
-}
-.icon-btn svg {
-    width: 18px;
-    height: 18px;
-    color: #374151;
-    stroke: currentColor;
-    transition: color .2s ease;
-}
-
-.icon-btn:hover svg {
-    color: #d97706;
-}
-
-.compare-btn.active svg {
-    color: #198754; /* зеленый, если товар уже в сравнении */
-}
-</style>
+        
