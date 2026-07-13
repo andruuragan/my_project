@@ -27,7 +27,7 @@
                     </ol>
                 </nav>
     <!-- HERO -->
-<div class="rounded-4 p-5 mb-5 text-center border"
+<div class="hero-banner1 rounded-4 p-5 mb-5 text-center border"
      style="background: linear-gradient(135deg, #fff8e8 0%, #ffffff 100%);">
 
  
@@ -62,8 +62,8 @@
         Одностінні та сендвіч
     </span>
 </div>
-
 </div>
+<!-- END HERO -->
 
    <section class="py-5">
 <div class="container-1600">
@@ -1347,6 +1347,28 @@ document.addEventListener('submit', function (e) {
 
 .line-10{
     width:9px;
+}
+.hero-banner1{
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg,#fff8e8 0%,#ffffff 100%);
+}
+
+.hero-banner1::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background: url('{{ asset("images/chimney/chimney-systems-banner.webp") }}')
+                center center / cover no-repeat;
+
+    opacity: .40;
+    z-index: 0;
+}
+
+.hero-banner1 > *{
+    position: relative;
+    z-index: 1;
 }
 </style>
 @endsection
