@@ -810,17 +810,17 @@
 <div class="row text-center mt-5">
 
     <div class="col-4">
-        <div class="display-6 fw-bold text-warning">2</div>
+        <div class="display-6 fw-bold text-warning counter" data-target="2">2</div>
         <small class="text-muted">Типи кожуха</small>
     </div>
 
     <div class="col-4">
-        <div class="display-6 fw-bold text-warning">1000+</div>
+        <div class="display-6 fw-bold text-warning counter" data-target="1000">1000+</div>
         <small class="text-muted">Комплектуючих</small>
     </div>
 
     <div class="col-4">
-        <div class="display-6 fw-bold text-warning">100%</div>
+        <div class="display-6 fw-bold text-warning counter" data-target="100">100%</div>
         <small class="text-muted">Сумісність</small>
     </div>
 
@@ -1481,6 +1481,59 @@ document.getElementById('showProducts').addEventListener('click', function () {
     
     window.location.href = "{{ route('shop.index') }}?" + params.toString();
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+
+    const counters = document.querySelectorAll('.counter');
+
+    const observer = new IntersectionObserver((entries) => {
+
+        entries.forEach(entry => {
+
+            if (!entry.isIntersecting) return;
+
+            const counter = entry.target;
+            const target = Number(counter.dataset.target);
+
+            let start = 0;
+            const duration = 1800;
+            const startTime = performance.now();
+
+            const suffix = counter.textContent.includes('%')
+                ? '%'
+                : counter.textContent.includes('+')
+                    ? '+'
+                    : '';
+
+            function update(currentTime) {
+
+                const progress = Math.min((currentTime - startTime) / duration, 1);
+
+                const value = Math.floor(progress * target);
+
+                counter.textContent = value + suffix;
+
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                } else {
+                    counter.textContent = target + suffix;
+                }
+            }
+
+            requestAnimationFrame(update);
+
+            observer.unobserve(counter);
+
+        });
+
+    }, {
+        threshold: 0.5
+    });
+
+    counters.forEach(counter => observer.observe(counter));
+
+});
+
   </script>
 
 @endsection

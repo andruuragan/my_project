@@ -113,6 +113,7 @@ window.refreshCart = function () {
 
 // --- ЕДИНЫЙ ЗАПУСК ---
 document.addEventListener('DOMContentLoaded', () => {
+    
 
     // =============================================
     const cards = document.querySelectorAll(

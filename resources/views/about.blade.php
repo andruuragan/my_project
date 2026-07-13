@@ -105,12 +105,23 @@
     {{-- Stats Section --}}
     <section class="py-5">
         <div class="row text-center g-4">
-            @foreach([['2012', 'Рік заснування'], ['100+', 'Найменувань продукції'], ['1000+', 'Виконаних замовлень'], ['24/7', 'Консультації клієнтів']] as $stat)
-                <div class="col-6 col-lg-3">
-                    <h2 class="fw-bold text-warning">{{ $stat[0] }}</h2>
-                    <p>{{ $stat[1] }}</p>
-                </div>
-            @endforeach
+            @foreach([
+    ['value' => 2012, 'suffix' => '',   'label' => 'Рік заснування'],
+    ['value' => 100,  'suffix' => '+',  'label' => 'Найменувань продукції'],
+    ['value' => 1000, 'suffix' => '+',  'label' => 'Виконаних замовлень'],
+    ['value' => 24,   'suffix' => '/7', 'label' => 'Консультації клієнтів'],
+] as $stat)
+
+<div class="col-6 col-lg-3">
+    <h2 class="fw-bold text-warning counter"
+        data-target="{{ $stat['value'] }}">
+        {{ $stat['value'] }}{{ $stat['suffix'] }}
+    </h2>
+
+    <p>{{ $stat['label'] }}</p>
+</div>
+
+@endforeach
         </div>
     </section>
 
@@ -348,6 +359,61 @@
     color: #f97316 !important;
 }
 </style>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+    const counters = document.querySelectorAll('.counter');
+
+    const observer = new IntersectionObserver((entries) => {
+
+        entries.forEach(entry => {
+
+            if (!entry.isIntersecting) return;
+
+            const counter = entry.target;
+            const target = Number(counter.dataset.target);
+
+            let start = 0;
+            const duration = 1800;
+            const startTime = performance.now();
+
+            const suffix = counter.textContent.includes('%')
+    ? '%'
+    : counter.textContent.includes('+')
+        ? '+'
+        : counter.textContent.includes('/7')
+            ? '/7'
+            : '';
+
+            function update(currentTime) {
+
+                const progress = Math.min((currentTime - startTime) / duration, 1);
+
+                const value = Math.floor(progress * target);
+
+                counter.textContent = value + suffix;
+
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                } else {
+                    counter.textContent = target + suffix;
+                }
+            }
+
+            requestAnimationFrame(update);
+
+            observer.unobserve(counter);
+
+        });
+
+    }, {
+        threshold: 0.5
+    });
+
+    counters.forEach(counter => observer.observe(counter));
+
+});
+</script>
 @endsection
 @push('schema-about')
 <script type="application/ld+json">

@@ -642,20 +642,25 @@
 <div class="row text-center mt-5">
 
     <div class="col-4">
-        <div class="display-6 fw-bold text-warning">4</div>
-        <small class="text-muted">Марки сталі</small>
+    <div class="display-6 fw-bold text-warning counter" data-target="4">
+        4
     </div>
+    <small class="text-muted">Марки сталі</small>
+</div>
 
-    <div class="col-4">
-        <div class="display-6 fw-bold text-warning">1000+</div>
-        <small class="text-muted">Комплектуючих</small>
+<div class="col-4">
+    <div class="display-6 fw-bold text-warning counter" data-target="1000">
+        1000+
     </div>
+    <small class="text-muted">Комплектуючих</small>
+</div>
 
-    <div class="col-4">
-        <div class="display-6 fw-bold text-warning">100%</div>
-        <small class="text-muted">Сумісність</small>
+<div class="col-4">
+    <div class="display-6 fw-bold text-warning counter" data-target="100">
+        100%
     </div>
-
+    <small class="text-muted">Сумісність</small>
+</div>
 </div>
 
         </div>
@@ -1081,7 +1086,7 @@ if (images[selected.type]) {
     updateProgress();
     updateSelected();
 
-    document.getElementById('selection').scrollIntoView({ behavior: 'smooth' });
+    
 }
 function updateProgress() {
 
@@ -1208,6 +1213,58 @@ document.getElementById('showProducts').addEventListener('click', function () {
 });
 
 showStep(1);
+
+document.addEventListener('DOMContentLoaded', () => {
+
+    const counters = document.querySelectorAll('.counter');
+
+    const observer = new IntersectionObserver((entries) => {
+
+        entries.forEach(entry => {
+
+            if (!entry.isIntersecting) return;
+
+            const counter = entry.target;
+            const target = Number(counter.dataset.target);
+
+            let start = 0;
+            const duration = 1800;
+            const startTime = performance.now();
+
+            const suffix = counter.textContent.includes('%')
+                ? '%'
+                : counter.textContent.includes('+')
+                    ? '+'
+                    : '';
+
+            function update(currentTime) {
+
+                const progress = Math.min((currentTime - startTime) / duration, 1);
+
+                const value = Math.floor(progress * target);
+
+                counter.textContent = value + suffix;
+
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                } else {
+                    counter.textContent = target + suffix;
+                }
+            }
+
+            requestAnimationFrame(update);
+
+            observer.unobserve(counter);
+
+        });
+
+    }, {
+        threshold: 0.5
+    });
+
+    counters.forEach(counter => observer.observe(counter));
+
+});
   </script>
 
 @endsection

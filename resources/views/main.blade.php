@@ -203,28 +203,28 @@
 
             <div class="col-md-3 col-6">
                 <div class="trust-item">
-                    <div class="trust-number">12+</div>
+                    <div class="trust-number counter" data-target="12">12+</div>
                     <div class="trust-label">років досвіду</div>
                 </div>
             </div>
 
             <div class="col-md-3 col-6">
                 <div class="trust-item">
-                    <div class="trust-number">5000+</div>
+                    <div class="trust-number counter" data-target="5000">5000+</div>
                     <div class="trust-label">замовлень</div>
                 </div>
             </div>
 
             <div class="col-md-3 col-6">
                 <div class="trust-item">
-                    <div class="trust-number">1000+</div>
+                    <div class="trust-number counter" data-target="1000">1000+</div>
                     <div class="trust-label">об'єктів</div>
                 </div>
             </div>
 
             <div class="col-md-3 col-6">
                 <div class="trust-item">
-                    <div class="trust-number">98%</div>
+                    <div class="trust-number counter" data-target="98">98%</div>
                     <div class="trust-label">задоволених клієнтів</div>
                 </div>
             </div>
@@ -572,6 +572,53 @@ document.addEventListener('DOMContentLoaded', function () {
             new bootstrap.Modal(registerModal).show();
         }
     }
+     const counters = document.querySelectorAll('.counter');
+
+    const observer = new IntersectionObserver((entries) => {
+
+        entries.forEach(entry => {
+
+            if (!entry.isIntersecting) return;
+
+            const counter = entry.target;
+            const target = Number(counter.dataset.target);
+
+            let start = 0;
+            const duration = 1800;
+            const startTime = performance.now();
+
+            const suffix = counter.textContent.includes('%')
+                ? '%'
+                : counter.textContent.includes('+')
+                    ? '+'
+                    : '';
+
+            function update(currentTime) {
+
+                const progress = Math.min((currentTime - startTime) / duration, 1);
+
+                const value = Math.floor(progress * target);
+
+                counter.textContent = value + suffix;
+
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                } else {
+                    counter.textContent = target + suffix;
+                }
+            }
+
+            requestAnimationFrame(update);
+
+            observer.unobserve(counter);
+
+        });
+
+    }, {
+        threshold: 0.5
+    });
+
+    counters.forEach(counter => observer.observe(counter));
 });
 </script>
 @endsection

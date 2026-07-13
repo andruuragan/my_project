@@ -237,7 +237,7 @@ $rules = [
                 <p class="text-muted">
                     У нашій статті ми детально розібрали, як інженерний підхід до вибору матеріалів та дотримання пожежних норм подовжує термін служби вашої опалювальної системи на десятиліття.
                 </p>
-                <a href="{{ route('blog.installation-errors') }}" class="btn btn-outline-dark fw-bold mt-2">Читати повну статтю</a>
+                <a href="{{ route('blog.installation-errors') }}" class="btn btn-outline-dark fw-bold mt-2">Читати повну статтю<i class="bi bi-arrow-right-circle ms-2"></i></a>
             </div>
             <div class="col-lg-6 text-lg-end mt-4 mt-lg-0">
                 <div class="position-relative">
