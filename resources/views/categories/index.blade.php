@@ -213,14 +213,26 @@
     <div class="row g-3">
         <div class="col-md-4">
             <button class="config-option w-100 btn btn-outline-dark p-3"
-                    data-value="304">
-                Твердопаливний котел
-            </button>
+        data-value="304">
+
+    <img src="{{ asset('images/icons/solid-fuel-boiler.svg') }}"
+         alt="Твердопаливний котел"
+         width="32"
+         height="32"
+         class="me-2">
+
+    Твердопаливний котел
+</button>
         </div>
 
         <div class="col-md-4">
             <button class="config-option w-100 btn btn-outline-dark p-3"
                     data-value="321">
+                <img src="{{ asset('images/icons/fireplace.svg') }}"
+                     alt="Камін"
+                     width="32"
+                     height="32"
+                     class="me-2">
                 Камін
             </button>
         </div>
@@ -228,6 +240,11 @@
         <div class="col-md-4">
             <button class="config-option w-100 btn btn-outline-dark p-3"
                     data-value="304">
+                <img src="{{ asset('images/icons/gas-boiler.svg') }}"
+                     alt="Газовий котел"
+                     width="32"
+                     height="32"
+                     class="me-2">
                 Газовий котел
             </button>
         </div>
@@ -280,18 +297,32 @@
     <div class="col-md-6">
         <button class="config-option w-100 btn btn-outline-dark p-3"
                 data-value="н/оц">
+                 <img src="{{ asset('images/icons/trzn.svg') }}"
+                     alt="Газовий котел"
+                     width="50"
+                     height="50"
+                     class="me-2">
             🟡 Економ
             <div class="small text-muted mt-2">
+                
                 Оцинкований кожух
             </div>
         </button>
+        
+
     </div>
 
     <div class="col-md-6">
         <button class="config-option w-100 btn btn-outline-dark p-3"
                 data-value="н/н">
+                 <img src="{{ asset('images/icons/trner.svg') }}"
+                     alt="Газовий котел"
+                     width="50"
+                     height="50"
+                     class="me-2">
             ⚫ Стандарт
             <div class="small text-muted mt-2">
+                
                 Нержавійка / нержавійка
             </div>
         </button>
