@@ -579,8 +579,13 @@
         'н/н' => '3a5834a31a698234418276d0333da7134679ccf4.webp',
         'н/оц' => '3a5834a31a698234418276d0333da7134679ccf4.webp',
             ],
-            ]  
-           
+            ],  
+            ['name' => 'Розвантажувальна підставка',
+            'images' => [
+        'н/н' => '6c6786f2e63db2cc3abd5b287d9dc0f250f4cac1.webp',
+        'н/оц' => '6c6786f2e63db2cc3abd5b287d9dc0f250f4cac1.webp',
+            ],
+            ] 
         ] as $item)
 
        <div class="col-lg-3 col-md-4 col-6">
@@ -1256,6 +1261,10 @@ const images = {
     "Старт-сендвіч": {
         "н/н": "3a5834a31a698234418276d0333da7134679ccf4.webp",
         "н/оц": "3a5834a31a698234418276d0333da7134679ccf4.webp"
+    },
+    "Розвантажувальна підставка": {
+        "н/н": "6c6786f2e63db2cc3abd5b287d9dc0f250f4cac1.webp",
+        "н/оц": "6c6786f2e63db2cc3abd5b287d9dc0f250f4cac1.webp"
     }
     
 };
@@ -1474,12 +1483,28 @@ document.getElementById('showProducts').addEventListener('click', function () {
         return;
     }
     
-    const params = new URLSearchParams({
-        chimneyType: 'Термо', // ТУТ МАЄ БУТИ 'Термо'
+    let params;
+
+if (selected.type === 'Розвантажувальна підставка') {
+
+    params = new URLSearchParams({
+        chimneyType: 'Термо',
+        diameter: selected.diameter,
+        type: 'Розвантажувальна підставка'
+    });
+
+} else {
+
+    params = new URLSearchParams({
+        chimneyType: 'Термо',
         ...selected
     });
+
+}
+
+window.location.href = "{{ route('shop.index') }}?" + params.toString();
     
-    window.location.href = "{{ route('shop.index') }}?" + params.toString();
+    
 });
 
 document.addEventListener('DOMContentLoaded', () => {

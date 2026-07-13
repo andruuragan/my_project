@@ -480,6 +480,9 @@
             ],
             ['name' => 'Лійка',
             'img' => '80731c12dd76219b0954f38d138107e784d693ac.webp'
+            ],
+            ['name' => 'Розвантажувальна підставка',
+            'img' => '6c6786f2e63db2cc3abd5b287d9dc0f250f4cac1.webp'
             ]
         ] as $item)
 
@@ -1003,7 +1006,8 @@ const images = {
     "Сітка": "ea9cc93449a2a910df0e74c2617cf06c57b90f37.webp",
     "Труба-подовжувач": "044abad5ad84f29eac881da06a1f93017f2d7590.webp",
     "Лійка": "80731c12dd76219b0954f38d138107e784d693ac.webp",
-    "Заглушка": "70f9709ad093575e0fd014ac3fb5b565c6cc5d7e.webp"
+    "Заглушка": "70f9709ad093575e0fd014ac3fb5b565c6cc5d7e.webp",
+    "Розвантажувальна підставка": "6c6786f2e63db2cc3abd5b287d9dc0f250f4cac1.webp"
 };
 const availableThickness = {
     "201": [
@@ -1054,7 +1058,7 @@ function renderThickness() {
 
 let currentStep = 1;
 
-function showStep(step) {
+function showStep(step, scroll = false) {
 
     document.querySelectorAll('#stepsContainer > div').forEach(el => {
         el.style.display = 'none';
@@ -1085,7 +1089,12 @@ if (images[selected.type]) {
 
     updateProgress();
     updateSelected();
-
+ if (scroll) {
+        document.getElementById('selection').scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        });
+    }
     
 }
 function updateProgress() {
@@ -1147,9 +1156,8 @@ function updateProgress() {
 
 
 document.getElementById('prevBtn').onclick = () => {
-
     if (currentStep > 1) {
-        showStep(currentStep - 1);
+        showStep(currentStep - 1, false);
     }
 
 };
@@ -1204,12 +1212,26 @@ document.getElementById('showProducts').addEventListener('click', function () {
         return;
     }
     
-    const params = new URLSearchParams({
+    let params;
+
+if (selected.type === 'Розвантажувальна підставка') {
+
+    params = new URLSearchParams({
+        chimneyType: 'Одностінний',
+        diameter: selected.diameter,
+        type: 'Розвантажувальна підставка'
+    });
+
+} else {
+
+    params = new URLSearchParams({
         chimneyType: 'Одностінний',
         ...selected
     });
-    
-    window.location.href = "{{ route('shop.index') }}?" + params.toString();
+
+}
+
+window.location.href = "{{ route('shop.index') }}?" + params.toString();
 });
 
 showStep(1);
