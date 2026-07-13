@@ -374,9 +374,9 @@
 <div id="resultsContainer" class="mt-5" style="display:none;">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h3 class="fw-bold">Знайдені рішення:</h3>
-        <button class="btn btn-outline-danger" onclick="location.reload()">
-            Очистити пошук
-        </button>
+       <button class="btn btn-outline-danger" id="resetConfigurator">
+    Очистити пошук
+</button>
     </div>
 
     <div id="productsGrid" class="row g-4"></div>
@@ -730,9 +730,7 @@ AISI 304 — універсальний вибір, AISI 321 — для висо
 
 </section>
 <script>
-    function getTotalSteps() {
-    return state.mount === 'Термо' ? 5 : 4;
-}
+   
 document.addEventListener('DOMContentLoaded', function () {
     const state = {
     step: 1,
@@ -810,7 +808,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     }, 300);
 });
-
+ function getTotalSteps() {
+    return state.mount === 'Термо' ? 5 : 4;
+}
     // Обробка кнопки "Назад"
  document.getElementById('prevBtn').addEventListener('click', function () {
 
@@ -830,7 +830,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         case 3:
             state.diameter = null;
-            state.casing = null;
+            
             showStep(
                 state.mount === "Термо" ? 2.5 : 2
             );
@@ -846,13 +846,7 @@ document.addEventListener('DOMContentLoaded', function () {
             break;
     }
 
-    // убираем активные кнопки на следующем шаге
-    Object.values(steps).forEach(step => {
-        if (step) {
-            step.querySelectorAll('.config-option')
-                .forEach(btn => btn.classList.remove('active'));
-        }
-    });
+   
 
 });
 const singleDiameters = [
@@ -918,6 +912,42 @@ function updateThicknessOptions() {
         col.style.display = "";
     }
 }
+function restoreActiveButton() {
+
+   steps[state.step].querySelectorAll('.config-option').forEach(btn => {
+    btn.classList.remove('active');
+});
+
+    let value = null;
+
+    switch (state.step) {
+        case 1:
+            value = state.equipment;
+            break;
+        case 2:
+            value = state.mount;
+            break;
+        case 2.5:
+            value = state.casing;
+            break;
+        case 3:
+            value = state.diameter;
+            break;
+        case 4:
+            value = state.thickness;
+            break;
+    }
+
+    if (!value) return;
+
+    const btn = steps[state.step]?.querySelector(
+        `.config-option[data-value="${value}"]`
+    );
+
+    if (btn) {
+        btn.classList.add('active');
+    }
+}
     // Функція відображення кроку
    function showStep(n) {
     Object.values(steps).forEach(s => s.style.display = 'none');
@@ -926,8 +956,9 @@ function updateThicknessOptions() {
 
     if (n === 4) {
     updateThicknessOptions();
+    
 }
-
+restoreActiveButton();
     document.getElementById('prevBtn').style.display = (n > 1) ? 'block' : 'none';
 
     let currentStep;
@@ -1003,6 +1034,36 @@ function renderResults(response) {
 
     document.getElementById('openConfigurator').click();
 
+    document.getElementById('configuratorSection').scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+    });
+});
+document.getElementById('resetConfigurator').addEventListener('click', function () {
+
+    // Скрываем результаты
+    document.getElementById('resultsContainer').style.display = 'none';
+
+    // Показываем конфигуратор
+    document.getElementById('configuratorSection').style.display = 'block';
+
+    // Сбрасываем состояние
+    state.step = 1;
+    state.equipment = null;
+    state.mount = null;
+    state.casing = null;
+    state.diameter = null;
+    state.thickness = null;
+
+    // Убираем активные кнопки
+    document.querySelectorAll('.config-option').forEach(btn => {
+        btn.classList.remove('active');
+    });
+
+    // Возвращаем на первый шаг
+    showStep(1);
+
+    // Скролл к конфигуратору
     document.getElementById('configuratorSection').scrollIntoView({
         behavior: 'smooth',
         block: 'start'
