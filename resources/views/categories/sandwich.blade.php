@@ -1493,7 +1493,24 @@ if (selected.type === 'Розвантажувальна підставка') {
         type: 'Розвантажувальна підставка'
     });
 
-} else {
+} else if (selected.type === 'Старт-сендвіч') {
+
+    params = new URLSearchParams({
+        chimneyType: 'Термо',
+        diameter: selected.diameter,
+        grade: selected.grade,
+        thickness: selected.thickness,
+        type: 'Старт-сендвіч'
+    });
+    
+   
+   
+   
+
+}
+
+
+else {
 
     params = new URLSearchParams({
         chimneyType: 'Термо',
