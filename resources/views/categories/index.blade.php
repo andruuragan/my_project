@@ -596,11 +596,12 @@
 
                 </div>
 
-                <a href="#configurator1"
-                   class="btn btn-warning btn-lg rounded-pill px-5 shadow-sm">
-                    <i class="bi bi-magic me-2"></i>
-                    Запустити конфігуратор
-                </a>
+               <a href="#"
+   id="startConfigurator"
+   class="btn btn-warning btn-lg rounded-pill px-5 shadow-sm">
+    <i class="bi bi-magic me-2"></i>
+    Запустити конфігуратор
+</a>
 
                 <div class="text-muted small mt-4">
                     Підбір основних елементів димохідної системи за кілька кліків
@@ -952,6 +953,16 @@ function renderResults(response) {
         this.closest('.mt-5').style.display = 'none';
         showStep(1);
     });
+    document.getElementById('startConfigurator').addEventListener('click', function (e) {
+    e.preventDefault();
+
+    document.getElementById('openConfigurator').click();
+
+    document.getElementById('configuratorSection').scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+    });
+});
 });
 
 
@@ -1256,6 +1267,9 @@ document.addEventListener('submit', function (e) {
 .cta-configurator .card-body{
     position:relative;
     z-index:2;
+}
+#configuratorSection {
+    scroll-margin-top: 180px;
 }
 </style>
 @endsection
