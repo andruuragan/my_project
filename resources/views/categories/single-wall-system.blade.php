@@ -1089,12 +1089,12 @@ if (images[selected.type]) {
 
     updateProgress();
     updateSelected();
- if (scroll) {
+ 
         document.getElementById('selection').scrollIntoView({
             behavior: 'smooth',
             block: 'start'
         });
-    }
+    
     
 }
 function updateProgress() {
