@@ -715,6 +715,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     } else if (state.step === 2) {
         state.mount = btn.dataset.value;
+         state.casing = null;
+    state.diameter = null;
+    state.thickness = null;
 
     } else if (state.step === 2.5) {
         state.casing = btn.dataset.value;
