@@ -343,15 +343,29 @@
     <h4 class="fw-bold text-center mb-4"> Яка товщина сталі вам потрібна?  </h4>
 
     <div class="row g-3">
-        <div class="col-md-4">
-            <button class="config-option w-100 btn btn-outline-dark p-3" data-value="0,5 мм">0,5 мм</button>
-        </div>
-        <div class="col-md-4">
-            <button class="config-option w-100 btn btn-outline-dark p-3" data-value="0,8 мм">0,8 мм</button>
-        </div>
-        <div class="col-md-4">
-            <button class="config-option w-100 btn btn-outline-dark p-3" data-value="1 мм">1 мм</button>
-        </div>
+      <div class="col-md-4">
+    <button class="config-option w-100 btn btn-outline-dark p-3"
+            data-value="0,5 мм">
+        <span class="metal-line line-05"></span>
+        <span>0,5 мм</span>
+    </button>
+</div>
+
+<div class="col-md-4">
+    <button class="config-option w-100 btn btn-outline-dark p-3"
+            data-value="0,8 мм">
+        <span class="metal-line line-08"></span>
+        <span>0,8 мм</span>
+    </button>
+</div>
+
+<div class="col-md-4">
+    <button class="config-option w-100 btn btn-outline-dark p-3"
+            data-value="1 мм">
+        <span class="metal-line line-10"></span>
+        <span>1 мм</span>
+    </button>
+</div>
     </div>
 </div>
 
@@ -1301,6 +1315,38 @@ document.addEventListener('submit', function (e) {
 }
 #configuratorSection {
     scroll-margin-top: 180px;
+}
+.config-option{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
+    min-height:120px;
+}
+
+.metal-line{
+    display:block;
+    height:50px;
+    border-radius:20px;
+    background: linear-gradient(
+        to right,
+        #bfc3c7,
+        #5f6368,
+        #bfc3c7
+    );
+}
+
+.line-05{
+    width:3px;
+}
+
+.line-08{
+    width:6px;
+}
+
+.line-10{
+    width:9px;
 }
 </style>
 @endsection

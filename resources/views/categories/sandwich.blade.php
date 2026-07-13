@@ -456,46 +456,64 @@
         {{-- Н/Н --}}
         <div class="col-lg-4 col-md-6">
             <button
-                class="btn btn-outline-dark w-100 option-btn h-100"
-                data-step="casing"
-                data-value="н/н">
+    class="btn btn-outline-dark w-100 option-btn h-100"
+    data-step="casing"
+    data-value="н/н">
 
-                <div class="fw-bold fs-4 mb-2">
-                    Кожух нержавійка (AISI 201)
-                </div>
+    <img
+        src="{{ asset('images/icons/trner.svg') }}"
+        alt="Кожух з нержавіючої сталі"
+        width="64"
+        height="64"
+        class="mb-3">
 
-                <span class="badge bg-success mb-3">
-                    🟢 Стандарт
-                </span>
+    <div class="fw-bold fs-4 mb-2">
+        Кожух нержавійка (AISI 201)
+    </div>
 
-                <div class="small text-muted">
-                    Класичний варіант для зовнішнього монтажу. Висока корозійна стійкість, довговічність та естетичний вигляд.
+    <span class="badge bg-success mb-3">
+        🟢 Стандарт
+    </span>
 
-            </button>
+    <div class="small text-muted">
+        Класичний варіант для зовнішнього монтажу.
+        Висока корозійна стійкість, довговічність та
+        естетичний вигляд.
+    </div>
+
+</button>
         </div>
 
        
 
         {{-- Н/ОЦ --}}
         <div class="col-lg-4 col-md-6">
-            <button
-                class="btn btn-outline-dark w-100 option-btn h-100"
-                data-step="casing"
-                data-value="н/оц">
+           <button
+    class="btn btn-outline-dark w-100 option-btn h-100"
+    data-step="casing"
+    data-value="н/оц">
 
-                <div class="fw-bold fs-4 mb-2">
-                    Кожух із оцинкованої сталі 
-                </div>
+    <img
+        src="{{ asset('images/icons/trzn.svg') }}"
+        alt="Кожух із оцинкованої сталі"
+       width="64"
+        height="64"
+        class="mb-3">
 
-                <span class="badge bg-warning text-dark mb-3">
-                    💰 Економ
-                </span>
+    <div class="fw-bold fs-4 mb-2">
+        Кожух із оцинкованої сталі
+    </div>
 
-                <div class="small text-muted">
-                    Доступне рішення для менш вимогливих умов експлуатації. При належному догляді та обслуговуванні служить довго.
-                </div>
+    <span class="badge bg-warning text-dark mb-3">
+        💰 Економ
+    </span>
 
-            </button>
+    <div class="small text-muted">
+        Доступне рішення для менш вимогливих умов експлуатації.
+        При належному догляді та обслуговуванні служить довго.
+    </div>
+
+</button>
         </div>
 
     </div>
@@ -1211,6 +1229,28 @@
     transform:translateY(-8px);
     box-shadow:0 18px 40px rgba(0,0,0,.12)!important;
 }
+.option-btn{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    min-height:150px;
+}
+
+.metal-line{
+    display:block;
+    height:50px;
+    border-radius:20px;
+    background:linear-gradient(to right,#d8dde2,#7b8188,#d8dde2);
+    box-shadow:
+        inset 0 0 2px rgba(255,255,255,.6),
+        0 1px 3px rgba(0,0,0,.25);
+}
+
+.line-05{ width:3px; }
+.line-08{ width:6px; }
+.line-10{ width:9px; }
 </style>
 
   <script>
@@ -1282,11 +1322,22 @@ const availableThickness = {
         { value: "1 мм", title: "Максимальна" }
     ]
 };
+function getLineClass(value) {
+    switch (value) {
+        case "0,5 мм":
+            return "line-05";
+        case "0,8 мм":
+            return "line-08";
+        case "1 мм":
+            return "line-10";
+        default:
+            return "line-05";
+    }
+}
 
 function renderThickness() {
 
     const container = document.getElementById('thicknessContainer');
-
     container.innerHTML = '';
 
     availableThickness[selected.grade].forEach(item => {
@@ -1299,7 +1350,9 @@ function renderThickness() {
                     data-step="thickness"
                     data-value="${item.value}">
 
-                    <div class="fw-bold fs-5">
+                    <span class="metal-line ${getLineClass(item.value)}"></span>
+
+                    <div class="fw-bold fs-5 mt-3">
                         ${item.value}
                     </div>
 
@@ -1311,9 +1364,7 @@ function renderThickness() {
 
             </div>
         `;
-
     });
-
 }
 
 let currentStep = 1;
