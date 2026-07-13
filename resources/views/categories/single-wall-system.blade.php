@@ -1234,7 +1234,7 @@ if (selected.type === 'Розвантажувальна підставка') {
 window.location.href = "{{ route('shop.index') }}?" + params.toString();
 });
 
-showStep(1);
+
 
 document.addEventListener('DOMContentLoaded', () => {
 
