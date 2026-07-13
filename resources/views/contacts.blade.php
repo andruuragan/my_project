@@ -65,7 +65,7 @@
 
         {{-- Блок 2: Форма --}}
         <div class="col-lg-7">
-           <div class="card border-0 shadow-sm p-4 p-lg-5 h-100 contact-form-card">
+           <div id="contactForm1" class="card border-0 shadow-sm p-4 p-lg-5 h-100 contact-form-card">
                 <h3 class="mb-4 fw-bold">Зв'яжіться з нами</h3>
                 <p class="text-muted mb-4">
     Заповніть форму, і наш менеджер зв'яжеться з вами найближчим робочим часом.
@@ -132,6 +132,13 @@
             Залиште заявку через форму або зв'яжіться з нами телефоном чи електронною поштою — 
             менеджер DymSystems відповість на ваші запитання та допоможе з вибором.
         </p>
+        <div class="mt-4 text-center">
+    <a href="#contactForm1"
+       class="btn btn-warning btn-lg rounded-pill px-4">
+        <i class="bi bi-send me-2"></i>
+        Залишити заявку
+    </a>
+</div>
         </div>
     </div>
 </div>
@@ -156,6 +163,9 @@
 
 .hover-orange:hover {
     color: #f97316 !important;
+}
+#contactForm1{
+    scroll-margin-top: 120px; /* подберите значение под высоту navbar */
 }
 </style>
 @endsection
