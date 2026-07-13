@@ -272,7 +272,7 @@
 </div>
 <div id="step2b" style="display:none;">
     <h4 class="fw-bold text-center mb-4">
-        Виберіть тип зовнішнього кожуха
+        Який тип зовнішнього кожуха вам потрібен?
     </h4>
 
    <div class="row g-3">
@@ -302,14 +302,14 @@
 
       <div id="step3" style="display:none;">
     <h4 class="fw-bold text-center mb-4">
-        Оберіть діаметр
+        Оберіть діаметр відповідно до вашого обладнання
     </h4>
 
     <div id="diameters" class="row g-3"></div>
 </div>
 
        <div id="step4" style="display:none;">
-    <h4 class="fw-bold text-center mb-4">Товщина сталі</h4>
+    <h4 class="fw-bold text-center mb-4"> Яка товщина сталі вам потрібна?  </h4>
 
     <div class="row g-3">
         <div class="col-md-4">
