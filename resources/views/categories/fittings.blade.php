@@ -303,12 +303,15 @@
 
     <div class="text-center">
 
-        <img
-            src="{{ asset('images/chimney/fittings-scheme.webp') }}"
-            class="img-fluid rounded-4 shadow-sm"
-            alt="Схема кріплень димохідної системи">
+    <img
+        src="{{ asset('images/chimney/fittings-scheme.webp') }}"
+        class="img-fluid rounded-4 shadow-sm"
+        alt="Схема кріплень димохідної системи"
+        style="cursor:pointer;"
+        data-bs-toggle="modal"
+        data-bs-target="#schemeModal">
 
-    </div>
+</div>
 
 </section>
 
@@ -600,6 +603,28 @@ FAQ
 
 
 </div>
+<div class="modal fade" id="schemeModal" tabindex="-1">
+
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+
+        <div class="modal-content border-0 bg-transparent">
+
+            <button
+                type="button"
+                class="btn-close btn-close-white ms-auto mb-2"
+                data-bs-dismiss="modal">
+            </button>
+
+            <img
+                src="{{ asset('images/chimney/fittings-scheme.webp') }}"
+                class="img-fluid rounded-3 shadow-lg"
+                alt="Схема">
+
+        </div>
+
+    </div>
+
+</div>
 <script>
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -837,6 +862,15 @@ document.addEventListener('click', function (e) {
 }
 #step2{
     scroll-margin-top: 120px;
+}
+#schemeModal .modal-content{
+    background:transparent;
+    box-shadow:none;
+}
+
+#schemeModal img{
+    max-height:90vh;
+    object-fit:contain;
 }
 </style>
 @endpush
