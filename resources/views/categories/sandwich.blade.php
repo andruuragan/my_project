@@ -1,6 +1,7 @@
 @extends('layouts.main')
 
-@section('title', 'Система одностінних димоходів')
+@section('title', 'Система сендвіч-димоходів | DymSystems')
+@section('description', 'Підбір термо (сендвіч) димохідної системи')
 
 @section('content')
 
