@@ -30,6 +30,7 @@ use App\Http\Controllers\CompareController;
 use App\Http\Controllers\CategoryPageController;
 use App\Http\Controllers\SingleWallSystemController;
 use App\Http\Controllers\SandwichSystemController;
+use App\Http\Controllers\FittingsSystemController;
 
 /* ==========================================================================
 |  1. PUBLIC PAGES & AUTH CONTROL (Breeze)
@@ -45,6 +46,10 @@ Route::get('/categories', [CategoryPageController::class, 'index'])
     ->name('single-wall-system');
    Route::get('/termo-sendvich-dimohidna-systema', SandwichSystemController::class)
     ->name('sandwich-system');
+    Route::get(
+    '/systema-kriplen-homutiv-ta-komplektuyuchih',
+    [FittingsSystemController::class, 'index']
+)->name('fittings-system');
 Route::get('/dymohody-ta-komplektuyuchi', [ShopController::class, 'index'])->name('shop.index');
 Route::get('/catalog/{catalog}', [CatalogController::class, 'publicShow'])->name('catalog.public.show');
 

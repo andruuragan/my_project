@@ -19,64 +19,60 @@
                         </li>
                     </ol>
                 </nav>
-    <div class="row align-items-center g-5">
+   <div class="hero-banner position-relative overflow-hidden rounded-4 p-4 p-lg-5">
 
-       <div class="col-lg-6">
+    {{-- Зображення --}}
+    <img src="{{ asset('images/chimney/sandwich-banner.webp') }}"
+         class="hero-image"
+         width="500"
+         height="500"
+         alt="Термо (сендвіч) димохідна система"
+         loading="eager">
 
-    <span class="badge bg-warning text-dark px-3 py-2 mb-3">
-        DymSystems
-    </span>
-    <div class="display-3 text-warning mb-3"><i class="bi bi-grid-1x2-fill"></i></div>
+    <div class="hero-content">
 
-    <h1 class="display-5 fw-bold mb-4">
-        Термо (сендвіч) димохідна система
-    </h1>
-
-    <p class="lead text-muted mb-4">
-        Оберіть характеристики термо (сендвіч) димоходу, після чого ми
-        покажемо лише сумісні елементи відповідно до ваших параметрів.
-    </p>
-
-    <div class="d-flex flex-wrap gap-3 mb-4">
-
-        <span class="badge rounded-pill bg-light text-dark border px-3 py-2">
-            <i class="bi bi-thermometer-half text-warning me-2"></i>
-            З теплоізоляцією
+        <span class="badge bg-warning text-dark px-3 py-2 mb-3">
+            DymSystems
         </span>
 
-        <span class="badge rounded-pill bg-light text-dark border px-3 py-2">
-            <i class="bi bi-house-check text-success me-2"></i>
-            Для зовнішнього монтажу
-        </span>
+        <h1 class="display-4 fw-bold mb-4">
+            Підбір термо (сендвіч) димохідної системи
+        </h1>
 
-        <span class="badge rounded-pill bg-light text-dark border px-3 py-2">
-            <i class="bi bi-check-circle text-primary me-2"></i>
-            Лише сумісні елементи
-        </span>
+        <p class="lead text-muted mb-4" style="max-width:700px;">
+            Оберіть характеристики термо (сендвіч) димохідної системи, після чого
+            ми автоматично покажемо лише ті елементи, які повністю сумісні
+            з вашим вибором.
+        </p>
 
-    </div>
+        <div class="d-flex flex-wrap gap-3 mb-4">
 
-    <a href="#selection"
-       class="btn btn-warning btn-lg rounded-pill px-5 shadow-sm">
-        <i class="bi bi-arrow-right-circle me-2"></i>
-        Почати підбір
-    </a>
+            <span class="badge rounded-pill bg-light text-dark border px-3 py-2">
+                <i class="bi bi-shield-check text-warning me-2"></i>
+                Ефективна теплоізоляція
+            </span>
 
-</div>
+            <span class="badge rounded-pill bg-light text-dark border px-3 py-2">
+                <i class="bi bi-house-check-fill text-success me-2"></i>
+                Для внутрішнього й зовнішнього монтажу
+            </span>
 
-        <div class="col-lg-6 text-center">
-
-            <img src="{{ asset('images/chimney/sandwich-banner.webp') }}"
-                 class="img-fluid"
-                 width="650"
-                 height="650"
-                 alt="Система термо (сендвіч) димоходів"
-                 loading="eager">
+            <span class="badge rounded-pill bg-light text-dark border px-3 py-2">
+                <i class="bi bi-check-circle-fill text-primary me-2"></i>
+                Лише сумісні елементи
+            </span>
 
         </div>
 
+        <a href="#selection"
+           class="btn btn-warning btn-lg rounded-pill px-5 shadow-sm mt-4">
+            <i class="bi bi-arrow-right-circle-fill me-2"></i>
+            Почати підбір
+        </a>
+
     </div>
 
+</div>
 </section>
 <section class="container-1600 py-5">
 
@@ -1251,6 +1247,49 @@
 .line-05{ width:3px; }
 .line-08{ width:6px; }
 .line-10{ width:9px; }
+
+.hero-banner{
+    min-height: 560px;
+    background: linear-gradient(135deg,#fff8e8 0%,#ffffff 100%);
+    border:1px solid #ececec;
+}
+
+.hero-content{
+    position: relative;
+    z-index: 2;
+    max-width: 760px;
+}
+
+.hero-image{
+    position: absolute;
+    right: -10px;
+    bottom: 0;
+    width: 46%;
+    max-width:550px;
+    height: auto;
+    z-index: 1;
+    pointer-events: none;
+}
+
+@media (max-width: 991px){
+
+    .hero-banner{
+        min-height: auto;
+        text-align: center;
+        padding-bottom: 280px !important;
+    }
+
+    .hero-content{
+        max-width: 100%;
+    }
+
+    .hero-image{
+        width: 80%;
+        right: 50%;
+        transform: translateX(50%);
+        bottom: -10px;
+    }
+
 </style>
 
   <script>
