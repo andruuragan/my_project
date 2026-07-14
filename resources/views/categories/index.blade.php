@@ -201,7 +201,7 @@
     <div class="progress-bar bg-warning" style="width:25%"></div>
 </div>
 
-<div class="d-flex justify-content-between mt-3">
+<div class="d-flex justify-content-between mt-3 mb-4">
     <button id="prevBtn" class="btn btn-outline-secondary btn-sm" style="display:none;">Назад</button>
 </div>
 
@@ -889,13 +889,13 @@ function renderDiameters() {
         : thermoDiameters;
 
     container.innerHTML = list.map(d => `
-        <div class="col-md-3">
-            <button
-                class="config-option w-100 btn btn-outline-dark p-3"
-                data-value="${d}">
-                ${d}
-            </button>
-        </div>
+        <div class="col-4 col-md-2">
+        <button
+            class="config-option diameter-btn w-100 btn btn-outline-dark"
+            data-value="${d}">
+            ${d}
+        </button>
+    </div>
     `).join('');
 }
 
@@ -992,6 +992,13 @@ restoreActiveButton();
         `Крок ${currentStep} із ${totalSteps}`;
     document.getElementById('percentText').textContent =
         Math.round(percent) + '%';
+
+        setTimeout(() => {
+    document.getElementById('configuratorSection').scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+    });
+}, 100);
 }
 
     // Функція пошуку
@@ -1430,6 +1437,12 @@ document.addEventListener('submit', function (e) {
 .hero-banner1 > *{
     position: relative;
     z-index: 1;
+}
+.diameter-btn{
+    min-height: 60px !important;
+    flex-direction: row;
+    gap: 0;
+    padding: 8px 12px;
 }
 </style>
 @endsection

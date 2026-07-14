@@ -101,7 +101,7 @@
     <div class="row g-4">
 
         <div class="col">
-           <div class="card step-card h-100 border-0 shadow-sm text-center p-4"
+           <div class="card step-card h-100 border-0 shadow-sm text-center p-4 workfup-card"
            style="background:linear-gradient(135deg,#fffdf7,#ffffff)">
 
                 <div class="display-5 text-warning mb-3">
@@ -120,7 +120,7 @@
         </div>
 
        <div class="col">
-           <div class="card step-card h-100 border-0 shadow-sm text-center p-4"
+           <div class="card step-card h-100 border-0 shadow-sm text-center p-4 workfup-card"
            style="background:linear-gradient(135deg,#fffdf7,#ffffff)">
             
 
@@ -142,7 +142,7 @@
         </div>
 
       <div class="col">
-           <div class="card step-card h-100 border-0 shadow-sm text-center p-4"
+           <div class="card step-card h-100 border-0 shadow-sm text-center p-4 workfup-card"
            style="background:linear-gradient(135deg,#fffdf7,#ffffff)">
 
                <div class="display-5 text-warning mb-3">
@@ -163,7 +163,7 @@
         </div>
 
         <div class="col">
-    <div class="card step-card h-100 border-0 shadow-sm text-center p-4"
+    <div class="card step-card h-100 border-0 shadow-sm text-center p-4 workfup-card"
          style="background:linear-gradient(135deg,#fffdf7,#ffffff)">
 
         <div class="display-5 text-warning mb-3">
@@ -184,7 +184,7 @@
 
 
         <div class="col">
-           <div class="card step-card h-100 border-0 shadow-sm text-center p-4"
+           <div class="card step-card h-100 border-0 shadow-sm text-center p-4 workfup-card"
            style="background:linear-gradient(135deg,#fffdf7,#ffffff)">
 
                 <div class="display-5 text-warning mb-3">

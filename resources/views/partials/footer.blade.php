@@ -50,6 +50,8 @@
                 <ul class="footer-links">
                     <li><a href="{{route ('main.index')}}">Головна</a></li>
                     <li><a href="{{route ('shop.index') }}">Каталог</a></li>
+                    <li><a href="{{route ('categories.index') }}">Категорії</a></li>
+                    <li><a href="{{route ('about.index') }}">Про нас</a></li>
                     <li><a href="{{route ('contacts.index') }}">Контакти</a></li>
                 </ul>
             </div>
