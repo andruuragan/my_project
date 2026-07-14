@@ -333,7 +333,7 @@
 
 <div class="col-md-6 col-xl-3">
 
-<div class="card h-100 border-0 shadow-sm">
+<div class="card h-100 border-0 shadow-sm workfup-card">
 
 <div class="card-body">
 
@@ -358,7 +358,7 @@
 
 <div class="col-md-6 col-xl-3">
 
-<div class="card h-100 border-0 shadow-sm">
+<div class="card h-100 border-0 shadow-sm workfup-card">
 
 <div class="card-body">
 
@@ -383,7 +383,7 @@
 
 <div class="col-md-6 col-xl-3">
 
-<div class="card h-100 border-0 shadow-sm">
+<div class="card h-100 border-0 shadow-sm workfup-card">
 
 <div class="card-body">
 
@@ -408,7 +408,7 @@
 
 <div class="col-md-6 col-xl-3">
 
-<div class="card h-100 border-0 shadow-sm">
+<div class="card h-100 border-0 shadow-sm workfup-card">
 
 <div class="card-body">
 
