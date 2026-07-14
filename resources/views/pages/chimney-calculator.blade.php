@@ -835,10 +835,10 @@ let explanationText = `
 {!! json_encode([
   '@' . 'context' => 'https://schema.org',
   '@type' => 'WebApplication',
-  '@id' => url('/useful-info/chimney-calculator#page'),
+  '@id' => url('/chimney-calculator#page'),
 
   'name' => 'Калькулятор димоходу',
-  'url' => url('/useful-info/chimney-calculator'),
+  'url' => url('/chimney-calculator'),
 
   'publisher' => [
     '@type' => 'Organization',
@@ -869,7 +869,7 @@ let explanationText = `
       '@type' => 'ListItem',
       'position' => 3,
       'name' => 'Калькулятор димоходу',
-      'item' => url('/useful-info/chimney-calculator')
+      'item' => url('/chimney-calculator')
     ]
   ]
 ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}

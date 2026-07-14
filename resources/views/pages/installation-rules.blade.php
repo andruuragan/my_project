@@ -506,20 +506,20 @@ html {
   '@' . 'context' => 'https://schema.org',
   '@type' => 'CollectionPage',
 
-  '@id' => url('/useful-info/montazh-dymohodu-pravyla#page'),
+  '@id' => url('/montazh-dymohodu-pravyla#page'),
   'name' => 'Монтаж димоходу: правила та вимоги',
-  'url' => url('/useful-info/montazh-dymohodu-pravyla'),
+  'url' => url('/montazh-dymohodu-pravyla'),
 
   'mainEntity' => [
     '@type' => 'ItemList',
-    '@id' => url('/useful-info/montazh-dymohodu-pravyla#itemlist'),
+    '@id' => url('/montazh-dymohodu-pravyla#itemlist'),
 
     'itemListElement' => [
       [
         '@type' => 'ListItem',
         'position' => 1,
         'name' => '5 критичних помилок при монтажі димоходу',
-        'item' => url('/useful-info/blog/pomylky-montazhu')
+        'item' => url('/blog/pomylky-montazhu')
       ]
     ]
   ]
@@ -547,8 +547,8 @@ html {
     [
       '@type' => 'ListItem',
       'position' => 3,
-      'name' => 'Монтаж димоходу',
-      'item' => url('/useful-info/montazh-dymohodu-pravyla')
+      'name' => 'Монтаж димоходу: правила та вимоги',
+      'item' => url('/montazh-dymohodu-pravyla')
     ]
   ]
 ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}

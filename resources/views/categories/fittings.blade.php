@@ -874,3 +874,70 @@ document.addEventListener('click', function (e) {
 }
 </style>
 @endpush
+@push('schema-categories-item3')
+<script type="application/ld+json">
+{!! json_encode([
+  '@' . 'context' => 'https://schema.org',
+  '@type' => 'WebApplication',
+  '@id' => url('/systema-kriplen-homutiv-ta-komplektuyuchih#page'),
+
+  'name' => 'Система кріплень та комплектуючих',
+  'url' => url('/systema-kriplen-homutiv-ta-komplektuyuchih'),
+
+  'publisher' => [
+    '@type' => 'Organization',
+    '@id' => 'https://www.dymsystems.pp.ua/#organization'
+  ]
+], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
+</script>
+@endpush
+@push('schema-breadcrumbs')
+<script type="application/ld+json">
+{!! json_encode([
+  '@' . 'context' => 'https://schema.org',
+  '@type' => 'BreadcrumbList',
+  'itemListElement' => [
+    [
+      '@type' => 'ListItem',
+      'position' => 1,
+      'name' => 'Головна',
+      'item' => url('/')
+    ],
+    [
+      '@type' => 'ListItem',
+      'position' => 2,
+      'name' => 'Категорії димарів',
+      'item' => url('/categories')
+    ],
+    [
+      '@type' => 'ListItem',
+      'position' => 3,
+      'name' => 'Система кріплень та комплектуючих',
+      'item' => url('/systema-kriplen-homutiv-ta-komplektuyuchih')
+    ]
+  ]
+], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
+</script>
+@endpush
+
+@push('schema-webpage')
+<script type="application/ld+json">
+{!! json_encode([
+    '@' . 'context' => 'https://schema.org',
+    '@type' => 'WebPage',
+
+    '@id' => url()->current() . '#webpage',
+    'url' => url()->current(),
+
+    'name' => trim($__env->yieldContent('title')),
+    'description' => trim($__env->yieldContent('description')),
+
+    'inLanguage' => 'uk-UA',
+
+    'isPartOf' => [
+        '@type' => 'WebSite',
+        '@id' => url('/') . '#website',
+    ],
+], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
+</script>
+@endpush

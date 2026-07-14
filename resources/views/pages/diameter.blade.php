@@ -447,9 +447,9 @@ g \cdot H \cdot
   '@' . 'context' => 'https://schema.org',
   '@type' => 'WebPage',
 
-  '@id' => url('/useful-info/how-to-choose-chimney-diameter#page'),
+  '@id' => url('/how-to-choose-chimney-diameter#page'),
   'name' => 'Розрахунок димоходу для твердопаливного котла: повний посібник',
-  'url' => url('/useful-info/how-to-choose-chimney-diameter'),
+  'url' => url('/how-to-choose-chimney-diameter'),
 
   'publisher' => [
     '@type' => 'Organization',
@@ -480,7 +480,7 @@ g \cdot H \cdot
       '@type' => 'ListItem',
       'position' => 3,
       'name' => 'Розрахунок димоходу для твердопаливного котла: повний посібник',
-      'item' => url('/useful-info/how-to-choose-chimney-diameter')
+      'item' => url('/how-to-choose-chimney-diameter')
     ]
   ]
 ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}

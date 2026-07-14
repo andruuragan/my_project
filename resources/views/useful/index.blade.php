@@ -446,32 +446,32 @@ a:hover .useful-image-wrapper {
   '@' . 'context' => 'https://schema.org',
   '@type' => 'CollectionPage',
 
-  '@id' => url('/useful-info#page'),
+  '@id' => url('/useful-info') . '#page',
   'name' => 'Корисна інформація про димоходи DymSystems',
   'url' => url('/useful-info'),
 
   'mainEntity' => [
     '@type' => 'ItemList',
-    '@id' => url('/useful-info#itemlist'),
+    '@id' => url('/useful-info') . '#itemlist',
 
     'itemListElement' => [
       [
         '@type' => 'ListItem',
         'position' => 1,
         'name' => 'Калькулятор димоходу',
-        'item' => url('/useful-info/chimney-calculator')
+        'item' => url('/chimney-calculator')
       ],
       [
         '@type' => 'ListItem',
         'position' => 2,
         'name' => 'Вибір діаметра димоходу',
-        'item' => url('/useful-info/how-to-choose-chimney-diameter')
+        'item' => url('/how-to-choose-chimney-diameter')
       ],
       [
         '@type' => 'ListItem',
         'position' => 3,
         'name' => 'Монтаж димоходу: правила та вимоги',
-        'item' => url('/useful-info/montazh-dymohodu-pravyla')
+        'item' => url('/montazh-dymohodu-pravyla')
       ],
     ]
   ]

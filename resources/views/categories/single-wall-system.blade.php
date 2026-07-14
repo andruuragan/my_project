@@ -585,7 +585,7 @@
             Для повного монтажу також можуть знадобитися кріплення, хомути, прохідні елементи, розтяжки, кронштейни та інші комплектуючі. Переглянути їх можна в окремому розділі категорій димарів.
         </p>
 
-        <a href="{{ route('shop.index', ['category' => 'fittings']) }}"
+      <a href="{{ route('fittings-system') }}"
            class="btn btn-outline-warning rounded-pill mt-3">
             Переглянути кріплення та комплектуючі
         </a>
@@ -1363,3 +1363,70 @@ document.addEventListener('DOMContentLoaded', () => {
   </script>
 
 @endsection
+@push('schema-categories-item1')
+<script type="application/ld+json">
+{!! json_encode([
+  '@' . 'context' => 'https://schema.org',
+  '@type' => 'WebApplication',
+  '@id' => url('/systema-odnostinnih-dimohodiv#page'),
+
+  'name' => 'Система одностінних димоходів',
+  'url' => url('/systema-odnostinnih-dimohodiv'),
+
+  'publisher' => [
+    '@type' => 'Organization',
+    '@id' => 'https://www.dymsystems.pp.ua/#organization'
+  ]
+], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
+</script>
+@endpush
+@push('schema-breadcrumbs')
+<script type="application/ld+json">
+{!! json_encode([
+  '@' . 'context' => 'https://schema.org',
+  '@type' => 'BreadcrumbList',
+  'itemListElement' => [
+    [
+      '@type' => 'ListItem',
+      'position' => 1,
+      'name' => 'Головна',
+      'item' => url('/')
+    ],
+    [
+      '@type' => 'ListItem',
+      'position' => 2,
+      'name' => 'Категорії димарів',
+      'item' => url('/categories')
+    ],
+    [
+      '@type' => 'ListItem',
+      'position' => 3,
+      'name' => 'Система одностінних димоходів',
+      'item' => url('/systema-odnostinnih-dimohodiv')
+    ]
+  ]
+], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
+</script>
+@endpush
+
+@push('schema-webpage')
+<script type="application/ld+json">
+{!! json_encode([
+    '@' . 'context' => 'https://schema.org',
+    '@type' => 'WebPage',
+
+    '@id' => url()->current() . '#webpage',
+    'url' => url()->current(),
+
+    'name' => trim($__env->yieldContent('title')),
+    'description' => trim($__env->yieldContent('description')),
+
+    'inLanguage' => 'uk-UA',
+
+    'isPartOf' => [
+        '@type' => 'WebSite',
+        '@id' => url('/') . '#website',
+    ],
+], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
+</script>
+@endpush

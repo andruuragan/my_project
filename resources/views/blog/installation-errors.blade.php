@@ -150,9 +150,9 @@
   '@' . 'context' => 'https://schema.org',
   '@type' => 'Article',
 
-  '@id' => url('/useful-info/blog/pomylky-montazhu#article'),
+  '@id' => url('/blog/pomylky-montazhu#article'),
   'headline' => '5 критичних помилок при монтажі димоходу',
-  'url' => url('/useful-info/blog/pomylky-montazhu'),
+  'url' => url('/blog/pomylky-montazhu'),
 
   'publisher' => [
     '@type' => 'Organization',
@@ -185,13 +185,16 @@
       '@type' => 'ListItem',
       'position' => 3,
       'name' => 'Монтаж димоходу: правила та вимоги',
-      'item' => url('/useful-info/montazh-dymohodu-pravyla')
+      'item' => url('/montazh-dymohodu-pravyla')
     ],
     [
       '@type' => 'ListItem',
       'position' => 4,
       'name' => '5 критичних помилок при монтажі димоходу',
-      'item' => url('/useful-info/blog/pomylky-montazhu')
+     'item' => [
+        '@id' => url('/blog/pomylky-montazhu'),
+        'name' => '5 критичних помилок при монтажі димоходу'
+    ]
     ]
   ]
 ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}

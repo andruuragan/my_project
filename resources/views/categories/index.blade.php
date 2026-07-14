@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', 'Категорії димоходів | DymSystems')
+@section('title', 'Категорії димарів | DymSystems')
 @section('description', 'Категорії димарів DymSystems: одностінні димоходи, термо (сендвіч) димоходи, комплектуючі, кріплення та овальні елементи з нержавіючої сталі. | DymSystems')
 
 @section('content')
@@ -395,7 +395,7 @@
             Конфігуратор підбирає основні елементи димохідної системи. Для повного монтажу також можуть знадобитися кріплення, хомути, прохідні елементи, розтяжки, кронштейни та інші комплектуючі. Переглянути їх можна в окремому розділі категорій димарів.
         </p>
 
-        <a href="{{ route('shop.index', ['category' => 'fittings']) }}"
+        <a href="{{ route('fittings-system') }}"
            class="btn btn-outline-warning rounded-pill mt-3">
             Переглянути кріплення та комплектуючі
         </a>
@@ -1450,3 +1450,86 @@ document.addEventListener('submit', function (e) {
 }
 </style>
 @endsection
+@push('schema-categories')
+<script type="application/ld+json">
+{!! json_encode([
+  '@' . 'context' => 'https://schema.org',
+  '@type' => 'CollectionPage',
+
+    '@id' => url('/categories') . '#page',
+  'name' => 'Категорії димарів DymSystems',
+  'url' => url('/categories'),
+
+  'mainEntity' => [
+    '@type' => 'ItemList',
+     '@id' => url('/categories') . '#itemlist',
+
+
+    'itemListElement' => [
+      [
+        '@type' => 'ListItem',
+        'position' => 1,
+        'name' => 'Система одностінних димоходів',
+        'item' => url('/systema-odnostinnih-dimohodiv')
+      ],
+      [
+        '@type' => 'ListItem',
+        'position' => 2,
+        'name' => 'Система сендвіч-димоходів',
+        'item' => url('/termo-sendvich-dimohidna-systema')
+      ],
+      [
+        '@type' => 'ListItem',
+        'position' => 3,
+        'name' => 'Система кріплень та комплектуючих',
+        'item' => url('/systema-kriplen-homutiv-ta-komplektuyuchih')
+      ],
+    ]
+  ]
+], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
+</script>
+@endpush
+@push('schema-breadcrumbs')
+<script type="application/ld+json">
+{!! json_encode([
+  '@' . 'context' => 'https://schema.org',
+  '@type' => 'BreadcrumbList',
+  'itemListElement' => [
+    [
+      '@type' => 'ListItem',
+      'position' => 1,
+      'name' => 'Головна',
+      'item' => url('/')
+    ],
+    [
+      '@type' => 'ListItem',
+      'position' => 2,
+      'name' => 'Категорії димарів',
+      'item' => url('/categories')
+    ]
+  ]
+], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
+</script>
+@endpush
+
+@push('schema-webpage')
+<script type="application/ld+json">
+{!! json_encode([
+    '@' . 'context' => 'https://schema.org',
+    '@type' => 'WebPage',
+
+    '@id' => url()->current() . '#webpage',
+    'url' => url()->current(),
+
+    'name' => trim($__env->yieldContent('title')),
+    'description' => trim($__env->yieldContent('description')),
+
+    'inLanguage' => 'uk-UA',
+
+    'isPartOf' => [
+        '@type' => 'WebSite',
+        '@id' => url('/') . '#website',
+    ],
+], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
+</script>
+@endpush

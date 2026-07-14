@@ -73,9 +73,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 @stack('schema-product')
 @stack('schema-json-ld')
 @stack('schema-webpage')
+@stack('schema-categories')
+@stack('schema-categories-item1')
+@stack('schema-categories-item2')
+@stack('schema-categories-item3')
 @stack('schema-contact')
 @stack('schema-about')
 @stack('schema-breadcrumbs')
+
+
 @stack('schema-useful')
 @stack('schema-useful-item1')
 @stack('schema-useful-item2')
