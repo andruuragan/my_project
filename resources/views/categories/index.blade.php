@@ -163,34 +163,39 @@
 <!-- CONFIGURATOR -->
 <div id="configurator1"class="mt-5">
 
-   <div class="card border-0 rounded-4 shadow-lg overflow-hidden"
+   <div class="card border-0 rounded-4 shadow-lg overflow-hidden position-relative"
      style="background: linear-gradient(135deg,#fff8e8,#ffffff);">
 
-        <div class="card-body p-5 text-center">
+    <!-- Фоновое изображение -->
+    <img src="/images/chimney/forconfigurator.webp"
+         class="config-bg"
+         alt="">
 
-             <div class="display-3 text-warning mb-3">
+    <div class="card-body p-5 text-center position-relative" style="z-index:2;">
+
+        <div class="display-3 text-warning mb-3">
             <i class="bi bi-magic"></i>
         </div>
 
-            <h2 class="fw-bold mb-3">
-                Не знаєте, що обрати?
-            </h2>
+        <h2 class="fw-bold mb-3">
+            Не знаєте, що обрати?
+        </h2>
 
-            <p class="text-muted mx-auto mb-4" style="max-width:700px;">
-                 Скористайтеся конфігуратором димохідної системи.
-    Він допоможе підібрати необхідні елементи відповідно до типу
-    обладнання, діаметра, товщини сталі та інших параметрів.
-    <strong>Нижче також доступна схема основних елементів димоходу, яка допоможе краще зорієнтуватися в комплектуючих.</strong>
-            </p>
+        <p class="text-muted mx-auto mb-4" style="max-width:700px;">
+            Скористайтеся конфігуратором димохідної системи.
+            Він допоможе підібрати необхідні елементи відповідно до типу
+            обладнання, діаметра, товщини сталі та інших параметрів.
+            <strong>Нижче також доступна схема основних елементів димоходу, яка допоможе краще зорієнтуватися в комплектуючих.</strong>
+        </p>
 
-           <button id="openConfigurator"
-        class="btn btn-warning btn-lg rounded-pill px-5 shadow-sm">
-    <i class="bi bi-stars me-2"></i>
-    Запустити конфігуратор
-</button>
-        </div>
+        <button id="openConfigurator"
+                class="btn btn-warning btn-lg rounded-pill px-5 shadow-sm">
+            <i class="bi bi-stars me-2"></i>
+            Запустити конфігуратор
+        </button>
 
     </div>
+</div>
 
 </div>
 {{-- Конфігуратор --}}
@@ -1463,6 +1468,17 @@ document.addEventListener('submit', function (e) {
     #resultsContainer {
         scroll-margin-top: 100px;
     }
+}
+.config-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+    opacity: .25;      /* прозрачность */
+    pointer-events: none;
+    user-select: none;
 }
 </style>
 @endsection
