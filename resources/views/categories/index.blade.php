@@ -173,8 +173,21 @@
 
     <div class="card-body p-5 text-center position-relative" style="z-index:2;">
 
-        <div class="display-3 text-warning mb-3">
-            <i class="bi bi-magic"></i>
+    <div class="display-3 text-warning mb-3 d-flex justify-content-center">
+            <div class="icon-compass mb-4">
+           <svg xmlns="http://www.w3.org/2000/svg"
+     width="72"
+     height="72"
+     viewBox="0 0 24 24"
+     fill="none"
+     stroke="currentColor"
+     stroke-width="2"
+     stroke-linecap="round"
+     stroke-linejoin="round">
+    <circle cx="12" cy="12" r="10"/>
+    <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
+</svg>
+</div>
         </div>
 
         <h2 class="fw-bold mb-3">
@@ -1483,6 +1496,16 @@ document.addEventListener('submit', function (e) {
     opacity: .25;      /* прозрачность */
     pointer-events: none;
     user-select: none;
+}
+.icon-compass{
+    width:72px;
+    height:72px;
+    color:#f4b400;
+    transition:.35s ease;
+}
+
+.card:hover .icon-compass{
+    transform:rotate(15deg) scale(1.08);
 }
 </style>
 @endsection
