@@ -244,8 +244,8 @@
 
     <img src="{{ asset('images/icons/solid-fuel-boiler.svg') }}"
          alt="Твердопаливний котел"
-         width="32"
-         height="32"
+         width="40"
+         height="40"
          class="me-2">
 
     Твердопаливний котел
@@ -257,8 +257,8 @@
                     data-value="321">
                 <img src="{{ asset('images/icons/fireplace.svg') }}"
                      alt="Камін"
-                     width="32"
-                     height="32"
+                     width="40"
+                     height="40"
                      class="me-2">
                 Камін
             </button>
@@ -269,8 +269,8 @@
                     data-value="304">
                 <img src="{{ asset('images/icons/gas-boiler.svg') }}"
                      alt="Газовий котел"
-                     width="32"
-                     height="32"
+                     width="40"
+                     height=40"
                      class="me-2">
                 Газовий котел
             </button>
@@ -565,6 +565,11 @@
 <div class="card h-100 border-0 shadow-sm p-4">
 
 <h5 class="fw-bold">
+     <img src="{{ asset('images/icons/fireplace.svg') }}"
+                     alt="Камін"
+                     width="32"
+                     height="32"
+                     class="me-2">
 🔥 Камін
 </h5>
 
@@ -584,6 +589,11 @@
 <div class="card h-100 border-0 shadow-sm p-4">
 
 <h5 class="fw-bold">
+      <img src="{{ asset('images/icons/gas-boiler.svg') }}"
+                     alt="Газовий котел"
+                     width="32"
+                     height="32"
+                     class="me-2">
 🏠 Газовий котел
 </h5>
 
@@ -603,6 +613,11 @@
 <div class="card h-100 border-0 shadow-sm p-4">
 
 <h5 class="fw-bold">
+     <img src="{{ asset('images/icons/solid-fuel-boiler.svg') }}"
+         alt="Твердопаливний котел"
+         width="32"
+         height="32"
+         class="me-2">
 🪵 Твердопаливний котел
 </h5>
 
