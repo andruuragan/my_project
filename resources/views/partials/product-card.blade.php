@@ -169,7 +169,7 @@
                                     <div data-bs-toggle="tooltip"
                                          data-bs-placement="top"
                                          data-bs-custom-class="custom-orange-tooltip"
-                                         data-bs-title="Авторизуйтесь для додавання товару"
+                                         data-bs-title="Авторизуйтеся для купівлі товару"
                                          style="width: 44px; height: 44px;">
                                         <button type="button" 
                                                 class="btn-cart-circle add-cart-btn shadow-sm d-flex align-items-center justify-content-center" 
