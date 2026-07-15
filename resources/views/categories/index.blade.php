@@ -169,7 +169,7 @@
     <!-- Фоновое изображение -->
     <img src="/images/chimney/forconfigurator.webp"
          class="config-bg"
-         alt="">
+         alt="fon">
 
     <div class="card-body p-5 text-center position-relative" style="z-index:2;">
 
@@ -613,6 +613,10 @@
     <div class="container-1600">
 
         <div class="card border-0 shadow-lg rounded-4 cta-configurator">
+             <!-- Фоновое изображение -->
+    <img src="/images/chimney/conf2.webp"
+         class="config-bg"
+         alt="fon1">
 
             <div class="card-body text-center p-5">
 
