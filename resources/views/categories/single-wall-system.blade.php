@@ -204,8 +204,13 @@
         <div class="mt-3 mt-lg-0 ms-lg-4 flex-shrink-0">
             <a href="{{ route('categories.index') }}#configurator1"
                class="btn btn-dark rounded-pill px-4">
-                <i class="bi bi-arrow-right-circle me-2"></i>
+               
                 Конфігуратор
+                <img src="/images/icons/heand.svg"
+         alt="heand"
+         width="32"
+         height="32"
+           class="ms-2 invert-icon">
             </a>
         </div>
 
@@ -1042,6 +1047,9 @@
         bottom: -10px;
     }
 
+}
+.invert-icon {
+    filter: invert(1);
 }
 </style>
 

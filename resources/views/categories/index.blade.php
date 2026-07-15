@@ -202,10 +202,15 @@
         </p>
 
         <button id="openConfigurator"
-                class="btn btn-warning btn-lg rounded-pill px-5 shadow-sm">
-            <i class="bi bi-stars me-2"></i>
-            Запустити конфігуратор
-        </button>
+        class="btn btn-warning btn-lg rounded-pill px-5 shadow-sm">
+    <i class="bi bi-stars me-2"></i>
+    Запустити конфігуратор
+    <img src="/images/icons/heand.svg"
+         alt="heand"
+         width="32"
+         height="32"
+         class="ms-2">
+</button>
 
     </div>
 </div>
@@ -675,6 +680,11 @@
    class="btn btn-warning btn-lg rounded-pill px-5 shadow-sm">
     <i class="bi bi-magic me-2"></i>
     Запустити конфігуратор
+    <img src="/images/icons/heand.svg"
+         alt="heand"
+         width="32"
+         height="32"
+         class="ms-2">
 </a>
 
                 <div class="text-muted small mt-4">
