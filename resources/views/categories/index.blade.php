@@ -377,7 +377,10 @@
 </section>
 <div id="resultsContainer" class="mt-5" style="display:none;">
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h3 class="fw-bold">Знайдені рішення:</h3>
+       <h3 class="fw-bold">
+    Знайдені рішення:
+    <i class="bi-arrow-down-circle-fill ms-2"></i>
+</h3>
        <button class="btn btn-outline-danger" id="resetConfigurator">
     Очистити пошук
 </button>
@@ -996,7 +999,7 @@ restoreActiveButton();
         `Крок ${currentStep} із ${totalSteps}`;
     document.getElementById('percentText').textContent =
         Math.round(percent) + '%';
-
+if (n !== 4) 
         setTimeout(() => {
     document.getElementById('configuratorSection').scrollIntoView({
         behavior: 'smooth',
@@ -1029,10 +1032,18 @@ function renderResults(response) {
     const container = document.getElementById('resultsContainer');
     const grid = document.getElementById('productsGrid');
 
-   
-
     container.style.display = 'block';
     grid.innerHTML = response.html;
+
+    // Только для телефона
+    if (window.innerWidth < 768) {
+        setTimeout(() => {
+            container.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }, 100);
+    }
 }
     // Кнопка відкриття
     document.getElementById('openConfigurator').addEventListener('click', function () {
@@ -1447,6 +1458,11 @@ document.addEventListener('submit', function (e) {
     flex-direction: row;
     gap: 0;
     padding: 8px 12px;
+}
+@media (max-width: 767.98px) {
+    #resultsContainer {
+        scroll-margin-top: 100px;
+    }
 }
 </style>
 @endsection
