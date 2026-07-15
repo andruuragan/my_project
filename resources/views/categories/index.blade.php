@@ -481,67 +481,82 @@
 
         <div class="row g-4">
 
-            <div class="col-lg-6">
-                <div class="card h-100 border-0 shadow rounded-4 p-4"
-     style="background:linear-gradient(135deg,#fff8e8,#ffffff);">
-     <div class="display-5 text-warning mb-3">
-    <i class="bi bi-house-door-fill"></i>
-</div>
-                    <h4 class="fw-bold mb-3">
-                        Одностінний димохід
-                    </h4>
+      <div class="col-lg-6">
+    <div class="card single-wall-card h-100 border-0 shadow rounded-4 p-4 position-relative">
 
-                    <ul class="list-unstyled mb-0">
+        <img src="{{ asset('images/chimney/in.webp') }}"
+             class="single-wall-image"
+             alt="Одностінний димохід">
 
-    <li class="mb-2">
-        <i class="bi bi-check-circle-fill text-success me-2"></i>
-        Монтаж всередині приміщення
-    </li>
-
-    <li class="mb-2">
-        <i class="bi bi-check-circle-fill text-success me-2"></i>
-        Гільзування шахт
-    </li>
-
-    <li>
-        <i class="bi bi-x-circle-fill text-danger me-2"></i>
-        Не рекомендується зовні
-    </li>
-
-</ul>
-                </div>
+        <div class="position-relative" style="z-index:2;">
+            <div class="display-5 text-warning mb-3">
+                <i class="bi bi-house-door-fill"></i>
             </div>
 
-            <div class="col-lg-6">
-                <div class="card h-100 border-0 shadow rounded-4 p-4"
-     style="background:linear-gradient(135deg,#fff8e8,#ffffff);">
-                    <div class="display-5 text-warning mb-3">
-    <i class="bi bi-shield-check"></i>
+            <h4 class="fw-bold mb-3">
+                Одностінний димохід
+            </h4>
+
+            <ul class="list-unstyled mb-0">
+                <li class="mb-2">
+                    <i class="bi bi-check-circle-fill text-success me-2"></i>
+                    Монтаж всередині приміщення
+                </li>
+
+                <li class="mb-2">
+                    <i class="bi bi-check-circle-fill text-success me-2"></i>
+                    Гільзування шахт
+                </li>
+
+                <li>
+                    <i class="bi bi-x-circle-fill text-danger me-2"></i>
+                    Не рекомендується зовні
+                </li>
+            </ul>
+        </div>
+
+    </div>
 </div>
-                    <h4 class="fw-bold mb-3">
-                        Термо (сендвіч) димохід
-                    </h4>
 
-                   <ul class="list-unstyled mb-0">
+          <div class="col-lg-6">
+    <div class="card thermo-card h-100 border-0 shadow rounded-4 p-4 position-relative">
 
-    <li class="mb-2">
-        <i class="bi bi-check-circle-fill text-success me-2"></i>
-        Для зовнішнього монтажу
-    </li>
+        <img src="{{ asset('images/chimney/out.webp') }}"
+             class="thermo-image"
+             alt="Термо димохід">
 
-    <li class="mb-2">
-        <i class="bi bi-check-circle-fill text-success me-2"></i>
-        Мінімум конденсату
-    </li>
+        <div class="position-relative" style="z-index:2;">
 
-    <li>
-        <i class="bi bi-check-circle-fill text-success me-2"></i>
-        Стабільна тяга
-    </li>
-
-</ul>
-                </div>
+            <div class="display-5 text-warning mb-3">
+                <i class="bi bi-shield-check"></i>
             </div>
+
+            <h4 class="fw-bold mb-3">
+                Термо (сендвіч) димохід
+            </h4>
+
+            <ul class="list-unstyled mb-0">
+
+                <li class="mb-2">
+                    <i class="bi bi-check-circle-fill text-success me-2"></i>
+                    Для зовнішнього монтажу
+                </li>
+
+                <li class="mb-2">
+                    <i class="bi bi-check-circle-fill text-success me-2"></i>
+                    Мінімум конденсату
+                </li>
+
+                <li>
+                    <i class="bi bi-check-circle-fill text-success me-2"></i>
+                    Стабільна тяга
+                </li>
+
+            </ul>
+
+        </div>
+    </div>
+</div>
 
         </div>
 
@@ -1531,6 +1546,58 @@ document.addEventListener('submit', function (e) {
 
 .card:hover .icon-compass{
     transform:rotate(15deg) scale(1.08);
+}
+.single-wall-card{
+    background: linear-gradient(135deg,#fff8e8,#ffffff);
+    overflow: hidden;
+}
+
+.single-wall-image{
+    position: absolute;
+    right: 50px;
+    bottom: 0;
+
+    width: 170px;
+
+   
+
+    pointer-events: none;
+    user-select: none;
+}
+
+@media (max-width: 991.98px){
+    .single-wall-image{
+        width: 100px;
+        right: -10px;
+        opacity: .50;
+    }
+}
+.thermo-card{
+    background: linear-gradient(135deg,#fff8e8,#ffffff);
+    overflow: hidden;
+}
+
+.thermo-image{
+    position: absolute;
+    right: -30px;
+    bottom: 0;
+
+    height: 100%;
+    max-height: 240px;
+    width: auto;
+
+  
+
+    pointer-events: none;
+    user-select: none;
+}
+
+@media (max-width:991.98px){
+    .thermo-image{
+        max-height: 150px;
+        opacity: .50;
+         right: -60px;
+    }
 }
 </style>
 @endsection
