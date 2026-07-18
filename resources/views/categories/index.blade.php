@@ -1632,7 +1632,7 @@ document.addEventListener('submit', function (e) {
       [
         '@type' => 'ListItem',
         'position' => 3,
-        'name' => 'Система кріплень та комплектуючих',
+        'name' => 'Система кріплень, хомутів, прохідних та завершувальних елементів',
         'item' => url('/systema-kriplen-homutiv-ta-komplektuyuchih')
       ],
     ]

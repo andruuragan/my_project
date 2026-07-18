@@ -43,11 +43,54 @@
                         <i class="bi bi-grid-fill me-2"></i> Каталог товарів
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link d-inline-flex align-items-center {{ request()->routeIs('categories.index') ? 'active' : '' }}" href="{{ route('categories.index') }}">
-                        <i class="bi bi-boxes me-2"></i> Категорії димарів
-                    </a>
-                </li>
+       <li class="nav-item menu-categories">
+
+    <a class="nav-link d-inline-flex align-items-center {{ request()->routeIs('categories.*') ? 'active' : '' }}"
+       href="{{ route('categories.index') }}">
+
+        <i class="bi bi-boxes me-2"></i>
+        Категорії димарів
+        <i class="bi bi-chevron-down ms-2"></i>
+
+    </a>
+
+   <ul class="submenu custom-dropdown">
+
+   <li>
+   <a class="dropdown-item {{ request()->routeIs('single-wall-system') ? 'active-item' : '' }}"
+   href="{{ route('single-wall-system') }}">
+    <i class="bi bi-box-seam me-2"></i>
+    Одностінні димоходи
+</a>
+</li>
+
+<li>
+   <a class="dropdown-item {{ request()->routeIs('sandwich-system') ? 'active-item' : '' }}"
+   href="{{ route('sandwich-system') }}">
+    <i class="bi bi-layers me-2"></i>
+    Термо димоходи
+</a>
+</li>
+
+<li>
+   <a class="dropdown-item {{ request()->routeIs('shop.index') ? 'active-item' : '' }}"
+   href="{{ route('shop.index') }}">
+    <i class="bi bi-app me-2"></i>
+    Овальні димоходи
+</a>
+</li>
+
+<li>
+    <a class="dropdown-item {{ request()->routeIs('fittings-system') ? 'active-item' : '' }}"
+   href="{{ route('fittings-system') }}">
+          <i class="bi bi-tools me-2"></i>
+   Кріплення та хомути
+</a>
+</li>
+
+</ul>
+
+</li>
 
                 <li class="nav-item">
                     <a class="nav-link d-inline-flex align-items-center gap-2 {{ request()->routeIs('about.index') ? 'active' : '' }}"

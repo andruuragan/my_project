@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', 'Система кріплень та комплектуючих | DymSystems')
+@section('title', 'Система кріплень, хомутів, прохідних та завершувальних елементів | DymSystems')
 @section('description', 'Кронштейни, хомути, прохідні елементи, деки, конуси, грибки та інші комплектуючі для монтажу димохідних систем.')
 
 @section('content')
@@ -40,7 +40,7 @@
         </div>
 
         <h1 class="display-5 fw-bold mb-3">
-            Система кріплень, хомутів, прохідних елементів та комплектуючих
+            Система кріплень, хомутів, прохідних та завершувальних елементів
         </h1>
 
         <p class="lead text-muted mx-auto" style="max-width:850px;">
@@ -881,7 +881,7 @@ document.addEventListener('click', function (e) {
   '@type' => 'WebApplication',
   '@id' => url('/systema-kriplen-homutiv-ta-komplektuyuchih#page'),
 
-  'name' => 'Система кріплень та комплектуючих',
+  'name' => 'Система кріплень, хомутів, прохідних та завершувальних елементів',
   'url' => url('/systema-kriplen-homutiv-ta-komplektuyuchih'),
 
   'publisher' => [
@@ -912,7 +912,7 @@ document.addEventListener('click', function (e) {
     [
       '@type' => 'ListItem',
       'position' => 3,
-      'name' => 'Система кріплень та комплектуючих',
+      'name' => 'Система кріплень, хомутів, прохідних та завершувальних елементів',
       'item' => url('/systema-kriplen-homutiv-ta-komplektuyuchih')
     ]
   ]

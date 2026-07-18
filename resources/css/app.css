@@ -1616,4 +1616,30 @@ header {
 .workfup-card:nth-child(4) {
     transition-delay: .45s;
 }
+.menu-categories {
+    position: relative;
+}
 
+.menu-categories .submenu {
+    display: none;
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 0;
+
+    min-width: 280px;
+
+    padding: 8px;
+    margin: 0;
+
+    list-style: none;
+
+    z-index: 9999;
+}
+
+.menu-categories:hover .submenu {
+    display: block;
+}
+
+.menu-categories:hover .submenu {
+    display: block;
+}
