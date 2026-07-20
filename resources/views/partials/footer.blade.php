@@ -37,10 +37,7 @@
             <i class="bi bi-envelope"></i>
             <a href="mailto:dymsystems@ukr.net" class="text-white">dymsystems@ukr.net</a>
         </div>
-        <div class="footer-item">
-            <i class="bi bi-envelope"></i>
-            <a href="mailto:dymsystems.shop@gmail.com" class="text-white">dymsystems.shop@gmail.com</a>
-        </div>
+       
     </address>
 </div>
             <!-- LINKS -->
