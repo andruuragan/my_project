@@ -31,6 +31,7 @@ use App\Http\Controllers\CategoryPageController;
 use App\Http\Controllers\SingleWallSystemController;
 use App\Http\Controllers\SandwichSystemController;
 use App\Http\Controllers\FittingsSystemController;
+use Illuminate\Support\Facades\Mail;
 
 /* ==========================================================================
 |  1. PUBLIC PAGES & AUTH CONTROL (Breeze)
@@ -55,6 +56,14 @@ Route::get('/catalog/{catalog}', [CatalogController::class, 'publicShow'])->name
 
 Route::get('/dymsystems', function () {
     return redirect()->route('main.index');
+});
+Route::get('/mail-test', function () {
+    Mail::raw('Test from Render', function ($message) {
+        $message->to('ВАШ_EMAIL')
+                ->subject('SMTP test');
+    });
+
+    return 'OK';
 });
 
 Route::get('/dashboard', function () {
