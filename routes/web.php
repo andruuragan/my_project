@@ -59,13 +59,21 @@ Route::get('/dymsystems', function () {
 });
 
 
-Route::get('/mail-test', function () {
-    Mail::raw('Test from Render', function ($message) {
-        $message->to('dymsystems@ukr.net')
-                ->subject('SMTP test');
-    });
 
-    return 'OK';
+Route::get('/socket-test', function () {
+    $errno = 0;
+    $errstr = '';
+
+    $fp = @fsockopen('smtp.ukr.net', 2525, $errno, $errstr, 10);
+
+    if (!$fp) {
+        return "ERROR: $errno - $errstr";
+    }
+
+    $banner = fgets($fp, 512);
+    fclose($fp);
+
+    return nl2br($banner);
 });
 
 Route::get('/dashboard', function () {
