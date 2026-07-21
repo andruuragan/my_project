@@ -61,34 +61,22 @@ Route::get('/dymsystems', function () {
 
 
 
-Route::get('/socket-test', function () {
+Route::get('/mail-test', function () {
+    try {
+        Mail::raw('Test from Render', function ($message) {
+            $message->to('dymsystems@ukr.net')
+                    ->subject('Brevo SMTP test');
+        });
 
-    $errno = 0;
-    $errstr = '';
-
-   $fp = @stream_socket_client("tcp://smtp.gmail.com:587", $errno, $errstr, 10);
-
-    if (!$fp) {
-        return response()->json([
-            'connect' => false,
-            'errno' => $errno,
-            'error' => $errstr,
-        ]);
+        return '✅ Письмо отправлено.';
+    } catch (\Throwable $e) {
+        return '<pre>'
+            . get_class($e) . "\n\n"
+            . $e->getMessage()
+            . "\n\n"
+            . $e->getTraceAsString()
+            . '</pre>';
     }
-
-    stream_set_timeout($fp, 5);
-
-    $meta = stream_get_meta_data($fp);
-    $banner = fread($fp, 1024);
-
-    fclose($fp);
-
-    return response()->json([
-        'connect' => true,
-        'meta' => $meta,
-        'banner' => base64_encode($banner),
-        'raw' => $banner,
-    ]);
 });
 
 Route::get('/dashboard', function () {
