@@ -57,9 +57,11 @@ Route::get('/catalog/{catalog}', [CatalogController::class, 'publicShow'])->name
 Route::get('/dymsystems', function () {
     return redirect()->route('main.index');
 });
+use Illuminate\Support\Facades\Mail;
+
 Route::get('/mail-test', function () {
     Mail::raw('Test from Render', function ($message) {
-        $message->to('ВАШ_EMAIL')
+        $message->to('dymsystems@ukr.net')
                 ->subject('SMTP test');
     });
 
