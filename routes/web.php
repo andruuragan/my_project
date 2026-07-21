@@ -32,6 +32,7 @@ use App\Http\Controllers\SingleWallSystemController;
 use App\Http\Controllers\SandwichSystemController;
 use App\Http\Controllers\FittingsSystemController;
 use Illuminate\Support\Facades\Mail;
+use App\Services\BrevoMailService;
 
 
 /* ==========================================================================
@@ -61,22 +62,25 @@ Route::get('/dymsystems', function () {
 
 
 
-Route::get('/mail-test', function () {
-    try {
-        Mail::raw('Test from Render', function ($message) {
-            $message->to('dymsystems@ukr.net')
-                    ->subject('Brevo SMTP test');
-        });
+Route::get('/brevo-test', function (BrevoMailService $mail) {
 
-        return '✅ Письмо отправлено.';
+    try {
+
+        $mail->sendOrderMail(
+            'dymsystems@ukr.net',
+            'DymSystems',
+            'Тест Brevo API',
+            '<h1>Проверка отправки</h1><p>Письмо через API работает.</p>'
+        );
+
+        return 'OK - письмо отправлено';
+
     } catch (\Throwable $e) {
-        return '<pre>'
-            . get_class($e) . "\n\n"
-            . $e->getMessage()
-            . "\n\n"
-            . $e->getTraceAsString()
-            . '</pre>';
+
+        return '<pre>' . $e->getMessage() . '</pre>';
+
     }
+
 });
 
 Route::get('/dashboard', function () {
