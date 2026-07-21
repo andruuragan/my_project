@@ -95,11 +95,22 @@ $user = auth()->user();
 
 try {
     if ($user && $user->email) {
-        Mail::to($user->email)
-            ->send(new OrderConfirmedMail($order));
+
+        $html = view('emails.order-confirmed', [
+            'order' => $order
+        ])->render();
+
+        app(\App\Services\BrevoMailService::class)
+            ->sendOrderMail(
+                $user->email,
+                $user->name ?? 'Клієнт',
+                'Ваше замовлення DymSystems',
+                $html
+            );
     }
-} catch (\Exception $e) {
-    logger()->error("Customer mail failed: " . $e->getMessage());
+
+} catch (\Throwable $e) {
+    logger()->error("Brevo mail failed: " . $e->getMessage());
 }
 
         // 4. Очищаємо кошик (дублікат прибрано)
