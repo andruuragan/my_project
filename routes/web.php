@@ -63,17 +63,19 @@ Route::get('/dymsystems', function () {
 
 Route::get('/socket-test', function () {
 
-    error_reporting(E_ALL);
-    ini_set('display_errors', 1);
-
     $errno = 0;
     $errstr = '';
 
-    $fp = @fsockopen('smtp.ukr.net', 2525, $errno, $errstr, 10);
+    $fp = @stream_socket_client(
+        "tcp://smtp.ukr.net:2525",
+        $errno,
+        $errstr,
+        10
+    );
 
     if (!$fp) {
         return response()->json([
-            'success' => false,
+            'connect' => false,
             'errno' => $errno,
             'error' => $errstr,
         ]);
@@ -81,13 +83,16 @@ Route::get('/socket-test', function () {
 
     stream_set_timeout($fp, 5);
 
-    $banner = fgets($fp, 1024);
+    $meta = stream_get_meta_data($fp);
+    $banner = fread($fp, 1024);
 
     fclose($fp);
 
     return response()->json([
-        'success' => true,
-        'banner' => $banner,
+        'connect' => true,
+        'meta' => $meta,
+        'banner' => base64_encode($banner),
+        'raw' => $banner,
     ]);
 });
 
