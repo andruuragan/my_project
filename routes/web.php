@@ -66,12 +66,7 @@ Route::get('/socket-test', function () {
     $errno = 0;
     $errstr = '';
 
-    $fp = @stream_socket_client(
-        "tcp://smtp.ukr.net:2525",
-        $errno,
-        $errstr,
-        10
-    );
+   $fp = @stream_socket_client("tcp://smtp.gmail.com:587", $errno, $errstr, 10);
 
     if (!$fp) {
         return response()->json([
