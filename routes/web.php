@@ -33,6 +33,7 @@ use App\Http\Controllers\SandwichSystemController;
 use App\Http\Controllers\FittingsSystemController;
 use Illuminate\Support\Facades\Mail;
 
+
 /* ==========================================================================
 |  1. PUBLIC PAGES & AUTH CONTROL (Breeze)
 |  ========================================================================== */
@@ -61,19 +62,33 @@ Route::get('/dymsystems', function () {
 
 
 Route::get('/socket-test', function () {
+
+    error_reporting(E_ALL);
+    ini_set('display_errors', 1);
+
     $errno = 0;
     $errstr = '';
 
     $fp = @fsockopen('smtp.ukr.net', 2525, $errno, $errstr, 10);
 
     if (!$fp) {
-        return "ERROR: $errno - $errstr";
+        return response()->json([
+            'success' => false,
+            'errno' => $errno,
+            'error' => $errstr,
+        ]);
     }
 
-    $banner = fgets($fp, 512);
+    stream_set_timeout($fp, 5);
+
+    $banner = fgets($fp, 1024);
+
     fclose($fp);
 
-    return nl2br($banner);
+    return response()->json([
+        'success' => true,
+        'banner' => $banner,
+    ]);
 });
 
 Route::get('/dashboard', function () {
