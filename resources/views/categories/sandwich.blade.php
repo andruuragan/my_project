@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('title', 'Система сендвіч-димоходів | DymSystems')
-@section('description', 'Підбір термо (сендвіч) димохідної системи')
+@section('description', 'Обирайте надійні системи сендвіч-димоходів DymSystems для ефективної теплоізоляції та безпеки вашого дому. Професійний підбір та консультації.')
 
 @section('content')
 
