@@ -61,8 +61,42 @@ class ShopController extends Controller
             break;
     }
 
-    $catalogs = $query->paginate(32)->withQueryString();
+   $catalogs = $query->paginate(32)->withQueryString();
+   if ($request->boolean('kit')) {
+   // Если переход был из калькулятора
+if ($request->filled('diameter')) {
 
+    // Кронштейны
+   // Один рекомендуемый кронштейн (600 мм) со средней ценой
+$brackets = Catalog::where('type', 'Кронштейн')->get();
+
+if ($brackets->isNotEmpty()) {
+    $averagePrice = round($brackets->avg('price'), 2);
+
+    $bracket = clone $brackets->first();
+
+    $bracket->id = -1;
+    $bracket->name = 'Кронштейн 600 мм';
+    $bracket->price = $averagePrice;
+
+    $brackets = collect([$bracket]);
+}
+
+    // Подставка нужного диаметра
+    $supports = Catalog::where('type', 'Розвантажувальна підставка')
+        ->where('diameter', $request->diameter)
+        ->get();
+
+    // Добавляем в коллекцию текущей страницы
+    $catalogs->setCollection(
+        $catalogs->getCollection()
+            ->merge($supports)
+            ->merge($brackets)
+            ->unique('id')
+            ->values()
+    );
+}
+}
     // ОБЩИЙ СЧЁТ ВСЕХ РЕЗУЛЬТАТОВ (ВАЖНО!)
     $total = $catalogs->total();
 

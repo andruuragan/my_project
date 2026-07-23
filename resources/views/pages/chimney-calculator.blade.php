@@ -738,14 +738,14 @@ function calculateChimney() {
     if (sandwichMap[diameter]) {
         const outerDiameter = sandwichMap[diameter];
         displayDiameter = `${diameter}/${outerDiameter} мм (сендвіч)`;
-        shopQueryParam = `?diameter=${diameter}/${outerDiameter}&chimneyType=Термо&grade=304&&thickness=${encodeURIComponent('0,8 мм')}&casing=${casing}`;
+        shopQueryParam = `?diameter=${diameter}/${outerDiameter}&chimneyType=Термо&grade=304&thickness=${encodeURIComponent('0,8 мм')}&casing=${casing}&kit=1`;
     } else {
         displayDiameter = `${diameter} мм (сендвіч)`;
-        shopQueryParam = `?diameter=${diameter}&chimneyType=Термо&grade=304&&thickness=${encodeURIComponent('0,8 мм')}&casing=${casing}`;
+        shopQueryParam = `?diameter=${diameter}&chimneyType=Термо&grade=304&thickness=${encodeURIComponent('0,8 мм')}&casing=${casing}&kit=1`;
     }
 } else {
     displayDiameter = `${diameter} мм (одностінний)`;
-    shopQueryParam = `?diameter=${diameter}&chimneyType=Одностінний&grade=304&&thickness=${encodeURIComponent('0,8 мм')}`;
+    shopQueryParam = `?diameter=${diameter}&chimneyType=Одностінний&grade=304&thickness=${encodeURIComponent('0,8 мм')}&kit=1`;
 }
 
     const recommendedHeight = Math.max(5, height);
