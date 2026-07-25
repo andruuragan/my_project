@@ -1621,19 +1621,28 @@ document.addEventListener('submit', function (e) {
         '@type' => 'ListItem',
         'position' => 1,
         'name' => 'Система одностінних димоходів',
-        'item' => url('/systema-odnostinnih-dimohodiv')
+        'item' => [
+    '@id' => url('/systema-odnostinnih-dimohodiv'),
+    'name' => 'Система одностінних димоходів',
+]
       ],
       [
         '@type' => 'ListItem',
         'position' => 2,
         'name' => 'Система сендвіч-димоходів',
-        'item' => url('/termo-sendvich-dimohidna-systema')
+        'item' => [
+    '@id' => url('/termo-sendvich-dimohidna-systema'),
+    'name' => 'Система сендвіч-димоходів',
+]
       ],
       [
         '@type' => 'ListItem',
         'position' => 3,
         'name' => 'Система кріплень, хомутів, прохідних та завершувальних елементів',
-        'item' => url('/systema-kriplen-homutiv-ta-komplektuyuchih')
+        'item' => [
+        '@id' => url('/systema-kriplen-homutiv-ta-komplektuyuchih'),
+        'name' => 'Система кріплень, хомутів, прохідних та завершувальних елементів',
+    ],
       ],
     ]
   ]
