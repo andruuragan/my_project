@@ -1614,9 +1614,8 @@ document.addEventListener('submit', function (e) {
 
   'mainEntity' => [
     '@type' => 'ItemList',
-     '@id' => url('/categories') . '#itemlist',
-
-
+    '@id' => url('/categories') . '#itemlist',
+    'name' => 'Категорії димарів',
     'itemListElement' => [
       [
         '@type' => 'ListItem',
@@ -1657,7 +1656,10 @@ document.addEventListener('submit', function (e) {
       '@type' => 'ListItem',
       'position' => 2,
       'name' => 'Категорії димарів',
-      'item' => url('/categories')
+      'item' => [
+    '@id' => url('/categories'),
+    'name' => 'Категорії димарів',
+]
     ]
   ]
 ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
