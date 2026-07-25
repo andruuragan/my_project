@@ -1647,21 +1647,24 @@ document.addEventListener('submit', function (e) {
   '@type' => 'BreadcrumbList',
   'itemListElement' => [
     [
-      '@type' => 'ListItem',
-      'position' => 1,
-      'name' => 'Головна',
-      'item' => url('/')
+        '@type' => 'ListItem',
+        'position' => 1,
+        'name' => 'Головна',
+        'item' => [
+            '@id' => url('/'),
+            'name' => 'Головна',
+        ],
     ],
     [
-      '@type' => 'ListItem',
-      'position' => 2,
-      'name' => 'Категорії димарів',
-      'item' => [
-    '@id' => url('/categories'),
-    'name' => 'Категорії димарів',
+        '@type' => 'ListItem',
+        'position' => 2,
+        'name' => 'Категорії димарів',
+        'item' => [
+            '@id' => url('/categories'),
+            'name' => 'Категорії димарів',
+        ],
+    ],
 ]
-    ]
-  ]
 ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
 </script>
 @endpush
