@@ -56,7 +56,7 @@
             <img src="{{ asset('images/chimney/basalt-wool.webp') }}"
      alt="Базальтова вата для сендвіч-димоходів"
      class="img-fluid w-100"
-     style="height: 600px; object-fit: cover;">
+    >
 
         </div>
 
