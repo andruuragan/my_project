@@ -170,6 +170,12 @@ Route::view('/montazh-dymohodu-pravyla', 'pages.installation-rules')
 Route::post('/order-installation', [App\Http\Controllers\CheckoutController::class, 'storeLead'])
     ->name('leads.store');
     Route::get('/blog/pomylky-montazhu', [BlogController::class, 'showInstallationErrors'])->name('blog.installation-errors');
+    Route::get('/blog/marky-stali-dlya-dymohodiv', [BlogController::class, 'showSteelGrades'])
+    ->name('blog.steel-grades');
+    Route::get('/bazaltova-vata-dlya-dimohodiv', [BlogController::class, 'showBasaltWool'])
+    ->name('blog.basalt-wool');
+    Route::get('/sazha-v-dimohodi', [BlogController::class, 'showSoot'])
+    ->name('blog.soot');
 Route::get('/useful-info', [App\Http\Controllers\UsefulController::class, 'index'])->name('useful.index');
 /* ==========================================================================
 |  4. SYSTEM INCLUDES

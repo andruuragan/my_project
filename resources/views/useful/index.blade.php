@@ -104,7 +104,7 @@
                         <div class="p-4">
                             <div class="useful-badge mb-3">Монтаж</div>
                             <h3 class="useful-card-title">Монтаж димоходу</h3>
-                            <p class="text-muted mb-4">Основні правила безпечного встановлення системи.</p>
+                            <p class="text-muted mb-4">Основні правила безпечного встановлення димоходної системи.</p>
                            <a href="{{ route('chimney.installation-rules') }}" class="btn useful-btn">Детальніше</a>
                         </div>
                     </div>
@@ -140,7 +140,22 @@
                 Правильно підібраний димохід забезпечує ефективне відведення димових газів,
                 мінімізує утворення конденсату та подовжує термін служби всієї системи.
             </p>
+<div class="alert alert-light border rounded-4 mt-4 d-flex flex-column flex-md-row align-items-md-center justify-content-between">
+    <div>
+        <h5 class="mb-1">
+            <i class="bi bi-book me-2 text-warning"></i>
+            Рекомендуємо прочитати
+        </h5>
+        <p class="mb-0 text-muted">
+            Дізнайтеся, чим відрізняються марки нержавіючої сталі AISI 304, 321 та 201 і яку краще обрати для вашого димоходу.
+        </p>
+    </div>
 
+    <a href="{{ route('blog.steel-grades') }}"
+       class="btn btn-warning mt-3 mt-md-0 ms-md-3">
+        Читати статтю <i class="bi bi-arrow-right-circle ms-2"></i>
+    </a>
+</div>
         </div>
     </div>
 </section>
