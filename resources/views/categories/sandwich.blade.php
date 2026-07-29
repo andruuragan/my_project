@@ -805,15 +805,25 @@
          <div class="d-flex mb-4">
     <i class="bi bi-check-circle-fill text-success fs-4 me-3"></i>
     <div>
-        Внутрішня труба виготовляється з нержавіючої сталі <strong>AISI 304 або AISI 321</strong>, що забезпечує стійкість до високих температур.
-    </div>
+    Внутрішня труба виготовляється з нержавіючої сталі
+    <strong>AISI 304 або AISI 321</strong>.
+    <a href="{{ route('blog.steel-grades') }}"
+   class="fw-semibold text-decoration-underline"
+   style="color:#ff8c00; text-decoration-thickness:2px;">
+    Детальніше про марки сталі →
+</a>
+</div>
 </div>
 
 <div class="d-flex mb-4">
     <i class="bi bi-check-circle-fill text-success fs-4 me-3"></i>
-    <div>
-        Теплоізоляційний шар мінімізує утворення конденсату та покращує тягу.
-    </div>
+  <div>
+    Теплоізоляційний шар мінімізує утворення конденсату та покращує тягу.
+    <a href="{{ route('blog.basalt-wool') }}"
+       class="article-link">
+        Детальніше про базальтову вату →
+    </a>
+</div>
 </div>
 
 <div class="d-flex mb-4">

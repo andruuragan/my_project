@@ -562,6 +562,39 @@
 
     </div>
 </section>
+
+<section class="pb-5">
+
+    <div class="container-1600">
+
+        <div class="bg-light rounded-4 p-4 p-lg-5 text-center border shadow-sm">
+
+            <div class="display-6 text-warning mb-3">
+                <i class="bi bi-exclamation-triangle-fill"></i>
+            </div>
+
+            <h3 class="fw-bold mb-3">
+                Хочете дізнатися, чому в димоході накопичується сажа?
+            </h3>
+
+            <p class="text-muted mb-4 mx-auto" style="max-width:700px;">
+                Дізнайтеся, через що утворюється сажа, чим вона небезпечна,
+                як впливає на тягу та коли необхідно чистити димохід.
+            </p>
+
+            <a href="{{ route('blog.soot') }}"
+               class="btn btn-warning btn-lg px-4 rounded-pill">
+
+                <i class="bi bi-arrow-right-circle me-2"></i>
+                Читати статтю про сажу в димоході
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
 <section class="py-5 bg-light rounded-4">
 
 <div class="container-1600">
