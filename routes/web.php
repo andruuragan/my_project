@@ -172,9 +172,9 @@ Route::post('/order-installation', [App\Http\Controllers\CheckoutController::cla
     Route::get('/blog/pomylky-montazhu', [BlogController::class, 'showInstallationErrors'])->name('blog.installation-errors');
     Route::get('/blog/marky-stali-dlya-dymohodiv', [BlogController::class, 'showSteelGrades'])
     ->name('blog.steel-grades');
-    Route::get('/bazaltova-vata-dlya-dimohodiv', [BlogController::class, 'showBasaltWool'])
+    Route::get('/blog/bazaltova-vata-dlya-dimohodiv', [BlogController::class, 'showBasaltWool'])
     ->name('blog.basalt-wool');
-    Route::get('/sazha-v-dimohodi', [BlogController::class, 'showSoot'])
+    Route::get('/blog/sazha-v-dimohodi', [BlogController::class, 'showSoot'])
     ->name('blog.soot');
 Route::get('/useful-info', [App\Http\Controllers\UsefulController::class, 'index'])->name('useful.index');
 /* ==========================================================================
