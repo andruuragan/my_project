@@ -1033,3 +1033,76 @@
 }
 </style>
 @endsection
+@push('schema-article')
+<script type="application/ld+json">
+{!! json_encode([
+  '@' . 'context' => 'https://schema.org',
+  '@type' => 'Article',
+
+  '@id' => url('/blog/marky-stali-dlya-dymohodiv'),
+  'headline' => 'Марки сталі для димоходів',
+  'url' => url('/blog/marky-stali-dlya-dymohodiv'),
+
+  'publisher' => [
+    '@type' => 'Organization',
+    '@id' => 'https://www.dymsystems.pp.ua/#organization'
+  ]
+
+], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
+</script>
+@endpush
+
+@push('schema-breadcrumbs')
+<script type="application/ld+json">
+{!! json_encode([
+  '@' . 'context' => 'https://schema.org',
+  '@type' => 'BreadcrumbList',
+  'itemListElement' => [
+    [
+      '@type' => 'ListItem',
+      'position' => 1,
+      'name' => 'Головна',
+      'item' => url('/')
+    ],
+    [
+      '@type' => 'ListItem',
+      'position' => 2,
+      'name' => 'Корисна інформація',
+      'item' => url('/useful-info')
+    ],
+    [
+      '@type' => 'ListItem',
+      'position' => 3,
+      'name' => 'Марки сталі для димоходів',
+      'item' => [
+        '@id' => url('/blog/marky-stali-dlya-dymohodiv'),
+        'name' => 'Марки сталі для димоходів'
+    ]
+    ]
+   
+  ]
+], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
+</script>
+@endpush
+
+@push('schema-webpage')
+<script type="application/ld+json">
+{!! json_encode([
+    '@' . 'context' => 'https://schema.org',
+    '@type' => 'WebPage',
+
+    '@id' => url()->current() . '#webpage',
+    'url' => url()->current(),
+
+    'name' => trim($__env->yieldContent('title')),
+    'description' => trim($__env->yieldContent('description')),
+
+    'inLanguage' => 'uk-UA',
+
+    'isPartOf' => [
+        '@type' => 'WebSite',
+        '@id' => url('/') . '#website',
+    ],
+], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
+</script>
+@endpush

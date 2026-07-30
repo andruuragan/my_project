@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', 'Сажа в димоході: причини утворення та способи очищення')
+@section('title', 'Сажа в димоході: причини утворення та способи очищення | DymSystems')
 @section('description', 'Чому накопичується сажа в димоході, як вона впливає на тягу та роботу котла, печі або каміна. Способи очищення і профілактика утворення відкладень.')
 
 @section('content')
@@ -1867,3 +1867,81 @@
 }
 </style>
 @endsection
+@push('schema-article')
+<script type="application/ld+json">
+{!! json_encode([
+  '@' . 'context' => 'https://schema.org',
+  '@type' => 'Article',
+
+  '@id' => url('/blog/sazha-v-dimohodi'),
+  'headline' => 'Сажа в димоході: причини утворення та способи очищення',
+  'url' => url('/blog/sazha-v-dimohodi'),
+
+  'publisher' => [
+    '@type' => 'Organization',
+    '@id' => 'https://www.dymsystems.pp.ua/#organization'
+  ]
+
+], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
+</script>
+@endpush
+
+@push('schema-breadcrumbs')
+<script type="application/ld+json">
+{!! json_encode([
+  '@' . 'context' => 'https://schema.org',
+  '@type' => 'BreadcrumbList',
+  'itemListElement' => [
+    [
+      '@type' => 'ListItem',
+      'position' => 1,
+      'name' => 'Головна',
+      'item' => url('/')
+    ],
+    [
+      '@type' => 'ListItem',
+      'position' => 2,
+      'name' => 'Корисна інформація',
+      'item' => url('/useful-info')
+    ],
+    [
+      '@type' => 'ListItem',
+      'position' => 3,
+      'name' => 'Марки сталі для димоходів',
+      'item' => url('/blog/marky-stali-dlya-dymohodiv')
+    ],
+    [
+      '@type' => 'ListItem',
+      'position' => 4,
+      'name' => 'Сажа в димоході: причини утворення та способи очищення',
+     'item' => [
+        '@id' => url('/blog/sazha-v-dimohodi'),
+        'name' => 'Сажа в димоході: причини утворення та способи очищення'
+    ]
+    ]
+  ]
+], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
+</script>
+@endpush
+
+@push('schema-webpage')
+<script type="application/ld+json">
+{!! json_encode([
+    '@' . 'context' => 'https://schema.org',
+    '@type' => 'WebPage',
+
+    '@id' => url()->current() . '#webpage',
+    'url' => url()->current(),
+
+    'name' => trim($__env->yieldContent('title')),
+    'description' => trim($__env->yieldContent('description')),
+
+    'inLanguage' => 'uk-UA',
+
+    'isPartOf' => [
+        '@type' => 'WebSite',
+        '@id' => url('/') . '#website',
+    ],
+], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
+</script>
+@endpush
