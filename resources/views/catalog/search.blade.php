@@ -47,11 +47,14 @@
                         <option value="Труба-подовжувач">Труба-подовжувач</option>
                         <option value="Прохід">Прохід</option>
                         <option value="Відображувач">Відображувач</option>
+                        <option value="Труба">Труба овальна</option>
+                        <option value="Трійник 90°">Трійник овальний 90°</option>
+                        <option value="Трійник 45°">Трійник овальний 45°</option>
                     </select>
                 </div>
                 <div class="col-md-3">
                     <select name="diameter" class="form-control mb-2">
-                        <option value="">Диаметр (все)</option>
+                        <option value="">Диаметр (розмір)</option>
                         <option value="100">100</option>
                         <option value="110">110</option>
                         <option value="120">120</option>
@@ -112,6 +115,13 @@
                         <option value="160/260">160/260</option>
                         <option value="180/280">180/280</option>
                         <option value="200/300">200/300</option>
+                         <option value="200/300">100х200</option>
+                          <option value="200/300">110х220</option>
+                           <option value="200/300">110х230</option>
+                            <option value="200/300">110х240</option>
+                             <option value="200/300">120х220</option>
+                              <option value="200/300">120х230</option>
+                               <option value="200/300">120х240</option>
                     </select>
 
                     <select name="thickness" class="form-control mb-2">
