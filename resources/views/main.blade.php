@@ -273,8 +273,13 @@
 <section class="container-1600 py-5">
     <div class="row g-4 align-items-center">
         <div class="col-md-6">
-         <h2 class="fw-bold">Потрібна допомога з вибором?</h2>
-            <p class="text-muted">Ми підготували для вас онлайн-калькулятор та інструкції, які допоможуть зробити правильний вибір без помилок.</p>
+<h2 class="fw-bold border-start border-4 border-primary ps-3 lh-sm">
+    Потрібна допомога з вибором?
+</h2>
+
+<p class="text-muted mt-3">
+    Ми підготували для вас онлайн-калькулятор та інструкції, які допоможуть зробити правильний вибір без помилок.
+</p>
         </div>
         <div class="col-md-6 text-md-end">
     <a href="{{ route('useful.index') }}"

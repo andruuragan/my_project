@@ -539,7 +539,11 @@
                 <div class="card-body text-center">
 
                     <div class="display-5 text-warning mb-3">
-                        <i class="bi bi-fire"></i>
+                        <img src="{{ asset('images/icons/gas-boiler.svg') }}"
+                     alt="Газовий котел"
+                     width="50"
+                     height="50"
+                     class="me-2">
                     </div>
 
                     <h4>Газовий котел</h4>
@@ -558,7 +562,11 @@
                 <div class="card-body text-center">
 
                     <div class="display-5 text-primary mb-3">
-                        <i class="bi bi-droplet-half"></i>
+                        <img src="{{ asset('images/icons/condens-boiler.svg') }}"
+         alt="Конденсаційний котел"
+         width="60"
+         height="60"
+         class="me-2">
                     </div>
 
                     <h4>Конденсаційний котел</h4>
@@ -577,7 +585,11 @@
                 <div class="card-body text-center">
 
                     <div class="display-5 text-danger mb-3">
-                        <i class="bi bi-thermometer-sun"></i>
+                         <img src="{{ asset('images/icons/solid-fuel-boiler.svg') }}"
+         alt="Твердопаливний котел"
+         width="50"
+         height="50"
+         class="me-2">
                     </div>
 
                     <h4>Твердопаливний котел</h4>
@@ -596,7 +608,11 @@
                 <div class="card-body text-center">
 
                     <div class="display-5 text-success mb-3">
-                        <i class="bi bi-house-heart"></i>
+                         <img src="{{ asset('images/icons/fireplace.svg') }}"
+                     alt="Камін"
+                     width="50"
+                     height="50"
+                     class="me-2">
                     </div>
 
                     <h4>Камін або банна піч</h4>
