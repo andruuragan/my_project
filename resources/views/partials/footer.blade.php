@@ -50,6 +50,7 @@
                     <li><a href="{{route ('categories.index') }}">Категорії</a></li>
                     <li><a href="{{route ('about.index') }}">Про нас</a></li>
                     <li><a href="{{route ('contacts.index') }}">Контакти</a></li>
+                    <li><a href="{{route ('useful.index') }}">Корисна інформація</a></li>
                 </ul>
             </div>
 
