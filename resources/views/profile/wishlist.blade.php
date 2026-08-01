@@ -34,7 +34,7 @@
                                                 data-bs-toggle="tooltip"
                                                 data-bs-placement="top"
                                                 data-bs-custom-class="custom-orange-tooltip"
-                                                data-bs-title="Збільшити photo"
+                                                data-bs-title="Збільшити фото"
                                                 style="width: 36px; height: 36px;"
                                                 data-image="{{ asset($catalog->image) }}">
                                             <i class="bi bi-search text-muted"></i>
