@@ -23,7 +23,11 @@
     @auth
         <button type="button"
                 class="icon-btn wishlist-btn rounded-circle shadow-sm border-0 d-flex align-items-center justify-content-center bg-white"
-                data-id="{{ $catalog->id }}">
+                data-id="{{ $catalog->id }}"
+                        data-bs-toggle="tooltip"
+                 data-bs-placement="right"
+                  data-bs-custom-class="custom-orange-tooltip"
+        data-bs-title="В закладки">
             @if(Auth::user()->wishlists->contains($catalog->id))
                 <i class="bi bi-heart-fill text-danger"></i>
             @else
