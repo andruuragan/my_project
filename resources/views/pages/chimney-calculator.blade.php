@@ -396,10 +396,14 @@
             </div>
 
             <div class="p-3 rounded-3 mb-0" style="background-color: #fff7ed; border: 1px dashed #ffedd5;">
-                <p class="text-dark mb-0 small">
-                    <i class="bi bi-lightbulb text-orange me-2 fw-bold"></i>
-                    Використання нашого <strong>калькулятора розрахунку димоходу</strong> — це ваш перший впевнений крок до створення надійної інженерної системи, яка бездоганно прослужить десятиліттями.
-                </p>
+               <p class="text-dark mb-0 small">
+    <i class="bi bi-lightbulb text-orange me-2 fw-bold"></i>
+    Використання нашого
+    <a href="#calculator" class="fw-bold text-decoration-none">
+        калькулятора розрахунку димоходу
+    </a>
+    — це ваш перший впевнений крок до створення надійної інженерної системи, яка бездоганно прослужить десятиліттями.
+</p>
             </div>
 
         </div>

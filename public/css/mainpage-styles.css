@@ -392,5 +392,14 @@ section {
         margin: 0 !important;
     }
 }
+.btn-outline-orange {
+    color: #ff7a00;
+    border-color: #ff7a00;
+}
 
+.btn-outline-orange:hover {
+    color: #fff;
+    background-color: #ff7a00;
+    border-color: #ff7a00;
+}
 

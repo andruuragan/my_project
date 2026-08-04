@@ -383,7 +383,114 @@
     </div>
 </section>
 
+<section class="py-5">
+    <div class="container">
 
+        <div class="text-center mb-4">
+            <h2 class="fw-bold">
+                Корисні статті перед вибором димоходу
+            </h2>
+
+            <p class="text-muted mx-auto" style="max-width: 760px;">
+                Перед тим як обрати димохід, рекомендуємо ознайомитися з матеріалами,
+                які допоможуть краще зрозуміти особливості різних матеріалів,
+                конструкцій та правил експлуатації.
+            </p>
+        </div>
+
+        <div class="row g-4">
+
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm rounded-4">
+                    <div class="card-body">
+
+                        <div style="height:220px; overflow:hidden;">
+    <img src="{{ asset('images/chimney/grade1.webp') }}"
+         alt="Сажа в димоході"
+         class="w-100 h-100"
+         style="object-fit:cover;">
+</div>
+
+                        <h3 class="h5 fw-bold mt-3">
+                            Марки нержавіючої сталі
+                        </h3>
+
+                        <p class="text-muted small mb-4">
+                            Дізнайтеся, чим відрізняються сталі AISI 201, 304, 316 та 321,
+                            яку з них краще обрати для газового, твердопаливного котла або каміна.
+                        </p>
+
+                        <a href="{{ route('blog.steel-grades') }}"
+                   class="btn btn-outline-orange mt-4">
+                    Читати статтю
+                </a>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm rounded-4">
+                    <div class="card-body">
+
+                        <div style="height:220px; overflow:hidden;">
+    <img src="{{ asset('images/chimney/soot.webp') }}"
+         alt="Сажа в димоході"
+         class="w-100 h-100"
+         style="object-fit:cover;">
+</div>
+
+                        <h3 class="h5 fw-bold mt-3">
+                            Утворення сажі та її наслідки
+                        </h3>
+
+                        <p class="text-muted small mb-4">
+                            Чому в димоході накопичується сажа, чим це небезпечно,
+                            як уникнути засмічення та зменшити ризик займання.
+                        </p>
+
+                        <a href="{{ route('blog.soot') }}"
+   class="btn btn-outline-orange">
+    Читати статтю
+</a>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm rounded-4">
+                    <div class="card-body">
+
+                       <div style="height:220px; overflow:hidden;">
+    <img src="{{ asset('images/chimney/basalt.webp') }}"
+         alt="Базальтова вата"
+         class="w-100 h-100"
+         style="object-fit:cover;">
+</div>
+
+                        <h3 class="h5 fw-bold mt-3">
+                            Базальтова вата в сендвіч-димоходах
+                        </h3>
+
+                        <p class="text-muted small mb-4">
+                            Пояснюємо, навіщо потрібна базальтова ізоляція,
+                            як вона працює та чому її якість напряму впливає на довговічність димоходу.
+                        </p>
+
+                        <a href="{{ route('blog.basalt-wool') }}"
+                   class="btn btn-outline-orange mt-4">
+                    Читати статтю
+                </a>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
 <section class="container-1600 py-5">
     <div class="text-center mb-5">
         <h2 class="fw-bold display-6 mb-3">Актуальні питання та популярні відповіді</h2>
