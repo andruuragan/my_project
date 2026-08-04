@@ -401,7 +401,7 @@
         <div class="row g-4">
 
             <div class="col-md-4">
-                <div class="card h-100 border-0 shadow-sm rounded-4">
+                <div class="card h-100 border-0 shadow rounded-4">
                     <div class="card-body">
 
                         <div style="height:220px; overflow:hidden;">
@@ -430,7 +430,7 @@
             </div>
 
             <div class="col-md-4">
-                <div class="card h-100 border-0 shadow-sm rounded-4">
+                <div class="card h-100 border-0 shadow rounded-4">
                     <div class="card-body">
 
                         <div style="height:220px; overflow:hidden;">
@@ -459,7 +459,7 @@
             </div>
 
             <div class="col-md-4">
-                <div class="card h-100 border-0 shadow-sm rounded-4">
+                <div class="card h-100 border-0 shadow rounded-4">
                     <div class="card-body">
 
                        <div style="height:220px; overflow:hidden;">
