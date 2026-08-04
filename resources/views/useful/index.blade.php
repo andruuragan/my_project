@@ -163,7 +163,8 @@
        <section class="my-5 p-4 rounded-4" style="background-color: #f8fafc; border: 1px solid #e2e8f0;">
     <div class="row align-items-center">
         <div class="col-md-8">
-            <h4 class="mb-1">Шукаєте надійні комплектуючі?</h4>
+            <h4 class="fw-bold border-start border-4 border-primary ps-3 lh-sm">Шукаєте надійні комплектуючі?</h4>
+           
             <p class="text-muted mb-0">Оберіть сертифіковані димоходи з нержавіючої сталі для вашого опалювального обладнання.</p>
         </div>
         <div class="col-md-4 text-md-end mt-3 mt-md-0">
