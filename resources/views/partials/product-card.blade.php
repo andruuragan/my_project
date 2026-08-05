@@ -119,9 +119,9 @@
                         <div class="product-specs d-flex flex-wrap gap-2 mt-2 mb-3">
       @if(!empty($catalog->diameter) && $catalog->diameter != 0)
     <span class="badge bg-light text-dark border border-secondary-subtle rounded-pill">
-        @if($catalog->type !== 'Труба овальна')
-            Ø
-        @endif
+       @if(!Str::contains($catalog->type, 'оваль'))
+    Ø
+@endif
         {{ $catalog->diameter }}
     </span>
 @endif

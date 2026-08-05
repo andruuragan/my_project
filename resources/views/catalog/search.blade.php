@@ -48,8 +48,9 @@
                         <option value="Прохід">Прохід</option>
                         <option value="Відображувач">Відображувач</option>
                         <option value="Труба">Труба овальна</option>
-                        <option value="Трійник 90°">Трійник овальний 90°</option>
-                        <option value="Трійник 45°">Трійник овальний 45°</option>
+                        <option value="Трійник овальний 90°">Трійник овальний 90°</option>
+                        <option value="Трійник овальний 45°">Трійник овальний 45°</option>
+                        <option value="Коліно овальне 45°">Коліно овальне 45°</option>
                     </select>
                 </div>
                 <div class="col-md-3">

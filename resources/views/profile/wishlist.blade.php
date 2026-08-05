@@ -54,15 +54,24 @@
                             </div>
 
                             <div class="card-body d-flex flex-column p-3">
-                                <h6 class="product-title fw-semibold text-dark mb-2 line-clamp-2" style="height: 40px; overflow: hidden; line-height: 1.3;">
-                                    {{ $catalog->name }}
-                                </h6>
+                               <h6 class="product-title fw-semibold text-dark mb-2">
+    {{ $catalog->name }}
+</h6>
 
                                 <div class="my-1" style="height: 1px; background: linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,0.1) 20%, rgba(0,0,0,0.1) 80%, rgba(0,0,0,0));"></div>
 
-                                <div class="product-specs small text-uppercase fw-bold text-muted mt-2 mb-3" style="letter-spacing: 0.5px; font-size: 0.72rem;">
-                                    Ø{{ $catalog->diameter }} • {{ $catalog->thickness }} • AISI {{ $catalog->grade }}
-                                </div>
+                                <div class="product-specs small text-uppercase fw-bold text-muted mt-2 mb-3"
+     style="letter-spacing: 0.5px; font-size: 0.72rem;">
+
+    @if(!empty($catalog->diameter) && $catalog->diameter != 0)
+       @if(!Str::contains($catalog->type, 'оваль'))
+    Ø
+@endif
+        {{ $catalog->diameter }} •
+    @endif
+
+    {{ $catalog->thickness }} • AISI {{ $catalog->grade }}
+</div>
 
                                 <div class="mt-auto pt-2">
     <div class="d-flex align-items-center mb-1">
