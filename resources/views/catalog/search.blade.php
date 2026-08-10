@@ -53,6 +53,7 @@
                         <option value="Коліно овальне 45°">Коліно овальне 45°</option>
                         <option value="Коліно овальне 90°">Коліно овальне 90°</option>
                         <option value="Закінчення димоходу овальне">Закінчення димоходу овальне</option>
+                        <option value="Перехід овальний">Перехід овальний</option>
                     </select>
                 </div>
                 <div class="col-md-3">
