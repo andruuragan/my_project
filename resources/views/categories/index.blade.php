@@ -110,7 +110,7 @@
         'desc' => 'Коліна, трійники, ревізії, дефлектори. Повна збірка будь-якої конфігурації.'
     ],
     [
-        'cat' => 'oval',
+        'cat' => 'oval-chimney',
         'img' => 'oval-banner.webp',
         'title' => 'Система овальних нержавіючіх димоходів',
         'desc' => 'Труби, коліна, трійники, ревізії.'
@@ -119,14 +119,16 @@
     <div class="col-12 col-md-6">
         <div class="card h-100 border-0 shadow-sm custom-product-card solution-card">
           <a href="{{
-   $item['cat'] === 'single'
+    $item['cat'] === 'single'
     ? route('single-wall-system')
     : ($item['cat'] === 'sandwich'
         ? route('sandwich-system')
-        : ($item['cat'] === 'fittings'
-            ? route('fittings-system')
-            : route('shop.index', ['category' => $item['cat']])))
-}}"
+        : ($item['cat'] === 'oval-chimney'
+            ? route('oval-chimney-system')
+            : ($item['cat'] === 'fittings'
+                ? route('fittings-system')
+                : route('shop.index', ['category' => $item['cat']])))
+)}}"
    class="img-container">
     <img src="{{ asset('images/chimney/' . $item['img']) }}"
          width="500"
@@ -142,15 +144,17 @@
                 @endif
                 <h3 class="h4 fw-bold mb-3">{{ $item['title'] }}</h3>
                 <p class="text-muted mb-4">{{ $item['desc'] }}</p>
-               <a href="{{
-   $item['cat'] === 'single'
+              <a href="{{
+    $item['cat'] === 'single'
     ? route('single-wall-system')
     : ($item['cat'] === 'sandwich'
         ? route('sandwich-system')
-        : ($item['cat'] === 'fittings'
-            ? route('fittings-system')
-            : route('shop.index', ['category' => $item['cat']])))
-}}"
+        : ($item['cat'] === 'oval-chimney'
+            ? route('oval-chimney-system')
+            : ($item['cat'] === 'fittings'
+                ? route('fittings-system')
+                : route('shop.index', ['category' => $item['cat']])))
+)}}"
    class="btn btn-outline-dark rounded-pill px-4">
     Підібрати систему <i class="bi bi-arrow-right-circle ms-2"></i>
 </a>

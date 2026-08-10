@@ -73,8 +73,8 @@
 </li>
 
 <li>
-   <a class="dropdown-item {{ request()->routeIs('shop.index') ? 'active-item' : '' }}"
-   href="{{ route('shop.index') }}">
+   <a class="dropdown-item {{ request()->routeIs('oval-chimney-system') ? 'active-item' : '' }}"
+   href="{{ route('oval-chimney-system') }}">
     <i class="bi bi-app me-2"></i>
     Овальні димоходи
 </a>

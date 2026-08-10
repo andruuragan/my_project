@@ -77,6 +77,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 @stack('schema-categories-item1')
 @stack('schema-categories-item2')
 @stack('schema-categories-item3')
+@stack('schema-categories-item4')
 @stack('schema-contact')
 @stack('schema-about')
 @stack('schema-breadcrumbs')

@@ -33,6 +33,7 @@ use App\Http\Controllers\SandwichSystemController;
 use App\Http\Controllers\FittingsSystemController;
 use Illuminate\Support\Facades\Mail;
 use App\Services\BrevoMailService;
+use App\Http\Controllers\OvalChimneySystemController;
 
 
 /* ==========================================================================
@@ -49,6 +50,8 @@ Route::get('/categories', [CategoryPageController::class, 'index'])
     ->name('single-wall-system');
    Route::get('/termo-sendvich-dimohidna-systema', SandwichSystemController::class)
     ->name('sandwich-system');
+    Route::get('/ovalni-nerzhaviyuchi-dimohody', OvalChimneySystemController::class)
+    ->name('oval-chimney-system');
     Route::get(
     '/systema-kriplen-homutiv-ta-komplektuyuchih',
     [FittingsSystemController::class, 'index']
