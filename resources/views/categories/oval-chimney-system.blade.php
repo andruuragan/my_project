@@ -1012,7 +1012,7 @@
     type: null
 };
 const images = {
-    "Труба овальна": "af9d81727ab4a0d58f1d3420f20d205fe96af56.webp",
+    "Труба овальна": "0af9d81727ab4a0d58f1d3420f20d205fe96af56.webp",
     "Коліно овальне 45°": "81ecce57a26dbb8106cef846d8c3ed6f354df2ef.webp",
     "Коліно овальне 90°": "b47b425539b2bf71c4855c7823344ef2e05b8eae.webp",
     "Трійник овальний 90°": "041e03144f50ce1ec153ae2426c509e259937f45.webp",
