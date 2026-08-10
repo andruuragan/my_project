@@ -542,9 +542,10 @@
         </p>
 
       <a href="{{ route('fittings-system') }}"
-           class="btn btn-outline-warning rounded-pill mt-3">
-            Переглянути кріплення та комплектуючі
-        </a>
+   class="btn rounded-pill mt-3"
+   style="color: #fd7e14; border: 1px solid #fd7e14;">
+    Переглянути кріплення та комплектуючі
+</a>
     </div>
 
    
@@ -1102,7 +1103,7 @@ function showStep(step, scroll = false) {
 
         document.getElementById('summary').innerHTML = `
 <ul class="list-unstyled mb-0">
-    <li><strong>Діаметр:</strong> ${selected.diameter} мм</li>
+    <li><strong>Розмір:</strong> ${selected.diameter} мм</li>
     <li><strong>Сталь:</strong> AISI ${selected.grade}</li>
     <li><strong>Товщина:</strong> ${selected.thickness}</li>    
     <li><strong>Елемент:</strong> ${selected.type}</li>

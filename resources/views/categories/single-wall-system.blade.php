@@ -590,10 +590,11 @@
             Для повного монтажу також можуть знадобитися кріплення, хомути, прохідні елементи, розтяжки, кронштейни та інші комплектуючі. Переглянути їх можна в окремому розділі категорій димарів.
         </p>
 
-      <a href="{{ route('fittings-system') }}"
-           class="btn btn-outline-warning rounded-pill mt-3">
-            Переглянути кріплення та комплектуючі
-        </a>
+     <a href="{{ route('fittings-system') }}"
+   class="btn rounded-pill mt-3"
+   style="color: #fd7e14; border: 1px solid #fd7e14;">
+    Переглянути кріплення та комплектуючі
+</a>
     </div>
 
    

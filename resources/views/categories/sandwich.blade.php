@@ -712,9 +712,10 @@
         </p>
 
         <a href="{{ route('fittings-system') }}"
-           class="btn btn-outline-warning rounded-pill mt-3">
-            Переглянути кріплення та комплектуючі
-        </a>
+   class="btn rounded-pill mt-3"
+   style="color: #fd7e14; border: 1px solid #fd7e14;">
+    Переглянути кріплення та комплектуючі
+</a>
     </div>
 
     
