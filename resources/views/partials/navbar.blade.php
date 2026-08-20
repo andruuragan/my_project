@@ -68,7 +68,7 @@
    <a class="dropdown-item {{ request()->routeIs('sandwich-system') ? 'active-item' : '' }}"
    href="{{ route('sandwich-system') }}">
     <i class="bi bi-layers me-2"></i>
-    Термо димоходи
+    Термо димоходи (сендвіч)
 </a>
 </li>
 
