@@ -985,7 +985,7 @@
     .hero-banner{
         min-height: auto;
         text-align: center;
-        padding-bottom: 280px !important;
+        padding-bottom: 300px !important;
     }
 
     .hero-content{
