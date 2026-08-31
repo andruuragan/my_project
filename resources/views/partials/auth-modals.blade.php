@@ -4,15 +4,15 @@
             <div class="modal-header">
 
 <div class="text-center mb-3">
-    <img src="{{ asset('images/logo.png') }}"
-         alt="Логотип DymSystems"
-         width="80"
-         height="35"
-          loading="lazy"
+   <img src="{{ app()->getLocale() === 'ru' ? asset('images/logoru.png') : asset('images/logo.png') }}"
+     alt="Логотип DymSystems"
+     width="80"
+     height="35"
+     loading="lazy"
      decoding="async">
 
     <div class="text-muted fw-bold fs-6 mt-3">
-        Реєстрація
+        {{ __('messages.register') }}
     </div>
 </div>
                 
@@ -37,7 +37,7 @@
                     @endif
 
                     <div class="mb-3">
-                        <label for="register_name">Ім’я</label>
+                        <label for="register_name">{{ __('messages.name') }}</label>
                         <input id="register_name" name="name" type="text" class="form-control" autocomplete="name" required>
                     </div>
 
@@ -57,14 +57,14 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="register_password_confirmation">Підтвердження пароля</label>
+                        <label for="register_password_confirmation">{{ __('messages.password_confirmation') }}</label>
                         <input id="register_password_confirmation" type="password" name="password_confirmation" class="form-control" autocomplete="new-password" required>
                     </div>
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрити</button>
-                    <button type="submit" class="btn btn-warning">Зареєструватись</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ __('messages.close') }}</button>
+                    <button type="submit" class="btn btn-warning">{{ __('messages.register_button') }}</button>
                 </div>
             </form>
         </div>

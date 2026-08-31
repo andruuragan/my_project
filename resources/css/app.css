@@ -1643,3 +1643,50 @@ header {
 .menu-categories:hover .submenu {
     display: block;
 }
+.language-switcher {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-left: 15px;
+}
+
+.language-switcher a {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1;
+    color: #000;
+    transition: transform 0.2s ease;
+    position: relative;
+}
+
+.language-switcher a:hover {
+    color: #000;
+    transform: scale(1.1);
+}
+
+.language-switcher a.active {
+    color: #000;
+    transform: scale(1.1);
+}
+
+.language-switcher a.active::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 2px;
+    right: 2px;
+    height: 3px;
+    background: #d97706;
+    border-radius: 3px;
+}
+
+.language-divider {
+    color: #999;
+    font-size: 16px;
+    user-select: none;
+}

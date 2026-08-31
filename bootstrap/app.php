@@ -19,6 +19,10 @@ return Application::configure(basePath: dirname(__DIR__))
 
     // Ваші існуючі мідлвари
     $middleware->append(\App\Http\Middleware\ForceWwwRedirect::class);
+    // Визначення мови сайту 
+    $middleware->web(append: [
+    \App\Http\Middleware\SetLocale::class,
+]);
 
     $middleware->alias([
         'admin' => \App\Http\Middleware\AdminMiddleware::class,

@@ -62,7 +62,19 @@ Route::get('/catalog/{catalog}', [CatalogController::class, 'publicShow'])->name
 Route::get('/dymsystems', function () {
     return redirect()->route('main.index');
 });
+//=====================================================
+Route::get('/locale/{locale}', function ($locale) {
 
+    if (!in_array($locale, ['uk', 'ru'])) {
+        abort(404);
+    }
+
+    session()->put('locale', $locale);
+
+    return redirect()->back();
+
+})->name('locale.switch');
+//=======================================================
 
 
 Route::get('/brevo-test', function (BrevoMailService $mail) {
@@ -185,4 +197,6 @@ Route::get('/useful-info', [App\Http\Controllers\UsefulController::class, 'index
 |  ========================================================================== */
 Route::get('/compare', [CompareController::class, 'index'])->name('compare.index');
 Route::post('/contacts/send', [App\Http\Controllers\ContactsController::class, 'send'])->name('contact.send');
+
+
 require __DIR__.'/auth.php';

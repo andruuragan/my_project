@@ -5,7 +5,7 @@
         <div class="header-left">
         <div class="d-flex flex-column" style="gap: 6px;">
            <a href="{{ route('main.index') }}">
-    <img src="{{ asset('images/logo.png') }}"
+    <img src="{{ asset(app()->getLocale() === 'ru' ? 'images/logoru.png' : 'images/logo.png') }}"
          class="logo"
          alt="Logo"
          width="250"
@@ -16,11 +16,13 @@
 
             <a href="{{ route('contacts.index') }}" class="subtitle-link">
     <div class="subtitle-badge">
-        Центр комплектації димарів
+       {{ __('messages.subtitle') }}
     </div>
 </a>
         </div>
+        
         </div>
+        
 
         <!-- MENU -->
         <div class="navbar-nav-wrapper">
@@ -34,13 +36,14 @@
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-door-fill" viewBox="0 0 16 16">
                             <path d="M6.5 14.5v-3.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5z"/>
                         </svg>
-                        <span>Головна</span>
+                      <span>{{ __('messages.home') }}</span>
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link d-inline-flex align-items-center {{ request()->routeIs('shop.index') ? 'active' : '' }}" href="{{ route('shop.index') }}">
-                        <i class="bi bi-grid-fill me-2"></i> Каталог товарів
+                        <i class="bi bi-grid-fill me-2"></i> 
+                        {{ __('messages.catalog') }}
                     </a>
                 </li>
        <li class="nav-item menu-categories">
@@ -49,7 +52,7 @@
        href="{{ route('categories.index') }}">
 
         <i class="bi bi-boxes me-2"></i>
-        Категорії димарів
+        {{ __('messages.chimney_categories') }}
         <i class="bi bi-chevron-down ms-2"></i>
 
     </a>
@@ -60,7 +63,7 @@
    <a class="dropdown-item {{ request()->routeIs('single-wall-system') ? 'active-item' : '' }}"
    href="{{ route('single-wall-system') }}">
     <i class="bi bi-box-seam me-2"></i>
-    Одностінні димоходи
+   {{ __('messages.single_wall') }}
 </a>
 </li>
 
@@ -68,7 +71,7 @@
    <a class="dropdown-item {{ request()->routeIs('sandwich-system') ? 'active-item' : '' }}"
    href="{{ route('sandwich-system') }}">
     <i class="bi bi-layers me-2"></i>
-    Термо димоходи (сендвіч)
+    {{ __('messages.sandwich') }}
 </a>
 </li>
 
@@ -76,7 +79,7 @@
    <a class="dropdown-item {{ request()->routeIs('oval-chimney-system') ? 'active-item' : '' }}"
    href="{{ route('oval-chimney-system') }}">
     <i class="bi bi-app me-2"></i>
-    Овальні димоходи
+    {{ __('messages.oval') }}
 </a>
 </li>
 
@@ -84,7 +87,7 @@
     <a class="dropdown-item {{ request()->routeIs('fittings-system') ? 'active-item' : '' }}"
    href="{{ route('fittings-system') }}">
           <i class="bi bi-tools me-2"></i>
-   Кріплення та хомути
+   {{ __('messages.fittings') }}
 </a>
 </li>
 
@@ -100,7 +103,7 @@
                             <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                             <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
                         </svg>
-                        <span>Про нас</span>
+                        <span>{{ __('messages.about') }}</span>
                     </a>
                 </li>
 
@@ -111,7 +114,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone" viewBox="0 0 16 16">
                             <path d="M3.654 1.328a.678.678 0 0 0-.58-.196l-1.458.224c-.44.067-.757.425-.757.87 0 6.125 4.906 11.03 11.035 11.03.448 0 .805-.317.872-.758l.224-1.457a.677.677 0 0 0-.196-.58L11.16 10.63a.676.676 0 0 0-.74-.103l-.385.198a.524.524 0 0 1-.401.043A11.542 11.542 0 0 1 5.466 7.524a.524.524 0 0 1 .043-.401l.197-.385a.676.676 0 0 0-.102-.741L3.654 1.328zM11 .5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V1.707l-4.146 4.147a.5.5 0 0 1-.708-.708L14.293 1H11.5a.5.5 0 0 1-.5-.5z"/>
                         </svg>
-                        <span>Контакти</span>
+                        <span>{{ __('messages.contacts') }}</span>
                     </a>
                 </li>
 
@@ -128,7 +131,7 @@
                                     <path d="M5.338 1.59a61.44 61.44 0 0 0-2.837.856.481.481 0 0 0-.328.39c-.554 4.157.726 7.19 2.253 9.188a10.725 10.725 0 0 0 2.287 2.233c.346.244.652.42.893.533.12.057.218.095.293.118a.55.55 0 0 0 .34 0c.074-.23.172-.268.293-.117.241-.113.546-.29.893-.533a10.726 10.726 0 0 0 2.287-2.233c1.527-1.997 2.807-5.031 2.253-9.188a.48.48 0 0 0-.328-.39c-.651-.213-1.75-.56-2.837-.855C9.552 1.29 8.531 1.067 8 1.067c-.53 0-1.552.223-2.662.524zM5.072.56C6.157.265 7.31 0 8 0s1.843.265 2.928.56c1.11.3 2.229.655 2.887.87a1.54 1.54 0 0 1 1.044 1.262c.596 4.477-.787 7.795-2.465 9.99a11.775 11.775 0 0 1-2.517 2.453 7.159 7.159 0 0 1-1.048.625c-.28.132-.581.24-.829.24s-.548-.108-.829-.24a7.158 7.158 0 0 1-1.048-.625 11.777 11.777 0 0 1-2.517-2.453C1.928 10.487.545 7.169 1.141 2.692A1.54 1.54 0 0 1 2.185 1.43 62.456 62.456 0 0 1 5.072.56z"/>
                                     <path d="M9.5 6.5a1.5 1.5 0 0 1-1 1.415V9a.5.5 0 0 1-1 0V7.915A1.5 1.5 0 1 1 9.5 6.5z"/>
                                 </svg>
-                                <span>Admin</span>
+                                <span>{{ __('messages.admin') }}</span>
                             </a>
                         </li>
 
@@ -153,12 +156,17 @@
 
             </ul>
         </div>
+
+        
         <div class="header-right">
+
+     
 
             <!-- INFO BLOCK (ЗАВЖДИ Є) -->
             <div class="header-contact-block">
 
                 <div class="contact-row">
+                    
                     <i class="bi bi-clock"></i>
                     <div class="contact-value">Пн–Пт: 09:00–18:00</div>
                 </div>
@@ -169,6 +177,7 @@
                 </div>
 
                 <div class="contact-row">
+                    
                     <i class="bi bi-envelope"></i>
                     <div class="contact-value">dymsystems@ukr.net</div>
                 </div>
@@ -184,7 +193,7 @@
                     @if(auth()->user()->isAdmin())
                         <a href="{{ route('users.index') }}" class="login-btn admin-btn">
                             <i class="bi bi-people"></i>
-                            Користувачі
+                            {{ __('messages.users') }}
                         </a>
                     @endif
 
@@ -236,7 +245,7 @@
                                 <a class="dropdown-item {{ request()->routeIs('dashboard') ? 'active-item' : '' }}"
                                    href="{{ route('dashboard') }}">
                                     <i class="bi bi-speedometer2 me-2"></i>
-                                    Особистий кабінет
+                                    {{ __('messages.account') }}
                                 </a>
                             </li>
 
@@ -244,7 +253,7 @@
                                 <a class="dropdown-item {{ request()->routeIs('profile.*') ? 'active-item' : '' }}"
                                    href="{{ route('profile.edit') }}">
                                     <i class="bi bi-person me-2"></i>
-                                    Профіль
+                                    {{ __('messages.profile') }}
                                 </a>
                             </li>
 
@@ -253,7 +262,7 @@
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <button class="dropdown-item text-danger">
                                         <i class="bi bi-box-arrow-right me-2"></i>
-                                        Вийти
+                                        {{ __('messages.logout') }}
                                     </button>
                                 </form>
                             </li>
@@ -267,17 +276,36 @@
                     <button class="login-btn"
                             data-bs-toggle="modal"
                             data-bs-target="#loginModal">
-                        Вхід
+                        {{ __('messages.login') }}
                     </button>
 
                     <button class="register-btn"
                             data-bs-toggle="modal"
                             data-bs-target="#registerModal">
-                        Реєстрація
+                        {{ __('messages.register') }}
                     </button>
 
                 @endauth
+ <!-- =============================== -->
+        <div class="header-language">
+        <div class="language-switcher">
+    <a href="{{ route('locale.switch', 'uk') }}"
+       class="{{ app()->getLocale() === 'uk' ? 'active' : '' }}"
+       title="Українська">
+        🇺🇦
+    </a>
 
+    <span class="language-divider">|</span>
+
+    <a href="{{ route('locale.switch', 'ru') }}"
+       class="{{ app()->getLocale() === 'ru' ? 'active' : '' }}"
+       title="Русский">
+        🇷🇺
+    </a>
+    
+</div>
+</div>
+<!-- =============================== -->
             </div>
 
         </div>
@@ -294,17 +322,17 @@
 
             <div class="modal-header">
                 <div class="text-center mb-3">
-    <img src="{{ asset('images/logo.png') }}"
-         alt="Логотип DymSystems"
-          width="80"
-         height="35"
-          loading="lazy"
+   <img src="{{ app()->getLocale() === 'ru' ? asset('images/logoru.png') : asset('images/logo.png') }}"
+     alt="Логотип DymSystems"
+     width="80"
+     height="35"
+     loading="lazy"
      decoding="async">
 
     
 
     <div class="text-muted fw-bold fs-6 mt-3">
-        Вхід в акаунт
+        {{ __('messages.login') }}
     </div>
 </div>
 
@@ -357,7 +385,7 @@
                                required>
                                <div class="mt-2 text-end">
         <a href="{{ route('password.request') }}" class="text-decoration-none text-muted" style="font-size: 0.85rem;">
-            Забули пароль?
+            {{ __('messages.forgot_password') }}
         </a>
     </div>
                     </div>
@@ -374,14 +402,14 @@
 
                         <!-- Добавляем for="remember_me" к лейблу -->
                         <label class="form-check-label" for="remember_me">
-                            Запам'ятати мене
+                            {{ __('messages.remember_me') }}
                         </label>
                     </div>
 
                     <button type="submit"
                             class="register-btn w-100 justify-content-center">
 
-                        Увійти
+                      {{ __('messages.login_button') }}
                     </button>
 
                 </form>
