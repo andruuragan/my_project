@@ -4,198 +4,231 @@
 
 {{-- 1. Hero Секція --}}
 <section class="container-1600 my-5">
-    <div class="hero-production p-4 p-md-5 shadow-lg" style="background: linear-gradient(90deg, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23, 42, 0.4) 60%, rgba(15, 23, 42, 0.1) 100%), url('{{ asset('images/chimney/headbanner.webp') }}') center/cover no-repeat;">
+    <div class="hero-production p-4 p-md-5 shadow-lg"
+         style="background: linear-gradient(90deg, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23, 42, 0.4) 60%, rgba(15, 23, 42, 0.1) 100%), url('{{ asset('images/chimney/headbanner.webp') }}') center/cover no-repeat;">
+
         <div class="row w-100 align-items-center">
+
             <div class="col-lg-7">
+
                 <span class="badge production-badge px-3 py-2 rounded-pill mb-3">
-                    <i class="bi bi-shield-check text-warning me-1"></i> Виробництво з 2012 року
+                    <i class="bi bi-shield-check text-warning me-1"></i>
+                    {{ __('home.hero_badge') }}
                 </span>
-                <h1 class="display-3 fw-bold mb-4">Надійні димоходи з нержавіючої сталі<br><span class="text-warning">від виробника</span></h1>
-                <p class="fs-5 text-white-50 mb-4">Проектуємо та виготовляємо димохідні системи з високоякісної нержавіючої сталі. Гарантія герметичності, відповідність пожежним нормам та індивідуальні рішення.</p>
+
+                <h1 class="display-3 fw-bold mb-4">
+                    {{ __('home.hero_title') }}<br>
+                    <span class="text-warning">
+                        {{ __('home.hero_title_accent') }}
+                    </span>
+                </h1>
+
+                <p class="fs-5 text-white-50 mb-4">
+                    {{ __('home.hero_description') }}
+                </p>
+
                 <div class="d-flex gap-3">
-                    <a href="{{ route('shop.index') }}" class="btn btn-warning btn-lg fw-bold px-4">Купити димохід</a>
-                    <a href="{{ route('useful.index') }}" class="btn btn-outline-light btn-lg px-4">Корисна інформація про димоходи</a>
+
+                    <a href="{{ route('shop.index') }}"
+                       class="btn btn-warning btn-lg fw-bold px-4">
+                        {{ __('home.hero_buy') }}
+                    </a>
+
+                    <a href="{{ route('useful.index') }}"
+                       class="btn btn-outline-light btn-lg px-4">
+                        {{ __('home.hero_useful') }}
+                    </a>
+
                 </div>
+
             </div>
+
             <div class="col-lg-5">
+
                 <div class="hero-stats-overlay">
-                    <div class="stat-item">✓ Власне виробництво</div>
-                    <div class="stat-item">✓ AISI 304 / 321</div>
-                    <div class="stat-item">✓ Гарантія до 10 років</div>
-                    <div class="stat-item">✓ Доставка по Україні</div>
+
+                    <div class="stat-item">
+                        ✓ {{ __('home.hero_own_production') }}
+                    </div>
+
+                    <div class="stat-item">
+                        ✓ {{ __('home.hero_steel') }}
+                    </div>
+
+                    <div class="stat-item">
+                        ✓ {{ __('home.hero_warranty') }}
+                    </div>
+
+                    <div class="stat-item">
+                        ✓ {{ __('home.hero_delivery') }}
+                    </div>
+
                 </div>
+
             </div>
+
         </div>
     </div>
 </section>
 
 <section class="container-1600 py-5">
     <div class="text-center mb-5">
-        <h2 class="fw-bold display-6 mb-3">Технічні рішення</h2>
-        <div class="mx-auto bg-warning" style="width: 60px; height: 3px;"></div>
-    </div>
+        <h2 class="fw-bold display-6 mb-3">
+            {{ __('home.technical_solutions') }}
+        </h2>
 
-   <div class="row g-4">
-    @foreach([
-    [
-        'cat' => 'single',
-        'img' => 'single-wall-banner1.webp',
-        'title' => 'Система одностінних димоходів',
-        'desc' => 'Ø100–350 мм. Використання: гільзування, внутрішні канали, ремонт існуючих шахт.'
-    ],
-    [
-        'cat' => 'sandwich',
-        'img' => 'sandwich-banner.webp',
-        'title' => 'Термо (сендвіч) система',
-        'desc' => 'Ізоляція 30/50 мм. Призначення: зовнішній монтаж, стабільна тяга, захист від конденсату.',
-        'badge' => 'Хіт продажів'
-    ],
-    [
-        'cat' => 'fittings',
-        'img' => 'fittings-banner.webp',
-        'title' => 'Система кріпленнь, хомутів, завершальних та прохідних елементів',
-        'desc' => 'Коліна, трійники, ревізії, дефлектори. Повна збірка будь-якої конфігурації.'
-    ],
-    [
-        'cat' => 'oval-chimney',
-        'img' => 'oval-banner.webp',
-        'title' => 'Система овальних нержавіючіх димоходів',
-        'desc' => 'Труби, коліна, трійники, ревізії.'
-    ]
-] as $item)
-    <div class="col-12 col-md-6">
-        <div class="card h-100 border-0 shadow-sm custom-product-card solution-card">
-           <a href="{{
-    $item['cat'] === 'single'
-    ? route('single-wall-system')
-    : ($item['cat'] === 'sandwich'
-        ? route('sandwich-system')
-        : ($item['cat'] === 'oval-chimney'
-            ? route('oval-chimney-system')
-            : ($item['cat'] === 'fittings'
-                ? route('fittings-system')
-                : route('shop.index', ['category' => $item['cat']])))
-)}}"
-   class="img-container">
-    <img src="{{ asset('images/chimney/' . $item['img']) }}"
-         width="500"
-         height="500"
-         alt="{{ $item['title'] }}"
-         class="product-img"
-         loading="lazy"
-         decoding="async">
-</a>
-            <div class="card-body p-4 text-center">
-                @if(isset($item['badge']))
-                    <span class="badge bg-warning text-dark mb-3 px-3 py-2">{{ $item['badge'] }}</span>
-                @endif
-                <h3 class="h4 fw-bold mb-3">{{ $item['title'] }}</h3>
-                <p class="text-muted mb-4">{{ $item['desc'] }}</p>
-               <a href="{{
-    $item['cat'] === 'single'
-    ? route('single-wall-system')
-    : ($item['cat'] === 'sandwich'
-        ? route('sandwich-system')
-        : ($item['cat'] === 'oval-chimney'
-            ? route('oval-chimney-system')
-            : ($item['cat'] === 'fittings'
-                ? route('fittings-system')
-                : route('shop.index', ['category' => $item['cat']])))
-)}}"
-   class="btn btn-outline-dark rounded-pill px-4">
-    Підібрати систему <i class="bi bi-arrow-right-circle ms-2"></i>
-</a>
-            </div>
-        </div>
-    </div>
-    @endforeach
-</div>
-</section>
-<section class="container-1600 py-5">
-    <div class="text-center mb-5">
-        <h2 class="fw-bold display-6 mb-3">Технології виробництва димоходів з нержавіючої сталі</h2>
         <div class="mx-auto bg-warning" style="width: 60px; height: 3px;"></div>
-        <p class="text-muted mt-3">
-            Контроль якості на кожному етапі виготовлення димохідних систем
-        </p>
     </div>
 
     <div class="row g-4">
 
         @foreach([
             [
-                'img' => 'tech-cutting.webp',
-                'title' => 'Лазерне різання',
-                 'alt' => 'Лазерне різання нержавіючої сталі на виробництві димоходів',
-                'desc' => 'Точний розкрій нержавіючої сталі без деформації матеріалу.'
+                'cat' => 'single',
+                'img' => 'single-wall-banner1.webp',
             ],
             [
-                'img' => 'tech-rolling.webp',
-                'title' => 'Формування труб',
-                'alt' => 'Формування труб з нержавіючої сталі',
-                'desc' => 'Формування труб та фасонних елементів різного діаметра з точним дотриманням геометричних параметрів.'
+                'cat' => 'sandwich',
+                'img' => 'sandwich-banner.webp',
             ],
             [
-                'img' => 'tech-welding.webp',
-                'title' => 'Аргонне шовне зварювання',
-                'alt' => 'Аргонне шовне зварювання димохідних труб',
-                'desc' => 'Забезпечує герметичність з’єднань і стійкість виробів до високих температур.'
+                'cat' => 'fittings',
+                'img' => 'fittings-banner.webp',
             ],
             [
-                'img' => 'tech-welding-orbital.webp',
-                'title' => 'Орбітальне зварювання',
-                'alt' => 'Орбітальне зварювання елементів димоходу',
-                'desc' => 'Дозволяє отримати рівний, акуратний та надзвичайно міцний зварювальний шов.'
-            ],
-             [
-                'img' => 'tech-bending.webp',
-                'title' => 'Згинання металу',
-                'alt' => 'Згинання металу на листозгинальному пресі',
-                'desc' => 'Сучасний листозгинальний прес дозволяє виконувати рівні та точні згини металу для виготовлення якісних виробів.'
-            ],
-            [
-                'img' => 'tech-expansion.webp',
-                'title' => 'Розширення торців труб',
-                'alt' => 'Розширення торців труб для монтажу димоходів',
-                'desc' => 'Забезпечує надійне стикування елементів димоходу та правильний напрямок руху конденсату.'
-            ],
-            [
-                'img' => 'tech-3d-cutting.webp',
-                'title' => '3D різання',
-                'alt' => '3D різання металу та труб на виробництві димоходів',
-                'desc' => 'Сучасна технологія дає змогу виготовляти вироби складної конфігурації та виконувати точне різання отворів у металі та трубах.'
-            ],
-            [
-                'img' => 'tech-quality.webp',
-                'title' => 'Контроль якості',
-                'alt' => 'Перевірка якості димоходів з нержавіючої сталі перед відправкою',
-                'desc' => 'Кожен виріб проходить перевірку геометрії, якості швів та відповідності технічним вимогам.'
+                'cat' => 'oval-chimney',
+                'img' => 'oval-banner.webp',
             ]
         ] as $item)
 
-        <div class="col-lg-3 col-md-6">
-            <div class="card border-0 shadow-sm h-100 technology-card">
+            <div class="col-12 col-md-6">
 
-                <img src="{{ asset('images/chimney/' . $item['img']) }}"
-     width="1200"
-     height="800"
-     class="card-img-top"
-     alt="{{ $item['alt'] }}"
-     loading="lazy"
-     decoding="async">
+                <div class="card h-100 border-0 shadow-sm custom-product-card solution-card">
 
-                <div class="card-body text-center p-4">
-                    <h3 class="h5 fw-bold mb-3">
-                        {{ $item['title'] }}
-                    </h3>
+                    <a href="{{
+                        $item['cat'] === 'single'
+                            ? route('single-wall-system')
+                            : ($item['cat'] === 'sandwich'
+                                ? route('sandwich-system')
+                                : ($item['cat'] === 'oval-chimney'
+                                    ? route('oval-chimney-system')
+                                    : ($item['cat'] === 'fittings'
+                                        ? route('fittings-system')
+                                        : route('shop.index', ['category' => $item['cat']]))
+                            ))
+                    }}"
+                    class="img-container">
 
-                    <p class="text-muted mb-0">
-                        {{ $item['desc'] }}
-                    </p>
+                        <img src="{{ asset('images/chimney/' . $item['img']) }}"
+                             width="500"
+                             height="500"
+                             alt="{{ __('home.solutions.' . $item['cat'] . '.title') }}"
+                             class="product-img"
+                             loading="lazy"
+                             decoding="async">
+
+                    </a>
+
+                    <div class="card-body p-4 text-center">
+
+                        @if(isset(__('home.solutions.' . $item['cat'])['badge']))
+                            <span class="badge bg-warning text-dark mb-3 px-3 py-2">
+                                {{ __('home.solutions.' . $item['cat'] . '.badge') }}
+                            </span>
+                        @endif
+
+                        <h3 class="h4 fw-bold mb-3">
+                            {{ __('home.solutions.' . $item['cat'] . '.title') }}
+                        </h3>
+
+                        <p class="text-muted mb-4">
+                            {{ __('home.solutions.' . $item['cat'] . '.desc') }}
+                        </p>
+
+                        <a href="{{
+                            $item['cat'] === 'single'
+                                ? route('single-wall-system')
+                                : ($item['cat'] === 'sandwich'
+                                    ? route('sandwich-system')
+                                    : ($item['cat'] === 'oval-chimney'
+                                        ? route('oval-chimney-system')
+                                        : ($item['cat'] === 'fittings'
+                                            ? route('fittings-system')
+                                            : route('shop.index', ['category' => $item['cat']]))
+                                ))
+                        }}"
+                        class="btn btn-outline-dark rounded-pill px-4">
+
+                            {{ __('home.choose_system') }}
+
+                            <i class="bi bi-arrow-right-circle ms-2"></i>
+
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+
+        @endforeach
+
+    </div>
+</section>
+
+<section class="container-1600 py-5">
+    <div class="text-center mb-5">
+
+        <h2 class="fw-bold display-6 mb-3">
+            {{ __('home.production_technologies.title') }}
+        </h2>
+
+        <div class="mx-auto bg-warning" style="width: 60px; height: 3px;"></div>
+
+        <p class="text-muted mt-3">
+            {{ __('home.production_technologies.subtitle') }}
+        </p>
+
+    </div>
+
+    <div class="row g-4">
+
+        @foreach([
+            ['img' => 'tech-cutting.webp', 'key' => 'cutting'],
+            ['img' => 'tech-rolling.webp', 'key' => 'rolling'],
+            ['img' => 'tech-welding.webp', 'key' => 'welding'],
+            ['img' => 'tech-welding-orbital.webp', 'key' => 'orbital_welding'],
+            ['img' => 'tech-bending.webp', 'key' => 'bending'],
+            ['img' => 'tech-expansion.webp', 'key' => 'expansion'],
+            ['img' => 'tech-3d-cutting.webp', 'key' => '3d_cutting'],
+            ['img' => 'tech-quality.webp', 'key' => 'quality'],
+        ] as $item)
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="card border-0 shadow-sm h-100 technology-card">
+
+                    <img src="{{ asset('images/chimney/' . $item['img']) }}"
+                         width="1200"
+                         height="800"
+                         class="card-img-top"
+                         alt="{{ __('home.production_technologies.items.' . $item['key'] . '.alt') }}"
+                         loading="lazy"
+                         decoding="async">
+
+                    <div class="card-body text-center p-4">
+
+                        <h3 class="h5 fw-bold mb-3">
+                            {{ __('home.production_technologies.items.' . $item['key'] . '.title') }}
+                        </h3>
+
+                        <p class="text-muted mb-0">
+                            {{ __('home.production_technologies.items.' . $item['key'] . '.desc') }}
+                        </p>
+
+                    </div>
+
                 </div>
 
             </div>
-        </div>
 
         @endforeach
 
@@ -208,26 +241,51 @@
         <div class="row align-items-center">
 
             <div class="col-lg-8">
+
                 <h2 class="fw-bold mb-3">
-                    Підберіть димохід за 1 хвилину
+                    {{ __('home.configurator.title') }}
                 </h2>
 
                 <p class="mb-0 cta-text">
-                    Відповідайте на кілька простих запитань, і конфігуратор запропонує відповідну димохідну систему саме для ваших умов.
+                    {{ __('home.configurator.description') }}
                 </p>
+
                 <div class="d-flex flex-wrap gap-3 small fw-semibold text-success mt-3">
-        <span><i class="bi bi-check-circle-fill me-1"></i>Безкоштовно</span>
-        <span><i class="bi bi-check-circle-fill me-1"></i>До 1 хвилини</span>
-        <span><i class="bi bi-check-circle-fill me-1"></i>Без реєстрації</span>
-        <span><i class="bi bi-check-circle-fill me-1"></i>За вашими параметрами</span>
-    </div>
+
+                    <span>
+                        <i class="bi bi-check-circle-fill me-1"></i>
+                        {{ __('home.configurator.free') }}
+                    </span>
+
+                    <span>
+                        <i class="bi bi-check-circle-fill me-1"></i>
+                        {{ __('home.configurator.time') }}
+                    </span>
+
+                    <span>
+                        <i class="bi bi-check-circle-fill me-1"></i>
+                        {{ __('home.configurator.no_registration') }}
+                    </span>
+
+                    <span>
+                        <i class="bi bi-check-circle-fill me-1"></i>
+                        {{ __('home.configurator.parameters') }}
+                    </span>
+
+                </div>
+
             </div>
 
             <div class="col-lg-4 text-center text-lg-end mt-4 mt-lg-0">
+
                 <a href="{{ route('categories.index') }}#configurator1"
                    class="btn btn-warning btn-lg fw-bold px-4">
-                   <i class="bi bi-arrow-right-circle me-2"></i>Підібрати димохід
+
+                    <i class="bi bi-arrow-right-circle me-2"></i>
+                    {{ __('home.configurator.button') }}
+
                 </a>
+
             </div>
 
         </div>
@@ -238,254 +296,336 @@
 <section class="container-1600 py-5 section-gray">
     <div class="trust-block text-center">
 
-        <h2 class="fw-bold mb-5">Нам довіряють по всій Україні</h2>
+        <h2 class="fw-bold mb-5">
+            {{ __('home.trust.title') }}
+        </h2>
 
         <div class="row g-4">
 
             <div class="col-md-3 col-6">
                 <div class="trust-item">
-                    <div class="trust-number counter" data-target="12">12+</div>
-                    <div class="trust-label">років досвіду</div>
+
+                    <div class="trust-number counter" data-target="12">
+                        12+
+                    </div>
+
+                    <div class="trust-label">
+                        {{ __('home.trust.experience') }}
+                    </div>
+
                 </div>
             </div>
 
             <div class="col-md-3 col-6">
                 <div class="trust-item">
-                    <div class="trust-number counter" data-target="5000">5000+</div>
-                    <div class="trust-label">замовлень</div>
+
+                    <div class="trust-number counter" data-target="5000">
+                        5000+
+                    </div>
+
+                    <div class="trust-label">
+                        {{ __('home.trust.orders') }}
+                    </div>
+
                 </div>
             </div>
 
             <div class="col-md-3 col-6">
                 <div class="trust-item">
-                    <div class="trust-number counter" data-target="1000">1000+</div>
-                    <div class="trust-label">об'єктів</div>
+
+                    <div class="trust-number counter" data-target="1000">
+                        1000+
+                    </div>
+
+                    <div class="trust-label">
+                        {{ __('home.trust.objects') }}
+                    </div>
+
                 </div>
             </div>
 
             <div class="col-md-3 col-6">
                 <div class="trust-item">
-                    <div class="trust-number counter" data-target="98">98%</div>
-                    <div class="trust-label">задоволених клієнтів</div>
+
+                    <div class="trust-number counter" data-target="98">
+                        98%
+                    </div>
+
+                    <div class="trust-label">
+                        {{ __('home.trust.satisfied') }}
+                    </div>
+
                 </div>
             </div>
 
         </div>
     </div>
 </section>
+
 {{-- 3. Блок швидких посилань (Замість великих карток) --}}
 <section class="container-1600 py-5">
     <div class="row g-4 align-items-center">
-        <div class="col-md-6">
-<h2 class="fw-bold border-start border-4 border-primary ps-3 lh-sm">
-    Потрібна допомога з вибором?
-</h2>
 
-<p class="text-muted mt-3">
-    Ми підготували для вас онлайн-калькулятор та інструкції, які допоможуть зробити правильний вибір без помилок.
-</p>
+        <div class="col-md-6">
+
+            <h2 class="fw-bold border-start border-4 border-primary ps-3 lh-sm">
+                {{ __('home.help_choice.title') }}
+            </h2>
+
+            <p class="text-muted mt-3">
+                {{ __('home.help_choice.description') }}
+            </p>
+
         </div>
+
         <div class="col-md-6 text-md-end">
-    <a href="{{ route('useful.index') }}"
-       class="btn btn-dark btn-lg px-5 py-3 fw-semibold">
-        Перейти до розділу "Корисна інформація"<i class="bi bi-arrow-right-circle ms-2"></i>
-    </a>
-</div>
+
+            <a href="{{ route('useful.index') }}"
+               class="btn btn-dark btn-lg px-5 py-3 fw-semibold">
+
+                {{ __('home.help_choice.button') }}
+
+                <i class="bi bi-arrow-right-circle ms-2"></i>
+
+            </a>
+
+        </div>
+
     </div>
 </section>
+
 <section class="container-1600 py-5">
     <div class="seo-content">
 
         <h2 class="fw-bold mb-4">
-            Виробництво димоходів з нержавіючої сталі
+            {{ __('home.seo.title') }}
         </h2>
 
         <p>
-            Компанія DymSystems "Центр Комплектації Димарів" спеціалізується на виготовленні димоходів з нержавіючої сталі для приватних будинків, котелень та промислових об’єктів. 
-            Ми виробляємо одностінні та термоізольовані (сендвіч) системи, а також повний спектр комплектуючих для монтажу димохідних каналів.
+            {{ __('home.seo.paragraph_1') }}
         </p>
 
         <p>
-            У виробництві використовується нержавіюча сталь марок AISI 304 та AISI 321, що забезпечує високу стійкість до корозії, 
-            перепадів температур і агресивних продуктів згоряння. Це гарантує довгий термін служби та безпечну експлуатацію систем.
+            {{ __('home.seo.paragraph_2') }}
         </p>
 
         <p>
-            Димохідні системи підбираються індивідуально під кожен об’єкт з урахуванням потужності котла, типу палива та умов монтажу. 
-            Ми допомагаємо клієнтам правильно розрахувати діаметр, висоту та конфігурацію системи, щоб забезпечити стабільну тягу.
+            {{ __('home.seo.paragraph_3') }}
         </p>
 
         <p>
-            Основні запити, за якими нас знаходять: димоходи з нержавійки, купити димохід, сендвіч димохід, виробник димоходів. 
-            Наша продукція відповідає будівельним та пожежним нормам України.
+            {{ __('home.seo.paragraph_4') }}
         </p>
 
     </div>
 </section>
+
 <section class="container-1600 py-5">
     <div class="cta-block">
 
         <div class="row align-items-center">
 
             <div class="col-lg-8">
+
                 <h2 class="fw-bold mb-3">
-                    Розрахунок димохідної системи під ваш об’єкт
+                    {{ __('home.calculation.title') }}
                 </h2>
 
                 <p class="mb-0 cta-text">
-                    Інженер виконає підбір діаметра, висоти та конфігурації системи відповідно до типу котла, палива та умов монтажу.
+                    {{ __('home.calculation.description') }}
                 </p>
+
             </div>
 
             <div class="col-lg-4 text-center text-lg-end mt-4 mt-lg-0">
-    <a href="{{ route('chimney.installation-rules') }}#form"
-       class="btn btn-warning btn-lg fw-bold px-4">
-        <i class="bi bi-telephone-fill me-2"></i>
-        Отримати консультацію
-    </a>
-</div>
+
+                <a href="{{ route('chimney.installation-rules') }}#form"
+                   class="btn btn-warning btn-lg fw-bold px-4">
+
+                    <i class="bi bi-telephone-fill me-2"></i>
+                    {{ __('home.calculation.button') }}
+
+                </a>
+
+            </div>
 
         </div>
 
     </div>
 </section>
+
 <section class="container-1600 py-5">
+
     <div class="text-center mb-5">
-        <h2 class="fw-bold display-6 mb-3">Реалізовані об’єкти</h2>
+
+        <h2 class="fw-bold display-6 mb-3">
+            {{ __('home.projects.title') }}
+        </h2>
+
         <div class="mx-auto bg-warning" style="width: 60px; height: 3px;"></div>
-        <p class="text-muted mt-3">Приклади встановлених димохідних систем під різні типи об’єктів</p>
+
+        <p class="text-muted mt-3">
+            {{ __('home.projects.subtitle') }}
+        </p>
+
     </div>
 
     <div class="row g-4">
-        {{-- Масив з даними для швидкої зміни --}}
+
         @foreach([
-            ['img' => 'house-project.webp', 'title' => 'Приватний будинок', 'text' => 'Сендвіч-димохід Ø200 мм для твердопаливного котла. Висота 7.5 м, утеплення 50 мм.', 'meta' => ['стабільна тяга', 'відсутність конденсату', 'зовнішній монтаж']],
-            ['img' => 'commercial-project.webp', 'title' => 'Котельня комерційна', 'text' => 'Модульна система з AISI 321 для газових котлів. Ø250 мм, інженерний розрахунок.', 'meta' => ['висока температура', 'кислотостійка сталь', 'ревізійні вузли']],
-            ['img' => 'industrial-project.webp', 'title' => 'Промисловий об’єкт', 'text' => 'Димова система великого діаметра Ø300+ мм. Робота з високим навантаженням.', 'meta' => ['підсилена конструкція', 'теплоізоляція 50 мм', 'довгий ресурс']]
+            ['img' => 'house-project.webp', 'key' => 'house'],
+            ['img' => 'commercial-project.webp', 'key' => 'commercial'],
+            ['img' => 'industrial-project.webp', 'key' => 'industrial'],
         ] as $item)
+
         <div class="col-lg-4">
+
             <div class="card h-100 border-0 shadow-sm custom-product-card project-card overflow-hidden">
+
                 <div class="img-container">
+
                     <img src="{{ asset('images/chimney/' . $item['img']) }}"
-     width="600"
-     height="400"
-     alt="{{ $item['title'] }}"
-     class="product-img">
+                         width="600"
+                         height="400"
+                         alt="{{ __('home.projects.items.' . $item['key'] . '.title') }}"
+                         class="product-img">
+
                 </div>
+
                 <div class="card-body p-4">
-                    <h3 class="h5 fw-bold mb-3 text-center">{{ $item['title'] }}</h3>
-                    <p class="text-muted small mb-3">{{ $item['text'] }}</p>
+
+                    <h3 class="h5 fw-bold mb-3 text-center">
+                        {{ __('home.projects.items.' . $item['key'] . '.title') }}
+                    </h3>
+
+                    <p class="text-muted small mb-3">
+                        {{ __('home.projects.items.' . $item['key'] . '.text') }}
+                    </p>
+
                     <div class="case-meta border-top pt-3 mt-2">
-                        @foreach($item['meta'] as $m)
-                            <div class="small text-dark mb-1"><i class="bi bi-check2-circle text-warning me-2"></i>{{ $m }}</div>
+
+                        @foreach(__('home.projects.items.' . $item['key'] . '.meta') as $m)
+
+                            <div class="small text-dark mb-1">
+                                <i class="bi bi-check2-circle text-warning me-2"></i>
+                                {{ $m }}
+                            </div>
+
                         @endforeach
+
                     </div>
+
                 </div>
+
             </div>
+
         </div>
+
         @endforeach
+
     </div>
+
 </section>
 
 <section class="py-5">
     <div class="container">
 
         <div class="text-center mb-4">
+
             <h2 class="fw-bold">
-                Корисні статті перед вибором димоходу
+                {{ __('home.articles.title') }}
             </h2>
 
             <p class="text-muted mx-auto" style="max-width: 760px;">
-                Перед тим як обрати димохід, рекомендуємо ознайомитися з матеріалами,
-                які допоможуть краще зрозуміти особливості різних матеріалів,
-                конструкцій та правил експлуатації.
+                {{ __('home.articles.subtitle') }}
             </p>
+
         </div>
 
         <div class="row g-4">
 
+            {{-- Статья о марках стали --}}
             <div class="col-md-4">
                 <div class="card h-100 border-0 shadow rounded-4">
                     <div class="card-body">
 
                         <div style="height:220px; overflow:hidden;">
-    <img src="{{ asset('images/chimney/grade1.webp') }}"
-         alt="Сажа в димоході"
-         class="w-100 h-100"
-         style="object-fit:cover;">
-</div>
+                           <img src="{{ asset('images/chimney/' . (app()->getLocale() === 'ru' ? 'grade1ru.webp' : 'grade1.webp')) }}"
+     alt="{{ __('home.articles.steel.alt') }}"
+     class="w-100 h-100"
+     style="object-fit:cover;">
+                        </div>
 
                         <h3 class="h5 fw-bold mt-3">
-                            Марки нержавіючої сталі
+                            {{ __('home.articles.steel.title') }}
                         </h3>
 
                         <p class="text-muted small mb-4">
-                            Дізнайтеся, чим відрізняються сталі AISI 201, 304, 316 та 321,
-                            яку з них краще обрати для газового, твердопаливного котла або каміна.
+                            {{ __('home.articles.steel.description') }}
                         </p>
 
                         <a href="{{ route('blog.steel-grades') }}"
-                   class="btn btn-outline-orange mt-4">
-                    Читати статтю
-                </a>
+                           class="btn btn-outline-orange mt-4">
+                            {{ __('home.articles.read') }}
+                        </a>
 
                     </div>
                 </div>
             </div>
 
+            {{-- Статья о саже --}}
             <div class="col-md-4">
                 <div class="card h-100 border-0 shadow rounded-4">
                     <div class="card-body">
 
                         <div style="height:220px; overflow:hidden;">
-    <img src="{{ asset('images/chimney/soot.webp') }}"
-         alt="Сажа в димоході"
-         class="w-100 h-100"
-         style="object-fit:cover;">
-</div>
+                            <img src="{{ asset('images/chimney/soot.webp') }}"
+                                 alt="{{ __('home.articles.soot.alt') }}"
+                                 class="w-100 h-100"
+                                 style="object-fit:cover;">
+                        </div>
 
                         <h3 class="h5 fw-bold mt-3">
-                            Утворення сажі та її наслідки
+                            {{ __('home.articles.soot.title') }}
                         </h3>
 
                         <p class="text-muted small mb-4">
-                            Чому в димоході накопичується сажа, чим це небезпечно,
-                            як уникнути засмічення та зменшити ризик займання.
+                            {{ __('home.articles.soot.description') }}
                         </p>
 
                         <a href="{{ route('blog.soot') }}"
-   class="btn btn-outline-orange">
-    Читати статтю
-</a>
+                           class="btn btn-outline-orange">
+                            {{ __('home.articles.read') }}
+                        </a>
 
                     </div>
                 </div>
             </div>
 
+            {{-- Статья о базальтовой вате --}}
             <div class="col-md-4">
                 <div class="card h-100 border-0 shadow rounded-4">
                     <div class="card-body">
 
-                       <div style="height:220px; overflow:hidden;">
-    <img src="{{ asset('images/chimney/basalt.webp') }}"
-         alt="Базальтова вата"
-         class="w-100 h-100"
-         style="object-fit:cover;">
-</div>
+                        <div style="height:220px; overflow:hidden;">
+                            <img src="{{ asset('images/chimney/basalt.webp') }}"
+                                 alt="{{ __('home.articles.basalt.alt') }}"
+                                 class="w-100 h-100"
+                                 style="object-fit:cover;">
+                        </div>
 
                         <h3 class="h5 fw-bold mt-3">
-                            Базальтова вата в сендвіч-димоходах
+                            {{ __('home.articles.basalt.title') }}
                         </h3>
 
                         <p class="text-muted small mb-4">
-                            Пояснюємо, навіщо потрібна базальтова ізоляція,
-                            як вона працює та чому її якість напряму впливає на довговічність димоходу.
+                            {{ __('home.articles.basalt.description') }}
                         </p>
 
                         <a href="{{ route('blog.basalt-wool') }}"
-                   class="btn btn-outline-orange mt-4">
-                    Читати статтю
-                </a>
+                           class="btn btn-outline-orange mt-4">
+                            {{ __('home.articles.read') }}
+                        </a>
 
                     </div>
                 </div>
@@ -496,127 +636,62 @@
     </div>
 </section>
 <section class="container-1600 py-5">
+
     <div class="text-center mb-5">
-        <h2 class="fw-bold display-6 mb-3">Актуальні питання та популярні відповіді</h2>
+
+        <h2 class="fw-bold display-6 mb-3">
+            {{ __('home.faq.title') }}
+        </h2>
+
         <div class="mx-auto bg-warning" style="width: 60px; height: 3px;"></div>
+
     </div>
 
     <div class="accordion" id="faqAccordion">
 
-        <div class="accordion-item">
-            <h3 class="accordion-header">
-                <button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
-                    Яку нержавіючу сталь краще обрати для димоходу?
-                </button>
-            </h3>
-            <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
-                <div class="accordion-body">
-                    Для більшості побутових систем використовуються марки AISI 201, AISI 304 та AISI 321. Вони стійкі до корозії, конденсату та високих температур.
-                </div>
-            </div>
-        </div>
+        @foreach(__('home.faq.items') as $index => $item)
 
-        <div class="accordion-item">
-            <h3 class="accordion-header">
-                <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
-                    Який діаметр димоходу потрібен для котла?
-                </button>
-            </h3>
-            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                <div class="accordion-body">
-                    Діаметр підбирається відповідно до потужності обладнання та рекомендацій виробника котла. Неправильно підібраний діаметр може погіршити тягу.
-                </div>
-            </div>
-        </div>
+            <div class="accordion-item">
 
-        <div class="accordion-item">
-            <h3 class="accordion-header">
-                <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
-                    Чим відрізняється сендвіч-димохід від одностінного?
-                </button>
-            </h3>
-            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                <div class="accordion-body">
-                    Сендвіч-система має шар теплоізоляції між двома трубами, що зменшує утворення конденсату та покращує стабільність тяги.
-                </div>
-            </div>
-        </div>
+                <h3 class="accordion-header">
 
-        <div class="accordion-item">
-            <h3 class="accordion-header">
-                <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
-                    Яка товщина сталі оптимальна для димоходу?
-                </button>
-            </h3>
-            <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                <div class="accordion-body">
-                    Найчастіше використовується сталь товщиною від 0,5 до 1 мм. Вибір залежить від типу палива та температурного режиму роботи.
-                </div>
-            </div>
-        </div>
+                    <button class="accordion-button {{ $index !== 0 ? 'collapsed' : '' }} fw-bold"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#faq{{ $index + 1 }}">
 
-        <div class="accordion-item">
-            <h3 class="accordion-header">
-                <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
-                    Чи можна встановлювати димохід зовні будинку?
-                </button>
-            </h3>
-            <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                <div class="accordion-body">
-                    Так, для зовнішнього монтажу рекомендується використовувати утеплені сендвіч-димоходи, які забезпечують стабільну тягу в холодну пору року.
-                </div>
-            </div>
-        </div>
+                        {{ $item['question'] }}
 
-        <div class="accordion-item">
-            <h3 class="accordion-header">
-                <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faq6">
-                    Як часто потрібно чистити димохід?
-                </button>
-            </h3>
-            <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                <div class="accordion-body">
-                    Рекомендується проводити профілактичний огляд та очищення не рідше одного разу на рік або частіше при інтенсивній експлуатації.
-                </div>
-            </div>
-        </div>
+                    </button>
 
-        <div class="accordion-item">
-            <h3 class="accordion-header">
-                <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faq7">
-                    Чи виготовляєте ви димоходи за індивідуальними розмірами?
-                </button>
-            </h3>
-            <div id="faq7" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                <div class="accordion-body">
-                    Так, ми можемо виготовити нестандартні елементи та димохідні системи відповідно до технічного завдання замовника.
-                </div>
-            </div>
-        </div>
+                </h3>
 
-        <div class="accordion-item">
-            <h3 class="accordion-header">
-                <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faq8">
-                    Яка гарантія на продукцію?
-                </button>
-            </h3>
-            <div id="faq8" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                <div class="accordion-body">
-                    Термін гарантії залежить від типу виробу та марки сталі. Детальну інформацію можна отримати під час консультації.
+                <div id="faq{{ $index + 1 }}"
+                     class="accordion-collapse collapse {{ $index === 0 ? 'show' : '' }}"
+                     data-bs-parent="#faqAccordion">
+
+                    <div class="accordion-body">
+                        {{ $item['answer'] }}
+                    </div>
+
                 </div>
+
             </div>
-        </div>
+
+        @endforeach
 
     </div>
+
 </section>
 {{-- 4. Переваги (Короткий блок для довіри) --}}
+
 <section class="py-5 border-top bg-white">
     <div class="container-1600">
 
         <div class="text-center mb-5">
-            <h2 class="fw-bold">Чому обирають DymSystems</h2>
+            <h2 class="fw-bold">{{ __('home.why_choose') }}</h2>
             <p class="text-muted">
-                Власне виробництво димохідних систем з нержавіючої сталі
+                {{ __('home.own_production_stainless') }}
             </p>
         </div>
 
@@ -624,49 +699,49 @@
 
             <div class="col-lg-2 col-md-4 col-6">
                 <i class="bi bi-shield-check fs-1 text-warning"></i>
-                <h3 class="mt-3 fw-bold fs-6">AISI 304 / 321</h3>
+                <h3 class="mt-3 fw-bold fs-6">{{ __('home.aisi') }}</h3>
                 <small class="text-muted">
-                    Стійкість до корозії та високих температур
+                    {{ __('home.corrosion_resistance') }}
                 </small>
             </div>
 
             <div class="col-lg-2 col-md-4 col-6">
                 <i class="bi bi-gear-wide-connected fs-1 text-warning"></i>
-               <h3 class="mt-3 fw-bold fs-6">Власне виробництво</h3>
+                <h3 class="mt-3 fw-bold fs-6">{{ __('home.own_production') }}</h3>
                 <small class="text-muted">
-                    Контроль якості на кожному етапі
+                    {{ __('home.quality_control') }}
                 </small>
             </div>
 
             <div class="col-lg-2 col-md-4 col-6">
                 <i class="bi bi-calendar-check fs-1 text-warning"></i>
-                <h3 class="mt-3 fw-bold fs-6">12+ років</h3>
+                <h3 class="mt-3 fw-bold fs-6">{{ __('home.experience') }}</h3>
                 <small class="text-muted">
-                    Досвід виробництва та монтажу
+                    {{ __('home.production_installation_experience') }}
                 </small>
             </div>
 
             <div class="col-lg-2 col-md-4 col-6">
                 <i class="bi bi-award fs-1 text-warning"></i>
-                <h3 class="mt-3 fw-bold fs-6">Гарантія якості</h3>
+                <h3 class="mt-3 fw-bold fs-6">{{ __('home.quality_guarantee') }}</h3>
                 <small class="text-muted">
-                    Відповідність технічним вимогам
+                    {{ __('home.technical_requirements') }}
                 </small>
             </div>
 
             <div class="col-lg-2 col-md-4 col-6">
                 <i class="bi bi-truck fs-1 text-warning"></i>
-                <h3 class="mt-3 fw-bold fs-6">Швидка доставка</h3>
+                <h3 class="mt-3 fw-bold fs-6">{{ __('home.fast_delivery') }}</h3>
                 <small class="text-muted">
-                    Відправлення по всій Україні
+                    {{ __('home.delivery_ukraine') }}
                 </small>
             </div>
 
             <div class="col-lg-2 col-md-4 col-6">
                 <i class="bi bi-person-workspace fs-1 text-warning"></i>
-                <h3 class="mt-3 fw-bold fs-6">Консультація інженера</h3>
+                <h3 class="mt-3 fw-bold fs-6">{{ __('home.engineer_consultation') }}</h3>
                 <small class="text-muted">
-                    Допомога з розрахунком системи
+                    {{ __('home.system_calculation_help') }}
                 </small>
             </div>
 
@@ -674,6 +749,7 @@
 
     </div>
 </section>
+
 <script>
    
 document.addEventListener('DOMContentLoaded', function () {
