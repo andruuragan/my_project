@@ -1,7 +1,8 @@
 @extends('layouts.main')
 
-@section('title', 'Калькулятор димоходу | DymSystems')
-@section('description', 'Online калькулятор розрахунку димоходу.')
+@section('title', __('calculator.meta.title'))
+
+@section('description', __('calculator.meta.description'))
 
 @section('content')
 
@@ -12,43 +13,59 @@
         <div class="row align-items-center">
             <div class="col-lg-7">
                 {{-- Навігаційні крихти (Breadcrumbs) --}}
-                <nav aria-label="breadcrumb" class="mb-4">
-                    <ol class="breadcrumb mb-0">
-                        <li class="breadcrumb-item">
-                            <a href="{{ route('main.index') }}" class="text-decoration-none text-white-50 hover-orange transition-all">Головна</a>
-                        </li>
-                        <li class="breadcrumb-item">
-                            <a href="{{ route('useful.index') }}" class="text-decoration-none text-white-50 hover-orange transition-all">Корисна інформація</a>
-                        </li>
-                        <li class="breadcrumb-item active text-white" aria-current="page" style="--bs-breadcrumb-divider-color: rgba(255,255,255,0.4);">
-                            <span style="color: #f97316; font-weight: 500;">Калькулятор димоходу</span>
-                        </li>
-                    </ol>
-                </nav>
-                <div class="calc-badge mb-3">
-                    Онлайн калькулятор
-                </div>
-                <h1 class="calc-title mb-4">
-                    Калькулятор розрахунку димоходу
-                </h1>
-                <p class="calc-subtitle mb-4">
-                    Розрахуйте рекомендований діаметр, висоту та орієнтовну тягу димоходу для вашого обладнання.
-                </p>
-                <a href="#calculator" class="btn calc-btn px-4 py-3 mb-3"
-   aria-label="Перейти до калькулятора димоходу">
+               <nav aria-label="breadcrumb" class="mb-4">
+    <ol class="breadcrumb mb-0">
+        <li class="breadcrumb-item">
+            <a href="{{ route('main.index') }}"
+               class="text-decoration-none text-white-50 hover-orange transition-all">
+                {{ __('calculator.home') }}
+            </a>
+        </li>
+
+        <li class="breadcrumb-item">
+            <a href="{{ route('useful.index') }}"
+               class="text-decoration-none text-white-50 hover-orange transition-all">
+                {{ __('calculator.useful_info') }}
+            </a>
+        </li>
+
+        <li class="breadcrumb-item active text-white"
+            aria-current="page"
+            style="--bs-breadcrumb-divider-color: rgba(255,255,255,0.4);">
+            <span style="color: #f97316; font-weight: 500;">
+                {{ __('calculator.chimney_calculator') }}
+            </span>
+        </li>
+    </ol>
+</nav>
+               <div class="calc-badge mb-3">
+    {{ __('calculator.online_calculator') }}
+</div>
+
+<h1 class="calc-title mb-4">
+    {{ __('calculator.title') }}
+</h1>
+
+<p class="calc-subtitle mb-4">
+    {{ __('calculator.subtitle') }}
+</p>
+
+<a href="#calculator"
+   class="btn calc-btn px-4 py-3 mb-3"
+   aria-label="{{ __('calculator.start_aria') }}">
     <i class="bi bi-calculator me-2"></i>
-    Почати розрахунок
+    {{ __('calculator.start') }}
 </a>
             </div>
             <div class="col-lg-5 text-center">
-        <img src="{{ asset('images/chimney/chimney-3d.webp') }}"
-             width="1200"
-             height="675"
-             class="img-fluid calc-hero-image"
-             style="mix-blend-mode: lighten;"
-             alt="3D розрахунок димоходу"
-             loading="lazy"
-             decoding="async">
+        <img src="{{ asset('images/chimney/' . (app()->getLocale() === 'ru' ? 'chimney-3dru.webp' : 'chimney-3d.webp')) }}"
+     width="1200"
+     height="675"
+     class="img-fluid calc-hero-image"
+     style="mix-blend-mode: lighten;"
+     alt="{{ __('calculator.chimney_3d_alt') }}"
+     loading="lazy"
+     decoding="async">
     </div>
         </div>
     </section>
@@ -57,357 +74,468 @@
     <div id="calculator" style="position: relative; top: -130px; visibility: hidden; clear: both;"></div>
 
     {{-- CALCULATOR BOX --}}
-    <section class="calculator-box">
-        <h2 class="mb-4 fw-semibold">
-            Введіть параметри
-        </h2>
-        
-        {{-- Додано правильну обгортку row для сітки елементів --}}
-        <div class="row">
-            <div class="col-md-6 mb-4">
-                <label class="form-label fw-medium text-dark" for="power">Потужність котла (кВт)</label>
-                <input type="number" id="power" class="form-control custom-input" value="20" min="1">
+   <section class="calculator-box">
+    <h2 class="mb-4 fw-semibold">
+        {{ __('calculator.parameters_title') }}
+    </h2>
+
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <label class="form-label fw-medium text-dark" for="power">
+                {{ __('calculator.boiler_power') }}
+            </label>
+            <input type="number" id="power" class="form-control custom-input" value="20" min="1">
+        </div>
+
+        <div class="col-md-6 mb-4">
+            <label class="form-label fw-medium text-dark" for="height">
+                {{ __('calculator.chimney_height') }}
+            </label>
+            <input type="number" id="height" class="form-control custom-input" value="5" min="1">
+        </div>
+
+        <div class="col-md-6 mb-4">
+            <label class="form-label fw-medium text-dark" for="chimneyType">
+                {{ __('calculator.configuration_type') }}
+            </label>
+            <select id="chimneyType" class="form-select custom-input">
+                <option value="straight">{{ __('calculator.config_straight') }}</option>
+                <option value="simple">{{ __('calculator.config_simple') }}</option>
+                <option value="medium">{{ __('calculator.config_medium') }}</option>
+                <option value="hard">{{ __('calculator.config_hard') }}</option>
+            </select>
+        </div>
+
+        <div class="col-md-6 mb-4">
+            <label class="form-label fw-medium text-dark" for="insulation">
+                {{ __('calculator.insulation') }}
+            </label>
+            <select id="insulation" class="form-select custom-input">
+                <option value="yes">{{ __('calculator.yes') }}</option>
+                <option value="no">{{ __('calculator.no') }}</option>
+            </select>
+        </div>
+    </div>
+
+    <button type="button"
+            class="btn calc-btn px-5 py-3 mt-2 shadow-sm"
+            onclick="calculateChimney()">
+        {{ __('calculator.calculate') }}
+        <i class="bi bi-gear-fill ms-1"></i>
+    </button>
+
+    {{-- RESULT --}}
+    <div id="result" class="result-box d-none">
+        <div class="row text-center">
+            <div class="col-md-4 mb-4 mb-md-0">
+                <div class="result-label">{{ __('calculator.diameter') }}</div>
+                <div class="result-value" id="diameterResult"></div>
             </div>
 
-            <div class="col-md-6 mb-4">
-                <label class="form-label fw-medium text-dark" for="height">Висота димоходу (м)</label>
-                <input type="number" id="height" class="form-control custom-input" value="5" min="1">
+            <div class="col-md-4 mb-4 mb-md-0">
+                <div class="result-label">{{ __('calculator.height') }}</div>
+                <div class="result-value" id="heightResult"></div>
             </div>
 
-            <div class="col-md-6 mb-4">
-                <label class="form-label fw-medium text-dark" for="chimneyType">Тип конфігурації димоходу</label>
-                <select id="chimneyType" class="form-select custom-input">
-                    <option value="straight">Прямий (без поворотів)</option>
-                    <option value="simple">1–2 повороти (до 45°)</option>
-                    <option value="medium">Складний (2–3 повороти 90°)</option>
-                    <option value="hard">Складна траса + горізонтальні ділянки</option>
-                </select>
-            </div>
-
-            <div class="col-md-6 mb-4">
-                <label class="form-label fw-medium text-dark" for="insulation">Утеплення</label>
-                <select id="insulation" class="form-select custom-input">
-                    <option value="yes">Так</option>
-                    <option value="no">Ні</option>
-                </select>
-            </div>
-        </div> {{-- Кінець row (Прибрано зайвий stray div, що ламав сторінку) --}}
-
-        <button type="button" class="btn calc-btn px-5 py-3 mt-2 shadow-sm" onclick="calculateChimney()">
-            Розрахувати <i class="bi bi-gear-fill ms-1"></i>
-        </button>
-
-        {{-- RESULT --}}
-        <div id="result" class="result-box d-none">
-            <div class="row text-center">
-                <div class="col-md-4 mb-4 mb-md-0">
-                    <div class="result-label">Діаметр</div>
-                    <div class="result-value" id="diameterResult"></div>
-                </div>
-                <div class="col-md-4 mb-4 mb-md-0">
-                    <div class="result-label">Висота</div>
-                    <div class="result-value" id="heightResult"></div>
-                </div>
-                <div class="col-md-4">
-                    <div class="result-label">Тяга</div>
-                    <div class="result-value" id="draftResult"></div>
-                </div>
-            </div>
-
-            <div class="recommendation-box" id="recommendation"></div>
-            
-            {{-- EXPLANATION INSIDE RESULT --}}
-            <div id="explanation" class="mt-4 p-4 bg-white rounded-4 border d-none">
-                <div class="d-flex flex-column flex-sm-row justify-content-between align-items-start align-items-sm-center gap-3 mb-3">
-                    <h4 class="mb-0 text-dark fw-semibold">Пояснення розрахунку</h4>
-                    
-                    <a href="{{ route('shop.index') }}" id="shopLink" class="btn btn-lg fw-bold text-white px-4 py-2_5 shadow-lg d-inline-flex align-items-center justify-content-center" 
-                       style="background: linear-gradient(135deg, #f97316 0%, #ea580c 100%); border-radius: 14px; border: none; min-width: 240px; box-shadow: 0 6px 20px rgba(234, 88, 12, 0.4) !important;">
-                        <span>Купити димохід</span> 
-                        <i class="bi bi-cart-fill ms-2 fs-5"></i>
-                    </a>
-                </div>
-                <div id="explanationText" class="mb-0 text-muted small"></div> 
+            <div class="col-md-4">
+                <div class="result-label">{{ __('calculator.draft') }}</div>
+                <div class="result-value" id="draftResult"></div>
             </div>
         </div>
-    </section>
 
-    {{-- SEO TEXT BLOCK --}}
-    <section class="mt-5 seo-content">
-        <div class="row g-4 g-lg-5 align-items-start">
-            
-            <div class="col-lg-7 order-2 order-lg-1">
-                <h2 class="mb-4 fw-semibold lh-sm">
-                    Розрахунок димоходу для твердопаливного котла: повний посібник та онлайн-калькулятор
-                </h2>
-                
-                <p class="lead text-muted mb-4 fs-6">
-                    Правильний розрахунок димоходу для твердопаливного котла — основа безпечної та ефективної роботи системи опалення.
-                    Неправильно спроєктований димохід може призвести до зворотної тяги, задимлення приміщень і навіть отруєння чадним газом.
-                    У цій статті розглянуто основні параметри розрахунку та принципи роботи онлайн-калькулятора.
-                </p>
+        <div class="recommendation-box" id="recommendation"></div>
 
-                <h4 class="mt-4 text-dark fw-semibold">Що таке розрахунок димоходу і навіщо він потрібен</h4>
-                <p class="text-muted">
-                    Розрахунок димоходу — це визначення оптимальних параметрів димової труби для опалювального обладнання.
-                    Він забезпечує стабільну тягу, безпечне відведення газів і максимальний ККД котла.
-                </p>
+        {{-- EXPLANATION INSIDE RESULT --}}
+        <div id="explanation" class="mt-4 p-4 bg-white rounded-4 border d-none">
+            <div class="d-flex flex-column flex-sm-row justify-content-between align-items-start align-items-sm-center gap-3 mb-3">
 
-                <h4 class="mt-4 text-dark fw-semibold">Основні параметри розрахунку</h4>
-                <ul class="ps-3 mb-4 text-muted">
-                    <li class="mb-2">Потужність опалювального котла</li>
-                    <li class="mb-2">Загальна висота димохідної труби</li>
-                    <li class="mb-2">Тип використовуваного палива</li>
-                    <li class="mb-2">Кількість конструктивних поворотів</li>
-                    <li class="mb-2">Рівень та якість утеплення</li>
-                </ul>
+                <h4 class="mb-0 text-dark fw-semibold">
+                    {{ __('calculator.calculation_explanation') }}
+                </h4>
 
-                <h4 class="mt-4 text-dark fw-semibold">Норми та інженерні рекомендації</h4>
-                <p class="text-muted">
-                    Мінімальна висота димоходу становить 5 метрів. Діаметр підбирається залежно від потужності котла:
-                    до 16 кВт — 150–180 мм, 16–35 кВт — 180–220 мм, понад 35 кВт — від 220 мм.
-                </p>
-                <p class="mb-0 text-muted">
-                    Онлайн-калькулятор допомагає швидко отримати рекомендовані значення та уникнути критичних помилок при проєктуванні.
-                </p>
+                <a href="{{ route('shop.index') }}"
+                   id="shopLink"
+                   class="btn btn-lg fw-bold text-white px-4 py-2_5 shadow-lg d-inline-flex align-items-center justify-content-center"
+                   style="background: linear-gradient(135deg, #f97316 0%, #ea580c 100%); border-radius: 14px; border: none; min-width: 240px; box-shadow: 0 6px 20px rgba(234, 88, 12, 0.4) !important;">
+
+                    <span>{{ __('calculator.buy_chimney') }}</span>
+                    <i class="bi bi-cart-fill ms-2 fs-5"></i>
+                </a>
             </div>
 
-            <div class="col-lg-5 order-1 order-lg-2 mb-4 mb-lg-0 text-center text-lg-start">
-                <div class="sticky-lg-top pt-2" style="top: 100px; z-index: 10;">
-                    <div class="pt-3 px-0 pb-3 bg-white rounded-4 border shadow-sm text-center">
-                        <img src="{{ asset('images/chimney/budova-dymohodu-z-nerzhaviyuchoyi-stali.webp') }}"
+            <div id="explanationText" class="mb-0 text-muted small"></div>
+        </div>
+    </div>
+</section>
+
+    {{-- SEO TEXT BLOCK --}}
+<section class="mt-5 seo-content">
+    <div class="row g-4 g-lg-5 align-items-start">
+
+        <div class="col-lg-7 order-2 order-lg-1">
+
+            <h2 class="mb-4 fw-semibold lh-sm">
+                {{ __('calculator.seo_title') }}
+            </h2>
+
+            <p class="lead text-muted mb-4 fs-6">
+                {{ __('calculator.seo_intro') }}
+            </p>
+
+            <h4 class="mt-4 text-dark fw-semibold">
+                {{ __('calculator.seo_what_is_title') }}
+            </h4>
+
+            <p class="text-muted">
+                {{ __('calculator.seo_what_is_text') }}
+            </p>
+
+            <h4 class="mt-4 text-dark fw-semibold">
+                {{ __('calculator.seo_parameters_title') }}
+            </h4>
+
+            <ul class="ps-3 mb-4 text-muted">
+                <li class="mb-2">{{ __('calculator.seo_parameter_power') }}</li>
+                <li class="mb-2">{{ __('calculator.seo_parameter_height') }}</li>
+                <li class="mb-2">{{ __('calculator.seo_parameter_fuel') }}</li>
+                <li class="mb-2">{{ __('calculator.seo_parameter_turns') }}</li>
+                <li class="mb-2">{{ __('calculator.seo_parameter_insulation') }}</li>
+            </ul>
+
+            <h4 class="mt-4 text-dark fw-semibold">
+                {{ __('calculator.seo_norms_title') }}
+            </h4>
+
+            <p class="text-muted">
+                {{ __('calculator.seo_norms_text') }}
+            </p>
+
+            <p class="mb-0 text-muted">
+                {{ __('calculator.seo_calculator_text') }}
+            </p>
+
+        </div>
+
+        <div class="col-lg-5 order-1 order-lg-2 mb-4 mb-lg-0 text-center text-lg-start">
+            <div class="sticky-lg-top pt-2" style="top: 100px; z-index: 10;">
+
+                <div class="pt-3 px-0 pb-3 bg-white rounded-4 border shadow-sm text-center">
+
+                   <img src="{{ asset('images/chimney/' . (app()->getLocale() === 'ru'
+    ? 'budova-dymohodu-z-nerzhaviyuchoyi-staliru.webp'
+    : 'budova-dymohodu-z-nerzhaviyuchoyi-stali.webp')) }}"
      width="600"
      height="853"
      class="img-fluid w-100"
      style="max-height:700px; object-fit: contain;"
-     alt="Будова димоходу з нержавіючої сталі"
+     alt="{{ __('calculator.seo_image_alt') }}"
      loading="lazy"
      decoding="async">
-                        
-                        <div class="px-3 mt-3">
-                            <div class="p-2 bg-light rounded-3">
-                                <small class="text-muted d-block lh-sm" style="font-size: 0.8rem;">
-                                    <i class="bi bi-info-circle me-1 text-orange"></i> 
-                                    Схема базових елементів конструкції сендвіч-системи
-                                </small>
-                            </div>
+
+                    <div class="px-3 mt-3">
+                        <div class="p-2 bg-light rounded-3">
+                            <small class="text-muted d-block lh-sm" style="font-size: 0.8rem;">
+                                <i class="bi bi-info-circle me-1 text-orange"></i>
+                                {{ __('calculator.seo_image_caption') }}
+                            </small>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
-    </section>
 
-    {{-- СЕКЦІЯ: ПОМИЛКИ МОНТАЖУ --}}
-    <section class="mt-5 errors-section">
-        <div class="row g-4 align-items-center mb-4">
-            <div class="col-md-8">
-                <h3 class="fw-semibold text-dark mb-2">Поширені помилки при монтажі димоходу</h3>
-                <p class="text-muted mb-0">
-                    Недотримання технології встановлення або неправильний підбір комплектуючих часто стають причиною задимлення, падіння ККД котла та швидкого прогорання металу.
-                </p>
-            </div>
-            <div class="col-md-4 text-md-end">
-                <span class="badge bg-danger-subtle text-danger px-3 py-2 rounded-3 fw-medium">
-                    <i class="bi bi-shield-slash-fill me-1"></i> Критично для безпеки
-                </span>
-            </div>
+    </div>
+</section>
+
+ {{-- СЕКЦІЯ: ПОМИЛКИ МОНТАЖУ --}}
+<section class="mt-5 errors-section">
+    <div class="row g-4 align-items-center mb-4">
+        <div class="col-md-8">
+            <h3 class="fw-semibold text-dark mb-2">
+                {{ __('calculator.errors_title') }}
+            </h3>
+
+            <p class="text-muted mb-0">
+                {{ __('calculator.errors_description') }}
+            </p>
         </div>
 
-        <div class="p-3 bg-white rounded-4 border shadow-sm text-center mb-4 overflow-hidden">
-           <img src="{{ asset('images/chimney/pomulku_montagy.webp') }}"
+        <div class="col-md-4 text-md-end">
+            <span class="badge bg-danger-subtle text-danger px-3 py-2 rounded-3 fw-medium">
+                <i class="bi bi-shield-slash-fill me-1"></i>
+                {{ __('calculator.critical_safety') }}
+            </span>
+        </div>
+    </div>
+
+    <div class="p-3 bg-white rounded-4 border shadow-sm text-center mb-4 overflow-hidden">
+       <img src="{{ asset('images/chimney/' . (app()->getLocale() === 'ru'
+    ? 'pomulku_montagyru.webp'
+    : 'pomulku_montagy.webp')) }}"
      width="805"
      height="182"
      class="img-fluid rounded-3 w-100"
      style="max-width: 805px; height: auto; object-fit: cover;"
-     alt="Поширені помилки при монтажі димоходу"
+     alt="{{ __('calculator.errors_image_alt') }}"
      loading="lazy"
      decoding="async">
+    </div>
+
+    <div class="row g-3">
+
+        <div class="col-md-6 col-lg-4">
+            <div class="p-3 bg-white border rounded-4 d-flex align-items-center h-100 shadow-sm transition-card">
+                <div class="p-2 bg-danger-subtle text-danger rounded-3 me-3">
+                    <i class="bi bi-rulers fs-5 lh-1"></i>
+                </div>
+                <div class="fw-medium text-dark small">
+                    {{ __('calculator.error_small_diameter') }}
+                </div>
+            </div>
         </div>
 
-        <div class="row g-3">
-            <div class="col-md-6 col-lg-4">
-                <div class="p-3 bg-white border rounded-4 d-flex align-items-center h-100 shadow-sm transition-card">
-                    <div class="p-2 bg-danger-subtle text-danger rounded-3 me-3">
-                        <i class="bi bi-rulers fs-5 lh-1"></i>
-                    </div>
-                    <div class="fw-medium text-dark small">Занадто малий діаметр труби</div>
+        <div class="col-md-6 col-lg-4">
+            <div class="p-3 bg-white border rounded-4 d-flex align-items-center h-100 shadow-sm transition-card">
+                <div class="p-2 bg-danger-subtle text-danger rounded-3 me-3">
+                    <i class="bi bi-snow fs-5 lh-1"></i>
+                </div>
+                <div class="fw-medium text-dark small">
+                    {{ __('calculator.error_no_insulation') }}
                 </div>
             </div>
-            <div class="col-md-6 col-lg-4">
-                <div class="p-3 bg-white border rounded-4 d-flex align-items-center h-100 shadow-sm transition-card">
-                    <div class="p-2 bg-danger-subtle text-danger rounded-3 me-3">
-                        <i class="bi bi-snow fs-5 lh-1"></i>
-                    </div>
-                    <div class="fw-medium text-dark small">Відсутність утеплення на вулиці</div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4">
-                <div class="p-3 bg-white border rounded-4 d-flex align-items-center h-100 shadow-sm transition-card">
-                    <div class="p-2 bg-danger-subtle text-danger rounded-3 me-3">
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="p-3 bg-white border rounded-4 d-flex align-items-center h-100 shadow-sm transition-card">
+                <div class="p-2 bg-danger-subtle text-danger rounded-3 me-3">
                     <i class="bi bi-distribute-horizontal fs-5 lh-1"></i>
-                    </div>
-                    <div class="fw-medium text-dark small">Горизонтальні ділянки понад норму</div>
-                  
                 </div>
-            </div>
-            <div class="col-md-6 col-lg-4">
-                <div class="p-3 bg-white border rounded-4 d-flex align-items-center h-100 shadow-sm transition-card">
-                    <div class="p-2 bg-danger-subtle text-danger rounded-3 me-3">
-                        <i class="bi bi-arrow-down-square fs-5 lh-1"></i>
-                    </div>
-                    <div class="fw-medium text-dark small">Недостатня висота димоходу</div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4">
-                <div class="p-3 bg-white border rounded-4 d-flex align-items-center h-100 shadow-sm transition-card">
-                    <div class="p-2 bg-danger-subtle text-danger rounded-3 me-3">
-                        <i class="bi bi-droplet-half fs-5 lh-1"></i>
-                    </div>
-                    <div class="fw-medium text-dark small">Погана герметизація стиків елементів</div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4">
-                <div class="p-3 bg-light border border-dashed rounded-4 d-flex align-items-center h-100 justify-content-center text-center">
-                    <div>
-                        <div class="d-flex align-items-center justify-content-center mb-1">
-                            <span class="pulse-dot me-2"></span>
-                            <small class="text-muted fw-medium">Експрес-тест системи</small>
-                        </div>
-                        <a href="#calculator" class="btn btn-calc-trigger btn-sm fw-bold shadow-sm d-inline-flex align-items-center justify-content-center mt-2">
-                            Запустити калькулятор <i class="bi bi-play-circle-fill ms-2"></i>
-                        </a>
-                    </div>
+                <div class="fw-medium text-dark small">
+                    {{ __('calculator.error_horizontal_sections') }}
                 </div>
             </div>
         </div>
-    </section>
 
-    {{-- СЕКЦІЯ: ПРОХІД ЧЕРЕЗ ПОКРІВЛЮ --}}
-    <section class="mt-5 roof-passage-section">
-        <div class="p-4 p-lg-5 bg-white rounded-4 shadow-sm border">
-            <div class="row g-4 g-lg-5 align-items-center">
-                
-                <div class="col-lg-7 order-2 order-lg-1">
-                    <div class="d-flex align-items-center mb-3">
-                        <div class="p-2 bg-warning-subtle text-warning-custom rounded-3 me-3">
-                            <i class="bi bi-fire fs-4 lh-1"></i>
-                        </div>
-                        <h3 class="fw-semibold text-dark m-0">Прохід через покрівлю</h3>
+        <div class="col-md-6 col-lg-4">
+            <div class="p-3 bg-white border rounded-4 d-flex align-items-center h-100 shadow-sm transition-card">
+                <div class="p-2 bg-danger-subtle text-danger rounded-3 me-3">
+                    <i class="bi bi-arrow-down-square fs-5 lh-1"></i>
+                </div>
+                <div class="fw-medium text-dark small">
+                    {{ __('calculator.error_insufficient_height') }}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="p-3 bg-white border rounded-4 d-flex align-items-center h-100 shadow-sm transition-card">
+                <div class="p-2 bg-danger-subtle text-danger rounded-3 me-3">
+                    <i class="bi bi-droplet-half fs-5 lh-1"></i>
+                </div>
+                <div class="fw-medium text-dark small">
+                    {{ __('calculator.error_bad_sealing') }}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="p-3 bg-light border border-dashed rounded-4 d-flex align-items-center h-100 justify-content-center text-center">
+                <div>
+                    <div class="d-flex align-items-center justify-content-center mb-1">
+                        <span class="pulse-dot me-2"></span>
+                        <small class="text-muted fw-medium">
+                            {{ __('calculator.express_test') }}
+                        </small>
                     </div>
-                    
-                    <p class="text-muted mb-4">
-                        При проході димоходу через покрівлю та міжповерхове перекриття обов’язково використовується спеціальний вузол проходу (прохідний патрубок) з посиленою термоізоляцією. Це критично важливо для захисту дерев'яних крокв та елементів даху від займання.
-                    </p>
-                    
-                    <div class="roof-rules">
-                        <div class="d-flex align-items-start mb-3">
-                            <div class="text-orange me-3 pt-1">
-                                <i class="bi bi-check-circle-fill"></i>
-                            </div>
-                            <div>
-                                <strong class="text-dark d-block">Пожежна відстань</strong>
-                                <span class="text-muted small">Мінімальна відстань від внутрішньої труби до горючих матеріалів покрівлі становить 130–250 мм.</span>
-                            </div>
-                        </div>
-                        
-                        <div class="d-flex align-items-start mb-3">
-                            <div class="text-orange me-3 pt-1">
-                                <i class="bi bi-check-circle-fill"></i>
-                            </div>
-                            <div>
-                                <strong class="text-dark d-block">Герметизація та гідроізоляція</strong>
-                                <span class="text-muted small">Обов’язкова фіксація покрівельним фланцем (майстер-флеш або конусна криза) для захисту від протікання дощу та снігу.</span>
-                            </div>
-                        </div>
-                        
-                        <div class="d-flex align-items-start">
-                            <div class="text-orange me-3 pt-1">
-                                <i class="bi bi-check-circle-fill"></i>
-                            </div>
-                            <div>
-                                <strong class="text-dark d-block">Негорюче наповнення</strong>
-                                <span class="text-muted small">Простір у прохідній гільзі заповнюється виключно базальтовою ватою з робочою температурою до 600–1000°C або суперсилом.</span>
-                            </div>
-                        </div>
+
+                    <a href="#calculator"
+                       class="btn btn-calc-trigger btn-sm fw-bold shadow-sm d-inline-flex align-items-center justify-content-center mt-2">
+                        {{ __('calculator.launch_calculator') }}
+                        <i class="bi bi-play-circle-fill ms-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+  {{-- СЕКЦІЯ: ПРОХІД ЧЕРЕЗ ПОКРІВЛЮ --}}
+<section class="mt-5 roof-passage-section">
+    <div class="p-4 p-lg-5 bg-white rounded-4 shadow-sm border">
+        <div class="row g-4 g-lg-5 align-items-center">
+
+            <div class="col-lg-7 order-2 order-lg-1">
+                <div class="d-flex align-items-center mb-3">
+                    <div class="p-2 bg-warning-subtle text-warning-custom rounded-3 me-3">
+                        <i class="bi bi-fire fs-4 lh-1"></i>
                     </div>
+                    <h3 class="fw-semibold text-dark m-0">
+                        {{ __('calculator.roof_passage_title') }}
+                    </h3>
                 </div>
 
-                <div class="col-lg-5 order-1 order-lg-2 text-center">
-                    <div class="p-3 bg-light rounded-4 border border-dashed d-inline-block w-100" style="max-width: 410px;">
-                        <img src="{{ asset('images/chimney/prohod_cherez_krovly.webp') }}"
+                <p class="text-muted mb-4">
+                    {{ __('calculator.roof_passage_description') }}
+                </p>
+
+                <div class="roof-rules">
+
+                    <div class="d-flex align-items-start mb-3">
+                        <div class="text-orange me-3 pt-1">
+                            <i class="bi bi-check-circle-fill"></i>
+                        </div>
+                        <div>
+                            <strong class="text-dark d-block">
+                                {{ __('calculator.fire_distance_title') }}
+                            </strong>
+                            <span class="text-muted small">
+                                {{ __('calculator.fire_distance_text') }}
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="d-flex align-items-start mb-3">
+                        <div class="text-orange me-3 pt-1">
+                            <i class="bi bi-check-circle-fill"></i>
+                        </div>
+                        <div>
+                            <strong class="text-dark d-block">
+                                {{ __('calculator.sealing_waterproofing_title') }}
+                            </strong>
+                            <span class="text-muted small">
+                                {{ __('calculator.sealing_waterproofing_text') }}
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="d-flex align-items-start">
+                        <div class="text-orange me-3 pt-1">
+                            <i class="bi bi-check-circle-fill"></i>
+                        </div>
+                        <div>
+                            <strong class="text-dark d-block">
+                                {{ __('calculator.non_combustible_filling_title') }}
+                            </strong>
+                            <span class="text-muted small">
+                                {{ __('calculator.non_combustible_filling_text') }}
+                            </span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-lg-5 order-1 order-lg-2 text-center">
+                <div class="p-3 bg-light rounded-4 border border-dashed d-inline-block w-100"
+                     style="max-width: 410px;">
+
+                    <img src="{{ asset('images/chimney/' . (app()->getLocale() === 'ru'
+    ? 'prohod_cherez_krovlyru.webp'
+    : 'prohod_cherez_krovly.webp')) }}"
      width="438"
      height="607"
      class="img-fluid rounded-3 shadow-sm bg-white"
      style="max-height: 480px; width: auto; height: auto; object-fit: contain;"
-     alt="Вузол проходу димоходу через покрівлю"
+     alt="{{ __('calculator.roof_passage_image_alt') }}"
      loading="lazy"
      decoding="async">
-                        <div class="mt-2 text-center">
-                            <span class="badge bg-dark-subtle text-dark px-2 py-1 rounded-2 fw-normal" style="font-size: 0.75rem;">
-                                <i class="bi bi-layers me-1"></i> Схема безпечного монтажу даху
-                            </span>
-                        </div>
-                    </div>
-                </div>
 
+                    <div class="mt-2 text-center">
+                        <span class="badge bg-dark-subtle text-dark px-2 py-1 rounded-2 fw-normal"
+                              style="font-size: 0.75rem;">
+                            <i class="bi bi-layers me-1"></i>
+                            {{ __('calculator.roof_passage_caption') }}
+                        </span>
+                    </div>
+
+                </div>
             </div>
+
         </div>
-    </section>
+    </div>
+</section>
 
     {{-- Блок: Підсумок статті --}}
-    <section class="summary-section my-5">
-        <div class="p-4 p-md-5 rounded-4 border-start border-5 shadow-sm bg-white" style="border-color: #ea580c !important;">
-            
-            <div class="d-flex align-items-center mb-4">
-                <div class="step-number-ui bg-dark" style="box-shadow: 0 4px 10px rgba(30, 41, 59, 0.25);">
-                    <i class="bi bi-bookmark-check-fill text-white fs-5"></i>
-                </div>
-                <h3 class="fw-bold text-dark m-0 h4">Підсумок: Головні висновки</h3>
+<section class="summary-section my-5">
+    <div class="p-4 p-md-5 rounded-4 border-start border-5 shadow-sm bg-white"
+         style="border-color: #ea580c !important;">
+
+        <div class="d-flex align-items-center mb-4">
+            <div class="step-number-ui bg-dark"
+                 style="box-shadow: 0 4px 10px rgba(30, 41, 59, 0.25);">
+                <i class="bi bi-bookmark-check-fill text-white fs-5"></i>
             </div>
 
-            <p class="lead text-muted fs-6 mb-4">
-                Правильний розрахунок димоходу для твердопаливного котла — це запорука безпечної, стабільної та ефективної роботи всієї системи опалення вашого дому. Сучасні онлайн-інструменти значно спрощують процес проєктуження, але вони вимагають від вас максимальної уваги до кожної деталі.
-            </p>
+            <h3 class="fw-bold text-dark m-0 h4">
+                {{ __('calculator.summary_title') }}
+            </h3>
+        </div>
 
-            <div class="row g-4 mb-4">
-                <div class="col-md-6">
-                    <div class="d-flex align-items-start">
-                        <div class="text-orange me-3 fs-4">
-                            <i class="bi bi-arrow-repeat"></i>
-                        </div>
-                        <div>
-                            <h6 class="fw-semibold text-dark mb-1">Все зациклено в систему</h6>
-                            <p class="text-muted small mb-0">Пам’ятайте, що <strong>діаметр, висота та статична тяга</strong> — це взаємопов'язані параметри. Зміна одного показника критично впливає на інші.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="d-flex align-items-start">
-                        <div class="text-danger me-3 fs-4">
-                            <i class="bi bi-shield-exclamation"></i>
-                        </div>
-                        <div>
-                            <h6 class="fw-semibold text-dark mb-1">Ціна помилки — безпека</h6>
-                            <p class="text-muted small mb-0">У разі виникнення будь-яких сумнівів у формулах чи коефіцієнтах, обов’язково звертайтеся до кваліфікованих інженерів-монтажників.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <p class="lead text-muted fs-6 mb-4">
+            {{ __('calculator.summary_intro') }}
+        </p>
 
-            <div class="p-3 rounded-3 mb-0" style="background-color: #fff7ed; border: 1px dashed #ffedd5;">
-               <p class="text-dark mb-0 small">
-    <i class="bi bi-lightbulb text-orange me-2 fw-bold"></i>
-    Використання нашого
-    <a href="#calculator" class="fw-bold text-decoration-none">
-        калькулятора розрахунку димоходу
-    </a>
-    — це ваш перший впевнений крок до створення надійної інженерної системи, яка бездоганно прослужить десятиліттями.
+        <div class="row g-4 mb-4">
+
+            <div class="col-md-6">
+                <div class="d-flex align-items-start">
+                    <div class="text-orange me-3 fs-4">
+                        <i class="bi bi-arrow-repeat"></i>
+                    </div>
+
+                    <div>
+                        <h6 class="fw-semibold text-dark mb-1">
+                            {{ __('calculator.summary_system_title') }}
+                        </h6>
+
+                        <p class="text-muted small mb-0">
+    {!! __('calculator.summary_system_text') !!}
 </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="d-flex align-items-start">
+                    <div class="text-danger me-3 fs-4">
+                        <i class="bi bi-shield-exclamation"></i>
+                    </div>
+
+                    <div>
+                        <h6 class="fw-semibold text-dark mb-1">
+                            {{ __('calculator.summary_safety_title') }}
+                        </h6>
+
+                        <p class="text-muted small mb-0">
+    {!! __('calculator.summary_safety_text') !!}
+</p>
+                    </div>
+                </div>
             </div>
 
         </div>
-    </section>
+
+        <div class="p-3 rounded-3 mb-0"
+             style="background-color: #fff7ed; border: 1px dashed #ffedd5;">
+
+            <p class="text-dark mb-0 small">
+                <i class="bi bi-lightbulb text-orange me-2 fw-bold"></i>
+
+                {{ __('calculator.summary_calculator_before') }}
+
+                <a href="#calculator" class="fw-bold text-decoration-none">
+                    {{ __('calculator.summary_calculator_link') }}
+                </a>
+
+                {{ __('calculator.summary_calculator_after') }}
+            </p>
+
+        </div>
+
+    </div>
+</section>
 </div>
 
 <style>
@@ -679,7 +807,32 @@ html {
     }
 }
 </style>
+@php
+    $calculatorTranslations = [
+        'error_invalid_power_height' => __('calculator.error_invalid_power_height'),
+        'sandwich' => __('calculator.sandwich'),
+        'single_wall' => __('calculator.single_wall'),
+        'draft_low' => __('calculator.draft_low'),
+        'draft_normal' => __('calculator.draft_normal'),
+        'draft_high' => __('calculator.draft_high'),
+         'recommendation' => __('calculator.recommendation'),
+        'recommendation_sandwich' => __('calculator.recommendation_sandwich'),
+        'recommendation_single_wall' => __('calculator.recommendation_single_wall'),
 
+        'recommended_inner_diameter' => __('calculator.recommended_inner_diameter'),
+        'recommended_diameter' => __('calculator.recommended_diameter'),
+        'sandwich_system' => __('calculator.sandwich_system'),
+        'stainless_thickness' => __('calculator.stainless_thickness'),
+        'recommended_height' => __('calculator.recommended_height'),
+        'minimum_height' => __('calculator.minimum_height'),
+        'calculated_draft' => __('calculator.calculated_draft'),
+        'assessment' => __('calculator.assessment'),
+    ];
+@endphp
+
+<script>
+    const calculatorTranslations = @json($calculatorTranslations);
+</script>
 <script>
 function calculateChimney() {
     const power = parseFloat(document.getElementById('power').value);
@@ -687,10 +840,10 @@ function calculateChimney() {
     const chimneyType = document.getElementById('chimneyType').value;
     const insulation = document.getElementById('insulation').value;
 
-    if (!power || power <= 0 || !height || height <= 0) {
-        alert('Введіть коректні значення потужності та висоти');
-        return;
-    }
+   if (!power || power <= 0 || !height || height <= 0) {
+    alert(calculatorTranslations.error_invalid_power_height);
+    return;
+}
 
     let turnsPenalty = 0;
     switch (chimneyType) {
@@ -741,14 +894,14 @@ function calculateChimney() {
 
     if (sandwichMap[diameter]) {
         const outerDiameter = sandwichMap[diameter];
-        displayDiameter = `${diameter}/${outerDiameter} мм (сендвіч)`;
+        displayDiameter = `${diameter}/${outerDiameter} мм (${calculatorTranslations.sandwich})`;
         shopQueryParam = `?diameter=${diameter}/${outerDiameter}&chimneyType=Термо&grade=304&thickness=${encodeURIComponent('0,8 мм')}&casing=${casing}&kit=1`;
     } else {
-        displayDiameter = `${diameter} мм (сендвіч)`;
+        displayDiameter = `${diameter} мм (${calculatorTranslations.single_wall})`;
         shopQueryParam = `?diameter=${diameter}&chimneyType=Термо&grade=304&thickness=${encodeURIComponent('0,8 мм')}&casing=${casing}&kit=1`;
     }
 } else {
-    displayDiameter = `${diameter} мм (одностінний)`;
+    displayDiameter = `${diameter} мм (${calculatorTranslations.single_wall})`;
     shopQueryParam = `?diameter=${diameter}&chimneyType=Одностінний&grade=304&thickness=${encodeURIComponent('0,8 мм')}&kit=1`;
 }
 
@@ -760,13 +913,15 @@ function calculateChimney() {
     if (draft < 0) draft = 0;
 
     let draftStatus = '';
-    if (draft < 10) {
-        draftStatus = 'Недостатня тяга — можливий ризик зворотної тяги. Рекомендується збільшити висоту або зменшити опір траси.';
-    } else if (draft <= 30) {
-        draftStatus = 'Тяга знаходиться в нормальному робочому діапазоні.';
-    } else {
-        draftStatus = 'Підвищена тяга — можливі втрати тепла, рекомендовано встановлення регулятора тяги (кагли).';
-    }
+   if (draft < 10) {
+    draftStatus = calculatorTranslations.draft_low;
+
+} else if (draft <= 30) {
+    draftStatus = calculatorTranslations.draft_normal;
+
+} else {
+    draftStatus = calculatorTranslations.draft_high;
+}
 
     document.getElementById('diameterResult').innerText = displayDiameter;
     document.getElementById('heightResult').innerText = recommendedHeight + ' м';
@@ -774,21 +929,25 @@ function calculateChimney() {
 
    document.getElementById('recommendation').innerHTML = `
     <i class="bi bi-check-circle-fill text-orange me-2"></i>
-    <strong>Рекомендація:</strong>
+    <strong>${calculatorTranslations.recommendation}</strong>
     ${
         insulation === 'yes'
-            ? 'Утеплений сендвіч-димохід з нержавіючої сталі (AISI 304/321) в кожусі з нержавійки AISI 201 (0.5 мм)'
-            : 'Одностінний димохід з нержавіючої сталі (AISI 304/321)'
+            ? calculatorTranslations.recommendation_sandwich
+            : calculatorTranslations.recommendation_single_wall
     }.
 `;
 
-    let currentSandwichText = insulation === 'yes' && sandwichMap[diameter] 
-        ? `${diameter}/${sandwichMap[diameter]} мм` 
-        : `${diameter} мм`;
+   let currentSandwichText = insulation === 'yes' && sandwichMap[diameter]
+    ? `${diameter}/${sandwichMap[diameter]} мм`
+    : `${diameter} мм`;
 
-    const diameterText = insulation === 'yes'
-    ? `Рекомендований внутрішній діаметр труби <strong>${diameter} мм</strong> підібрано відповідно до потужності <strong>${power} кВт</strong>.`
-    : `Рекомендований діаметр труби <strong>${diameter} мм</strong> підібрано відповідно до потужності <strong>${power} кВт</strong>.`;
+const diameterText = insulation === 'yes'
+    ? calculatorTranslations.recommended_inner_diameter
+        .replace(':diameter', diameter)
+        .replace(':power', power)
+    : calculatorTranslations.recommended_diameter
+        .replace(':diameter', diameter)
+        .replace(':power', power);
 
 let explanationText = `
     <div class="mb-2">
@@ -797,28 +956,32 @@ let explanationText = `
 
     ${insulation === 'yes' ? `
     <div class="mb-2">
-        Оскільки обрано варіант з утепленням, вам підходить сендвіч-система розміром <strong>${currentSandwichText}</strong>.
+        ${calculatorTranslations.sandwich_system.replace(':size', currentSandwichText)}
     </div>` : ''}
 
-     <div class="mb-2">
-        Рекомендована товщина нержавійки min 0.8 мм., що забезпечує довговічність та стійкість до корозії.
+    <div class="mb-2">
+        ${calculatorTranslations.stainless_thickness}
     </div>
 
     <div class="mb-2">
-        Рекомендована висота <strong>${recommendedHeight} м</strong> забезпечує стабільну тягу.
+        ${calculatorTranslations.recommended_height.replace(':height', recommendedHeight)}
     </div>
-        ${height < 5 ? `
-        <div class="alert alert-warning py-2 px-3 my-2 small rounded-3">
-            <i class="bi bi-exclamation-triangle-fill me-1"></i>
-            Мінімальна рекомендована висота димоходу — 5 м.
-        </div>` : ''}
-        <div class="mb-2">
-            Розрахункова тяга: <strong>${draft.toFixed(1)} Па</strong>.
-        </div>
-        <div class="mt-2">
-            <strong>Оцінка:</strong> ${draftStatus}
-        </div>
-    `;
+
+    ${height < 5 ? `
+    <div class="alert alert-warning py-2 px-3 my-2 small rounded-3">
+        <i class="bi bi-exclamation-triangle-fill me-1"></i>
+        ${calculatorTranslations.minimum_height}
+    </div>` : ''}
+
+    <div class="mb-2">
+        ${calculatorTranslations.calculated_draft.replace(':draft', draft.toFixed(1))}
+    </div>
+
+    <div class="mt-2">
+        <strong>${calculatorTranslations.assessment}</strong>
+        ${draftStatus}
+    </div>
+`;
 
     document.getElementById('explanationText').innerHTML = explanationText;
 
