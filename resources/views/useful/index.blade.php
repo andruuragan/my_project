@@ -1,44 +1,48 @@
 @extends('layouts.main')
-@section('title', 'Корисна інформація про димоходи | DymSystems')
 
-@section('description',
-'Корисна інформація про димоходи: калькулятор димоходу, підбір діаметра, правила монтажу та рекомендації щодо вибору димохідних систем.')
+@section('title', __('useful.meta_title'))
+
+@section('description', __('useful.meta_description'))
 
 @section('content')
     <div class="container-1600 my-5">
  {{-- Навігаційні крихти (Breadcrumbs) --}}
                 
-                <nav aria-label="breadcrumb" class="mb-4">
-                    <ol class="breadcrumb mb-0">
-                        <li class="breadcrumb-item">
-    <a href="{{ route('main.index') }}"
-       class="text-decoration-none text-black-50 hover-orange">
-        Головна
-    </a>
-</li>
-                        
-                        <li class="breadcrumb-item active text-black" aria-current="page">
-                            
-                            <span style="color: #f97316; font-weight: 500;">Корисна інформація</span>
-                        </li>
-                    </ol>
-                </nav>
+              <nav aria-label="breadcrumb" class="mb-4">
+    <ol class="breadcrumb mb-0">
+
+        <li class="breadcrumb-item">
+            <a href="{{ route('main.index') }}"
+               class="text-decoration-none text-black-50 hover-orange">
+                {{ __('useful.home') }}
+            </a>
+        </li>
+
+        <li class="breadcrumb-item active text-black" aria-current="page">
+            <span style="color: #f97316; font-weight: 500;">
+                {{ __('useful.title') }}
+            </span>
+        </li>
+
+    </ol>
+</nav>
     
 
         {{-- Блок: Корисна інформація --}}
         <section class="useful-section">
             <div class="text-center mb-5">
-                <h1 class="fw-semibold useful-title">Корисна інформація</h1>
-                <p class="text-muted useful-subtitle">Поради, калькулятори та інструкції щодо вибору димоходу</p>
+                <h1 class="fw-semibold useful-title">{{ __('useful.title') }}</h1>
+                <p class="text-muted useful-subtitle">{{ __('useful.subtitle') }}</p>
             </div>
 <section class="mb-5">
     <div class="row justify-content-center">
         <div class="col-lg-10 text-center">
-            <h2 class="mb-3">Чому важливо правильно підібрати димохідну систему?</h2>
-            <p class="text-muted">
-                Проектування та монтаж димоходу — це критично важливі етапи, від яких залежить не лише ефективність вашого опалювального обладнання, а й безпека вашого будинку. Неправильно підібраний діаметр або порушення технології монтажу можуть призвести до накопичення конденсату, відсутності тяги та ризику виникнення пожежі. 
-                Наші інструменти допоможуть вам провести <strong>попередній розрахунок димоходу</strong> та ознайомитися з державними стандартами безпеки.
-            </p>
+            <h2 class="mb-3">{{ __('useful.why_title') }}</h2>
+           <p class="text-muted">
+    {{ __('useful.why_text_before') }}
+    <strong>{{ __('useful.why_text_strong') }}</strong>
+    {{ __('useful.why_text_after') }}
+</p>
         </div>
     </div>
 </section>
@@ -52,63 +56,94 @@
      width="1280"
      height="714"
      class="useful-image"
-     alt="Калькулятор димоходу"
+     alt="{{ __('.useful.calculator.alt') }}"
      loading="lazy"
      decoding="async">
     </div>
 </a>
                         <div class="p-4">
-                            <div class="useful-badge mb-3">Онлайн інструмент</div>
-                            <h3 class="useful-card-title">Калькулятор димоходу</h3>
-                            <p class="text-muted mb-4">Розрахунок діаметра, висоти та тяги димоходу.</p>
-                            <a href="{{ route('chimney.calculator') }}" class="btn useful-btn">Відкрити</a>
+                            <div class="useful-badge mb-3">{{ __('useful.calculator.badge') }}</div>
+                            <h3 class="useful-card-title">{{ __('useful.calculator.title') }}</h3>
+                            <p class="text-muted mb-4">{{ __('useful.calculator.text') }}</p>
+                            <a href="{{ route('chimney.calculator') }}" class="btn useful-btn">{{ __('useful.calculator.button') }}</a>
                         </div>
                     </div>
                 </div>
 
                 {{-- ДІАМЕТР --}}
-                <div class="col-lg-4 col-md-6">
-                   <div class="useful-card h-100 useful-fade">
-                        <a href="{{ route('chimney.diameter') }}" class="d-block overflow-hidden rounded-4">
-    <div class="useful-image-wrapper">
-        <img src="{{ asset('images/chimney/diameter.webp') }}"
-     width="1280"
-     height="633"
-     alt="Як обрати діаметр"
-     class="useful-image">
+               <div class="col-lg-4 col-md-6">
+    <div class="useful-card h-100 useful-fade">
+
+        <a href="{{ route('chimney.diameter') }}" class="d-block overflow-hidden rounded-4">
+            <div class="useful-image-wrapper">
+                <img src="{{ asset('images/chimney/diameter.webp') }}"
+                     width="1280"
+                     height="633"
+                     alt="{{ __('useful.diameter.alt') }}"
+                     class="useful-image">
+            </div>
+        </a>
+
+        <div class="p-4">
+
+            <div class="useful-badge mb-3">
+                {{ __('useful.diameter.badge') }}
+            </div>
+
+            <h3 class="useful-card-title">
+                {{ __('useful.diameter.title') }}
+            </h3>
+
+            <p class="text-muted mb-4">
+                {{ __('useful.diameter.text') }}
+            </p>
+
+            <a href="{{ route('chimney.diameter') }}" class="btn useful-btn">
+                {{ __('useful.diameter.button') }}
+            </a>
+
+        </div>
     </div>
-</a>
-                        <div class="p-4">
-                            <div class="useful-badge mb-3">Інструкція</div>
-                            <h3 class="useful-card-title">Як обрати діаметр</h3>
-                            <p class="text-muted mb-4">Таблиці та рекомендації для котлів і камінів.</p>
-                            <a href="{{ route('chimney.diameter') }}" class="btn useful-btn">Читати</a>
-                        </div>
-                    </div>
-                </div>
+</div>
 
                 {{-- МОНТАЖ --}}
-                <div class="col-lg-4 col-md-6">
-                    <div class="useful-card h-100 useful-fade">
-                        <a href="{{ route('chimney.installation-rules') }}" class="d-block overflow-hidden rounded-4">
-    <div class="useful-image-wrapper">
-        <img src="{{ asset('images/chimney/montage.webp') }}"
-     width="1280"
-     height="633"
-     class="useful-image"
-     alt="Монтаж димоходу"
-     loading="lazy"
-     decoding="async">
+               <div class="col-lg-4 col-md-6">
+    <div class="useful-card h-100 useful-fade">
+
+        <a href="{{ route('chimney.installation-rules') }}" class="d-block overflow-hidden rounded-4">
+            <div class="useful-image-wrapper">
+                <img src="{{ asset('images/chimney/montage.webp') }}"
+                     width="1280"
+                     height="633"
+                     class="useful-image"
+                     alt="{{ __('useful.installation.alt') }}"
+                     loading="lazy"
+                     decoding="async">
+            </div>
+        </a>
+
+        <div class="p-4">
+
+            <div class="useful-badge mb-3">
+                {{ __('useful.installation.badge') }}
+            </div>
+
+            <h3 class="useful-card-title">
+                {{ __('useful.installation.title') }}
+            </h3>
+
+            <p class="text-muted mb-4">
+                {{ __('useful.installation.text') }}
+            </p>
+
+            <a href="{{ route('chimney.installation-rules') }}" class="btn useful-btn">
+                {{ __('useful.installation.button') }}
+            </a>
+
+        </div>
     </div>
-</a>
-                        <div class="p-4">
-                            <div class="useful-badge mb-3">Монтаж</div>
-                            <h3 class="useful-card-title">Монтаж димоходу</h3>
-                            <p class="text-muted mb-4">Основні правила безпечного встановлення димоходної системи.</p>
-                           <a href="{{ route('chimney.installation-rules') }}" class="btn useful-btn">Детальніше</a>
-                        </div>
-                    </div>
-                </div>
+</div>
+
             </div>
         </section>
 
@@ -117,144 +152,180 @@
     <div class="row justify-content-center">
         <div class="col-lg-10 px-3">
 
-            <h2 class="mb-4">Що потрібно знати перед вибором димоходу!</h2>
+            <h2 class="mb-4">
+                {{ __('useful.before_choice.title') }}
+            </h2>
 
             <p>
-                Димохід є невід'ємною частиною будь-якої системи опалення. Від правильного
-                вибору матеріалу, діаметра та висоти залежить стабільність тяги, економічність
-                роботи обладнання та безпечне відведення продуктів згоряння. Під час проєктування
-                необхідно враховувати тип палива, потужність котла або печі, висоту будівлі,
-                конфігурацію покрівлі та вимоги виробника обладнання.
+                {{ __('useful.before_choice.text_1') }}
             </p>
 
             <p>
-                У цьому розділі ми зібрали практичні матеріали, які допоможуть самостійно
-                розібратися з основними питаннями. Ви можете скористатися онлайн-калькулятором
-                димоходу, ознайомитися з рекомендаціями щодо вибору діаметра труби та
-                дізнатися про основні правила монтажу димохідних систем із нержавіючої сталі.
+                {{ __('useful.before_choice.text_2') }}
             </p>
 
             <p>
-                Інформація буде корисною власникам приватних будинків, камінів, твердопаливних,
-                газових і пелетних котлів, банних печей та інших опалювальних приладів.
-                Правильно підібраний димохід забезпечує ефективне відведення димових газів,
-                мінімізує утворення конденсату та подовжує термін служби всієї системи.
+                {{ __('useful.before_choice.text_3') }}
             </p>
-<div class="alert alert-light border rounded-4 mt-4 d-flex flex-column flex-md-row align-items-md-center justify-content-between">
-    <div>
-        <h5 class="mb-1">
-            <i class="bi bi-book me-2 text-warning"></i>
-            Рекомендуємо прочитати
-        </h5>
-        <p class="mb-0 text-muted">
-            Дізнайтеся, чим відрізняються марки нержавіючої сталі AISI 304, 321 та 201 і яку краще обрати для вашого димоходу.
-        </p>
-    </div>
 
-    <a href="{{ route('blog.steel-grades') }}"
-       class="btn btn-warning mt-3 mt-md-0 ms-md-3">
-        Читати статтю <i class="bi bi-arrow-right-circle ms-2"></i>
-    </a>
-</div>
+            <div class="alert alert-light border rounded-4 mt-4 d-flex flex-column flex-md-row align-items-md-center justify-content-between">
+
+                <div>
+                    <h5 class="mb-1">
+                        <i class="bi bi-book me-2 text-warning"></i>
+                        {{ __('useful.before_choice.recommend_title') }}
+                    </h5>
+
+                    <p class="mb-0 text-muted">
+                        {{ __('useful.before_choice.recommend_text') }}
+                    </p>
+                </div>
+
+                <a href="{{ route('blog.steel-grades') }}"
+                   class="btn btn-warning mt-3 mt-md-0 ms-md-3">
+                    {{ __('useful.before_choice.button') }}
+                    <i class="bi bi-arrow-right-circle ms-2"></i>
+                </a>
+
+            </div>
+
         </div>
     </div>
 </section>
 
-       <section class="my-5 p-4 rounded-4" style="background-color: #f8fafc; border: 1px solid #e2e8f0;">
-    <div class="row align-items-center">
-        <div class="col-md-8">
-            <h4 class="fw-bold border-start border-4 border-primary ps-3 lh-sm">Шукаєте надійні комплектуючі?</h4>
-           
-            <p class="text-muted mb-0">Оберіть сертифіковані димоходи з нержавіючої сталі для вашого опалювального обладнання.</p>
-        </div>
-        <div class="col-md-4 text-md-end mt-3 mt-md-0">
-            <a href="{{ route('shop.index') }}" class="btn btn-primary px-4 py-2" style="background-color: #ea580c; border: none;">
-                Перейти в каталог<i class="bi bi-arrow-right-circle ms-2"></i>
-            </a>
-        </div>
-    </div>
-</section>
 
         {{-- Блок: Популярні товари --}}
-        @if($popularCatalogs->isNotEmpty())
-            <div class="mt-5 pt-4">
-                <h2 class="text-center mb-4" style="font-weight: 600; color: #2d3748; letter-spacing: -0.5px;">
-                    Популярні елементи димохода
-                </h2>
-                <p class="text-center text-muted mb-5">Товари, які найчастіше обирають наші клієнти</p>
+@if($popularCatalogs->isNotEmpty())
+    <div class="mt-5 pt-4">
 
-                {{-- Максимально щільна сітка: від 3 карток на мобілках до 7 карток на великих моніторах --}}
-                <div class="row row-cols-3 row-cols-sm-4 row-cols-md-5 row-cols-lg-6 row-cols-xl-7 g-2">
-                    @foreach($popularCatalogs as $item)
-                        <div class="col">
-                            {{-- Сама відкритка --}}
-                            <div class="card h-100 product-card-postcard border-0">
+        <h2 class="text-center mb-4"
+            style="font-weight: 600; color: #2d3748; letter-spacing: -0.5px;">
+            {{ __('useful.popular.title') }}
+        </h2>
 
-                                <div class="postcard-img-wrapper">
-                                    {{-- Виводимо картинку --}}
-                                    @if($item->image)
-                                        <img src="{{ asset($item->image) }}" alt="{{ $item->name }}" class="postcard-img">
-                                    @else
-                                        {{-- Заглушка, якщо у товару немає фото --}}
-                                        <div class="postcard-placeholder">
-                                            <i class="bi bi-image text-muted" style="font-size: 1.5rem;"></i>
-                                        </div>
-                                    @endif
+        <p class="text-center text-muted mb-5">
+            {{ __('useful.popular.subtitle') }}
+        </p>
 
-                                    {{-- Компактна та завжди видима іконка лайка --}}
-                                    <div class="postcard-badge-static">
-                                        <i class="bi bi-heart-fill text-danger"></i>
-                                        <span>{{ $item->liked_by_users_count }}</span>
-                                    </div>
+        {{-- Максимально щільна сітка: від 3 карток на мобілках до 7 карток на великих моніторах --}}
+        <div class="row row-cols-3 row-cols-sm-4 row-cols-md-5 row-cols-lg-6 row-cols-xl-7 g-2">
+
+            @foreach($popularCatalogs as $item)
+
+                <div class="col">
+
+                    <div class="card h-100 product-card-postcard border-0">
+
+                        <div class="postcard-img-wrapper">
+
+                            @if($item->image)
+
+                                <img src="{{ asset($item->image) }}"
+                                     alt="{{ $item->name }}"
+                                     class="postcard-img">
+
+                            @else
+
+                                <div class="postcard-placeholder">
+                                    <i class="bi bi-image text-muted"
+                                       style="font-size: 1.5rem;"></i>
                                 </div>
 
-                                {{-- Міні-контент (падінг зменшено до p-2 для економії місця) --}}
-                                <div class="card-body p-2 d-flex flex-column justify-content-between text-center">
-                                    <div>
-                                        <h5 class="postcard-title mb-1">
-                                            <a href="{{ route('catalog.public.show', $item->id) }}" class="stretched-link text-decoration-none">
-                                                {{ $item->name }}
-                                            </a>
-                                        </h5>
-                                        <p class="postcard-category text-uppercase text-muted mb-1">Димоходи</p>
-                                    </div>
+                            @endif
 
-                                    {{-- Міні-ціна внизу --}}
-                                    <div class="postcard-price mt-auto">
-                                        {{ number_format($item->price, 0, '.', ' ') }} <small style="font-size: 0.7rem;">грн</small>
-                                    </div>
-                                </div>
+                            <div class="postcard-badge-static">
+                                <i class="bi bi-heart-fill text-danger"></i>
+                                <span>{{ $item->liked_by_users_count }}</span>
+                            </div>
+
+                        </div>
+
+                        <div class="card-body p-2 d-flex flex-column justify-content-between text-center">
+
+                            <div>
+
+                                <h5 class="postcard-title mb-1">
+
+                                    <a href="{{ route('catalog.public.show', $item->id) }}"
+                                       class="stretched-link text-decoration-none">
+                                        {{ $item->name }}
+                                    </a>
+
+                                </h5>
+
+                                <p class="postcard-category text-uppercase text-muted mb-1">
+                                    {{ __('useful.popular.category') }}
+                                </p>
 
                             </div>
+
+                            <div class="postcard-price mt-auto">
+                                {{ number_format($item->price, 0, '.', ' ') }}
+
+                                <small style="font-size: 0.7rem;">
+                                    {{ __('useful.popular.currency') }}
+                                </small>
+                            </div>
+
                         </div>
-                    @endforeach
+
+                    </div>
+
+                </div>
+
+            @endforeach
+
+        </div>
+    </div>
+@endif
+
+       <section class="mt-5 pt-5 border-top">
+    <h2 class="text-center mb-4">{{ __('useful.faq.title') }}</h2>
+
+    <div class="accordion accordion-flush" id="chimneyFaq">
+
+        <div class="accordion-item">
+            <h3 class="accordion-header">
+                <button class="accordion-button"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#q1"
+                        aria-expanded="true"
+                        aria-controls="q1">
+                    {{ __('useful.faq.q1') }}
+                </button>
+            </h3>
+
+            <div id="q1"
+                 class="accordion-collapse collapse show"
+                 data-bs-parent="#chimneyFaq">
+
+                <div class="accordion-body">
+                    {{ __('useful.faq.a1') }}
                 </div>
             </div>
-        @endif
-        <section class="mt-5 pt-5 border-top">
-    <h2 class="text-center mb-4">Часті запитання!</h2>
-    <div class="accordion accordion-flush" id="chimneyFaq">
+        </div>
+
         <div class="accordion-item">
-            <h3 class="accordion-header"><button class="accordion-button"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#q1"
-        aria-expanded="true"
-        aria-controls="q1">
-    Як розрахувати мінімальну висоту димоходу?
-</button></h3>
-           <div id="q1"
-     class="accordion-collapse collapse show"
-     data-bs-parent="#chimneyFaq">
-                <div class="accordion-body">Висота димоходу залежить від віддаленості від гребеня даху та типу покрівлі. Зазвичай це не менше 5 метрів від колосника до оголовка. Скористайтеся нашим калькулятором для точного розрахунку.</div>
+            <h3 class="accordion-header">
+                <button class="accordion-button collapsed"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#q2">
+                    {{ __('useful.faq.q2') }}
+                </button>
+            </h3>
+
+            <div id="q2"
+                 class="accordion-collapse collapse"
+                 data-bs-parent="#chimneyFaq">
+
+                <div class="accordion-body">
+                    {{ __('useful.faq.a2') }}
+                </div>
             </div>
         </div>
-        <div class="accordion-item">
-            <h3 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q2">Чи можна зменшувати діаметр труби димоходу?</button></h3>
-            <div id="q2" class="accordion-collapse collapse" data-bs-parent="#chimneyFaq">
-                <div class="accordion-body">Звужувати діаметр димоходу відносно вихідного патрубка котла категорично заборонено, оскільки це призводить до зниження тяги та перегріву системи.</div>
-            </div>
-        </div>
+
     </div>
 </section>
     </div>
