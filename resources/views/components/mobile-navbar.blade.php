@@ -94,7 +94,23 @@
 
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
     </div>
+<!-- =============================== -->
+    <div class="mobile-language-switcher">
+    <a href="{{ route('locale.switch', 'uk') }}"
+       class="{{ app()->getLocale() === 'uk' ? 'active' : '' }}"
+       title="Українська">
+        🇺🇦
+    </a>
 
+    <span class="language-divider">|</span>
+
+    <a href="{{ route('locale.switch', 'ru') }}"
+       class="{{ app()->getLocale() === 'ru' ? 'active' : '' }}"
+       title="Русский">
+        🇷🇺
+    </a>
+</div>
+<!-- =============================== -->
     <div class="offcanvas-body">
 
         <div class="mobile-menu">
