@@ -1,20 +1,12 @@
 @extends('layouts.main')
-@section('title', 'Монтаж димоходу: правила та вимоги | DymSystems')
+@section('title', __('chimney-installation.seo_title'))
 
-@section('description',
-'Правила монтажу димоходу: висота, горизонтальні ділянки, утеплення, безпека та відведення конденсату. Інструкція для правильного встановлення димохідних систем.')
+@section('description', __('chimney-installation.seo_description'))
 
 @section('content')
 
 @php
-// Определяем переменные здесь, чтобы они были доступны во всем шаблоне
-$rules = [
-    ['bi-arrows-expand', 'Висота', 'Мінімум 5 м для стабільної тяги'],
-    ['bi-arrow-left-right', 'Горизонталь', 'Не більше 1 м'],
-    ['bi-fire', 'Утеплення', 'Сендвіч для холодних зон'],
-    ['bi-exclamation-triangle', 'Безпека', 'Пожежні відступи обов’язкові'],
-    ['bi-droplet', 'Конденсат', 'Збір системи по потоку конденсату'],
-];
+    $rules = __('chimney-installation.rules');
 @endphp
 
 
@@ -32,35 +24,51 @@ $rules = [
             <div class="row align-items-center">
                 <div class="col-lg-7">
                     <nav class="mb-3">
-                        <a href="{{ route('main.index') }}" class="text-white-50 text-decoration-none">Головна</a> 
-                        <span class="text-white-50 mx-2">/</span> 
-                        <a href="{{ route('useful.index') }}" class="text-white-50 text-decoration-none">Корисна інформація</a> 
-                        <span class="text-white-50 mx-2">/</span>
-                        <span class="text-white">Монтаж</span>
-                    </nav>
+    <a href="{{ route('main.index') }}"
+       class="text-white-50 text-decoration-none">
+        {{ __('chimney-installation.breadcrumb_home') }}
+    </a>
+
+    <span class="text-white-50 mx-2">/</span>
+
+    <a href="{{ route('useful.index') }}"
+       class="text-white-50 text-decoration-none">
+        {{ __('chimney-installation.breadcrumb_useful') }}
+    </a>
+
+    <span class="text-white-50 mx-2">/</span>
+
+    <span class="text-white">
+        {{ __('chimney-installation.breadcrumb_current') }}
+    </span>
+</nav>
                     <div class="mb-3">
-                        <span class="badge text-bg-warning px-3 py-2 rounded-pill fw-semibold">
-                            Професійний монтаж димоходів
-                        </span>
-                    </div>
+    <span class="badge text-bg-warning px-3 py-2 rounded-pill fw-semibold">
+        {{ __('chimney-installation.hero_badge') }}
+    </span>
+</div>
 
-                    <h1 class="fw-bold display-5">
-                        Інженерний монтаж <br>
-                        <span style="color:#fbbf24;">димохідних систем</span>
-                    </h1>
+<h1 class="fw-bold display-5">
+    {{ __('chimney-installation.hero_title') }} <br>
+    <span style="color:#fbbf24;">
+        {{ __('chimney-installation.hero_title_highlight') }}
+    </span>
+</h1>
 
-                    <p class="soft-text mt-3 fs-5">
-                        Безпечні рішення для котлів, камінів та твердопаливних систем з гарантією герметичності.
-                    </p>
+<p class="soft-text mt-3 fs-5">
+    {{ __('chimney-installation.hero_text') }}
+</p>
 
-                    <div class="d-flex gap-3 mt-4">
-                        <a href="#form" class="btn btn-warning px-4 fw-bold shadow">
-                            Отримати консультацію
-                        </a>
-                        <a href="{{ route('chimney.calculator') }}" class="btn btn-outline-light px-4">
-                            Калькулятор димоходу
-                        </a>
-                    </div>
+<div class="d-flex gap-3 mt-4">
+    <a href="#form" class="btn btn-warning px-4 fw-bold shadow">
+        {{ __('chimney-installation.hero_consultation') }}
+    </a>
+
+    <a href="{{ route('chimney.calculator') }}"
+       class="btn btn-outline-light px-4">
+        {{ __('chimney-installation.hero_calculator') }}
+    </a>
+</div>
                 </div>
             </div>
         </div>
@@ -68,69 +76,68 @@ $rules = [
 
     {{-- FEATURES --}}
     <div class="container mt-5 px-0">
-        <div class="row g-4">
+    <div class="row g-4">
+        @foreach(__('chimney-installation.advantages') as $advantage)
             <div class="col-md-4">
                 <div class="p-card p-4 text-center h-100">
                     <div class="p-icon mx-auto mb-3">
-                        <i class="bi bi-shield-check fs-4"></i>
+                        <i class="bi {{ $advantage['icon'] }} fs-4"></i>
                     </div>
-                    <h5 class="fw-bold">Безпека</h5>
-                    <p class="text-muted small mb-0">Дотримання всіх пожежних норм і стандартів.</p>
-                </div>
-            </div>
 
-            <div class="col-md-4">
-                <div class="p-card p-4 text-center h-100">
-                    <div class="p-icon mx-auto mb-3">
-                        <i class="bi bi-rulers fs-4"></i>
-                    </div>
-                    <h5 class="fw-bold">Точний розрахунок</h5>
-                    <p class="text-muted small mb-0">Підбір діаметра, висоти та тяги під обладнання.</p>
-                </div>
-            </div>
+                    <h5 class="fw-bold">
+                        {{ $advantage['title'] }}
+                    </h5>
 
-            <div class="col-md-4">
-                <div class="p-card p-4 text-center h-100">
-                    <div class="p-icon mx-auto mb-3">
-                        <i class="bi bi-award fs-4"></i>
-                    </div>
-                    <h5 class="fw-bold">Гарантія</h5>
-                    <p class="text-muted small mb-0">Контроль монтажу та гарантія на роботи.</p>
+                    <p class="text-muted small mb-0">
+                        {{ $advantage['text'] }}
+                    </p>
                 </div>
             </div>
-        </div>
+        @endforeach
+    </div>
+</div>
 
    {{-- ОСНОВНА СІТКА --}}
     <div class="row mt-5 g-4">
         {{-- ЛЕВАЯ КОЛОНКА (Правила + Схема) --}}
         <div class="col-lg-8">
             <div class="p-card p-4 p-md-5 mb-4">
-                <h2 class="fw-bold mb-4">5 ключових правил монтажу</h2>
+               <h2 class="fw-bold mb-4">
+    {{ __('chimney-installation.key_rules_title') }}
+</h2>
                 <div class="row g-4">
-                    @foreach($rules as $r)
-                        <div class="col-md-6">
-                            <div class="d-flex">
-                                <div class="p-icon me-3 flex-shrink-0">
-                                    <i class="bi {{ $r[0] }}"></i>
-                                </div>
-                                <div>
-                                    <h5 class="fw-bold mb-1">{{ $r[1] }}</h5>
-                                    <p class="text-muted small mb-0">{{ $r[2] }}</p>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
+                 @foreach($rules as $r)
+    <div class="col-md-6">
+        <div class="d-flex">
+            <div class="p-icon me-3 flex-shrink-0">
+                <i class="bi {{ $r['icon'] }}"></i>
+            </div>
+
+            <div>
+                <h5 class="fw-bold mb-1">
+                    {{ $r['title'] }}
+                </h5>
+
+                <p class="text-muted small mb-0">
+                    {{ $r['text'] }}
+                </p>
+            </div>
+        </div>
+    </div>
+@endforeach
                 </div>
             </div>
 
             <div class="p-card p-4 text-center">
-                <h4 class="fw-bold mb-3">Інженерна схема монтажу</h4>
-                <img src="{{ asset('images/chimney/chimney-main-schema.webp') }}"
-     width="1165"
-     height="1350"
-     class="img-fluid rounded-4"
-     alt="Схема монтажу димоходу"
-     loading="lazy"
+               <h4 class="fw-bold mb-3">
+    {{ __('chimney-installation.engineering_scheme_title') }}
+</h4>
+     <img src="{{ asset('images/chimney/' . (app()->getLocale() === 'ru' ? 'chimney-main-schemaru.webp' : 'chimney-main-schema.webp')) }}" 
+     width="1165" 
+     height="1350" 
+     class="img-fluid rounded-4" 
+     alt="{{ __('chimney-installation.main_schema_image_alt') }}" 
+     loading="lazy" 
      decoding="async">
             </div>
         </div>
@@ -139,8 +146,13 @@ $rules = [
         <div class="col-lg-4">
             <div class="sticky-top" style="top: 140px;">
                 <div id="form" class="p-card p-4 mb-4">
-                    <h4 class="fw-bold mb-2">Консультація</h4>
-                    <p class="text-muted small mb-3">Підбір системи та безкоштовний розрахунок.</p>
+                   <h4 class="fw-bold mb-2">
+    {{ __('chimney-installation.consultation_title') }}
+</h4>
+
+<p class="text-muted small mb-3">
+    {{ __('chimney-installation.consultation_text') }}
+</p>
                    <form action="{{ route('leads.store') }}" 
       data-action="{{ route('leads.store') }}" 
       method="POST" 
@@ -148,9 +160,17 @@ $rules = [
       novalidate>
     @csrf
     
-    <input type="hidden" name="device_type" value="Консультація з блогу">
+ <input type="hidden"
+       name="device_type"
+       value="{{ __('chimney-installation.consultation_device_type') }}">
 
-    <input type="text" name="name" id="name" class="form-control mb-3" placeholder="Ваше ім'я" autocomplete="name" required>
+   <input type="text"
+       name="name"
+       id="name"
+       class="form-control mb-3"
+       placeholder="{{ __('chimney-installation.name_placeholder') }}"
+       autocomplete="name"
+       required>
     <input 
     type="tel" 
     name="phone" 
@@ -161,15 +181,27 @@ $rules = [
     required
     pattern="\+38\s\(\d{3}\)\s\d{3}-\d{2}-\d{2}">
     
-    <button type="submit" class="btn btn-warning w-100 fw-bold">Відправити</button>
+    <button type="submit" class="btn btn-warning w-100 fw-bold">
+    {{ __('chimney-installation.submit_button') }}
+</button>
 </form>
                 </div>
-                <div class="p-card p-4 bg-dark text-white text-center">
-                    <i class="bi bi-calculator fs-2 text-warning"></i>
-                    <h5 class="fw-bold mt-2">Калькулятор</h5>
-                    <p class="small text-white-50">Розрахунок діаметра та висоти онлайн.</p>
-                    <a href="{{ route('chimney.calculator') }}" class="btn btn-outline-light w-100">Відкрити</a>
-                </div>
+               <div class="p-card p-4 bg-dark text-white text-center">
+    <i class="bi bi-calculator fs-2 text-warning"></i>
+
+    <h5 class="fw-bold mt-2">
+        {{ __('chimney-installation.calculator_title') }}
+    </h5>
+
+    <p class="small text-white-50">
+        {{ __('chimney-installation.calculator_text') }}
+    </p>
+
+    <a href="{{ route('chimney.calculator') }}"
+       class="btn btn-outline-light w-100">
+        {{ __('chimney-installation.calculator_button') }}
+    </a>
+</div>
             </div>
         </div>
     </div>
@@ -177,50 +209,89 @@ $rules = [
     {{-- БЛОК ОШИБОК (Полноширинный, находится за пределами основного row) --}}
     <div class="mt-4">
         <div class="p-card p-4 p-md-5">
-            <h3 class="fw-bold mb-4">Типові помилки під час монтажу</h3>
+           <h3 class="fw-bold mb-4">
+    {{ __('chimney-installation.common_mistakes_title') }}
+</h3>
             <div class="row">
                 <div class="col-12 mb-4">
-                    <img src="{{ asset('images/chimney/pomulku_montag.webp') }}"
+        <img src="{{ asset('images/chimney/' . (app()->getLocale() === 'ru' ? 'pomulku_montagru.webp' : 'pomulku_montag.webp')) }}"
      width="1693"
      height="929"
      class="img-fluid rounded-4 shadow-sm w-100"
-     alt="Типові помилки монтажу димоходу"
+     alt="{{ __('chimney-installation.mistakes_image_alt') }}"
      loading="lazy"
      decoding="async">
                 </div>
             </div>
             <div class="row g-3">
-                @foreach(['Завуження діаметра', 'Відсутність утеплення', 'Довгі горизонти', 'Неправильні стики', 'Відсутність ревізії', 'Недостатня висота'] as $m)
-                  <div class="col-6 col-md-4 col-lg-2">
-                        <div class="border rounded-3 p-3 bg-light text-center h-100">
-                            <i class="bi bi-x-circle-fill text-danger d-block mb-2"></i>
-                            <span class="small fw-medium">{{ $m }}</span>
-                        </div>
-                    </div>
-                @endforeach
+               @foreach(__('chimney-installation.mistakes') as $m)
+    <div class="col-6 col-md-4 col-lg-2">
+        <div class="border rounded-3 p-3 bg-light text-center h-100">
+            <i class="bi bi-x-circle-fill text-danger d-block mb-2"></i>
+            <span class="small fw-medium">{{ $m }}</span>
+        </div>
+    </div>
+@endforeach
             </div>
         </div>
     </div>
 
-    <section class="mt-5">
+   <section class="mt-5">
     <div class="p-card p-4 p-md-5">
-        <h3 class="fw-bold mb-4">Технічні вимоги та етапи монтажу димохідних систем</h3>
+
+        <h3 class="fw-bold mb-4">
+            {{ __('chimney-installation.technical_requirements.title') }}
+        </h3>
+
         <div class="row">
+
             <div class="col-lg-6">
-                <p>Правильний монтаж димоходу починається з вибору матеріалу. Ми використовуємо нержавіючу сталь марок AISI 321 або 304, які стійкі до високих температур та кислотного середовища.</p>
-                <h5 class="fw-bold">Основні етапи робіт:</h5>
+
+                <p>
+                    {{ __('chimney-installation.technical_requirements.intro') }}
+                </p>
+
+                <h5 class="fw-bold">
+                    {{ __('chimney-installation.technical_requirements.stages_title') }}
+                </h5>
+
                 <ul class="text-muted">
-                    <li><strong>Проектування:</strong> розрахунок перерізу каналу та висоти труби відносно конька даху.</li>
-                    <li><strong>Монтаж системи "сендвіч":</strong> правильне утеплення базальтовою ватою для запобігання утворенню конденсату.</li>
-                    
+
+                    <li>
+                        <strong>
+                            {{ __('chimney-installation.technical_requirements.design_title') }}
+                        </strong>
+                        {{ __('chimney-installation.technical_requirements.design_text') }}
+                    </li>
+
+                    <li>
+                        <strong>
+                            {{ __('chimney-installation.technical_requirements.sandwich_title') }}
+                        </strong>
+                        {{ __('chimney-installation.technical_requirements.sandwich_text') }}
+                    </li>
+
                 </ul>
+
             </div>
+
             <div class="col-lg-6">
-                <p>Особливу увагу приділяємо <strong>пожежній безпеці при проходженні через перекриття та покрівлю</strong>. Використання спеціальних прохідних вузлів (коробів) дозволяє уникнути перегріву дерев'яних конструкцій, що є критично важливим для безпеки вашого дому.</p>
+
+                <p>
+                    {{ __('chimney-installation.technical_requirements.safety') }}
+                </p>
+
                 <div class="bg-light p-3 rounded-3 border-start border-4 border-warning">
-                    <p class="mb-0 small italic"><strong>Важливо:</strong> Згідно з ДБН, горизонтальні ділянки димоходу повинні бути мінімальними (до 1 м), а загальна висота системи — забезпечувати достатню природну тягу для стабільної роботи котла.</p>
+                    <p class="mb-0 small italic">
+                        <strong>
+                            {{ __('chimney-installation.technical_requirements.important_title') }}
+                        </strong>
+                        {{ __('chimney-installation.technical_requirements.important_text') }}
+                    </p>
                 </div>
+
             </div>
+
         </div>
     </div>
 </section>
@@ -229,23 +300,34 @@ $rules = [
 <div class="mt-5">
     <div class="p-card p-4 p-md-5" style="background: #f8fafc;">
         <div class="row align-items-center">
-            <div class="col-lg-6">
-                <h3 class="fw-bold mb-3">Чому професійний монтаж димоходу — це не розкіш, а необхідність?</h3>
-                <p class="text-muted">
-                    Самостійний монтаж або залучення некваліфікованих майстрів часто призводить до порушення тяги, утворення конденсату та, що найгірше, ризику пожежі через перегрів конструкцій. 
-                </p>
-                <p class="text-muted">
-                    У нашій статті ми детально розібрали, як інженерний підхід до вибору матеріалів та дотримання пожежних норм подовжує термін служби вашої опалювальної системи на десятиліття.
-                </p>
-                <a href="{{ route('blog.installation-errors') }}" class="btn btn-outline-dark fw-bold mt-2">Читати повну статтю<i class="bi bi-arrow-right-circle ms-2"></i></a>
-            </div>
+      <div class="col-lg-6">
+
+    <h3 class="fw-bold mb-3">
+        {{ __('chimney-installation.professional_installation.title') }}
+    </h3>
+
+    <p class="text-muted">
+        {{ __('chimney-installation.professional_installation.text_1') }}
+    </p>
+
+    <p class="text-muted">
+        {{ __('chimney-installation.professional_installation.text_2') }}
+    </p>
+
+    <a href="{{ route('blog.installation-errors') }}"
+       class="btn btn-outline-dark fw-bold mt-2">
+        {{ __('chimney-installation.professional_installation.button') }}
+        <i class="bi bi-arrow-right-circle ms-2"></i>
+    </a>
+
+</div>
             <div class="col-lg-6 text-lg-end mt-4 mt-lg-0">
                 <div class="position-relative">
-                    <img src="{{ asset('images/chimney/article-preview.webp') }}"
+       <img src="{{ asset('images/chimney/' . (app()->getLocale() === 'ru' ? 'article-previewru.webp' : 'article-preview.webp')) }}"
      width="1280"
      height="714"
      class="img-fluid rounded-4 shadow-lg"
-     alt="Професійний монтаж димоходу"
+     alt="{{ __('chimney-installation.article_preview_image_alt') }}"
      loading="lazy"
      decoding="async">
                 </div>
@@ -256,165 +338,292 @@ $rules = [
 
 {{-- Адаптивний банер --}}
 <div class="mt-5">
-    <picture>
-        {{-- Телефон --}}
-        <source
-            media="(max-width: 767.98px)"
-            srcset="{{ asset('images/chimney/addmob.webp') }}">
+  <picture>
+    {{-- Телефон --}}
+    <source
+        media="(max-width: 767.98px)"
+        srcset="{{ app()->getLocale() === 'ru'
+            ? asset('images/chimney/addmobru.webp')
+            : asset('images/chimney/addmob.webp') }}">
 
-        {{-- Планшет/ПК --}}
-        <img
-            src="{{ asset('images/chimney/add.webp') }}"
-            alt="Монтаж димоходу"
-            class="img-fluid rounded-4 w-100"
-            width="1600"
-            height="600"
-            loading="lazy"
-            decoding="async">
-    </picture>
+    {{-- Планшет/ПК --}}
+    <img
+        src="{{ app()->getLocale() === 'ru'
+            ? asset('images/chimney/addru.webp')
+            : asset('images/chimney/add.webp') }}"
+        alt="{{ __('installation.banner_image_alt') }}"
+        class="img-fluid rounded-4 w-100"
+        width="1600"
+        height="600"
+        loading="lazy"
+        decoding="async">
+</picture>
 </div>
 
-    {{-- НИЖНІЙ СТАЦІОНАРНИЙ БАНЕР --}}
-    <div class="mt-5">
-        <div class="p-card p-5 text-center" style="background: linear-gradient(135deg,#0f172a,#1e293b); color:#fff;">
-            <h2>Чому правильний монтаж димоходу настільки важливий?</h2>
+ {{-- НИЖНІЙ СТАЦІОНАРНИЙ БАНЕР --}}
+<div class="mt-5">
+    <div class="p-card p-5 text-center" style="background: linear-gradient(135deg,#0f172a,#1e293b); color:#fff;">
 
-<p>
-Навіть якісний димохід із нержавіючої сталі не забезпечить ефективну роботу,
-якщо під час встановлення були допущені помилки. Неправильний вибір діаметра,
-надмірна кількість горизонтальних ділянок або порушення правил проходу через
-покрівлю можуть негативно вплинути на тягу та безпечність експлуатації.
-</p>
+        <h2>{{ __('chimney-installation.bottom_banner_title') }}</h2>
 
-<p>
-Саме тому перед монтажем рекомендується виконати попередній розрахунок,
-врахувати характеристики опалювального обладнання та використовувати
-сертифіковані комплектуючі. Дотримання вимог виробника та будівельних норм
-дозволяє забезпечити стабільну роботу системи протягом багатьох років.
-</p>
-            <h3 class="fw-bold">Потрібен монтаж під ключ?</h3>
-            <p class="text-white-50">Інженер підбере оптимальне рішення для вашого об'єкта</p>
-            <a href="#form" class="btn btn-warning px-4 fw-bold">Отримати консультацію</a>
-        </div>
+        <p>
+            {{ __('chimney-installation.bottom_banner_text_1') }}
+        </p>
+
+        <p>
+            {{ __('chimney-installation.bottom_banner_text_2') }}
+        </p>
+
+        <h3 class="fw-bold">
+            {{ __('chimney-installation.bottom_banner_cta_title') }}
+        </h3>
+
+        <p class="text-white-50">
+            {{ __('chimney-installation.bottom_banner_cta_text') }}
+        </p>
+
+        <a href="#form" class="btn btn-warning px-4 fw-bold">
+            {{ __('chimney-installation.bottom_banner_button') }}
+        </a>
+
     </div>
-    
 </div>
 <section class="mt-5">
+
     <div class="p-card p-4 p-md-5">
-        <h3 class="fw-bold mb-4">Часті запитання про монтаж димоходів</h3>
+
+        <h3 class="fw-bold mb-4">
+            {{ __('chimney-installation.faq_title') }}
+        </h3>
+
         <div class="accordion" id="faqAccordion">
-            <!-- FAQ 1 -->
+
+            {{-- FAQ 1 --}}
             <div class="accordion-item border-0 mb-3">
+
                 <h2 class="accordion-header">
-                     <button
-            class="accordion-button shadow-none fw-bold"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#faq1"
-            aria-expanded="true"
-            aria-controls="faq1">
-            Яка марка нержавіючої сталі найкраща для твердопаливного котла?
-        </button>
+                    <button
+                        class="accordion-button shadow-none fw-bold"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#faq1"
+                        aria-expanded="true"
+                        aria-controls="faq1">
+
+                        {{ __('chimney-installation.faq_1_question') }}
+
+                    </button>
                 </h2>
+
                 <div
-        id="faq1"
-        class="accordion-collapse collapse show"
-        data-bs-parent="#faqAccordion">
+                    id="faq1"
+                    class="accordion-collapse collapse show"
+                    data-bs-parent="#faqAccordion">
+
                     <div class="accordion-body text-muted">
-                        Для твердопаливних котлів рекомендується використовувати сталь марки AISI 321 або 304. Вони містять домішки титану або молібдену, що робить їх стійкими до високих температур (до 800°C) та агресивного впливу конденсату з кислотними сполуками.
+                        {{ __('chimney-installation.faq_1_answer') }}
                     </div>
+
                 </div>
             </div>
-            <!-- FAQ 2 -->
+
+            {{-- FAQ 2 --}}
             <div class="accordion-item border-0 mb-3">
+
                 <h2 class="accordion-header">
-                    <button class="accordion-button collapsed shadow-none fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
-                        Чи можна монтувати димохід без утеплення (сендвіча)?
+                    <button
+                        class="accordion-button collapsed shadow-none fw-bold"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#faq2">
+
+                        {{ __('chimney-installation.faq_2_question') }}
+
                     </button>
                 </h2>
-                <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+
+                <div
+                    id="faq2"
+                    class="accordion-collapse collapse"
+                    data-bs-parent="#faqAccordion">
+
                     <div class="accordion-body text-muted">
-                        Монтаж без утеплення допустимий лише всередині опалювального приміщення (якщо димохід проходить через теплу зону). Для зовнішніх ділянок або при проходженні через холодний горищний простір утеплення "сендвіч" є обов'язковим, щоб уникнути швидкого охолодження газів, утворення надмірної кількості конденсату та втрати тяги.
+                        {{ __('chimney-installation.faq_2_answer') }}
                     </div>
+
                 </div>
             </div>
-            <!-- FAQ 3 -->
+
+            {{-- FAQ 3 --}}
             <div class="accordion-item border-0 mb-3">
+
                 <h2 class="accordion-header">
-                    <button class="accordion-button collapsed shadow-none fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
-                        Як часто потрібно проводити обслуговування системи?
+                    <button
+                        class="accordion-button collapsed shadow-none fw-bold"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#faq3">
+
+                        {{ __('chimney-installation.faq_3_question') }}
+
                     </button>
                 </h2>
-                <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+
+                <div
+                    id="faq3"
+                    class="accordion-collapse collapse"
+                    data-bs-parent="#faqAccordion">
+
                     <div class="accordion-body text-muted">
-                        Чистку димохідної системи необхідно проводити мінімум один раз на опалювальний сезон. При використанні смолянистих порід деревини (сосна, ялина) — двічі на сезон. Регулярна профілактика запобігає накопиченню сажі, яка може призвести до її займання.
+                        {{ __('chimney-installation.faq_3_answer') }}
                     </div>
+
                 </div>
             </div>
+
         </div>
+
     </div>
+
 </section>
 </main>
 
+@php
+    $installationTranslations = [
+        'form_phone_incomplete' => __('chimney-installation.form_phone_incomplete'),
+        'form_sending' => __('chimney-installation.form_sending'),
+        'form_success' => __('chimney-installation.form_success'),
+        'form_submit' => __('chimney-installation.form_submit'),
+        'form_error' => __('chimney-installation.form_error'),
+    ];
+@endphp
 
 <script>
+    const installationTranslations = @json($installationTranslations);
+</script>
+<script>
 document.querySelectorAll('form[action="{{ route("leads.store") }}"]').forEach(form => {
+
     form.addEventListener('submit', async (e) => {
-        // 1. Стандартна перевірка Bootstrap (замість старого блоку)
+
+        // 1. Стандартная проверка Bootstrap
         if (!form.checkValidity()) {
-            form.classList.add('was-validated');
             e.preventDefault();
             e.stopPropagation();
+
+            form.classList.add('was-validated');
             return;
         }
 
-        // 2. Валідація маски телефону
-        if (window.phoneMaskInstance && !window.phoneMaskInstance.masked.isComplete) {
+        // 2. Проверка маски телефона
+        if (
+            window.phoneMaskInstance &&
+            !window.phoneMaskInstance.masked.isComplete
+        ) {
             e.preventDefault();
-            alert('Будь ласка, введіть повний номер телефону');
+
+            alert(installationTranslations.form_phone_incomplete);
             return;
         }
 
-        e.preventDefault(); // Зупиняємо стандартну відправку, щоб відправити через AJAX
-        
+        // 3. Останавливаем стандартную отправку
+        e.preventDefault();
+
         const btn = form.querySelector('button[type="submit"]');
+
+        if (!btn) {
+            console.error('Кнопка отправки формы не найдена.');
+            return;
+        }
+
+        // 4. Защита от двойного клика
+        if (btn.disabled) {
+            return;
+        }
+
         btn.disabled = true;
-        btn.textContent = 'Відправка...';
+        btn.textContent = installationTranslations.form_sending;
 
         try {
+
             const response = await fetch(form.action, {
                 method: 'POST',
                 body: new FormData(form),
                 headers: {
-    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
-    'Accept': 'application/json'
-}
-});
+                    'X-CSRF-TOKEN': document
+                        .querySelector('meta[name="csrf-token"]')
+                        .content,
 
-            if (response.ok) {
-                // Очищаємо поля
-                form.querySelectorAll('input, textarea').forEach(input => input.value = '');
-                
-                // Очищаємо маску
-                if (window.phoneMaskInstance) {
-                    window.phoneMaskInstance.value = ''; 
+                    'Accept': 'application/json'
                 }
-                
-                // Знімаємо класи помилок
-                form.classList.remove('was-validated'); 
-                form.querySelectorAll('.is-invalid').forEach(el => el.classList.remove('is-invalid'));
+            });
 
-                // ВИКЛИКАЄМО ФУНКЦІЮ ПОВІДОМЛЕННЯ
-                showFlashMessage('Дякуємо! Заявку успішно прийнято.');
-                
+            // 5. Успешная отправка
+            if (response.ok) {
+
+                // Очищаем обычные поля
+                form.querySelectorAll('input, textarea').forEach(input => {
+
+                    // Не очищаем hidden-поля
+                    if (input.type !== 'hidden') {
+                        input.value = '';
+                    }
+
+                });
+
+                // Очищаем телефонную маску
+                if (window.phoneMaskInstance) {
+                    window.phoneMaskInstance.value = '';
+                }
+
+                // Убираем состояние валидации
+                form.classList.remove('was-validated');
+
+                form.querySelectorAll('.is-invalid').forEach(el => {
+                    el.classList.remove('is-invalid');
+                });
+
+                // Показываем сообщение
+                showFlashMessage(
+                    installationTranslations.form_success
+                );
+
+            } else {
+
+                // Если сервер вернул ошибку
+                console.error(
+                    'Ошибка отправки формы:',
+                    response.status,
+                    response.statusText
+                );
+
+                alert(
+                    installationTranslations.form_error ||
+                    'Не вдалося відправити заявку. Спробуйте ще раз.'
+                );
             }
+
         } catch (err) {
-            console.error(err);
+
+            // Ошибка сети / сервера
+            console.error('Ошибка:', err);
+
+            alert(
+                installationTranslations.form_error ||
+                'Помилка з’єднання. Спробуйте ще раз.'
+            );
+
         } finally {
+
+            // 6. ВАЖНО:
+            // после отправки кнопка снова активна
             btn.disabled = false;
-            btn.textContent = 'Відправити';
+            btn.textContent = installationTranslations.form_submit;
+
         }
+
     });
+
 });
 
 // Ця функція має бути тут, щоб працювати в контексті цього скрипта
