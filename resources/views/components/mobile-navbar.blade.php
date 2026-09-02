@@ -89,7 +89,7 @@
          width="126"
          height="42"
          alt="Logo">
-    <div class="subtitle">Центр Комплектації Димарів</div>
+  <div class="subtitle">{{ __('messagesmob.subtitle') }}</div>
 </div>
 
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
@@ -115,81 +115,81 @@
 
         <div class="mobile-menu">
 
-            <a href="{{ route('main.index') }}"
-               class="{{ request()->routeIs('main.index') ? 'active' : '' }}">
-                <i class="bi bi-house-door"></i>
-                Головна
-            </a>
+           <a href="{{ route('main.index') }}"
+   class="{{ request()->routeIs('main.index') ? 'active' : '' }}">
+    <i class="bi bi-house-door"></i>
+    {{ __('messagesmob.home') }}
+</a>
 
-            <a href="{{ route('shop.index') }}"
-               class="{{ request()->routeIs('shop.index') ? 'active' : '' }}">
-                <i class="bi bi-grid"></i>
-                Каталог товарів
-            </a>
+<a href="{{ route('shop.index') }}"
+   class="{{ request()->routeIs('shop.index') ? 'active' : '' }}">
+    <i class="bi bi-grid"></i>
+    {{ __('messagesmob.catalog') }}
+</a>
 
-             <a href="{{ route('categories.index') }}"
-               class="{{ request()->routeIs('categories.index') ? 'active' : '' }}">
-                <i class="bi bi-boxes"></i>
-                Категорії димарів
-            </a>
+<a href="{{ route('categories.index') }}"
+   class="{{ request()->routeIs('categories.index') ? 'active' : '' }}">
+    <i class="bi bi-boxes"></i>
+    {{ __('messagesmob.categories') }}
+</a>
 
-            <a href="{{ route('about.index') }}"
-               class="{{ request()->routeIs('about.index') ? 'active' : '' }}">
-                <i class="bi bi-info-circle"></i>
-                Про нас
-            </a>
+<a href="{{ route('about.index') }}"
+   class="{{ request()->routeIs('about.index') ? 'active' : '' }}">
+    <i class="bi bi-info-circle"></i>
+    {{ __('messagesmob.about') }}
+</a>
 
-            <a href="{{ route('contacts.index') }}"
-               class="{{ request()->routeIs('contacts.index') ? 'active' : '' }}">
-                <i class="bi bi-telephone"></i>
-                Контакти
-            </a>
+<a href="{{ route('contacts.index') }}"
+   class="{{ request()->routeIs('contacts.index') ? 'active' : '' }}">
+    <i class="bi bi-telephone"></i>
+    {{ __('messagesmob.contacts') }}
+</a>
 
             @auth
 
                 <hr>
 
-                <a href="{{ route('dashboard') }}">
-                    <i class="bi bi-speedometer2"></i>
-                    Кабінет
-                </a>
+               <a href="{{ route('dashboard') }}">
+    <i class="bi bi-speedometer2"></i>
+    {{ __('messagesmob.account') }}
+</a>
 
-                <a href="{{ route('cart.index') }}">
-                    <i class="bi bi-cart3"></i>
-                    Кошик
-                </a>
+<a href="{{ route('cart.index') }}">
+    <i class="bi bi-cart3"></i>
+    {{ __('messagesmob.cart') }}
+</a>
 
                 @if(auth()->user()->isAdmin())
-                    <a href="{{ route('admin.index') }}">
-                        <i class="bi bi-shield-lock"></i>
-                        Адмін панель
-                    </a>
+                   <a href="{{ route('admin.index') }}">
+    <i class="bi bi-shield-lock"></i>
+    {{ __('messagesmob.admin_panel') }}
+</a>
                 @endif
 
                 <hr>
 
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
-                    <button class="mobile-logout">
-                        <i class="bi bi-box-arrow-right"></i>
-                        Вийти
-                    </button>
+                   <button class="mobile-logout">
+    <i class="bi bi-box-arrow-right"></i>
+    {{ __('messagesmob.logout') }}
+</button>
                 </form>
 
             @else
 
                 <hr>
- <button class="mobile-auth"
-                        data-bs-toggle="modal"
-                        data-bs-target="#loginModal">
-                    Вхід
-                </button>
+<button class="mobile-auth"
+        data-bs-toggle="modal"
+        data-bs-target="#loginModal">
+    {{ __('messagesmob.login') }}
+</button>
 
-                <button class="mobile-auth secondary"
-                        data-bs-toggle="modal"
-                        data-bs-target="#registerModal">
-                    Реєстрація
-                </button>
+<button class="mobile-auth secondary"
+        data-bs-toggle="modal"
+        data-bs-target="#registerModal">
+    {{ __('messagesmob.register') }}
+</button>
 
             @endauth
 
@@ -204,21 +204,37 @@
     </div>
 </div>
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function () {
+
     const mobileMenu = document.getElementById('mobileMenu');
+
     if (!mobileMenu) return;
 
     // Инициализируем экземпляр Offcanvas
     const offcanvasInstance = new bootstrap.Offcanvas(mobileMenu);
 
-    // Находим все кнопки в меню, которые открывают модальные окна
-    const authButtons = mobileMenu.querySelectorAll('[data-bs-target="#loginModal"], [data-bs-target="#registerModal"]');
+    // Кнопки входа и регистрации
+    const authButtons = mobileMenu.querySelectorAll(
+        '[data-bs-target="#loginModal"], [data-bs-target="#registerModal"]'
+    );
 
     authButtons.forEach(button => {
         button.addEventListener('click', () => {
-            // Закрываем меню
+            // Закрываем мобильное меню
             offcanvasInstance.hide();
         });
     });
+
+    // Убираем фокус ДО того, как Bootstrap добавит aria-hidden
+    document.addEventListener('hide.bs.modal', function (event) {
+
+        const modal = event.target;
+
+        if (modal.contains(document.activeElement)) {
+            document.activeElement.blur();
+        }
+
+    });
+
 });
-    </script>
+</script>
