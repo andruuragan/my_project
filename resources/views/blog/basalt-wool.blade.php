@@ -1318,7 +1318,7 @@
 </section>
 <section class="my-5">
 
-    <h2 class="fw-bold mb-4">
+<h2 class="fw-bold mb-4 text-center">
     {{ __('article-basalt.read_also') }}
 </h2>
 
