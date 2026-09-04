@@ -192,6 +192,20 @@
     <div class="card border-0 shadow rounded-4">
 
         <div class="card-body p-5">
+             {{-- Заголовок мастера --}}
+        <div class="text-center mb-4">
+            <span class="badge bg-warning text-dark mb-2">
+                DymSystems
+            </span>
+
+            <h2 class="fw-bold mb-2">
+                Майстер підбору димоходу
+            </h2>
+
+            <p class="text-muted mb-0">
+                Давайте підберемо димохідну систему під ваші потреби
+            </p>
+        </div>
 
             {{-- Прогресс --}}
             <div class="d-flex justify-content-between mb-3 small fw-semibold">

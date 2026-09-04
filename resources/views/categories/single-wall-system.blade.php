@@ -217,6 +217,38 @@
     </div>
 
 </div>
+<div class="config-alert rounded-4 p-4 mt-5">
+
+    <div class="d-lg-flex justify-content-between align-items-center">
+ 
+    
+    <div>
+        <h5 class="fw-bold mb-2">
+            <i class="bi bi-calculator me-2"></i>
+            Потрібно розрахувати димохід?
+        </h5>
+
+        <p class="mb-0">
+            Якщо ви не знаєте, який діаметр димоходу потрібен для вашого обладнання,
+            скористайтеся нашим калькулятором. Він допоможе виконати розрахунок
+            основних параметрів димохідної системи.
+        </p>
+    </div>
+
+    <div class="mt-3 mt-lg-0 ms-lg-4 flex-shrink-0">
+        <a href="{{ route('chimney.calculator') }}"
+   class="btn btn-warning rounded-pill d-inline-flex align-items-center justify-content-center"
+   style="width: 190px; height: 48px;">
+
+            Калькулятор
+
+            <i class="bi bi-calculator ms-2"></i>
+        </a>
+   
+    </div>
+
+</div>
+</div>
 </section>
 
 <section id="selection" class="container-1600 py-5">
@@ -224,6 +256,20 @@
     <div class="card border-0 shadow rounded-4">
 
         <div class="card-body p-5">
+             {{-- Заголовок мастера --}}
+        <div class="text-center mb-4">
+            <span class="badge bg-warning text-dark mb-2">
+                DymSystems
+            </span>
+
+            <h2 class="fw-bold mb-2">
+                Майстер підбору димоходу
+            </h2>
+
+            <p class="text-muted mb-0">
+                Давайте підберемо димохідну систему під ваші потреби
+            </p>
+        </div>
 
             {{-- Прогресс --}}
             <div class="d-flex justify-content-between mb-3 small fw-semibold">
