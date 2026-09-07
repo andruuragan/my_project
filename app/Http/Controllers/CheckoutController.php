@@ -154,15 +154,16 @@ Http::post("https://api.telegram.org/bot{$botToken}/sendMessage", [
         }
 
         // 3. Повертаємо користувача назад із сесійним повідомленням
-       if ($request->expectsJson()) {
+      if ($request->expectsJson()) {
+
     return response()->json([
-        'success' => 'Дякуємо! Заявку успішно прийнято.'
+        'success' => __('messages.lead_success')
     ]);
 }
 
 return redirect()->back()->with(
     'success',
-    'Дякуємо! Заявку успішно прийнято.'
+    __('messages.lead_success')
 );
          //return redirect()->back()->with('success', 'Дякуємо! Заявку успішно прийнято. Наш інженер зв\'яжеться з вами найближчим часом.');
     }

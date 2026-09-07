@@ -37,9 +37,9 @@ class ContactsController extends Controller
         new ContactFormNotification($data)
     );
 
-    return back()->with(
-        'success',
-        'Дякуємо! Ваше повідомлення успішно відправлено.'
-    );
+   return back()->with(
+    'success',
+    __('contacts.message_sent')
+);
 }
 }

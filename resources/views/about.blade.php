@@ -362,7 +362,9 @@
         <div class="modal-content">
 
             <div class="modal-header">
-                <h5 class="modal-title">Консультація</h5>
+                <h5 class="modal-title">
+                    {{ __('about.consultation_modal_title') }}
+                </h5>
 
                 <button
                     type="button"
@@ -384,21 +386,28 @@
                            name="device_type"
                            value="Консультація (модалка)">
 
-                    <input type="text" name="name" id="name" class="form-control mb-3" placeholder="Ваше ім'я" autocomplete="name" required>
+                    <input
+                        type="text"
+                        name="name"
+                        id="name"
+                        class="form-control mb-3"
+                        placeholder="{{ __('about.consultation_name_placeholder') }}"
+                        autocomplete="name"
+                        required>
 
-                   <input 
-    type="tel" 
-    name="phone" 
-    id="phone" 
-    class="form-control mb-3" 
-    placeholder="+38 (___) ___-__-__" 
-    autocomplete="tel" 
-    required>
+                    <input
+                        type="tel"
+                        name="phone"
+                        id="phone"
+                        class="form-control mb-3"
+                        placeholder="+38 (___) ___-__-__"
+                        autocomplete="tel"
+                        required>
 
                     <button
                         type="submit"
                         class="btn btn-warning w-100">
-                        Відправити
+                        {{ __('about.consultation_submit') }}
                     </button>
 
                 </form>

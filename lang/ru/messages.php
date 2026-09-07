@@ -28,4 +28,6 @@ return [
     'forgot_password' => 'Забыли пароль?',
     'remember_me' => 'Запомнить меня',
     'login_button' => 'Войти',
+    // ru/messages.php
+'lead_success' => 'Спасибо! Заявка успешно принята.',
 ];

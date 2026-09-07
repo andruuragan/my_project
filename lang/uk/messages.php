@@ -28,4 +28,6 @@ return [
      'forgot_password' => 'Забули пароль?',
      'remember_me' => "Запам'ятати мене",
      'login_button' => 'Увійти',
+     
+'lead_success' => 'Дякуємо! Заявку успішно прийнято.',
 ];

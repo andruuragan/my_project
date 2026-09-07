@@ -143,5 +143,9 @@ return [
 'cta_text' => 'Наши специалисты помогут подобрать оптимальную дымоходную систему.',
 
 'cta_button' => 'Получить консультацию',
+'consultation_modal_title' => 'Консультация',
+'consultation_name_placeholder' => 'Ваше имя',
+'consultation_submit' => 'Отправить',
+
 
 ];
