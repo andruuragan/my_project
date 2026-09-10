@@ -267,6 +267,126 @@
             </div>
         </article>
 
+        {{-- Читайте також --}}
+<section class="py-5">
+
+    <div class="container-1600">
+
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">
+                {{ __('article-errors.read_also_title') }}
+            </h2>
+
+            <p class="text-muted">
+                {{ __('article-errors.read_also_description') }}
+            </p>
+        </div>
+
+        <div class="row g-4">
+
+            {{-- Статья 1 --}}
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 border-0 shadow rounded-4 d-flex flex-column">
+
+                    <div style="height:220px; overflow:hidden;">
+                        <img src="{{ asset('images/chimney/basalt.webp') }}"
+                             alt="{{ __('article-errors.basalt_article_alt') }}"
+                             class="w-100 h-100"
+                             style="object-fit:cover;">
+                    </div>
+
+                   <div class="card-body d-flex flex-column">
+
+                    <h3 class="h5 fw-bold mt-3">
+                            {{ __('article-errors.basalt_article_title') }}
+                        </h3>
+
+                        <p class="text-muted">
+                            {{ __('article-errors.basalt_article_description') }}
+                        </p>
+
+                       <a href="{{ route('blog.basalt-wool') }}"
+   class="btn btn-outline-orange mt-auto"
+style="width:160px;">
+    {{ __('article-errors.read_article') }}
+</a>
+
+                    </div>
+
+                </div>
+            </div>
+
+            {{-- Статья 2 --}}
+            <div class="col-md-6 col-lg-4">
+               <div class="card h-100 border-0 shadow rounded-4 d-flex flex-column">
+
+                    <div style="height:220px; overflow:hidden;">
+                        <img src="{{ asset('images/chimney/soot.webp') }}"
+                             alt="{{ __('article-errors.soot_article_alt') }}"
+                             class="w-100 h-100"
+                             style="object-fit:cover;">
+                    </div>
+
+                   <div class="card-body d-flex flex-column">
+
+                       <h3 class="h5 fw-bold mt-3">
+                            {{ __('article-errors.soot_article_title') }}
+                        </h3>
+
+                        <p class="text-muted">
+                            {{ __('article-errors.soot_article_description') }}
+                        </p>
+<a href="{{ route('blog.soot') }}"
+  class="btn btn-outline-orange mt-auto"
+style="width:160px;">
+    {{ __('article-errors.read_article') }}
+</a>
+
+                    </div>
+
+                </div>
+            </div>
+
+           {{-- Статья 3 --}}
+<div class="col-md-6 col-lg-4">
+   <div class="card h-100 border-0 shadow rounded-4 d-flex flex-column">
+
+      <div style="height:220px; overflow:hidden;">
+    <img src="{{ asset('images/chimney/' . (app()->getLocale() === 'ru'
+        ? 'grade1ru.webp'
+        : 'grade1.webp')) }}"
+         alt="{{ app()->getLocale() === 'ru'
+            ? 'Марки стали в дымоходах'
+            : 'Марки сталі в димоходах' }}"
+         class="w-100 h-100"
+         style="object-fit:cover; object-position:center; display:block; transform:scale(1.12);">
+</div>
+
+       <div class="card-body d-flex flex-column">
+
+            <h3 class="h5 fw-bold mt-3">
+                {{ __('article-errors.related_steel_title') }}
+            </h3>
+
+            <p class="text-muted">
+                {{ __('article-errors.related_steel_text') }}
+            </p>
+
+           <a href="{{ route('blog.steel-grades') }}"
+   class="btn btn-outline-orange mt-auto"
+style="width:160px;">
+    {{ __('article-errors.related_steel_button') }}
+</a>
+        </div>
+
+    </div>
+</div>
+        </div>
+
+    </div>
+
+</section>
+
         {{-- CTA блок --}}
     <div class="p-5 mt-5 bg-dark text-white rounded-4 text-center">
     <h3 class="fw-bold">

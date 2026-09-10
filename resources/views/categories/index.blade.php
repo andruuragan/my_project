@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
-@section('title', 'Категорії димарів | DymSystems — одностінні, термо та комплектуючі')
-@section('description', 'Категорії димарів DymSystems: одностінні димоходи, термо (сендвіч) димоходи, комплектуючі, кріплення та овальні елементи з нержавіючої сталі. | DymSystems')
+@section('title', __('categories.title'))
+@section('description', __('categories.description'))
 
 @section('content')
 
@@ -12,156 +12,192 @@
 {{-- Навігаційні крихти (Breadcrumbs) --}}
                 
                 <nav aria-label="breadcrumb" class="mb-4">
-                    <ol class="breadcrumb mb-0">
-                        <li class="breadcrumb-item">
-    <a href="{{ route('main.index') }}"
-       class="text-decoration-none text-black-50 hover-orange">
-        Головна
-    </a>
-</li>
-                        
-                        <li class="breadcrumb-item active text-black" aria-current="page">
-                            
-                            <span style="color: #f97316; font-weight: 500;">Категорії димарів</span>
-                        </li>
-                    </ol>
-                </nav>
-    <!-- HERO -->
+    <ol class="breadcrumb mb-0">
+
+        <li class="breadcrumb-item">
+            <a href="{{ route('main.index') }}"
+               class="text-decoration-none text-black-50 hover-orange">
+                {{ __('categories.breadcrumb_home') }}
+            </a>
+        </li>
+
+        <li class="breadcrumb-item active text-black" aria-current="page">
+            <span style="color: #f97316; font-weight: 500;">
+                {{ __('categories.breadcrumb_categories') }}
+            </span>
+        </li>
+
+    </ol>
+</nav>
+ <!-- HERO -->
+
 <div class="hero-banner1 rounded-4 p-5 mb-5 text-center border"
      style="background: linear-gradient(135deg, #fff8e8 0%, #ffffff 100%);">
 
- 
-
-   <div class="display-3 text-warning mb-3">
-    <i class="bi bi-house-gear-fill"></i>
-</div>
+    <div class="display-3 text-warning mb-3">
+        <i class="bi bi-house-gear-fill"></i>
+    </div>
 
     <h1 class="display-5 fw-bold mb-3">
-        Категорії димохідних систем
+        {{ __('categories.hero_title') }}
     </h1>
 
     <p class="lead text-muted mx-auto" style="max-width:800px;">
-        Оберіть тип димохідної системи залежно від способу монтажу,
-        опалювального обладнання та умов експлуатації.
-        Після вибору категорії ви зможете швидко підібрати необхідні
-        елементи та перейти до каталогу товарів.
+        {{ __('categories.hero_description') }}
     </p>
+
     <div class="d-flex justify-content-center flex-wrap gap-2 mt-4">
-    <span class="badge bg-light text-dark border px-3 py-2">
-        <i class="bi bi-check-circle-fill text-success me-1"></i>
-        AISI 304 / 321
-    </span>
 
-    <span class="badge bg-light text-dark border px-3 py-2">
-        <i class="bi bi-check-circle-fill text-success me-1"></i>
-        Ø100–500 мм
-    </span>
+        <span class="badge bg-light text-dark border px-3 py-2">
+            <i class="bi bi-check-circle-fill text-success me-1"></i>
+            AISI 304 / 321
+        </span>
 
-    <span class="badge bg-light text-dark border px-3 py-2">
-        <i class="bi bi-check-circle-fill text-success me-1"></i>
-        Одностінні та сендвіч
-    </span>
+        <span class="badge bg-light text-dark border px-3 py-2">
+            <i class="bi bi-check-circle-fill text-success me-1"></i>
+            Ø100–500 мм
+        </span>
+
+        <span class="badge bg-light text-dark border px-3 py-2">
+            <i class="bi bi-check-circle-fill text-success me-1"></i>
+            {{ __('categories.hero_badge_systems') }}
+        </span>
+
+    </div>
+
 </div>
-</div>
+
 <!-- END HERO -->
 
    <section class="py-5">
-<div class="container-1600">
+    <div class="container-1600">
 
-<div class="text-center mb-5">
-    <span class="badge bg-warning text-dark mb-3">
-        Поради
-    </span>
+        <div class="text-center mb-5">
 
-    <h2 class="fw-bold">
-        Як обрати димохід
-    </h2>
+            <span class="badge bg-warning text-dark mb-3">
+                {{ __('categories.advice_badge') }}
+            </span>
 
-    <p class="text-muted mx-auto" style="max-width:800px">
-        Вибір димохідної системи залежить від типу опалювального обладнання,
-        температури димових газів та місця монтажу. Нижче наведено короткі
-        рекомендації, які допоможуть визначитися.
-    </p>
-</div>
+            <h2 class="fw-bold">
+                {{ __('categories.advice_title') }}
+            </h2>
 
-</div>
+            <p class="text-muted mx-auto" style="max-width:800px">
+                {{ __('categories.advice_description') }}
+            </p>
+
+        </div>
+
+    </div>
 </section>
        
 
-   <div class="row g-4">
+  <div class="row g-4">
+
     @foreach([
-    [
-        'cat' => 'single',
-        'img' => 'single-wall-banner1.webp',
-        'title' => 'Система одностінних димоходів',
-        'desc' => 'Ø100–350 мм. Використання: гільзування, внутрішні канали, ремонт існуючих шахт.'
-    ],
-    [
-        'cat' => 'sandwich',
-        'img' => 'sandwich-banner.webp',
-        'title' => 'Термо (сендвіч) система',
-        'desc' => 'Ізоляція 30/50 мм. Призначення: зовнішній монтаж, стабільна тяга, захист від конденсату.',
-        'badge' => 'Хіт продажів'
-    ],
-    [
-        'cat' => 'fittings',
-        'img' => 'fittings-banner.webp',
-        'title' => 'Система кріпленнь, хомутів, завершальних та прохідних елементів',
-        'desc' => 'Коліна, трійники, ревізії, дефлектори. Повна збірка будь-якої конфігурації.'
-    ],
-    [
-        'cat' => 'oval-chimney',
-        'img' => 'oval-banner.webp',
-        'title' => 'Система овальних нержавіючіх димоходів',
-        'desc' => 'Труби, коліна, трійники, ревізії.'
-    ]
-] as $item)
-    <div class="col-12 col-md-6">
-        <div class="card h-100 border-0 shadow-sm custom-product-card solution-card">
-          <a href="{{
-    $item['cat'] === 'single'
-    ? route('single-wall-system')
-    : ($item['cat'] === 'sandwich'
-        ? route('sandwich-system')
-        : ($item['cat'] === 'oval-chimney'
-            ? route('oval-chimney-system')
-            : ($item['cat'] === 'fittings'
-                ? route('fittings-system')
-                : route('shop.index', ['category' => $item['cat']])))
-)}}"
-   class="img-container">
-    <img src="{{ asset('images/chimney/' . $item['img']) }}"
-         width="500"
-         height="500"
-         alt="{{ $item['title'] }}"
-         class="product-img"
-         loading="lazy"
-         decoding="async">
-</a>
-            <div class="card-body p-4 text-center">
-                @if(isset($item['badge']))
-                    <span class="badge bg-warning text-dark mb-3 px-3 py-2">{{ $item['badge'] }}</span>
-                @endif
-                <h3 class="h4 fw-bold mb-3">{{ $item['title'] }}</h3>
-                <p class="text-muted mb-4">{{ $item['desc'] }}</p>
-              <a href="{{
-    $item['cat'] === 'single'
-    ? route('single-wall-system')
-    : ($item['cat'] === 'sandwich'
-        ? route('sandwich-system')
-        : ($item['cat'] === 'oval-chimney'
-            ? route('oval-chimney-system')
-            : ($item['cat'] === 'fittings'
-                ? route('fittings-system')
-                : route('shop.index', ['category' => $item['cat']])))
-)}}"
-   class="btn btn-outline-dark rounded-pill px-4">
-    Підібрати систему <i class="bi bi-arrow-right-circle ms-2"></i>
-</a>
+        [
+            'cat' => 'single',
+            'img' => 'single-wall-banner1.webp',
+            'title' => __('categories.single_title'),
+            'desc' => __('categories.single_description')
+        ],
+        [
+            'cat' => 'sandwich',
+            'img' => 'sandwich-banner.webp',
+            'title' => __('categories.sandwich_title'),
+            'desc' => __('categories.sandwich_description'),
+            'badge' => __('categories.sandwich_badge')
+        ],
+        [
+            'cat' => 'fittings',
+            'img' => 'fittings-banner.webp',
+            'title' => __('categories.fittings_title'),
+            'desc' => __('categories.fittings_description')
+        ],
+        [
+            'cat' => 'oval-chimney',
+            'img' => 'oval-banner.webp',
+            'title' => __('categories.oval_title'),
+            'desc' => __('categories.oval_description')
+        ]
+    ] as $item)
+
+        <div class="col-12 col-md-6">
+
+            <div class="card h-100 border-0 shadow-sm custom-product-card solution-card">
+
+                <a href="{{
+                    $item['cat'] === 'single'
+                    ? route('single-wall-system')
+                    : ($item['cat'] === 'sandwich'
+                        ? route('sandwich-system')
+                        : ($item['cat'] === 'oval-chimney'
+                            ? route('oval-chimney-system')
+                            : ($item['cat'] === 'fittings'
+                                ? route('fittings-system')
+                                : route('shop.index', ['category' => $item['cat']])
+                            )
+                        )
+                    )
+                }}"
+                   class="img-container">
+
+                    <img src="{{ asset('images/chimney/' . $item['img']) }}"
+                         width="500"
+                         height="500"
+                         alt="{{ $item['title'] }}"
+                         class="product-img"
+                         loading="lazy"
+                         decoding="async">
+
+                </a>
+
+                <div class="card-body p-4 text-center">
+
+                    @if(isset($item['badge']))
+                        <span class="badge bg-warning text-dark mb-3 px-3 py-2">
+                            {{ $item['badge'] }}
+                        </span>
+                    @endif
+
+                    <h3 class="h4 fw-bold mb-3">
+                        {{ $item['title'] }}
+                    </h3>
+
+                    <p class="text-muted mb-4">
+                        {{ $item['desc'] }}
+                    </p>
+
+                    <a href="{{
+                        $item['cat'] === 'single'
+                        ? route('single-wall-system')
+                        : ($item['cat'] === 'sandwich'
+                            ? route('sandwich-system')
+                            : ($item['cat'] === 'oval-chimney'
+                                ? route('oval-chimney-system')
+                                : ($item['cat'] === 'fittings'
+                                    ? route('fittings-system')
+                                    : route('shop.index', ['category' => $item['cat']])
+                                )
+                            )
+                        )
+                    }}"
+                       class="btn btn-outline-dark rounded-pill px-4">
+
+                        {{ __('categories.choose_system') }}
+
+                        <i class="bi bi-arrow-right-circle ms-2"></i>
+
+                    </a>
+
+                </div>
+
             </div>
+
         </div>
-    </div>
+
     @endforeach
+
 </div>
 
 <!-- CONFIGURATOR -->
@@ -194,26 +230,28 @@
 </div>
         </div>
 
-        <h2 class="fw-bold mb-3">
-            Не знаєте, що обрати?
-        </h2>
+       <h2 class="fw-bold mb-3">
+    {{ __('categories.configurator_title') }}
+</h2>
 
-        <p class="text-muted mx-auto mb-4" style="max-width:700px;">
-            Скористайтеся конфігуратором димохідної системи.
-            Він допоможе підібрати необхідні елементи відповідно до типу
-            обладнання, діаметра, товщини сталі та інших параметрів.
-            <strong>Нижче також доступна схема основних елементів димоходу, яка допоможе краще зорієнтуватися в комплектуючих.</strong>
-        </p>
+<p class="text-muted mx-auto mb-4" style="max-width:700px;">
+    {{ __('categories.configurator_description') }}
+    <strong>{{ __('categories.configurator_scheme_note') }}</strong>
+</p>
 
-        <button id="openConfigurator"
+<button id="openConfigurator"
         class="btn btn-warning btn-lg rounded-pill px-5 shadow-sm">
+
     <i class="bi bi-stars me-2"></i>
-    Запустити конфігуратор
+
+    {{ __('categories.configurator_button') }}
+
     <img src="/images/icons/heand.svg"
          alt="heand"
          width="32"
          height="32"
          class="ms-2">
+
 </button>
 
     </div>
@@ -221,252 +259,296 @@
 
 </div>
 {{-- Конфігуратор --}}
-<section class="mt-5"id="configuratorSection" style="display:none;">
+<section class="mt-5" id="configuratorSection" style="display:none;">
     <div id="configurator">
+
         <div class="d-flex justify-content-between small fw-semibold mb-3">
-    <span id="stepText">Крок 1 із 4</span>
-    <span id="percentText">25%</span>
-</div>
-
-<div class="progress mb-4" style="height:10px;">
-    <div class="progress-bar bg-warning" style="width:25%"></div>
-</div>
-
-<div class="d-flex justify-content-between mt-3 mb-4">
-    <button id="prevBtn" class="btn btn-outline-secondary btn-sm" style="display:none;">Назад</button>
-</div>
-
-       <div id="step1">
-    <h4 class="fw-bold text-center mb-4">
-        Для якого обладнання потрібен димохід?
-    </h4>
-
-    <div class="row g-3">
-        <div class="col-md-4">
-            <button class="config-option w-100 btn btn-outline-dark p-3"
-        data-value="304">
-
-    <img src="{{ asset('images/icons/solid-fuel-boiler.svg') }}"
-         alt="Твердопаливний котел"
-         width="40"
-         height="40"
-         class="me-2">
-
-    Твердопаливний котел
-</button>
+            <span id="stepText">{{ __('categories.config_step') }}</span>
+            <span id="percentText">25%</span>
         </div>
 
-        <div class="col-md-4">
-            <button class="config-option w-100 btn btn-outline-dark p-3"
-                    data-value="321">
-                <img src="{{ asset('images/icons/fireplace.svg') }}"
-                     alt="Камін"
-                     width="40"
-                     height="40"
-                     class="me-2">
-                Камін
+        <div class="progress mb-4" style="height:10px;">
+            <div class="progress-bar bg-warning" style="width:25%"></div>
+        </div>
+
+        <div class="d-flex justify-content-between mt-3 mb-4">
+            <button id="prevBtn"
+                    class="btn btn-outline-secondary btn-sm"
+                    style="display:none;">
+                {{ __('categories.config_back') }}
             </button>
         </div>
 
-        <div class="col-md-4">
-            <button class="config-option w-100 btn btn-outline-dark p-3"
-                    data-value="304">
-                <img src="{{ asset('images/icons/gas-boiler.svg') }}"
-                     alt="Газовий котел"
-                     width="40"
-                     height=40"
-                     class="me-2">
-                Газовий котел
-            </button>
-        </div>
-    </div>
-</div>
-       <div id="step2" style="display:none;">
-    <h4 class="fw-bold text-center mb-4">
-        Де буде встановлено димохід?
-    </h4>
+        <div id="step1">
+            <h4 class="fw-bold text-center mb-4">
+                {{ __('categories.config_equipment_question') }}
+            </h4>
 
-    <div class="row g-3">
+            <div class="row g-3">
 
-        <div class="col-md-6">
-            <button
-                class="config-option w-100 btn btn-outline-dark p-3"
-                data-value="Одностінний">
+                <div class="col-md-4">
+                    <button class="config-option w-100 btn btn-outline-dark p-3"
+                            data-value="304">
 
-                <i class="bi bi-house-door d-block fs-3 mb-2"></i>
-                <strong>Всередині будинку</strong>
-                <div class="small text-muted mt-2">
-                    Для монтажу у шахті або всередині приміщення
+                        <img src="{{ asset('images/icons/solid-fuel-boiler.svg') }}"
+                             alt="{{ __('categories.solid_fuel_boiler_alt') }}"
+                             width="40"
+                             height="40"
+                             class="me-2">
+
+                        {{ __('categories.solid_fuel_boiler_title') }}
+
+                    </button>
                 </div>
 
-            </button>
-        </div>
+                <div class="col-md-4">
+                    <button class="config-option w-100 btn btn-outline-dark p-3"
+                            data-value="321">
 
-        <div class="col-md-6">
-            <button
-                class="config-option w-100 btn btn-outline-dark p-3"
-                data-value="Термо">
+                        <img src="{{ asset('images/icons/fireplace.svg') }}"
+                             alt="{{ __('categories.fireplace_alt') }}"
+                             width="40"
+                             height="40"
+                             class="me-2">
 
-                <i class="bi bi-cloud d-block fs-3 mb-2"></i>
-                <strong>Зовні будинку</strong>
-                <div class="small text-muted mt-2">
-                    Для фасадного монтажу та роботи на відкритому повітрі
+                        {{ __('categories.fireplace_title') }}
+
+                    </button>
                 </div>
 
-            </button>
+                <div class="col-md-4">
+                    <button class="config-option w-100 btn btn-outline-dark p-3"
+                            data-value="304">
+
+                        <img src="{{ asset('images/icons/gas-boiler.svg') }}"
+                             alt="{{ __('categories.gas_boiler_alt') }}"
+                             width="40"
+                             height="40"
+                             class="me-2">
+
+                        {{ __('categories.gas_boiler_title') }}
+
+                    </button>
+                </div>
+
+            </div>
         </div>
 
-    </div>
-</div>
-<div id="step2b" style="display:none;">
-    <h4 class="fw-bold text-center mb-4">
-        Який тип зовнішнього кожуха вам потрібен?
-    </h4>
+        <div id="step2" style="display:none;">
+            <h4 class="fw-bold text-center mb-4">
+                {{ __('categories.config_installation_question') }}
+            </h4>
 
-   <div class="row g-3">
+            <div class="row g-3">
 
-    <div class="col-md-6">
-        <button class="config-option w-100 btn btn-outline-dark p-3"
-                data-value="н/оц">
-                 <img src="{{ asset('images/icons/trzn.svg') }}"
-                     alt="Газовий котел"
-                     width="50"
-                     height="50"
-                     class="me-2">
-            🟡 Економ
-            <div class="small text-muted mt-2">
-                
-                Оцинкований кожух
+                <div class="col-md-6">
+                    <button
+                        class="config-option w-100 btn btn-outline-dark p-3"
+                        data-value="Одностінний">
+
+                        <i class="bi bi-house-door d-block fs-3 mb-2"></i>
+
+                        <strong>{{ __('categories.config_inside_title') }}</strong>
+
+                        <div class="small text-muted mt-2">
+                            {{ __('categories.config_inside_description') }}
+                        </div>
+
+                    </button>
+                </div>
+
+                <div class="col-md-6">
+                    <button
+                        class="config-option w-100 btn btn-outline-dark p-3"
+                        data-value="Термо">
+
+                        <i class="bi bi-cloud d-block fs-3 mb-2"></i>
+
+                        <strong>{{ __('categories.config_outside_title') }}</strong>
+
+                        <div class="small text-muted mt-2">
+                            {{ __('categories.config_outside_description') }}
+                        </div>
+
+                    </button>
+                </div>
+
             </div>
-        </button>
-        
+        </div>
 
-    </div>
+        <div id="step2b" style="display:none;">
 
-    <div class="col-md-6">
-        <button class="config-option w-100 btn btn-outline-dark p-3"
-                data-value="н/н">
-                 <img src="{{ asset('images/icons/trner.svg') }}"
-                     alt="Газовий котел"
-                     width="50"
-                     height="50"
-                     class="me-2">
-            ⚫ Стандарт
-            <div class="small text-muted mt-2">
-                
-                Нержавійка / нержавійка
+            <h4 class="fw-bold text-center mb-4">
+                {{ __('categories.config_casing_question') }}
+            </h4>
+
+            <div class="row g-3">
+
+                <div class="col-md-6">
+                    <button class="config-option w-100 btn btn-outline-dark p-3"
+                            data-value="н/оц">
+
+                        <img src="{{ asset('images/icons/trzn.svg') }}"
+                             alt="{{ __('categories.galvanized_casing_alt') }}"
+                             width="50"
+                             height="50"
+                             class="me-2">
+
+                        🟡 {{ __('categories.config_economy') }}
+
+                        <div class="small text-muted mt-2">
+                            {{ __('categories.galvanized_casing') }}
+                        </div>
+
+                    </button>
+                </div>
+
+                <div class="col-md-6">
+                    <button class="config-option w-100 btn btn-outline-dark p-3"
+                            data-value="н/н">
+
+                        <img src="{{ asset('images/icons/trner.svg') }}"
+                             alt="{{ __('categories.stainless_casing_alt') }}"
+                             width="50"
+                             height="50"
+                             class="me-2">
+
+                        ⚫ {{ __('categories.config_standard') }}
+
+                        <div class="small text-muted mt-2">
+                            {{ __('categories.stainless_casing') }}
+                        </div>
+
+                    </button>
+                </div>
+
             </div>
-        </button>
-    </div>
+        </div>
 
-</div>
-</div>
+        <div id="step3" style="display:none;">
+            <h4 class="fw-bold text-center mb-4">
+                {{ __('categories.config_diameter_question') }}
+            </h4>
 
-      <div id="step3" style="display:none;">
-    <h4 class="fw-bold text-center mb-4">
-        Оберіть діаметр відповідно до вашого обладнання
-    </h4>
+            <div id="diameters" class="row g-3"></div>
+        </div>
 
-    <div id="diameters" class="row g-3"></div>
-</div>
+        <div id="step4" style="display:none;">
 
-       <div id="step4" style="display:none;">
-    <h4 class="fw-bold text-center mb-4"> Яка товщина сталі вам потрібна?  </h4>
+            <h4 class="fw-bold text-center mb-4">
+                {{ __('categories.config_thickness_question') }}
+            </h4>
 
-    <div class="row g-3">
-      <div class="col-md-4">
-    <button class="config-option w-100 btn btn-outline-dark p-3"
-            data-value="0,5 мм">
-        <span class="metal-line line-05"></span>
-        <span>0,5 мм</span>
-    </button>
-</div>
+            <div class="row g-3">
 
-<div class="col-md-4">
-    <button class="config-option w-100 btn btn-outline-dark p-3"
-            data-value="0,8 мм">
-        <span class="metal-line line-08"></span>
-        <span>0,8 мм</span>
-    </button>
-</div>
+                <div class="col-md-4">
+                    <button class="config-option w-100 btn btn-outline-dark p-3"
+                            data-value="0,5 мм">
 
-<div class="col-md-4">
-    <button class="config-option w-100 btn btn-outline-dark p-3"
-            data-value="1 мм">
-        <span class="metal-line line-10"></span>
-        <span>1 мм</span>
-    </button>
-</div>
-    </div>
-</div>
+                        <span class="metal-line line-05"></span>
+                        <span>0,5 мм</span>
+
+                    </button>
+                </div>
+
+                <div class="col-md-4">
+                    <button class="config-option w-100 btn btn-outline-dark p-3"
+                            data-value="0,8 мм">
+
+                        <span class="metal-line line-08"></span>
+                        <span>0,8 мм</span>
+
+                    </button>
+                </div>
+
+                <div class="col-md-4">
+                    <button class="config-option w-100 btn btn-outline-dark p-3"
+                            data-value="1 мм">
+
+                        <span class="metal-line line-10"></span>
+                        <span>1 мм</span>
+
+                    </button>
+                </div>
+
+            </div>
+        </div>
 
     </div>
 </section>
+
 <div id="resultsContainer" class="mt-5" style="display:none;">
+
     <div class="d-flex justify-content-between align-items-center mb-4">
-       <h3 class="fw-bold">
-    Знайдені рішення:
-    <i class="bi-arrow-down-circle-fill ms-2"></i>
-</h3>
-       <button class="btn btn-outline-danger" id="resetConfigurator">
-    Очистити пошук
-</button>
+
+        <h3 class="fw-bold">
+            {{ __('categories.results_title') }}
+            <i class="bi-arrow-down-circle-fill ms-2"></i>
+        </h3>
+
+        <button class="btn btn-outline-danger" id="resetConfigurator">
+            {{ __('categories.results_reset') }}
+        </button>
+
     </div>
 
     <div id="productsGrid" class="row g-4"></div>
 
     <div class="alert alert-warning border-0 shadow-sm rounded-4 mt-4">
+
         <h5 class="fw-bold mb-2">
             <i class="bi bi-info-circle me-2"></i>
-            Зверніть увагу
+            {{ __('categories.results_notice_title') }}
         </h5>
 
         <p class="mb-0">
-            Конфігуратор підбирає основні елементи димохідної системи. Для повного монтажу також можуть знадобитися кріплення, хомути, прохідні елементи, розтяжки, кронштейни та інші комплектуючі. Переглянути їх можна в окремому розділі категорій димарів.
+            {{ __('categories.results_notice_text') }}
         </p>
 
-       <a href="{{ route('fittings-system') }}"
-   class="btn rounded-pill mt-3"
-   style="color: #fd7e14; border: 1px solid #fd7e14;">
-    Переглянути кріплення та комплектуючі
-</a>
+        <a href="{{ route('fittings-system') }}"
+           class="btn rounded-pill mt-3"
+           style="color: #fd7e14; border: 1px solid #fd7e14;">
+            {{ __('categories.results_fittings_button') }}
+        </a>
+
     </div>
 
-   
 </div>
- <section class="mt-5">
+
+<section class="mt-5">
     <div class="card border-0 shadow-sm rounded-4">
         <div class="card-body p-5">
 
             <div class="text-center mb-4">
                 <span class="badge bg-warning text-dark mb-3">
-                    Довідка
+                    {{ __('categories.scheme_badge') }}
                 </span>
 
                 <h2 class="fw-bold">
-                    Схема типової димохідної системи
+                    {{ __('categories.scheme_title') }}
                 </h2>
 
                 <p class="text-muted mx-auto" style="max-width:750px;">
-                    На схемі показано основні елементи димоходу та порядок їх
-                    встановлення. Вона допоможе краще зрозуміти призначення
-                    комплектуючих, які підбирає конфігуратор.
+                    {{ __('categories.scheme_description') }}
                 </p>
             </div>
 
-            <div class="text-center">
-               <a href="{{ asset('images/chimney/scema.webp') }}" target="_blank">
-    <img
-        src="{{ asset('images/chimney/scema.webp') }}"
-        class="img-fluid rounded-3 border"
-        alt="Схема елементів димохідної системи">
-</a>
-            </div>
-            <div class="alert alert-light border mt-4 mb-0">
-    <i class="bi bi-info-circle me-2"></i>
-    Схема має ознайомчий характер. Комплектація димохідної системи залежить
-    від типу обладнання, способу монтажу та особливостей вашого об'єкта.
+           <div class="text-center">
+    <a href="{{ asset('images/chimney/' . (app()->getLocale() === 'ru' ? 'scemaru.webp' : 'scema.webp')) }}"
+       target="_blank">
+
+        <img
+            src="{{ asset('images/chimney/' . (app()->getLocale() === 'ru' ? 'scemaru.webp' : 'scema.webp')) }}"
+            class="img-fluid rounded-3 border"
+            alt="{{ __('categories.scheme_image_alt') }}">
+            
+    </a>
 </div>
+
+            <div class="alert alert-light border mt-4 mb-0">
+                <i class="bi bi-info-circle me-2"></i>
+                {{ __('categories.scheme_notice') }}
+            </div>
 
         </div>
     </div>
@@ -476,92 +558,92 @@
 
         <div class="text-center mb-5">
             <span class="badge bg-warning text-dark mb-3">
-                Поради
+                {{ __('categories.type_advice_badge') }}
             </span>
 
             <h2 class="fw-bold">
-                Як обрати тип димохідної системи
+                {{ __('categories.type_advice_title') }}
             </h2>
         </div>
 
         <div class="row g-4">
 
-      <div class="col-lg-6">
-    <div class="card single-wall-card h-100 border-0 shadow rounded-4 p-4 position-relative">
+            <div class="col-lg-6">
+                <div class="card single-wall-card h-100 border-0 shadow rounded-4 p-4 position-relative">
 
-        <img src="{{ asset('images/chimney/in.webp') }}"
-             class="single-wall-image"
-             alt="Одностінний димохід">
+                    <img src="{{ asset('images/chimney/in.webp') }}"
+                         class="single-wall-image"
+                         alt="{{ __('categories.single_wall_alt') }}">
 
-        <div class="position-relative" style="z-index:2;">
-            <div class="display-5 text-warning mb-3">
-                <i class="bi bi-house-door-fill"></i>
+                    <div class="position-relative" style="z-index:2;">
+                        <div class="display-5 text-warning mb-3">
+                            <i class="bi bi-house-door-fill"></i>
+                        </div>
+
+                        <h4 class="fw-bold mb-3">
+                            {{ __('categories.single_wall_title') }}
+                        </h4>
+
+                        <ul class="list-unstyled mb-0">
+                            <li class="mb-2">
+                                <i class="bi bi-check-circle-fill text-success me-2"></i>
+                                {{ __('categories.single_wall_inside') }}
+                            </li>
+
+                            <li class="mb-2">
+                                <i class="bi bi-check-circle-fill text-success me-2"></i>
+                                {{ __('categories.single_wall_sleeving') }}
+                            </li>
+
+                            <li>
+                                <i class="bi bi-x-circle-fill text-danger me-2"></i>
+                                {{ __('categories.single_wall_outside') }}
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
             </div>
 
-            <h4 class="fw-bold mb-3">
-                Одностінний димохід
-            </h4>
+            <div class="col-lg-6">
+                <div class="card thermo-card h-100 border-0 shadow rounded-4 p-4 position-relative">
 
-            <ul class="list-unstyled mb-0">
-                <li class="mb-2">
-                    <i class="bi bi-check-circle-fill text-success me-2"></i>
-                    Монтаж всередині приміщення
-                </li>
+                    <img src="{{ asset('images/chimney/out.webp') }}"
+                         class="thermo-image"
+                         alt="{{ __('categories.thermo_alt') }}">
 
-                <li class="mb-2">
-                    <i class="bi bi-check-circle-fill text-success me-2"></i>
-                    Гільзування шахт
-                </li>
+                    <div class="position-relative" style="z-index:2;">
 
-                <li>
-                    <i class="bi bi-x-circle-fill text-danger me-2"></i>
-                    Не рекомендується зовні
-                </li>
-            </ul>
-        </div>
+                        <div class="display-5 text-warning mb-3">
+                            <i class="bi bi-shield-check"></i>
+                        </div>
 
-    </div>
-</div>
+                        <h4 class="fw-bold mb-3">
+                            {{ __('categories.thermo_title') }}
+                        </h4>
 
-          <div class="col-lg-6">
-    <div class="card thermo-card h-100 border-0 shadow rounded-4 p-4 position-relative">
+                        <ul class="list-unstyled mb-0">
 
-        <img src="{{ asset('images/chimney/out.webp') }}"
-             class="thermo-image"
-             alt="Термо димохід">
+                            <li class="mb-2">
+                                <i class="bi bi-check-circle-fill text-success me-2"></i>
+                                {{ __('categories.thermo_outside') }}
+                            </li>
 
-        <div class="position-relative" style="z-index:2;">
+                            <li class="mb-2">
+                                <i class="bi bi-check-circle-fill text-success me-2"></i>
+                                {{ __('categories.thermo_condensate') }}
+                            </li>
 
-            <div class="display-5 text-warning mb-3">
-                <i class="bi bi-shield-check"></i>
+                            <li>
+                                <i class="bi bi-check-circle-fill text-success me-2"></i>
+                                {{ __('categories.thermo_draft') }}
+                            </li>
+
+                        </ul>
+
+                    </div>
+                </div>
             </div>
-
-            <h4 class="fw-bold mb-3">
-                Термо (сендвіч) димохід
-            </h4>
-
-            <ul class="list-unstyled mb-0">
-
-                <li class="mb-2">
-                    <i class="bi bi-check-circle-fill text-success me-2"></i>
-                    Для зовнішнього монтажу
-                </li>
-
-                <li class="mb-2">
-                    <i class="bi bi-check-circle-fill text-success me-2"></i>
-                    Мінімум конденсату
-                </li>
-
-                <li>
-                    <i class="bi bi-check-circle-fill text-success me-2"></i>
-                    Стабільна тяга
-                </li>
-
-            </ul>
-
-        </div>
-    </div>
-</div>
 
         </div>
 
@@ -579,19 +661,18 @@
             </div>
 
             <h3 class="fw-bold mb-3">
-                Хочете дізнатися, чому в димоході накопичується сажа?
+                {{ __('categories.soot_question') }}
             </h3>
 
             <p class="text-muted mb-4 mx-auto" style="max-width:700px;">
-                Дізнайтеся, через що утворюється сажа, чим вона небезпечна,
-                як впливає на тягу та коли необхідно чистити димохід.
+                {{ __('categories.soot_description') }}
             </p>
 
             <a href="{{ route('blog.soot') }}"
                class="btn btn-warning btn-lg px-4 rounded-pill">
 
                 <i class="bi bi-arrow-right-circle me-2"></i>
-                Читати статтю про сажу в димоході
+                {{ __('categories.soot_button') }}
 
             </a>
 
@@ -602,112 +683,118 @@
 </section>
 <section class="py-5 bg-light rounded-4">
 
-<div class="container-1600">
+    <div class="container-1600">
 
-<div class="text-center mb-5">
+        <div class="text-center mb-5">
 
-<h2 class="fw-bold">
-Для якого обладнання який димохід?
-</h2>
+            <h2 class="fw-bold">
+                {{ __('categories.equipment_title') }}
+            </h2>
 
-</div>
+        </div>
 
-<div class="row g-4">
+        <div class="row g-4">
 
-<div class="col-md-4">
-<div class="card h-100 border-0 shadow-sm p-4">
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm p-4">
 
-<h5 class="fw-bold">
-     <img src="{{ asset('images/icons/fireplace.svg') }}"
-                     alt="Камін"
-                     width="32"
-                     height="32"
-                     class="me-2">
-🔥 Камін
-</h5>
+                    <h5 class="fw-bold">
+                        <img src="{{ asset('images/icons/fireplace.svg') }}"
+                             alt="{{ __('categories.fireplace_alt') }}"
+                             width="32"
+                             height="32"
+                             class="me-2">
+                        🔥 {{ __('categories.fireplace_title') }}
+                    </h5>
 
-<p class="text-muted mb-0">
-Найчастіше рекомендується сталь AISI 321 товщиною 0,8–1 мм через високі температури роботи.
-</p>
-<div class="mt-3">
-    <span class="badge bg-warning text-dark px-3 py-2">
-        AISI 321
-    </span>
-</div>
+                    <p class="text-muted mb-0">
+                        {{ __('categories.fireplace_description') }}
+                    </p>
 
-</div>
-</div>
+                    <div class="mt-3">
+                        <span class="badge bg-warning text-dark px-3 py-2">
+                            AISI 321
+                        </span>
+                    </div>
 
-<div class="col-md-4">
-<div class="card h-100 border-0 shadow-sm p-4">
+                </div>
+            </div>
 
-<h5 class="fw-bold">
-      <img src="{{ asset('images/icons/gas-boiler.svg') }}"
-                     alt="Газовий котел"
-                     width="32"
-                     height="32"
-                     class="me-2">
-🏠 Газовий котел
-</h5>
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm p-4">
 
-<p class="text-muted mb-0">
-Для сучасних газових котлів зазвичай достатньо AISI 304 товщиною 0,5 мм.
-</p>
-<div class="mt-3">
-    <span class="badge bg-warning text-dark px-3 py-2">
-        AISI 304
-    </span>
-</div>
+                    <h5 class="fw-bold">
+                        <img src="{{ asset('images/icons/gas-boiler.svg') }}"
+                             alt="{{ __('categories.gas_boiler_alt') }}"
+                             width="32"
+                             height="32"
+                             class="me-2">
+                        🏠 {{ __('categories.gas_boiler_title') }}
+                    </h5>
 
-</div>
-</div>
+                    <p class="text-muted mb-0">
+                        {{ __('categories.gas_boiler_description') }}
+                    </p>
 
-<div class="col-md-4">
-<div class="card h-100 border-0 shadow-sm p-4">
+                    <div class="mt-3">
+                        <span class="badge bg-warning text-dark px-3 py-2">
+                            AISI 304
+                        </span>
+                    </div>
 
-<h5 class="fw-bold">
-     <img src="{{ asset('images/icons/solid-fuel-boiler.svg') }}"
-         alt="Твердопаливний котел"
-         width="32"
-         height="32"
-         class="me-2">
-🪵 Твердопаливний котел
-</h5>
+                </div>
+            </div>
 
-<p class="text-muted mb-0">
-Рекомендується AISI 321 або AISI 304 товщиною 0,8 або 1 мм завдяки високій термостійкості.
-</p>
-<div class="mt-3">
-    <span class="badge bg-warning text-dark px-3 py-2">
-        AISI 321
-    </span>
-    <span class="badge bg-warning text-dark px-3 py-2">
-        AISI 304
-    </span>
-</div>
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm p-4">
 
-</div>
-</div>
+                    <h5 class="fw-bold">
+                        <img src="{{ asset('images/icons/solid-fuel-boiler.svg') }}"
+                             alt="{{ __('categories.solid_fuel_boiler_alt') }}"
+                             width="32"
+                             height="32"
+                             class="me-2">
+                        🪵 {{ __('categories.solid_fuel_boiler_title') }}
+                    </h5>
 
-</div>
+                    <p class="text-muted mb-0">
+                        {{ __('categories.solid_fuel_boiler_description') }}
+                    </p>
 
-</div>
+                    <div class="mt-3">
+                        <span class="badge bg-warning text-dark px-3 py-2">
+                            AISI 321
+                        </span>
+
+                        <span class="badge bg-warning text-dark px-3 py-2">
+                            AISI 304
+                        </span>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
 
 </section>
 
 <section class="py-5">
+
     <div class="container-1600">
 
         <div class="card border-0 shadow-lg rounded-4 cta-configurator">
-             <!-- Фоновое изображение -->
-    <img src="/images/chimney/conf2.webp"
-         class="config-bg"
-         alt="fon1">
+
+            {{-- Фоновое изображение --}}
+            <img src="/images/chimney/conf2.webp"
+                 class="config-bg"
+                 alt="{{ __('categories.configurator_bg_alt') }}">
 
             <div class="card-body text-center p-5">
 
                 <span class="badge bg-warning text-dark px-3 py-2 mb-3">
-                    Швидкий підбір
+                    {{ __('categories.quick_selection_badge') }}
                 </span>
 
                 <div class="display-3 text-warning mb-3">
@@ -715,127 +802,171 @@
                 </div>
 
                 <h2 class="fw-bold mb-3">
-                    Не хочете підбирати вручну?
+                    {{ __('categories.configurator_cta_title') }}
                 </h2>
 
                 <p class="text-muted mx-auto mb-4" style="max-width:700px;">
-                    Скористайтеся інтерактивним конфігуратором.
-                    Він допоможе підібрати димохід відповідно до типу обладнання,
-                    марки сталі, товщини та діаметра.
+                    {{ __('categories.configurator_cta_description') }}
                 </p>
 
                 <div class="d-flex justify-content-center flex-wrap gap-2 mb-4">
 
                     <span class="badge bg-light border text-dark px-3 py-2">
                         <i class="bi bi-lightning-charge-fill text-warning me-1"></i>
-                        30 секунд
+                        {{ __('categories.configurator_time') }}
                     </span>
 
                     <span class="badge bg-light border text-dark px-3 py-2">
                         <i class="bi bi-check-circle-fill text-success me-1"></i>
-                        Точний підбір
+                        {{ __('categories.configurator_accuracy') }}
                     </span>
 
                     <span class="badge bg-light border text-dark px-3 py-2">
                         <i class="bi bi-sliders me-1"></i>
-                        Без помилок
+                        {{ __('categories.configurator_no_errors') }}
                     </span>
 
                 </div>
 
-               <a href="#"
-   id="startConfigurator"
-   class="btn btn-warning btn-lg rounded-pill px-5 shadow-sm">
-    <i class="bi bi-magic me-2"></i>
-    Запустити конфігуратор
-    <img src="/images/icons/heand.svg"
-         alt="heand"
-         width="32"
-         height="32"
-         class="ms-2">
-</a>
+                <a href="#"
+                   id="startConfigurator"
+                   class="btn btn-warning btn-lg rounded-pill px-5 shadow-sm">
+
+                    <i class="bi bi-magic me-2"></i>
+
+                    {{ __('categories.configurator_start_button') }}
+
+                    <img src="/images/icons/heand.svg"
+                         alt="heand"
+                         width="32"
+                         height="32"
+                         class="ms-2">
+
+                </a>
 
                 <div class="text-muted small mt-4">
-                    Підбір основних елементів димохідної системи за кілька кліків
+                    {{ __('categories.configurator_footer') }}
                 </div>
 
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="py-5">
+
+    <div class="container-1600">
+
+        <div class="text-center mb-5">
+
+            <h2 class="fw-bold">
+                {{ __('categories.faq_title') }}
+            </h2>
+
+        </div>
+
+        <div class="accordion" id="faq">
+
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#faq1">
+                        {{ __('categories.faq1_question') }}
+                    </button>
+                </h2>
+
+                <div id="faq1"
+                     class="accordion-collapse collapse show"
+                     data-bs-parent="#faq">
+
+                    <div class="accordion-body">
+                        {{ __('categories.faq1_answer') }}
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#faq2">
+                        {{ __('categories.faq2_question') }}
+                    </button>
+                </h2>
+
+                <div id="faq2"
+                     class="accordion-collapse collapse"
+                     data-bs-parent="#faq">
+
+                    <div class="accordion-body">
+                        {{ __('categories.faq2_answer') }}
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#faq3">
+                        {{ __('categories.faq3_question') }}
+                    </button>
+                </h2>
+
+                <div id="faq3"
+                     class="accordion-collapse collapse"
+                     data-bs-parent="#faq">
+
+                    <div class="accordion-body">
+                        {{ __('categories.faq3_answer') }}
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#faq4">
+                        {{ __('categories.faq4_question') }}
+                    </button>
+                </h2>
+
+                <div id="faq4"
+                     class="accordion-collapse collapse"
+                     data-bs-parent="#faq">
+
+                    <div class="accordion-body">
+                        {{ __('categories.faq4_answer') }}
+                    </div>
+
+                </div>
             </div>
 
         </div>
 
     </div>
-</section>
-<section class="py-5">
-
-<div class="container-1600">
-
-<div class="text-center mb-5">
-
-<h2 class="fw-bold">
-Поширені запитання
-</h2>
-
-</div>
-
-<div class="accordion" id="faq">
-
-<div class="accordion-item">
-<h2 class="accordion-header">
-<button class="accordion-button" data-bs-toggle="collapse" data-bs-target="#faq1">
-Чим відрізняється одностінний димохід від сендвіч-системи?
-</button>
-</h2>
-<div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faq">
-<div class="accordion-body">
-Одностінний димохід використовується всередині приміщень або для гільзування шахт. Сендвіч-система має утеплення та призначена для зовнішнього монтажу.
-</div>
-</div>
-</div>
-
-<div class="accordion-item">
-<h2 class="accordion-header">
-<button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq2">
-Яку марку сталі краще обрати?
-</button>
-</h2>
-<div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faq">
-<div class="accordion-body">
-AISI 304 — універсальний вибір, AISI 321 — для високих температур, AISI 201 — бюджетне рішення.
-</div>
-</div>
-</div>
-
-<div class="accordion-item">
-<h2 class="accordion-header">
-<button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq3">
-Чи можна встановлювати одностінний димохід зовні?
-</button>
-</h2>
-<div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faq">
-<div class="accordion-body">
-Для зовнішнього монтажу рекомендується використовувати утеплені сендвіч-димоходи.
-</div>
-</div>
-</div>
-
-<div class="accordion-item">
-<h2 class="accordion-header">
-<button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq4">
-Як визначити потрібний діаметр?
-</button>
-</h2>
-<div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faq">
-<div class="accordion-body">
-Діаметр визначається відповідно до рекомендацій виробника опалювального обладнання та параметрів димоходу.
-</div>
-</div>
-</div>
-
-</div>
-
-</div>
 
 </section>
+
+@php
+    $configuratorTranslations = [
+        'step_text' => __('categories.config_step_text'),
+        'cart_added' => __('categories.cart_added'),
+        'cart_error' => __('categories.cart_error'),
+    ];
+@endphp
+
+<script>
+    const configuratorTranslations = @json($configuratorTranslations);
+</script>
 <script>
    
 document.addEventListener('DOMContentLoaded', function () {
@@ -1096,8 +1227,10 @@ restoreActiveButton();
     const percent = currentStep / totalSteps * 100;
 
     document.querySelector('.progress-bar').style.width = percent + '%';
-    document.getElementById('stepText').textContent =
-        `Крок ${currentStep} із ${totalSteps}`;
+  document.getElementById('stepText').textContent =
+    configuratorTranslations.step_text
+        .replace(':current', currentStep)
+        .replace(':total', totalSteps);
     document.getElementById('percentText').textContent =
         Math.round(percent) + '%';
 if (n !== 4) 
@@ -1354,7 +1487,9 @@ document.addEventListener('click', function (e) {
     // 4. Уведомления и анимация
     if (data.success) {
         if (typeof refreshCart === 'function') refreshCart();
-        if (typeof showAlert === 'function') showAlert('Додано у кошик', 'success');
+       if (typeof showAlert === 'function') {
+    showAlert(configuratorTranslations.cart_added, 'success');
+}
         
         const originalContent = buyBtn.innerHTML;
        
@@ -1368,7 +1503,7 @@ document.addEventListener('click', function (e) {
     .catch(err => {
         buyBtn.classList.remove('active-process');
         buyBtn.disabled = false;
-        console.error('Помилка:', err);
+       console.error(configuratorTranslations.cart_error, err);
     });
 });
 
