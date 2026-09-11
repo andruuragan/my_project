@@ -1,25 +1,38 @@
 @extends('layouts.main')
 
-@section('title', 'Система одностінних димоходів | DymSystems')
-@section('description', 'Обирайте надійну систему одностінних димоходів від DymSystems для безпечної та ефективної вентиляції вашого дому. Професійний підбір та консультації.')
+@section('title', __('single-wall.title'))
+
+@section('description', __('single-wall.description'))
 
 @section('content')
 
 <section class="container-1600 py-5">
  {{-- Навігаційні крихти (Breadcrumbs) --}}
-                <nav aria-label="breadcrumb" class="mb-4">
-                    <ol class="breadcrumb mb-0">
-                        <li class="breadcrumb-item">
-                            <a href="{{ route('main.index') }}" class="text-decoration-none text-black-50 hover-orange transition-all">Головна</a>
-                        </li>
-                        <li class="breadcrumb-item">
-                            <a href="{{ route('categories.index') }}" class="text-decoration-none text-black-50 hover-orange transition-all">Категорії димарів</a>
-                        </li>
-                        <li class="breadcrumb-item active text-black" aria-current="page">
-                            <span style="color: #f97316; font-weight: 500;">Система одностінних димоходів</span>
-                        </li>
-                    </ol>
-                </nav>
+               
+<nav aria-label="breadcrumb" class="mb-4">
+    <ol class="breadcrumb mb-0">
+        <li class="breadcrumb-item">
+            <a href="{{ route('main.index') }}"
+               class="text-decoration-none text-black-50 hover-orange transition-all">
+                {{ __('single-wall.breadcrumb_home') }}
+            </a>
+        </li>
+
+        <li class="breadcrumb-item">
+            <a href="{{ route('categories.index') }}"
+               class="text-decoration-none text-black-50 hover-orange transition-all">
+                {{ __('single-wall.breadcrumb_categories') }}
+            </a>
+        </li>
+
+        <li class="breadcrumb-item active text-black" aria-current="page">
+            <span style="color: #f97316; font-weight: 500;">
+                {{ __('single-wall.breadcrumb_title') }}
+            </span>
+        </li>
+    </ol>
+</nav>
+
    <div class="hero-banner position-relative overflow-hidden rounded-4 p-4 p-lg-5">
 
     {{-- Зображення --}}
@@ -30,68 +43,65 @@
          alt="Система одностінних димоходів"
          loading="eager">
 
-    <div class="hero-content">
+   <div class="hero-content">
 
-        <span class="badge bg-warning text-dark px-3 py-2 mb-3">
-            DymSystems
+    <span class="badge bg-warning text-dark px-3 py-2 mb-3">
+        DymSystems
+    </span>
+
+    <h1 class="display-4 fw-bold mb-4">
+        {{ __('single-wall.hero_title') }}
+    </h1>
+
+    <p class="lead text-muted mb-4" style="max-width:700px;">
+        {{ __('single-wall.hero_description') }}
+    </p>
+
+    <div class="d-flex flex-wrap gap-3 mb-4">
+
+        <span class="badge rounded-pill bg-light text-dark border px-3 py-2">
+            <i class="bi bi-lightning-charge-fill text-warning me-2"></i>
+            {{ __('single-wall.hero_fast_selection') }}
         </span>
 
-        <h1 class="display-4 fw-bold mb-4">
-            Підбір одностінної димохідної системи
-        </h1>
+        <span class="badge rounded-pill bg-light text-dark border px-3 py-2">
+            <i class="bi bi-check-circle-fill text-success me-2"></i>
+            {{ __('single-wall.hero_compatible') }}
+        </span>
 
-        <p class="lead text-muted mb-4" style="max-width:700px;">
-            Оберіть характеристики одностінної димохідної системи, після чого
-            ми автоматично покажемо лише ті елементи, які повністю сумісні
-            з вашим вибором.
-        </p>
-
-        <div class="d-flex flex-wrap gap-3 mb-4">
-
-            <span class="badge rounded-pill bg-light text-dark border px-3 py-2">
-                <i class="bi bi-lightning-charge-fill text-warning me-2"></i>
-                Швидкий підбір
-            </span>
-
-            <span class="badge rounded-pill bg-light text-dark border px-3 py-2">
-                <i class="bi bi-check-circle-fill text-success me-2"></i>
-                Лише сумісні елементи
-            </span>
-
-            <span class="badge rounded-pill bg-light text-dark border px-3 py-2">
-                <i class="bi bi-funnel-fill text-primary me-2"></i>
-                Автоматичний відбір
-            </span>
-
-        </div>
-
-        <a href="#selection"
-           class="btn btn-warning btn-lg rounded-pill px-5 shadow-sm mt-4">
-            <i class="bi bi-arrow-right-circle-fill me-2"></i>
-            Почати підбір
-        </a>
+        <span class="badge rounded-pill bg-light text-dark border px-3 py-2">
+            <i class="bi bi-funnel-fill text-primary me-2"></i>
+            {{ __('single-wall.hero_auto_selection') }}
+        </span>
 
     </div>
+
+    <a href="#selection"
+       class="btn btn-warning btn-lg rounded-pill px-5 shadow-sm mt-4">
+        <i class="bi bi-arrow-right-circle-fill me-2"></i>
+        {{ __('single-wall.hero_button') }}
+    </a>
+
+</div>
 
 </div>
 
 </section>
 <section class="container-1600 py-5">
+<section class="container-1600 py-5">
 
     <div class="text-center mb-5">
 
         <span class="badge bg-warning text-dark mb-3">
-            Підбір за 4 кроки
+            {{ __('single-wall.steps_badge') }}
         </span>
 
         <h2 class="fw-bold mb-3">
-            Як працює підбір
+            {{ __('single-wall.steps_title') }}
         </h2>
 
         <p class="text-muted mx-auto" style="max-width:700px;">
-            Вам не потрібно переглядати весь каталог. Послідовно оберіть
-            характеристики майбутньої системи, після чого ми покажемо лише
-            відповідні елементи.
+            {{ __('single-wall.steps_description') }}
         </p>
 
     </div>
@@ -99,156 +109,151 @@
     <div class="row g-4">
 
         <div class="col-md-3">
-           <div class="card step-card h-100 border-0 shadow-sm text-center p-4 workfup-card"
-           style="background:linear-gradient(135deg,#fffdf7,#ffffff)">
+            <div class="card step-card h-100 border-0 shadow-sm text-center p-4 workfup-card"
+                 style="background:linear-gradient(135deg,#fffdf7,#ffffff)">
 
                 <div class="display-5 text-warning mb-3">
-    <i class="bi bi-circle-square"></i>
-</div>
+                    <i class="bi bi-circle-square"></i>
+                </div>
 
                 <h5 class="fw-bold">
-                    Діаметр
+                    {{ __('single-wall.step_diameter_title') }}
                 </h5>
 
                 <p class="text-muted small mb-0">
-                    Оберіть діаметр
+                    {{ __('single-wall.step_diameter_text') }}
                 </p>
 
             </div>
         </div>
 
         <div class="col-md-3">
-           <div class="card step-card h-100 border-0 shadow-sm text-center p-4 workfup-card"
-           style="background:linear-gradient(135deg,#fffdf7,#ffffff)">
-            
-
-               <div class="display-5 text-warning mb-3">
-    <i class="bi bi-shield-check"></i>
-</div>
-
-                <h5 class="fw-bold">
-                    Марка сталі
-                    
-                </h5>
-
-                <p class="text-muted small mb-0">
-                    Вкажіть марку сталі
-                    
-                </p>
-
-            </div>
-        </div>
-
-        <div class="col-md-3">
-           <div class="card step-card h-100 border-0 shadow-sm text-center p-4 workfup-card"
-           style="background:linear-gradient(135deg,#fffdf7,#ffffff)">
-
-               <div class="display-5 text-warning mb-3">
-    <i class="bi bi-rulers"></i>
-</div>
-
-                <h5 class="fw-bold">
-                    Товщина сталі
-                    
-                </h5>
-
-                <p class="text-muted small mb-0">
-                    Оберіть товщину нержавіючої сталі
-                    
-                </p>
-
-            </div>
-        </div>
-
-        <div class="col-md-3">
-           <div class="card step-card h-100 border-0 shadow-sm text-center p-4 workfup-card"
-           style="background:linear-gradient(135deg,#fffdf7,#ffffff)">
+            <div class="card step-card h-100 border-0 shadow-sm text-center p-4 workfup-card"
+                 style="background:linear-gradient(135deg,#fffdf7,#ffffff)">
 
                 <div class="display-5 text-warning mb-3">
-    <i class="bi bi-box-seam"></i>
-</div>
+                    <i class="bi bi-shield-check"></i>
+                </div>
 
                 <h5 class="fw-bold">
-                    Елемент системи
+                    {{ __('single-wall.step_steel_title') }}
                 </h5>
 
                 <p class="text-muted small mb-0">
-                    Отримайте результат
+                    {{ __('single-wall.step_steel_text') }}
+                </p>
+
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card step-card h-100 border-0 shadow-sm text-center p-4 workfup-card"
+                 style="background:linear-gradient(135deg,#fffdf7,#ffffff)">
+
+                <div class="display-5 text-warning mb-3">
+                    <i class="bi bi-rulers"></i>
+                </div>
+
+                <h5 class="fw-bold">
+                    {{ __('single-wall.step_thickness_title') }}
+                </h5>
+
+                <p class="text-muted small mb-0">
+                    {{ __('single-wall.step_thickness_text') }}
+                </p>
+
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card step-card h-100 border-0 shadow-sm text-center p-4 workfup-card"
+                 style="background:linear-gradient(135deg,#fffdf7,#ffffff)">
+
+                <div class="display-5 text-warning mb-3">
+                    <i class="bi bi-box-seam"></i>
+                </div>
+
+                <h5 class="fw-bold">
+                    {{ __('single-wall.step_element_title') }}
+                </h5>
+
+                <p class="text-muted small mb-0">
+                    {{ __('single-wall.step_element_text') }}
                 </p>
 
             </div>
         </div>
 
     </div>
+
     <div class="alert alert-success border-0 rounded-4 mt-5">
-    <i class="bi bi-check-circle-fill me-2"></i>
-    Після завершення підбору ви побачите лише сумісні комплектуючі.
-</div>
-  <div class="config-alert rounded-4 p-4 mt-5">
+        <i class="bi bi-check-circle-fill me-2"></i>
+        {{ __('single-wall.compatible_notice') }}
+    </div>
 
-    <div class="d-lg-flex justify-content-between align-items-center">
+    <div class="config-alert rounded-4 p-4 mt-5">
 
-        <div>
-            <h5 class="fw-bold mb-2">
-                <i class="bi bi-lightbulb me-2"></i>
-                Не впевнені у виборі?
-            </h5>
+        <div class="d-lg-flex justify-content-between align-items-center">
 
-            <p class="mb-0">
-                Якщо ви не впевнені, який діаметр або марку сталі обрати,
-                скористайтеся нашим конфігуратором. Він допоможе підібрати
-                димохідну систему відповідно до вашого обладнання.
-            </p>
+            <div>
+                <h5 class="fw-bold mb-2">
+                    <i class="bi bi-lightbulb me-2"></i>
+                    {{ __('single-wall.config_question') }}
+                </h5>
+
+                <p class="mb-0">
+                    {{ __('single-wall.config_description') }}
+                </p>
+            </div>
+
+            <div class="mt-3 mt-lg-0 ms-lg-4 flex-shrink-0">
+                <a href="{{ route('categories.index') }}#configurator1"
+                   class="btn btn-dark rounded-pill px-4">
+
+                    {{ __('single-wall.config_button') }}
+
+                    <img src="/images/icons/heand.svg"
+                         alt="heand"
+                         width="32"
+                         height="32"
+                         class="ms-2 invert-icon">
+                </a>
+            </div>
+
         </div>
 
-        <div class="mt-3 mt-lg-0 ms-lg-4 flex-shrink-0">
-            <a href="{{ route('categories.index') }}#configurator1"
-               class="btn btn-dark rounded-pill px-4">
-               
-                Конфігуратор
-                <img src="/images/icons/heand.svg"
-         alt="heand"
-         width="32"
-         height="32"
-           class="ms-2 invert-icon">
-            </a>
+    </div>
+
+    <div class="config-alert rounded-4 p-4 mt-5">
+
+        <div class="d-lg-flex justify-content-between align-items-center">
+
+            <div>
+                <h5 class="fw-bold mb-2">
+                    <i class="bi bi-calculator me-2"></i>
+                    {{ __('single-wall.calculator_question') }}
+                </h5>
+
+                <p class="mb-0">
+                    {{ __('single-wall.calculator_description') }}
+                </p>
+            </div>
+
+            <div class="mt-3 mt-lg-0 ms-lg-4 flex-shrink-0">
+                <a href="{{ route('chimney.calculator') }}"
+                   class="btn btn-warning rounded-pill d-inline-flex align-items-center justify-content-center"
+                   style="width: 190px; height: 48px;">
+
+                    {{ __('single-wall.calculator_button') }}
+
+                    <i class="bi bi-calculator ms-2"></i>
+                </a>
+            </div>
+
         </div>
 
     </div>
 
-</div>
-<div class="config-alert rounded-4 p-4 mt-5">
-
-    <div class="d-lg-flex justify-content-between align-items-center">
- 
-    
-    <div>
-        <h5 class="fw-bold mb-2">
-            <i class="bi bi-calculator me-2"></i>
-            Потрібно розрахувати димохід?
-        </h5>
-
-        <p class="mb-0">
-            Якщо ви не знаєте, який діаметр димоходу потрібен для вашого обладнання,
-            скористайтеся нашим калькулятором. Він допоможе виконати розрахунок
-            основних параметрів димохідної системи.
-        </p>
-    </div>
-
-    <div class="mt-3 mt-lg-0 ms-lg-4 flex-shrink-0">
-        <a href="{{ route('chimney.calculator') }}"
-   class="btn btn-warning rounded-pill d-inline-flex align-items-center justify-content-center"
-   style="width: 190px; height: 48px;">
-
-            Калькулятор
-
-            <i class="bi bi-calculator ms-2"></i>
-        </a>
-   
-    </div>
-
-</div>
-</div>
 </section>
 
 <section id="selection" class="container-1600 py-5">
@@ -258,29 +263,29 @@
         <div class="card-body p-5">
              {{-- Заголовок мастера --}}
         <div class="text-center mb-4">
-            <span class="badge bg-warning text-dark mb-2">
-                DymSystems
-            </span>
+    <span class="badge bg-warning text-dark mb-2">
+        DymSystems
+    </span>
 
-            <h2 class="fw-bold mb-2">
-                Майстер підбору димоходу
-            </h2>
+    <h2 class="fw-bold mb-2">
+        {{ __('single-wall.wizard_title') }}
+    </h2>
 
-            <p class="text-muted mb-0">
-                Давайте підберемо димохідну систему під ваші потреби
-            </p>
-        </div>
+    <p class="text-muted mb-0">
+        {{ __('single-wall.wizard_description') }}
+    </p>
+</div>
 
             {{-- Прогресс --}}
             <div class="d-flex justify-content-between mb-3 small fw-semibold">
-                <span id="stepText">
-                    Крок 1 із 4
-                </span>
+    <span id="stepText">
+        {{ __('single-wall.js_step', ['current' => 1]) }}
+    </span>
 
-                <span id="percentText">
-                    25%
-                </span>
-            </div>
+    <span id="percentText">
+        25%
+    </span>
+</div>
 
             <div class="progress mb-4" style="height:8px;">
                 <div id="progressBar"
@@ -290,37 +295,36 @@
             </div>
 
            {{-- Кнопка назад --}}
-            <button
-                id="prevBtn"
-                class="btn btn-outline-secondary btn-sm mb-4"
-                style="display:none;">
+          <button
+    id="prevBtn"
+    class="btn btn-outline-secondary btn-sm mb-4"
+    style="display:none;">
 
-                <i class="bi bi-arrow-left me-1"></i>
-                Назад
+    <i class="bi bi-arrow-left me-1"></i>
+    {{ __('single-wall.back') }}
 
-            </button>
+</button>
 
             {{-- Выбранные параметры --}}
-            <div
-                id="selectedOptions"
-                class="alert alert-light border mb-4"
-                style="display:none;">
+           <div
+    id="selectedOptions"
+    class="alert alert-light border mb-4"
+    style="display:none;">
 
-                <strong>Ваш вибір</strong>
+    <strong>{{ __('single-wall.selected_options') }}</strong>
 
-                <div id="selectedList" class="mt-2"></div>
+    <div id="selectedList" class="mt-2"></div>
 
-            </div>
+</div>
+
+            {{-- Контейнер шагов --}}
 <div id="stepsContainer">
             {{-- Шаг 1 --}}
             <div id="step1">
 
-                <h2 class="fw-bold text-center mb-4">
-
-                    Оберіть діаметр
-
-                </h2>
-
+               <h2 class="fw-bold text-center mb-4">
+    {{ __('single-wall.diameter_title') }}
+</h2>
                 <div class="row g-3">
                     @foreach([
  '100', '110', '120', '125', '130', '140', '150', '160', '180',
@@ -361,13 +365,13 @@
     {{-- STEP 2 --}}
     {{-- ========================= --}}
 <div id="step2" style="display:none;">
- <h2 class="fw-bold text-center mb-2">
-        Яка нержавіюча сталь вам потрібна?
-    </h2>
+<h2 class="fw-bold text-center mb-2">
+    {{ __('single-wall.steel_question') }}
+</h2>
 
-    <p class="text-center text-muted mb-4">
-        Кожна марка сталі має свої особливості. Оберіть варіант, який найкраще відповідає вашим умовам експлуатації.
-    </p>
+<p class="text-center text-muted mb-4">
+    {{ __('single-wall.steel_description') }}
+</p>
 
     <div class="row g-3 justify-content-center">
 
@@ -382,13 +386,16 @@
                     AISI 304
                 </div>
 
-                <span class="badge bg-success mb-3">
-                    🟢 Найпопулярніша
-                </span>
+               <span class="badge bg-success mb-3">
+    🟢 {{ __('single-wall.steel_popular') }}
+</span>
 
-                <div class="small text-muted">
-                    Газові котли, універсальне використання, висока корозійна стійкість <strong>(товщина 0.5 мм, 0.8 мм, 1 мм)</strong>.
-                </div>
+<div class="small text-muted">
+    {{ __('single-wall.steel_popular_description') }}
+    <strong>
+        {{ __('single-wall.steel_popular_thickness') }}
+    </strong>
+</div>
 
             </button>
         </div>
@@ -404,13 +411,16 @@
                     AISI 321
                 </div>
 
-                <span class="badge bg-danger mb-3">
-                    🔥 Для високих температур
-                </span>
+               <span class="badge bg-danger mb-3">
+    🔥 {{ __('single-wall.steel_high_temperature') }}
+</span>
 
-                <div class="small text-muted">
-                    Каміни, печі та твердопаливні котли. Оптимальний вибір для високих температур <strong>(товщина 0.8 мм та 1 мм)</strong>.
-                </div>
+<div class="small text-muted">
+    {{ __('single-wall.steel_high_temperature_description') }}
+    <strong>
+        {{ __('single-wall.steel_high_temperature_thickness') }}
+    </strong>
+</div>
 
             </button>
         </div>
@@ -426,13 +436,16 @@
                     AISI 201
                 </div>
 
-                <span class="badge bg-warning text-dark mb-3">
-                    💰 Економ
-                </span>
+               <span class="badge bg-warning text-dark mb-3">
+    💰 {{ __('single-wall.steel_economy') }}
+</span>
 
-                <div class="small text-muted">
-                    Доступне рішення для менш вимогливих умов експлуатації <strong>(тільки в 0.5 товщині)</strong>.
-                </div>
+<div class="small text-muted">
+    {{ __('single-wall.steel_economy_description') }}
+    <strong>
+        {{ __('single-wall.steel_economy_thickness') }}
+    </strong>
+</div>
 
             </button>
         </div>
@@ -448,13 +461,13 @@
 <div id="step3" style="display:none;">
  <div id="step3">
 
-    <h2 class="fw-bold text-center mb-2">
-        Оберіть товщину сталі
-    </h2>
+<h2 class="fw-bold text-center mb-2">
+    {{ __('single-wall.thickness_title') }}
+</h2>
 
-    <p class="text-center text-muted mb-4">
-        Доступні варіанти для обраної марки сталі.
-    </p>
+<p class="text-center text-muted mb-4">
+    {{ __('single-wall.thickness_description') }}
+</p>
 
     <div id="thicknessContainer"
          class="row g-3 justify-content-center">
@@ -468,13 +481,13 @@
     {{-- ========================= --}}
 <div id="step4" style="display:none;">
 
-    <h2 class="fw-bold text-center mb-2">
-        Який елемент вам потрібен?
-    </h2>
+ <h2 class="fw-bold text-center mb-2">
+    {{ __('single-wall.element_title') }}
+</h2>
 
-    <p class="text-center text-muted mb-4">
-        Оберіть елемент, який необхідно знайти.
-    </p>
+<p class="text-center text-muted mb-4">
+    {{ __('single-wall.element_description') }}
+</p>
 
     <div class="row g-3">
 
@@ -572,13 +585,13 @@
 
                 <div class="display-5 mb-2">✅</div>
 
-                <h2 class="fw-bold">
-                    Ваш вибір готовий
-                </h2>
+          <h2 class="fw-bold">
+    {{ __('single-wall.selection_ready_title') }}
+</h2>
 
-                <p class="text-muted mb-0">
-                    Перевірте вибрані параметри перед переходом у каталог.
-                </p>
+<p class="text-muted mb-0">
+    {{ __('single-wall.selection_ready_description') }}
+</p>
 
             </div>
 
@@ -610,14 +623,14 @@
 
             <div class="text-center mt-4">
 
-                <button
-                    id="showProducts"
-                    class="btn btn-warning btn-lg rounded-pill px-5">
+           <button
+    id="showProducts"
+    class="btn btn-warning btn-lg rounded-pill px-5">
 
-                    <i class="bi bi-search me-2"></i>
-                    Показати товари
+    <i class="bi bi-search me-2"></i>
+    {{ __('single-wall.show_products') }}
 
-                </button>
+</button>
 
             </div>
 
@@ -627,21 +640,21 @@
  <div id="productsGrid" class="row g-4 mt-2"></div>
 
     <div class="alert alert-warning border-0 shadow-sm rounded-4 mt-4">
-        <h5 class="fw-bold mb-2">
-            <i class="bi bi-info-circle me-2"></i>
-            Зверніть увагу
-        </h5>
+    <h5 class="fw-bold mb-2">
+        <i class="bi bi-info-circle me-2"></i>
+        {{ __('single-wall.attention_title') }}
+    </h5>
 
-        <p class="mb-0">
-            Для повного монтажу також можуть знадобитися кріплення, хомути, прохідні елементи, розтяжки, кронштейни та інші комплектуючі. Переглянути їх можна в окремому розділі категорій димарів.
-        </p>
+    <p class="mb-0">
+        {{ __('single-wall.attention_description') }}
+    </p>
 
-     <a href="{{ route('fittings-system') }}"
-   class="btn rounded-pill mt-3"
-   style="color: #fd7e14; border: 1px solid #fd7e14;">
-    Переглянути кріплення та комплектуючі
-</a>
-    </div>
+    <a href="{{ route('fittings-system') }}"
+       class="btn rounded-pill mt-3"
+       style="color: #fd7e14; border: 1px solid #fd7e14;">
+        {{ __('single-wall.attention_button') }}
+    </a>
+</div>
 
    
 </div>
@@ -662,7 +675,7 @@
         </span>
 
         <h2 class="fw-bold">
-            Чому обирають наші одностінні димоходи
+            {{ __('single-wall.why_choose_title') }}
         </h2>
 
     </div>
@@ -671,49 +684,58 @@
 
         <div class="col-lg-6">
 
-          <div class="d-flex mb-4">
-    <i class="bi bi-check-circle-fill text-success fs-4 me-3"></i>
-    <div>
-        Використовуємо нержавіючу сталь <strong>AISI 201, 304, 321 та 430</strong>.
-    </div>
-</div>
+            <div class="d-flex mb-4">
+                <i class="bi bi-check-circle-fill text-success fs-4 me-3"></i>
+                <div>
+                    {{ __('single-wall.why_choose_steel') }}
+                    <strong>AISI 201, 304, 321 {{ __('single-wall.and') }} 430</strong>.
+                </div>
+            </div>
 
-<div class="d-flex mb-4">
-    <i class="bi bi-check-circle-fill text-success fs-4 me-3"></i>
-    <div>
-        Точні геометричні розміри забезпечують щільне з'єднання елементів.
-    </div>
-</div>
+            <div class="d-flex mb-4">
+                <i class="bi bi-check-circle-fill text-success fs-4 me-3"></i>
+                <div>
+                    {{ __('single-wall.why_choose_geometry') }}
+                </div>
+            </div>
 
-<div class="d-flex">
-    <i class="bi bi-check-circle-fill text-success fs-4 me-3"></i>
-    <div>
-        Повний асортимент комплектуючих для монтажу димохідної системи.
-    </div>
-</div>
-<div class="row text-center mt-5">
+            <div class="d-flex">
+                <i class="bi bi-check-circle-fill text-success fs-4 me-3"></i>
+                <div>
+                    {{ __('single-wall.why_choose_assortment') }}
+                </div>
+            </div>
 
-    <div class="col-4">
-    <div class="display-6 fw-bold text-warning counter" data-target="4">
-        4
-    </div>
-    <small class="text-muted">Марки сталі</small>
-</div>
+            <div class="row text-center mt-5">
 
-<div class="col-4">
-    <div class="display-6 fw-bold text-warning counter" data-target="1000">
-        1000+
-    </div>
-    <small class="text-muted">Комплектуючих</small>
-</div>
+                <div class="col-4">
+                    <div class="display-6 fw-bold text-warning counter" data-target="4">
+                        4
+                    </div>
+                    <small class="text-muted">
+                        {{ __('single-wall.steel_grades') }}
+                    </small>
+                </div>
 
-<div class="col-4">
-    <div class="display-6 fw-bold text-warning counter" data-target="100">
-        100%
-    </div>
-    <small class="text-muted">Сумісність</small>
-</div>
-</div>
+                <div class="col-4">
+                    <div class="display-6 fw-bold text-warning counter" data-target="1000">
+                        1000+
+                    </div>
+                    <small class="text-muted">
+                        {{ __('single-wall.components') }}
+                    </small>
+                </div>
+
+                <div class="col-4">
+                    <div class="display-6 fw-bold text-warning counter" data-target="100">
+                        100%
+                    </div>
+                    <small class="text-muted">
+                        {{ __('single-wall.compatibility') }}
+                    </small>
+                </div>
+
+            </div>
 
         </div>
 
@@ -724,11 +746,13 @@
                 <div class="col-6">
                     <div class="card feature-card h-100 border-0 shadow-sm p-4 text-center">
                         <div class="display-6 text-warning">
-    <i class="bi bi-shield-check"></i>
-</div>
+                            <i class="bi bi-shield-check"></i>
+                        </div>
+
                         <h5 class="fw-bold mt-3">
-                            Якісна сталь
+                            {{ __('single-wall.feature_steel_title') }}
                         </h5>
+
                         <p class="small text-muted mb-0">
                             AISI 201, 304, 321, 430
                         </p>
@@ -738,27 +762,15 @@
                 <div class="col-6">
                     <div class="card feature-card h-100 border-0 shadow-sm p-4 text-center">
                         <div class="display-6 text-warning">
-    <i class="bi bi-rulers"></i>
-</div>
-                        <h5 class="fw-bold mt-3">
-                            Точна геометрія
-                        </h5>
-                        <p class="small text-muted mb-0">
-                            Легке складання системи
-                        </p>
-                    </div>
-                </div>
+                            <i class="bi bi-rulers"></i>
+                        </div>
 
-                <div class="col-6">
-                   <div class="card feature-card h-100 border-0 shadow-sm p-4 text-center">
-                       <div class="display-6 text-warning">
-    <i class="bi bi-fire"></i>
-</div>
                         <h5 class="fw-bold mt-3">
-                            Для різних котлів
+                            {{ __('single-wall.feature_geometry_title') }}
                         </h5>
+
                         <p class="small text-muted mb-0">
-                            Газ, дрова, пелети
+                            {{ __('single-wall.feature_geometry_text') }}
                         </p>
                     </div>
                 </div>
@@ -766,28 +778,47 @@
                 <div class="col-6">
                     <div class="card feature-card h-100 border-0 shadow-sm p-4 text-center">
                         <div class="display-6 text-warning">
-    <i class="bi bi-boxes"></i>
-</div>
+                            <i class="bi bi-fire"></i>
+                        </div>
+
                         <h5 class="fw-bold mt-3">
-                            Великий вибір
+                            {{ __('single-wall.feature_boilers_title') }}
                         </h5>
+
                         <p class="small text-muted mb-0">
-                            Повний комплект елементів
+                            {{ __('single-wall.feature_boilers_text') }}
                         </p>
                     </div>
-                    
+                </div>
+
+                <div class="col-6">
+                    <div class="card feature-card h-100 border-0 shadow-sm p-4 text-center">
+                        <div class="display-6 text-warning">
+                            <i class="bi bi-boxes"></i>
+                        </div>
+
+                        <h5 class="fw-bold mt-3">
+                            {{ __('single-wall.feature_assortment_title') }}
+                        </h5>
+
+                        <p class="small text-muted mb-0">
+                            {{ __('single-wall.feature_assortment_text') }}
+                        </p>
+                    </div>
                 </div>
 
             </div>
 
         </div>
-<div class="text-center mt-5">
-    <a href="{{ route('shop.index') }}"
-       class="btn btn-warning btn-lg rounded-pill px-5">
-        <i class="bi bi-grid me-2"></i>
-        Переглянути каталог
-    </a>
-</div>
+
+        <div class="text-center mt-5">
+            <a href="{{ route('shop.index') }}"
+               class="btn btn-warning btn-lg rounded-pill px-5">
+                <i class="bi bi-grid me-2"></i>
+                {{ __('single-wall.catalog_button') }}
+            </a>
+        </div>
+
     </div>
 
 </section>
@@ -801,7 +832,7 @@
         </span>
 
         <h2 class="fw-bold">
-            Поширені запитання
+            {{ __('single-wall.faq_title') }}
         </h2>
 
     </div>
@@ -817,7 +848,7 @@
                         data-bs-toggle="collapse"
                         data-bs-target="#faq1">
 
-                    Яка товщина сталі краща?
+                    {{ __('single-wall.faq1_question') }}
 
                 </button>
 
@@ -829,11 +860,11 @@
 
                 <div class="accordion-body">
 
-                    Для більшості газових котлів достатньо товщини
-                    <strong>0,5 мм</strong>. Для твердопаливних котлів,
-                    камінів і печей рекомендується використовувати
-                    <strong>0,8 мм або 1 мм</strong>, оскільки вони краще
-                    витримують високі температури.
+                    {{ __('single-wall.faq1_text_before') }}
+                    <strong>{{ __('single-wall.faq1_thickness_05') }}</strong>.
+                    {{ __('single-wall.faq1_text_middle') }}
+                    <strong>{{ __('single-wall.faq1_thickness_high') }}</strong>,
+                    {{ __('single-wall.faq1_text_after') }}
 
                 </div>
 
@@ -850,7 +881,7 @@
                         data-bs-toggle="collapse"
                         data-bs-target="#faq2">
 
-                    Яку марку сталі обрати?
+                    {{ __('single-wall.faq2_question') }}
 
                 </button>
 
@@ -862,11 +893,7 @@
 
                 <div class="accordion-body">
 
-                    AISI 304 є універсальним рішенням для більшості
-                    газових котлів. AISI 321 рекомендується для
-                    твердопаливного обладнання та високих температур.
-                    AISI 201 — економічний варіант для <br> менш вимогливих
-                    умов експлуатації.
+                    {{ __('single-wall.faq2_text') }}
 
                 </div>
 
@@ -883,7 +910,7 @@
                         data-bs-toggle="collapse"
                         data-bs-target="#faq3">
 
-                    Чи можна встановлювати одностінний димохід зовні?
+                    {{ __('single-wall.faq3_question') }}
 
                 </button>
 
@@ -895,10 +922,7 @@
 
                 <div class="accordion-body">
 
-                    Для зовнішнього монтажу зазвичай рекомендується
-                    використовувати утеплені (сендвіч) димоходи.
-                    Одностінні труби застосовуються переважно всередині
-                    приміщень або як внутрішня вставка.
+                    {{ __('single-wall.faq3_text') }}
 
                 </div>
 
@@ -915,7 +939,7 @@
                         data-bs-toggle="collapse"
                         data-bs-target="#faq4">
 
-                    Який діаметр димоходу потрібен?
+                    {{ __('single-wall.faq4_question') }}
 
                 </button>
 
@@ -927,10 +951,7 @@
 
                 <div class="accordion-body">
 
-                    Діаметр визначається виробником опалювального
-                    обладнання. Якщо ви не впевнені у виборі,
-                    скористайтеся конфігуратором або зверніться до наших
-                    спеціалістів.
+                    {{ __('single-wall.faq4_text') }}
 
                 </div>
 
@@ -1100,7 +1121,20 @@
 }
 </style>
 
-  <script>
+@php
+    $singleWallJsTranslations = [
+        'diameter' => __('single-wall.js_diameter'),
+        'steel' => __('single-wall.js_steel'),
+        'thickness' => __('single-wall.js_thickness'),
+        'element' => __('single-wall.js_element'),
+        'step' => __('single-wall.js_step'),
+        'ready' => __('single-wall.js_ready'),
+        'select_all' => __('single-wall.js_select_all'),
+    ];
+@endphp
+
+<script>
+    const singleWallTranslations = @json($singleWallJsTranslations);
   const selected = {
     diameter: null,
     grade: null,
@@ -1197,12 +1231,14 @@ function showStep(step, scroll = false) {
     } else {
         document.getElementById('finishStep').style.display = 'block';
 
-        document.getElementById('summary').innerHTML = `
+document.getElementById('summary').innerHTML = `
 <ul class="list-unstyled mb-0">
-    <li><strong>Діаметр:</strong> ${selected.diameter} мм</li>
-    <li><strong>Сталь:</strong> AISI ${selected.grade}</li>
-    <li><strong>Товщина:</strong> ${selected.thickness}</li>    
-    <li><strong>Елемент:</strong> ${selected.type}</li>
+
+    <li><strong>${singleWallTranslations.diameter}:</strong> ${selected.diameter} мм</li>
+    <li><strong>${singleWallTranslations.steel}:</strong> AISI ${selected.grade}</li>
+    <li><strong>${singleWallTranslations.thickness}:</strong> ${selected.thickness}</li>
+    <li><strong>${singleWallTranslations.element}:</strong> ${selected.type}</li>
+
 </ul>
 `;
 const img = document.getElementById('summaryImage');
@@ -1235,10 +1271,11 @@ function updateProgress() {
 
     document.getElementById('percentText').innerText = percent + '%';
 
-    document.getElementById('stepText').innerText =
-        currentStep <= 4
-            ? `Крок ${currentStep} із 4`
-            : 'Готово';
+   document.getElementById('stepText').innerText =
+    currentStep <= 4
+        ? singleWallTranslations.step
+            .replace(':current', currentStep)
+        : singleWallTranslations.ready;
 
     document.getElementById('prevBtn').style.display =
         currentStep > 1 ? 'inline-block' : 'none';
@@ -1336,7 +1373,7 @@ bindOptionButtons();
 document.getElementById('showProducts').addEventListener('click', function () {
     // Перевірка, чи всі кроки заповнені
     if (!selected.diameter || !selected.thickness || !selected.grade || !selected.type) {
-        alert('Будь ласка, оберіть усі параметри димоходу.');
+        alert(singleWallTranslations.select_all);
         return;
     }
     

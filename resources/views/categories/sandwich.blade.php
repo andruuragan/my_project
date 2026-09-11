@@ -1,25 +1,38 @@
 @extends('layouts.main')
 
-@section('title', 'Система сендвіч-димоходів | DymSystems')
-@section('description', 'Обирайте надійні системи сендвіч-димоходів DymSystems для ефективної теплоізоляції та безпеки вашого дому. Професійний підбір та консультації.')
+@section('title', __('sandwich.title'))
+
+@section('description', __('sandwich.description'))
 
 @section('content')
 
 <section class="container-1600 py-5">
  {{-- Навігаційні крихти (Breadcrumbs) --}}
-                <nav aria-label="breadcrumb" class="mb-4">
-                    <ol class="breadcrumb mb-0">
-                        <li class="breadcrumb-item">
-                            <a href="{{ route('main.index') }}" class="text-decoration-none text-black-50 hover-orange transition-all">Головна</a>
-                        </li>
-                        <li class="breadcrumb-item">
-                            <a href="{{ route('categories.index') }}" class="text-decoration-none text-black-50 hover-orange transition-all">Категорії димарів</a>
-                        </li>
-                        <li class="breadcrumb-item active text-black" aria-current="page">
-                            <span style="color: #f97316; font-weight: 500;">Термо (сендвіч) система</span>
-                        </li>
-                    </ol>
-                </nav>
+               <nav aria-label="breadcrumb" class="mb-4">
+    <ol class="breadcrumb mb-0">
+
+        <li class="breadcrumb-item">
+            <a href="{{ route('main.index') }}"
+               class="text-decoration-none text-black-50 hover-orange transition-all">
+                {{ __('sandwich.breadcrumb_home') }}
+            </a>
+        </li>
+
+        <li class="breadcrumb-item">
+            <a href="{{ route('categories.index') }}"
+               class="text-decoration-none text-black-50 hover-orange transition-all">
+                {{ __('sandwich.breadcrumb_categories') }}
+            </a>
+        </li>
+
+        <li class="breadcrumb-item active text-black" aria-current="page">
+            <span style="color: #f97316; font-weight: 500;">
+                {{ __('sandwich.breadcrumb_title') }}
+            </span>
+        </li>
+
+    </ol>
+</nav>
    <div class="hero-banner position-relative overflow-hidden rounded-4 p-4 p-lg-5">
 
     {{-- Зображення --}}
@@ -30,48 +43,46 @@
          alt="Термо (сендвіч) димохідна система"
          loading="eager">
 
-    <div class="hero-content">
+   <div class="hero-content">
 
-        <span class="badge bg-warning text-dark px-3 py-2 mb-3">
-            DymSystems
+    <span class="badge bg-warning text-dark px-3 py-2 mb-3">
+        DymSystems
+    </span>
+
+    <h1 class="display-4 fw-bold mb-4">
+        {{ __('sandwich.hero_title') }}
+    </h1>
+
+    <p class="lead text-muted mb-4" style="max-width:700px;">
+        {{ __('sandwich.hero_description') }}
+    </p>
+
+    <div class="d-flex flex-wrap gap-3 mb-4">
+
+        <span class="badge rounded-pill bg-light text-dark border px-3 py-2">
+            <i class="bi bi-shield-check text-warning me-2"></i>
+            {{ __('sandwich.hero_insulation') }}
         </span>
 
-        <h1 class="display-4 fw-bold mb-4">
-            Підбір термо (сендвіч) димохідної системи
-        </h1>
+        <span class="badge rounded-pill bg-light text-dark border px-3 py-2">
+            <i class="bi bi-house-check-fill text-success me-2"></i>
+            {{ __('sandwich.hero_installation') }}
+        </span>
 
-        <p class="lead text-muted mb-4" style="max-width:700px;">
-            Оберіть характеристики термо (сендвіч) димохідної системи, після чого
-            ми автоматично покажемо лише ті елементи, які повністю сумісні
-            з вашим вибором.
-        </p>
-
-        <div class="d-flex flex-wrap gap-3 mb-4">
-
-            <span class="badge rounded-pill bg-light text-dark border px-3 py-2">
-                <i class="bi bi-shield-check text-warning me-2"></i>
-                Ефективна теплоізоляція
-            </span>
-
-            <span class="badge rounded-pill bg-light text-dark border px-3 py-2">
-                <i class="bi bi-house-check-fill text-success me-2"></i>
-                Для внутрішнього й зовнішнього монтажу
-            </span>
-
-            <span class="badge rounded-pill bg-light text-dark border px-3 py-2">
-                <i class="bi bi-check-circle-fill text-primary me-2"></i>
-                Лише сумісні елементи
-            </span>
-
-        </div>
-
-        <a href="#selection"
-           class="btn btn-warning btn-lg rounded-pill px-5 shadow-sm mt-4">
-            <i class="bi bi-arrow-right-circle-fill me-2"></i>
-            Почати підбір
-        </a>
+        <span class="badge rounded-pill bg-light text-dark border px-3 py-2">
+            <i class="bi bi-check-circle-fill text-primary me-2"></i>
+            {{ __('sandwich.hero_compatible') }}
+        </span>
 
     </div>
+
+    <a href="#selection"
+       class="btn btn-warning btn-lg rounded-pill px-5 shadow-sm mt-4">
+        <i class="bi bi-arrow-right-circle-fill me-2"></i>
+        {{ __('sandwich.hero_button') }}
+    </a>
+
+</div>
 
 </div>
 </section>
@@ -80,17 +91,15 @@
     <div class="text-center mb-5">
 
         <span class="badge bg-warning text-dark mb-3">
-            Підбір за 5 кроків
+            {{ __('sandwich.steps_badge') }}
         </span>
 
         <h2 class="fw-bold mb-3">
-            Як працює підбір
+            {{ __('sandwich.steps_title') }}
         </h2>
 
         <p class="text-muted mx-auto" style="max-width:700px;">
-            Вам не потрібно переглядати весь каталог. Послідовно оберіть
-            характеристики майбутньої системи, після чого ми покажемо лише
-            відповідні елементи.
+            {{ __('sandwich.steps_description') }}
         </p>
 
     </div>
@@ -98,178 +107,170 @@
     <div class="row g-4">
 
         <div class="col">
-           <div class="card step-card h-100 border-0 shadow-sm text-center p-4 workfup-card"
-           style="background:linear-gradient(135deg,#fffdf7,#ffffff)">
+            <div class="card step-card h-100 border-0 shadow-sm text-center p-4 workfup-card"
+                 style="background:linear-gradient(135deg,#fffdf7,#ffffff)">
 
                 <div class="display-5 text-warning mb-3">
-    <i class="bi bi-circle-square"></i>
-</div>
+                    <i class="bi bi-circle-square"></i>
+                </div>
 
                 <h5 class="fw-bold">
-                    Діаметр
+                    {{ __('sandwich.step_diameter_title') }}
                 </h5>
 
                 <p class="text-muted small mb-0">
-                    Оберіть діаметр
-                </p>
-
-            </div>
-        </div>
-
-       <div class="col">
-           <div class="card step-card h-100 border-0 shadow-sm text-center p-4 workfup-card"
-           style="background:linear-gradient(135deg,#fffdf7,#ffffff)">
-            
-
-               <div class="display-5 text-warning mb-3">
-    <i class="bi bi-shield-check"></i>
-</div>
-
-                <h5 class="fw-bold">
-                    Марка сталі
-                    
-                </h5>
-
-                <p class="text-muted small mb-0">
-                    Вкажіть марку сталі внутрішньої труби
-                    
-                </p>
-
-            </div>
-        </div>
-
-      <div class="col">
-           <div class="card step-card h-100 border-0 shadow-sm text-center p-4 workfup-card"
-           style="background:linear-gradient(135deg,#fffdf7,#ffffff)">
-
-               <div class="display-5 text-warning mb-3">
-    <i class="bi bi-rulers"></i>
-</div>
-
-                <h5 class="fw-bold">
-                    Товщина сталі
-                    
-                </h5>
-
-                <p class="text-muted small mb-0">
-                    Оберіть товщину нержавіючої сталі
-                    
+                    {{ __('sandwich.step_diameter_text') }}
                 </p>
 
             </div>
         </div>
 
         <div class="col">
-    <div class="card step-card h-100 border-0 shadow-sm text-center p-4 workfup-card"
-         style="background:linear-gradient(135deg,#fffdf7,#ffffff)">
-
-        <div class="display-5 text-warning mb-3">
-            <i class="bi bi-layers"></i>
-        </div>
-
-        <h5 class="fw-bold">
-            Зовнішній кожух
-        </h5>
-
-        <p class="text-muted small mb-0">
-            Оберіть оцинкований або нержавіючий кожух
-        </p>
-
-    </div>
-</div>
-
-
-
-        <div class="col">
-           <div class="card step-card h-100 border-0 shadow-sm text-center p-4 workfup-card"
-           style="background:linear-gradient(135deg,#fffdf7,#ffffff)">
+            <div class="card step-card h-100 border-0 shadow-sm text-center p-4 workfup-card"
+                 style="background:linear-gradient(135deg,#fffdf7,#ffffff)">
 
                 <div class="display-5 text-warning mb-3">
-    <i class="bi bi-box-seam"></i>
-</div>
+                    <i class="bi bi-shield-check"></i>
+                </div>
 
                 <h5 class="fw-bold">
-                    Елемент системи
+                    {{ __('sandwich.step_steel_title') }}
                 </h5>
 
                 <p class="text-muted small mb-0">
-                    Отримайте результат
+                    {{ __('sandwich.step_steel_text') }}
+                </p>
+
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card step-card h-100 border-0 shadow-sm text-center p-4 workfup-card"
+                 style="background:linear-gradient(135deg,#fffdf7,#ffffff)">
+
+                <div class="display-5 text-warning mb-3">
+                    <i class="bi bi-rulers"></i>
+                </div>
+
+                <h5 class="fw-bold">
+                    {{ __('sandwich.step_thickness_title') }}
+                </h5>
+
+                <p class="text-muted small mb-0">
+                    {{ __('sandwich.step_thickness_text') }}
+                </p>
+
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card step-card h-100 border-0 shadow-sm text-center p-4 workfup-card"
+                 style="background:linear-gradient(135deg,#fffdf7,#ffffff)">
+
+                <div class="display-5 text-warning mb-3">
+                    <i class="bi bi-layers"></i>
+                </div>
+
+                <h5 class="fw-bold">
+                    {{ __('sandwich.step_casing_title') }}
+                </h5>
+
+                <p class="text-muted small mb-0">
+                    {{ __('sandwich.step_casing_text') }}
+                </p>
+
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card step-card h-100 border-0 shadow-sm text-center p-4 workfup-card"
+                 style="background:linear-gradient(135deg,#fffdf7,#ffffff)">
+
+                <div class="display-5 text-warning mb-3">
+                    <i class="bi bi-box-seam"></i>
+                </div>
+
+                <h5 class="fw-bold">
+                    {{ __('sandwich.step_element_title') }}
+                </h5>
+
+                <p class="text-muted small mb-0">
+                    {{ __('sandwich.step_element_text') }}
                 </p>
 
             </div>
         </div>
 
     </div>
+
     <div class="alert alert-success border-0 rounded-4 mt-5">
-    <i class="bi bi-check-circle-fill me-2"></i>
-    Після завершення підбору ви побачите лише сумісні комплектуючі.
-</div>
-  <div class="config-alert rounded-4 p-4 mt-5">
+        <i class="bi bi-check-circle-fill me-2"></i>
+        {{ __('sandwich.compatible_notice') }}
+    </div>
 
-    <div class="d-lg-flex justify-content-between align-items-center">
+    <div class="config-alert rounded-4 p-4 mt-5">
 
-        <div>
-            <h5 class="fw-bold mb-2">
-                <i class="bi bi-lightbulb me-2"></i>
-                Не впевнені у виборі?
-            </h5>
+        <div class="d-lg-flex justify-content-between align-items-center">
 
-            <p class="mb-0">
-                Якщо ви не впевнені, який діаметр, зовнішній кожух або марку сталі обрати,
-                скористайтеся нашим конфігуратором. Він допоможе підібрати
-                димохідну систему відповідно до вашого обладнання.
-            </p>
+            <div>
+                <h5 class="fw-bold mb-2">
+                    <i class="bi bi-lightbulb me-2"></i>
+                    {{ __('sandwich.config_question') }}
+                </h5>
+
+                <p class="mb-0">
+                    {{ __('sandwich.config_description') }}
+                </p>
+            </div>
+
+            <div class="mt-3 mt-lg-0 ms-lg-4 flex-shrink-0">
+                <a href="{{ route('categories.index') }}#configurator1"
+                   class="btn btn-dark rounded-pill d-inline-flex align-items-center justify-content-center"
+                   style="width: 190px; height: 48px;">
+
+                    {{ __('sandwich.config_button') }}
+
+                    <img src="/images/icons/heand.svg"
+                         width="32"
+                         height="32"
+                         class="ms-2 invert-icon">
+                </a>
+            </div>
+
         </div>
 
-        <div class="mt-3 mt-lg-0 ms-lg-4 flex-shrink-0">
-            <a href="{{ route('categories.index') }}#configurator1"
-   class="btn btn-dark rounded-pill d-inline-flex align-items-center justify-content-center"
-   style="width: 190px; height: 48px;">
-                
-                Конфігуратор
-               <img src="/images/icons/heand.svg"
-     width="32"
-     height="32"
-     class="ms-2 invert-icon">
-            </a>
+    </div>
+
+    <div class="config-alert rounded-4 p-4 mt-5">
+
+        <div class="d-lg-flex justify-content-between align-items-center">
+
+            <div>
+                <h5 class="fw-bold mb-2">
+                    <i class="bi bi-calculator me-2"></i>
+                    {{ __('sandwich.calculator_question') }}
+                </h5>
+
+                <p class="mb-0">
+                    {{ __('sandwich.calculator_description') }}
+                </p>
+            </div>
+
+            <div class="mt-3 mt-lg-0 ms-lg-4 flex-shrink-0">
+                <a href="{{ route('chimney.calculator') }}"
+                   class="btn btn-warning rounded-pill d-inline-flex align-items-center justify-content-center"
+                   style="width: 190px; height: 48px;">
+
+                    {{ __('sandwich.calculator_button') }}
+
+                    <i class="bi bi-calculator ms-2"></i>
+                </a>
+            </div>
+
         </div>
 
     </div>
-   
 
-</div>
-<div class="config-alert rounded-4 p-4 mt-5">
-
-    <div class="d-lg-flex justify-content-between align-items-center">
- 
-    
-    <div>
-        <h5 class="fw-bold mb-2">
-            <i class="bi bi-calculator me-2"></i>
-            Потрібно розрахувати димохід?
-        </h5>
-
-        <p class="mb-0">
-            Якщо ви не знаєте, який діаметр димоходу потрібен для вашого обладнання,
-            скористайтеся нашим калькулятором. Він допоможе виконати розрахунок
-            основних параметрів димохідної системи.
-        </p>
-    </div>
-
-    <div class="mt-3 mt-lg-0 ms-lg-4 flex-shrink-0">
-        <a href="{{ route('chimney.calculator') }}"
-   class="btn btn-warning rounded-pill d-inline-flex align-items-center justify-content-center"
-   style="width: 190px; height: 48px;">
-
-            Калькулятор
-
-            <i class="bi bi-calculator ms-2"></i>
-        </a>
-   
-    </div>
-
-</div>
-</div>
 </section>
 
 <section id="selection" class="container-1600 py-5">
@@ -282,26 +283,25 @@
             <span class="badge bg-warning text-dark mb-2">
                 DymSystems
             </span>
+<h2 class="fw-bold mb-2">
+    {{ __('sandwich.wizard_title') }}
+</h2>
 
-            <h2 class="fw-bold mb-2">
-                Майстер підбору димоходу
-            </h2>
-
-            <p class="text-muted mb-0">
-                Давайте підберемо димохідну систему під ваші потреби
-            </p>
+<p class="text-muted mb-0">
+    {{ __('sandwich.wizard_description') }}
+</p>
         </div>
 
             {{-- Прогресс --}}
-            <div class="d-flex justify-content-between mb-3 small fw-semibold">
-                <span id="stepText">
-                    Крок 1 із 5
-                </span>
+           <div class="d-flex justify-content-between mb-3 small fw-semibold">
+    <span id="stepText">
+        {{ __('sandwich.js_step', ['current' => 1]) }}
+    </span>
 
-                <span id="percentText">
-                    20%
-                </span>
-            </div>
+    <span id="percentText">
+        20%
+    </span>
+</div>
 
             <div class="progress mb-4" style="height:8px;">
                 <div id="progressBar"
@@ -311,15 +311,15 @@
             </div>
 
            {{-- Кнопка назад --}}
-            <button
-                id="prevBtn"
-                class="btn btn-outline-secondary btn-sm mb-4"
-                style="display:none;">
+           <button
+    id="prevBtn"
+    class="btn btn-outline-secondary btn-sm mb-4"
+    style="display:none;">
 
-                <i class="bi bi-arrow-left me-1"></i>
-                Назад
+    <i class="bi bi-arrow-left me-1"></i>
+    {{ __('sandwich.back') }}
 
-            </button>
+</button>
 
             {{-- Выбранные параметры --}}
             <div
@@ -327,7 +327,7 @@
                 class="alert alert-light border mb-4"
                 style="display:none;">
 
-                <strong>Ваш вибір</strong>
+             <strong>{{ __('sandwich.selected_options') }}</strong>
 
                 <div id="selectedList" class="mt-2"></div>
 
@@ -335,12 +335,9 @@
 <div id="stepsContainer">
             {{-- Шаг 1 --}}
             <div id="step1">
-
-                <h2 class="fw-bold text-center mb-4">
-
-                    Оберіть діаметр 
-
-                </h2>
+<h2 class="fw-bold text-center mb-4">
+    {{ __('sandwich.diameter_title') }}
+</h2>
 
                 <div class="row g-3">
                     @foreach([
@@ -385,13 +382,13 @@
     {{-- STEP 2 --}}
     {{-- ========================= --}}
 <div id="step2" style="display:none;">
- <h2 class="fw-bold text-center mb-2">
-       З якої сталі вам потрібна внутрішня труба?
-    </h2>
+<h2 class="fw-bold text-center mb-2">
+    {{ __('sandwich.steel_question') }}
+</h2>
 
-    <p class="text-center text-muted mb-4">
-        Кожна марка сталі має свої особливості. Оберіть варіант, який найкраще відповідає вашим умовам експлуатації.
-    </p>
+<p class="text-center text-muted mb-4">
+    {{ __('sandwich.steel_description') }}
+</p>
 
     <div class="row g-3 justify-content-center">
 
@@ -406,13 +403,14 @@
                     AISI 304
                 </div>
 
-                <span class="badge bg-success mb-3">
-                    🟢 Найпопулярніша
-                </span>
+               <span class="badge bg-success mb-3">
+    🟢 {{ __('sandwich.steel_popular') }}
+</span>
 
-                <div class="small text-muted">
-                    Газові котли, універсальне використання, висока корозійна стійкість <strong>(товщина 0.5 мм, 0.8 мм, 1 мм)</strong>.
-                </div>
+<div class="small text-muted">
+    {{ __('sandwich.steel_popular_description') }}
+    <strong>{{ __('sandwich.steel_popular_thickness') }}</strong>.
+</div>
 
             </button>
         </div>
@@ -428,13 +426,14 @@
                     AISI 321
                 </div>
 
-                <span class="badge bg-danger mb-3">
-                    🔥 Для високих температур
-                </span>
+               <span class="badge bg-danger mb-3">
+    🔥 {{ __('sandwich.steel_high_temperature') }}
+</span>
 
-                <div class="small text-muted">
-                    Каміни, печі та твердопаливні котли. Оптимальний вибір для високих температур <strong>(товщина 0.8 мм та 1 мм)</strong>.
-                </div>
+<div class="small text-muted">
+    {{ __('sandwich.steel_high_temperature_description') }}
+    <strong>{{ __('sandwich.steel_high_temperature_thickness') }}</strong>.
+</div>
 
             </button>
         </div>
@@ -450,13 +449,14 @@
                     AISI 201
                 </div>
 
-                <span class="badge bg-warning text-dark mb-3">
-                    💰 Економ
-                </span>
+               <span class="badge bg-warning text-dark mb-3">
+    💰 {{ __('sandwich.steel_economy') }}
+</span>
 
-                <div class="small text-muted">
-                    Доступне рішення для менш вимогливих умов експлуатації <strong>(тільки в 0.5 товщині)</strong>.
-                </div>
+<div class="small text-muted">
+    {{ __('sandwich.steel_economy_description') }}
+    <strong>{{ __('sandwich.steel_economy_thickness') }}</strong>.
+</div>
 
             </button>
         </div>
@@ -471,14 +471,13 @@
     {{-- ========================= --}}
 <div id="step3" style="display:none;">
  <div id="step3">
+<h2 class="fw-bold text-center mb-2">
+    {{ __('sandwich.thickness_title') }}
+</h2>
 
-    <h2 class="fw-bold text-center mb-2">
-        Оберіть товщину сталі внутрішньої труби
-    </h2>
-
-    <p class="text-center text-muted mb-4">
-        Доступні варіанти для обраної марки сталі.
-    </p>
+<p class="text-center text-muted mb-4">
+    {{ __('sandwich.thickness_description') }}
+</p>
 
     <div id="thicknessContainer"
          class="row g-3 justify-content-center">
@@ -493,13 +492,13 @@
 <div id="step4" style="display:none;">
  
 
-    <h2 class="fw-bold text-center mb-2">
-        Оберіть зовнішній кожух димоходу
-    </h2>
+   <h2 class="fw-bold text-center mb-2">
+    {{ __('sandwich.casing_title') }}
+</h2>
 
-    <p class="text-center text-muted mb-4">
-        Доступні варіанти.
-    </p>
+<p class="text-center text-muted mb-4">
+    {{ __('sandwich.casing_description') }}
+</p>
  <div class="row g-3 justify-content-center">
 
         {{-- Н/Н --}}
@@ -517,19 +516,16 @@
         class="mb-3">
 
     <div class="fw-bold fs-4 mb-2">
-        Кожух нержавійка (AISI 201)
-    </div>
+    {{ __('sandwich.casing_stainless_title') }}
+</div>
 
-    <span class="badge bg-success mb-3">
-        🟢 Стандарт
-    </span>
+<span class="badge bg-success mb-3">
+    🟢 {{ __('sandwich.casing_standard') }}
+</span>
 
-    <div class="small text-muted">
-        Класичний варіант для зовнішнього монтажу.
-        Висока корозійна стійкість, довговічність та
-        естетичний вигляд.
-    </div>
-
+<div class="small text-muted">
+    {{ __('sandwich.casing_stainless_description') }}
+</div>
 </button>
         </div>
 
@@ -550,17 +546,16 @@
         class="mb-3">
 
     <div class="fw-bold fs-4 mb-2">
-        Кожух із оцинкованої сталі
-    </div>
+    {{ __('sandwich.casing_galvanized_title') }}
+</div>
 
-    <span class="badge bg-warning text-dark mb-3">
-        💰 Економ
-    </span>
+<span class="badge bg-warning text-dark mb-3">
+    💰 {{ __('sandwich.casing_economy') }}
+</span>
 
-    <div class="small text-muted">
-        Доступне рішення для менш вимогливих умов експлуатації.
-        При належному догляді та обслуговуванні служить довго.
-    </div>
+<div class="small text-muted">
+    {{ __('sandwich.casing_galvanized_description') }}
+</div>
 
 </button>
         </div>
@@ -579,13 +574,13 @@
     {{-- ========================= --}}
 <div id="step5" style="display:none;">
 
-    <h2 class="fw-bold text-center mb-2">
-        Який елемент димаря вам потрібен?
-    </h2>
+   <h2 class="fw-bold text-center mb-2">
+    {{ __('sandwich.element_title') }}
+</h2>
 
-    <p class="text-center text-muted mb-4">
-        Оберіть елемент димаря, який необхідно знайти.
-    </p>
+<p class="text-center text-muted mb-4">
+    {{ __('sandwich.element_description') }}
+</p>
 
     <div class="row g-3">
 
@@ -694,14 +689,13 @@
             <div class="text-center mb-4">
 
                 <div class="display-5 mb-2">✅</div>
+<h2 class="fw-bold">
+    {{ __('sandwich.selection_ready_title') }}
+</h2>
 
-                <h2 class="fw-bold">
-                    Ваш вибір готовий
-                </h2>
-
-                <p class="text-muted mb-0">
-                    Перевірте вибрані параметри перед переходом у каталог.
-                </p>
+<p class="text-muted mb-0">
+    {{ __('sandwich.selection_ready_description') }}
+</p>
 
             </div>
 
@@ -733,14 +727,14 @@
 
             <div class="text-center mt-4">
 
-                <button
-                    id="showProducts"
-                    class="btn btn-warning btn-lg rounded-pill px-5">
+              <button
+    id="showProducts"
+    class="btn btn-warning btn-lg rounded-pill px-5">
 
-                    <i class="bi bi-search me-2"></i>
-                    Показати товари
+    <i class="bi bi-search me-2"></i>
+    {{ __('sandwich.show_products') }}
 
-                </button>
+</button>
 
             </div>
 
@@ -749,22 +743,22 @@
     </div>
 <div id="productsGrid" class="row g-4 mt-2"></div>
 
-    <div class="alert alert-warning border-0 shadow-sm rounded-4 mt-4">
-        <h5 class="fw-bold mb-2">
-            <i class="bi bi-info-circle me-2"></i>
-            Зверніть увагу
-        </h5>
+   <div class="alert alert-warning border-0 shadow-sm rounded-4 mt-4">
+    <h5 class="fw-bold mb-2">
+        <i class="bi bi-info-circle me-2"></i>
+        {{ __('sandwich.attention_title') }}
+    </h5>
 
-        <p class="mb-0">
-            Для повного монтажу також можуть знадобитися кріплення, хомути, прохідні елементи, розтяжки, кронштейни та інші комплектуючі. Переглянути їх можна в окремому розділі категорій димарів.
-        </p>
+    <p class="mb-0">
+        {{ __('sandwich.attention_description') }}
+    </p>
 
-        <a href="{{ route('fittings-system') }}"
-   class="btn rounded-pill mt-3"
-   style="color: #fd7e14; border: 1px solid #fd7e14;">
-    Переглянути кріплення та комплектуючі
-</a>
-    </div>
+    <a href="{{ route('fittings-system') }}"
+       class="btn rounded-pill mt-3"
+       style="color: #fd7e14; border: 1px solid #fd7e14;">
+        {{ __('sandwich.attention_button') }}
+    </a>
+</div>
 
     
 </div>
@@ -791,35 +785,32 @@
                     DymSystems
                 </span>
 
-                <h2 class="fw-bold mb-3">
-                     Чому обирають наші термо (сендвіч) димоходи
-                </h2>
+              <h2 class="fw-bold mb-3">
+    {{ __('sandwich.why_choose_title') }}
+</h2>
 
-                <p class="text-muted mb-4">
-                    Ми пропонуємо широкий вибір комплектуючих для сендвіч-димоходів,
-                    виготовлених із якісної нержавіючої сталі. Система забезпечує
-                    надійну теплоізоляцію, стабільну тягу та безпечну експлуатацію
-                    протягом багатьох років.
-                </p>
+<p class="text-muted mb-4">
+    {{ __('sandwich.why_choose_description') }}
+</p>
 
-                <div class="d-flex flex-wrap gap-3">
+               <div class="d-flex flex-wrap gap-3">
 
-                    <span class="badge rounded-pill bg-light border text-dark px-3 py-2">
-                        <i class="bi bi-fire text-warning me-2"></i>
-                        Висока термостійкість
-                    </span>
+    <span class="badge rounded-pill bg-light border text-dark px-3 py-2">
+        <i class="bi bi-fire text-warning me-2"></i>
+        {{ __('sandwich.feature_heat_resistance') }}
+    </span>
 
-                    <span class="badge rounded-pill bg-light border text-dark px-3 py-2">
-                        <i class="bi bi-droplet-half text-primary me-2"></i>
-                        Мінімум конденсату
-                    </span>
+    <span class="badge rounded-pill bg-light border text-dark px-3 py-2">
+        <i class="bi bi-droplet-half text-primary me-2"></i>
+        {{ __('sandwich.feature_low_condensation') }}
+    </span>
 
-                    <span class="badge rounded-pill bg-light border text-dark px-3 py-2">
-                        <i class="bi bi-house-check text-success me-2"></i>
-                        Для зовнішнього монтажу
-                    </span>
+    <span class="badge rounded-pill bg-light border text-dark px-3 py-2">
+        <i class="bi bi-house-check text-success me-2"></i>
+        {{ __('sandwich.feature_outdoor_installation') }}
+    </span>
 
-                </div>
+</div>
 
             </div>
 
@@ -828,14 +819,13 @@
                 <div class="display-1 text-warning">
                     <i class="bi bi-layers-half"></i>
                 </div>
+<h5 class="fw-bold mt-3">
+    {{ __('sandwich.system_title') }}
+</h5>
 
-                <h5 class="fw-bold mt-3">
-                    Сендвіч-система
-                </h5>
-
-                <p class="text-muted mb-0">
-                    Внутрішня труба • Теплоізоляція • Зовнішній кожух
-                </p>
+<p class="text-muted mb-0">
+    {{ __('sandwich.system_description') }}
+</p>
 
             </div>
 
@@ -853,24 +843,24 @@
 
          <div class="d-flex mb-4">
     <i class="bi bi-check-circle-fill text-success fs-4 me-3"></i>
-    <div>
-    Внутрішня труба виготовляється з нержавіючої сталі
-    <strong>AISI 304 або AISI 321</strong>.
+   <div>
+    {{ __('sandwich.steel_info') }}
+    <strong>{{ __('sandwich.steel_info_grades') }}</strong>.
     <a href="{{ route('blog.steel-grades') }}"
-   class="fw-semibold text-decoration-underline"
-   style="color:#ff8c00; text-decoration-thickness:2px;">
-    Детальніше про марки сталі →
-</a>
+       class="fw-semibold text-decoration-underline"
+       style="color:#ff8c00; text-decoration-thickness:2px;">
+        {{ __('sandwich.steel_info_link') }} →
+    </a>
 </div>
 </div>
 
 <div class="d-flex mb-4">
     <i class="bi bi-check-circle-fill text-success fs-4 me-3"></i>
   <div>
-    Теплоізоляційний шар мінімізує утворення конденсату та покращує тягу.
+    {{ __('sandwich.insulation_info') }}
     <a href="{{ route('blog.basalt-wool') }}"
        class="article-link">
-        Детальніше про базальтову вату →
+        {{ __('sandwich.insulation_info_link') }} →
     </a>
 </div>
 </div>
@@ -878,34 +868,35 @@
 <div class="d-flex mb-4">
     <i class="bi bi-check-circle-fill text-success fs-4 me-3"></i>
     <div>
-        Зовнішній кожух доступний у двох виконаннях:
-        <strong>оцинкована сталь (Економ)</strong> або
-        <strong>нержавіюча сталь AISI 201 (Стандарт)</strong>.
+        {{ __('sandwich.casing_info') }}
+        <strong>{{ __('sandwich.casing_economy_text') }}</strong>
+        {{ __('sandwich.casing_or') }}
+        <strong>{{ __('sandwich.casing_standard_text') }}</strong>.
     </div>
 </div>
 
 <div class="d-flex">
     <i class="bi bi-check-circle-fill text-success fs-4 me-3"></i>
     <div>
-        Повний асортимент комплектуючих для монтажу сендвіч-димохідної системи.
+        {{ __('sandwich.components_info') }}
     </div>
 </div>
 <div class="row text-center mt-5">
 
-    <div class="col-4">
-        <div class="display-6 fw-bold text-warning counter" data-target="2">2</div>
-        <small class="text-muted">Типи кожуха</small>
-    </div>
+   <div class="col-4">
+    <div class="display-6 fw-bold text-warning counter" data-target="2">2</div>
+    <small class="text-muted">{{ __('sandwich.stat_casing_types') }}</small>
+</div>
 
-    <div class="col-4">
-        <div class="display-6 fw-bold text-warning counter" data-target="1000">1000+</div>
-        <small class="text-muted">Комплектуючих</small>
-    </div>
+<div class="col-4">
+    <div class="display-6 fw-bold text-warning counter" data-target="1000">1000+</div>
+    <small class="text-muted">{{ __('sandwich.stat_components') }}</small>
+</div>
 
-    <div class="col-4">
-        <div class="display-6 fw-bold text-warning counter" data-target="100">100%</div>
-        <small class="text-muted">Сумісність</small>
-    </div>
+<div class="col-4">
+    <div class="display-6 fw-bold text-warning counter" data-target="100">100%</div>
+    <small class="text-muted">{{ __('sandwich.stat_compatibility') }}</small>
+</div>
 
 </div>
 
@@ -920,9 +911,9 @@
                         <div class="display-6 text-warning">
     <i class="bi bi-shield-check"></i>
 </div>
-                        <h5 class="fw-bold mt-3">
-                            Якісна сталь
-                        </h5>
+                       <h5 class="fw-bold mt-3">
+    {{ __('sandwich.quality_steel') }}
+</h5>
                         <p class="small text-muted mb-0">
                             AISI 201, 304, 321, 430
                         </p>
@@ -934,13 +925,13 @@
             <i class="bi bi-droplet-half"></i>
         </div>
 
-        <h5 class="fw-bold mt-3">
-            Мінімум конденсату
-        </h5>
+      <h5 class="fw-bold mt-3">
+    {{ __('sandwich.low_condensation_title') }}
+</h5>
 
-        <p class="small text-muted mb-0">
-            Теплоізоляція підтримує стабільну температуру димових газів.
-        </p>
+<p class="small text-muted mb-0">
+    {{ __('sandwich.low_condensation_description') }}
+</p>
     </div>
 </div>
 
@@ -951,12 +942,13 @@
                        <div class="display-6 text-warning">
     <i class="bi bi-fire"></i>
 </div>
-                        <h5 class="fw-bold mt-3">
-                            Для різних котлів
-                        </h5>
-                        <p class="small text-muted mb-0">
-                            Газ, дрова, пелети
-                        </p>
+                       <h5 class="fw-bold mt-3">
+    {{ __('sandwich.boiler_types_title') }}
+</h5>
+
+<p class="small text-muted mb-0">
+    {{ __('sandwich.boiler_types_description') }}
+</p>
                     </div>
                 </div>
                  <div class="col-6">
@@ -965,13 +957,13 @@
             <i class="bi bi-layers"></i>
         </div>
 
-        <h5 class="fw-bold mt-3">
-            Два типи кожуха
-        </h5>
+      <h5 class="fw-bold mt-3">
+    {{ __('sandwich.casing_types_title') }}
+</h5>
 
-        <p class="small text-muted mb-0">
-            Економ (оцинкована сталь) або Стандарт (AISI 201).
-        </p>
+<p class="small text-muted mb-0">
+    {{ __('sandwich.casing_types_description') }}
+</p>
     </div>
 </div>
 
@@ -981,13 +973,13 @@
             <i class="bi bi-fire"></i>
         </div>
 
-        <h5 class="fw-bold mt-3">
-            Висока термостійкість
-        </h5>
+      <h5 class="fw-bold mt-3">
+    {{ __('sandwich.high_heat_resistance_title') }}
+</h5>
 
-        <p class="small text-muted mb-0">
-            Для камінів, печей, твердопаливних та пелетних котлів.
-        </p>
+<p class="small text-muted mb-0">
+    {{ __('sandwich.high_heat_resistance_description') }}
+</p>
     </div>
 </div>
 
@@ -997,13 +989,13 @@
                     <div class="card feature-card h-100 border-0 shadow-sm p-4 text-center">
                         <div class="display-6 text-warning">
     <i class="bi bi-boxes"></i>
-</div>
-                        <h5 class="fw-bold mt-3">
-                            Великий вибір
-                        </h5>
-                        <p class="small text-muted mb-0">
-                            Повний комплект елементів
-                        </p>
+</div><h5 class="fw-bold mt-3">
+    {{ __('sandwich.large_selection_title') }}
+</h5>
+
+<p class="small text-muted mb-0">
+    {{ __('sandwich.large_selection_description') }}
+</p>
                     </div>
                     
                 </div>
@@ -1012,11 +1004,11 @@
 
         </div>
 <div class="text-center mt-5">
-    <a href="{{ route('shop.index') }}"
-       class="btn btn-warning btn-lg rounded-pill px-5">
-        <i class="bi bi-grid me-2"></i>
-        Переглянути каталог
-    </a>
+   <a href="{{ route('shop.index') }}"
+   class="btn btn-warning btn-lg rounded-pill px-5">
+    <i class="bi bi-grid me-2"></i>
+    {{ __('sandwich.view_catalog') }}
+</a>
 </div>
     </div>
 
@@ -1031,7 +1023,7 @@
         </span>
 
         <h2 class="fw-bold">
-            Поширені запитання
+            {{ __('sandwich.faq_title') }}
         </h2>
 
     </div>
@@ -1047,7 +1039,7 @@
                         data-bs-toggle="collapse"
                         data-bs-target="#faq1">
 
-                    Чим сендвіч-димохід кращий за одностінний?
+                    {{ __('sandwich.faq1_question') }}
 
                 </button>
 
@@ -1059,9 +1051,7 @@
 
                 <div class="accordion-body">
 
-                    Сендвіч-димохід має шар теплоізоляції між внутрішньою та зовнішньою
-    трубою. Це зменшує утворення конденсату, покращує тягу та робить
-    систему безпечнішою для зовнішнього <br> монтажу.
+                    {{ __('sandwich.faq1_answer') }}
 
                 </div>
 
@@ -1078,7 +1068,7 @@
                         data-bs-toggle="collapse"
                         data-bs-target="#faq2">
 
-                    Який зовнішній кожух обрати?
+                    {{ __('sandwich.faq2_question') }}
 
                 </button>
 
@@ -1090,10 +1080,12 @@
 
                 <div class="accordion-body">
 
-                    Доступні два варіанти: <strong>Економ</strong> — оцинкована сталь та
-    <strong>Стандарт</strong> — нержавіюча сталь AISI 201.
-    Оцинкований кожух є більш доступним за ціною, тоді як AISI 201 має
-    кращу корозійну <br> стійкість і довший термін служби.
+                    {{ __('sandwich.faq2_intro') }}
+                    <strong>{{ __('sandwich.faq2_economy') }}</strong>
+                    {{ __('sandwich.faq2_middle') }}
+                    <strong>{{ __('sandwich.faq2_standard') }}</strong>
+                    {{ __('sandwich.faq2_answer') }}
+
                 </div>
 
             </div>
@@ -1109,7 +1101,7 @@
                         data-bs-toggle="collapse"
                         data-bs-target="#faq3">
 
-                    Яка сталь підходить для внутрішньої труби?
+                    {{ __('sandwich.faq3_question') }}
 
                 </button>
 
@@ -1121,9 +1113,7 @@
 
                 <div class="accordion-body">
 
-                    Для газових котлів зазвичай використовують AISI 304.
-    Для печей, камінів і твердопаливних котлів рекомендується AISI 321,
-    яка краще витримує високі температури.
+                    {{ __('sandwich.faq3_answer') }}
 
                 </div>
 
@@ -1140,7 +1130,7 @@
                         data-bs-toggle="collapse"
                         data-bs-target="#faq4">
 
-                    Де можна встановлювати сендвіч-димохід?
+                    {{ __('sandwich.faq4_question') }}
 
                 </button>
 
@@ -1152,9 +1142,7 @@
 
                 <div class="accordion-body">
 
-                    Сендвіч-системи підходять як для внутрішнього, так і для зовнішнього
-    монтажу. Завдяки теплоізоляції вони забезпечують стабільну роботу
-    димоходу навіть у холодну пору року.
+                    {{ __('sandwich.faq4_answer') }}
 
                 </div>
 
@@ -1162,7 +1150,7 @@
 
         </div>
 
-         <div class="accordion-item">
+        <div class="accordion-item">
 
             <h2 class="accordion-header">
 
@@ -1171,7 +1159,7 @@
                         data-bs-toggle="collapse"
                         data-bs-target="#faq5">
 
-                    Чи потрібне утеплення сендвіч-димоходу?
+                    {{ __('sandwich.faq5_question') }}
 
                 </button>
 
@@ -1183,19 +1171,13 @@
 
                 <div class="accordion-body">
 
-                    Ні. Сендвіч-димохід вже має теплоізоляційний шар між внутрішньою та
-    зовнішньою трубою, тому в більшості випадків додаткове утеплення не
-    потрібне. Винятком є проходження через пожежонебезпечні ділянки
-    (наприклад, дерев'яні перекриття або покрівлю), де необхідно
-    дотримуватися вимог пожежної безпеки та використовувати відповідні
-    ізоляційні й прохідні елементи.
+                    {{ __('sandwich.faq5_answer') }}
 
                 </div>
 
             </div>
 
         </div>
-        
 
     </div>
 
@@ -1358,7 +1340,24 @@
 }
 </style>
 
-  <script>
+  @php
+    $sandwichJsTranslations = [
+        'diameter' => __('sandwich.js_diameter'),
+        'steel' => __('sandwich.js_steel'),
+        'thickness' => __('sandwich.js_thickness'),
+        'casing' => __('sandwich.js_casing'),
+        'element' => __('sandwich.js_element'),
+        'stainless_casing' => __('sandwich.js_stainless_casing'),
+        'galvanized_casing' => __('sandwich.js_galvanized_casing'),
+        'step' => __('sandwich.js_step'),
+        'ready' => __('sandwich.js_ready'),
+        'select_all' => __('sandwich.js_select_all'),
+    ];
+@endphp
+
+<script>
+    const sandwichTranslations = @json($sandwichJsTranslations);
+
   const selected = {
     diameter: null,
     grade: null,
@@ -1487,15 +1486,15 @@ function showStep(step) {
 
         document.getElementById('summary').innerHTML = `
 <ul class="list-unstyled mb-0">
-    <li><strong>Діаметр:</strong> ${selected.diameter} мм</li>
-    <li><strong>Сталь:</strong> AISI ${selected.grade}</li>
-    <li><strong>Товщина:</strong> ${selected.thickness}</li> 
-   <li><strong>Кожух:</strong> ${
+   <li><strong>${sandwichTranslations.diameter}:</strong> ${selected.diameter} мм</li>
+<li><strong>${sandwichTranslations.steel}:</strong> AISI ${selected.grade}</li>
+<li><strong>${sandwichTranslations.thickness}:</strong> ${selected.thickness}</li>
+<li><strong>${sandwichTranslations.casing}:</strong> ${
     selected.casing === 'н/н'
-        ? 'Нержавіюча сталь AISI 201'
-        : 'Оцинкована сталь'
+        ? sandwichTranslations.stainless_casing
+        : sandwichTranslations.galvanized_casing
 }</li>
-    <li><strong>Елемент:</strong> ${selected.type}</li>
+<li><strong>${sandwichTranslations.element}:</strong> ${selected.type}</li>
 </ul>
 `;
 const img = document.getElementById('summaryImage');
@@ -1525,10 +1524,10 @@ function updateProgress() {
 
     document.getElementById('percentText').innerText = percent + '%';
 
-    document.getElementById('stepText').innerText =
-        currentStep <= 5
-            ? `Крок ${currentStep} із 5`
-            : 'Готово';
+   document.getElementById('stepText').innerText =
+    currentStep <= 5
+        ? sandwichTranslations.step.replace(':current', currentStep)
+        : sandwichTranslations.ready;
 
     document.getElementById('prevBtn').style.display =
         currentStep > 1 ? 'inline-block' : 'none';
@@ -1558,13 +1557,13 @@ function updateProgress() {
             ${selected.thickness}
         </span>`;
     }
-    if (selected.casing) {
-        html += `<span class="badge bg-info me-2 mb-2">
-            ${selected.casing === 'н/н'
-    ? 'Нержавійка AISI 201'
-    : 'Оцинкована сталь'}
-        </span>`;
-    }
+   if (selected.casing) {
+    html += `<span class="badge bg-info me-2 mb-2">
+        ${selected.casing === 'н/н'
+            ? sandwichTranslations.stainless_casing
+            : sandwichTranslations.galvanized_casing}
+    </span>`;
+}
 
    
 
@@ -1635,7 +1634,7 @@ document.getElementById('showProducts').addEventListener('click', function () {
     // Перевірка, чи всі кроки заповнені
     // Важливо: для сендвіч-димоходів у вас 5 кроків, тому перевіряємо і 'casing'
     if (!selected.diameter || !selected.thickness || !selected.grade || !selected.casing || !selected.type) {
-        alert('Будь ласка, оберіть усі параметри димоходу.');
+        alert(sandwichTranslations.select_all);
         return;
     }
     
