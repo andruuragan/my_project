@@ -62,4 +62,69 @@ return [
 'faq6_answer' => 'Розтяжки застосовують для додаткової фіксації високих ділянок димоходу, які виступають над покрівлею або не мають достатньої кількості точок кріплення. Вони підвищують стійкість конструкції до сильного вітру та зменшують навантаження на основні кронштейни. Зазвичай розтяжки рекомендують встановлювати, якщо верхня частина димоходу виступає над дахом більш ніж на 1,5–2 метри. Точна необхідність визначається висотою димоходу, місцем монтажу та вітровими навантаженнями.',
 'scheme_image_alt' => 'Схема кріплень димохідної системи',
 
+'product_bracket' => 'Кронштейн',
+'product_bracket_description' => 'Для надійного кріплення димоходу до стіни.',
+
+'product_unloading_stand' => 'Розвант. підставка',
+'product_unloading_stand_description' => 'Підставка для розвантаження димаря.',
+
+'product_clamp' => 'Обжимний хомут',
+'product_clamp_description' => 'Для надійної фіксації труб та інш. елементів між собою.',
+
+'product_stretch_clamp' => 'Хомут під розтяжки',
+'product_stretch_clamp_description' => 'Для надійної фіксації димохідної труби від сили вітру.',
+
+'product_wall_clamp' => 'Стіновий хомут',
+'product_wall_clamp_description' => 'Для надійного кріплення димоходу до стіни.',
+
+'product_mounting_clamp' => 'Монтажний хомут',
+'product_mounting_clamp_description' => 'Для центрування труби всередині цегляного каналу (шахти) під час гільзування димоходу.',
+
+'product_brace' => 'Скоба',
+'product_brace_description' => 'Для кріплення димоходу до стіни.',
+
+'product_deka' => 'Дека',
+'product_deka_description' => 'Для прикриття або захисту утеплювача в сендвіч-елементах димоходу.',
+
+'product_criza' => 'Криза',
+'product_criza_description' => 'Для герметизації місця проходження труби крізь покрівлю.',
+
+'product_passage' => 'Прохід',
+'product_passage_description' => 'Це спеціальний монтажний вузол (пожежна безпека, герметичність, теплоізоляція).',
+
+'product_drip' => 'Окапник',
+'product_drip_description' => 'Для захисту від вологи та декорування проходу труби.',
+
+'product_rosette' => 'Розета',
+'product_rosette_description' => 'Для декорування проходу труби.',
+
+'product_funnel' => 'Лійка',
+'product_funnel_description' => 'Призначена для відведення конденсату.',
+
+'product_plug' => 'Заглушка',
+'product_plug_description' => 'Монтується на глухі ділянки димоходу.',
+
+'product_chimney_top' => 'Закінчення димоходу',
+'product_chimney_top_description' => 'Для захисту від опадів та декорування верхньої частини димоходу.',
+
+'product_cone' => 'Конус',
+'product_cone_description' => 'Для захисту від опадів та декорування верхньої частини димоходу.',
+
+'product_cap' => 'Грибок',
+'product_cap_description' => 'Для захисту від опадів.',
+
+'product_thermo_cap' => 'Термоґрибок',
+'product_thermo_cap_description' => 'Для захисту від опадів.',
+
+'product_volper' => 'Волпер',
+'product_volper_description' => 'Для захисту від опадів та підсилення тяги.',
+
+'product_spark_arrester' => 'Іскрогасник',
+'product_spark_arrester_description' => 'Для захисту від опадів та затримки іскр.',
+
+'product_reflector' => 'Відображувач',
+'product_reflector_description' => 'Для екранування та захисту стін або стелі від жорсткого інфрачервоного випромінювання та перегріву.',
+
+'product_start_sandwich' => 'Старт-сендвіч',
+'product_start_sandwich_description' => 'Для початку монтажу сендвіч-труби.',
 ];

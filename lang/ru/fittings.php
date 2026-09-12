@@ -62,4 +62,69 @@ return [
 'faq6_answer' => 'Растяжки применяют для дополнительной фиксации высоких участков дымохода, которые выступают над кровлей или не имеют достаточного количества точек крепления. Они повышают устойчивость конструкции к сильному ветру и уменьшают нагрузку на основные кронштейны. Обычно растяжки рекомендуют устанавливать, если верхняя часть дымохода выступает над крышей более чем на 1,5–2 метра. Точная необходимость определяется высотой дымохода, местом монтажа и ветровыми нагрузками.',
 'scheme_image_alt' => 'Схема креплений дымоходной системы',
 
+'product_bracket' => 'Кронштейн',
+'product_bracket_description' => 'Для надежного крепления дымохода к стене.',
+
+'product_unloading_stand' => 'Разгрузочная подставка',
+'product_unloading_stand_description' => 'Подставка для разгрузки дымохода.',
+
+'product_clamp' => 'Обжимной хомут',
+'product_clamp_description' => 'Для надежной фиксации труб и других элементов между собой.',
+
+'product_stretch_clamp' => 'Хомут под растяжки',
+'product_stretch_clamp_description' => 'Для надежной фиксации дымоходной трубы от воздействия ветра.',
+
+'product_wall_clamp' => 'Настенный хомут',
+'product_wall_clamp_description' => 'Для надежного крепления дымохода к стене.',
+
+'product_mounting_clamp' => 'Монтажный хомут',
+'product_mounting_clamp_description' => 'Для центрирования трубы внутри кирпичного канала (шахты) при гильзовании дымохода.',
+
+'product_brace' => 'Скоба',
+'product_brace_description' => 'Для крепления дымохода к стене.',
+
+'product_deka' => 'Дека',
+'product_deka_description' => 'Для закрытия или защиты утеплителя в сэндвич-элементах дымохода.',
+
+'product_criza' => 'Криза',
+'product_criza_description' => 'Для герметизации места прохода трубы через кровлю.',
+
+'product_passage' => 'Проход',
+'product_passage_description' => 'Это специальный монтажный узел (пожарная безопасность, герметичность, теплоизоляция).',
+
+'product_drip' => 'Окапник',
+'product_drip_description' => 'Для защиты от влаги и декорирования прохода трубы.',
+
+'product_rosette' => 'Розета',
+'product_rosette_description' => 'Для декорирования прохода трубы.',
+
+'product_funnel' => 'Лейка',
+'product_funnel_description' => 'Предназначена для отвода конденсата.',
+
+'product_plug' => 'Заглушка',
+'product_plug_description' => 'Устанавливается на глухие участки дымохода.',
+
+'product_chimney_top' => 'Окончание дымохода',
+'product_chimney_top_description' => 'Для защиты от осадков и декорирования верхней части дымохода.',
+
+'product_cone' => 'Конус',
+'product_cone_description' => 'Для защиты от осадков и декорирования верхней части дымохода.',
+
+'product_cap' => 'Грибок',
+'product_cap_description' => 'Для защиты от осадков.',
+
+'product_thermo_cap' => 'Термогрибок',
+'product_thermo_cap_description' => 'Для защиты от осадков.',
+
+'product_volper' => 'Волпер',
+'product_volper_description' => 'Для защиты от осадков и усиления тяги.',
+
+'product_spark_arrester' => 'Искрогаситель',
+'product_spark_arrester_description' => 'Для защиты от осадков и задержания искр.',
+
+'product_reflector' => 'Отражатель',
+'product_reflector_description' => 'Для экранирования и защиты стен или потолка от жесткого инфракрасного излучения и перегрева.',
+
+'product_start_sandwich' => 'Старт-сэндвич',
+'product_start_sandwich_description' => 'Для начала монтажа сэндвич-трубы.',
 ];

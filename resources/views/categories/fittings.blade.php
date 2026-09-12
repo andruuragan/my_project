@@ -98,123 +98,136 @@
 @foreach([
 
     [
-        'name' => 'Кронштейн',
-        
+        'name' => __('fittings.product_bracket'),
         'img'  => '86d27faa44533c26c486b4c165461af66455b904.webp',
-        'description' => 'Для надійного кріплення димоходу до стіни.'
+        'description' => __('fittings.product_bracket_description')
     ],
 
     [
-        'name' => 'Розвант. підставка',        
+        'name' => __('fittings.product_unloading_stand'),
         'img'  => '6c6786f2e63db2cc3abd5b287d9dc0f250f4cac1.webp',
-        'description' => 'Підставка для розвантаження димаря.'
+        'description' => __('fittings.product_unloading_stand_description')
     ],
 
     [
-        'name' => 'Обжимний хомут',        
+        'name' => __('fittings.product_clamp'),
         'img'  => '50817907640bd467b51a06152782d9c1633c39c1.webp',
-        'description' => 'Для надійної фіксації труб та інш. елементів між собою.'
+        'description' => __('fittings.product_clamp_description')
     ],
-     [
-        'name' => 'Хомут під розтяжки',        
+
+    [
+        'name' => __('fittings.product_stretch_clamp'),
         'img'  => '7a923d0ebf494627edbedb11da6ecf26f1d2e739.webp',
-        'description' => 'Для надійної фіксації димохідної труби від сили вітру.'
+        'description' => __('fittings.product_stretch_clamp_description')
     ],
-     [
-        'name' => 'Стіновий хомут',        
+
+    [
+        'name' => __('fittings.product_wall_clamp'),
         'img'  => '7c724e0af75f91731229019244efae9cb5d5b77b.webp',
-        'description' => 'Для надійного кріплення димоходу до стіни.'
+        'description' => __('fittings.product_wall_clamp_description')
     ],
-     [
-        'name' => 'Монтажний хомут',        
+
+    [
+        'name' => __('fittings.product_mounting_clamp'),
         'img'  => '2a028b8820ce315c5c15fcbb2d423fe823c15946.webp',
-        'description' => 'Для центрування труби всередині цегляного каналу (шахти) під час гільзування димоходу.'
+        'description' => __('fittings.product_mounting_clamp_description')
     ],
+
     [
-        'name' => 'Скоба',        
+        'name' => __('fittings.product_brace'),
         'img'  => '2a9fd38e010c2bad45e05612b24ace6d7efdfe63.webp',
-        'description' => 'Для кріплення димоходу до стіни.'
+        'description' => __('fittings.product_brace_description')
     ],
+
     [
-        'name' => 'Дека',        
+        'name' => __('fittings.product_deka'),
         'img'  => 'ca88966ad49888492f5f78dc4ca394d8fe1f775b.webp',
-        'description' => 'Для прикриття або захисту утеплювача в сендвіч-елементах димоходу.'
+        'description' => __('fittings.product_deka_description')
     ],
+
     [
-        'name' => 'Криза',        
+        'name' => __('fittings.product_criza'),
         'img'  => 'e5cb3a0e461cd2f1c716b651b97e5a851f707b3d.webp',
-        'description' => 'Для герметизації місця проходження труби крізь покрівлю.'
+        'description' => __('fittings.product_criza_description')
     ],
+
     [
-        'name' => 'Прохід',        
+        'name' => __('fittings.product_passage'),
         'img'  => 'fa4508f8310bb8ce985355a408967b3509577cf2.webp',
-        'description' => 'Це спеціальний монтажний вузол (пожежна безпека, герметичність, теплоізоляція).'
+        'description' => __('fittings.product_passage_description')
     ],
+
     [
-        'name' => 'Окапник',        
+        'name' => __('fittings.product_drip'),
         'img'  => 'c50692a896069ce5c20e71fe37119af64ab99845.webp',
-        'description' => 'Для захисту від вологи та декорування проходу труби.'
+        'description' => __('fittings.product_drip_description')
     ],
-     [
-        'name' => 'Розета',        
+
+    [
+        'name' => __('fittings.product_rosette'),
         'img'  => 'b1d16c291c9d33ee26085e297703c90efef1239e.webp',
-        'description' => 'Для декорування проходу труби.'
+        'description' => __('fittings.product_rosette_description')
     ],
-     [
-        'name' => 'Лійка',        
+
+    [
+        'name' => __('fittings.product_funnel'),
         'img'  => '80731c12dd76219b0954f38d138107e784d693ac.webp',
-        'description' => 'Призначена для відведення конденсату.'
+        'description' => __('fittings.product_funnel_description')
     ],
-     [
-        'name' => 'Заглушка',        
+
+    [
+        'name' => __('fittings.product_plug'),
         'img'  => '70f9709ad093575e0fd014ac3fb5b565c6cc5d7e.webp',
-        'description' => 'Монтується на глухі ділянки димоходу.'
+        'description' => __('fittings.product_plug_description')
     ],
+
     [
-        'name' => 'Закінчення димоходу',        
+        'name' => __('fittings.product_chimney_top'),
         'img'  => 'b8621901edf97997d2fdbc0402944ed1507259f5.webp',
-        'description' => 'Для захисту від опадів та декорування верхньої частини димоходу.'
+        'description' => __('fittings.product_chimney_top_description')
     ],
-     [
-        'name' => 'Конус',        
+
+    [
+        'name' => __('fittings.product_cone'),
         'img'  => '497df0f94590eb6627e84cf787904225b8498530.webp',
-        'description' => 'Для захисту від опадів та декорування верхньої частини димоходу.'
+        'description' => __('fittings.product_cone_description')
     ],
-     [
-        'name' => 'Грибок',        
+
+    [
+        'name' => __('fittings.product_cap'),
         'img'  => 'ae60c4c7157b3a2c8b6856c55f9004e3b7a1b6e3.webp',
-        'description' => 'Для захисту від опадів.'
+        'description' => __('fittings.product_cap_description')
     ],
+
     [
-        'name' => 'Термоґрибок',        
+        'name' => __('fittings.product_thermo_cap'),
         'img'  => '1d855c94e9a8b7971f6470c818282c3177472122.webp',
-        'description' => 'Для захисту від опадів.'
+        'description' => __('fittings.product_thermo_cap_description')
     ],
+
     [
-        'name' => 'Волпер',        
+        'name' => __('fittings.product_volper'),
         'img'  => '7372de8d9cc1d6bafd52e03939d198ac9f2f7749.webp',
-        'description' => 'Для захисту від опадів та підсилення тяги.'
+        'description' => __('fittings.product_volper_description')
     ],
-     [
-        'name' => 'Іскрогасник',        
-        'img'  => '2b418f4fd415ddc6b5e4b4a1bf88942031a82f3c.webp',
-        'description' => 'Для захисту від опадів та затримки іскр.'
-    ],
+
     [
-        'name' => 'Відображувач',        
+        'name' => __('fittings.product_spark_arrester'),
+        'img'  => '2b418f4fd415ddc6b5e4b4a1bf88942031a82f3c.webp',
+        'description' => __('fittings.product_spark_arrester_description')
+    ],
+
+    [
+        'name' => __('fittings.product_reflector'),
         'img'  => '374f27f32989de18def1ba62797a9734f820a44d.webp',
-        'description' => 'Для екранування та захисту стін або стелі від жорсткого інфрачервоного випромінювання та перегріву.'
+        'description' => __('fittings.product_reflector_description')
     ],
-     
-     [
-        'name' => 'Старт-сендвіч',        
+
+    [
+        'name' => __('fittings.product_start_sandwich'),
         'img'  => '3a5834a31a698234418276d0333da7134679ccf4.webp',
-        'description' => 'Для початку монтажу сендвіч-труби.'
+        'description' => __('fittings.product_start_sandwich_description')
     ],
-
-
-
-    
 
 ] as $item)
 
