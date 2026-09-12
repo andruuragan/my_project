@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use App\Models\Description;
@@ -22,11 +23,20 @@ class DescriptionController extends Controller
     {
         $data = $request->validate([
             'name' => 'required|string|max:255',
+
+            // Українська
             'overview' => 'nullable|string',
             'advantages' => 'nullable|string',
             'usage' => 'nullable|string',
             'why_choose_us' => 'nullable|string',
             'additional_info' => 'nullable|string',
+
+            // Русский
+            'overview_ru' => 'nullable|string',
+            'advantages_ru' => 'nullable|string',
+            'usage_ru' => 'nullable|string',
+            'why_choose_us_ru' => 'nullable|string',
+            'additional_info_ru' => 'nullable|string',
         ]);
 
         Description::create($data);
@@ -49,11 +59,20 @@ class DescriptionController extends Controller
     {
         $data = $request->validate([
             'name' => 'required|string|max:255',
+
+            // Українська
             'overview' => 'nullable|string',
             'advantages' => 'nullable|string',
             'usage' => 'nullable|string',
             'why_choose_us' => 'nullable|string',
             'additional_info' => 'nullable|string',
+
+            // Русский
+            'overview_ru' => 'nullable|string',
+            'advantages_ru' => 'nullable|string',
+            'usage_ru' => 'nullable|string',
+            'why_choose_us_ru' => 'nullable|string',
+            'additional_info_ru' => 'nullable|string',
         ]);
 
         $description->update($data);

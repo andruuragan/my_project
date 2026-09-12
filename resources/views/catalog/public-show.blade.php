@@ -186,69 +186,179 @@
         </div>
 
         <!-- Таби з описами -->
-       <div class="description-content mt-4">
-            @if(optional($catalog->description))
-                <div class="card shadow-sm border-0 bg-white rounded-3 p-4">
-                    
-                    <ul class="nav nav-tabs card-header-tabs flex-wrap d-none d-md-flex" role="tablist" id="descTabs">
-                        <li class="nav-item"><button class="nav-link active fw-medium px-4" data-bs-toggle="tab" data-bs-target="#ov">Опис</button></li>
-                        <li class="nav-item"><button class="nav-link fw-medium px-4" data-bs-toggle="tab" data-bs-target="#adv">Переваги</button></li>
-                        <li class="nav-item"><button class="nav-link fw-medium px-4" data-bs-toggle="tab" data-bs-target="#usage">Застосування</button></li>
-                        <li class="nav-item"><button class="nav-link fw-medium px-4" data-bs-toggle="tab" data-bs-target="#why">Чому ми!</button></li>
-                        <li class="nav-item"><button class="nav-link fw-medium px-4" data-bs-toggle="tab" data-bs-target="#extra">Додатково</button></li>
-                    </ul>
+     <!-- *Таби з описами* -->
+<div class="description-content mt-4">
+    @if($catalog->description)
 
-                   <!-- Мобільна версія: Акордеон -->
-<div class="accordion d-md-none" id="mobileAccordion">
-   @php
-    $items = [
-        // Використовуємо optional(), щоб уникнути помилки, якщо description null
-        'ov' => ['title' => 'Опис', 'content' => optional($catalog->description)->overview],
-        'adv' => ['title' => 'Переваги', 'content' => optional($catalog->description)->advantages],
-        'usage' => ['title' => 'Застосування', 'content' => optional($catalog->description)->usage],
-        'why' => ['title' => 'Чому ми!', 'content' => optional($catalog->description)->why_choose_us],
-        'extra' => ['title' => 'Додатково', 'content' => optional($catalog->description)->additional_info],
-    ];
-@endphp
-
-    @foreach($items as $key => $item)
-        {{-- Визначаємо, чи це перший елемент --}}
         @php
-            $isOpen = ($key === 'ov'); 
+            $description = $catalog->description;
+            $isRu = app()->getLocale() === 'ru';
+
+            $overview = $isRu && filled($description->overview_ru)
+                ? $description->overview_ru
+                : $description->overview;
+
+            $advantages = $isRu && filled($description->advantages_ru)
+                ? $description->advantages_ru
+                : $description->advantages;
+
+            $usage = $isRu && filled($description->usage_ru)
+                ? $description->usage_ru
+                : $description->usage;
+
+            $whyChooseUs = $isRu && filled($description->why_choose_us_ru)
+                ? $description->why_choose_us_ru
+                : $description->why_choose_us;
+
+            $additionalInfo = $isRu && filled($description->additional_info_ru)
+                ? $description->additional_info_ru
+                : $description->additional_info;
         @endphp
 
-        <div class="accordion-item border-start-0 border-end-0">
-            <h2 class="accordion-header">
-                {{-- Якщо відкритий, прибираємо клас 'collapsed' --}}
-                <button class="accordion-button fw-bold {{ $isOpen ? '' : 'collapsed' }}" 
-                        type="button" 
-                        data-bs-toggle="collapse" 
-                        data-bs-target="#acc-{{$key}}">
-                    {{ $item['title'] }}
-                </button>
-            </h2>
-            {{-- Якщо відкритий, додаємо клас 'show' --}}
-            <div id="acc-{{$key}}" 
-                 class="accordion-collapse collapse {{ $isOpen ? 'show' : '' }}" 
-                 data-bs-parent="#mobileAccordion">
-                <div class="accordion-body text-secondary">
-                    {!! $item['content'] ?? '<p class="text-muted">Інформація відсутня</p>' !!}
-                </div>
-            </div>
-        </div>
-    @endforeach
-</div>
+        <div class="card shadow-sm border-0 bg-white rounded-3 p-4">
 
-                   <div class="tab-content mt-4 text-secondary lh-base d-none d-md-block">
-    <div class="tab-pane fade show active" id="ov">{!! optional($catalog->description)->overview ?? 'Опис відсутній' !!}</div>
-    <div class="tab-pane fade" id="adv">{!! optional($catalog->description)->advantages ?? 'Інформація відсутня' !!}</div>
-    <div class="tab-pane fade" id="usage">{!! optional($catalog->description)->usage ?? 'Інформація відсутня' !!}</div>
-    <div class="tab-pane fade" id="why">{!! optional($catalog->description)->why_choose_us ?? 'Інформація відсутня' !!}</div>
-    <div class="tab-pane fade" id="extra">{!! optional($catalog->description)->additional_info ?? 'Інформація відсутня' !!}</div>
-</div>
+            <ul class="nav nav-tabs card-header-tabs flex-wrap d-none d-md-flex"
+                role="tablist"
+                id="descTabs">
+
+               <li class="nav-item">
+    <button class="nav-link active fw-bold px-4"
+            data-bs-toggle="tab"
+            data-bs-target="#ov">
+        {{ $isRu ? 'Описание' : 'Опис' }}
+    </button>
+</li>
+
+<li class="nav-item">
+    <button class="nav-link fw-bold px-4"
+            data-bs-toggle="tab"
+            data-bs-target="#adv">
+        {{ $isRu ? 'Преимущества' : 'Переваги' }}
+    </button>
+</li>
+
+<li class="nav-item">
+    <button class="nav-link fw-bold px-4"
+            data-bs-toggle="tab"
+            data-bs-target="#usage">
+        {{ $isRu ? 'Применение' : 'Застосування' }}
+    </button>
+</li>
+
+<li class="nav-item">
+    <button class="nav-link fw-bold px-4"
+            data-bs-toggle="tab"
+            data-bs-target="#why">
+        {{ $isRu ? 'Почему мы!' : 'Чому ми!' }}
+    </button>
+</li>
+
+<li class="nav-item">
+    <button class="nav-link fw-bold px-4"
+            data-bs-toggle="tab"
+            data-bs-target="#extra">
+        {{ $isRu ? 'Дополнительно' : 'Додатково' }}
+    </button>
+</li>
+
+            </ul>
+
+            <!-- *Мобильная версия: Аккордеон* -->
+            <div class="accordion d-md-none" id="mobileAccordion">
+
+                @php
+                    $items = [
+                        'ov' => [
+                            'title' => $isRu ? 'Описание' : 'Опис',
+                            'content' => $overview,
+                        ],
+                        'adv' => [
+                            'title' => $isRu ? 'Преимущества' : 'Переваги',
+                            'content' => $advantages,
+                        ],
+                        'usage' => [
+                            'title' => $isRu ? 'Применение' : 'Застосування',
+                            'content' => $usage,
+                        ],
+                        'why' => [
+                            'title' => $isRu ? 'Почему мы!' : 'Чому ми!',
+                            'content' => $whyChooseUs,
+                        ],
+                        'extra' => [
+                            'title' => $isRu ? 'Дополнительно' : 'Додатково',
+                            'content' => $additionalInfo,
+                        ],
+                    ];
+                @endphp
+
+                @foreach($items as $key => $item)
+
+                    @php
+                        $isOpen = ($key === 'ov');
+                    @endphp
+
+                    <div class="accordion-item border-start-0 border-end-0">
+
+                        <h2 class="accordion-header">
+                            <button class="accordion-button fw-bold {{ $isOpen ? '' : 'collapsed' }}"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#acc-{{ $key }}">
+
+                                {{ $item['title'] }}
+
+                            </button>
+                        </h2>
+
+                        <div id="acc-{{ $key }}"
+                             class="accordion-collapse collapse {{ $isOpen ? 'show' : '' }}"
+                             data-bs-parent="#mobileAccordion">
+
+                            <div class="accordion-body text-secondary">
+
+                                {!! $item['content'] ?: '<p class="text-muted">' .
+                                    ($isRu ? 'Информация отсутствует' : 'Інформація відсутня') .
+                                '</p>' !!}
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                @endforeach
+
+            </div>
+
+            <!-- *Десктопная версия: вкладки* -->
+            <div class="tab-content mt-4 text-secondary lh-base d-none d-md-block">
+
+                <div class="tab-pane fade show active" id="ov">
+                    {!! $overview ?: ($isRu ? 'Описание отсутствует' : 'Опис відсутній') !!}
                 </div>
-            @endif
+
+                <div class="tab-pane fade" id="adv">
+                    {!! $advantages ?: ($isRu ? 'Информация отсутствует' : 'Інформація відсутня') !!}
+                </div>
+
+                <div class="tab-pane fade" id="usage">
+                    {!! $usage ?: ($isRu ? 'Информация отсутствует' : 'Інформація відсутня') !!}
+                </div>
+
+                <div class="tab-pane fade" id="why">
+                    {!! $whyChooseUs ?: ($isRu ? 'Информация отсутствует' : 'Інформація відсутня') !!}
+                </div>
+
+                <div class="tab-pane fade" id="extra">
+                    {!! $additionalInfo ?: ($isRu ? 'Информация отсутствует' : 'Інформація відсутня') !!}
+                </div>
+
+            </div>
+
         </div>
+
+    @endif
+</div>
     </div>
 
     {{-- АЯКС СКРИПТ --}}
