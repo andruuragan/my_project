@@ -1,36 +1,36 @@
 @extends('layouts.main')
 
-@section('title', 'Система кріплень, хомутів, прохідних та завершувальних елементів | DymSystems')
-@section('description', 'Обирайте надійні системи кріплень, хомутів, прохідних та завершувальних елементів для монтажу димохідних систем від DymSystems. Якість та довговічність гарантовані.')
+@section('title', __('fittings.title'))
 
+@section('description', __('fittings.description'))
 @section('content')
 
 <div class="container-1600 py-5">
 
     {{-- Breadcrumbs --}}
-    <nav aria-label="breadcrumb" class="mb-4">
-        <ol class="breadcrumb mb-0">
-            <li class="breadcrumb-item">
-                <a href="{{ route('main.index') }}"
-                   class="text-decoration-none text-black-50 hover-orange">
-                    Головна
-                </a>
-            </li>
+  <nav aria-label="breadcrumb" class="mb-4">
+    <ol class="breadcrumb mb-0">
+        <li class="breadcrumb-item">
+            <a href="{{ route('main.index') }}"
+               class="text-decoration-none text-black-50 hover-orange">
+                {{ __('fittings.breadcrumb_home') }}
+            </a>
+        </li>
 
-            <li class="breadcrumb-item">
-                <a href="{{ route('categories.index') }}"
-                   class="text-decoration-none text-black-50 hover-orange">
-                    Категорії димарів
-                </a>
-            </li>
+        <li class="breadcrumb-item">
+            <a href="{{ route('categories.index') }}"
+               class="text-decoration-none text-black-50 hover-orange">
+                {{ __('fittings.breadcrumb_categories') }}
+            </a>
+        </li>
 
-            <li class="breadcrumb-item active" aria-current="page">
-                <span style="color:#f97316;font-weight:500;">
-                    Система кріплень та комплектуючих
-                </span>
-            </li>
-        </ol>
-    </nav>
+        <li class="breadcrumb-item active" aria-current="page">
+            <span style="color:#f97316;font-weight:500;">
+                {{ __('fittings.breadcrumb_title') }}
+            </span>
+        </li>
+    </ol>
+</nav>
 
     {{-- HERO --}}
     <div class="hero-banner rounded-4 p-5 text-center border mb-5">
@@ -39,39 +39,37 @@
             <i class="bi bi-tools"></i>
         </div>
 
-        <h1 class="display-5 fw-bold mb-3">
-            Система кріплень, хомутів, прохідних та завершувальних елементів
-        </h1>
+   <h1 class="display-5 fw-bold mb-3">
+    {{ __('fittings.hero_title') }}
+</h1>
 
-        <p class="lead text-muted mx-auto" style="max-width:850px;">
-            Оберіть необхідний тип комплектуючих для монтажу димохідної системи.
-            Для окремих елементів ми допоможемо швидко визначити потрібний діаметр,
-            після чого автоматично відкриємо відповідний каталог.
-        </p>
+<p class="lead text-muted mx-auto" style="max-width:850px;">
+    {{ __('fittings.hero_description') }}
+</p>
 
         <div class="d-flex justify-content-center flex-wrap gap-2 mt-4">
 
-            <span class="badge bg-light text-dark border px-3 py-2">
-                <i class="bi bi-check-circle-fill text-success me-1"></i>
-                Кронштейни
-            </span>
+    <span class="badge bg-light text-dark border px-3 py-2">
+        <i class="bi bi-check-circle-fill text-success me-1"></i>
+        {{ __('fittings.badge_brackets') }}
+    </span>
 
-            <span class="badge bg-light text-dark border px-3 py-2">
-                <i class="bi bi-check-circle-fill text-success me-1"></i>
-                Хомути
-            </span>
+    <span class="badge bg-light text-dark border px-3 py-2">
+        <i class="bi bi-check-circle-fill text-success me-1"></i>
+        {{ __('fittings.badge_clamps') }}
+    </span>
 
-            <span class="badge bg-light text-dark border px-3 py-2">
-                <i class="bi bi-check-circle-fill text-success me-1"></i>
-                Прохідні елементи
-            </span>
+    <span class="badge bg-light text-dark border px-3 py-2">
+        <i class="bi bi-check-circle-fill text-success me-1"></i>
+        {{ __('fittings.badge_passage') }}
+    </span>
 
-            <span class="badge bg-light text-dark border px-3 py-2">
-                <i class="bi bi-check-circle-fill text-success me-1"></i>
-                Комплектуючі
-            </span>
+    <span class="badge bg-light text-dark border px-3 py-2">
+        <i class="bi bi-check-circle-fill text-success me-1"></i>
+        {{ __('fittings.badge_components') }}
+    </span>
 
-        </div>
+</div>
 
     </div>
 
@@ -80,18 +78,17 @@
 
     <div class="text-center mb-5">
 
-        <span class="badge bg-warning text-dark mb-3">
-            Оберіть категорію
-        </span>
+       <span class="badge bg-warning text-dark mb-3">
+    {{ __('fittings.category_badge') }}
+</span>
 
-        <h2 class="fw-bold">
-            Що вам потрібно?
-        </h2>
+<h2 class="fw-bold">
+    {{ __('fittings.category_title') }}
+</h2>
 
-        <p class="text-muted">
-            Натисніть на потрібний елемент, після чого ми допоможемо швидко
-            перейти до відповідного каталогу.
-        </p>
+<p class="text-muted">
+    {{ __('fittings.category_description') }}
+</p>
 
     </div>
 
@@ -240,10 +237,9 @@
                     <p class="text-muted small flex-grow-1 text-center">
                         {{ $item['description'] }}
                     </p>
-
-                   <span class="btn btn-warning w-100 mt-3">
-                        Обрати
-                    </span>
+<span class="btn btn-warning w-100 mt-3">
+    {{ __('fittings.select_button') }}
+</span>
 
                 </div>
 
@@ -261,18 +257,19 @@
 
     <div class="text-center mb-4">
 
-        <span class="badge bg-warning text-dark mb-3">
-            Крок 2
-        </span>
+       <span class="badge bg-warning text-dark mb-3">
+    {{ __('fittings.step_2') }}
+</span>
 
-        <h2 class="fw-bold">
-            Оберіть діаметр
-        </h2>
+<h2 class="fw-bold">
+    {{ __('fittings.diameter_title') }}
+</h2>
 
-        <p class="text-muted">
-            Для <span id="selectedName" class="fw-semibold text-decoration-underline"></span>
-            необхідно вибрати діаметр.
-        </p>
+    <p class="text-muted">
+    {{ __('fittings.diameter_description_before') }}
+    <span id="selectedName" class="fw-semibold text-decoration-underline"></span>
+    {{ __('fittings.diameter_description_after') }}
+</p>
 
     </div>
 
@@ -286,30 +283,31 @@
 
     <div class="text-center mb-5">
 
-        <span class="badge bg-warning text-dark mb-3">
-            Схема
-        </span>
+      <span class="badge bg-warning text-dark mb-3">
+    {{ __('fittings.scheme_badge') }}
+</span>
 
-        <h2 class="fw-bold">
-            Основні кріплення димохідної системи
-        </h2>
+<h2 class="fw-bold">
+    {{ __('fittings.scheme_title') }}
+</h2>
 
-        <p class="text-muted">
-            На схемі показані основні комплектуючі, які використовуються
-            під час монтажу димоходу.
-        </p>
+<p class="text-muted">
+    {{ __('fittings.scheme_description') }}
+</p>
 
     </div>
 
     <div class="text-center">
 
-    <img
-        src="{{ asset('images/chimney/fittings-scheme.webp') }}"
-        class="img-fluid rounded-4 shadow-sm"
-        alt="Схема кріплень димохідної системи"
-        style="cursor:pointer;"
-        data-bs-toggle="modal"
-        data-bs-target="#schemeModal">
+    <img 
+    src="{{ asset(app()->getLocale() === 'ru'
+        ? 'images/chimney/fittings-schemeru.webp'
+        : 'images/chimney/fittings-scheme.webp') }}" 
+    class="img-fluid rounded-4 shadow-sm" 
+    alt="{{ __('fittings.scheme_image_alt') }}" 
+    style="cursor:pointer;" 
+    data-bs-toggle="modal" 
+    data-bs-target="#schemeModal">
 
 </div>
 
@@ -317,288 +315,294 @@
 
 <section class="mt-5 pt-5">
 
-<div class="text-center mb-5">
+    <div class="text-center mb-5">
 
-    <span class="badge bg-warning text-dark mb-3">
-        Корисні поради
-    </span>
+        <span class="badge bg-warning text-dark mb-3">
+            {{ __('fittings.tips_badge') }}
+        </span>
 
-    <h2 class="fw-bold">
-        Що потрібно знати перед монтажем
-    </h2>
+        <h2 class="fw-bold">
+            {{ __('fittings.tips_title') }}
+        </h2>
 
-</div>
+    </div>
 
-<div class="row g-4">
+    <div class="row g-4">
 
-<div class="col-md-6 col-xl-3">
+        <div class="col-md-6 col-xl-3">
 
-<div class="card h-100 border-0 shadow-sm workfup-card">
+            <div class="card h-100 border-0 shadow-sm workfup-card">
 
-<div class="card-body">
+                <div class="card-body">
 
-<div class="display-6 text-warning mb-3">
-<i class="bi bi-tools"></i>
-</div>
+                    <div class="display-6 text-warning mb-3">
+                        <i class="bi bi-tools"></i>
+                    </div>
 
-<h5 class="fw-bold">
-Як правильно встановити кронштейн
-</h5>
+                    <h5 class="fw-bold">
+                        {{ __('fittings.tip_bracket_title') }}
+                    </h5>
 
-<p class="text-muted small">
-Кронштейни встановлюють через певну відстань для рівномірного
-розподілу навантаження на димохід.
-</p>
+                    <p class="text-muted small">
+                        {{ __('fittings.tip_bracket_description') }}
+                    </p>
 
-</div>
+                </div>
 
-</div>
+            </div>
 
-</div>
+        </div>
 
-<div class="col-md-6 col-xl-3">
+        <div class="col-md-6 col-xl-3">
 
-<div class="card h-100 border-0 shadow-sm workfup-card">
+            <div class="card h-100 border-0 shadow-sm workfup-card">
 
-<div class="card-body">
+                <div class="card-body">
 
-<div class="display-6 text-warning mb-3">
-<i class="bi bi-link-45deg"></i>
-</div>
+                    <div class="display-6 text-warning mb-3">
+                        <i class="bi bi-link-45deg"></i>
+                    </div>
 
-<h5 class="fw-bold">
-Як вибрати хомут
-</h5>
+                    <h5 class="fw-bold">
+                        {{ __('fittings.tip_clamp_title') }}
+                    </h5>
 
-<p class="text-muted small">
-Діаметр хомута повинен повністю відповідати зовнішньому діаметру
-димохідної труби.
-</p>
+                    <p class="text-muted small">
+                        {{ __('fittings.tip_clamp_description') }}
+                    </p>
 
-</div>
+                </div>
 
-</div>
+            </div>
 
-</div>
+        </div>
 
-<div class="col-md-6 col-xl-3">
+        <div class="col-md-6 col-xl-3">
 
-<div class="card h-100 border-0 shadow-sm workfup-card">
+            <div class="card h-100 border-0 shadow-sm workfup-card">
 
-<div class="card-body">
+                <div class="card-body">
 
-<div class="display-6 text-warning mb-3">
-<i class="bi bi-house"></i>
-</div>
+                    <div class="display-6 text-warning mb-3">
+                        <i class="bi bi-house"></i>
+                    </div>
 
-<h5 class="fw-bold">
-Для чого потрібна криза
-</h5>
+                    <h5 class="fw-bold">
+                        {{ __('fittings.tip_roof_title') }}
+                    </h5>
 
-<p class="text-muted small">
-Криза забезпечує герметичний прохід димоходу через покрівлю та
-захищає від протікань.
-</p>
+                    <p class="text-muted small">
+                        {{ __('fittings.tip_roof_description') }}
+                    </p>
 
-</div>
+                </div>
 
-</div>
+            </div>
 
-</div>
+        </div>
 
-<div class="col-md-6 col-xl-3">
+        <div class="col-md-6 col-xl-3">
 
-<div class="card h-100 border-0 shadow-sm workfup-card">
+            <div class="card h-100 border-0 shadow-sm workfup-card">
 
-<div class="card-body">
+                <div class="card-body">
 
-<div class="display-6 text-warning mb-3">
-<i class="bi bi-arrows-angle-expand"></i>
-</div>
+                    <div class="display-6 text-warning mb-3">
+                        <i class="bi bi-arrows-angle-expand"></i>
+                    </div>
 
-<h5 class="fw-bold">
-Коли використовують розтяжки
-</h5>
+                    <h5 class="fw-bold">
+                        {{ __('fittings.tip_stretch_title') }}
+                    </h5>
 
-<p class="text-muted small">
-Розтяжки рекомендуються для високих димохідних труб, що виступають
-над покрівлею.
-</p>
+                    <p class="text-muted small">
+                        {{ __('fittings.tip_stretch_description') }}
+                    </p>
 
-</div>
+                </div>
 
-</div>
+            </div>
 
-</div>
+        </div>
 
-</div>
+    </div>
 
 </section>
 
+
 <section class="mt-5 pt-5">
 
-<div class="text-center mb-5">
+    <div class="text-center mb-5">
 
-<span class="badge bg-warning text-dark mb-3">
-FAQ
-</span>
+        <span class="badge bg-warning text-dark mb-3">
+            FAQ
+        </span>
 
-<h2 class="fw-bold">
-Поширені питання
-</h2>
+        <h2 class="fw-bold">
+            {{ __('fittings.faq_title') }}
+        </h2>
 
-</div>
+    </div>
 
-<div class="accordion" id="faqAccordion">
-    
-<div class="accordion-item">
+    <div class="accordion" id="faqAccordion">
 
-<h2 class="accordion-header">
+        <div class="accordion-item">
 
-<button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+            <h2 class="accordion-header">
 
-Як часто потрібно встановлювати кронштейни?
+                <button class="accordion-button fw-bold" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#faq1">
 
-</button>
+                    {{ __('fittings.faq1_question') }}
 
-</h2>
+                </button>
 
- <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+            </h2>
 
-<div class="accordion-body">
+            <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
 
-Рекомендована відстань між кронштейнами залежить від конструкції
-димоходу, але зазвичай становить приблизно 2 метри.
+                <div class="accordion-body">
 
-</div>
+                    {{ __('fittings.faq1_answer') }}
 
-</div>
+                </div>
 
-</div>
+            </div>
 
-<div class="accordion-item">
+        </div>
 
-<h2 class="accordion-header">
 
- <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+        <div class="accordion-item">
 
-Чим відрізняються обжимний і стіновий хомути?
+            <h2 class="accordion-header">
 
-</button>
+                <button class="accordion-button collapsed fw-bold" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#faq2">
 
-</h2>
+                    {{ __('fittings.faq2_question') }}
 
-<div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                </button>
 
-<div class="accordion-body">
+            </h2>
 
-Обжимний хомут служить для щільного з'єднання окремих елементів димоходу між собою. Він підвищує міцність стику та запобігає зміщенню деталей під час експлуатації.
+            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
 
-Стіновий хомут призначений для кріплення димоходу до стіни за допомогою кронштейна або шпильки. Він не з'єднує елементи між собою, а забезпечує надійну фіксацію всієї конструкції та знижує навантаження на димохід.
+                <div class="accordion-body">
 
-</div>
+                    {{ __('fittings.faq2_answer') }}
 
-</div>
+                </div>
 
-</div>
+            </div>
 
-<div class="accordion-item">
+        </div>
 
-<h2 class="accordion-header">
 
- <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+        <div class="accordion-item">
 
-Для чого потрібна дека?
+            <h2 class="accordion-header">
 
-</button>
+                <button class="accordion-button collapsed fw-bold" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#faq3">
 
-</h2>
+                    {{ __('fittings.faq3_question') }}
 
-<div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                </button>
 
-<div class="accordion-body">
+            </h2>
 
-Дека використовується для герметичного проходу димоходу через покрівлю. Вона закриває отвір навколо труби, захищає місце проходу від потрапляння дощу, снігу та вологи, а також надає вузлу монтажу акуратного зовнішнього вигляду. Деку підбирають відповідно до діаметра димоходу та кута нахилу покрівлі.
+            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
 
-</div>
+                <div class="accordion-body">
 
-</div>
+                    {{ __('fittings.faq3_answer') }}
 
-</div>
+                </div>
 
-<div class="accordion-item">
+            </div>
 
-<h2 class="accordion-header">
+        </div>
 
- <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
 
-Який діаметр комплектуючих потрібно вибрати?
+        <div class="accordion-item">
 
-</button>
+            <h2 class="accordion-header">
 
-</h2>
+                <button class="accordion-button collapsed fw-bold" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#faq4">
 
-<div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    {{ __('fittings.faq4_question') }}
 
-<div class="accordion-body">
+                </button>
 
-Діаметр комплектуючих повинен повністю відповідати діаметру димохідної системи. Для термо (сендвіч) елементів також необхідно враховувати зовнішній діаметр утепленої труби (наприклад, Ø120/180 або Ø200/260). Якщо ви не впевнені у виборі, скористайтеся нашим конфігуратором — він автоматично покаже лише сумісні комплектуючі.
+            </h2>
 
-</div>
+            <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
 
-</div>
+                <div class="accordion-body">
 
-</div>
+                    {{ __('fittings.faq4_answer') }}
 
-<div class="accordion-item">
+                </div>
 
-<h2 class="accordion-header">
+            </div>
 
- <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+        </div>
 
-Чи можна використовувати комплектуючі різних виробників?
 
-</button>
+        <div class="accordion-item">
 
-</h2>
+            <h2 class="accordion-header">
 
-<div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <button class="accordion-button collapsed fw-bold" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#faq5">
 
-<div class="accordion-body">
+                    {{ __('fittings.faq5_question') }}
 
-Так, але лише за умови, що вони мають однаковий посадковий діаметр і сумісну конструкцію з'єднання. Навіть за однакового номінального діаметра елементи різних виробників можуть відрізнятися геометрією, довжиною посадкової частини або способом стикування. Тому для надійного та герметичного монтажу рекомендується використовувати комплектуючі одного виробника або попередньо перевіряти їхню сумісність.
+                </button>
 
-</div>
+            </h2>
 
-</div>
+            <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
 
-</div>
+                <div class="accordion-body">
 
-<div class="accordion-item">
+                    {{ __('fittings.faq5_answer') }}
 
-<h2 class="accordion-header">
+                </div>
 
- <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faq6">
+            </div>
 
-Коли використовують розтяжки?
+        </div>
 
-</button>
 
-</h2>
+        <div class="accordion-item">
 
-<div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+            <h2 class="accordion-header">
 
-<div class="accordion-body">
+                <button class="accordion-button collapsed fw-bold" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#faq6">
 
-Розтяжки застосовують для додаткової фіксації високих ділянок димоходу, які виступають над покрівлею або не мають достатньої кількості точок кріплення. Вони підвищують стійкість конструкції до сильного вітру та зменшують навантаження на основні кронштейни.
+                    {{ __('fittings.faq6_question') }}
 
-Зазвичай розтяжки рекомендують встановлювати, якщо верхня частина димоходу виступає над дахом більш ніж на 1,5–2 метри. Точна необхідність визначається висотою димоходу, місцем монтажу та вітровими навантаженнями.
+                </button>
 
-</div>
+            </h2>
 
-</div>
+            <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
 
-</div>
+                <div class="accordion-body">
+
+                    {{ __('fittings.faq6_answer') }}
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
 </section>
 
 
