@@ -96,146 +96,145 @@
     <div class="row g-4">
 
 @foreach([
-
     [
+        'key' => 'Кронштейн',
         'name' => __('fittings.product_bracket'),
         'img'  => '86d27faa44533c26c486b4c165461af66455b904.webp',
         'description' => __('fittings.product_bracket_description')
     ],
-
     [
+        'key' => 'Розвант. підставка',
         'name' => __('fittings.product_unloading_stand'),
         'img'  => '6c6786f2e63db2cc3abd5b287d9dc0f250f4cac1.webp',
         'description' => __('fittings.product_unloading_stand_description')
     ],
-
     [
+        'key' => 'Обжимний хомут',
         'name' => __('fittings.product_clamp'),
         'img'  => '50817907640bd467b51a06152782d9c1633c39c1.webp',
         'description' => __('fittings.product_clamp_description')
     ],
-
     [
+        'key' => 'Хомут під розтяжки',
         'name' => __('fittings.product_stretch_clamp'),
         'img'  => '7a923d0ebf494627edbedb11da6ecf26f1d2e739.webp',
         'description' => __('fittings.product_stretch_clamp_description')
     ],
-
     [
+        'key' => 'Стіновий хомут',
         'name' => __('fittings.product_wall_clamp'),
         'img'  => '7c724e0af75f91731229019244efae9cb5d5b77b.webp',
         'description' => __('fittings.product_wall_clamp_description')
     ],
-
     [
+        'key' => 'Монтажний хомут',
         'name' => __('fittings.product_mounting_clamp'),
         'img'  => '2a028b8820ce315c5c15fcbb2d423fe823c15946.webp',
         'description' => __('fittings.product_mounting_clamp_description')
     ],
-
     [
+        'key' => 'Скоба',
         'name' => __('fittings.product_brace'),
         'img'  => '2a9fd38e010c2bad45e05612b24ace6d7efdfe63.webp',
         'description' => __('fittings.product_brace_description')
     ],
-
     [
+        'key' => 'Дека',
         'name' => __('fittings.product_deka'),
         'img'  => 'ca88966ad49888492f5f78dc4ca394d8fe1f775b.webp',
         'description' => __('fittings.product_deka_description')
     ],
-
     [
+        'key' => 'Криза',
         'name' => __('fittings.product_criza'),
         'img'  => 'e5cb3a0e461cd2f1c716b651b97e5a851f707b3d.webp',
         'description' => __('fittings.product_criza_description')
     ],
-
     [
+        'key' => 'Прохід',
         'name' => __('fittings.product_passage'),
         'img'  => 'fa4508f8310bb8ce985355a408967b3509577cf2.webp',
         'description' => __('fittings.product_passage_description')
     ],
-
     [
+        'key' => 'Окапник',
         'name' => __('fittings.product_drip'),
         'img'  => 'c50692a896069ce5c20e71fe37119af64ab99845.webp',
         'description' => __('fittings.product_drip_description')
     ],
-
     [
+        'key' => 'Розета',
         'name' => __('fittings.product_rosette'),
         'img'  => 'b1d16c291c9d33ee26085e297703c90efef1239e.webp',
         'description' => __('fittings.product_rosette_description')
     ],
-
     [
+        'key' => 'Лійка',
         'name' => __('fittings.product_funnel'),
         'img'  => '80731c12dd76219b0954f38d138107e784d693ac.webp',
         'description' => __('fittings.product_funnel_description')
     ],
-
     [
+        'key' => 'Заглушка',
         'name' => __('fittings.product_plug'),
         'img'  => '70f9709ad093575e0fd014ac3fb5b565c6cc5d7e.webp',
         'description' => __('fittings.product_plug_description')
     ],
-
     [
+        'key' => 'Закінчення димоходу',
         'name' => __('fittings.product_chimney_top'),
         'img'  => 'b8621901edf97997d2fdbc0402944ed1507259f5.webp',
         'description' => __('fittings.product_chimney_top_description')
     ],
-
     [
+        'key' => 'Конус',
         'name' => __('fittings.product_cone'),
         'img'  => '497df0f94590eb6627e84cf787904225b8498530.webp',
         'description' => __('fittings.product_cone_description')
     ],
-
     [
+        'key' => 'Грибок',
         'name' => __('fittings.product_cap'),
         'img'  => 'ae60c4c7157b3a2c8b6856c55f9004e3b7a1b6e3.webp',
         'description' => __('fittings.product_cap_description')
     ],
-
     [
+        'key' => 'Термоґрибок',
         'name' => __('fittings.product_thermo_cap'),
         'img'  => '1d855c94e9a8b7971f6470c818282c3177472122.webp',
         'description' => __('fittings.product_thermo_cap_description')
     ],
-
     [
+        'key' => 'Волпер',
         'name' => __('fittings.product_volper'),
         'img'  => '7372de8d9cc1d6bafd52e03939d198ac9f2f7749.webp',
         'description' => __('fittings.product_volper_description')
     ],
-
     [
+        'key' => 'Іскрогасник',
         'name' => __('fittings.product_spark_arrester'),
         'img'  => '2b418f4fd415ddc6b5e4b4a1bf88942031a82f3c.webp',
         'description' => __('fittings.product_spark_arrester_description')
     ],
-
     [
+        'key' => 'Відображувач',
         'name' => __('fittings.product_reflector'),
         'img'  => '374f27f32989de18def1ba62797a9734f820a44d.webp',
         'description' => __('fittings.product_reflector_description')
     ],
-
     [
+        'key' => 'Старт-сендвіч',
         'name' => __('fittings.product_start_sandwich'),
         'img'  => '3a5834a31a698234418276d0333da7134679ccf4.webp',
         'description' => __('fittings.product_start_sandwich_description')
     ],
-
 ] as $item)
 
  <div class="col-6 col-md-4 col-lg-2">
 
             <button
                 class="card h-100 border-0 shadow-sm custom-product-card solution-card fitting-card w-100"
-                data-name="{{ $item['name'] }}">
+              data-name="{{ $item['key'] }}">
 
                 <img src="{{ asset('images/' . $item['img']) }}"
                      class="img-fluid p-3"
@@ -646,8 +645,8 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    let selectedName = null;
-
+   let selectedName = null;
+let selectedDisplayName = null;
     const products = {
 
     'Кронштейн': {
@@ -745,38 +744,39 @@ document.addEventListener('DOMContentLoaded', () => {
 
 };
 
-   document.querySelectorAll('.fitting-card').forEach(card => {
+ document.querySelectorAll('.fitting-card').forEach(card => {
 
     card.addEventListener('click', () => {
 
+        // Внутреннее название для JS и каталога
         selectedName = card.dataset.name;
 
-       const product = products[selectedName];
+        // Переведённое название для отображения пользователю
+        selectedDisplayName =
+            card.querySelector('h5').textContent.trim();
 
-if (!product) {
-    console.error('Не знайдено конфігурацію:', selectedName);
-    return;
-}
+        const product = products[selectedName];
 
-if (product.hasDiameter) {
-     document.getElementById('selectedName').textContent = selectedName;
+        if (!product) {
+            console.error('Не знайдено конфігурацію:', selectedName);
+            return;
+        }
 
-    showDiameters(product.diameters);
+        if (product.hasDiameter) {
 
-} else {
+            document.getElementById('selectedName').textContent =
+                selectedDisplayName;
 
-    window.location.href =
-    `/dymohody-ta-komplektuyuchi?name=${encodeURIComponent(selectedName)}`;
+            showDiameters(product.diameters);
 
-}
+        } else {
 
-    
+            window.location.href =
+                `/dymohody-ta-komplektuyuchi?name=${encodeURIComponent(selectedName)}`;
+        }
+    });
 
 });
-
-           
-
-    });
 
 function showDiameters(diameters){
 
