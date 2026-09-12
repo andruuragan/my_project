@@ -115,4 +115,7 @@ return [
 'js_step' => 'Крок :current із 4',
 'js_ready' => 'Готово',
 'js_select_all' => 'Будь ласка, оберіть усі параметри димоходу.',
+'js_standard' => 'Стандарт',
+'js_reinforced' => 'Посилена',
+'js_maximum' => 'Максимальна',
 ];

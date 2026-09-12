@@ -1352,6 +1352,9 @@
         'step' => __('sandwich.js_step'),
         'ready' => __('sandwich.js_ready'),
         'select_all' => __('sandwich.js_select_all'),
+        'standard' => __('sandwich.js_standard'),
+        'reinforced' => __('sandwich.js_reinforced'),
+        'maximum' => __('sandwich.js_maximum'),
     ];
 @endphp
 
@@ -1413,18 +1416,22 @@ const images = {
     
 };
 const availableThickness = {
+
     "201": [
-        { value: "0,5 мм", title: "Стандарт" }
+        { value: "0,5 мм", title: sandwichTranslations.standard }
     ],
+
     "304": [
-        { value: "0,5 мм", title: "Стандарт" },
-        { value: "0,8 мм", title: "Посилена" },
-        { value: "1 мм", title: "Максимальна" }
+        { value: "0,5 мм", title: sandwichTranslations.standard },
+        { value: "0,8 мм", title: sandwichTranslations.reinforced },
+        { value: "1 мм", title: sandwichTranslations.maximum }
     ],
+
     "321": [
-        { value: "0,8 мм", title: "Посилена" },
-        { value: "1 мм", title: "Максимальна" }
+        { value: "0,8 мм", title: sandwichTranslations.reinforced },
+        { value: "1 мм", title: sandwichTranslations.maximum }
     ]
+
 };
 function getLineClass(value) {
     switch (value) {

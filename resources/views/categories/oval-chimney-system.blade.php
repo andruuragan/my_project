@@ -1,25 +1,38 @@
 @extends('layouts.main')
 
-@section('title', 'Система овальних димоходів | DymSystems')
-@section('description', 'Обирайте надійну систему овальних димоходів від DymSystems для безпечної та ефективної вентиляції вашого дому. Професійний підбір та консультації.')
+@section('title', __('oval.title'))
+
+@section('description', __('oval.description'))
 
 @section('content')
 
 <section class="container-1600 py-5">
  {{-- Навігаційні крихти (Breadcrumbs) --}}
                 <nav aria-label="breadcrumb" class="mb-4">
-                    <ol class="breadcrumb mb-0">
-                        <li class="breadcrumb-item">
-                            <a href="{{ route('main.index') }}" class="text-decoration-none text-black-50 hover-orange transition-all">Головна</a>
-                        </li>
-                        <li class="breadcrumb-item">
-                            <a href="{{ route('categories.index') }}" class="text-decoration-none text-black-50 hover-orange transition-all">Категорії димарів</a>
-                        </li>
-                        <li class="breadcrumb-item active text-black" aria-current="page">
-                            <span style="color: #f97316; font-weight: 500;">Система овальних димоходів</span>
-                        </li>
-                    </ol>
-                </nav>
+    <ol class="breadcrumb mb-0">
+
+        <li class="breadcrumb-item">
+            <a href="{{ route('main.index') }}"
+               class="text-decoration-none text-black-50 hover-orange transition-all">
+                {{ __('oval.breadcrumb_home') }}
+            </a>
+        </li>
+
+        <li class="breadcrumb-item">
+            <a href="{{ route('categories.index') }}"
+               class="text-decoration-none text-black-50 hover-orange transition-all">
+                {{ __('oval.breadcrumb_categories') }}
+            </a>
+        </li>
+
+        <li class="breadcrumb-item active text-black" aria-current="page">
+            <span style="color: #f97316; font-weight: 500;">
+                {{ __('oval.breadcrumb_title') }}
+            </span>
+        </li>
+
+    </ol>
+</nav>
    <div class="hero-banner position-relative overflow-hidden rounded-4 p-4 p-lg-5">
 
     {{-- Зображення --}}
@@ -36,40 +49,38 @@
             DymSystems
         </span>
 
-        <h1 class="display-4 fw-bold mb-4">
-            Підбір овальної димохідної системи
-        </h1>
+       <h1 class="display-4 fw-bold mb-4">
+    {{ __('oval.hero_title') }}
+</h1>
 
-        <p class="lead text-muted mb-4" style="max-width:700px;">
-            Оберіть характеристики овальної димохідної системи, після чого
-            ми автоматично покажемо лише ті елементи, які повністю сумісні
-            з вашим вибором.
-        </p>
+<p class="lead text-muted mb-4" style="max-width:700px;">
+    {{ __('oval.hero_description') }}
+</p>
 
         <div class="d-flex flex-wrap gap-3 mb-4">
 
-            <span class="badge rounded-pill bg-light text-dark border px-3 py-2">
-                <i class="bi bi-lightning-charge-fill text-warning me-2"></i>
-                Швидкий підбір
-            </span>
+           <span class="badge rounded-pill bg-light text-dark border px-3 py-2">
+    <i class="bi bi-lightning-charge-fill text-warning me-2"></i>
+    {{ __('oval.hero_fast_selection') }}
+</span>
 
-            <span class="badge rounded-pill bg-light text-dark border px-3 py-2">
-                <i class="bi bi-check-circle-fill text-success me-2"></i>
-                Лише сумісні елементи
-            </span>
+<span class="badge rounded-pill bg-light text-dark border px-3 py-2">
+    <i class="bi bi-check-circle-fill text-success me-2"></i>
+    {{ __('oval.hero_compatible_only') }}
+</span>
 
-            <span class="badge rounded-pill bg-light text-dark border px-3 py-2">
-                <i class="bi bi-funnel-fill text-primary me-2"></i>
-                Автоматичний відбір
-            </span>
+<span class="badge rounded-pill bg-light text-dark border px-3 py-2">
+    <i class="bi bi-funnel-fill text-primary me-2"></i>
+    {{ __('oval.hero_automatic_selection') }}
+</span>
 
         </div>
 
-        <a href="#selection"
-           class="btn btn-warning btn-lg rounded-pill px-5 shadow-sm mt-4">
-            <i class="bi bi-arrow-right-circle-fill me-2"></i>
-            Почати підбір
-        </a>
+       <a href="#selection"
+   class="btn btn-warning btn-lg rounded-pill px-5 shadow-sm mt-4">
+    <i class="bi bi-arrow-right-circle-fill me-2"></i>
+    {{ __('oval.hero_button') }}
+</a>
 
     </div>
 
@@ -80,21 +91,19 @@
 
     <div class="text-center mb-5">
 
-        <span class="badge bg-warning text-dark mb-3">
-            Підбір за 4 кроки
-        </span>
+    <span class="badge bg-warning text-dark mb-3">
+        {{ __('oval.steps_badge') }}
+    </span>
 
-        <h2 class="fw-bold mb-3">
-            Як працює підбір
-        </h2>
+    <h2 class="fw-bold mb-3">
+        {{ __('oval.steps_title') }}
+    </h2>
 
-        <p class="text-muted mx-auto" style="max-width:700px;">
-            Вам не потрібно переглядати весь каталог. Послідовно оберіть
-            характеристики майбутньої системи, після чого ми покажемо лише
-            відповідні елементи.
-        </p>
+    <p class="text-muted mx-auto" style="max-width:700px;">
+        {{ __('oval.steps_description') }}
+    </p>
 
-    </div>
+</div>
 
     <div class="row g-4">
 
@@ -105,14 +114,13 @@
                 <div class="display-5 text-warning mb-3">
     <i class="bi bi-circle-square"></i>
 </div>
+<h5 class="fw-bold">
+    {{ __('oval.step_size_title') }}
+</h5>
 
-                <h5 class="fw-bold">
-                    Розмір
-                </h5>
-
-                <p class="text-muted small mb-0">
-                    Оберіть розмір
-                </p>
+<p class="text-muted small mb-0">
+    {{ __('oval.step_size_description') }}
+</p>
 
             </div>
         </div>
@@ -125,16 +133,13 @@
                <div class="display-5 text-warning mb-3">
     <i class="bi bi-shield-check"></i>
 </div>
+<h5 class="fw-bold">
+    {{ __('oval.step_steel_title') }}
+</h5>
 
-                <h5 class="fw-bold">
-                    Марка сталі
-                    
-                </h5>
-
-                <p class="text-muted small mb-0">
-                    Вкажіть марку сталі
-                    
-                </p>
+<p class="text-muted small mb-0">
+    {{ __('oval.step_steel_description') }}
+</p>
 
             </div>
         </div>
@@ -147,16 +152,13 @@
     <i class="bi bi-rulers"></i>
 </div>
 
-                <h5 class="fw-bold">
-                    Товщина сталі
-                    
-                </h5>
+              <h5 class="fw-bold">
+    {{ __('oval.step_thickness_title') }}
+</h5>
 
-                <p class="text-muted small mb-0">
-                    Оберіть товщину нержавіючої сталі
-                    
-                </p>
-
+<p class="text-muted small mb-0">
+    {{ __('oval.step_thickness_description') }}
+</p>
             </div>
         </div>
 
@@ -167,22 +169,20 @@
                 <div class="display-5 text-warning mb-3">
     <i class="bi bi-box-seam"></i>
 </div>
+<h5 class="fw-bold">
+    {{ __('oval.step_element_title') }}
+</h5>
 
-                <h5 class="fw-bold">
-                    Елемент системи
-                </h5>
-
-                <p class="text-muted small mb-0">
-                    Отримайте результат
-                </p>
-
+<p class="text-muted small mb-0">
+    {{ __('oval.step_element_description') }}
+</p>
             </div>
         </div>
 
     </div>
     <div class="alert alert-success border-0 rounded-4 mt-5">
     <i class="bi bi-check-circle-fill me-2"></i>
-    Після завершення підбору ви побачите лише сумісні комплектуючі.
+    {{ __('oval.compatible_notice') }}
 </div>
  
 </section>
@@ -198,25 +198,25 @@
                 DymSystems
             </span>
 
-            <h2 class="fw-bold mb-2">
-                Майстер підбору димоходу
-            </h2>
+           <h2 class="fw-bold mb-2">
+    {{ __('oval.wizard_title') }}
+</h2>
 
-            <p class="text-muted mb-0">
-                Давайте підберемо димохідну систему під ваші потреби
-            </p>
+<p class="text-muted mb-0">
+    {{ __('oval.wizard_description') }}
+</p>
         </div>
 
             {{-- Прогресс --}}
-            <div class="d-flex justify-content-between mb-3 small fw-semibold">
-                <span id="stepText">
-                    Крок 1 із 4
-                </span>
+           <div class="d-flex justify-content-between mb-3 small fw-semibold">
+    <span id="stepText">
+        {{ __('oval.js_step') }}
+    </span>
 
-                <span id="percentText">
-                    25%
-                </span>
-            </div>
+    <span id="percentText">
+        25%
+    </span>
+</div>
 
             <div class="progress mb-4" style="height:8px;">
                 <div id="progressBar"
@@ -242,7 +242,7 @@
                 class="alert alert-light border mb-4"
                 style="display:none;">
 
-                <strong>Ваш вибір</strong>
+               <strong>{{ __('oval.selected_options') }}</strong>
 
                 <div id="selectedList" class="mt-2"></div>
 
@@ -251,11 +251,9 @@
             {{-- Шаг 1 --}}
             <div id="step1">
 
-                <h2 class="fw-bold text-center mb-4">
-
-                    Оберіть розмір
-
-                </h2>
+              <h2 class="fw-bold text-center mb-4">
+    {{ __('oval.diameter_title') }}
+</h2>
 
                 <div class="row g-3">
                     @foreach([
@@ -296,12 +294,12 @@
     {{-- ========================= --}}
 <div id="step2" style="display:none;">
  <h2 class="fw-bold text-center mb-2">
-        Яка нержавіюча сталь вам потрібна?
-    </h2>
+    {{ __('oval.steel_question') }}
+</h2>
 
-    <p class="text-center text-muted mb-4">
-        Кожна марка сталі має свої особливості. Оберіть варіант, який найкраще відповідає вашим умовам експлуатації.
-    </p>
+<p class="text-center text-muted mb-4">
+    {{ __('oval.steel_description') }}
+</p>
 
     <div class="row g-3 justify-content-center">
 
@@ -316,13 +314,14 @@
                     AISI 304
                 </div>
 
-                <span class="badge bg-success mb-3">
-                    🟢 Найпопулярніша
-                </span>
+               <span class="badge bg-success mb-3">
+    🟢 {{ __('oval.steel_popular') }}
+</span>
 
-                <div class="small text-muted">
-                    Газові котли, універсальне використання, висока корозійна стійкість <strong>(товщина 0.5 мм, 0.8 мм, 1 мм)</strong>.
-                </div>
+<div class="small text-muted">
+    {{ __('oval.steel_popular_description') }}
+    <strong>({{ __('oval.steel_popular_thickness') }})</strong>.
+</div>
 
             </button>
         </div>
@@ -338,13 +337,14 @@
                     AISI 321
                 </div>
 
-                <span class="badge bg-danger mb-3">
-                    🔥 Для високих температур
-                </span>
+               <span class="badge bg-danger mb-3">
+    🔥 {{ __('oval.steel_high_temperature') }}
+</span>
 
-                <div class="small text-muted">
-                    Каміни, печі та твердопаливні котли. Оптимальний вибір для високих температур <strong>(товщина 0.8 мм та 1 мм)</strong>.
-                </div>
+<div class="small text-muted">
+    {{ __('oval.steel_high_temperature_description') }}
+    <strong>({{ __('oval.steel_high_temperature_thickness') }})</strong>.
+</div>
 
             </button>
         </div>
@@ -360,13 +360,14 @@
                     AISI 201
                 </div>
 
-                <span class="badge bg-warning text-dark mb-3">
-                    💰 Економ
-                </span>
+               <span class="badge bg-warning text-dark mb-3">
+    💰 {{ __('oval.steel_economy') }}
+</span>
 
-                <div class="small text-muted">
-                    Доступне рішення для менш вимогливих умов експлуатації <strong>(тільки в 0.5 товщині)</strong>.
-                </div>
+<div class="small text-muted">
+    {{ __('oval.steel_economy_description') }}
+    <strong>({{ __('oval.steel_economy_thickness') }})</strong>.
+</div>
 
             </button>
         </div>
@@ -382,14 +383,13 @@
 <div id="step3" style="display:none;">
  <div id="step3">
 
-    <h2 class="fw-bold text-center mb-2">
-        Оберіть товщину сталі
-    </h2>
+  <h2 class="fw-bold text-center mb-2">
+    {{ __('oval.thickness_title') }}
+</h2>
 
-    <p class="text-center text-muted mb-4">
-        Доступні варіанти для обраної марки сталі.
-    </p>
-
+<p class="text-center text-muted mb-4">
+    {{ __('oval.thickness_description') }}
+</p>
     <div id="thicknessContainer"
          class="row g-3 justify-content-center">
     </div>
@@ -402,14 +402,13 @@
     {{-- ========================= --}}
 <div id="step4" style="display:none;">
 
-    <h2 class="fw-bold text-center mb-2">
-        Який елемент вам потрібен?
-    </h2>
+   <h2 class="fw-bold text-center mb-2">
+    {{ __('oval.element_title') }}
+</h2>
 
-    <p class="text-center text-muted mb-4">
-        Оберіть елемент, який необхідно знайти.
-    </p>
-
+<p class="text-center text-muted mb-4">
+    {{ __('oval.element_description') }}
+</p>
     <div class="row g-3">
 
         @foreach([
@@ -491,14 +490,13 @@
 
                 <div class="display-5 mb-2">✅</div>
 
-                <h2 class="fw-bold">
-                    Ваш вибір готовий
-                </h2>
+            <h2 class="fw-bold">
+    {{ __('oval.selection_ready_title') }}
+</h2>
 
-                <p class="text-muted mb-0">
-                    Перевірте вибрані параметри перед переходом у каталог.
-                </p>
-
+<p class="text-muted mb-0">
+    {{ __('oval.selection_ready_description') }}
+</p>
             </div>
 
             <div class="row align-items-center">
@@ -529,14 +527,14 @@
 
             <div class="text-center mt-4">
 
-                <button
-                    id="showProducts"
-                    class="btn btn-warning btn-lg rounded-pill px-5">
+             <button
+    id="showProducts"
+    class="btn btn-warning btn-lg rounded-pill px-5">
 
-                    <i class="bi bi-search me-2"></i>
-                    Показати товари
+    <i class="bi bi-search me-2"></i>
+    {{ __('oval.show_products') }}
 
-                </button>
+</button>
 
             </div>
 
@@ -546,21 +544,21 @@
  <div id="productsGrid" class="row g-4 mt-2"></div>
 
     <div class="alert alert-warning border-0 shadow-sm rounded-4 mt-4">
-        <h5 class="fw-bold mb-2">
-            <i class="bi bi-info-circle me-2"></i>
-            Зверніть увагу
-        </h5>
+    <h5 class="fw-bold mb-2">
+        <i class="bi bi-info-circle me-2"></i>
+        {{ __('oval.attention_title') }}
+    </h5>
 
-        <p class="mb-0">
-            Для повного монтажу також можуть знадобитися кріплення, хомути, прохідні елементи, розтяжки, кронштейни та інші комплектуючі. Переглянути їх можна в окремому розділі категорій димарів.
-        </p>
+    <p class="mb-0">
+        {{ __('oval.attention_description') }}
+    </p>
 
-      <a href="{{ route('fittings-system') }}"
-   class="btn rounded-pill mt-3"
-   style="color: #fd7e14; border: 1px solid #fd7e14;">
-    Переглянути кріплення та комплектуючі
-</a>
-    </div>
+    <a href="{{ route('fittings-system') }}"
+       class="btn rounded-pill mt-3"
+       style="color: #fd7e14; border: 1px solid #fd7e14;">
+        {{ __('oval.attention_button') }}
+    </a>
+</div>
 
    
 </div>
@@ -580,9 +578,9 @@
             DymSystems
         </span>
 
-        <h2 class="fw-bold">
-            Чому обирають наші овальні димоходи
-        </h2>
+      <h2 class="fw-bold">
+    {{ __('oval.why_choose_title') }}
+</h2>
 
     </div>
 
@@ -592,45 +590,46 @@
 
           <div class="d-flex mb-4">
     <i class="bi bi-check-circle-fill text-success fs-4 me-3"></i>
-    <div>
-        Використовуємо нержавіючу сталь <strong>AISI 201, 304, 321 та 430</strong>.
-    </div>
+   <div>
+    {{ __('oval.steel_info') }}
+    <strong>AISI 201, 304, 321 {{ __('oval.steel_info_and') }} 430</strong>.
+</div>
 </div>
 
 <div class="d-flex mb-4">
     <i class="bi bi-check-circle-fill text-success fs-4 me-3"></i>
     <div>
-        Точні геометричні розміри забезпечують щільне з'єднання елементів.
+        {{ __('oval.precision_info') }}
     </div>
 </div>
 
 <div class="d-flex">
     <i class="bi bi-check-circle-fill text-success fs-4 me-3"></i>
     <div>
-        Повний асортимент комплектуючих для монтажу димохідної системи.
+        {{ __('oval.components_info') }}
     </div>
 </div>
 <div class="row text-center mt-5">
 
-    <div class="col-4">
+   <div class="col-4">
     <div class="display-6 fw-bold text-warning counter" data-target="4">
         4
     </div>
-    <small class="text-muted">Марки сталі</small>
+    <small class="text-muted">{{ __('oval.stat_steel_types') }}</small>
 </div>
 
 <div class="col-4">
     <div class="display-6 fw-bold text-warning counter" data-target="1000">
         1000+
     </div>
-    <small class="text-muted">Комплектуючих</small>
+    <small class="text-muted">{{ __('oval.stat_components') }}</small>
 </div>
 
 <div class="col-4">
     <div class="display-6 fw-bold text-warning counter" data-target="100">
         100%
     </div>
-    <small class="text-muted">Сумісність</small>
+    <small class="text-muted">{{ __('oval.stat_compatibility') }}</small>
 </div>
 </div>
 
@@ -645,9 +644,9 @@
                         <div class="display-6 text-warning">
     <i class="bi bi-shield-check"></i>
 </div>
-                        <h5 class="fw-bold mt-3">
-                            Якісна сталь
-                        </h5>
+                       <h5 class="fw-bold mt-3">
+    {{ __('oval.quality_steel') }}
+</h5>
                         <p class="small text-muted mb-0">
                             AISI 201, 304, 321, 430
                         </p>
@@ -659,12 +658,13 @@
                         <div class="display-6 text-warning">
     <i class="bi bi-rulers"></i>
 </div>
-                        <h5 class="fw-bold mt-3">
-                            Точна геометрія
-                        </h5>
-                        <p class="small text-muted mb-0">
-                            Легке складання системи
-                        </p>
+                    <h5 class="fw-bold mt-3">
+    {{ __('oval.precision_geometry') }}
+</h5>
+
+<p class="small text-muted mb-0">
+    {{ __('oval.easy_assembly') }}
+</p>
                     </div>
                 </div>
 
@@ -673,12 +673,13 @@
                        <div class="display-6 text-warning">
     <i class="bi bi-fire"></i>
 </div>
-                        <h5 class="fw-bold mt-3">
-                            Для різних котлів
-                        </h5>
-                        <p class="small text-muted mb-0">
-                            Газ, дрова, пелети
-                        </p>
+                       <h5 class="fw-bold mt-3">
+    {{ __('oval.boiler_types_title') }}
+</h5>
+
+<p class="small text-muted mb-0">
+    {{ __('oval.boiler_types_description') }}
+</p>
                     </div>
                 </div>
 
@@ -686,13 +687,13 @@
                     <div class="card feature-card h-100 border-0 shadow-sm p-4 text-center">
                         <div class="display-6 text-warning">
     <i class="bi bi-boxes"></i>
-</div>
-                        <h5 class="fw-bold mt-3">
-                            Великий вибір
-                        </h5>
-                        <p class="small text-muted mb-0">
-                            Повний комплект елементів
-                        </p>
+</div><h5 class="fw-bold mt-3">
+    {{ __('oval.large_selection_title') }}
+</h5>
+
+<p class="small text-muted mb-0">
+    {{ __('oval.large_selection_description') }}
+</p>
                     </div>
                     
                 </div>
@@ -701,15 +702,16 @@
 
         </div>
 <div class="text-center mt-5">
-    <a href="{{ route('shop.index') }}"
-       class="btn btn-warning btn-lg rounded-pill px-5">
-        <i class="bi bi-grid me-2"></i>
-        Переглянути каталог
-    </a>
+  <a href="{{ route('shop.index') }}"
+   class="btn btn-warning btn-lg rounded-pill px-5">
+    <i class="bi bi-grid me-2"></i>
+    {{ __('oval.view_catalog') }}
+</a>
 </div>
     </div>
 
 </section>
+
 
 <section class="container-1600 py-5">
 
@@ -720,7 +722,7 @@
         </span>
 
         <h2 class="fw-bold">
-            Поширені запитання
+            {{ __('oval.faq_title') }}
         </h2>
 
     </div>
@@ -736,7 +738,7 @@
                         data-bs-toggle="collapse"
                         data-bs-target="#faq1">
 
-                    Яка товщина сталі краща?
+                    {{ __('oval.faq1_question') }}
 
                 </button>
 
@@ -748,11 +750,11 @@
 
                 <div class="accordion-body">
 
-                    Для більшості газових котлів достатньо товщини
-                    <strong>0,5 мм</strong>. Для твердопаливних котлів,
-                    камінів і печей рекомендується використовувати
-                    <strong>0,8 мм або 1 мм</strong>, оскільки вони краще
-                    витримують високі температури.
+                    {{ __('oval.faq1_intro') }}
+                    <strong>{{ __('oval.faq1_thickness_05') }}</strong>.
+                    {{ __('oval.faq1_middle') }}
+                    <strong>{{ __('oval.faq1_thickness_high') }}</strong>,
+                    {{ __('oval.faq1_end') }}
 
                 </div>
 
@@ -769,7 +771,7 @@
                         data-bs-toggle="collapse"
                         data-bs-target="#faq2">
 
-                    Яку марку сталі обрати?
+                    {{ __('oval.faq2_question') }}
 
                 </button>
 
@@ -781,11 +783,10 @@
 
                 <div class="accordion-body">
 
-                    AISI 304 є універсальним рішенням для більшості
-                    газових котлів. AISI 321 рекомендується для
-                    твердопаливного обладнання та високих температур.
-                    AISI 201 — економічний варіант для <br> менш вимогливих
-                    умов експлуатації.
+                    {{ __('oval.faq2_aisi304') }}
+                    {{ __('oval.faq2_aisi321') }}
+                    {{ __('oval.faq2_aisi201') }} <br>
+                    {{ __('oval.faq2_aisi201_end') }}
 
                 </div>
 
@@ -802,7 +803,7 @@
                         data-bs-toggle="collapse"
                         data-bs-target="#faq3">
 
-                    Чи можна встановлювати одностінний димохід зовні?
+                    {{ __('oval.faq3_question') }}
 
                 </button>
 
@@ -814,10 +815,7 @@
 
                 <div class="accordion-body">
 
-                    Для зовнішнього монтажу зазвичай рекомендується
-                    використовувати утеплені (сендвіч) димоходи.
-                    Одностінні труби застосовуються переважно всередині
-                    приміщень або як внутрішня вставка.
+                    {{ __('oval.faq3_answer') }}
 
                 </div>
 
@@ -834,7 +832,7 @@
                         data-bs-toggle="collapse"
                         data-bs-target="#faq4">
 
-                    Який діаметр димоходу потрібен?
+                    {{ __('oval.faq4_question') }}
 
                 </button>
 
@@ -846,10 +844,7 @@
 
                 <div class="accordion-body">
 
-                    Діаметр визначається виробником опалювального
-                    обладнання. Якщо ви не впевнені у виборі,
-                    скористайтеся конфігуратором або зверніться до наших
-                    спеціалістів.
+                    {{ __('oval.faq4_answer') }}
 
                 </div>
 
@@ -860,6 +855,8 @@
     </div>
 
 </section>
+
+
 <style>
 .option-btn{
 
@@ -1019,7 +1016,23 @@
 }
 </style>
 
-  <script>
+ @php
+    $ovalJsTranslations = [
+        'diameter' => __('oval.js_diameter'),
+        'steel' => __('oval.js_steel'),
+        'thickness' => __('oval.js_thickness'),
+        'element' => __('oval.js_element'),
+        'step' => __('oval.js_step'),
+        'ready' => __('oval.js_ready'),
+        'select_all' => __('oval.js_select_all'),
+        'standard' => __('oval.js_standard'),
+        'reinforced' => __('oval.js_reinforced'),
+        'maximum' => __('oval.js_maximum'),
+    ];
+@endphp
+
+<script>
+    const ovalTranslations = @json($ovalJsTranslations);
   const selected = {
     diameter: null,
     grade: null,
@@ -1045,18 +1058,22 @@ const images = {
     "Скоба овальна": "6fd409bd13c5f765dbad2081863088a639ec3dae.webp"
 };
 const availableThickness = {
+
     "201": [
-        { value: "0,5 мм", title: "Стандарт" }
+        { value: "0,5 мм", title: ovalTranslations.standard }
     ],
+
     "304": [
-        { value: "0,5 мм", title: "Стандарт" },
-        { value: "0,8 мм", title: "Посилена" },
-        { value: "1 мм", title: "Максимальна" }
+        { value: "0,5 мм", title: ovalTranslations.standard },
+        { value: "0,8 мм", title: ovalTranslations.reinforced },
+        { value: "1 мм", title: ovalTranslations.maximum }
     ],
+
     "321": [
-        { value: "0,8 мм", title: "Посилена" },
-        { value: "1 мм", title: "Максимальна" }
+        { value: "0,8 мм", title: ovalTranslations.reinforced },
+        { value: "1 мм", title: ovalTranslations.maximum }
     ]
+
 };
 function getLineClass(value) {
     switch (value) {
@@ -1117,10 +1134,12 @@ function showStep(step, scroll = false) {
 
         document.getElementById('summary').innerHTML = `
 <ul class="list-unstyled mb-0">
-    <li><strong>Розмір:</strong> ${selected.diameter} мм</li>
-    <li><strong>Сталь:</strong> AISI ${selected.grade}</li>
-    <li><strong>Товщина:</strong> ${selected.thickness}</li>    
-    <li><strong>Елемент:</strong> ${selected.type}</li>
+
+    <li><strong>${ovalTranslations.diameter}:</strong> ${selected.diameter} мм</li>
+    <li><strong>${ovalTranslations.steel}:</strong> AISI ${selected.grade}</li>
+    <li><strong>${ovalTranslations.thickness}:</strong> ${selected.thickness}</li>
+    <li><strong>${ovalTranslations.element}:</strong> ${selected.type}</li>
+
 </ul>
 `;
 const img = document.getElementById('summaryImage');
@@ -1153,10 +1172,10 @@ function updateProgress() {
 
     document.getElementById('percentText').innerText = percent + '%';
 
-    document.getElementById('stepText').innerText =
-        currentStep <= 4
-            ? `Крок ${currentStep} із 4`
-            : 'Готово';
+   document.getElementById('stepText').innerText =
+    currentStep <= 4
+        ? ovalTranslations.step.replace(':current', currentStep)
+        : ovalTranslations.ready;
 
     document.getElementById('prevBtn').style.display =
         currentStep > 1 ? 'inline-block' : 'none';
@@ -1254,7 +1273,7 @@ bindOptionButtons();
 document.getElementById('showProducts').addEventListener('click', function () {
     // Перевірка, чи всі кроки заповнені
     if (!selected.diameter || !selected.thickness || !selected.grade || !selected.type) {
-        alert('Будь ласка, оберіть усі параметри димоходу.');
+alert(ovalTranslations.select_all);
         return;
     }
     

@@ -1130,6 +1130,9 @@
         'step' => __('single-wall.js_step'),
         'ready' => __('single-wall.js_ready'),
         'select_all' => __('single-wall.js_select_all'),
+        'standard' => __('single-wall.js_standard'),
+        'reinforced' => __('single-wall.js_reinforced'),
+        'maximum' => __('single-wall.js_maximum'),
     ];
 @endphp
 
@@ -1161,18 +1164,22 @@ const images = {
     "Розвантажувальна підставка": "6c6786f2e63db2cc3abd5b287d9dc0f250f4cac1.webp"
 };
 const availableThickness = {
+
     "201": [
-        { value: "0,5 мм", title: "Стандарт" }
+        { value: "0,5 мм", title: singleWallTranslations.standard }
     ],
+
     "304": [
-        { value: "0,5 мм", title: "Стандарт" },
-        { value: "0,8 мм", title: "Посилена" },
-        { value: "1 мм", title: "Максимальна" }
+        { value: "0,5 мм", title: singleWallTranslations.standard },
+        { value: "0,8 мм", title: singleWallTranslations.reinforced },
+        { value: "1 мм", title: singleWallTranslations.maximum }
     ],
+
     "321": [
-        { value: "0,8 мм", title: "Посилена" },
-        { value: "1 мм", title: "Максимальна" }
+        { value: "0,8 мм", title: singleWallTranslations.reinforced },
+        { value: "1 мм", title: singleWallTranslations.maximum }
     ]
+
 };
 function getLineClass(value) {
     switch (value) {

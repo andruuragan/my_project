@@ -172,5 +172,8 @@ return [
 'js_step' => 'Шаг :current из 5',
 'js_ready' => 'Готово',
 'js_select_all' => 'Пожалуйста, выберите все параметры дымохода.',
+'js_standard' => 'Стандарт',
+'js_reinforced' => 'Усиленная',
+'js_maximum' => 'Максимальная',
 
 ];
