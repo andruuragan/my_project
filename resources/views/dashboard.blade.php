@@ -1,6 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
+
     <div class="container py-4">
 
         {{-- HEADER --}}
@@ -8,19 +9,18 @@
 
             <div>
                 <h3 class="mb-1">
-                    👋 Ласкаво просимо, {{ auth()->user()->name }}
+                    👋 {{ __('dashboard.welcome') }}, {{ auth()->user()->name }}
                 </h3>
 
                 <div class="text-muted">
-                    Особистий кабінет клієнта
+                    {{ __('dashboard.account') }}
                 </div>
             </div>
 
             <a href="{{ route('profile.edit') }}" class="btn btn-outline-primary">
                 <i class="bi bi-gear"></i>
-                Настройки
+                {{ __('dashboard.settings') }}
             </a>
-
         </div>
 
         {{-- CARDS --}}
@@ -33,56 +33,63 @@
 
                         <div>
                             <div class="d-flex align-items-center gap-3 mb-3">
+
                                 <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center"
                                      style="width:50px;height:50px;">
                                     <i class="bi bi-person"></i>
                                 </div>
 
                                 <div>
-                                    <h5 class="mb-0">Профіль</h5>
-                                    <small class="text-muted">Особисті дані</small>
+                                    <h5 class="mb-0">{{ __('dashboard.profile') }}</h5>
+                                    <small class="text-muted">{{ __('dashboard.personal_data') }}</small>
                                 </div>
+
                             </div>
 
                             <p class="text-muted small mb-3">
-                                Ім'я: {{ auth()->user()->name }}<br>
+                                {{ __('dashboard.name') }}: {{ auth()->user()->name }}<br>
                                 Email: {{ auth()->user()->email }}
                             </p>
                         </div>
 
-                        <a href="{{ route('profile.edit') }}" class="btn btn-sm btn-primary w-100 rounded-pill">
-                            Відкрити профіль
+                        <a href="{{ route('profile.edit') }}"
+                           class="btn btn-sm btn-primary w-100 rounded-pill">
+                            {{ __('dashboard.open_profile') }}
                         </a>
 
                     </div>
                 </div>
             </div>
 
-            {{-- WISHLIST (Нова картка обраного) --}}
+            {{-- WISHLIST --}}
             <div class="col-md-3">
                 <div class="card shadow-sm border-0 h-100">
                     <div class="card-body d-flex flex-column justify-content-between">
 
                         <div>
                             <div class="d-flex align-items-center gap-3 mb-3">
+
                                 <div class="rounded-circle bg-danger text-white d-flex align-items-center justify-content-center"
                                      style="width:50px;height:50px;">
                                     <i class="bi bi-heart-fill"></i>
                                 </div>
 
                                 <div>
-                                    <h5 class="mb-0">Обране</h5>
-                                    <small class="text-muted">Вподобані товари</small>
+                                    <h5 class="mb-0">{{ __('dashboard.wishlist') }}</h5>
+                                    <small class="text-muted">{{ __('dashboard.favorite_products') }}</small>
                                 </div>
+
                             </div>
 
                             <p class="text-muted small mb-3">
-                                Товари, які ви відклали для майбутніх покупок.
+                                {{ __('dashboard.wishlist_description') }}
                             </p>
                         </div>
 
-                        <a href="{{ route('profile.wishlist') }}" class="btn btn-sm btn-danger w-100 rounded-pill">
-                            <i class="bi bi-heart-fill me-1"></i> Переглянути обране
+                        <a href="{{ route('profile.wishlist') }}"
+                           class="btn btn-sm btn-danger w-100 rounded-pill">
+                            <i class="bi bi-heart-fill me-1"></i>
+                            {{ __('dashboard.view_wishlist') }}
                         </a>
 
                     </div>
@@ -96,24 +103,27 @@
 
                         <div>
                             <div class="d-flex align-items-center gap-3 mb-3">
+
                                 <div class="rounded-circle bg-warning text-white d-flex align-items-center justify-content-center"
                                      style="width:50px;height:50px;">
                                     <i class="bi bi-box text-dark"></i>
                                 </div>
 
                                 <div>
-                                    <h5 class="mb-0">Замовлення</h5>
-                                    <small class="text-muted">Історія покупок</small>
+                                    <h5 class="mb-0">{{ __('dashboard.orders') }}</h5>
+                                    <small class="text-muted">{{ __('dashboard.purchase_history') }}</small>
                                 </div>
+
                             </div>
 
                             <p class="text-muted small mb-3">
-                                Перегляд ваших поточних та минулих замовлень.
+                                {{ __('dashboard.orders_description') }}
                             </p>
                         </div>
 
-                        <a href="{{ route('profile.orders') }}" class="btn btn-sm btn-warning w-100 text-dark rounded-pill fw-medium">
-                            Історія покупок
+                        <a href="{{ route('profile.orders') }}"
+                           class="btn btn-sm btn-warning w-100 text-dark rounded-pill fw-medium">
+                            {{ __('dashboard.purchase_history') }}
                         </a>
 
                     </div>
@@ -127,24 +137,27 @@
 
                         <div>
                             <div class="d-flex align-items-center gap-3 mb-3">
+
                                 <div class="rounded-circle bg-dark text-white d-flex align-items-center justify-content-center"
                                      style="width:50px;height:50px;">
                                     <i class="bi bi-sliders"></i>
                                 </div>
 
                                 <div>
-                                    <h5 class="mb-0">Настройки</h5>
-                                    <small class="text-muted">Безпека</small>
+                                    <h5 class="mb-0">{{ __('dashboard.settings') }}</h5>
+                                    <small class="text-muted">{{ __('dashboard.security') }}</small>
                                 </div>
+
                             </div>
 
                             <p class="text-muted small mb-3">
-                                Зміна паролю, керування безпекою акаунта.
+                                {{ __('dashboard.settings_description') }}
                             </p>
                         </div>
 
-                        <a href="{{ route('profile.edit') }}" class="btn btn-sm btn-dark w-100 rounded-pill">
-                            Перейти
+                        <a href="{{ route('profile.edit') }}"
+                           class="btn btn-sm btn-dark w-100 rounded-pill">
+                            {{ __('dashboard.go_to') }}
                         </a>
 
                     </div>
@@ -158,25 +171,29 @@
             <div class="card-body d-flex justify-content-between align-items-center">
 
                 <div>
-                    <h6 class="mb-1">Швидкі дії</h6>
-                    <small class="text-muted">Управління акаунтом</small>
+                    <h6 class="mb-1">{{ __('dashboard.quick_actions') }}</h6>
+                    <small class="text-muted">{{ __('dashboard.account_management') }}</small>
                 </div>
 
                 <div class="d-flex gap-2">
 
-                    <!-- Кнопка швидкого переходу в обране -->
-                    <a href="{{ route('profile.wishlist') }}" class="btn btn-outline-danger btn-sm">
-                        <i class="bi bi-heart-fill"></i> Моє обране
+                    <a href="{{ route('profile.wishlist') }}"
+                       class="btn btn-outline-danger btn-sm">
+                        <i class="bi bi-heart-fill"></i>
+                        {{ __('dashboard.my_wishlist') }}
                     </a>
 
-                    <a href="{{ route('profile.edit') }}" class="btn btn-outline-primary btn-sm">
-                        <i class="bi bi-person-gear"></i> Профіль
+                    <a href="{{ route('profile.edit') }}"
+                       class="btn btn-outline-primary btn-sm">
+                        <i class="bi bi-person-gear"></i>
+                        {{ __('dashboard.profile') }}
                     </a>
 
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
                         <button class="btn btn-outline-danger btn-sm">
-                            <i class="bi bi-box-arrow-right"></i> Вихід
+                            <i class="bi bi-box-arrow-right"></i>
+                            {{ __('dashboard.logout') }}
                         </button>
                     </form>
 
@@ -186,4 +203,5 @@
         </div>
 
     </div>
+
 @endsection

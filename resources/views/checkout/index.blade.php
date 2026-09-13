@@ -7,20 +7,22 @@
             {{ session('success') }}
         </div>
     @endif
+
     <div class="container-1600">
 
-        <h2 class="mb-4">Оформлення замовлення</h2>
+        <h2 class="mb-4">{{ __('checkout.title') }}</h2>
 
         @if(empty($cart))
-            <p>Кошик порожній</p>
+            <p>{{ __('checkout.empty_cart') }}</p>
         @else
 
             <div class="mb-3">
-                <strong>Товарів:</strong> {{ $cartCount }}
+                <strong>{{ __('checkout.products') }}:</strong> {{ $cartCount }}
             </div>
 
             <div class="mb-3">
-                <strong>Сума:</strong> {{ number_format($cartTotal, 0, '.', ' ') }} ₴
+                <strong>{{ __('checkout.total') }}:</strong>
+                {{ number_format($cartTotal, 0, '.', ' ') }} ₴
             </div>
 
             <form method="POST" action="{{ route('checkout.store') }}"
@@ -28,7 +30,7 @@
                 @csrf
 
                 <button type="submit" class="checkout-btn">
-                    Підтвердити замовлення
+                    {{ __('checkout.confirm_order') }}
                     <i class="bi bi-arrow-right ms-2"></i>
                 </button>
 

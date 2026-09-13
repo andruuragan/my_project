@@ -1,7 +1,7 @@
 @extends('layouts.main')
-@section('title', 'Каталог димоходів та комплектуючих | DymSystems')
+@section('title', __('catalog.title'))
 
-@section('description', 'Огляд каталогу димоходів та комплектуючих DymSystems: надійні сендвіч-димоходи, труби та елементи для ефективної системи опалення і вентиляції з нержавіючої сталі.')
+@section('description', __('catalog.description'))
 
 
 @section('content')
@@ -11,41 +11,42 @@
     <div class="title-shop text-center mb-5 mt-3">
         {{-- Навігаційні крихти (Breadcrumbs) --}}
                 
-                <nav aria-label="breadcrumb" class="mb-4">
-                    <ol class="breadcrumb mb-0">
-                        <li class="breadcrumb-item">
-    <a href="{{ route('main.index') }}"
-       class="text-decoration-none text-black-50 hover-orange">
-        Головна
-    </a>
-</li>
-                        
-                        <li class="breadcrumb-item active text-black" aria-current="page">
-                            
-                            <span style="color: #f97316; font-weight: 500;">Каталог товарів</span>
-                        </li>
-                    </ol>
-                </nav>
+          <nav aria-label="breadcrumb" class="mb-4">
+    <ol class="breadcrumb mb-0">
+        <li class="breadcrumb-item">
+            <a href="{{ route('main.index') }}"
+               class="text-decoration-none text-black-50 hover-orange">
+                {{ __('catalog.breadcrumb_home') }}
+            </a>
+        </li>
+
+        <li class="breadcrumb-item active text-black" aria-current="page">
+            <span style="color: #f97316; font-weight: 500;">
+                {{ __('catalog.breadcrumb_catalog') }}
+            </span>
+        </li>
+    </ol>
+</nav>
          <h1 class="fw-bold text-dark position-relative d-inline-block pb-3 fs-2">
 
-                Каталог елементів димоходу
+    {{ __('catalog.chimney_elements_title') }}
 
                 <span class="position-absolute bottom-0 start-50 translate-middle-x rounded-pill" style="width: 80px; height: 4px; background-color: #d97706;"></span>
 
             </h1>
         </div>
 
-    <button class="btn btn-warning d-lg-none mb-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#filterOffcanvas">
-        <i class="bi bi-sliders"></i> Фільтр товарів
-    </button>
+<button class="btn btn-warning d-lg-none mb-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#filterOffcanvas">
+    <i class="bi bi-sliders"></i> {{ __('catalog.product_filter') }}
+</button>
 
     <div class="row">
         
         <div class="offcanvas offcanvas-start" tabindex="-1" id="filterOffcanvas">
             <div class="offcanvas-header">
-                <h5 class="offcanvas-title">Фільтр товарів</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
-            </div>
+    <h5 class="offcanvas-title">{{ __('catalog.product_filter') }}</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+</div>
             <div class="offcanvas-body">
                 <div class="card p-3 border-0">
                     @include('partials.filter-form')
@@ -55,7 +56,9 @@
 
         <div class="col-xl-2 col-lg-3 mb-4 d-none d-lg-block">
             <div class="card p-3 shadow-sm filter-card">
-                 <h5><i class="bi bi-sliders me-2"></i> Фільтр</h5>
+                <h5>
+    <i class="bi bi-sliders me-2"></i> {{ __('catalog.filter') }}
+</h5>
                  @include('partials.filter-form')
             </div>
         </div>
@@ -72,7 +75,7 @@
             <button id="compareFloatingBtn" class="compare-floating-btn is-hidden" type="button">
     <i class="bi bi-shuffle me-2"></i>
     <span id="compareCount">0</span>
-    <span class="ms-1">товари для порівняння</span>
+    <span class="ms-1">{{ __('catalog.compare_products') }}</span>
 </button>
             <div id="productsWrapper">
                 @include('partials.products', ['catalogs' => $catalogs])

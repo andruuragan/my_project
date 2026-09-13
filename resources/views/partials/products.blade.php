@@ -2,7 +2,7 @@
 <div id="productsWrapper">
  <div class="shop-toolbar d-flex justify-content-between align-items-center mb-3">
 <div class="text-muted">
-    Знайдено: <span id="productsTotal">{{ $catalogs->total() }}</span>
+    {{ __('catalog.found') }}: <span id="productsTotal">{{ $catalogs->total() }}</span>
 </div>
 
          <div class="sort-box">
@@ -11,10 +11,16 @@
                     class="js-choice"
                     onchange="window.sendFilterAjax(document.getElementById('mainFilterForm'))">
 
-                <option value="">Всі товари</option>
-                <option value="price_asc" @selected(request('sort') == 'price_asc')>Від дешевих</option>
-                <option value="price_desc" @selected(request('sort') == 'price_desc')>Від дорогих</option>
-                <option value="name_asc" @selected(request('sort') == 'name_asc')>За назвою</option>
+               <option value="">{{ __('catalog.all_products') }}</option>
+<option value="price_asc" @selected(request('sort') == 'price_asc')>
+    {{ __('catalog.price_asc') }}
+</option>
+<option value="price_desc" @selected(request('sort') == 'price_desc')>
+    {{ __('catalog.price_desc') }}
+</option>
+<option value="name_asc" @selected(request('sort') == 'name_asc')>
+    {{ __('catalog.name_asc') }}
+</option>
 
             </select>
         </div>
@@ -26,7 +32,7 @@
          @include('partials.product-card', ['catalog' => $catalog])
            @empty
             <div class="col-12 text-center py-5">
-                <p class="text-muted">Товари не знайдені</p>
+            <p class="text-muted">{{ __('catalog.products_not_found') }}</p>
             </div>
         @endforelse
 

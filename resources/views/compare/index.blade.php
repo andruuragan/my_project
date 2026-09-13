@@ -4,162 +4,160 @@
 
 <div class="container-1600 py-4">
 
-    <h2 class="mb-4">Порівняння товарів</h2>
+    <h2 class="mb-4">{{ __('compare.title') }}</h2>
 
     <div class="mb-4">
-    <a href="{{ route('shop.index') }}"
-       class="btn btn-outline-secondary">
-        ← До каталогу
-    </a>
-</div>
+        <a href="{{ route('shop.index') }}"
+           class="btn btn-outline-secondary">
+            ← {{ __('compare.to_catalog') }}
+        </a>
+    </div>
 
     @if($products->isEmpty())
         <div class="alert alert-warning">
-            Немає товарів для порівняння
+            {{ __('compare.no_products') }}
         </div>
     @else
 
-       <div class="table-responsive compare-table-wrapper">
+        <div class="table-responsive compare-table-wrapper">
 
-    <table class="table compare-table align-middle">
+            <table class="table compare-table align-middle">
 
-        <tbody>
+                <tbody>
 
-            {{-- Фото --}}
-            <tr>
-                <th>Фото</th>
+                    {{-- Фото --}}
+                    <tr>
+                        <th>{{ __('compare.photo') }}</th>
 
-                @foreach($products as $product)
-                    <td>
-                        <img src="{{ $product->image }}"
-                             class="img-fluid compare-image">
-                    </td>
-                @endforeach
-            </tr>
+                        @foreach($products as $product)
+                            <td>
+                                <img src="{{ $product->image }}"
+                                     class="img-fluid compare-image">
+                            </td>
+                        @endforeach
+                    </tr>
 
-            {{-- Название --}}
-            <tr>
-                <th>Назва</th>
+                    {{-- Название --}}
+                    <tr>
+                        <th>{{ __('compare.name') }}</th>
 
-                @foreach($products as $product)
-                    <td class="fw-semibold">
-                        {{ $product->name }}
-                    </td>
-                @endforeach
-            </tr>
+                        @foreach($products as $product)
+                            <td class="fw-semibold">
+                                {{ $product->name }}
+                            </td>
+                        @endforeach
+                    </tr>
 
-            {{-- Цена --}}
-            <tr>
-                <th>Ціна</th>
+                    {{-- Цена --}}
+                    <tr>
+                        <th>{{ __('compare.price') }}</th>
 
-                @foreach($products as $product)
-                    <td class="text-warning fw-bold">
-                        {{ number_format($product->price, 0, '.', ' ') }} грн
-                    </td>
-                @endforeach
-            </tr>
+                        @foreach($products as $product)
+                            <td class="text-warning fw-bold">
+                                {{ number_format($product->price, 0, '.', ' ') }} грн
+                            </td>
+                        @endforeach
+                    </tr>
 
-            {{-- Диаметр --}}
-            <tr>
-                <th>Діаметр</th>
+                    {{-- Диаметр --}}
+                    <tr>
+                        <th>{{ __('compare.diameter') }}</th>
 
-                @foreach($products as $product)
-                    <td>{{ $product->diameter }}</td>
-                @endforeach
-            </tr>
+                        @foreach($products as $product)
+                            <td>{{ $product->diameter }}</td>
+                        @endforeach
+                    </tr>
 
-            {{-- Толщина --}}
-            <tr>
-                <th>Товщина</th>
+                    {{-- Толщина --}}
+                    <tr>
+                        <th>{{ __('compare.thickness') }}</th>
 
-                @foreach($products as $product)
-                    <td>{{ $product->thickness }}</td>
-                @endforeach
-            </tr>
+                        @foreach($products as $product)
+                            <td>{{ $product->thickness }}</td>
+                        @endforeach
+                    </tr>
 
-            {{-- Марка стали --}}
-            <tr>
-                <th>Марка сталі</th>
+                    {{-- Марка стали --}}
+                    <tr>
+                        <th>{{ __('compare.steel_grade') }}</th>
 
-                @foreach($products as $product)
-                    <td>AISI {{ $product->grade }}</td>
-                @endforeach
-            </tr>
+                        @foreach($products as $product)
+                            <td>AISI {{ $product->grade }}</td>
+                        @endforeach
+                    </tr>
 
-             {{-- Утеплення --}}
-           <tr>
-    <th>Утеплення</th>
+                    {{-- Утепление --}}
+                    <tr>
+                        <th>{{ __('compare.insulation') }}</th>
 
-    @foreach($products as $product)
-        <td>
-            @if($product->chimneyType === 'Термо')
-                <i class="bi bi-check-lg text-success fs-5"></i>
-            @else
-                —
-            @endif
-        </td>
-    @endforeach
-</tr>
+                        @foreach($products as $product)
+                            <td>
+                                @if($product->chimneyType === 'Термо')
+                                    <i class="bi bi-check-lg text-success fs-5"></i>
+                                @else
+                                    —
+                                @endif
+                            </td>
+                        @endforeach
+                    </tr>
 
- {{-- Тип кожуха  --}}
-          <tr>
-    <th>Тип кожуха</th>
+                    {{-- Тип кожуха --}}
+                    <tr>
+                        <th>{{ __('compare.casing_type') }}</th>
 
-    @foreach($products as $product)
-        <td>
-           @php
-    $casing = $product->casing;
+                        @foreach($products as $product)
+                            <td>
+                                @php
+                                    $casing = $product->casing;
 
-    if ($casing === 'одностіннй') {
-        echo '&mdash;'; // Теперь здесь точно длинное тире
-    } elseif ($casing === 'н/н') {
-        echo 'нержавійка (AISI 201)';
-    } elseif ($casing === 'н/оц') {
-        echo 'оцинковка';
-    } else {
-        // Если пришло что-то другое, но оно короткое (типа "-"), принудительно заменим
-        echo ($casing === '-') ? '&mdash;' : $casing;
-    }
-@endphp
-        </td>
-    @endforeach
-</tr>
+                                    if ($casing === 'одностіннй') {
+                                        echo '&mdash;';
+                                    } elseif ($casing === 'н/н') {
+                                        echo __('compare.stainless_steel');
+                                    } elseif ($casing === 'н/оц') {
+                                        echo __('compare.galvanized_steel');
+                                    } else {
+                                        echo ($casing === '-') ? '&mdash;' : $casing;
+                                    }
+                                @endphp
+                            </td>
+                        @endforeach
+                    </tr>
 
-            {{-- Кнопки --}}
-            <tr>
-                <th>Дії</th>
+                    {{-- Кнопки --}}
+                    <tr>
+                        <th>{{ __('compare.actions') }}</th>
 
-                @foreach($products as $product)
-                   <td>
-    <div class="compare-actions">
+                        @foreach($products as $product)
+                            <td>
+                                <div class="compare-actions">
 
-        @auth
-           <button type="button"
-        class="btn btn-orange add-to-cart-btn"
-        data-id="{{ $product->id }}"
-        data-url="{{ route('cart.add', $product->id) }}"
-        data-image="{{ $product->image }}">
-    Купити
-</button>
-        @endauth
+                                    @auth
+                                        <button type="button"
+                                                class="btn btn-orange add-to-cart-btn"
+                                                data-id="{{ $product->id }}"
+                                                data-url="{{ route('cart.add', $product->id) }}"
+                                                data-image="{{ $product->image }}">
+                                            {{ __('compare.buy') }}
+                                        </button>
+                                    @endauth
 
-        <button class="btn btn-outline-danger remove-compare"
-                data-id="{{ $product->id }}">
-            Видалити
-        </button>
+                                    <button class="btn btn-outline-danger remove-compare"
+                                            data-id="{{ $product->id }}">
+                                        {{ __('compare.remove') }}
+                                    </button>
 
-    </div>
-</td>
-                @endforeach
-            </tr>
+                                </div>
+                            </td>
+                        @endforeach
 
-        </tbody>
+                    </tr>
 
-    </table>
+                </tbody>
 
-</div>
+            </table>
 
-                  
+        </div>
 
     @endif
 

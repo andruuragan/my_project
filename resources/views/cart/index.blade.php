@@ -1,15 +1,15 @@
 @extends('layouts.main')
 
 @section('content')
-  <div class="container-1600">
+ <div class="container-1600">
 
     {{-- Заголовок --}}
-    <h2 class="mb-3">Кошик</h2>
+    <h2 class="mb-3">{{ __('cart.title') }}</h2>
 
-    {{-- Кнопка під заголовком (зліва) --}}
+    {{-- Кнопка под заголовком --}}
     <div class="mb-4">
         <a href="{{ route('shop.index') }}" class="btn btn-success d-inline-flex align-items-center gap-2">
-            <i class="bi bi-plus-lg"></i> Додати товар
+            <i class="bi bi-plus-lg"></i> {{ __('cart.add_product') }}
         </a>
     </div>
 
@@ -17,19 +17,19 @@
 
     @if(empty($cart))
         <div class="alert alert-info">
-            Кошик порожній. Перейдіть до каталогу, щоб зробити замовлення.
+            {{ __('cart.empty') }}
         </div>
     @else
-        {{-- ТАБЛИЦЯ ТОВАРІВ --}}
+        {{-- ТАБЛИЦА ТОВАРОВ --}}
         <div class="table-responsive">
             <table class="table align-middle">
                 <thead>
                     <tr>
-                        <th>Товар</th>
-                        <th class="text-center">Назва</th>
-                        <th class="text-center">Кількість</th>
-                        <th>Ціна</th>
-                        <th>Сума</th>
+                        <th>{{ __('cart.product') }}</th>
+                        <th class="text-center">{{ __('cart.name') }}</th>
+                        <th class="text-center">{{ __('cart.quantity') }}</th>
+                        <th>{{ __('cart.price') }}</th>
+                        <th>{{ __('cart.sum') }}</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -66,17 +66,26 @@
             </table>
         </div>
 
-        {{-- ПІДСУМОК ТА ОФОРМЛЕННЯ --}}
+        {{-- ИТОГ И ОФОРМЛЕНИЕ --}}
         <div class="d-flex justify-content-between align-items-start mt-4">
             <div class="d-flex gap-2">
-                <button id="clearCartBtn" class="btn btn-warning">Очистити кошик</button>
+                <button id="clearCartBtn" class="btn btn-warning">
+                    {{ __('cart.clear') }}
+                </button>
             </div>
-            <div class="text-end text-md-end text-center"> 
-    <h4>Загальна сума: <span id="cartTotal">{{ number_format($total, 0, '.', ' ') }}</span> грн.</h4>
-    <a href="{{ route('checkout.index') }}" class="checkout-btn mt-3 d-inline-flex justify-content-center align-items-center gap-2 w-100 w-md-auto">
-        Оформити замовлення <i class="bi bi-arrow-right"></i>
-    </a>
-</div>
+
+            <div class="text-end text-md-end text-center">
+                <h4>
+                    {{ __('cart.total') }}:
+                    <span id="cartTotal">{{ number_format($total, 0, '.', ' ') }}</span> грн.
+                </h4>
+
+                <a href="{{ route('checkout.index') }}"
+                   class="checkout-btn mt-3 d-inline-flex justify-content-center align-items-center gap-2 w-100 w-md-auto">
+                    {{ __('cart.checkout') }}
+                    <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
         </div>
     @endif
 </div>
