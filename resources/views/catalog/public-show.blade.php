@@ -2,27 +2,25 @@
 @section('title',
     !empty($catalog)
         ? $catalog->name . ' | DymSystems'
-        : 'Елемент димоходу | DymSystems'
+        : __('public-show.element_title')
 )
+
 @section('description',
     !empty($catalog)
         ? \Illuminate\Support\Str::limit(
             strip_tags(optional($catalog->description)->overview ?? $catalog->name),
             160
         )
-        : 'Елемент димоходу від DymSystems'
+        : __('public-show.element_description')
 )
 @section('content')
     <div class="container-1600 py-4">
 
         <!-- Кнопка повернення -->
         <div class="mb-4">
-            <a href="{{ route('shop.index') }}" class="btn btn-sm btn-outline-secondary rounded-pill d-inline-flex align-items-center gap-1 shadow-sm">
-                <svg xmlns="https://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
-                </svg>
-                До каталогу
-            </a>
+       <a href="{{ route('shop.index') }}" class="btn btn-sm btn-outline-secondary rounded-pill d-inline-flex align-items-center gap-1 shadow-sm"> <svg xmlns="https://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16"> <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/> </svg>
+    {{ __('public-show.to_catalog') }}
+</a>
         </div>
 
         <!-- Головна картка товару: Фото + Характеристики -->
@@ -44,7 +42,7 @@
                                 <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
                                 <path d="M2.002 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-12zm12 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
                             </svg>
-                            <span>Немає зображення</span>
+                           <span>{{ __('public-show.no_image') }}</span>
                         </div>
                     @endif
                 </div>
@@ -60,7 +58,9 @@
                                 <div class="d-flex gap-4">
                                     <!-- Базова ціна за 1 шт -->
                                     <div>
-                                        <span class="text-muted small d-block text-uppercase fw-bold">Ціна:</span>
+                                       <span class="text-muted small d-block text-uppercase fw-bold">
+    {{ __('public-show.price') }}:
+</span>
                                         <span class="fs-2 fw-black" style="color: #d97706;">
                                              {{ number_format($catalog->price, 0, '.', ' ') }}
                                             <small class="fs-5 fw-normal text-muted">грн</small>
@@ -70,7 +70,9 @@
                                     <!-- Загальна сума (показується при зміні кількості) -->
                                     <!-- Додано клас ms-4 (або ms-5 для більшого відступу) -->
                                     <div id="total-price-block" class="d-none" style="margin-left: 50px; transition: all 0.3s ease;">
-                                        <span class="text-muted small d-block text-uppercase fw-bold text-success">Разом:</span>
+                                       <span class="text-muted small d-block text-uppercase fw-bold text-success">
+    {{ __('public-show.total') }}:
+</span>
                                         <span class="fs-2 fw-black text-success">
         <span id="dynamic-total">{{ number_format($catalog->price, 0, '.', ' ') }}</span>
         <small class="fs-5 fw-normal text-muted">грн</small>
@@ -82,7 +84,7 @@
                                     @auth
                                         <!-- Вибір кількості (Мінус / Цифра / Плюс) -->
                                         <div class="d-flex flex-column gap-1">
-                                            <span class="text-muted small fw-bold">Кількість:</span>
+                                           <span class="text-muted small fw-bold">{{ __('public-show.quantity') }}:</span>
                                             <div class="input-group" style="max-width: 140px; height: 46px;">
                                                 <button class="btn btn-outline-secondary px-3 rounded-start-pill fw-bold" type="button" id="btn-minus" style="border-right: none;">−</button>
                                                 <input type="number"
@@ -109,7 +111,7 @@
                                                 <svg xmlns="https://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cart3 cart-icon" viewBox="0 0 16 16">
                                                     <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401H4.37l-.402 1.607L1.5 13H11a.5.5 0 0 1 0 1H1.5a.5.5 0 0 1-.49-.598l1-5a.5.5 0 0 1 .465-.401h9.396l.732-3.662H3.89l-.371-1.482A.5.5 0 0 1 3 1H1.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
                                                 </svg>
-                                                <span class="btn-text">У кошик</span>
+                                               <span class="btn-text">{{ __('public-show.add_to_cart') }}</span>
                                             </button>
                                         </div>
 
@@ -132,53 +134,64 @@
                                         </style>
                                     @else
                                         <!-- Варіант для гостей -->
-                                        <button type="button"
-                                                class="btn btn-outline-secondary btn-lg px-4 py-2 rounded-pill"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#loginModal">
-                                            Авторизуйтесь, щоб купити
-                                        </button>
+                                       <button type="button"
+        class="btn btn-outline-secondary btn-lg px-4 py-2 rounded-pill"
+        data-bs-toggle="modal"
+        data-bs-target="#loginModal">
+    {{ __('public-show.login_to_buy') }}
+</button>
                                     @endauth
                                 </div>
                             </div>
 
                             <!-- Блок сповіщення про успіх -->
                             <div class="cart-success-msg d-none mt-2 text-success small d-flex align-items-center gap-1">
-                                <svg xmlns="https://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
-                                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
-                                </svg>
-                                Товар успішно додано до вашого кошика!
-                            </div>
+    <svg xmlns="https://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+    </svg>
+    {{ __('public-show.added_to_cart') }}
+</div>
                         </div>
 
-                        <!-- Характеристики -->
-                        <h5 class="fs-6 text-muted text-uppercase fw-bold border-bottom pb-2 mb-3">Технічні характеристики</h5>
-                        <div class="row row-cols-1 row-cols-sm-2 g-3">
-                            <div class="col d-flex justify-content-between border-bottom pb-2">
-                                <span class="text-muted">Тип:</span>
-                                <span class="fw-medium text-dark">{{ $catalog->type ?? '-' }}</span>
-                            </div>
-                            <div class="col d-flex justify-content-between border-bottom pb-2">
-                                <span class="text-muted">Товщина:</span>
-                                <span class="fw-medium text-dark">{{ $catalog->thickness ?? '-' }}</span>
-                            </div>
-                            <div class="col d-flex justify-content-between border-bottom pb-2">
-                                <span class="text-muted">Марка нерж. (AISI):</span>
-                                <span class="fw-medium text-dark">{{ $catalog->grade ?? '-' }}</span>
-                            </div>
-                            <div class="col d-flex justify-content-between border-bottom pb-2">
-                                <span class="text-muted">Діаметр:</span>
-                                <span class="fw-medium text-dark">{{ $catalog->diameter ?? '-' }}</span>
-                            </div>
-                            <div class="col d-flex justify-content-between border-bottom pb-2">
-                                <span class="text-muted">Тип димоходу:</span>
-                                <span class="fw-medium text-dark">{{ $catalog->chimneyType ?? '-' }}</span>
-                            </div>
-                            <div class="col d-flex justify-content-between border-bottom pb-2">
-                                <span class="text-muted">Кожух:</span>
-                                <span class="fw-medium text-dark">{{ $catalog->casing == 'н' ? '-' : $catalog->casing }}</span>
-                            </div>
-                        </div>
+                       <!-- Характеристики -->
+
+<h5 class="fs-6 text-muted text-uppercase fw-bold border-bottom pb-2 mb-3">
+    {{ __('public-show.technical_specifications') }}
+</h5>
+
+<div class="row row-cols-1 row-cols-sm-2 g-3">
+
+    <div class="col d-flex justify-content-between border-bottom pb-2">
+        <span class="text-muted">{{ __('public-show.type') }}:</span>
+        <span class="fw-medium text-dark">{{ $catalog->type ?? '-' }}</span>
+    </div>
+
+    <div class="col d-flex justify-content-between border-bottom pb-2">
+        <span class="text-muted">{{ __('public-show.thickness') }}:</span>
+        <span class="fw-medium text-dark">{{ $catalog->thickness ?? '-' }}</span>
+    </div>
+
+    <div class="col d-flex justify-content-between border-bottom pb-2">
+        <span class="text-muted">{{ __('public-show.stainless_grade') }}:</span>
+        <span class="fw-medium text-dark">{{ $catalog->grade ?? '-' }}</span>
+    </div>
+
+    <div class="col d-flex justify-content-between border-bottom pb-2">
+        <span class="text-muted">{{ __('public-show.diameter') }}:</span>
+        <span class="fw-medium text-dark">{{ $catalog->diameter ?? '-' }}</span>
+    </div>
+
+    <div class="col d-flex justify-content-between border-bottom pb-2">
+        <span class="text-muted">{{ __('public-show.chimney_type') }}:</span>
+        <span class="fw-medium text-dark">{{ $catalog->chimneyType ?? '-' }}</span>
+    </div>
+
+    <div class="col d-flex justify-content-between border-bottom pb-2">
+        <span class="text-muted">{{ __('public-show.casing') }}:</span>
+        <span class="fw-medium text-dark">{{ $catalog->casing == 'н' ? '-' : $catalog->casing }}</span>
+    </div>
+
+</div>
                     </div>
                 </div>
 
@@ -363,7 +376,15 @@
 
     {{-- АЯКС СКРИПТ --}}
    {{-- АЯКС СКРИПТ З АНІМАЦІЄЮ ПОЛЬОТУ --}}
-    <script>
+  @php
+    $catalogTranslations = [
+        'in_cart' => __('public-show.in_cart'),
+        'add_to_cart_error' => __('public-show.add_to_cart_error'),
+    ];
+@endphp
+
+<script>
+    const catalogTranslations = @json($catalogTranslations);
         // 1. Глобальна функція анімації польоту товару в кошик
         function animateFlyToCart(imgElement) {
             const cartBtn = document.querySelector('.cart-btn') || document.getElementById('cartBtnContainer') || document.getElementById('cartTotalNav');
@@ -511,7 +532,7 @@ if (addToCartBtn) {
     addToCartBtn.removeAttribute('style');
     addToCartBtn.classList.remove('custom-orange-btn');
     addToCartBtn.classList.add('btn-success');
-    if (btnText) btnText.textContent = 'У кошику';
+   if (btnText) btnText.textContent = catalogTranslations.in_cart;
     if (successMsg) successMsg.classList.remove('d-none');
 
     // 3. Оновлення кошика
@@ -544,7 +565,7 @@ if (addToCartBtn) {
 })
 .catch(error => {
     addToCartBtn.disabled = false;
-    alert('Не вдалося додати товар у кошик. Спробуйте ще раз.');
+   alert(catalogTranslations.add_to_cart_error);
     console.error(error);
 });
     });
