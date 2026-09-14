@@ -3,22 +3,46 @@
 @section('content')
     @php
         // Мапінг англійських статусів на українські тексти та класи Bootstrap
-        $statusStyles = [
-            'pending'    => ['badge' => 'bg-warning text-dark',  'text' => 'Очікує'],
-            'paid'       => ['badge' => 'bg-success text-white', 'text' => 'Сплачено'],
-            'processing' => ['badge' => 'bg-primary text-white', 'text' => 'Обробка'],
-            'shipped'    => ['badge' => 'bg-info text-dark',     'text' => 'Відправлено'],
-            'completed'  => ['badge' => 'bg-secondary text-white','text' => 'Завершено'],
-            'cancelled'  => ['badge' => 'bg-danger text-white',   'text' => 'Скасовано'],
-        ];
+       $statusStyles = [
+    'pending' => [
+        'badge' => 'bg-warning text-dark',
+        'text' => __('orders.statuses.pending'),
+    ],
 
+    'paid' => [
+        'badge' => 'bg-success text-white',
+        'text' => __('orders.statuses.paid'),
+    ],
+
+    'processing' => [
+        'badge' => 'bg-primary text-white',
+        'text' => __('orders.statuses.processing'),
+    ],
+
+    'shipped' => [
+        'badge' => 'bg-info text-dark',
+        'text' => __('orders.statuses.shipped'),
+    ],
+
+    'completed' => [
+        'badge' => 'bg-secondary text-white',
+        'text' => __('orders.statuses.completed'),
+    ],
+
+    'cancelled' => [
+        'badge' => 'bg-danger text-white',
+        'text' => __('orders.statuses.cancelled'),
+    ],
+];
         // Отримуємо стиль для поточного статусу замовлення (якщо статус новий або невідомий — буде сірий дефолт)
         $currentStyle = $statusStyles[$order->status] ?? ['badge' => 'bg-secondary text-white', 'text' => $order->status];
     @endphp
 
     <div class="container-1600 py-4">
 
-        <h2 class="mb-4 fw-bold">Заказ №{{ $order->id }}</h2>
+    <h2 class="mb-4 fw-bold">
+    {{ __('orders.order') }} №{{ $order->id }}
+</h2>
 
         {{-- INFO BLOCK (как в корзине итог) --}}
         <div class="d-flex justify-content-between align-items-start mb-4 bg-light p-3 rounded-3 border">
@@ -42,7 +66,7 @@
             <!-- RIGHT -->
             <div class="text-end">
                 <h4 class="mb-0 fw-bold text-dark">
-                    Разом:
+                  {{ __('orders.total') }}:
                     <span class="text-success fs-3">
                         {{ number_format($order->total_price, 0, '.', ' ') }}
                     </span>
@@ -58,11 +82,11 @@
 
                 <thead>
                 <tr>
-                    <th>Товар</th>
-                    <th>Назва</th>
-                    <th class="text-center">Кількість</th>
-                    <th>Ціна</th>
-                    <th>Сума</th>
+                   <th>{{ __('orders.product') }}</th>
+<th>{{ __('orders.name') }}</th>
+<th class="text-center">{{ __('orders.quantity') }}</th>
+<th>{{ __('orders.price') }}</th>
+<th>{{ __('orders.sum') }}</th>
                 </tr>
                 </thead>
 
@@ -117,7 +141,7 @@
             <a href="{{ route('orders.export.excel', $order) }}"
                class="btn btn-success px-4 rounded-pill d-inline-flex align-items-center gap-2">
                 <i class="bi bi-file-earmark-excel"></i>
-                Зберегти в Excel
+         {{ __('orders.save_excel') }}
             </a>
         </div>
 
