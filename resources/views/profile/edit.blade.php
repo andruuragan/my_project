@@ -2,14 +2,13 @@
 
 @section('content')
     <div class="container py-4">
-     <a href="javascript:void(0)"
+<a href="javascript:void(0)"
    onclick="smartBack()"
    class="btn btn-secondary mb-3">
-    ← Назад
+    ← {{ __('profile.back') }}
 </a>
-    
 
-        <h3 class="mb-4">👤 Профіль</h3>
+<h3 class="mb-4">👤 {{ __('profile.title') }}</h3>
 
         <div class="card shadow-sm border-0 mb-4">
             <div class="card-body">

@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container py-4">
-        <h3 class="mb-4">❤️ Мої вподобані товари</h3>
+      <h3 class="mb-4">❤️ {{ __('profile.my_favorite_products') }}</h3>
 
         <div id="productsWrapper">
             <div class="row">
@@ -21,12 +21,22 @@
      style="max-height: 100%; object-fit: contain; transition: transform 0.3s ease;">
 
                                 <div class="product-icons p-3 d-flex justify-content-between w-100 position-absolute top-0 start-0">
-                                    <button type="button"
-                                            class="icon-btn wishlist-btn rounded-circle shadow-sm border-0 d-flex align-items-center justify-content-center bg-white"
-                                            data-id="{{ $catalog->id }}"
-                                            style="width: 36px; height: 36px;">
-                                        <i class="bi bi-heart-fill text-danger"></i>
-                                    </button>
+                           <button type="button"
+        class="icon-btn wishlist-btn rounded-circle shadow-sm border-0 d-flex align-items-center justify-content-center bg-white position-relative"
+        data-id="{{ $catalog->id }}"
+         data-bs-toggle="tooltip"
+        data-bs-placement="top"
+        data-bs-custom-class="custom-orange-tooltip"
+        data-bs-title="{{ __('profile.remove_from_wishlist') }}"
+        aria-label="{{ __('profile.remove_from_wishlist') }}"
+        style="width: 36px; height: 36px;">
+
+    <i class="bi bi-heart-fill text-danger"></i>
+
+   <i class="bi bi-x-lg text-white position-absolute"
+   style="font-size: 9px; font-weight: bold; top: 50%; left: 50%; transform: translate(-50%, -50%);"></i>
+
+</button>
 
                                     <div class="right-icons d-flex gap-2">
                                         <button type="button"
@@ -180,6 +190,7 @@
 .text-muted-dark {
     color: #4b5563;
 }
+
     </style>
 
     <div id="customImageModal" style="display: none; position: fixed; z-index: 9999; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.85); align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s ease;">

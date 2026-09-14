@@ -2,17 +2,16 @@
 
     <header class="mb-4">
         <h5 class="mb-1">
-            Зміна пароля
+            {{ __('profile.change_password') }}
         </h5>
 
         <p class="text-muted mb-0">
-            Використовуйте надійний пароль для безпеки облікового запису
+            {{ __('profile.password_security_text') }}
         </p>
     </header>
 
     <form method="post"
           action="{{ route('password.update') }}">
-
         @csrf
         @method('put')
 
@@ -20,10 +19,10 @@
 
             {{-- CURRENT PASSWORD --}}
             <div class="col-md-4">
-                <!-- Добавляем for="current_password" -->
-                <label class="form-label" for="current_password">Поточний пароль</label>
+                <label class="form-label" for="current_password">
+                    {{ __('profile.current_password') }}
+                </label>
 
-                <!-- Добавляем id="current_password" в сам инпут -->
                 <input type="password" id="current_password" name="current_password"
                        class="form-control"
                        autocomplete="current-password">
@@ -35,10 +34,10 @@
 
             {{-- NEW PASSWORD --}}
             <div class="col-md-4">
-                <!-- Добавляем for="new_password" -->
-                <label class="form-label" for="new_password">Новий пароль</label>
+                <label class="form-label" for="new_password">
+                    {{ __('profile.new_password') }}
+                </label>
 
-                <!-- Добавляем id="new_password" в инпут нового пароля -->
                 <input type="password" id="new_password" name="password"
                        class="form-control"
                        autocomplete="new-password">
@@ -50,10 +49,10 @@
 
             {{-- CONFIRM PASSWORD --}}
             <div class="col-md-4">
-                <!-- Добавляем for="password_confirmation" -->
-                <label class="form-label" for="password_confirmation">Підтвердження</label>
+                <label class="form-label" for="password_confirmation">
+                    {{ __('profile.password_confirmation') }}
+                </label>
 
-                <!-- Добавляем id="password_confirmation" в инпут подтверждения пароля -->
                 <input type="password" id="password_confirmation" name="password_confirmation"
                        class="form-control"
                        autocomplete="new-password">
@@ -69,12 +68,12 @@
         <div class="mt-4 d-flex justify-content-between align-items-center">
 
             <button type="submit" class="btn btn-primary">
-                Зберегти пароль
+                {{ __('profile.save_password') }}
             </button>
 
             @if (session('status') === 'password-updated')
                 <span class="text-success">
-                    ✔ Пароль оновлено
+                    ✔ {{ __('profile.password_updated') }}
                 </span>
             @endif
 

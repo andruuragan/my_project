@@ -1,26 +1,33 @@
 <section>
 
     <header class="mb-4">
+
         <h5 class="mb-1 text-danger">
-            Видалення облікового запису
+            {{ __('profile.delete_account') }}
         </h5>
 
         <p class="text-muted mb-0">
-            Після видалення облікового запису всі дані будуть безповоротно видалені
+            {{ __('profile.delete_account_description') }}
         </p>
+
     </header>
 
     {{-- BUTTON --}}
+
     <button type="button"
             class="btn btn-outline-danger"
             data-bs-toggle="modal"
             data-bs-target="#deleteAccountModal">
 
         <i class="bi bi-trash3"></i>
-        Видалити обліковий запис
+
+        {{ __('profile.delete_account_button') }}
+
     </button>
 
+
     {{-- MODAL --}}
+
     <div class="modal fade"
          id="deleteAccountModal"
          tabindex="-1"
@@ -31,14 +38,16 @@
             <div class="modal-content border-0 shadow">
 
                 <div class="modal-header">
+
                     <h5 class="modal-title text-danger">
-                        Підтвердження видалення
+                        {{ __('profile.delete_confirmation') }}
                     </h5>
 
                     <button type="button"
                             class="btn-close"
                             data-bs-dismiss="modal">
                     </button>
+
                 </div>
 
                 <form method="post"
@@ -50,16 +59,15 @@
                     <div class="modal-body">
 
                         <p class="mb-3">
-                            Ви впевнені, що хочете видалити обліковий запис? Цю дію не можна скасувати.
+                            {{ __('profile.delete_account_question') }}
                         </p>
 
-                        <!-- Добавляем for="confirm_action_password" -->
                         <label class="form-label" for="confirm_action_password">
-                            Введіть пароль для підтвердження
+                            {{ __('profile.enter_password_confirmation') }}
                         </label>
 
-                        <!-- Добавляем id="confirm_action_password" в сам инпут -->
-                        <input type="password" id="confirm_action_password"
+                        <input type="password"
+                               id="confirm_action_password"
                                name="password"
                                class="form-control"
                                required>
@@ -77,14 +85,12 @@
                         <button type="button"
                                 class="btn btn-secondary"
                                 data-bs-dismiss="modal">
-
-                            Скасування
+                            {{ __('profile.cancel') }}
                         </button>
 
                         <button type="submit"
                                 class="btn btn-danger">
-
-                            Видалити
+                            {{ __('profile.delete') }}
                         </button>
 
                     </div>
