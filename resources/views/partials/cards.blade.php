@@ -171,19 +171,23 @@
 
 <div class="col-12 mt-5">
     <div class="alert alert-success border-0 shadow-sm rounded-4">
-       <h4 class="fw-bold mb-3 text-center">
-    <i class="bi bi-stars me-2"></i>
-    Рекомендуємо також !
-</h4>
+        <h4 class="fw-bold mb-3 text-center">
+            <i class="bi bi-stars me-2"></i>
+            {{ __('categories.recommend_title') }}
+        </h4>
 
-        <p class="mb-0">
-           <strong style="text-decoration: underline;">
-    Ви обрали сендвіч-димохід з оцинкованим кожухом.
-</strong><br>
-Для окремих елементів ми використовуємо лише нержавіючий кожух, адже вони працюють в умовах високих температур і безпосередньо контактують із гарячими димовими газами.
-        </p>
-    </div>
+
+    <p class="mb-0">
+        <strong style="text-decoration: underline;">
+            {{ __('categories.recommend_selected') }}
+        </strong><br>
+        {{ __('categories.recommend_description') }}
+    </p>
 </div>
+
+
+</div>
+
 
 @foreach($recommended as $catalog)
 

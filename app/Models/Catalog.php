@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\CatalogGeometry;
 
 /**
  * @method static \Illuminate\Database\Eloquent\Builder create(array $attributes = [])
@@ -23,7 +24,8 @@ class Catalog extends Model
         'price',
         'image',
         'image_hash',
-        'description_id',// ← ОБЯЗАТЕЛЬНО
+        'description_id',
+        'geometry_id',// ← ОБЯЗАТЕЛЬНО
 
     ];
     protected $casts = [
@@ -37,6 +39,10 @@ class Catalog extends Model
     {
         return $this->belongsTo(Description::class);
     }
+    public function geometry()
+{
+    return $this->belongsTo(CatalogGeometry::class);
+}
     public function likedByUsers()
     {
         // Товар лайкнутий багатьма користувачами

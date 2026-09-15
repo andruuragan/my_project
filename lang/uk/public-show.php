@@ -12,7 +12,7 @@ return [
     'login_to_buy' => 'Авторизуйтесь, щоб купити',
     'added_to_cart' => 'Товар успішно додано до вашого кошика!',
     'technical_specifications' => 'Технічні характеристики',
-'type' => 'Тип',
+'type' => 'Тип елемента',
 'thickness' => 'Товщина',
 'stainless_grade' => 'Марка нерж. (AISI)',
 'diameter' => 'Діаметр',

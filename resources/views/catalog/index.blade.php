@@ -35,8 +35,8 @@
 
                     {{-- НОВАЯ КОЛОНКА --}}
                     <th style="width: 80px;">Описание</th>
-
-                    <th style="width: 150px;">Действия</th>
+<th style="width: 80px;">Геометрия</th>
+<th style="width: 150px;">Действия</th>
                 </tr>
                 </thead>
 
@@ -71,6 +71,14 @@
                                 <i class="bi bi-x-circle-fill text-danger" style="font-size: 24px;"></i>
                             @endif
                         </td>
+                        {{-- ГЕОМЕТРИЯ --}}
+<td class="text-center">
+    @if($item->geometry)
+        <i class="bi bi-check-circle-fill text-success" style="font-size: 24px;"></i>
+    @else
+        <i class="bi bi-x-circle-fill text-danger" style="font-size: 24px;"></i>
+    @endif
+</td>
 
 
                         <td>

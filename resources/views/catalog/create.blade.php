@@ -178,6 +178,30 @@
                     </label>
                 </div>
 
+                
+<div class="col-md-12">
+    <label class="form-label w-100">
+        <span class="d-block mb-2">Геометрія</span>
+
+        <select id="element_geometry"
+                name="geometry_id"
+                class="form-control">
+
+            <option value="">Без геометрії</option>
+
+            @foreach($geometries as $geometry)
+                <option value="{{ $geometry->id }}"
+                    @selected(old('geometry_id') == $geometry->id)>
+                    {{ $geometry->name }}
+                </option>
+            @endforeach
+
+        </select>
+    </label>
+</div>
+
+
+
             </div>
 
             <div class="mt-3 d-flex gap-2">

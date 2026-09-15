@@ -1,6 +1,8 @@
 @extends('layouts.main')
 
 @section('content')
+
+
     <div class="container-1600">
 
         @php
@@ -8,14 +10,11 @@
         @endphp
 
         <div class="d-flex justify-content-between align-items-center mb-4">
-            <h4>{{ $isRu ? 'Описания' : 'Описи' }}</h4>
+            <h4>{{ $isRu ? 'Геометрия товаров' : 'Геометрія товарів' }}</h4>
 
-            <a href="{{ route('descriptions.create') }}" class="btn btn-primary btn-icon">
-                + {{ $isRu ? 'Создать описание' : 'Створити опис' }}
+            <a href="{{ route('catalog-geometry.create') }}" class="btn btn-primary btn-icon">
+                + {{ $isRu ? 'Создать геометрию' : 'Створити геометрію' }}
             </a>
-            <a href="{{ route('catalog-geometry.index') }}" class="btn btn-primary btn-icon">
-    + {{ $isRu ? 'Геометрия товаров' : 'Геометрія товарів' }}
-</a>
         </div>
 
         <div class="card shadow-sm d-none d-md-block">
@@ -31,32 +30,32 @@
                     </thead>
 
                     <tbody>
-                        @foreach($descriptions as $description)
+                        @foreach($catalogGeometries as $geometry)
                             <tr>
-                                <td>{{ $description->id }}</td>
+                                <td>{{ $geometry->id }}</td>
 
                                 <td>
-                                    {{ $description->name }}
+                                    {{ $geometry->name ?? '—' }}
                                 </td>
 
                                 <td>
                                     <div class="d-flex gap-2">
 
-                                        <a href="{{ route('descriptions.show', $description->id) }}"
+                                        <a href="{{ route('catalog-geometry.show', $geometry->id) }}"
                                            class="btn btn-sm btn-info"
                                            title="{{ $isRu ? 'Просмотр' : 'Перегляд' }}">
                                             <i class="bi bi-eye"></i>
                                         </a>
 
-                                        <a href="{{ route('descriptions.edit', $description->id) }}"
+                                        <a href="{{ route('catalog-geometry.edit', $geometry->id) }}"
                                            class="btn btn-sm btn-warning"
                                            title="{{ $isRu ? 'Редактировать' : 'Редагувати' }}">
                                             <i class="bi bi-pencil"></i>
                                         </a>
 
-                                        <form action="{{ route('descriptions.destroy', $description->id) }}"
+                                        <form action="{{ route('catalog-geometry.destroy', $geometry->id) }}"
                                               method="POST"
-                                              onsubmit="return confirm('{{ $isRu ? 'Удалить описание?' : 'Видалити опис?' }}')">
+                                              onsubmit="return confirm('{{ $isRu ? 'Удалить геометрию?' : 'Видалити геометрію?' }}')">
 
                                             @csrf
                                             @method('DELETE')
@@ -82,7 +81,7 @@
         {{-- MOBILE --}}
         <div class="d-md-none">
 
-            @foreach($descriptions as $description)
+            @foreach($catalogGeometries as $geometry)
 
                 <div class="card mb-3 shadow-sm">
 
@@ -90,31 +89,31 @@
 
                         <div>
                             <small class="text-muted">
-                                ID: {{ $description->id }}
+                                ID: {{ $geometry->id }}
                             </small>
 
                             <h6 class="mb-0 mt-1">
-                                {{ $description->name }}
+                                {{ $geometry->name ?? '—' }}
                             </h6>
                         </div>
 
                         <div class="d-flex gap-2">
 
-                            <a href="{{ route('descriptions.show', $description->id) }}"
+                            <a href="{{ route('catalog-geometry.show', $geometry->id) }}"
                                class="btn btn-sm btn-outline-info"
                                title="{{ $isRu ? 'Просмотр' : 'Перегляд' }}">
                                 <i class="bi bi-eye"></i>
                             </a>
 
-                            <a href="{{ route('descriptions.edit', $description->id) }}"
+                            <a href="{{ route('catalog-geometry.edit', $geometry->id) }}"
                                class="btn btn-sm btn-outline-warning"
                                title="{{ $isRu ? 'Редактировать' : 'Редагувати' }}">
                                 <i class="bi bi-pencil"></i>
                             </a>
 
-                            <form action="{{ route('descriptions.destroy', $description->id) }}"
+                            <form action="{{ route('catalog-geometry.destroy', $geometry->id) }}"
                                   method="POST"
-                                  onsubmit="return confirm('{{ $isRu ? 'Удалить описание?' : 'Видалити опис?' }}')">
+                                  onsubmit="return confirm('{{ $isRu ? 'Удалить геометрию?' : 'Видалити геометрію?' }}')">
 
                                 @csrf
                                 @method('DELETE')
@@ -139,3 +138,4 @@
 
     </div>
 @endsection
+

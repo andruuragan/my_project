@@ -34,6 +34,7 @@ class CatalogController extends Controller
             'price' => 'numeric|required',
             'image' => 'string|nullable',
             'description_id' => 'nullable|exists:descriptions,id',
+            'geometry_id' => 'nullable|exists:catalog_geometries,id'
 
 
 
@@ -62,6 +63,7 @@ class CatalogController extends Controller
             'chimneyType' => 'string|nullable',
             'price' => 'numeric|required',
             'image' => 'string|nullable',
+            'geometry_id' => 'nullable|exists:catalog_geometries,id'
         ]);
         $catalog->update($data);
         return redirect()->route('catalog.show',$catalog->id);

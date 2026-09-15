@@ -21,6 +21,7 @@ class UpdateController extends Controller
             'chimneyType' => 'string|nullable',
             'price' => 'numeric|required',
             'description_id' => 'nullable|exists:descriptions,id',
+            'geometry_id' => 'nullable|exists:catalog_geometries,id',
             'image' => 'nullable|image|mimes:webp|max:2048',
         ]);
 

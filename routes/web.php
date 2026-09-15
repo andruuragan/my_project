@@ -34,6 +34,7 @@ use App\Http\Controllers\FittingsSystemController;
 use Illuminate\Support\Facades\Mail;
 use App\Services\BrevoMailService;
 use App\Http\Controllers\OvalChimneySystemController;
+use App\Http\Controllers\CatalogGeometryController;
 
 
 /* ==========================================================================
@@ -157,6 +158,8 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 
     /* --- Описания товаров --- */
     Route::resource('descriptions', DescriptionController::class);
+/* --- Геометрия товаров --- */
+Route::resource('catalog-geometry', CatalogGeometryController::class);
 
     /* --- Управление пользователями и их заказами --- */
     Route::resource('users', \App\Http\Controllers\Admin\UserController::class);

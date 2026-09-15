@@ -198,6 +198,101 @@
             </div>
         </div>
 
+
+        
+
+{{-- ГЕОМЕТРИЯ ТОВАРУ --}}
+@if($catalog->geometry)
+    @php
+        $geometry = $catalog->geometry;
+        $isRu = app()->getLocale() === 'ru';
+    @endphp
+
+    <div class="card shadow-sm border-0 bg-white rounded-3 p-4 mb-4">
+
+      <h3 class="fw-bold border-bottom pb-2 mb-4 text-center"
+    style="font-size: 30px;">
+    {{ $isRu ? 'Геометрия' : 'Геометрія' }}
+</h4>
+
+        <div class="row g-4 align-items-center">
+
+            {{-- Картинка геометрии --}}
+            @if($geometry->image_hash)
+                <div class="col-12 col-md-5 text-center">
+                    <div class="bg-light rounded-3 p-3 d-flex align-items-center justify-content-center"
+                         style="min-height: 250px;">
+
+                        <img src="{{ asset('images/' . $geometry->image_hash . '.webp') }}"
+                             alt="{{ $geometry->name }}"
+                             class="img-fluid"
+                             style="max-width: 100%; max-height: 350px; object-fit: contain;">
+                    </div>
+                </div>
+            @endif
+
+            {{-- Параметры геометрии --}}
+            @if($geometry->parameters)
+              <div class="{{ $geometry->image_hash ? 'col-12 col-md-5' : 'col-12' }}">
+
+                    @foreach($geometry->parameters as $index => $parameter)
+
+                        @php
+                            $parameterCode = $parameter['code'] ?? '';
+
+                            $parameterName = $isRu && !empty($parameter['name_ru'])
+                                ? $parameter['name_ru']
+                                : ($parameter['name'] ?? '');
+
+                            $parameterValue = $parameter['value'] ?? '';
+                        @endphp
+
+                        @if($parameterCode || $parameterName || $parameterValue)
+
+                            @if($index > 0)
+                                <hr class="my-3">
+                            @endif
+
+                            <div class="d-flex align-items-center gap-3">
+
+                                {{-- Обозначение --}}
+                                @if($parameterCode)
+                                    <span class="d-inline-flex align-items-center justify-content-center
+             fw-bold text-white rounded-2 px-3 py-2 flex-shrink-0"
+      style="background-color: #d97706; width: 70px;">
+    {{ $parameterCode }}
+</span>
+                                @endif
+
+                                {{-- Название параметра --}}
+                                @if($parameterName)
+                                    <span class="text-muted">
+                                        {{ $parameterName }}
+                                    </span>
+                                @endif
+
+                                {{-- Значение --}}
+                                @if($parameterValue)
+                                    <span class="fw-bold text-dark ms-auto text-end">
+                                        {{ $parameterValue }}
+                                    </span>
+                                @endif
+
+                            </div>
+
+                        @endif
+
+                    @endforeach
+
+                </div>
+            @endif
+
+        </div>
+    </div>
+@endif
+
+
+
         <!-- Таби з описами -->
      <!-- *Таби з описами* -->
 <div class="description-content mt-4">
