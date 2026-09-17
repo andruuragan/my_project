@@ -374,7 +374,7 @@
                     </div>
 
                     <!-- PASSWORD -->
-                    <div class="mb-3">
+                    <div class="mb-3  text-end">
                         <!-- Добавляем for="password" -->
                         <label class="form-label" for="password">Пароль</label>
 
@@ -388,6 +388,18 @@
             {{ __('messages.forgot_password') }}
         </a>
     </div>
+
+    <!-- REGISTER -->
+<div class="mt-3  text-end">
+    <a
+        class="text-decoration-none text-muted"
+        style="font-size: 0.85rem; cursor: pointer;"
+        data-bs-toggle="modal"
+        data-bs-target="#registerModal"
+        data-bs-dismiss="modal">
+        {{ __('messages.register') }}
+    </a>
+</div>
                     </div>
 
                     

@@ -218,44 +218,66 @@
                 loadOrders();
             });
 
-            function loadOrders(url = null) {
-                const currentUrl = url || window.location.pathname;
-                const queryString = new URLSearchParams(new FormData(form)).toString();
-                const fetchUrl = `${currentUrl}?${queryString}`;
+           function loadOrders(url = null) {
 
-                window.history.pushState({}, '', fetchUrl);
+    let fetchUrl;
 
-                const exportBtn = document.getElementById('exportBtn');
-                if(exportBtn) {
-                    exportBtn.href = `/admin/orders/export?${queryString}`;
-                }
+    if (url) {
+        // Якщо це пагінація — використовуємо готовий URL
+        fetchUrl = url;
+    } else {
+        // Якщо це фільтрація — формуємо URL із форми
+        const queryString = new URLSearchParams(new FormData(form)).toString();
 
-                fetch(fetchUrl, { headers: { 'X-Requested-With': 'XMLHttpRequest' } })
-                    .then(res => res.json())
-                    .then(data => {
+        fetchUrl = `${window.location.pathname}?${queryString}`;
+    }
 
-                        // 1. Просто вставляем готовую таблицу и пагинацию в их общую зону
-                        document.getElementById('dynamicContentZone').innerHTML = data.table_html;
+    window.history.pushState({}, '', fetchUrl);
 
-                        // 2. Обновляем цифру "Всього замовлень" на карточке
-                        const totalCounter = document.querySelector('.card h4.text-dark');
-                        if(totalCounter) totalCounter.innerText = data.total_orders;
+    const exportBtn = document.getElementById('exportBtn');
 
-                        // 3. Обновляем график
-                        updateChart(data.labels, data.values);
+    if (exportBtn) {
+        const urlObject = new URL(fetchUrl, window.location.origin);
 
-                        // 4. Переподключаем статусы
-                        bindStatusSelects();
-                    })
-                    .catch(err => console.error('Помилка завантаження:', err));
-            }
+        exportBtn.href = `/admin/orders/export?${urlObject.searchParams.toString()}`;
+    }
+
+    fetch(fetchUrl, {
+        headers: {
+            'X-Requested-With': 'XMLHttpRequest'
+        }
+    })
+    .then(res => res.json())
+    .then(data => {
+
+        document.getElementById('dynamicContentZone').innerHTML = data.table_html;
+
+        const totalCounter = document.querySelector('.card h4.text-dark');
+
+        if (totalCounter) {
+            totalCounter.innerText = data.total_orders;
+        }
+
+        updateChart(data.labels, data.values);
+
+        bindStatusSelects();
+        bindDeleteButtons();
+    })
+    .catch(err => {
+        console.error('Помилка завантаження:', err);
+    });
+}
             // 3. АСИНХРОННАЯ ПАГИНАЦИЯ
-            document.getElementById('paginationContainer').addEventListener('click', function (e) {
-                const link = e.target.closest('.pagination a');
-                if (!link) return;
-                e.preventDefault();
-                loadOrders(link.href);
-            });
+        document.getElementById('dynamicContentZone').addEventListener('click', function (e) {
+
+    const link = e.target.closest('.pagination a');
+
+    if (!link) return;
+
+    e.preventDefault();
+
+    loadOrders(link.href);
+});
 
             // 4. ИЗМЕНЕНИЕ СТАТУСА ЗАКАЗА В ТАБЛИЦЕ
             function bindStatusSelects() {
@@ -291,7 +313,74 @@
                     .catch(() => selectElement.disabled = false);
             }
 
-            bindStatusSelects();
+            // 5. УДАЛЕНИЕ ЗАМОВЛЕННЯ
+function bindDeleteButtons() {
+
+    document.querySelectorAll('.delete-order-btn').forEach(button => {
+
+        button.removeEventListener('click', handleDeleteOrder);
+        button.addEventListener('click', handleDeleteOrder);
+
+    });
+}
+
+function handleDeleteOrder() {
+
+    const button = this;
+    const orderId = button.dataset.id;
+
+    // Підтвердження видалення
+    if (!confirm('Ви впевнені, що хочете видалити це замовлення?')) {
+        return;
+    }
+
+    button.disabled = true;
+
+    fetch(`/admin/orders/${orderId}`, {
+        method: 'DELETE',
+        headers: {
+            'X-CSRF-TOKEN': '{{ csrf_token() }}',
+            'X-Requested-With': 'XMLHttpRequest',
+            'Accept': 'application/json'
+        }
+    })
+    .then(response => {
+
+        if (!response.ok) {
+            throw new Error('Помилка видалення замовлення');
+        }
+
+        return response.json();
+    })
+    .then(data => {
+
+        if (data.success) {
+
+            // Оновлюємо таблицю та статистику
+            loadOrders();
+
+        } else {
+
+            alert(data.message || 'Не вдалося видалити замовлення.');
+
+            button.disabled = false;
+        }
+
+    })
+    .catch(error => {
+
+        console.error('Помилка видалення:', error);
+
+        alert('Сталася помилка під час видалення замовлення.');
+
+        button.disabled = false;
+    });
+}
+
+
+
+            bindStatusSelects();          
+            bindDeleteButtons();
         });
     </script>
 @endsection

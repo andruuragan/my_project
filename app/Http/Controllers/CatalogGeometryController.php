@@ -10,7 +10,8 @@ class CatalogGeometryController extends Controller
 {
     public function index()
     {
-        $catalogGeometries = CatalogGeometry::orderBy('id', 'desc')->get();
+         
+        $catalogGeometries = CatalogGeometry::orderBy('id', 'desc')->paginate(15);
 
         return view('catalog-geometry.index', compact('catalogGeometries'));
     }

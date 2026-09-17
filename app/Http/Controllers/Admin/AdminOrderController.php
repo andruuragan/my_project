@@ -9,18 +9,19 @@ class AdminOrderController extends Controller
 {
     public function destroy(Order $order)
     {
-        // Твоя логика удаления (например, удаление связанных items, если нет cascade в БД)
+        // Удаляем товары заказа
         $order->items()->delete();
+
+        // Удаляем сам заказ
         $order->delete();
 
-        // Если запрос AJAX
         if (request()->expectsJson()) {
             return response()->json([
                 'success' => true,
-                'message' => 'Заказ видалено'
+                'message' => 'Замовлення видалено'
             ]);
         }
 
-        return back()->with('success', 'Заказ видалено');
+        return back()->with('success', 'Замовлення видалено');
     }
 }

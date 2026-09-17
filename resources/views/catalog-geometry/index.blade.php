@@ -16,7 +16,7 @@
                 + {{ $isRu ? 'Создать геометрию' : 'Створити геометрію' }}
             </a>
         </div>
-
+{{ $catalogGeometries->links('vendor.pagination.bootstrap-5') }}
         <div class="card shadow-sm d-none d-md-block">
             <div class="card-body p-0">
 

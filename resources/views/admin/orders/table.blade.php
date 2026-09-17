@@ -27,7 +27,10 @@
     @endif
                         </td>
                         <td>
-                            <select class="form-select form-select-sm status-select" data-id="{{ $order->id }}">
+                          <select id="order-status-{{ $order->id }}"
+        name="order_status"
+        class="form-select form-select-sm status-select"
+        data-id="{{ $order->id }}">
                                 <option value="pending" @selected($order->status === 'pending')>очікує</option>
                                 <option value="paid" @selected($order->status === 'paid')>сплачено</option>
                                 <option value="processing" @selected($order->status === 'processing')>обробка</option>
@@ -40,8 +43,21 @@
                         <td><span class="badge bg-secondary rounded-pill">{{ $order->items->count() }}</span></td>
                         <td class="text-muted small">{{ $order->created_at->format('d.m.Y H:i') }}</td>
                         <td class="text-end">
-                            <a href="{{ route('profile.orders.show', $order) }}" class="btn btn-sm btn-outline-primary">👁</a>
-                        </td>
+    <div class="d-flex justify-content-end gap-1">
+        <a href="{{ route('profile.orders.show', $order) }}"
+           class="btn btn-sm btn-outline-primary"
+           title="Переглянути">
+            👁
+        </a>
+
+        <button type="button"
+                class="btn btn-sm btn-outline-danger delete-order-btn"
+                data-id="{{ $order->id }}"
+                title="Видалити">
+            <i class="bi bi-trash"></i>
+        </button>
+    </div>
+</td>
                     </tr>
                 @endforeach
             </tbody>
@@ -66,7 +82,10 @@
                 </div>
 
                 <div class="d-flex gap-2">
-                    <select class="form-select form-select-sm status-select flex-grow-1" data-id="{{ $order->id }}">
+                    <select id="order-status-mobile-{{ $order->id }}"
+        name="order_status"
+        class="form-select form-select-sm status-select flex-grow-1"
+        data-id="{{ $order->id }}">
                         <option value="pending" @selected($order->status === 'pending')>очікує</option>
                         <option value="paid" @selected($order->status === 'paid')>сплачено</option>
                         <option value="processing" @selected($order->status === 'processing')>обробка</option>
@@ -75,6 +94,12 @@
                         <option value="cancelled" @selected($order->status === 'cancelled')>скасовано</option>
                     </select>
                     <a href="{{ route('profile.orders.show', $order) }}" class="btn btn-sm btn-outline-primary">👁</a>
+                <button type="button"
+            class="btn btn-sm btn-outline-danger delete-order-btn"
+            data-id="{{ $order->id }}"
+            title="Видалити">
+        <i class="bi bi-trash"></i>
+    </button>
                 </div>
             </div>
         @endforeach
