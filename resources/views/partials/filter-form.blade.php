@@ -1,7 +1,9 @@
  <form class="filter-form" id="mainFilterForm" method="GET" action="{{ route('shop.index') }}">
 
                         <div class="mb-3">
-                            <label class="form-label" for="element_name">Назва елемента</label>
+                            <label class="form-label" for="element_name">
+    {{ __('filters.element_name') }}
+</label>
                             <input type="text"
                                    id="element_name"
                                    name="name"
@@ -24,7 +26,9 @@
                         @endphp
 
                         <div class="mb-3" x-ignore>
-                            <label class="form-label" for="filter-element_type">Назва(список)</label>
+                            <label class="form-label" for="filter-element_type">
+    {{ __('filters.element_type') }}
+</label>
                             <select id="filter-element_type" name="type" class="js-choice" autocomplete="off">
                                 <option value="">Все</option>
                                 @foreach($types as $type)
@@ -52,7 +56,9 @@
                         @endphp
 
                         <div class="mb-3" x-ignore>
-                            <label class="form-label" for="filter-element_diameter">Діаметр(розмір)</label>
+                            <label class="form-label" for="filter-element_diameter">
+    {{ __('filters.element_diameter') }}
+</label>
                             <select id="filter-element_diameter" name="diameter" class="js-choice" autocomplete="off">
                                 <option value="">Все</option>
                                 @foreach($diameters as $d)
@@ -69,7 +75,9 @@
                         @endphp
 
                         <div class="mb-3" x-ignore>
-                            <label class="form-label" for="filter-thickness">Товщина нерж.</label>
+                           <label class="form-label" for="filter-thickness">
+    {{ __('filters.thickness') }}
+</label>
                             <select id="filter-thickness" name="thickness" class="js-choice" autocomplete="off">
                                 <option value="">Все</option>
                                 @foreach($thicknesses as $t)
@@ -108,7 +116,9 @@
                         @endphp
 
                         <div class="mb-3" x-ignore>
-                            <label class="form-label" for="filter-chimneyType">Тип димохода</label>
+                           <label class="form-label" for="filter-chimneyType">
+    {{ __('filters.chimney_type') }}
+</label>
                             <select id="filter-chimneyType" name="chimneyType" class="js-choice" autocomplete="off">
                                 <option value="">Все</option>
                                 @foreach($chimneyTypes as $type)
@@ -142,7 +152,9 @@
 
                         {{-- PRICE --}}
                         <div class="mb-3">
-                            <label class="form-label" for="price_to">Ціна до</label>
+                            <label class="form-label" for="price_to">
+    {{ __('filters.price_to') }}
+</label>
                             <input type="number"
                                    id="price_to"
                                    name="price_to"
@@ -154,14 +166,16 @@
 
                         
 
-                        <div class="d-flex flex-column gap-2 mt-3">
-                            <a href="{{ route('shop.index') }}" class="filter-reset-btn text-center py-2 btn btn-outline-secondary rounded-pill w-100">
-                                Скинути
-                            </a>
-                            <button class="filter-btn rounded-pill w-100" type="submit">
-                                Застосувати
-                            </button>
-                        </div>
+                      <div class="d-flex flex-column gap-2 mt-3">
+    <a href="{{ route('shop.index') }}"
+       class="filter-reset-btn text-center py-2 btn btn-outline-secondary rounded-pill w-100">
+        {{ __('filters.reset') }}
+    </a>
+
+    <button class="filter-btn rounded-pill w-100" type="submit">
+        {{ __('filters.apply') }}
+    </button>
+</div>
 
                     </form>
  
