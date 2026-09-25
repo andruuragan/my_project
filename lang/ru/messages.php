@@ -30,4 +30,9 @@ return [
     'login_button' => 'Войти',
     // ru/messages.php
 'lead_success' => 'Спасибо! Заявка успешно принята.',
+'added_to_cart' => 'Добавлено в корзину',
+'add_to_wishlist' => 'В закладки',
+'compare' => 'Сравнить',
+'product_details' => 'Подробнее о товаре',
+'zoom_image' => 'Увеличить фото',
 ];

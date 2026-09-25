@@ -102,7 +102,10 @@
         </div>
     </div>
 
-   <script>
+  <script>
+    window.translations = {
+        addedToCart: @json(__('messages.added_to_cart')),
+    };
 // 1. Анимация полета
 function animateFlyToCart(imgElement) {
     const cartBtn = document.querySelector('.cart-btn') || document.getElementById('cartBtnContainer');
@@ -224,7 +227,7 @@ document.addEventListener('click', function (e) {
     // 4. Уведомления и анимация
     if (data.success) {
         if (typeof refreshCart === 'function') refreshCart();
-        if (typeof showAlert === 'function') showAlert('Додано у кошик', 'success');
+        if (typeof showAlert === 'function') showAlert(window.translations.addedToCart, 'success');
         
         const originalContent = buyBtn.innerHTML;
        

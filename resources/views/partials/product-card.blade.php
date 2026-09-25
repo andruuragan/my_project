@@ -25,7 +25,7 @@
                  data-bs-toggle="tooltip"
                  data-bs-placement="right"
                   data-bs-custom-class="custom-orange-tooltip"
-        data-bs-title="В закладки">
+        data-bs-title="{{ __('messages.add_to_wishlist') }}">
             @if(Auth::user()->wishlists->contains($catalog->id))
                 <i class="bi bi-heart-fill text-danger"></i>
             @else
@@ -50,7 +50,7 @@
     data-bs-toggle="tooltip"
     data-bs-placement="right"
     data-bs-custom-class="custom-orange-tooltip"
-    data-bs-title="Порівняти"
+    data-bs-title="{{ __('messages.compare') }}"
     style="width:36px;height:36px;">
 
     <svg xmlns="http://www.w3.org/2000/svg"
@@ -84,7 +84,7 @@
        data-bs-toggle="tooltip"
        data-bs-placement="left"
        data-bs-custom-class="custom-orange-tooltip"
-       data-bs-title="Детальніше про товар"
+       data-bs-title="{{ __('messages.product_details') }}"
        style="width: 36px; height: 36px;">
         <i class="bi bi-box-arrow-up-right text-muted"></i>
     </a>
@@ -95,7 +95,7 @@
             data-bs-toggle="tooltip"
             data-bs-placement="left"
             data-bs-custom-class="custom-orange-tooltip"
-            data-bs-title="Збільшити фото"
+           data-bs-title="{{ __('messages.zoom_image') }}"
             style="width: 36px; height: 36px;"
             data-image="{{ $catalog->image ? asset($catalog->image) : asset('images/no-image.svg') }}">
         <i class="bi bi-search text-muted"></i>

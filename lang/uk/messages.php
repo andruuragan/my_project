@@ -30,4 +30,9 @@ return [
      'login_button' => 'Увійти',
      
 'lead_success' => 'Дякуємо! Заявку успішно прийнято.',
+'added_to_cart' => 'Додано у кошик',
+'add_to_wishlist' => 'В закладки',
+'compare' => 'Порівняти',
+'product_details' => 'Детальніше про товар',
+'zoom_image' => 'Збільшити фото',
 ];
