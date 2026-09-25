@@ -24,6 +24,8 @@ return [
     'go_to_shop' => 'Перейти в магазин',
 
     'copyright' => '© 2026 DymSystems. Все права защищены.',
+    'returns_and_exchanges' => 'Возврат и обмен',
+'payment_and_delivery' => 'Оплата и доставка',
 
 ];
 

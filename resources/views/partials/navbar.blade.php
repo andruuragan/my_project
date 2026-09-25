@@ -46,52 +46,54 @@
                         {{ __('messages.catalog') }}
                     </a>
                 </li>
-       <li class="nav-item menu-categories">
+     <li class="nav-item menu-categories">
 
     <a class="nav-link d-inline-flex align-items-center {{ request()->routeIs('categories.*') ? 'active' : '' }}"
        href="{{ route('categories.index') }}">
 
         <i class="bi bi-boxes me-2"></i>
+
         {{ __('messages.chimney_categories') }}
-        <i class="bi bi-chevron-down ms-2"></i>
+
+        <i class="bi bi-chevron-down ms-2 submenu-arrow"></i>
 
     </a>
 
-   <ul class="submenu custom-dropdown">
+    <ul class="submenu custom-dropdown">
 
-   <li>
-   <a class="dropdown-item {{ request()->routeIs('single-wall-system') ? 'active-item' : '' }}"
-   href="{{ route('single-wall-system') }}">
-    <i class="bi bi-box-seam me-2"></i>
-   {{ __('messages.single_wall') }}
-</a>
-</li>
+        <li>
+            <a class="dropdown-item {{ request()->routeIs('single-wall-system') ? 'active-item' : '' }}"
+               href="{{ route('single-wall-system') }}">
+                <i class="bi bi-box-seam me-2"></i>
+                {{ __('messages.single_wall') }}
+            </a>
+        </li>
 
-<li>
-   <a class="dropdown-item {{ request()->routeIs('sandwich-system') ? 'active-item' : '' }}"
-   href="{{ route('sandwich-system') }}">
-    <i class="bi bi-layers me-2"></i>
-    {{ __('messages.sandwich') }}
-</a>
-</li>
+        <li>
+            <a class="dropdown-item {{ request()->routeIs('sandwich-system') ? 'active-item' : '' }}"
+               href="{{ route('sandwich-system') }}">
+                <i class="bi bi-layers me-2"></i>
+                {{ __('messages.sandwich') }}
+            </a>
+        </li>
 
-<li>
-   <a class="dropdown-item {{ request()->routeIs('oval-chimney-system') ? 'active-item' : '' }}"
-   href="{{ route('oval-chimney-system') }}">
-    <i class="bi bi-app me-2"></i>
-    {{ __('messages.oval') }}
-</a>
-</li>
+        <li>
+            <a class="dropdown-item {{ request()->routeIs('oval-chimney-system') ? 'active-item' : '' }}"
+               href="{{ route('oval-chimney-system') }}">
+                <i class="bi bi-app me-2"></i>
+                {{ __('messages.oval') }}
+            </a>
+        </li>
 
-<li>
-    <a class="dropdown-item {{ request()->routeIs('fittings-system') ? 'active-item' : '' }}"
-   href="{{ route('fittings-system') }}">
-          <i class="bi bi-tools me-2"></i>
-   {{ __('messages.fittings') }}
-</a>
-</li>
+        <li>
+            <a class="dropdown-item {{ request()->routeIs('fittings-system') ? 'active-item' : '' }}"
+               href="{{ route('fittings-system') }}">
+                <i class="bi bi-tools me-2"></i>
+                {{ __('messages.fittings') }}
+            </a>
+        </li>
 
-</ul>
+    </ul>
 
 </li>
 

@@ -107,6 +107,16 @@
                             {{ __('footer.useful_info') }}
                         </a>
                     </li>
+                     <li>
+                        <a href="{{ route('main.index') }}">
+                            {{ __('footer.returns_and_exchanges') }}
+                        </a>
+                    </li>
+                     <li>
+                        <a href="{{ route('main.index') }}">
+                            {{ __('footer.payment_and_delivery') }}
+                        </a>
+                    </li>
 
                 </ul>
 
