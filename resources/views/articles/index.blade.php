@@ -1,5 +1,9 @@
 @extends('layouts.main')
 
+@section('title', __('articles.meta_title'))
+
+@section('description', __('articles.meta_description'))
+
 @section('content')
 
 @php
@@ -130,3 +134,83 @@
 </style>
 
 @endsection
+
+@push('schema-articles')
+<script type="application/ld+json">
+{!! json_encode([
+    '@' . 'context' => 'https://schema.org',
+    '@type' => 'CollectionPage',
+
+    '@id' => url()->current() . '#articles',
+    'url' => url()->current(),
+
+    'name' => trim($__env->yieldContent('title')),
+    'description' => trim($__env->yieldContent('description')),
+
+    'inLanguage' => $isRu ? 'ru-RU' : 'uk-UA',
+
+    'isPartOf' => [
+        '@type' => 'WebSite',
+        '@id' => url('/') . '#website',
+    ],
+
+    'mainEntity' => [
+        '@type' => 'ItemList',
+        'itemListElement' => $articles->values()->map(function ($article, $index) use ($isRu) {
+            return [
+                '@type' => 'ListItem',
+                'position' => $index + 1,
+                'url' => route('articles.public.show', $article->slug),
+                'name' => $isRu && $article->title_ru
+                    ? $article->title_ru
+                    : $article->title,
+            ];
+        })->values()->all(),
+    ],
+], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
+</script>
+@endpush
+@push('schema-webpage')
+<script type="application/ld+json">
+{!! json_encode([
+    '@' . 'context' => 'https://schema.org',
+    '@type' => 'WebPage',
+
+    '@id' => url()->current() . '#webpage',
+    'url' => url()->current(),
+
+    'name' => trim($__env->yieldContent('title')),
+    'description' => trim($__env->yieldContent('description')),
+
+    'inLanguage' => $isRu ? 'ru-RU' : 'uk-UA',
+
+    'isPartOf' => [
+        '@type' => 'WebSite',
+        '@id' => url('/') . '#website',
+    ],
+], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
+</script>
+@endpush
+@push('schema-breadcrumb')
+<script type="application/ld+json">
+{!! json_encode([
+    '@' . 'context' => 'https://schema.org',
+    '@type' => 'BreadcrumbList',
+
+    'itemListElement' => [
+        [
+            '@type' => 'ListItem',
+            'position' => 1,
+            'name' => $isRu ? 'Главная' : 'Головна',
+            'item' => url('/')
+        ],
+        [
+            '@type' => 'ListItem',
+            'position' => 2,
+            'name' => $isRu ? 'Статьи' : 'Статті',
+            'item' => url()->current()
+        ]
+    ]
+], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
+</script>
+@endpush
