@@ -26,7 +26,7 @@ return [
     'copyright' => '© 2026 DymSystems. Всі права захищені.',
     'returns_and_exchanges' => 'Повернення та обмін',
 'payment_and_delivery' => 'Оплата та доставка',
-'posts' => 'Пости',
+'posts' => 'Блог',
 
 ];
 
