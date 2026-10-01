@@ -35,6 +35,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Services\BrevoMailService;
 use App\Http\Controllers\OvalChimneySystemController;
 use App\Http\Controllers\CatalogGeometryController;
+use App\Http\Controllers\ArticleController;
 
 
 /* ==========================================================================
@@ -160,6 +161,8 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::resource('descriptions', DescriptionController::class);
 /* --- Геометрия товаров --- */
 Route::resource('catalog-geometry', CatalogGeometryController::class);
+/* --- Управление статьями --- */
+Route::resource('articles', ArticleController::class);
 
     /* --- Управление пользователями и их заказами --- */
     Route::resource('users', \App\Http\Controllers\Admin\UserController::class);
@@ -200,6 +203,11 @@ Route::get('/useful-info', [App\Http\Controllers\UsefulController::class, 'index
 |  ========================================================================== */
 Route::get('/compare', [CompareController::class, 'index'])->name('compare.index');
 Route::post('/contacts/send', [App\Http\Controllers\ContactsController::class, 'send'])->name('contact.send');
+Route::get('/articles', [ArticleController::class, 'publicIndex'])
+    ->name('articles.public.index');
+
+Route::get('/articles/{slug}', [ArticleController::class, 'publicShow'])
+    ->name('articles.public.show');
 
 
 require __DIR__.'/auth.php';

@@ -7,6 +7,9 @@ return [
     'categories' => 'Категории дымоходов',
     'about' => 'О нас',
     'contacts' => 'Контакты',
+     'posts' => 'Блог',
+
+    
     'account' => 'Кабинет',
 'cart' => 'Корзина',
 'admin_panel' => 'Админ панель',

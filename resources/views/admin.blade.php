@@ -43,8 +43,36 @@
             Керувати користувачами
         </a>
     </div>
+   
 </div>
-    </div> <div class="mt-5 bg-white p-4 rounded-3 shadow-sm border border-secondary-subtle">
+
+<div class="col-12 col-md-6 col-xl-3">
+    <div class="card h-100 shadow-sm border-0 bg-white p-4 rounded-3 text-center">
+        <h4 class="fw-bold text-dark mb-2">Статті</h4>
+        <p class="text-muted small mb-4">
+            Створення та редагування статей для сайту.
+        </p>
+        <a href="{{ route('articles.index') }}"
+           class="btn btn-secondary w-100 py-2 rounded-3 fw-semibold text-white">
+            Керувати статтями
+        </a>
+    </div>
+</div>
+
+<div class="col-12 col-md-6 col-xl-3">
+    <div class="card h-100 shadow-sm border-0 bg-white p-4 rounded-3 text-center">
+        <h4 class="fw-bold text-dark mb-2">Геометрія товарів</h4>
+        <p class="text-muted small mb-4">
+            Створення та редагування геометрії товарів.
+        </p>
+        <a href="{{ route('catalog-geometry.index') }}"
+           class="btn btn-info w-100 py-2 rounded-3 fw-semibold">
+            Керувати геометрією
+        </a>
+    </div>
+</div>
+    </div> 
+    <div class="mt-5 bg-white p-4 rounded-3 shadow-sm border border-secondary-subtle">
         <h4 class="fw-bold text-dark mb-3">🔥 Що найбільше лайкають</h4>
 
         @if($popularProducts->isEmpty())

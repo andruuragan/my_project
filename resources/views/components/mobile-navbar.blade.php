@@ -144,6 +144,11 @@
     <i class="bi bi-telephone"></i>
     {{ __('messagesmob.contacts') }}
 </a>
+<a href="{{ route('articles.public.index') }}"
+   class="{{ request()->routeIs('articles.public.index') ? 'active' : '' }}">
+    <i class="bi bi-card-text"></i>
+    {{ __('messagesmob.posts') }}
+</a>
 
             @auth
 

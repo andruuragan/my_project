@@ -120,6 +120,17 @@
                     </a>
                 </li>
 
+              <li class="nav-item">
+    <a class="nav-link d-inline-flex align-items-center gap-2 {{ request()->routeIs('articles.public.index') ? 'active' : '' }}"
+       href="{{ route('articles.public.index') }}">
+
+        <i class="bi bi-card-text"></i>
+
+        <span>{{ __('messages.posts') }}</span>
+
+    </a>
+</li>
+
                 {{-- ===== ADMIN ONLY ===== --}}
                 @auth
                     @if(auth()->user()->isAdmin())

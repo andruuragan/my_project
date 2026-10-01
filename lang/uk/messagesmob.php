@@ -6,6 +6,7 @@ return [
     'categories' => 'Категорії димарів',
     'about' => 'Про нас',
     'contacts' => 'Контакти',
+    'posts' => 'Блог',
     'account' => 'Кабінет',
 'cart' => 'Кошик',
 'admin_panel' => 'Адмін панель',

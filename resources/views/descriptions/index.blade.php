@@ -13,9 +13,7 @@
             <a href="{{ route('descriptions.create') }}" class="btn btn-primary btn-icon">
                 + {{ $isRu ? 'Создать описание' : 'Створити опис' }}
             </a>
-            <a href="{{ route('catalog-geometry.index') }}" class="btn btn-primary btn-icon">
-    + {{ $isRu ? 'Геометрия товаров' : 'Геометрія товарів' }}
-</a>
+            
         </div>
 
         <div class="card shadow-sm d-none d-md-block">

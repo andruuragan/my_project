@@ -242,7 +242,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             });
         }
 
-        // ===== CKEDITOR =====
+        
       // ===== CKEDITOR =====
 document.querySelectorAll('.rich-text').forEach((el) => {
     if (el.classList.contains('ck-editor-init')) return;
@@ -250,6 +250,39 @@ document.querySelectorAll('.rich-text').forEach((el) => {
         el.classList.add('ck-editor-init');
     }).catch(error => console.error(error));
 });
+
+// ===== CKEDITOR ДЛЯ СТАТЕЙ =====
+document.querySelectorAll('.article-rich-text').forEach((el) => {
+    if (el.classList.contains('ck-editor-init')) return;
+
+    ClassicEditor.create(el, {
+        toolbar: [
+            'heading',
+            '|',
+            'bold',
+            'italic',
+            'strikethrough',
+            '|',
+            'bulletedList',
+            'numberedList',
+            '|',
+            'link',
+            'blockQuote',
+            'insertTable',
+            '|',
+            'alignment',
+            '|',
+            'undo',
+            'redo'
+        ]
+    })
+    .then(editor => {
+        el.classList.add('ck-editor-init');
+    })
+    .catch(error => console.error(error));
+});
+
+
 
         // ===== SCROLL BUTTONS =====
         const upBtn = document.querySelector('.scroll-top');

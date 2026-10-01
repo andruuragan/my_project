@@ -6,6 +6,7 @@ return [
     'chimney_categories' => 'Категорії димарів',
     'about' => 'Про нас',
     'contacts' => 'Контакти',
+    'posts' => 'Блог',
 
     'single_wall' => 'Одностінні димоходи',
     'sandwich' => 'Термо димоходи (сендвіч)',

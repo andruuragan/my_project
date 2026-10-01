@@ -117,6 +117,11 @@
                             {{ __('footer.payment_and_delivery') }}
                         </a>
                     </li>
+                     <li>
+                        <a href="{{ route('main.index') }}">
+                            {{ __('footer.posts') }}
+                        </a>
+                    </li>
 
                 </ul>
 
