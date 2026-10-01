@@ -14,13 +14,13 @@
         <li class="breadcrumb-item">
             <a href="{{ route('main.index') }}"
                class="text-decoration-none text-black-50 hover-orange">
-                {{ __('contacts.breadcrumb_home') }}
+                {{ __('articles.breadcrumb_home') }}
             </a>
         </li>
 
         <li class="breadcrumb-item active text-black" aria-current="page">
             <span style="color: #f97316; font-weight: 500;">
-                {{ __('contacts.breadcrumb_title') }}
+                {{ __('articles.breadcrumb_title') }}
             </span>
         </li>
 
