@@ -118,9 +118,9 @@
                         </a>
                     </li>
                      <li>
-                        <a href="{{ route('main.index') }}">
-                            {{ __('footer.posts') }}
-                        </a>
+                        <a href="{{ route('articles.public.index') }}">
+    {{ __('footer.posts') }}
+</a>
                     </li>
 
                 </ul>
