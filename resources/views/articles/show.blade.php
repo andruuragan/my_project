@@ -34,7 +34,7 @@ $content = $isRu && $article->content_ru
     {{-- Главное изображение --}}
     @if($article->image)
         <div class="text-center mb-4">
-            <img src="{{ asset('storage/' . $article->image) }}"
+            <img src="{{ asset($article->image) }}"
                  alt="{{ $title }}"
                  class="img-fluid rounded-4 shadow-sm"
                  style="width: 100%; max-height: 520px; object-fit: cover;">

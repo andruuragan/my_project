@@ -49,7 +49,7 @@
 
                     @if($article->image)
                         <a href="{{ route('articles.public.show', $article->slug) }}">
-                            <img src="{{ asset('storage/' . $article->image) }}"
+                            <img src="{{ asset($article->image) }}"
                                  alt="{{ $isRu && $article->title_ru
                                     ? $article->title_ru
                                     : $article->title }}"
