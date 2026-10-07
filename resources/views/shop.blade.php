@@ -36,9 +36,14 @@
             </h1>
         </div>
 
-<button class="btn btn-warning d-lg-none mb-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#filterOffcanvas">
-    <i class="bi bi-sliders"></i> {{ __('catalog.product_filter') }}
+        <button class="btn btn-warning d-lg-none filter-mobile-btn" type="button"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#filterOffcanvas">
+    <i class="bi bi-sliders"></i>
+    {{ __('catalog.product_filter') }}
 </button>
+
+
 
     <div class="row">
         
@@ -375,6 +380,12 @@ document.addEventListener('submit', function (e) {
         top: 90px;
         padding: 8px 10px;
         font-size: 13px;
+    }
+
+   .filter-mobile-btn {
+        position: sticky;
+        top: 80px;
+        z-index: 1040;
     }
 }
 .hover-orange {

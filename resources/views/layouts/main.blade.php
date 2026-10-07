@@ -255,27 +255,7 @@ document.querySelectorAll('.rich-text').forEach((el) => {
 document.querySelectorAll('.article-rich-text').forEach((el) => {
     if (el.classList.contains('ck-editor-init')) return;
 
-    ClassicEditor.create(el, {
-        toolbar: [
-            'heading',
-            '|',
-            'bold',
-            'italic',
-            'strikethrough',
-            '|',
-            'bulletedList',
-            'numberedList',
-            '|',
-            'link',
-            'blockQuote',
-            'insertTable',
-            '|',
-            'alignment',
-            '|',
-            'undo',
-            'redo'
-        ]
-    })
+   ClassicEditor.create(el)
     .then(editor => {
         el.classList.add('ck-editor-init');
     })

@@ -6,7 +6,7 @@ return [
 'breadcrumb_home' => 'Головна',
 'breadcrumb_catalog' => 'Каталог товарів',
 'chimney_elements_title' => 'Каталог елементів димоходу',
-'product_filter' => 'Фільтр товарів',
+'product_filter' => 'Фільтр',
 'filter' => 'Фільтр',
 'compare_products' => 'товари для порівняння',
 'found' => 'Знайдено',
