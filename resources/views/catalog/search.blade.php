@@ -40,7 +40,8 @@
                         <option value="Стіновий хомут">Стіновий хомут</option>
                         <option value="Монтажний хомут">Монтажний хомут</option>
                         <option value="Конус">Конус</option>
-                        <option value="Термоґрибок">Термоґрибок</option>
+                        <option value="Зворотний конус">Зворотний конус</option>
+                        <option value="Термоґрибok">Термоґрибok</option>
                         <option value="Дека">Дека</option>
                         <option value="Заглушка">Заглушка</option>
                         <option value="Старт-сендвіч">Старт-сендвіч</option>
