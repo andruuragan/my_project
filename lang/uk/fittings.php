@@ -127,4 +127,7 @@ return [
 
 'product_start_sandwich' => 'Старт-сендвіч',
 'product_start_sandwich_description' => 'Для початку монтажу сендвіч-труби.',
+
+'product_reverse_cone' => 'Зворотний конус',
+'product_reverse_cone_description' => 'Для початку монтажу сендвіч-труби.',
 ];

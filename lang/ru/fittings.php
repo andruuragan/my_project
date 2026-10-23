@@ -127,4 +127,9 @@ return [
 
 'product_start_sandwich' => 'Старт-сэндвич',
 'product_start_sandwich_description' => 'Для начала монтажа сэндвич-трубы.',
+
+'product_reverse_cone' => 'Обратный конус',
+'product_reverse_cone_description' => 'Для начала монтажа сэндвич-трубы.',
+
+
 ];
